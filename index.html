@@ -90,17 +90,23 @@ nav a:hover { color: var(--primary); background: #eff6ff; }
   border: 3px solid rgba(255,255,255,0.3);
 }
 .hero-cta:hover { background: #e85e00; transform: translateY(-3px); box-shadow: 0 14px 36px rgba(255,107,0,0.6); }
-.hero-since {
-  display: flex; align-items: center; justify-content: center;
-  gap: 14px; margin-top: 40px; flex-wrap: wrap;
+.hero-stats {
+  display: flex; justify-content: center; gap: 0;
+  margin-top: 40px; flex-wrap: wrap;
 }
-.since-badges { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; }
+.hero-stat {
+  display: flex; flex-direction: column; align-items: center;
+  padding: 0 32px;
+  border-right: 1px solid rgba(255,255,255,0.2);
+}
+.hero-stat:last-child { border-right: none; }
 .since-badge {
+  display: inline-block;
   background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.25);
-  color: white; font-size: 13px; font-weight: 700;
-  padding: 5px 14px; border-radius: 20px;
+  color: white; font-size: 12px; font-weight: 700;
+  padding: 4px 12px; border-radius: 20px;
+  margin-bottom: 10px;
 }
-.hero-stats { display: flex; justify-content: center; gap: 40px; margin-top: 20px; flex-wrap: wrap; }
 .hero-stat .num { font-size: 28px; font-weight: 900; color: #fcd34d; }
 .hero-stat .label { font-size: 13px; opacity: 0.8; margin-top: 2px; }
 
@@ -708,23 +714,19 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
   <h1>놓치고 있던 <em>내 최대 지원금</em><br>당현함이 알려드릴게요!</h1>
   <p>인터넷가입·정수기·가전렌탈 시 최대 현금 지원, <strong>당일 지급</strong><br>KT · SKT · LG U+ 비교 후 가장 유리한 조건으로</p>
   <a href="#apply" class="hero-cta">내 최대 지원금 무료확인 →</a>
-  <div class="hero-since">
-    <span class="since-badges">
-      <span class="since-badge">📅 SINCE 2012</span>
-      <span class="since-badge">✅ 13년 무사고</span>
-      <span class="since-badge">💸 당일 지급 원칙</span>
-    </span>
-  </div>
   <div class="hero-stats">
     <div class="hero-stat">
+      <span class="since-badge">📅 SINCE 2012</span>
       <div class="num">12,847건</div>
       <div class="label">누적 상담 건수</div>
     </div>
     <div class="hero-stat">
+      <span class="since-badge">✅ 13년 무사고</span>
       <div class="num">98.3%</div>
       <div class="label">고객 만족도</div>
     </div>
     <div class="hero-stat">
+      <span class="since-badge">💸 당일 지급 원칙</span>
       <div class="num">평균 89만원</div>
       <div class="label">현금 지원금</div>
     </div>
