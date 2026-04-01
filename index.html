@@ -217,6 +217,74 @@ section { padding: 72px 20px; }
 
 /* ===== PROCESS ===== */
 .process { background: #f8fafc; }
+.compare-version-label {
+  display: inline-block; padding: 4px 14px; border-radius: 20px;
+  font-size: 11px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase;
+  margin-bottom: 24px;
+}
+.compare-version-label.ver-a { background: #e2e8f0; color: #475569; }
+.compare-version-label.ver-b { background: #fff3e8; color: #c2410c; }
+.process-divider {
+  border: none; border-top: 2px dashed #e2e8f0;
+  margin: 52px auto; max-width: 480px;
+}
+
+/* --- A안: 원래 카드 스타일 --- */
+.process-steps-a {
+  display: flex; align-items: center; justify-content: center;
+  gap: 0; max-width: 860px; margin: 0 auto;
+}
+.process-step-a {
+  display: flex; flex-direction: column; align-items: center; text-align: center;
+  background: white; border-radius: 16px; padding: 36px 28px;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.06); flex: 1;
+  min-width: 180px; max-width: 260px;
+  transition: transform 0.2s;
+}
+.process-step-a:hover { transform: translateY(-4px); }
+.process-arrow-a {
+  font-size: 28px; color: #93c5fd; font-weight: 700;
+  padding: 0 12px; flex-shrink: 0;
+}
+.step-icon-a { font-size: 52px; margin-bottom: 14px; line-height: 1; }
+.step-title-a { font-size: 18px; font-weight: 800; color: var(--dark); margin-bottom: 10px; }
+.step-desc-a { font-size: 14px; color: var(--gray); line-height: 1.7; }
+
+/* --- 개선안: 번호+연결선 카드 스타일 --- */
+.process-steps-b {
+  display: flex; align-items: flex-start; justify-content: center;
+  max-width: 860px; margin: 0 auto; position: relative;
+}
+.process-steps-b::before {
+  content: ''; position: absolute;
+  top: 28px; left: calc(16.66% + 18px); right: calc(16.66% + 18px);
+  height: 2px; background: linear-gradient(90deg, #2563eb, #60a5fa);
+  z-index: 0;
+}
+.process-step-b {
+  display: flex; flex-direction: column; align-items: center; text-align: center;
+  flex: 1; padding: 0 16px; position: relative; z-index: 1;
+}
+.step-num-b {
+  display: flex; align-items: center; justify-content: center;
+  width: 56px; height: 56px; border-radius: 50%;
+  background: var(--primary); color: white;
+  font-size: 20px; font-weight: 900;
+  border: 4px solid #f8fafc;
+  box-shadow: 0 4px 16px rgba(37,99,235,0.3);
+  margin-bottom: 20px; flex-shrink: 0;
+}
+.step-card-b {
+  background: white; border-radius: 14px; padding: 20px 18px;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+  border-top: 3px solid var(--primary);
+  width: 100%; transition: transform 0.2s;
+}
+.step-card-b:hover { transform: translateY(-4px); }
+.step-icon-b { font-size: 36px; margin-bottom: 10px; line-height: 1; }
+.step-title-b { font-size: 17px; font-weight: 800; color: var(--dark); margin-bottom: 8px; }
+.step-desc-b { font-size: 13px; color: var(--gray); line-height: 1.7; }
+
 .process-label {
   display: inline-block; font-size: 15px; font-weight: 600; color: #64748b;
   transform: rotate(-3deg); transform-origin: left center;
@@ -457,13 +525,16 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
   .compare-table th.col-vs { padding-left: 10px; font-size: 12px; }
   .plans-grid { grid-template-columns: 1fr; }
   .process-chevrons { flex-direction: column; gap: 12px; filter: none; }
-  .process-chevron {
-    margin-left: 0 !important; margin-top: 0;
-    clip-path: none !important; border-radius: 14px !important;
-    padding: 22px 24px; display: flex; align-items: center; gap: 16px; text-align: left;
-  }
+  .process-chevron { margin-left: 0 !important; margin-top: 0; clip-path: none !important; border-radius: 14px !important; padding: 22px 24px; display: flex; align-items: center; gap: 16px; text-align: left; }
   .chevron-badge { margin-bottom: 0; flex-shrink: 0; }
   .chevron-title { margin-bottom: 2px; font-size: 18px; }
+  .process-steps-a { flex-direction: column; align-items: center; gap: 12px; }
+  .process-arrow-a { transform: rotate(90deg); }
+  .process-steps-b { flex-direction: column; align-items: center; gap: 16px; }
+  .process-steps-b::before { display: none; }
+  .process-step-b { flex-direction: row; text-align: left; gap: 16px; width: 100%; max-width: 340px; }
+  .step-num-b { margin-bottom: 0; flex-shrink: 0; }
+  .step-card-b { border-top: none; border-left: 3px solid var(--primary); border-radius: 10px; }
   .chevron-desc { font-size: 13px; }
   .form-card { padding: 24px 18px; }
   section { padding: 52px 20px; }
@@ -693,25 +764,64 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
 <!-- PROCESS -->
 <section class="process">
   <div class="section-inner" style="text-align:center;">
-    <div class="process-label">신청부터 입금까지, <em>당일 완료!</em></div>
-    <h2 class="process-title-big">3분이면 OK!<br>3단계 간단 진행절차</h2>
-    <div class="process-chevrons fade-up">
-      <div class="process-chevron">
-        <div class="chevron-badge">01</div>
-        <div class="chevron-title">가입 상담</div>
-        <div class="chevron-desc">친절한 무료 상담으로<br>KT·SKT·LG U+ 혜택을<br>전부 비교해드려요</div>
+
+    <!-- A안 -->
+    <span class="compare-version-label ver-a">A안 — 원래 버전</span>
+    <h2 class="section-title" style="margin-bottom:8px;">어려운 가입 과정을<br><em>쉽고 간편하게</em> 도와드려요</h2>
+    <p class="section-sub" style="margin-bottom:40px;">당현함과 함께라면 3단계로 끝납니다</p>
+    <div class="process-steps-a fade-up">
+      <div class="process-step-a">
+        <div class="step-icon-a">📞</div>
+        <div class="step-title-a">가입 상담</div>
+        <div class="step-desc-a">친절한 무료 상담으로<br>KT·SKT·LG U+ 혜택을<br>전부 비교해드려요</div>
       </div>
-      <div class="process-chevron">
-        <div class="chevron-badge">02</div>
-        <div class="chevron-title">설치</div>
-        <div class="chevron-desc">고객님이 원하시는<br>날짜를 조율하여<br>설치가 가능합니다</div>
+      <div class="process-arrow-a">›</div>
+      <div class="process-step-a">
+        <div class="step-icon-a">🔧</div>
+        <div class="step-title-a">설치</div>
+        <div class="step-desc-a">고객님이 원하시는<br>날짜를 조율하여<br>설치가 가능합니다</div>
       </div>
-      <div class="process-chevron">
-        <div class="chevron-badge">03</div>
-        <div class="chevron-title">현금 입금</div>
-        <div class="chevron-desc">설치 당일 현금 입금을<br>원칙으로 하고 있습니다</div>
+      <div class="process-arrow-a">›</div>
+      <div class="process-step-a">
+        <div class="step-icon-a">💵</div>
+        <div class="step-title-a">현금 입금</div>
+        <div class="step-desc-a">설치 당일 현금 입금을<br>원칙으로 하고 있습니다</div>
       </div>
     </div>
+
+    <hr class="process-divider">
+
+    <!-- 개선안 -->
+    <span class="compare-version-label ver-b">개선안 — 번호+연결선</span>
+    <h2 class="section-title" style="margin-bottom:8px;">어려운 가입 과정을<br><em>쉽고 간편하게</em> 도와드려요</h2>
+    <p class="section-sub" style="margin-bottom:40px;">당현함과 함께라면 3단계로 끝납니다</p>
+    <div class="process-steps-b fade-up">
+      <div class="process-step-b">
+        <div class="step-num-b">1</div>
+        <div class="step-card-b">
+          <div class="step-icon-b">📞</div>
+          <div class="step-title-b">가입 상담</div>
+          <div class="step-desc-b">친절한 무료 상담으로<br>KT·SKT·LG U+ 혜택을<br>전부 비교해드려요</div>
+        </div>
+      </div>
+      <div class="process-step-b">
+        <div class="step-num-b">2</div>
+        <div class="step-card-b">
+          <div class="step-icon-b">🔧</div>
+          <div class="step-title-b">설치</div>
+          <div class="step-desc-b">고객님이 원하시는<br>날짜를 조율하여<br>설치가 가능합니다</div>
+        </div>
+      </div>
+      <div class="process-step-b">
+        <div class="step-num-b">3</div>
+        <div class="step-card-b">
+          <div class="step-icon-b">💵</div>
+          <div class="step-title-b">현금 입금</div>
+          <div class="step-desc-b">설치 당일 현금 입금을<br>원칙으로 하고 있습니다</div>
+        </div>
+      </div>
+    </div>
+
   </div>
 </section>
 
