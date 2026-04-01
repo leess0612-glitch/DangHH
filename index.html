@@ -442,6 +442,37 @@ section { padding: 72px 20px; }
 .form-success h3 { font-size: 22px; font-weight: 800; margin-bottom: 8px; }
 .form-success p { color: var(--gray); font-size: 15px; line-height: 1.8; }
 
+/* ===== PRIVACY MODAL ===== */
+.privacy-overlay {
+  display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.55);
+  z-index: 2000; align-items: center; justify-content: center; padding: 20px;
+}
+.privacy-overlay.open { display: flex; }
+.privacy-modal {
+  background: white; border-radius: 16px; width: 100%; max-width: 640px;
+  max-height: 80vh; display: flex; flex-direction: column;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+}
+.privacy-modal-head {
+  padding: 20px 24px; border-bottom: 1px solid #e5e7eb;
+  display: flex; justify-content: space-between; align-items: center; flex-shrink: 0;
+}
+.privacy-modal-head h3 { font-size: 17px; font-weight: 800; color: var(--dark); }
+.privacy-close {
+  width: 32px; height: 32px; border: none; background: #f1f5f9;
+  border-radius: 8px; cursor: pointer; font-size: 18px; color: #64748b;
+  display: flex; align-items: center; justify-content: center;
+}
+.privacy-close:hover { background: #e2e8f0; }
+.privacy-modal-body {
+  padding: 20px 24px; overflow-y: auto; font-size: 13px; color: #374151; line-height: 1.8;
+}
+.privacy-modal-body h4 { font-size: 14px; font-weight: 800; color: var(--dark); margin: 20px 0 6px; }
+.privacy-modal-body h4:first-child { margin-top: 0; }
+.privacy-modal-body table { width: 100%; border-collapse: collapse; margin: 8px 0; font-size: 12px; }
+.privacy-modal-body th { background: #f8fafc; padding: 8px 10px; border: 1px solid #e5e7eb; font-weight: 700; text-align: center; }
+.privacy-modal-body td { padding: 8px 10px; border: 1px solid #e5e7eb; }
+
 /* ===== FOOTER ===== */
 footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; font-size: 13px; line-height: 1.9; }
 .footer-inner { max-width: 1100px; margin: 0 auto; }
@@ -899,20 +930,69 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
   </div>
 </section>
 
+<!-- PRIVACY MODAL -->
+<div class="privacy-overlay" id="privacyOverlay" onclick="closePrivacyOutside(event)">
+  <div class="privacy-modal">
+    <div class="privacy-modal-head">
+      <h3>개인정보처리방침</h3>
+      <button class="privacy-close" onclick="closePrivacy()">✕</button>
+    </div>
+    <div class="privacy-modal-body">
+      <p>유진텔레콤(이하 "회사")은 이용자의 개인정보를 소중히 여기며, 「개인정보 보호법」에 따라 아래와 같이 개인정보처리방침을 수립·공개합니다.</p>
+
+      <h4>1. 수집하는 개인정보 항목</h4>
+      <table>
+        <tr><th>항목</th><th>수집 방법</th></tr>
+        <tr><td>이름, 휴대폰 번호</td><td>홈페이지 신청폼</td></tr>
+        <tr><td>서비스 종류, 유심 동시 변경 여부</td><td>홈페이지 신청폼</td></tr>
+      </table>
+
+      <h4>2. 개인정보 수집 및 이용 목적</h4>
+      <p>인터넷 가입 및 가전렌탈 상담 연락, 서비스 안내 및 신청 처리</p>
+
+      <h4>3. 개인정보 보유 및 이용 기간</h4>
+      <p>상담 목적 달성 후 1년간 보유 후 파기합니다.<br>
+      단, 관계 법령에 따라 보존이 필요한 경우 해당 기간 동안 보관합니다.</p>
+
+      <h4>4. 개인정보의 제3자 제공</h4>
+      <p>회사는 이용자의 동의 없이 개인정보를 외부에 제공하지 않습니다.<br>
+      단, 통신사(KT·SKT·LG U+) 및 렌탈업체 가입 처리를 위해 최소한의 정보가 제공될 수 있으며, 이 경우 사전에 안내드립니다.</p>
+
+      <h4>5. 개인정보의 파기</h4>
+      <p>보유 기간 경과 또는 처리 목적 달성 시 해당 정보를 지체 없이 파기합니다. 전자적 파일 형태의 정보는 복구가 불가능한 방법으로 삭제합니다.</p>
+
+      <h4>6. 이용자의 권리</h4>
+      <p>이용자는 언제든지 개인정보 열람, 정정, 삭제, 처리 정지를 요청할 수 있습니다.<br>
+      요청은 아래 개인정보 보호책임자에게 연락하시면 지체 없이 처리하겠습니다.</p>
+
+      <h4>7. 개인정보 보호책임자</h4>
+      <table>
+        <tr><th>항목</th><th>내용</th></tr>
+        <tr><td>성명</td><td>조성현</td></tr>
+        <tr><td>연락처</td><td>1600-4670</td></tr>
+        <tr><td>소속</td><td>유진텔레콤</td></tr>
+      </table>
+
+      <h4>8. 개인정보처리방침 변경</h4>
+      <p>이 방침은 2026년 4월 1일부터 시행되며, 내용 변경 시 홈페이지를 통해 공지합니다.</p>
+    </div>
+  </div>
+</div>
+
 <!-- FOOTER -->
 <footer>
   <div class="footer-inner">
     <div class="footer-top">
       <div class="footer-logo">당<span>현</span>함</div>
       <div class="footer-links">
-        <a href="#">개인정보처리방침</a>
+        <a href="#" onclick="openPrivacy();return false;">개인정보처리방침</a>
         <a href="#">서비스이용약관</a>
         <a href="tel:1600-4670">1600-4670</a>
       </div>
     </div>
     <div class="footer-info" style="font-size:13px;">
-      <strong style="color:rgba(255,255,255,0.8);">당현함</strong> | 대표: 홍길동 | 사업자등록번호: 000-00-00000<br>
-      주소: 서울시 000 | 대표번호: 1600-4670
+      <strong style="color:rgba(255,255,255,0.8);">유진텔레콤</strong> | 대표: 조성현 | 사업자등록번호: 291-40-00301<br>
+      주소: 경상남도 함안군 산인면 송산로 122, 2층 201호(은혜벌) | 대표번호: 1600-4670
     </div>
     <div class="footer-disclaimer">
       당현함은 KT, SKT, LG U+ 공식 파트너로서 인터넷 가입 및 가전렌탈 서비스를 제공합니다.<br>
@@ -1025,6 +1105,11 @@ async function submitForm() {
     btn.disabled = false; btn.textContent = '내 최대 지원금 무료확인';
   }
 }
+
+// 개인정보처리방침 모달
+function openPrivacy() { document.getElementById('privacyOverlay').classList.add('open'); }
+function closePrivacy() { document.getElementById('privacyOverlay').classList.remove('open'); }
+function closePrivacyOutside(e) { if (e.target.id === 'privacyOverlay') closePrivacy(); }
 
 // Sticky form 접기/펴기
 function toggleStickyForm() {
