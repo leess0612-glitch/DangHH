@@ -80,6 +80,7 @@ nav a:hover { color: var(--primary); background: #eff6ff; }
 }
 .hero h1 { font-size: clamp(36px, 7.5vw, 80px); font-weight: 900; line-height: 1.2; margin-bottom: 36px; letter-spacing: -2px; }
 .hero h1 em { font-style: normal; color: #fee500; }
+.mob-br { display: none; }
 .hero p { font-size: clamp(15px, 2vw, 19px); opacity: 0.9; margin-bottom: 60px; }
 .hero-cta {
   display: inline-block; background: #ff6b00; color: white;
@@ -651,10 +652,12 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
   .hamburger { display: flex; }
   .header-phone { padding: 7px 12px; font-size: 13px; }
   .hero { padding: 48px 20px 56px; }
-  .hero-stats { gap: 0; margin-top: 40px; }
-  .hero-stat { padding: 0 16px; }
+  .hero-stats { flex-direction: column; align-items: center; gap: 0; margin-top: 40px; }
+  .hero-stat { padding: 16px 0; width: 100%; border-right: none; border-bottom: 1px solid rgba(255,255,255,0.15); }
+  .hero-stat:last-child { border-bottom: none; }
   .hero-stat .num { font-size: 22px; }
   .since-badge { font-size: 11px; padding: 4px 10px; }
+  .mob-br { display: block; }
   .benefits-grid { grid-template-columns: 1fr; gap: 16px; }
   .benefit-card.main { grid-row: auto; }
   .compare-table th, .compare-table td { padding: 12px 8px; font-size: 12px; }
@@ -714,7 +717,7 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
 <!-- HERO -->
 <section class="hero">
   <div class="hero-badge">KT · SKT · LG U+ 공식 파트너</div>
-  <h1>놓치고 있던 <em>내 최대 지원금</em><br>당현함이 알려드릴게요!</h1>
+  <h1>놓치고 있던<br class="mob-br"> <em>내 최대 지원금</em><br>당현함이 알려드릴게요!</h1>
   <p>인터넷가입·정수기·가전렌탈 시 최대 현금 지원, <strong>당일 지급</strong><br>KT · SKT · LG U+ 비교 후 가장 유리한 조건으로</p>
   <a href="#apply" class="hero-cta">내 최대 지원금 무료확인 →</a>
   <div class="hero-stats">
