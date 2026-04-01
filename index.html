@@ -557,6 +557,8 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
   cursor: pointer; margin-top: 24px;
   box-shadow: -3px 3px 10px rgba(0,0,0,0.18);
   transition: background 0.2s;
+  border: 1px solid white;
+  border-right: none;
 }
 .sticky-form-tab:hover { background: #1a4fd8; }
 .sticky-form-tab .tab-arrow {
@@ -572,6 +574,7 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
   width: 220px; background: white;
   border-radius: 16px;
   border-top: 4px solid var(--primary);
+  border-bottom: 4px solid var(--primary);
   box-shadow: 0 8px 32px rgba(0,0,0,0.15);
   overflow: hidden;
 }
@@ -603,7 +606,7 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
   text-decoration: none; box-shadow: 0 4px 16px rgba(0,0,0,0.15); transition: transform 0.2s; font-size: 22px;
 }
 .float-btn:hover { transform: scale(1.1); }
-.float-phone { background: var(--primary); color: white; border: 3px solid white; }
+.float-phone { background: var(--primary); color: white; border: 1px solid white; }
 .float-kakao { background: #fee500; color: #3a1d00; }
 
 /* ===== MOBILE BOTTOM CTA ===== */
