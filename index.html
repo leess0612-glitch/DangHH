@@ -250,10 +250,8 @@ section { padding: 72px 20px; }
 .cf-col-a > .cf-cell:nth-child(odd)  { background: #edf1f5; }
 /* VS 열 */
 .cf-col-vs { flex: 0 0 210px; overflow: hidden; }
-.cf-col-vs .cf-head { background: #dde3ea; color: #374151; font-size: 14px; padding: 8px 6px; }
-.cf-col-vs .cf-cell { font-size: 15px; font-weight: 700; color: #1e293b; padding: 10px 6px; border-top: 1px solid #d1d9e0; }
-.cf-col-vs > .cf-cell:nth-child(even) { background: #e8edf2; }
-.cf-col-vs > .cf-cell:nth-child(odd)  { background: #f0f4f8; }
+.cf-col-vs .cf-head { background: white; color: #374151; font-size: 14px; padding: 8px 6px; }
+.cf-col-vs .cf-cell { font-size: 15px; font-weight: 700; color: #1e293b; padding: 10px 6px; border-top: 1px solid #e5e9ee; background: white; }
 /* 당현함 열 — 헤더 80px(=56+24), margin-top: -24px → 데이터 행 완벽 정렬 */
 .cf-col-us { flex: 0 0 230px; margin-top: -24px; overflow: hidden; box-shadow: 0 8px 32px rgba(37,99,235,0.45); }
 .cf-col-us .cf-head { background: #1d4ed8; color: white; font-size: 22px; padding: 12px 6px; min-height: 80px; }
@@ -615,21 +613,25 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
   pointer-events: none;
 }
 .desk-cta-bar.visible { opacity: 1; transform: translateY(0); pointer-events: all; }
-.desk-cta-bar-inner { max-width: 860px; margin: 0 auto; display: flex; flex-direction: column; gap: 14px; }
+.desk-cta-bar-inner { max-width: 860px; margin: 0 auto; display: flex; justify-content: center; }
+.desk-cta-layout { display: flex; align-items: stretch; gap: 12px; }
+.desk-cta-left { display: flex; flex-direction: column; align-items: center; gap: 10px; }
 .desk-cta-top { font-size: 21px; font-weight: 800; color: white; text-align: center; letter-spacing: -0.3px; }
-.desk-cta-bottom { display: flex; align-items: center; gap: 10px; }
+.desk-cta-inputs { display: flex; gap: 8px; }
 .desk-cta-bar input {
-  flex: 1; padding: 10px 14px; border: 1.5px solid #e2e8f0;
+  width: 120px; padding: 10px 12px; border: 1.5px solid #e2e8f0;
   border-radius: 8px; font-size: 14px; font-family: 'SUIT', sans-serif;
-  outline: none; transition: border-color 0.2s; min-width: 0;
+  outline: none; transition: border-color 0.2s;
   background: white; color: #1e293b;
 }
+#deskPhone { width: 158px; }
 .desk-cta-bar input:focus { border-color: #2563eb; }
 .desk-cta-bar input::placeholder { color: #94a3b8; }
 .desk-cta-bar-btn {
-  padding: 10px 24px; background: #ff6b00; color: white;
-  font-size: 14px; font-weight: 800; border: none; border-radius: 8px;
-  cursor: pointer; font-family: 'SUIT', sans-serif; transition: background 0.2s; white-space: nowrap; flex-shrink: 0;
+  padding: 0 28px; background: #ff6b00; color: white;
+  font-size: 15px; font-weight: 800; border: none; border-radius: 8px;
+  cursor: pointer; font-family: 'SUIT', sans-serif; transition: background 0.2s;
+  white-space: nowrap; align-self: stretch; display: flex; align-items: center;
 }
 .desk-cta-bar-btn:hover { background: #e85e00; }
 .desk-cta-success { font-size: 14px; font-weight: 700; color: white; text-align: center; display: none; }
@@ -1226,10 +1228,14 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
 <!-- DESKTOP BOTTOM CTA BAR -->
 <div class="desk-cta-bar" id="deskCtaBar">
   <div class="desk-cta-bar-inner">
-    <div class="desk-cta-top">내가 받을 수 있는 지원금은?</div>
-    <div class="desk-cta-bottom">
-      <input type="text" id="deskName" placeholder="이름">
-      <input type="tel" id="deskPhone" placeholder="휴대폰 번호">
+    <div class="desk-cta-layout">
+      <div class="desk-cta-left">
+        <div class="desk-cta-top">내가 받을 수 있는 지원금은?</div>
+        <div class="desk-cta-inputs">
+          <input type="text" id="deskName" placeholder="이름">
+          <input type="tel" id="deskPhone" placeholder="휴대폰 번호">
+        </div>
+      </div>
       <button class="desk-cta-bar-btn" onclick="submitDeskForm()">무료확인 →</button>
     </div>
     <div class="desk-cta-success" id="deskSuccess">✅ 신청 완료! 곧 연락드리겠습니다.</div>
@@ -1400,8 +1406,7 @@ async function submitDeskForm() {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ name, phone, usim: '미지정', service: '미지정' })
     });
-    document.querySelector('.desk-cta-top').style.display = 'none';
-    document.querySelector('.desk-cta-bottom').style.display = 'none';
+    document.querySelector('.desk-cta-layout').style.display = 'none';
     document.getElementById('deskSuccess').style.display = 'block';
   } catch(e) {
     alert('오류가 발생했습니다. 1600-4670으로 문의해주세요.');
