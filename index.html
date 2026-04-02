@@ -254,7 +254,7 @@ section { padding: 72px 20px; }
 .cf-col-vs .cf-cell { font-size: 15px; font-weight: 700; color: #1e293b; padding: 10px 6px; border-top: 1px solid #e5e9ee; background: white; }
 /* 당현함 열 — 헤더 80px(=56+24), margin-top: -24px → 데이터 행 완벽 정렬 */
 .cf-col-us { flex: 0 0 230px; margin-top: -24px; overflow: hidden; box-shadow: 0 8px 32px rgba(37,99,235,0.45); }
-.cf-col-us .cf-head { background: #1d4ed8; color: white; font-size: 22px; padding: 12px 6px; min-height: 80px; }
+.cf-col-us .cf-head { background: #1d4ed8; color: white; font-size: 24px; padding: 12px 6px; min-height: 80px; }
 .cf-col-us .cf-cell { padding: 7px 6px; border-top: 1px solid rgba(255,255,255,0.13); }
 .cf-col-us > .cf-cell:nth-child(even) { background: #2563eb; }
 .cf-col-us > .cf-cell:nth-child(odd)  { background: #1d4ed8; }
@@ -614,7 +614,7 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
 }
 .desk-cta-bar.visible { opacity: 1; transform: translateY(0); pointer-events: all; }
 .desk-cta-bar-inner { max-width: 860px; margin: 0 auto; display: flex; justify-content: center; }
-.desk-cta-layout { display: flex; align-items: stretch; gap: 12px; }
+.desk-cta-layout { display: flex; align-items: center; justify-content: center; gap: 16px; }
 .desk-cta-left { display: flex; flex-direction: column; align-items: center; gap: 10px; }
 .desk-cta-top { font-size: 21px; font-weight: 800; color: white; text-align: center; letter-spacing: -0.3px; }
 .desk-cta-inputs { display: flex; gap: 8px; }
@@ -628,10 +628,10 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
 .desk-cta-bar input:focus { border-color: #2563eb; }
 .desk-cta-bar input::placeholder { color: #94a3b8; }
 .desk-cta-bar-btn {
-  padding: 0 28px; background: #ff6b00; color: white;
-  font-size: 15px; font-weight: 800; border: none; border-radius: 8px;
+  padding: 14px 28px; background: #ff6b00; color: white;
+  font-size: 23px; font-weight: 800; border: none; border-radius: 8px;
   cursor: pointer; font-family: 'SUIT', sans-serif; transition: background 0.2s;
-  white-space: nowrap; align-self: stretch; display: flex; align-items: center;
+  white-space: nowrap;
 }
 .desk-cta-bar-btn:hover { background: #e85e00; }
 .desk-cta-success { font-size: 14px; font-weight: 700; color: white; text-align: center; display: none; }
