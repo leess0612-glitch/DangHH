@@ -252,10 +252,14 @@ section { padding: 72px 20px; }
 .cf-col-vs .cf-head { background: white; color: #374151; font-size: 21px; padding: 12px 9px; }
 .cf-col-vs .cf-cell { font-size: 22px; font-weight: 700; color: #1e293b; padding: 15px 9px; border-top: 1px solid #e5e9ee; background: white; }
 /* 당현함 열 — 헤더 120px(=84+36), margin-top: -36px, margin-bottom: -36px → 위아래 돌출 */
-.cf-col-us { flex: 0 0 345px; margin-top: -36px; margin-bottom: -36px; overflow: hidden; box-shadow: 0 8px 32px rgba(20,97,240,0.45); }
+.cf-col-us { flex: 0 0 345px; margin-top: -36px; margin-bottom: -36px; overflow: hidden; box-shadow: 0 8px 32px rgba(20,97,240,0.45); border-radius: 12px; }
 .cf-col-us .cf-head { background: #1248CC; color: white; font-size: 42px; padding: 18px 9px; min-height: 120px; }
 .cf-col-us .cf-cell { padding: 10px 9px; border-top: 1px solid rgba(255,255,255,0.35); background: #1461F0; }
 .cf-col-us .cf-cell:last-child { padding-bottom: 46px; }
+/* 3줄 VS 항목 행 높이 확보 */
+.cf-col-a .cf-cell:nth-child(6),
+.cf-col-vs .cf-cell:nth-child(6),
+.cf-col-us .cf-cell:nth-child(6) { min-height: 130px; }
 .ok-label { color: #fff; font-size: 42px; font-weight: 800; line-height: 1.1; }
 .ok-sub { color: rgba(255,255,255,0.85); font-size: 18px; font-weight: 500; line-height: 1.3; margin-top: 2px; }
 
@@ -637,7 +641,7 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
 }
 
 /* ===== FLOATING ===== */
-.floating-btns { position: fixed; right: 20px; bottom: 24px; display: flex; flex-direction: column; gap: 12px; z-index: 900; }
+.floating-btns { position: fixed; right: 30px; bottom: 24px; display: flex; flex-direction: column; gap: 12px; z-index: 900; }
 .float-btn {
   width: 52px; height: 52px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
   text-decoration: none; box-shadow: 0 4px 16px rgba(0,0,0,0.15); transition: transform 0.2s; font-size: 22px;
@@ -673,7 +677,7 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
   .floating-btns { bottom: 80px; }
 }
 @media (min-width: 769px) {
-  .floating-btns { bottom: 132px; }
+  .floating-btns { bottom: 170px; }
 }
 
 /* ===== ANIMATION ===== */
@@ -858,7 +862,7 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
           <div class="cf-cell">상품권 → 현금 교환</div>
           <div class="cf-cell">월 9,900원<br>저렴한 인터넷</div>
           <div class="cf-cell">월 18,900원<br>저렴한 직수 정수기</div>
-          <div class="cf-cell">전 통신사&amp;렌탈</div>
+          <div class="cf-cell">모든<br>통신사&amp;렌탈<br>통합 비교</div>
           <div class="cf-cell">인터넷 + 유심<br>동시 변경 혜택</div>
         </div>
         <!-- 당현함 -->
