@@ -232,24 +232,24 @@ section { padding: 72px 20px; }
 .compare-table th {
   padding: 20px 16px; font-size: 16px; font-weight: 800; text-align: center;
 }
-/* 컬럼 순서: 항목(왼) | 당현함(중, 넓음) | A업체(우) */
-.compare-table th.col-vs { background: #e8edf2; color: #374151; width: 38%; font-size: 14px; font-weight: 700; text-align: center; }
-.compare-table th.col-us { background: #2563eb; color: white;   width: 48%; font-size: 22px; }
-.compare-table th.col-a  { background: #d1d9e0; color: #374151; width: 14%; font-size: 14px; }
+/* 컬럼 순서: A업체(좌, 좁음) | VS항목(중, 좁음) | 당현함(우, 넓음) */
+.compare-table th.col-a  { background: #d1d9e0; color: #374151; width: 15%; font-size: 13px; font-weight: 700; padding: 20px 8px; }
+.compare-table th.col-vs { background: #e8edf2; color: #374151; width: 25%; font-size: 13px; font-weight: 700; text-align: center; padding: 20px 10px; }
+.compare-table th.col-us { background: #2563eb; color: white;   width: 60%; font-size: 22px; }
 .compare-table td {
-  padding: 20px 16px; text-align: center;
+  padding: 18px 16px; text-align: center;
   border-top: 1px solid #d1d9e0;
   vertical-align: middle;
 }
 /* 항목명 열 */
 .compare-table td.col-vs {
-  text-align: center;
-  font-size: 15px; font-weight: 700; color: #1e293b; line-height: 1.5;
+  text-align: center; padding: 18px 10px;
+  font-size: 13px; font-weight: 700; color: #1e293b; line-height: 1.5;
 }
 .compare-table tr:nth-child(even) td.col-vs { background: #edf1f5; }
 .compare-table tr:nth-child(odd)  td.col-vs { background: #f5f7fa; }
 /* A업체 열 */
-.compare-table td.col-a { color: #4b5563; font-size: 15px; font-weight: 700; }
+.compare-table td.col-a { color: #4b5563; font-size: 13px; font-weight: 700; padding: 18px 8px; }
 .compare-table tr:nth-child(even) td.col-a { background: #e2e8ee; }
 .compare-table tr:nth-child(odd)  td.col-a { background: #edf1f5; }
 /* 당현함 열 */
@@ -632,7 +632,6 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
 @media (min-width: 769px) {
   .desk-cta-bar { display: block; }
   .sticky-form { display: none !important; } /* B-OPTION: 원복 시 이 줄 삭제 */
-  .floating-btns { bottom: 80px; }
 }
 
 /* ===== FLOATING ===== */
@@ -834,41 +833,41 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
       <table class="compare-table">
         <thead>
           <tr>
-            <th class="col-vs">비교 항목</th>
-            <th class="col-us">당현함</th>
             <th class="col-a">A업체</th>
+            <th class="col-vs">VS</th>
+            <th class="col-us">당현함</th>
           </tr>
         </thead>
         <tbody>
           <tr>
+            <td class="col-a">2~3일</td>
             <td class="col-vs">현금 사은품 입금</td>
             <td class="col-us"><div class="ok-cell"><div class="ok-top"><span class="ok-label">당일 지급</span><span class="ok-sub">오후 5시 30분 이전 설치건</span></div></div></td>
-            <td class="col-a">2~3일</td>
           </tr>
           <tr>
+            <td class="col-a">✕</td>
             <td class="col-vs">상품권 → 현금 교환</td>
             <td class="col-us"><div class="ok-cell"><div class="ok-top"><span class="ok-label">가능</span></div></div></td>
-            <td class="col-a">✕</td>
           </tr>
           <tr>
+            <td class="col-a">✕</td>
             <td class="col-vs">월 9,900원<br>저렴한 인터넷</td>
             <td class="col-us"><div class="ok-cell"><div class="ok-top"><span class="ok-label">가능</span><span class="ok-sub">SKB (휴대폰결합기준)</span></div></div></td>
-            <td class="col-a">✕</td>
           </tr>
           <tr>
+            <td class="col-a">✕</td>
             <td class="col-vs">월 18,900원<br>저렴한 직수 정수기</td>
             <td class="col-us"><div class="ok-cell"><div class="ok-top"><span class="ok-label">가능</span><span class="ok-sub">교원웰스</span></div></div></td>
-            <td class="col-a">✕</td>
           </tr>
           <tr>
+            <td class="col-a">✕</td>
             <td class="col-vs">전 통신사&amp;렌탈</td>
             <td class="col-us"><div class="ok-cell"><div class="ok-top"><span class="ok-label">가능</span></div></div></td>
-            <td class="col-a">✕</td>
           </tr>
           <tr>
+            <td class="col-a">✕</td>
             <td class="col-vs">인터넷 + 유심<br>동시 변경 혜택</td>
             <td class="col-us"><div class="ok-cell"><div class="ok-top"><span class="ok-label">가능</span></div></div></td>
-            <td class="col-a">✕</td>
           </tr>
         </tbody>
         </table>
@@ -1365,13 +1364,16 @@ window.addEventListener('scroll', () => {
 
 // Desktop bottom bar scroll
 const deskCtaBar = document.getElementById('deskCtaBar');
+const floatingBtns = document.querySelector('.floating-btns');
 window.addEventListener('scroll', () => {
   const heroHeight = document.querySelector('.hero').offsetHeight + 64;
   const applyTop = applySection.getBoundingClientRect().top;
   if (window.innerWidth > 768 && window.scrollY > heroHeight && applyTop > 100) {
     deskCtaBar.classList.add('visible');
-  } else {
+    floatingBtns.style.bottom = '80px';
+  } else if (window.innerWidth > 768) {
     deskCtaBar.classList.remove('visible');
+    floatingBtns.style.bottom = '24px';
   }
 }, { passive: true });
 
