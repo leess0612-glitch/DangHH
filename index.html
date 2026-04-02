@@ -256,11 +256,12 @@ section { padding: 72px 20px; }
 .compare-table tr:nth-child(even) td.col-us { background: #2563eb; }
 .compare-table tr:nth-child(odd)  td.col-us { background: #1d4ed8; }
 .ok-cell { display: flex; align-items: center; justify-content: center; }
-.ok-top { display: flex; align-items: flex-start; gap: 4px; }
+.ok-top { display: flex; align-items: center; gap: 0; }
+.ok-top-sub { display: grid; grid-template-columns: auto auto; align-items: center; column-gap: 2px; }
 .ok-icon { color: #39ff6e; font-size: 17px; font-weight: 900; text-shadow: 0 0 8px rgba(57,255,110,0.6); flex-shrink: 0; line-height: 1.2; }
-.ok-content { display: flex; flex-direction: column; gap: 2px; align-items: center; }
+.ok-icon-ghost { visibility: hidden; }
 .ok-label { color: #ffffff; font-size: 17px; font-weight: 800; line-height: 1.2; }
-.ok-sub { color: rgba(255,255,255,0.85); font-size: 12px; font-weight: 500; }
+.ok-sub { color: rgba(255,255,255,0.85); font-size: 12px; font-weight: 500; line-height: 1.3; }
 
 /* ===== PLANS ===== */
 .plans { background: white; }
@@ -429,7 +430,7 @@ section { padding: 72px 20px; }
 .faq-icon { font-size: 22px; font-weight: 300; color: var(--primary); transition: transform 0.3s; flex-shrink: 0; }
 .faq-item.open .faq-icon { transform: rotate(45deg); }
 .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
-.faq-item.open .faq-answer { max-height: 300px; }
+.faq-item.open .faq-answer { max-height: 500px; }
 .faq-answer-inner { padding: 0 24px 20px; font-size: 15px; color: var(--gray); line-height: 1.75; }
 
 /* ===== FORM ===== */
@@ -661,7 +662,6 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
   .compare-table td.col-vs { font-size: 11px; }
   .compare-table th.col-vs { font-size: 11px; }
   .ok-label { font-size: 13px; }
-  .ok-icon { font-size: 13px; }
   .ok-sub { font-size: 10px; }
   .plans-grid { grid-template-columns: 1fr; }
   .process-chevrons { flex-direction: column; gap: 12px; filter: none; }
@@ -809,7 +809,7 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
         <tbody>
           <tr>
             <td class="col-vs">현금 사은품 입금</td>
-            <td class="col-us"><div class="ok-cell"><div class="ok-top"><span class="ok-icon">✓</span><div class="ok-content"><span class="ok-label">당일 지급</span><span class="ok-sub">오후 5시 30분 이전 설치건</span></div></div></div></td>
+            <td class="col-us"><div class="ok-cell"><div class="ok-top ok-top-sub"><span class="ok-icon">✓</span><span class="ok-label">당일 지급</span><span class="ok-icon ok-icon-ghost">✓</span><span class="ok-sub">오후 5시 30분 이전 설치건</span></div></div></td>
             <td class="col-a">2~3일</td>
           </tr>
           <tr>
@@ -819,12 +819,12 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
           </tr>
           <tr>
             <td class="col-vs">월 9,900원<br>저렴한 인터넷</td>
-            <td class="col-us"><div class="ok-cell"><div class="ok-top"><span class="ok-icon">✓</span><div class="ok-content"><span class="ok-label">가능</span><span class="ok-sub">SKB (휴대폰결합기준)</span></div></div></div></td>
+            <td class="col-us"><div class="ok-cell"><div class="ok-top ok-top-sub"><span class="ok-icon">✓</span><span class="ok-label">가능</span><span class="ok-icon ok-icon-ghost">✓</span><span class="ok-sub">SKB (휴대폰결합기준)</span></div></div></td>
             <td class="col-a">✕</td>
           </tr>
           <tr>
             <td class="col-vs">월 18,900원<br>저렴한 직수 정수기</td>
-            <td class="col-us"><div class="ok-cell"><div class="ok-top"><span class="ok-icon">✓</span><div class="ok-content"><span class="ok-label">가능</span><span class="ok-sub">교원웰스</span></div></div></div></td>
+            <td class="col-us"><div class="ok-cell"><div class="ok-top ok-top-sub"><span class="ok-icon">✓</span><span class="ok-label">가능</span><span class="ok-icon ok-icon-ghost">✓</span><span class="ok-sub">교원웰스</span></div></div></td>
             <td class="col-a">✕</td>
           </tr>
           <tr>
@@ -969,8 +969,28 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
         <div class="faq-answer"><div class="faq-answer-inner">네, 개통이 완료되면 당일 현금(계좌이체)으로 지급해드립니다. 단, 개통 시간에 따라 익일 지급되는 경우도 있으니 상담 시 안내드립니다.</div></div>
       </div>
       <div class="faq-item">
-        <div class="faq-question" onclick="toggleFaq(this)">별도로 가입 비용이 있나요? <span class="faq-icon">+</span></div>
-        <div class="faq-answer"><div class="faq-answer-inner">당현함을 통한 가입은 별도 비용이 없습니다. 오히려 통신사에 직접 가입하는 것보다 더 많은 혜택을 받으실 수 있습니다. 상담 및 비교 서비스는 모두 무료입니다.</div></div>
+        <div class="faq-question" onclick="toggleFaq(this)">인터넷 100메가 500메가 차이가 뭔가요? <span class="faq-icon">+</span></div>
+        <div class="faq-answer"><div class="faq-answer-inner">
+          인터넷 100메가 500메가 차이는 다운로드 속도입니다.<br>
+          10GB 영상 다운로드 시 100메가 17분 소요 / 500메가 9분 소요.<br>
+          웹서핑, 영상 시청, 쇼핑 등은 단 1초 차이밖에 나지 않습니다.
+          <table style="width:100%;margin-top:14px;border-collapse:collapse;font-size:14px;">
+            <thead>
+              <tr>
+                <th style="border:1px solid #e2e8f0;padding:8px 12px;background:#f8fafc;"></th>
+                <th style="border:1px solid #e2e8f0;padding:8px 12px;background:#f8fafc;text-align:center;">100메가</th>
+                <th style="border:1px solid #e2e8f0;padding:8px 12px;background:#f8fafc;text-align:center;">500메가</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="border:1px solid #e2e8f0;padding:8px 12px;font-weight:600;background:#f8fafc;white-space:nowrap;">추천 환경</td>
+                <td style="border:1px solid #e2e8f0;padding:8px 12px;">· 1-2인 가구<br>· 유튜브, 넷플릭스 등 영상시청</td>
+                <td style="border:1px solid #e2e8f0;padding:8px 12px;">· 3-4인 가구<br>· 온라인게임<br>· 파일 다운로드</td>
+              </tr>
+            </tbody>
+          </table>
+        </div></div>
       </div>
       <div class="faq-item">
         <div class="faq-question" onclick="toggleFaq(this)">약정 기간은 얼마나 되나요? <span class="faq-icon">+</span></div>
@@ -978,7 +998,7 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
       </div>
       <div class="faq-item">
         <div class="faq-question" onclick="toggleFaq(this)">기존 인터넷을 해지해야 하나요? <span class="faq-icon">+</span></div>
-        <div class="faq-answer"><div class="faq-answer-inner">기존 약정이 남아있는 경우 위약금 여부를 미리 확인해야 합니다. 약정 만료 후 가입 시 위약금 없이 전환 가능하며, 만료 전이라도 유리한 조건을 안내드립니다.</div></div>
+        <div class="faq-answer"><div class="faq-answer-inner">기존 인터넷은 신규 설치 후 해지해야 안전합니다. 통신사에 따라서는 설치 후 자동해지되도록 가능합니다.</div></div>
       </div>
       <div class="faq-item">
         <div class="faq-question" onclick="toggleFaq(this)">설치는 얼마나 걸리나요? <span class="faq-icon">+</span></div>
@@ -1230,7 +1250,12 @@ function toggleService(type) {
 }
 
 // FAQ
-function toggleFaq(el) { el.parentElement.classList.toggle('open'); }
+function toggleFaq(el) {
+  const item = el.parentElement;
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+  if (!isOpen) item.classList.add('open');
+}
 
 
 // Phone format
