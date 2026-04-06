@@ -734,6 +734,82 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
   section { padding: 52px 20px; }
 }
 
+/* ===== HERO CASH BADGE ===== */
+.hero-cash-badge {
+  display: inline-block;
+  background: linear-gradient(135deg, #ff6b00, #ffb300);
+  color: white; font-size: 16px; font-weight: 900;
+  padding: 8px 22px; border-radius: 999px; margin-bottom: 16px;
+  box-shadow: 0 4px 16px rgba(255,107,0,0.45);
+  letter-spacing: -0.3px;
+}
+
+/* ===== URGENCY ===== */
+.hero-urgency {
+  margin-top: 14px; margin-bottom: 0;
+  font-size: 13px; color: rgba(255,255,255,0.82);
+  display: flex; align-items: center; justify-content: center; gap: 5px;
+}
+.form-urgency {
+  text-align: center; font-size: 13px; color: #dc2626;
+  font-weight: 700; margin-bottom: 12px;
+  background: #fff5f5; border-radius: 8px; padding: 8px 12px;
+}
+
+/* ===== LIVE ROLLING SECTION ===== */
+.live-section {
+  background: #f0f6ff; padding: 28px 20px;
+  border-top: 1px solid #dbeafe; border-bottom: 1px solid #dbeafe;
+}
+.live-section-inner {
+  max-width: 780px; margin: 0 auto;
+  display: flex; align-items: center; gap: 20px;
+}
+.live-counter {
+  flex-shrink: 0; text-align: center;
+  background: white; border: 2px solid #bfdbfe;
+  border-radius: 14px; padding: 12px 18px; min-width: 108px;
+}
+.lc-label { font-size: 11px; color: #64748b; margin-bottom: 4px; display: flex; align-items: center; justify-content: center; gap: 4px; }
+.lc-num { font-size: 30px; font-weight: 900; color: var(--primary); line-height: 1; }
+.lc-unit { font-size: 11px; color: #64748b; margin-top: 3px; }
+.live-dot {
+  display: inline-block; width: 7px; height: 7px;
+  background: #22c55e; border-radius: 50%;
+  animation: livePulse 1.4s ease-in-out infinite;
+}
+@keyframes livePulse {
+  0%, 100% { opacity: 1; } 50% { opacity: 0.35; }
+}
+.rolling-wrap {
+  flex: 1; overflow: hidden; height: 88px;
+  background: white; border: 1px solid #dbeafe;
+  border-radius: 12px; padding: 0 14px;
+}
+.rolling-track { animation: rollUp 60s linear infinite; }
+.rolling-item {
+  height: 44px; display: flex; align-items: center;
+  gap: 8px; border-bottom: 1px solid #f1f5f9;
+}
+.ri-date { color: #94a3b8; font-size: 11px; flex-shrink: 0; white-space: nowrap; }
+.ri-name { color: #1e293b; font-weight: 700; font-size: 13px; flex-shrink: 0; }
+.ri-service {
+  font-size: 11px; font-weight: 700;
+  padding: 2px 9px; border-radius: 999px; white-space: nowrap;
+}
+.ri-complete { background: #dcfce7; color: #15803d; }
+.ri-cash { background: #fef9c3; color: #92400e; }
+@keyframes rollUp {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-1320px); }
+}
+@media (max-width: 768px) {
+  .live-section-inner { flex-direction: column; gap: 10px; }
+  .live-counter { width: 100%; display: flex; align-items: center; justify-content: space-between; padding: 10px 16px; }
+  .lc-label { margin-bottom: 0; }
+  .lc-num { font-size: 24px; }
+}
+
 /* ===== 초소형 화면 대응 ===== */
 .fold-br { display: none; }
 
@@ -793,10 +869,12 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
 <!-- HERO -->
 <section class="hero">
   <div class="hero-badge">KT · SKT · LG U+ 공식 파트너</div>
+  <div class="hero-cash-badge">💰 최대 133만원 현금 당일입금</div>
   <h1>놓치고 있던<br class="mob-br"> <em>내 최대 지원금</em><br>당현함이<br class="fold-br"> 알려드릴게요!</h1>
   <p>인터넷가입·정수기·가전렌탈 시 최대 현금 지원, <strong>당일 지급</strong><br>KT · SKT · LG U+ 비교 후 가장 유리한 조건으로</p>
   <a href="#apply" class="hero-cta">내 최대 지원금<br class="fold-br"> 무료확인 →</a>
-  <p style="margin-top:12px;margin-bottom:0;font-size:15px;color:rgba(255,255,255,0.75);">타업체보다 적다면? <strong style="color:#FFF200;">차액을 보상해드립니다.</strong></p>
+  <p class="hero-urgency">⏰ 오늘 오후 5:30 이전 설치 시 당일 입금</p>
+  <p style="margin-top:10px;margin-bottom:0;font-size:15px;color:rgba(255,255,255,0.75);">타업체보다 적다면? <strong style="color:#FFF200;">차액을 보상해드립니다.</strong></p>
   <div class="hero-stats" style="margin-top:112px;">
     <div class="hero-stat">
       <span class="since-badge">📅 SINCE 2012</span>
@@ -868,6 +946,20 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
     </div>
   </div>
 </section>
+
+<!-- LIVE ROLLING -->
+<div class="live-section">
+  <div class="live-section-inner">
+    <div class="live-counter">
+      <div class="lc-label"><span class="live-dot"></span>오늘 접수</div>
+      <div class="lc-num" id="todayCount">--</div>
+      <div class="lc-unit">건 완료</div>
+    </div>
+    <div class="rolling-wrap">
+      <div class="rolling-track" id="rollingTrack"></div>
+    </div>
+  </div>
+</div>
 
 <!-- COMPARE -->
 <section class="compare">
@@ -1102,17 +1194,18 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
           <label for="usimCheck">휴대폰 기종 변경 없이<br class="fold-br"> 통신사만 바꾸고 추가 현금 받기</label>
         </div>
         <div class="form-group">
-          <label for="inputName">이름</label>
+          <label for="inputName">이름 <span style="font-size:11px;color:#94a3b8;font-weight:500;">(선택)</span></label>
           <input type="text" id="inputName" placeholder="이름을 입력해주세요" maxlength="20">
         </div>
         <div class="form-group">
-          <label for="inputPhone">휴대폰 번호</label>
+          <label for="inputPhone">휴대폰 번호 <span style="font-size:11px;color:#dc2626;font-weight:600;">(필수)</span></label>
           <input type="tel" id="inputPhone" placeholder="휴대폰번호를 입력해주세요" maxlength="13">
         </div>
         <div style="display:flex;align-items:flex-start;gap:8px;margin-bottom:18px;">
           <input type="checkbox" id="c1" style="width:17px;height:17px;accent-color:var(--primary);flex-shrink:0;margin-top:2px;cursor:pointer;">
           <label for="c1" style="font-size:13px;color:var(--gray);cursor:pointer;line-height:1.5;">개인정보 수집 및 이용에 동의합니다. <span style="color:#dc2626;font-weight:600;">(필수)</span><br class="fold-br"> <a href="javascript:void(0)" onclick="openPrivacy()" style="color:var(--primary);font-weight:600;font-size:12px;text-decoration:none;">내용보기 ›</a></label>
         </div>
+        <p class="form-urgency">⏰ 오늘 오후 5:30 이전 설치 시 당일 현금 입금</p>
         <button class="form-submit" id="submitBtn" onclick="submitForm()">내 최대 지원금 무료확인</button>
         <p style="margin-top:10px;font-size:13px;color:var(--gray);text-align:center;">타업체보다 적다면? <strong style="color:var(--primary);">차액을 보상해드립니다.</strong></p>
       </div>
@@ -1278,8 +1371,8 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
     <div class="sticky-form-body" id="stickyFormBody">
       <div id="stickyFormContent">
         <p class="sticky-form-title"><span>내가 받을 수 있는</span><br>지원금은 얼마일까요?</p>
-        <input type="text" id="stickyName" placeholder="이름">
-        <input type="tel" id="stickyPhone" placeholder="휴대폰 번호">
+        <input type="text" id="stickyName" placeholder="이름 (선택)">
+        <input type="tel" id="stickyPhone" placeholder="휴대폰 번호 (필수)">
         <button class="sticky-form-btn" onclick="submitStickyForm()">무료확인 →</button>
       </div>
       <div class="sticky-form-success" id="stickySuccess">✅ 신청 완료!<br>곧 연락드리겠습니다.</div>
@@ -1300,6 +1393,67 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script>
 const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby6NFsBfLjk1XCGuuzLF5DHbwxAXPyz9HNQKJGkdh5BxFqQZ9EPg3Bl4XasN6ojTxdOGA/exec';
+
+// ===== LIVE ROLLING =====
+(function() {
+  function fmtDate(d) {
+    return (d.getMonth()+1) + '월 ' + d.getDate() + '일';
+  }
+  const today = new Date();
+  const d0 = fmtDate(today);
+  const d1 = fmtDate(new Date(today.getTime() - 86400000));
+  const d2 = fmtDate(new Date(today.getTime() - 172800000));
+
+  // 오늘 카운터 (날짜 시드 기반 25~45)
+  const seed = today.getFullYear() * 10000 + (today.getMonth()+1) * 100 + today.getDate();
+  document.getElementById('todayCount').textContent = 25 + (seed % 21);
+
+  // 30개 롤링 항목 (80%: 인터넷·인터넷TV·정수기 접수완료·현금입금완료 / 20%: 기타)
+  const items = [
+    [d2,'9:08','김*수','인터넷 접수완료','c'],
+    [d2,'9:23','이*진','현금입금완료','k'],
+    [d2,'9:41','박*민','정수기 접수완료','c'],
+    [d2,'9:55','최*영','인터넷TV 접수완료','c'],
+    [d2,'10:12','정*현','인터넷 접수완료','c'],
+    [d2,'10:27','한*희','공기청정기 접수완료','c'],
+    [d2,'10:43','조*연','현금입금완료','k'],
+    [d2,'11:02','강*호','정수기 접수완료','c'],
+    [d2,'11:18','윤*선','인터넷TV 접수완료','c'],
+    [d2,'11:35','장*우','매트리스 접수완료','c'],
+    [d1,'9:17','임*아','인터넷 접수완료','c'],
+    [d1,'9:38','오*준','현금입금완료','k'],
+    [d1,'10:05','신*령','인터넷TV 접수완료','c'],
+    [d1,'10:51','황*경','정수기 접수완료','c'],
+    [d1,'11:44','배*나','인터넷 접수완료','c'],
+    [d1,'13:22','서*훈','TV 접수완료','c'],
+    [d1,'13:48','권*주','현금입금완료','k'],
+    [d1,'14:11','안*혜','인터넷TV 접수완료','c'],
+    [d1,'14:57','남*철','정수기 접수완료','c'],
+    [d1,'15:28','홍*기','공기청정기 접수완료','c'],
+    [d0,'9:23','전*미','인터넷 접수완료','c'],
+    [d0,'10:05','문*성','현금입금완료','k'],
+    [d0,'10:44','심*은','인터넷TV 접수완료','c'],
+    [d0,'11:17','류*원','인터넷 접수완료','c'],
+    [d0,'11:52','노*란','정수기 접수완료','c'],
+    [d0,'13:05','하*빈','세탁기 접수완료','c'],
+    [d0,'13:32','고*현','현금입금완료','k'],
+    [d0,'14:21','유*서','인터넷TV 접수완료','c'],
+    [d0,'15:03','성*준','정수기 접수완료','c'],
+    [d0,'15:48','방*인','냉장고 접수완료','c'],
+  ];
+
+  const track = document.getElementById('rollingTrack');
+  // 무한 루프용 2배 복제
+  [...items, ...items].forEach(function(it) {
+    const div = document.createElement('div');
+    div.className = 'rolling-item';
+    div.innerHTML =
+      '<span class="ri-date">' + it[0] + ' ' + it[1] + '</span>' +
+      '<span class="ri-name">' + it[2] + '</span>' +
+      '<span class="ri-service ' + (it[3]==='현금입금완료' ? 'ri-cash' : 'ri-complete') + '">' + it[3] + '</span>';
+    track.appendChild(div);
+  });
+})();
 
 // Swiper
 new Swiper('.reviewSwiper', {
@@ -1348,7 +1502,6 @@ async function submitForm() {
   const name = document.getElementById('inputName').value.trim();
   const phone = document.getElementById('inputPhone').value.trim();
   if (selectedServices.size === 0) { alert('서비스를 하나 이상 선택해주세요.'); return; }
-  if (!name) { alert('이름을 입력해주세요.'); return; }
   if (!phone || phone.replace(/\D/g,'').length !== 11) { alert('휴대폰 번호 11자리를 정확히 입력해주세요.\n(예: 010-1234-5678)'); return; }
   if (!document.getElementById('c1').checked) {
     alert('개인정보 수집 및 이용에 동의해주세요.'); return;
@@ -1425,7 +1578,6 @@ document.getElementById('deskPhone').addEventListener('input', function() {
 async function submitDeskForm() {
   const name = document.getElementById('deskName').value.trim();
   const phone = document.getElementById('deskPhone').value.trim();
-  if (!name) { alert('이름을 입력해주세요.'); return; }
   if (!phone || phone.replace(/\D/g,'').length !== 11) { alert('휴대폰 번호 11자리를 정확히 입력해주세요.\n(예: 010-1234-5678)'); return; }
   try {
     await fetch(SCRIPT_URL, {
@@ -1454,7 +1606,6 @@ document.getElementById('stickyPhone').addEventListener('input', function() {
 async function submitStickyForm() {
   const name = document.getElementById('stickyName').value.trim();
   const phone = document.getElementById('stickyPhone').value.trim();
-  if (!name) { alert('이름을 입력해주세요.'); return; }
   if (!phone || phone.replace(/\D/g,'').length !== 11) { alert('휴대폰 번호 11자리를 정확히 입력해주세요.\n(예: 010-1234-5678)'); return; }
   try {
     await fetch(SCRIPT_URL, {
