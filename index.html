@@ -711,6 +711,7 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
   .cf-col-a .cf-cell:nth-child(6), .cf-col-vs .cf-cell:nth-child(6), .cf-col-us .cf-cell:nth-child(6) { min-height: 52px; }
   .cf-col-us .cf-head { font-size: 15px; min-height: 64px; padding: 8px 4px; }
   .cf-head { min-height: 48px; font-size: 11px; padding: 6px 4px; }
+  .cf-col-a .cf-head { font-size: 11px; padding: 6px 4px; min-height: 48px; }
   .cf-cell { min-height: 52px; padding: 6px 4px; }
   .cf-col-a .cf-cell { font-size: 11px; }
   .cf-col-vs .cf-cell { font-size: 11px; padding: 6px 6px; }
@@ -734,11 +735,13 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
 }
 
 /* ===== 폴드5 전면 등 초소형 화면 (≤360px) ===== */
+.fold-br { display: none; }
 @media (max-width: 360px) {
   section { padding: 52px 12px; }
   .cf-col-a  { flex: 0 0 58px; }
   .cf-col-vs { flex: 0 0 118px; }
   .cf-col-us { flex: 0 0 128px; }
+  .fold-br { display: block; }
 }
 </style>
 </head>
@@ -777,9 +780,9 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
 <!-- HERO -->
 <section class="hero">
   <div class="hero-badge">KT · SKT · LG U+ 공식 파트너</div>
-  <h1>놓치고 있던<br class="mob-br"> <em>내 최대 지원금</em><br>당현함이 알려드릴게요!</h1>
+  <h1>놓치고 있던<br class="mob-br"> <em>내 최대 지원금</em><br>당현함이<br class="fold-br"> 알려드릴게요!</h1>
   <p>인터넷가입·정수기·가전렌탈 시 최대 현금 지원, <strong>당일 지급</strong><br>KT · SKT · LG U+ 비교 후 가장 유리한 조건으로</p>
-  <a href="#apply" class="hero-cta">내 최대 지원금 무료확인 →</a>
+  <a href="#apply" class="hero-cta">내 최대 지원금<br class="fold-br"> 무료확인 →</a>
   <p style="margin-top:12px;margin-bottom:0;font-size:15px;color:rgba(255,255,255,0.75);">타업체보다 적다면? <strong style="color:#FFF200;">차액을 보상해드립니다.</strong></p>
   <div class="hero-stats" style="margin-top:112px;">
     <div class="hero-stat">
