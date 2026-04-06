@@ -78,14 +78,10 @@ nav a:hover { color: var(--primary); background: #eff6ff; }
   background: radial-gradient(circle at 30% 50%, rgba(255,255,255,0.05) 0%, transparent 50%);
   pointer-events: none;
 }
-.hero-live {
-  font-size: 13px; color: rgba(255,255,255,0.92); margin-bottom: 14px;
-  display: flex; align-items: center; justify-content: center; gap: 6px;
-}
-.hero-live strong { color: #fee500; font-size: 15px; }
 .hero-badge {
-  display: inline-block; background: rgba(255,255,255,0.18); border: 1px solid rgba(255,255,255,0.3);
+  display: block; background: rgba(255,255,255,0.18); border: 1px solid rgba(255,255,255,0.3);
   color: white; font-size: 13px; font-weight: 600; padding: 4px 16px; border-radius: 20px; margin-bottom: 10px;
+  width: fit-content; margin-left: auto; margin-right: auto;
 }
 .hero h1 { font-size: clamp(36px, 7.5vw, 80px); font-weight: 900; line-height: 1.2; margin-bottom: 36px; letter-spacing: -2px; }
 .hero h1 em { font-style: normal; color: #fee500; }
@@ -741,10 +737,10 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
 
 /* ===== HERO CASH BADGE ===== */
 .hero-cash-badge {
-  display: inline-block;
+  display: block; width: fit-content; margin-left: auto; margin-right: auto;
   background: linear-gradient(135deg, #ff6b00, #ffb300);
   color: white; font-size: 16px; font-weight: 900;
-  padding: 8px 22px; border-radius: 999px; margin-bottom: 16px;
+  padding: 8px 22px; border-radius: 999px; margin-bottom: 20px;
   box-shadow: 0 4px 16px rgba(255,107,0,0.45);
   letter-spacing: -0.3px;
 }
@@ -787,7 +783,7 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
   0%, 100% { opacity: 1; } 50% { opacity: 0.35; }
 }
 .rolling-wrap {
-  flex: 1; overflow: hidden; height: 88px;
+  flex: 1; overflow: hidden; height: 220px;
   background: white; border: 1px solid #dbeafe;
   border-radius: 12px; padding: 0 14px;
 }
@@ -873,7 +869,6 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-live"><span class="live-dot"></span>오늘 <strong id="heroTodayCount">--</strong>건 접수 완료</div>
   <div class="hero-badge">KT · SKT · LG U+ 공식 파트너</div>
   <div class="hero-cash-badge">💰 최대 133만원 현금 당일입금</div>
   <h1>놓치고 있던<br class="mob-br"> <em>내 최대 지원금</em><br>당현함이<br class="fold-br"> 알려드릴게요!</h1>
@@ -1411,10 +1406,6 @@ function openCafe(pcUrl, mobileUrl) {
   const d1 = fmtDate(new Date(today.getTime() - 86400000));
   const d2 = fmtDate(new Date(today.getTime() - 172800000));
 
-  // 오늘 카운터 (날짜 시드 기반 25~45)
-  const seed = today.getFullYear() * 10000 + (today.getMonth()+1) * 100 + today.getDate();
-  const todayCount = 25 + (seed % 21);
-  document.getElementById('heroTodayCount').textContent = todayCount;
 
   // 30개 롤링 항목 (80%: 인터넷·인터넷TV·정수기 접수완료·현금입금완료 / 20%: 기타)
   const items = [
