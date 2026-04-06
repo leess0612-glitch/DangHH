@@ -734,14 +734,27 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
   section { padding: 52px 20px; }
 }
 
-/* ===== 폴드5 전면 등 초소형 화면 (≤360px) ===== */
+/* ===== 초소형 화면 대응 ===== */
 .fold-br { display: none; }
-@media (max-width: 360px) {
+
+/* 390px 이하: 비교표 컬럼 축소 (Fold 2~6·Flip 5/6 커버·Galaxy S) */
+@media (max-width: 390px) {
   section { padding: 52px 12px; }
   .cf-col-a  { flex: 0 0 58px; }
   .cf-col-vs { flex: 0 0 118px; }
   .cf-col-us { flex: 0 0 128px; }
+}
+
+/* 360px 이하: 텍스트 줄바꿈 활성화 (Fold 3~5·Flip 5/6 커버) */
+@media (max-width: 360px) {
   .fold-br { display: block; }
+}
+
+/* 295px 이하: Fold 1 (~290px) 초소형 */
+@media (max-width: 295px) {
+  .cf-col-a  { flex: 0 0 48px; }
+  .cf-col-vs { flex: 0 0 96px; }
+  .cf-col-us { flex: 0 0 110px; }
 }
 </style>
 </head>
@@ -1086,7 +1099,7 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
         </div>
         <div class="usim-check">
           <input type="checkbox" id="usimCheck">
-          <label for="usimCheck">휴대폰 기종 변경 없이 통신사만 바꾸고 추가 현금 받기</label>
+          <label for="usimCheck">휴대폰 기종 변경 없이<br class="fold-br"> 통신사만 바꾸고 추가 현금 받기</label>
         </div>
         <div class="form-group">
           <label for="inputName">이름</label>
@@ -1098,7 +1111,7 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
         </div>
         <div style="display:flex;align-items:flex-start;gap:8px;margin-bottom:18px;">
           <input type="checkbox" id="c1" style="width:17px;height:17px;accent-color:var(--primary);flex-shrink:0;margin-top:2px;cursor:pointer;">
-          <label for="c1" style="font-size:13px;color:var(--gray);cursor:pointer;line-height:1.5;">개인정보 수집 및 이용에 동의합니다. <span style="color:#dc2626;font-weight:600;">(필수)</span> <a href="javascript:void(0)" onclick="openPrivacy()" style="color:var(--primary);font-weight:600;font-size:12px;text-decoration:none;">내용보기 ›</a></label>
+          <label for="c1" style="font-size:13px;color:var(--gray);cursor:pointer;line-height:1.5;">개인정보 수집 및 이용에 동의합니다. <span style="color:#dc2626;font-weight:600;">(필수)</span><br class="fold-br"> <a href="javascript:void(0)" onclick="openPrivacy()" style="color:var(--primary);font-weight:600;font-size:12px;text-decoration:none;">내용보기 ›</a></label>
         </div>
         <button class="form-submit" id="submitBtn" onclick="submitForm()">내 최대 지원금 무료확인</button>
         <p style="margin-top:10px;font-size:13px;color:var(--gray);text-align:center;">타업체보다 적다면? <strong style="color:var(--primary);">차액을 보상해드립니다.</strong></p>
