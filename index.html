@@ -78,9 +78,14 @@ nav a:hover { color: var(--primary); background: #eff6ff; }
   background: radial-gradient(circle at 30% 50%, rgba(255,255,255,0.05) 0%, transparent 50%);
   pointer-events: none;
 }
+.hero-live {
+  font-size: 13px; color: rgba(255,255,255,0.92); margin-bottom: 14px;
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+}
+.hero-live strong { color: #fee500; font-size: 15px; }
 .hero-badge {
   display: inline-block; background: rgba(255,255,255,0.18); border: 1px solid rgba(255,255,255,0.3);
-  color: white; font-size: 13px; font-weight: 600; padding: 4px 16px; border-radius: 20px; margin-bottom: 44px;
+  color: white; font-size: 13px; font-weight: 600; padding: 4px 16px; border-radius: 20px; margin-bottom: 10px;
 }
 .hero h1 { font-size: clamp(36px, 7.5vw, 80px); font-weight: 900; line-height: 1.2; margin-bottom: 36px; letter-spacing: -2px; }
 .hero h1 em { font-style: normal; color: #fee500; }
@@ -844,7 +849,7 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
       <a href="#benefits">혜택안내</a>
       <a href="#plans">요금제비교</a>
       <a href="#reviews">설치후기</a>
-      <a href="https://cafe.naver.com/f-e/cafes/24827819/menus/317?viewType=L" target="_blank" rel="noopener">사은품지급명단</a>
+      <a href="javascript:void(0)" onclick="openCafe('https://cafe.naver.com/f-e/cafes/24827819/menus/317?viewType=L','https://m.cafe.naver.com/ca-fe/web/cafes/24827819/menus/317')">사은품지급명단</a>
       <a href="#faq">자주묻는질문</a>
       <a href="#apply" style="color:var(--primary);font-weight:700;">무료상담</a>
     </nav>
@@ -861,20 +866,21 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
   <a href="#benefits" onclick="closeMobileMenu()">혜택안내</a>
   <a href="#plans" onclick="closeMobileMenu()">요금제비교</a>
   <a href="#reviews" onclick="closeMobileMenu()">설치후기</a>
-  <a href="https://cafe.naver.com/f-e/cafes/24827819/menus/317?viewType=L" target="_blank" rel="noopener" onclick="closeMobileMenu()">사은품지급명단</a>
+  <a href="javascript:void(0)" onclick="openCafe('https://cafe.naver.com/f-e/cafes/24827819/menus/317?viewType=L','https://m.cafe.naver.com/ca-fe/web/cafes/24827819/menus/317');closeMobileMenu()">사은품지급명단</a>
   <a href="#faq" onclick="closeMobileMenu()">자주묻는질문</a>
   <a href="#apply" onclick="closeMobileMenu()" style="color:var(--primary);font-weight:700;">무료상담 →</a>
 </div>
 
 <!-- HERO -->
 <section class="hero">
+  <div class="hero-live"><span class="live-dot"></span>오늘 <strong id="heroTodayCount">--</strong>건 접수 완료</div>
   <div class="hero-badge">KT · SKT · LG U+ 공식 파트너</div>
   <div class="hero-cash-badge">💰 최대 133만원 현금 당일입금</div>
   <h1>놓치고 있던<br class="mob-br"> <em>내 최대 지원금</em><br>당현함이<br class="fold-br"> 알려드릴게요!</h1>
   <p>인터넷가입·정수기·가전렌탈 시 최대 현금 지원, <strong>당일 지급</strong><br>KT · SKT · LG U+ 비교 후 가장 유리한 조건으로</p>
   <a href="#apply" class="hero-cta">내 최대 지원금<br class="fold-br"> 무료확인 →</a>
-  <p class="hero-urgency">⏰ 오늘 오후 5:30 이전 설치 시 당일 입금</p>
   <p style="margin-top:10px;margin-bottom:0;font-size:15px;color:rgba(255,255,255,0.75);">타업체보다 적다면? <strong style="color:#FFF200;">차액을 보상해드립니다.</strong></p>
+  <p class="hero-urgency">⏰ 오늘 오후 5:30 이전 설치 시 당일 입금</p>
   <div class="hero-stats" style="margin-top:112px;">
     <div class="hero-stat">
       <span class="since-badge">📅 SINCE 2012</span>
@@ -950,12 +956,7 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
 <!-- LIVE ROLLING -->
 <div class="live-section">
   <div class="live-section-inner">
-    <div class="live-counter">
-      <div class="lc-label"><span class="live-dot"></span>오늘 접수</div>
-      <div class="lc-num" id="todayCount">--</div>
-      <div class="lc-unit">건 완료</div>
-    </div>
-    <div class="rolling-wrap">
+    <div class="rolling-wrap" style="flex:1;">
       <div class="rolling-track" id="rollingTrack"></div>
     </div>
   </div>
@@ -1102,13 +1103,13 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
       <div class="swiper-pagination"></div>
     </div>
     <div style="display:flex;justify-content:center;gap:12px;margin-top:32px;flex-wrap:wrap;">
-      <a href="https://cafe.naver.com/f-e/cafes/24827819/menus/324?viewType=I" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:7px;padding:13px 24px;border:2px solid var(--primary);border-radius:10px;font-size:14px;font-weight:700;color:var(--primary);text-decoration:none;transition:all 0.2s;" onmouseover="this.style.background='#eff6ff'" onmouseout="this.style.background='white'">
+      <a href="javascript:void(0)" onclick="openCafe('https://cafe.naver.com/f-e/cafes/24827819/menus/324?viewType=I','https://m.cafe.naver.com/ca-fe/web/cafes/24827819/menus/324')" style="display:inline-flex;align-items:center;gap:7px;padding:13px 24px;border:2px solid var(--primary);border-radius:10px;font-size:14px;font-weight:700;color:var(--primary);text-decoration:none;transition:all 0.2s;" onmouseover="this.style.background='#eff6ff'" onmouseout="this.style.background='white'">
         📡 인터넷 가입 후기 더보기 ›
       </a>
-      <a href="https://cafe.naver.com/f-e/cafes/24827819/menus/398?viewType=I" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:7px;padding:13px 24px;border:2px solid var(--primary);border-radius:10px;font-size:14px;font-weight:700;color:var(--primary);text-decoration:none;transition:all 0.2s;" onmouseover="this.style.background='#eff6ff'" onmouseout="this.style.background='white'">
+      <a href="javascript:void(0)" onclick="openCafe('https://cafe.naver.com/f-e/cafes/24827819/menus/398?viewType=I','https://m.cafe.naver.com/ca-fe/web/cafes/24827819/menus/398')" style="display:inline-flex;align-items:center;gap:7px;padding:13px 24px;border:2px solid var(--primary);border-radius:10px;font-size:14px;font-weight:700;color:var(--primary);text-decoration:none;transition:all 0.2s;" onmouseover="this.style.background='#eff6ff'" onmouseout="this.style.background='white'">
         🏠 렌탈 후기 더보기 ›
       </a>
-      <a href="https://cafe.naver.com/f-e/cafes/24827819/menus/317?viewType=L" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:7px;padding:13px 24px;border:2px solid var(--primary);border-radius:10px;font-size:14px;font-weight:700;color:var(--primary);text-decoration:none;transition:all 0.2s;" onmouseover="this.style.background='#eff6ff'" onmouseout="this.style.background='white'">
+      <a href="javascript:void(0)" onclick="openCafe('https://cafe.naver.com/f-e/cafes/24827819/menus/317?viewType=L','https://m.cafe.naver.com/ca-fe/web/cafes/24827819/menus/317')" style="display:inline-flex;align-items:center;gap:7px;padding:13px 24px;border:2px solid var(--primary);border-radius:10px;font-size:14px;font-weight:700;color:var(--primary);text-decoration:none;transition:all 0.2s;" onmouseover="this.style.background='#eff6ff'" onmouseout="this.style.background='white'">
         🎁 사은품 지급명단 ›
       </a>
     </div>
@@ -1394,6 +1395,12 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
 <script>
 const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby6NFsBfLjk1XCGuuzLF5DHbwxAXPyz9HNQKJGkdh5BxFqQZ9EPg3Bl4XasN6ojTxdOGA/exec';
 
+// ===== PC/모바일 네이버 카페 링크 분기 =====
+function openCafe(pcUrl, mobileUrl) {
+  const isMobile = /Android|iPhone|iPad|iPod|BlackBerry|Windows Phone|Mobile/i.test(navigator.userAgent);
+  window.open(isMobile ? mobileUrl : pcUrl, '_blank', 'noopener');
+}
+
 // ===== LIVE ROLLING =====
 (function() {
   function fmtDate(d) {
@@ -1406,7 +1413,8 @@ const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby6NFsBfLjk1XCGuuzLF
 
   // 오늘 카운터 (날짜 시드 기반 25~45)
   const seed = today.getFullYear() * 10000 + (today.getMonth()+1) * 100 + today.getDate();
-  document.getElementById('todayCount').textContent = 25 + (seed % 21);
+  const todayCount = 25 + (seed % 21);
+  document.getElementById('heroTodayCount').textContent = todayCount;
 
   // 30개 롤링 항목 (80%: 인터넷·인터넷TV·정수기 접수완료·현금입금완료 / 20%: 기타)
   const items = [
