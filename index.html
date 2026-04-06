@@ -764,51 +764,50 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
 }
 .live-section-inner {
   max-width: 780px; margin: 0 auto;
-  display: flex; align-items: center; gap: 20px;
+  display: flex; gap: 16px; align-items: flex-start;
 }
-.live-counter {
-  flex-shrink: 0; text-align: center;
-  background: white; border: 2px solid #bfdbfe;
-  border-radius: 14px; padding: 12px 18px; min-width: 108px;
+.rolling-col { flex: 1; }
+.rolling-col-header {
+  text-align: center; font-size: 13px; font-weight: 700;
+  padding: 8px 0; border-radius: 10px 10px 0 0;
 }
-.lc-label { font-size: 11px; color: #64748b; margin-bottom: 4px; display: flex; align-items: center; justify-content: center; gap: 4px; }
-.lc-num { font-size: 30px; font-weight: 900; color: var(--primary); line-height: 1; }
-.lc-unit { font-size: 11px; color: #64748b; margin-top: 3px; }
+.rolling-col-header.type-complete { background: #dcfce7; color: #15803d; }
+.rolling-col-header.type-cash { background: #fef9c3; color: #92400e; }
 .live-dot {
   display: inline-block; width: 7px; height: 7px;
   background: #22c55e; border-radius: 50%;
   animation: livePulse 1.4s ease-in-out infinite;
+  margin-right: 4px; vertical-align: middle;
 }
 @keyframes livePulse {
   0%, 100% { opacity: 1; } 50% { opacity: 0.35; }
 }
 .rolling-wrap {
-  flex: 1; overflow: hidden; height: 220px;
+  overflow: hidden; height: 220px;
   background: white; border: 1px solid #dbeafe;
-  border-radius: 12px; padding: 0 14px;
+  border-top: none; border-radius: 0 0 10px 10px; padding: 0 12px;
 }
-.rolling-track { animation: rollUp 60s linear infinite; }
+.rolling-track-complete { animation: rollUpComplete 48s linear infinite; }
+.rolling-track-cash     { animation: rollUpCash 12s linear infinite; }
 .rolling-item {
   height: 44px; display: flex; align-items: center;
-  gap: 8px; border-bottom: 1px solid #f1f5f9;
+  gap: 6px; border-bottom: 1px solid #f1f5f9; overflow: hidden;
 }
 .ri-date { color: #94a3b8; font-size: 11px; flex-shrink: 0; white-space: nowrap; }
 .ri-name { color: #1e293b; font-weight: 700; font-size: 13px; flex-shrink: 0; }
 .ri-service {
   font-size: 11px; font-weight: 700;
-  padding: 2px 9px; border-radius: 999px; white-space: nowrap;
+  padding: 2px 7px; border-radius: 999px; white-space: nowrap;
 }
 .ri-complete { background: #dcfce7; color: #15803d; }
 .ri-cash { background: #fef9c3; color: #92400e; }
-@keyframes rollUp {
+@keyframes rollUpComplete {
   0% { transform: translateY(0); }
-  100% { transform: translateY(-1320px); }
+  100% { transform: translateY(-1056px); }
 }
-@media (max-width: 768px) {
-  .live-section-inner { flex-direction: column; gap: 10px; }
-  .live-counter { width: 100%; display: flex; align-items: center; justify-content: space-between; padding: 10px 16px; }
-  .lc-label { margin-bottom: 0; }
-  .lc-num { font-size: 24px; }
+@keyframes rollUpCash {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-264px); }
 }
 
 /* ===== 초소형 화면 대응 ===== */
@@ -951,8 +950,17 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
 <!-- LIVE ROLLING -->
 <div class="live-section">
   <div class="live-section-inner">
-    <div class="rolling-wrap" style="flex:1;">
-      <div class="rolling-track" id="rollingTrack"></div>
+    <div class="rolling-col">
+      <div class="rolling-col-header type-complete"><span class="live-dot"></span>접수완료</div>
+      <div class="rolling-wrap">
+        <div class="rolling-track-complete" id="rollingTrackComplete"></div>
+      </div>
+    </div>
+    <div class="rolling-col">
+      <div class="rolling-col-header type-cash"><span class="live-dot" style="background:#f59e0b;"></span>현금입금완료</div>
+      <div class="rolling-wrap">
+        <div class="rolling-track-cash" id="rollingTrackCash"></div>
+      </div>
     </div>
   </div>
 </div>
@@ -1407,51 +1415,58 @@ function openCafe(pcUrl, mobileUrl) {
   const d2 = fmtDate(new Date(today.getTime() - 172800000));
 
 
-  // 30개 롤링 항목 (80%: 인터넷·인터넷TV·정수기 접수완료·현금입금완료 / 20%: 기타)
-  const items = [
-    [d2,'9:08','김*수','인터넷 접수완료','c'],
-    [d2,'9:23','이*진','현금입금완료','k'],
-    [d2,'9:41','박*민','정수기 접수완료','c'],
-    [d2,'9:55','최*영','인터넷TV 접수완료','c'],
-    [d2,'10:12','정*현','인터넷 접수완료','c'],
-    [d2,'10:27','한*희','공기청정기 접수완료','c'],
-    [d2,'10:43','조*연','현금입금완료','k'],
-    [d2,'11:02','강*호','정수기 접수완료','c'],
-    [d2,'11:18','윤*선','인터넷TV 접수완료','c'],
-    [d2,'11:35','장*우','매트리스 접수완료','c'],
-    [d1,'9:17','임*아','인터넷 접수완료','c'],
-    [d1,'9:38','오*준','현금입금완료','k'],
-    [d1,'10:05','신*령','인터넷TV 접수완료','c'],
-    [d1,'10:51','황*경','정수기 접수완료','c'],
-    [d1,'11:44','배*나','인터넷 접수완료','c'],
-    [d1,'13:22','서*훈','TV 접수완료','c'],
-    [d1,'13:48','권*주','현금입금완료','k'],
-    [d1,'14:11','안*혜','인터넷TV 접수완료','c'],
-    [d1,'14:57','남*철','정수기 접수완료','c'],
-    [d1,'15:28','홍*기','공기청정기 접수완료','c'],
-    [d0,'9:23','전*미','인터넷 접수완료','c'],
-    [d0,'10:05','문*성','현금입금완료','k'],
-    [d0,'10:44','심*은','인터넷TV 접수완료','c'],
-    [d0,'11:17','류*원','인터넷 접수완료','c'],
-    [d0,'11:52','노*란','정수기 접수완료','c'],
-    [d0,'13:05','하*빈','세탁기 접수완료','c'],
-    [d0,'13:32','고*현','현금입금완료','k'],
-    [d0,'14:21','유*서','인터넷TV 접수완료','c'],
-    [d0,'15:03','성*준','정수기 접수완료','c'],
-    [d0,'15:48','방*인','냉장고 접수완료','c'],
+  // 접수완료 항목 (24개)
+  const itemsComplete = [
+    [d2,'9:08','김*수','인터넷 접수완료'],
+    [d2,'9:41','박*민','정수기 접수완료'],
+    [d2,'9:55','최*영','인터넷TV 접수완료'],
+    [d2,'10:12','정*현','인터넷 접수완료'],
+    [d2,'10:27','한*희','공기청정기 접수완료'],
+    [d2,'11:02','강*호','정수기 접수완료'],
+    [d2,'11:18','윤*선','인터넷TV 접수완료'],
+    [d2,'11:35','장*우','매트리스 접수완료'],
+    [d1,'9:17','임*아','인터넷 접수완료'],
+    [d1,'10:05','신*령','인터넷TV 접수완료'],
+    [d1,'10:51','황*경','정수기 접수완료'],
+    [d1,'11:44','배*나','인터넷 접수완료'],
+    [d1,'13:22','서*훈','TV 접수완료'],
+    [d1,'14:11','안*혜','인터넷TV 접수완료'],
+    [d1,'14:57','남*철','정수기 접수완료'],
+    [d1,'15:28','홍*기','공기청정기 접수완료'],
+    [d0,'9:23','전*미','인터넷 접수완료'],
+    [d0,'10:44','심*은','인터넷TV 접수완료'],
+    [d0,'11:17','류*원','인터넷 접수완료'],
+    [d0,'11:52','노*란','정수기 접수완료'],
+    [d0,'13:05','하*빈','세탁기 접수완료'],
+    [d0,'14:21','유*서','인터넷TV 접수완료'],
+    [d0,'15:03','성*준','정수기 접수완료'],
+    [d0,'15:48','방*인','냉장고 접수완료'],
   ];
 
-  const track = document.getElementById('rollingTrack');
-  // 무한 루프용 2배 복제
-  [...items, ...items].forEach(function(it) {
-    const div = document.createElement('div');
-    div.className = 'rolling-item';
-    div.innerHTML =
-      '<span class="ri-date">' + it[0] + ' ' + it[1] + '</span>' +
-      '<span class="ri-name">' + it[2] + '</span>' +
-      '<span class="ri-service ' + (it[3]==='현금입금완료' ? 'ri-cash' : 'ri-complete') + '">' + it[3] + '</span>';
-    track.appendChild(div);
-  });
+  // 현금입금완료 항목 (6개)
+  const itemsCash = [
+    [d2,'9:23','이*진','현금입금완료'],
+    [d2,'10:43','조*연','현금입금완료'],
+    [d1,'9:38','오*준','현금입금완료'],
+    [d1,'13:48','권*주','현금입금완료'],
+    [d0,'10:05','문*성','현금입금완료'],
+    [d0,'13:32','고*현','현금입금완료'],
+  ];
+
+  function buildTrack(trackEl, data, cssClass) {
+    [...data, ...data].forEach(function(it) {
+      const div = document.createElement('div');
+      div.className = 'rolling-item';
+      div.innerHTML =
+        '<span class="ri-date">' + it[0] + ' ' + it[1] + '</span>' +
+        '<span class="ri-name">' + it[2] + '</span>' +
+        '<span class="ri-service ' + cssClass + '">' + it[3] + '</span>';
+      trackEl.appendChild(div);
+    });
+  }
+
+  buildTrack(document.getElementById('rollingTrackComplete'), itemsComplete, 'ri-complete');
+  buildTrack(document.getElementById('rollingTrackCash'), itemsCash, 'ri-cash');
 })();
 
 // Swiper
