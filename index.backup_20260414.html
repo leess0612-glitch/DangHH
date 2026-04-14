@@ -79,46 +79,50 @@ nav a:hover { color: var(--primary); background: #eff6ff; }
 .hero {
   margin-top: 64px;
   background: linear-gradient(135deg, #0C2880 0%, #1461F0 60%, #1A6BFF 100%);
-  padding: 72px 20px; color: white; position: relative; overflow: hidden;
+  padding: 100px 20px 90px; text-align: center; color: white; position: relative; overflow: hidden;
 }
 .hero::before {
   content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
   background: radial-gradient(circle at 30% 50%, rgba(255,255,255,0.05) 0%, transparent 50%);
   pointer-events: none;
 }
-.hero-inner {
-  max-width: 1100px; margin: 0 auto;
-  display: flex; align-items: center; gap: 32px; position: relative; z-index: 1;
-}
-.hero-content { flex: 1; min-width: 0; }
-.hero-form-wrap { flex: 0 0 380px; }
-.hero-form-wrap .form-card { max-width: 100%; margin: 0; }
 .hero-badge {
-  display: inline-block; background: rgba(255,255,255,0.18); border: 1px solid rgba(255,255,255,0.3);
+  display: block; background: rgba(255,255,255,0.18); border: 1px solid rgba(255,255,255,0.3);
   color: white; font-size: 13px; font-weight: 600; padding: 4px 16px; border-radius: 20px; margin-bottom: 10px;
+  width: fit-content; margin-left: auto; margin-right: auto;
 }
-.hero h1 { font-size: clamp(32px, 4.6vw, 64px); font-weight: 900; line-height: 1.2; margin-bottom: 20px; letter-spacing: -1.5px; }
+.hero h1 { font-size: clamp(36px, 7.5vw, 80px); font-weight: 900; line-height: 1.2; margin-bottom: 36px; letter-spacing: -2px; }
 .hero h1 em { font-style: normal; color: #fee500; }
 .mob-br { display: none; }
-.hero-desc { font-size: clamp(15px, 1.7vw, 19px); opacity: 0.88; margin-bottom: 14px; line-height: 1.7; }
-.hero-sub-assurance { font-size: 16px; color: rgba(255,255,255,0.75); margin-bottom: 8px; }
+.hero p { font-size: clamp(15px, 2vw, 19px); opacity: 0.9; margin-bottom: 60px; }
+.hero-cta {
+  display: inline-block; background: #ff6b00; color: white;
+  font-size: 21px; font-weight: 900; padding: 22px 56px; border-radius: 16px;
+  text-decoration: none; transition: all 0.2s;
+  box-shadow: 0 8px 28px rgba(255,107,0,0.5);
+  letter-spacing: -0.3px;
+  border: 3px solid rgba(255,255,255,0.3);
+}
+.hero-cta:hover { background: #e85e00; transform: translateY(-3px); box-shadow: 0 14px 36px rgba(255,107,0,0.6); }
 .hero-stats {
-  display: flex; gap: 0; margin-top: 40px; flex-wrap: wrap;
+  display: flex; justify-content: center; gap: 0;
+  margin-top: 72px; flex-wrap: wrap;
 }
 .hero-stat {
-  display: flex; flex-direction: column; align-items: flex-start;
-  padding-right: 24px; margin-right: 24px;
+  display: flex; flex-direction: column; align-items: center;
+  padding: 0 36px;
   border-right: 1px solid rgba(255,255,255,0.2);
 }
-.hero-stat:last-child { border-right: none; margin-right: 0; padding-right: 0; }
+.hero-stat:last-child { border-right: none; }
 .since-badge {
   display: inline-block;
   background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.25);
-  color: white; font-size: 15px; font-weight: 700;
-  padding: 6px 18px; border-radius: 20px; margin-bottom: 10px;
+  color: white; font-size: 13px; font-weight: 700;
+  padding: 6px 16px; border-radius: 20px;
+  margin-bottom: 12px;
 }
-.hero-stat .num { font-size: 36px; font-weight: 900; color: white; }
-.hero-stat .label { font-size: 15px; opacity: 0.8; margin-top: 4px; }
+.hero-stat .num { font-size: 28px; font-weight: 900; color: white; }
+.hero-stat .label { font-size: 13px; opacity: 0.8; margin-top: 2px; }
 
 /* ===== CARRIERS ===== */
 .carriers { background: white; padding: 28px 20px; border-bottom: 1px solid var(--border); }
@@ -148,65 +152,25 @@ section { padding: 72px 20px; }
 }
 .section-title { font-size: clamp(22px, 3.5vw, 36px); font-weight: 900; letter-spacing: -0.5px; margin-bottom: 8px; line-height: 1.3; }
 .section-title em { font-style: normal; color: var(--primary); }
-.trust-worry-title { font-size: clamp(44px, 7vw, 72px); }
-.trust-worry-title em { color: #fc5331; }
 .section-sub { font-size: 16px; color: var(--gray); margin-bottom: 48px; }
 
 /* ===== CARRIERS ===== */
 .ict-cert-wrap {
-  display: inline-flex; align-items: center; gap: 12px;
-  background: white; border: 1px solid #d1d5db;
-  border-radius: 12px; padding: 14px 24px;
-  margin-top: 72px;
+  display: inline-flex; align-items: center; gap: 18px;
+  background: white; border: 2px solid #d1d5db;
+  border-radius: 16px; padding: 20px 32px;
   text-decoration: none; transition: border-color 0.2s, box-shadow 0.2s;
 }
 .ict-cert-wrap:hover { border-color: #1A6BFF; box-shadow: 0 4px 20px rgba(20,97,240,0.12); }
 .ict-cert-icon {
-  width: 36px; height: 36px; border-radius: 8px;
+  width: 56px; height: 56px; border-radius: 12px;
   background: #1461F0; color: white;
   display: flex; align-items: center; justify-content: center;
-  font-size: 9px; font-weight: 900; letter-spacing: -0.5px; flex-shrink: 0; line-height: 1.2; text-align: center;
+  font-size: 15px; font-weight: 900; letter-spacing: -0.5px; flex-shrink: 0; line-height: 1.2; text-align: center;
 }
 .ict-cert-text { text-align: left; }
-.ict-cert-title { font-size: 14px; font-weight: 700; color: #111827; line-height: 1.3; }
-.ict-cert-sub { font-size: 12px; color: #6b7280; margin-top: 2px; line-height: 1.5; }
-
-/* ===== TRUST SECTION ===== */
-.trust-section { background: #ffffff; }
-.trust-worry { text-align: center; margin-bottom: 20px; }
-.trust-news-img { width: 100%; max-width: 720px; aspect-ratio: 28/11; border-radius: 16px; box-shadow: 0 4px 24px rgba(0,0,0,0.10); margin-top: 24px; display: block; margin-left: auto; margin-right: auto; }
-.trust-solution { margin: 32px 0 96px; }
-.trust-solution-inner {
-  background: linear-gradient(135deg, #0C2880 0%, #1461F0 100%);
-  border-radius: 20px; padding: 40px 48px; text-align: center; color: white;
-  max-width: 720px; margin: 0 auto;
-}
-.trust-sol-badge {
-  display: inline-block; background: rgba(255,255,255,0.18); border: 1px solid rgba(255,255,255,0.3);
-  color: white; font-size: 13px; font-weight: 700; padding: 4px 16px; border-radius: 20px; margin-bottom: 16px;
-}
-.trust-sol-title { font-size: clamp(18px, 2.5vw, 26px); font-weight: 800; color: white; margin-bottom: 16px; letter-spacing: -0.5px; }
-.trust-sol-desc { font-size: clamp(15px, 1.8vw, 18px); color: rgba(255,255,255,0.9); line-height: 1.8; margin-bottom: 16px; }
-.trust-sol-desc strong { color: #fee500; }
-.trust-sol-notice { font-size: 15px; color: rgba(255,255,255,0.75); }
-.trust-sol-notice strong { color: white; font-weight: 800; }
-.trust-solution-img { width: 100%; max-width: 480px; aspect-ratio: 811/787; display: block; margin: 0 auto; }
-.trust-cert { text-align: center; margin-top: 60px; }
-.trust-cert-labels {
-  display: flex; gap: 24px; justify-content: center; margin: 28px auto 20px;
-  max-width: 720px;
-}
-.trust-cert-label-item {
-  flex: 1; background: white; border-radius: 14px; padding: 20px 24px;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.07); text-align: center;
-}
-.trust-cert-label-item strong { font-size: 17px; font-weight: 800; color: var(--dark); display: block; margin-bottom: 8px; }
-.trust-cert-label-item p { font-size: 14px; color: var(--gray); line-height: 1.7; }
-.trust-cert-img { width: 100%; max-width: 720px; aspect-ratio: 1060/822; border-radius: 16px; box-shadow: 0 4px 24px rgba(0,0,0,0.10); display: block; margin: 0 auto; }
-@media (max-width: 768px) {
-  .trust-solution-inner { padding: 28px 24px; }
-  .trust-cert-labels { flex-direction: column; gap: 12px; max-width: 100%; }
-}
+.ict-cert-title { font-size: 18px; font-weight: 800; color: #111827; line-height: 1.3; }
+.ict-cert-sub { font-size: 14px; color: #6b7280; margin-top: 4px; line-height: 1.6; }
 
 /* ===== BENEFITS ===== */
 .benefits { background: #f8fafc; }
@@ -496,7 +460,7 @@ section { padding: 72px 20px; }
 }
 .form-headline { font-size: 17px; font-weight: 800; color: var(--dark); text-align: center; margin-bottom: 24px; }
 .form-headline span { color: var(--primary); }
-.service-tabs { display: flex; gap: 12px; margin-bottom: 0; }
+.service-tabs { display: flex; gap: 12px; margin-bottom: 16px; }
 .service-tab {
   flex: 1; border: 2px solid var(--border); border-radius: 12px; padding: 14px 10px;
   text-align: center; cursor: pointer; transition: all 0.2s; font-size: 14px; font-weight: 600;
@@ -652,6 +616,7 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
 .sticky-form-success { text-align: center; padding: 8px 0; font-size: 13px; color: var(--primary); font-weight: 700; display: none; }
 
 /* ===== DESKTOP BOTTOM CTA BAR ===== */
+/* B-OPTION: 원복 시 아래 두 블록(.desk-cta-bar, @media min-width 769 sticky) 삭제 */
 .desk-cta-bar {
   display: none;
   position: fixed; bottom: 0; left: 0; right: 0; z-index: 950;
@@ -663,8 +628,19 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
   pointer-events: none;
 }
 .desk-cta-bar.visible { opacity: 1; transform: translateY(0); pointer-events: all; }
-.desk-cta-bar-inner { max-width: 860px; margin: 0 auto; display: flex; flex-direction: row; align-items: center; justify-content: center; gap: 20px; }
-.desk-cta-top { font-size: 18px; font-weight: 700; color: white; letter-spacing: -0.3px; }
+.desk-cta-bar-inner { max-width: 860px; margin: 0 auto; display: flex; flex-direction: row; align-items: flex-end; justify-content: center; gap: 10px; }
+.desk-cta-phone-wrap { display: flex; flex-direction: column; gap: 6px; align-items: center; }
+.desk-cta-top { font-size: 21px; font-weight: 800; color: white; text-align: center; letter-spacing: -0.3px; }
+.desk-cta-bar input {
+  padding: 12px 18px; border: 1.5px solid #e2e8f0;
+  border-radius: 8px; font-size: 16px; font-family: 'SUIT', sans-serif;
+  outline: none; transition: border-color 0.2s;
+  background: white; color: #1e293b;
+}
+.desk-cta-bar #deskName { width: 190px; }
+.desk-cta-bar #deskPhone { width: 285px; }
+.desk-cta-bar input:focus { border-color: #1A6BFF; }
+.desk-cta-bar input::placeholder { color: #94a3b8; }
 .desk-cta-bar-btn {
   padding: 12px 28px; background: #ff6b00; color: white;
   font-size: 23px; font-weight: 800; border: 1.5px solid transparent; border-radius: 8px;
@@ -705,7 +681,7 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
   display: flex; align-items: center;
 }
 .mobile-cta-btn {
-  width: 100%; height: 48px; background: var(--primary); color: white;
+  width: 100%; height: 48px; background: #ff6b00; color: white;
   font-size: 16px; font-weight: 800; border: none; border-radius: 12px;
   cursor: pointer; font-family: 'SUIT', sans-serif;
   letter-spacing: -0.3px;
@@ -729,16 +705,11 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
   .hamburger { display: flex; }
   .header-phone { padding: 7px 12px; font-size: 13px; }
   .hero { padding: 48px 20px 56px; }
-  .hero-inner { flex-direction: column; gap: 32px; }
-  .hero-content { text-align: center; }
-  .hero-badge { display: block; width: fit-content; margin-left: auto; margin-right: auto; }
-  .hero-cash-badge { margin-left: auto; margin-right: auto; font-size: 22px; padding: 14px 40px; text-align: center; }
-  .hero-form-wrap { width: 100%; flex: none; }
-  .hero-form-wrap .form-card { max-width: 100%; }
-  .hero-stats { justify-content: center; margin-top: 28px; }
-  .hero-stat { align-items: center; padding: 0 16px; margin-right: 0; }
-  .hero-stat .num { font-size: 18px; }
-  .since-badge { font-size: 10px; padding: 3px 8px; margin-bottom: 4px; }
+  .hero-stats { flex-direction: column; align-items: center; gap: 0; margin-top: 40px; }
+  .hero-stat { padding: 16px 0; width: 100%; border-right: none; border-bottom: 1px solid rgba(255,255,255,0.15); }
+  .hero-stat:last-child { border-bottom: none; }
+  .hero-stat .num { font-size: 22px; }
+  .since-badge { font-size: 11px; padding: 4px 10px; }
   .mob-br { display: block; }
   .benefits-grid { grid-template-columns: 1fr; gap: 16px; }
   .benefit-card.main { grid-row: auto; }
@@ -774,13 +745,12 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
 
 /* ===== HERO CASH BADGE ===== */
 .hero-cash-badge {
-  display: block; width: fit-content;
-  background: #ff6b00; text-align: center;
-  color: white; font-size: 28px; font-weight: 900;
-  padding: 15px 39px; border-radius: 999px; margin-bottom: 20px;
-  box-shadow: 0 6px 20px rgba(255,107,0,0.55);
+  display: block; width: fit-content; margin-left: auto; margin-right: auto;
+  background: linear-gradient(135deg, #ff6b00, #ffb300);
+  color: white; font-size: 16px; font-weight: 900;
+  padding: 8px 22px; border-radius: 999px; margin-bottom: 20px;
+  box-shadow: 0 4px 16px rgba(255,107,0,0.45);
   letter-spacing: -0.3px;
-  text-shadow: 0 1px 3px rgba(0,0,0,0.25);
 }
 
 /* ===== URGENCY ===== */
@@ -798,7 +768,7 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
 /* ===== LIVE ROLLING SECTION ===== */
 .live-section {
   background: #f0f6ff; padding: 28px 20px;
-  border-top: 1px solid #dbeafe; margin-bottom: 72px;
+  border-top: 1px solid #dbeafe; border-bottom: 1px solid #dbeafe;
 }
 .live-section-inner {
   max-width: 780px; margin: 0 auto;
@@ -851,13 +821,6 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
   .live-section { padding: 20px 16px; }
   .live-section-inner { flex-direction: column; gap: 12px; }
   .rolling-col { width: 100%; }
-}
-
-@media (max-width: 768px) {
-  .ict-cert-wrap { padding: 10px 16px; gap: 8px; margin-top: 40px; border-radius: 10px; }
-  .ict-cert-sub { display: none; }
-  .ict-cert-title { font-size: 13px; }
-  .ict-cert-icon { width: 28px; height: 28px; font-size: 8px; border-radius: 6px; }
 }
 
 /* ===== 초소형 화면 대응 ===== */
@@ -915,67 +878,29 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
 </div>
 
 <!-- HERO -->
-<section class="hero" id="apply">
-  <div class="hero-inner">
-    <div class="hero-content">
-      <div class="hero-badge">인터넷 · 정수기 · 가전렌탈 전문</div>
-      <div class="hero-cash-badge">최대 143만원<br class="mob-br"> 현금 당일입금</div>
-      <h1>놓치고 있던<br> <em>내 최대 지원금</em><br>당현함이 알려드릴게요!</h1>
-      <p class="hero-desc">인터넷가입·정수기·가전렌탈 시<br class="mob-br"> 최대 현금 지원, <strong>당일 지급</strong><br>모든 상품 비교 후 가장 유리한 조건으로<br class="mob-br"> 안내해드립니다</p>
-      <p class="hero-sub-assurance">타업체보다 적다면?<br class="mob-br"> <strong style="color:#FFF200;">차액을 보상해드립니다.</strong></p>
-      <div class="hero-stats">
-        <div class="hero-stat">
-          <span class="since-badge">📅 SINCE 2012</span>
-          <div class="num">12,847건</div>
-          <div class="label">누적 상담 건수</div>
-        </div>
-        <div class="hero-stat">
-          <span class="since-badge">✅ 13년 무사고</span>
-          <div class="num">98.3%</div>
-          <div class="label">고객 만족도</div>
-        </div>
-      </div>
+<section class="hero">
+  <div class="hero-badge">인터넷 · 정수기 · 가전렌탈 전문</div>
+  <div class="hero-cash-badge">💰 최대 143만원 현금 당일입금</div>
+  <h1>놓치고 있던<br class="mob-br"> <em>내 최대 지원금</em><br>당현함이<br class="fold-br"> 알려드릴게요!</h1>
+  <p>인터넷가입·정수기·가전렌탈 시 최대 현금 지원, <strong>당일 지급</strong><br>모든 상품 비교 후 가장 유리한 조건으로 안내해드립니다</p>
+  <a href="#apply" class="hero-cta">내 최대 지원금<br class="fold-br"> 무료확인 →</a>
+  <p style="margin-top:10px;margin-bottom:0;font-size:15px;color:rgba(255,255,255,0.75);">타업체보다 적다면? <strong style="color:#FFF200;">차액을 보상해드립니다.</strong></p>
+  <p class="hero-urgency">⏰ 오늘 오후 5:30 이전 설치 시 당일 입금</p>
+  <div class="hero-stats" style="margin-top:112px;">
+    <div class="hero-stat">
+      <span class="since-badge">📅 SINCE 2012</span>
+      <div class="num">12,847건</div>
+      <div class="label">누적 상담 건수</div>
     </div>
-    <div class="hero-form-wrap">
-      <div class="form-card">
-        <div id="formContent">
-          <p class="form-headline"><span>어떤 서비스</span>가 필요하신가요?</p>
-          <div class="service-tabs">
-            <div class="service-tab active" id="tab-internet" onclick="toggleService('internet')">
-              <div class="service-tab-icon">📡</div>인터넷
-            </div>
-            <div class="service-tab" id="tab-rental" onclick="toggleService('rental')">
-              <div class="service-tab-icon">🏠</div>렌탈
-            </div>
-          </div>
-          <p style="font-size:12px;color:var(--gray);margin-top:0;margin-bottom:14px;text-align:center;">(둘 다 선택 가능)</p>
-          <div class="usim-check">
-            <input type="checkbox" id="usimCheck">
-            <label for="usimCheck">휴대폰 기종 변경 없이<br class="fold-br"> 통신사만 바꾸고 추가 현금 받기</label>
-          </div>
-          <div class="form-group">
-            <label for="inputName">이름 <span style="font-size:11px;color:#94a3b8;font-weight:500;">(선택)</span></label>
-            <input type="text" id="inputName" placeholder="이름을 입력해주세요" maxlength="20">
-          </div>
-          <div class="form-group">
-            <label for="inputPhone">휴대폰 번호 <span style="font-size:11px;color:#dc2626;font-weight:600;">(필수)</span></label>
-            <input type="tel" id="inputPhone" placeholder="휴대폰번호를 입력해주세요" maxlength="13">
-          </div>
-          <div style="display:flex;align-items:flex-start;gap:8px;margin-bottom:18px;">
-            <input type="checkbox" id="c1" style="width:17px;height:17px;accent-color:var(--primary);flex-shrink:0;margin-top:2px;cursor:pointer;">
-            <label for="c1" style="font-size:13px;color:var(--gray);cursor:pointer;line-height:1.5;">개인정보 수집 및 이용에 동의합니다. <span style="color:#dc2626;font-weight:600;">(필수)</span><br> <a href="javascript:void(0)" onclick="openPrivacy()" style="color:var(--primary);font-weight:600;font-size:12px;text-decoration:none;">내용보기 ›</a></label>
-          </div>
-          <p class="form-urgency">⏰ 오후 5:30 이전 설치 시 당일 현금 입금</p>
-          <button class="form-submit" id="submitBtn" onclick="submitForm()">내 최대 지원금 무료확인</button>
-          <p style="margin-top:10px;font-size:13px;color:var(--gray);text-align:center;">타업체보다 적다면? <strong style="color:var(--primary);">차액을 보상해드립니다.</strong></p>
-        </div>
-        <div class="form-success" id="formSuccess">
-          <div class="s-icon">✅</div>
-          <h3>신청이 완료되었습니다!</h3>
-          <p>담당 상담사가 빠른 시간 내에<br>연락드리겠습니다.<br><br>바로 문의하시려면<br><strong style="color:var(--primary);font-size:17px;">1600-4670</strong></p>
-          <button onclick="resetForm()" style="margin-top:16px;background:none;border:1px solid #d1d5db;border-radius:8px;padding:10px 20px;font-size:14px;color:var(--gray);cursor:pointer;">다시 신청하기</button>
-        </div>
-      </div>
+    <div class="hero-stat">
+      <span class="since-badge">✅ 13년 무사고</span>
+      <div class="num">98.3%</div>
+      <div class="label">고객 만족도</div>
+    </div>
+    <div class="hero-stat">
+      <span class="since-badge">💸 당일 지급 원칙</span>
+      <div class="num">평균 89만원</div>
+      <div class="label">현금 지원금</div>
     </div>
   </div>
 </section>
@@ -1001,42 +926,15 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
 <!-- CARRIERS -->
 <div class="carriers">
   <div class="carriers-inner">
+    <a href="https://www.ictmarket.or.kr:8443/ajax/ajax3.do?id=PRE0000152938&seq=1&yn=1" target="_blank" rel="noopener" class="ict-cert-wrap">
+      <div class="ict-cert-icon">ICT<br>인증</div>
+      <div class="ict-cert-text">
+        <div class="ict-cert-title">KAIT 사전승낙 인증업체</div>
+        <div class="ict-cert-sub">한국정보통신진흥협회 온라인 판매 심사기준 통과<br>이동통신사업자로부터 온라인 판매를 승낙받은 당현함</div>
+      </div>
+    </a>
   </div>
 </div>
-
-<!-- TRUST SECTION -->
-<section class="trust-section">
-  <div class="section-inner">
-
-    <!-- Part 1: 불안 해소 -->
-    <div class="trust-worry fade-up">
-      <span class="section-tag">업계 현실</span>
-      <h2 class="section-title trust-worry-title"><em>사기</em>일까, <em>먹튀</em>일까<br>걱정되시나요?</h2>
-      <p class="section-sub">실제 보도된 인터넷 가입 관련 뉴스입니다</p>
-      <img src="images/trust_news.png" alt="인터넷 가입 사기·먹튀 관련 실제 뉴스 기사" class="trust-news-img">
-    </div>
-
-    <!-- Part 2: 당현함 당일지급 -->
-    <div class="trust-solution fade-up">
-      <img src="images/당일지급 크롭버전1.PNG" alt="당현함 당일지급" class="trust-solution-img">
-    </div>
-
-    <!-- Part 3: 공식 인증 -->
-    <div class="trust-cert fade-up">
-      <span class="section-tag">공식 인증</span>
-      <h2 class="section-title">당현함은 <em>정식으로 인정받은</em><br>접수센터입니다</h2>
-      <img src="images/인증서 크롭버전1.PNG" alt="사전승낙서 및 사업자등록증" class="trust-cert-img">
-      <a href="https://www.ictmarket.or.kr:8443/ajax/ajax3.do?id=PRE0000152938&seq=1&yn=1" target="_blank" rel="noopener" class="ict-cert-wrap">
-        <div class="ict-cert-icon">ICT<br>인증</div>
-        <div class="ict-cert-text">
-          <div class="ict-cert-title">KAIT 사전승낙서 보기</div>
-          <div class="ict-cert-sub">한국정보통신진흥협회 온라인 판매 심사기준 통과<br>이동통신사업자로부터 온라인 판매를 승낙받은 당현함</div>
-        </div>
-      </a>
-    </div>
-
-  </div>
-</section>
 
 <!-- BENEFITS -->
 <section id="benefits" class="benefits">
@@ -1289,6 +1187,51 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
   </div>
 </section>
 
+<!-- FORM -->
+<section id="apply" class="form-section">
+  <div class="section-inner" style="text-align:center;">
+    <span class="section-tag">무료 상담</span>
+    <h2 class="section-title" style="font-size:clamp(30px,5vw,52px);"><em>30초</em> 신청으로<br><em>내 최대 지원금</em> 확인</h2>
+    <p class="section-sub" style="margin-bottom:36px;">상담은 무료, 부담 없이 신청하세요</p>
+    <div class="form-card">
+      <div id="formContent">
+        <p class="form-headline"><span>어떤 서비스</span>가 필요하신가요? <span style="font-size:13px;color:var(--gray);font-weight:500;">(둘 다 선택 가능)</span></p>
+        <div class="service-tabs">
+          <div class="service-tab active" id="tab-internet" onclick="toggleService('internet')">
+            <div class="service-tab-icon">📡</div>인터넷
+          </div>
+          <div class="service-tab" id="tab-rental" onclick="toggleService('rental')">
+            <div class="service-tab-icon">🏠</div>정수기·가전렌탈
+          </div>
+        </div>
+        <div class="usim-check">
+          <input type="checkbox" id="usimCheck">
+          <label for="usimCheck">휴대폰 기종 변경 없이<br class="fold-br"> 통신사만 바꾸고 추가 현금 받기</label>
+        </div>
+        <div class="form-group">
+          <label for="inputName">이름 <span style="font-size:11px;color:#94a3b8;font-weight:500;">(선택)</span></label>
+          <input type="text" id="inputName" placeholder="이름을 입력해주세요" maxlength="20">
+        </div>
+        <div class="form-group">
+          <label for="inputPhone">휴대폰 번호 <span style="font-size:11px;color:#dc2626;font-weight:600;">(필수)</span></label>
+          <input type="tel" id="inputPhone" placeholder="휴대폰번호를 입력해주세요" maxlength="13">
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:8px;margin-bottom:18px;">
+          <input type="checkbox" id="c1" style="width:17px;height:17px;accent-color:var(--primary);flex-shrink:0;margin-top:2px;cursor:pointer;">
+          <label for="c1" style="font-size:13px;color:var(--gray);cursor:pointer;line-height:1.5;">개인정보 수집 및 이용에 동의합니다. <span style="color:#dc2626;font-weight:600;">(필수)</span><br class="fold-br"> <a href="javascript:void(0)" onclick="openPrivacy()" style="color:var(--primary);font-weight:600;font-size:12px;text-decoration:none;">내용보기 ›</a></label>
+        </div>
+        <p class="form-urgency">⏰ 오늘 오후 5:30 이전 설치 시 당일 현금 입금</p>
+        <button class="form-submit" id="submitBtn" onclick="submitForm()">내 최대 지원금 무료확인</button>
+        <p style="margin-top:10px;font-size:13px;color:var(--gray);text-align:center;">타업체보다 적다면? <strong style="color:var(--primary);">차액을 보상해드립니다.</strong></p>
+      </div>
+      <div class="form-success" id="formSuccess">
+        <div class="s-icon">✅</div>
+        <h3>신청이 완료되었습니다!</h3>
+        <p>담당 상담사가 빠른 시간 내에<br>연락드리겠습니다.<br><br>바로 문의하시려면<br><strong style="color:var(--primary);font-size:17px;">1600-4670</strong></p>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- TERMS MODAL -->
 <div class="privacy-overlay" id="termsOverlay" onclick="closeTermsOutside(event)">
@@ -1424,11 +1367,33 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
 <!-- DESKTOP BOTTOM CTA BAR -->
 <div class="desk-cta-bar" id="deskCtaBar">
   <div class="desk-cta-bar-inner">
-    <span class="desk-cta-top">놓치고 있던 내 최대 지원금, 지금 바로 확인하세요</span>
-    <button class="desk-cta-bar-btn" onclick="location.href='#apply'">무료 확인하기 →</button>
+    <input type="text" id="deskName" placeholder="이름">
+    <div class="desk-cta-phone-wrap">
+      <div class="desk-cta-top">내가 받을 수 있는 지원금은?</div>
+      <input type="tel" id="deskPhone" placeholder="휴대폰 번호">
+    </div>
+    <button class="desk-cta-bar-btn" onclick="submitDeskForm()">무료확인 →</button>
+    <div class="desk-cta-success" id="deskSuccess">✅ 신청 완료! 곧 연락드리겠습니다.</div>
   </div>
 </div>
 
+<!-- STICKY MINI FORM -->
+<div class="sticky-form" id="stickyForm">
+  <div class="sticky-form-tab" onclick="toggleStickyForm()">
+    <span class="tab-arrow"></span>
+  </div>
+  <div class="sticky-form-inner">
+    <div class="sticky-form-body" id="stickyFormBody">
+      <div id="stickyFormContent">
+        <p class="sticky-form-title"><span>내가 받을 수 있는</span><br>지원금은 얼마일까요?</p>
+        <input type="text" id="stickyName" placeholder="이름 (선택)">
+        <input type="tel" id="stickyPhone" placeholder="휴대폰 번호 (필수)">
+        <button class="sticky-form-btn" onclick="submitStickyForm()">무료확인 →</button>
+      </div>
+      <div class="sticky-form-success" id="stickySuccess">✅ 신청 완료!<br>곧 연락드리겠습니다.</div>
+    </div>
+  </div>
+</div>
 
 <!-- FLOATING BUTTONS -->
 <div class="floating-btns">
@@ -1626,36 +1591,17 @@ async function submitForm() {
   const serviceText = [...selectedServices].map(s => serviceMap[s]).join('+');
   const usim = document.getElementById('usimCheck').checked ? 'Y' : 'N';
 
-  const controller = new AbortController();
-  const timeout = setTimeout(() => controller.abort(), 8000);
-
   try {
     await fetch(SCRIPT_URL, {
-      method: 'POST', mode: 'no-cors', signal: controller.signal,
+      method: 'POST', mode: 'no-cors',
       body: JSON.stringify({ name, phone, usim, service: serviceText })
     });
-    clearTimeout(timeout);
     document.getElementById('formContent').style.display = 'none';
     document.getElementById('formSuccess').style.display = 'block';
   } catch(e) {
-    clearTimeout(timeout);
     alert('오류가 발생했습니다. 잠시 후 다시 시도하거나\n1600-4670으로 직접 문의해주세요.');
     btn.disabled = false; btn.textContent = '내 최대 지원금 무료확인';
   }
-}
-
-function resetForm() {
-  document.getElementById('formContent').style.display = 'block';
-  document.getElementById('formSuccess').style.display = 'none';
-  document.getElementById('inputName').value = '';
-  document.getElementById('inputPhone').value = '';
-  document.getElementById('usimCheck').checked = false;
-  document.getElementById('c1').checked = false;
-  selectedServices = new Set(['internet']);
-  document.getElementById('tab-internet').classList.add('active');
-  document.getElementById('tab-rental').classList.remove('active');
-  const btn = document.getElementById('submitBtn');
-  btn.disabled = false; btn.textContent = '내 최대 지원금 무료확인';
 }
 
 // 개인정보처리방침 모달
@@ -1665,25 +1611,91 @@ function closePrivacyOutside(e) { if (e.target.id === 'privacyOverlay') closePri
 function openTerms() { document.getElementById('termsOverlay').classList.add('open'); }
 function closeTerms() { document.getElementById('termsOverlay').classList.remove('open'); }
 function closeTermsOutside(e) { if (e.target.id === 'termsOverlay') closeTerms(); }
-document.addEventListener('keydown', function(e) { if (e.key !== 'Escape') return; closePrivacy(); closeTerms(); });
 
-// 스크롤 트리거 — 히어로 폼이 뷰포트 밖으로 나가면 CTA 바 등장
+// Sticky form 접기/펴기
+function toggleStickyForm() {
+  document.getElementById('stickyForm').classList.toggle('collapsed');
+}
+
+// 스크롤 폼 통합 트리거 (히어로 CTA 버튼이 뷰포트 밖으로 나가면 등장)
+const stickyForm = document.getElementById('stickyForm');
 const deskCtaBar = document.getElementById('deskCtaBar');
 const mobileCta  = document.getElementById('mobileCta');
-const heroFormWrap = document.querySelector('.hero-form-wrap');
+const applySection = document.getElementById('apply');
+const heroCta = document.querySelector('.hero-cta');
 
 function updateScrollForms() {
-  const heroGone = heroFormWrap ? heroFormWrap.getBoundingClientRect().bottom <= 0 : true;
-  const isMobile = window.innerWidth <= 768;
-  if (heroGone) {
-    if (isMobile) { mobileCta.classList.add('visible'); }
-    else { deskCtaBar.classList.add('visible'); }
+  const ctaHidden = heroCta.getBoundingClientRect().bottom <= 0;
+  const applyNear = applySection.getBoundingClientRect().top <= 100;
+  const isMobile  = window.innerWidth <= 768;
+  if (ctaHidden && !applyNear) {
+    if (isMobile) {
+      mobileCta.classList.add('visible');
+    } else {
+      stickyForm.classList.add('visible');
+      deskCtaBar.classList.add('visible');
+    }
   } else {
     mobileCta.classList.remove('visible');
+    stickyForm.classList.remove('visible');
     deskCtaBar.classList.remove('visible');
   }
 }
 window.addEventListener('scroll', updateScrollForms, { passive: true });
+
+// Desktop bar phone format
+document.getElementById('deskPhone').addEventListener('input', function() {
+  let v = this.value.replace(/\D/g,'');
+  if (v.length > 11) v = v.slice(0,11);
+  if (v.length >= 8) v = v.slice(0,3)+'-'+v.slice(3,7)+'-'+v.slice(7);
+  else if (v.length >= 4) v = v.slice(0,3)+'-'+v.slice(3);
+  this.value = v;
+});
+
+// Desktop bar submit
+async function submitDeskForm() {
+  const name = document.getElementById('deskName').value.trim();
+  const phone = document.getElementById('deskPhone').value.trim();
+  if (!phone || phone.replace(/\D/g,'').length !== 11) { alert('휴대폰 번호 11자리를 정확히 입력해주세요.\n(예: 010-1234-5678)'); return; }
+  try {
+    await fetch(SCRIPT_URL, {
+      method: 'POST', mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name, phone, usim: '미지정', service: '미지정' })
+    });
+    document.querySelector('.desk-cta-top').style.display = 'none';
+    document.querySelector('.desk-cta-bottom').style.display = 'none';
+    document.getElementById('deskSuccess').style.display = 'block';
+  } catch(e) {
+    alert('오류가 발생했습니다. 1600-4670으로 문의해주세요.');
+  }
+}
+
+// Sticky phone format
+document.getElementById('stickyPhone').addEventListener('input', function() {
+  let v = this.value.replace(/\D/g,'');
+  if (v.length > 11) v = v.slice(0,11);
+  if (v.length >= 8) v = v.slice(0,3)+'-'+v.slice(3,7)+'-'+v.slice(7);
+  else if (v.length >= 4) v = v.slice(0,3)+'-'+v.slice(3);
+  this.value = v;
+});
+
+// Sticky form submit
+async function submitStickyForm() {
+  const name = document.getElementById('stickyName').value.trim();
+  const phone = document.getElementById('stickyPhone').value.trim();
+  if (!phone || phone.replace(/\D/g,'').length !== 11) { alert('휴대폰 번호 11자리를 정확히 입력해주세요.\n(예: 010-1234-5678)'); return; }
+  try {
+    await fetch(SCRIPT_URL, {
+      method: 'POST', mode: 'no-cors',
+      body: JSON.stringify({ name, phone, usim: '미지정', service: '미지정' })
+    });
+    document.getElementById('stickyFormContent').style.display = 'none';
+    document.getElementById('stickySuccess').style.display = 'block';
+  } catch(e) {
+    alert('오류가 발생했습니다. 1600-4670으로 문의해주세요.');
+  }
+}
 
 
 // Scroll animation
