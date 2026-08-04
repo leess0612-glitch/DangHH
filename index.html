@@ -51,7 +51,7 @@ function dhTrack(action, opts){
   }
   /* 2) 메타 픽셀 */
   if(typeof fbq === 'function'){
-    var metaName = { form_submit:'Lead', kakao_click:'Contact', phone_click:'Contact' }[action];
+    var metaName = { lead_submit:'Lead', kakao_click:'Contact', phone_click:'Contact' }[action];
     if(metaName) fbq('track', metaName, { content_name: DH_PAGE + '/' + action });
     else fbq('trackCustom', action, { content_name: DH_PAGE });
   }
@@ -1779,6 +1779,7 @@ async function submitForm() {
   }
   const btn = document.getElementById('submitBtn');
   btn.disabled = true; btn.textContent = '신청 중...';
+  dhTrack('lead_submit', { once: false });   /* 입력 검사 통과 시점에 전환 집계 */
 
   const serviceMap = { internet:'인터넷', rental:'가전렌탈' };
   const serviceText = [...selectedServices].map(s => serviceMap[s]).join('+');
@@ -1793,7 +1794,6 @@ async function submitForm() {
       body: JSON.stringify({ name, phone, usim, service: serviceText })
     });
     clearTimeout(timeout);
-    dhTrack('form_submit', { once: false });
     document.getElementById('formContent').style.display = 'none';
     document.getElementById('formSuccess').style.display = 'block';
   } catch(e) {
