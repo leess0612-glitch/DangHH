@@ -115,6 +115,41 @@ body {
 }
 .f-mix .demo-stat .lbl { opacity:0.65; }
 
+/* ===== 혜택 칸 견본 (실제 사이트 "왜 당현함인가요?" 섹션 그대로 축소) ===== */
+.bsec { background:#f8fafc; padding:18px 12px 20px; text-align:center; border-radius:12px; margin:0 16px 16px; }
+.bsec-tag { display:inline-block; background:#eff6ff; color:#1461F0; font-size:11.5px; font-weight:700; padding:4px 11px; border-radius:20px; margin-bottom:9px; }
+.bsec-title { font-size:17px; font-weight:900; letter-spacing:-0.5px; line-height:1.3; margin-bottom:14px; }
+.bsec-title em { font-style:normal; color:#1461F0; }
+.bsec-grid { display:grid; grid-template-columns:1fr 1fr; grid-template-rows:auto auto; gap:8px; text-align:left; }
+.bsec-card { background:white; border-radius:12px; padding:12px; box-shadow:0 2px 10px rgba(0,0,0,0.06); }
+.bsec-card.main { grid-row:1/3; background:linear-gradient(145deg,#0C2880,#1A6BFF); color:white; }
+.bsec-top { display:flex; align-items:center; gap:5px; margin-bottom:8px; }
+.bsec-icon { font-size:19px; line-height:1; }
+.bsec-chip { display:inline-flex; align-items:center; background:#eff6ff; color:#1461F0; font-size:9px; font-weight:700; padding:3px 7px; border-radius:20px; }
+.bsec-card.main .bsec-chip { background:rgba(255,255,255,0.2); color:white; }
+.bsec-card h3 { font-size:12.5px; font-weight:900; margin-bottom:5px; line-height:1.35; }
+.bsec-card.main h3 { color:white; font-size:13.5px; }
+.bsec-card p { font-size:10px; color:#64748b; line-height:1.55; margin-top:4px; }
+.bsec-card.main p { color:rgba(255,255,255,0.85); }
+.bsec-amount { margin:9px 0; padding:8px 9px; background:rgba(255,255,255,0.12); border:1.5px solid rgba(255,255,255,0.3); border-radius:9px; text-align:center; }
+.bsec-amount-main { font-size:11.5px; font-weight:900; color:#fee500; line-height:1.2; display:block; margin-bottom:2px; }
+.bsec-amount-sub { font-size:8.5px; color:rgba(255,255,255,0.75); font-weight:500; }
+.bsec-guarantee { margin-top:9px; padding:6px 7px; background:rgba(255,255,255,0.12); border:1.5px solid rgba(255,255,255,0.3); border-radius:8px; font-size:11px; font-weight:900; color:#FFF200; text-align:center; }
+
+/* 혜택칸 제목류에도 각 글꼴 적용 */
+.f-dohyeon .bsec-title, .f-dohyeon .bsec-card h3, .f-dohyeon .bsec-amount-main, .f-dohyeon .bsec-guarantee { font-family:'BM DOHYEON'; }
+.f-hanna .bsec-title, .f-hanna .bsec-card h3, .f-hanna .bsec-amount-main, .f-hanna .bsec-guarantee { font-family:'BM HANNA Pro'; }
+.f-jua .bsec-title, .f-jua .bsec-card h3, .f-jua .bsec-amount-main, .f-jua .bsec-guarantee { font-family:'BM JUA'; }
+.f-tmon .bsec-title, .f-tmon .bsec-card h3, .f-tmon .bsec-amount-main, .f-tmon .bsec-guarantee { font-family:'Tmon Monsori'; }
+.f-gmarket .bsec-title, .f-gmarket .bsec-card h3, .f-gmarket .bsec-amount-main, .f-gmarket .bsec-guarantee { font-family:'GmarketSansBold'; }
+.f-c101 .bsec-title, .f-c101 .bsec-card h3, .f-c101 .bsec-amount-main, .f-c101 .bsec-guarantee {
+  font-family:'Pretendard Variable',sans-serif; font-weight:700; letter-spacing:-0.015em;
+}
+.f-c101 .bsec-card p, .f-c101 .bsec-amount-sub { opacity:0.75; }
+.f-mix .bsec-title, .f-mix .bsec-card h3, .f-mix .bsec-amount-main, .f-mix .bsec-guarantee {
+  font-family:'Pretendard Variable',sans-serif; font-weight:700; letter-spacing:-0.015em;
+}
+
 .tip {
   margin:22px 12px 0; padding:14px 16px; background:#fffbeb;
   border:1px solid #fde68a; border-radius:12px;
@@ -153,6 +188,31 @@ body {
       <div class="sect">다른 업체와 <em>직접 비교</em>해드립니다</div>
       <div class="body">본문은 프리텐다드로 고정입니다. 제목 글꼴만 비교하시면 됩니다.</div>
     </div>
+    <div class="bsec">
+      <span class="bsec-tag">왜 당현함인가요?</span>
+      <h2 class="bsec-title">당현함에서는<br><em>모든 혜택을 받을 수 있어요</em></h2>
+      <div class="bsec-grid">
+        <div class="bsec-card main">
+          <div class="bsec-top"><span class="bsec-icon">🎁</span><span class="bsec-chip">💰 현금 지원 최고</span></div>
+          <h3>현금 지원 업계 최고<br>당일 바로 입금</h3>
+          <div class="bsec-amount">
+            <span class="bsec-amount-main">현금 지원 최대 50만원<br>렌탈 전문</span>
+            <span class="bsec-amount-sub">렌탈 제품 선택에 따라 최대 50만원 현금 지급</span>
+          </div>
+          <div class="bsec-guarantee">타 업체 대비 혜택 부족 시<br>차액 보상</div>
+        </div>
+        <div class="bsec-card">
+          <div class="bsec-top"><span class="bsec-icon">📱</span><span class="bsec-chip">📊 맞춤 추천</span></div>
+          <h3>고민할 필요 없이<br>맞춤으로 추천해드려요</h3>
+          <p>불필요한 부가서비스 강요 없이 전문 상담사가 1:1 맞춤으로 정수기·가전렌탈 전부 비교해드립니다</p>
+        </div>
+        <div class="bsec-card">
+          <div class="bsec-top"><span class="bsec-icon">🚀</span><span class="bsec-chip">🔧 빠른 설치</span></div>
+          <h3>더는 기다리지 마세요<br>빠르게 설치해드릴게요</h3>
+          <p>고객님이 원하시는 일정, 가장 빠른 날짜로 방문 설치해드립니다</p>
+        </div>
+      </div>
+    </div>
   </div>
 
   <!-- 2. 배민 한나체 Pro -->
@@ -175,6 +235,31 @@ body {
     <div class="demo-light">
       <div class="sect">다른 업체와 <em>직접 비교</em>해드립니다</div>
       <div class="body">본문은 프리텐다드로 고정입니다. 제목 글꼴만 비교하시면 됩니다.</div>
+    </div>
+    <div class="bsec">
+      <span class="bsec-tag">왜 당현함인가요?</span>
+      <h2 class="bsec-title">당현함에서는<br><em>모든 혜택을 받을 수 있어요</em></h2>
+      <div class="bsec-grid">
+        <div class="bsec-card main">
+          <div class="bsec-top"><span class="bsec-icon">🎁</span><span class="bsec-chip">💰 현금 지원 최고</span></div>
+          <h3>현금 지원 업계 최고<br>당일 바로 입금</h3>
+          <div class="bsec-amount">
+            <span class="bsec-amount-main">현금 지원 최대 50만원<br>렌탈 전문</span>
+            <span class="bsec-amount-sub">렌탈 제품 선택에 따라 최대 50만원 현금 지급</span>
+          </div>
+          <div class="bsec-guarantee">타 업체 대비 혜택 부족 시<br>차액 보상</div>
+        </div>
+        <div class="bsec-card">
+          <div class="bsec-top"><span class="bsec-icon">📱</span><span class="bsec-chip">📊 맞춤 추천</span></div>
+          <h3>고민할 필요 없이<br>맞춤으로 추천해드려요</h3>
+          <p>불필요한 부가서비스 강요 없이 전문 상담사가 1:1 맞춤으로 정수기·가전렌탈 전부 비교해드립니다</p>
+        </div>
+        <div class="bsec-card">
+          <div class="bsec-top"><span class="bsec-icon">🚀</span><span class="bsec-chip">🔧 빠른 설치</span></div>
+          <h3>더는 기다리지 마세요<br>빠르게 설치해드릴게요</h3>
+          <p>고객님이 원하시는 일정, 가장 빠른 날짜로 방문 설치해드립니다</p>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -199,6 +284,31 @@ body {
       <div class="sect">다른 업체와 <em>직접 비교</em>해드립니다</div>
       <div class="body">본문은 프리텐다드로 고정입니다. 제목 글꼴만 비교하시면 됩니다.</div>
     </div>
+    <div class="bsec">
+      <span class="bsec-tag">왜 당현함인가요?</span>
+      <h2 class="bsec-title">당현함에서는<br><em>모든 혜택을 받을 수 있어요</em></h2>
+      <div class="bsec-grid">
+        <div class="bsec-card main">
+          <div class="bsec-top"><span class="bsec-icon">🎁</span><span class="bsec-chip">💰 현금 지원 최고</span></div>
+          <h3>현금 지원 업계 최고<br>당일 바로 입금</h3>
+          <div class="bsec-amount">
+            <span class="bsec-amount-main">현금 지원 최대 50만원<br>렌탈 전문</span>
+            <span class="bsec-amount-sub">렌탈 제품 선택에 따라 최대 50만원 현금 지급</span>
+          </div>
+          <div class="bsec-guarantee">타 업체 대비 혜택 부족 시<br>차액 보상</div>
+        </div>
+        <div class="bsec-card">
+          <div class="bsec-top"><span class="bsec-icon">📱</span><span class="bsec-chip">📊 맞춤 추천</span></div>
+          <h3>고민할 필요 없이<br>맞춤으로 추천해드려요</h3>
+          <p>불필요한 부가서비스 강요 없이 전문 상담사가 1:1 맞춤으로 정수기·가전렌탈 전부 비교해드립니다</p>
+        </div>
+        <div class="bsec-card">
+          <div class="bsec-top"><span class="bsec-icon">🚀</span><span class="bsec-chip">🔧 빠른 설치</span></div>
+          <h3>더는 기다리지 마세요<br>빠르게 설치해드릴게요</h3>
+          <p>고객님이 원하시는 일정, 가장 빠른 날짜로 방문 설치해드립니다</p>
+        </div>
+      </div>
+    </div>
   </div>
 
   <!-- 4. 티몬 몬소리체 -->
@@ -221,6 +331,31 @@ body {
     <div class="demo-light">
       <div class="sect">다른 업체와 <em>직접 비교</em>해드립니다</div>
       <div class="body">본문은 프리텐다드로 고정입니다. 제목 글꼴만 비교하시면 됩니다.</div>
+    </div>
+    <div class="bsec">
+      <span class="bsec-tag">왜 당현함인가요?</span>
+      <h2 class="bsec-title">당현함에서는<br><em>모든 혜택을 받을 수 있어요</em></h2>
+      <div class="bsec-grid">
+        <div class="bsec-card main">
+          <div class="bsec-top"><span class="bsec-icon">🎁</span><span class="bsec-chip">💰 현금 지원 최고</span></div>
+          <h3>현금 지원 업계 최고<br>당일 바로 입금</h3>
+          <div class="bsec-amount">
+            <span class="bsec-amount-main">현금 지원 최대 50만원<br>렌탈 전문</span>
+            <span class="bsec-amount-sub">렌탈 제품 선택에 따라 최대 50만원 현금 지급</span>
+          </div>
+          <div class="bsec-guarantee">타 업체 대비 혜택 부족 시<br>차액 보상</div>
+        </div>
+        <div class="bsec-card">
+          <div class="bsec-top"><span class="bsec-icon">📱</span><span class="bsec-chip">📊 맞춤 추천</span></div>
+          <h3>고민할 필요 없이<br>맞춤으로 추천해드려요</h3>
+          <p>불필요한 부가서비스 강요 없이 전문 상담사가 1:1 맞춤으로 정수기·가전렌탈 전부 비교해드립니다</p>
+        </div>
+        <div class="bsec-card">
+          <div class="bsec-top"><span class="bsec-icon">🚀</span><span class="bsec-chip">🔧 빠른 설치</span></div>
+          <h3>더는 기다리지 마세요<br>빠르게 설치해드릴게요</h3>
+          <p>고객님이 원하시는 일정, 가장 빠른 날짜로 방문 설치해드립니다</p>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -245,6 +380,31 @@ body {
       <div class="sect">다른 업체와 <em>직접 비교</em>해드립니다</div>
       <div class="body">본문은 프리텐다드로 고정입니다. 제목 글꼴만 비교하시면 됩니다.</div>
     </div>
+    <div class="bsec">
+      <span class="bsec-tag">왜 당현함인가요?</span>
+      <h2 class="bsec-title">당현함에서는<br><em>모든 혜택을 받을 수 있어요</em></h2>
+      <div class="bsec-grid">
+        <div class="bsec-card main">
+          <div class="bsec-top"><span class="bsec-icon">🎁</span><span class="bsec-chip">💰 현금 지원 최고</span></div>
+          <h3>현금 지원 업계 최고<br>당일 바로 입금</h3>
+          <div class="bsec-amount">
+            <span class="bsec-amount-main">현금 지원 최대 50만원<br>렌탈 전문</span>
+            <span class="bsec-amount-sub">렌탈 제품 선택에 따라 최대 50만원 현금 지급</span>
+          </div>
+          <div class="bsec-guarantee">타 업체 대비 혜택 부족 시<br>차액 보상</div>
+        </div>
+        <div class="bsec-card">
+          <div class="bsec-top"><span class="bsec-icon">📱</span><span class="bsec-chip">📊 맞춤 추천</span></div>
+          <h3>고민할 필요 없이<br>맞춤으로 추천해드려요</h3>
+          <p>불필요한 부가서비스 강요 없이 전문 상담사가 1:1 맞춤으로 정수기·가전렌탈 전부 비교해드립니다</p>
+        </div>
+        <div class="bsec-card">
+          <div class="bsec-top"><span class="bsec-icon">🚀</span><span class="bsec-chip">🔧 빠른 설치</span></div>
+          <h3>더는 기다리지 마세요<br>빠르게 설치해드릴게요</h3>
+          <p>고객님이 원하시는 일정, 가장 빠른 날짜로 방문 설치해드립니다</p>
+        </div>
+      </div>
+    </div>
   </div>
 
   <!-- 6. 글꼴 없음 (지금 진짜 사이트 상태) -->
@@ -267,6 +427,31 @@ body {
     <div class="demo-light">
       <div class="sect">다른 업체와 <em>직접 비교</em>해드립니다</div>
       <div class="body">본문은 프리텐다드로 고정입니다. 제목 글꼴만 비교하시면 됩니다.</div>
+    </div>
+    <div class="bsec">
+      <span class="bsec-tag">왜 당현함인가요?</span>
+      <h2 class="bsec-title">당현함에서는<br><em>모든 혜택을 받을 수 있어요</em></h2>
+      <div class="bsec-grid">
+        <div class="bsec-card main">
+          <div class="bsec-top"><span class="bsec-icon">🎁</span><span class="bsec-chip">💰 현금 지원 최고</span></div>
+          <h3>현금 지원 업계 최고<br>당일 바로 입금</h3>
+          <div class="bsec-amount">
+            <span class="bsec-amount-main">현금 지원 최대 50만원<br>렌탈 전문</span>
+            <span class="bsec-amount-sub">렌탈 제품 선택에 따라 최대 50만원 현금 지급</span>
+          </div>
+          <div class="bsec-guarantee">타 업체 대비 혜택 부족 시<br>차액 보상</div>
+        </div>
+        <div class="bsec-card">
+          <div class="bsec-top"><span class="bsec-icon">📱</span><span class="bsec-chip">📊 맞춤 추천</span></div>
+          <h3>고민할 필요 없이<br>맞춤으로 추천해드려요</h3>
+          <p>불필요한 부가서비스 강요 없이 전문 상담사가 1:1 맞춤으로 정수기·가전렌탈 전부 비교해드립니다</p>
+        </div>
+        <div class="bsec-card">
+          <div class="bsec-top"><span class="bsec-icon">🚀</span><span class="bsec-chip">🔧 빠른 설치</span></div>
+          <h3>더는 기다리지 마세요<br>빠르게 설치해드릴게요</h3>
+          <p>고객님이 원하시는 일정, 가장 빠른 날짜로 방문 설치해드립니다</p>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -291,6 +476,31 @@ body {
       <div class="sect">다른 업체와 <em>직접 비교</em>해드립니다</div>
       <div class="body">본문은 프리텐다드로 고정입니다. 제목 글꼴만 비교하시면 됩니다.</div>
     </div>
+    <div class="bsec">
+      <span class="bsec-tag">왜 당현함인가요?</span>
+      <h2 class="bsec-title">당현함에서는<br><em>모든 혜택을 받을 수 있어요</em></h2>
+      <div class="bsec-grid">
+        <div class="bsec-card main">
+          <div class="bsec-top"><span class="bsec-icon">🎁</span><span class="bsec-chip">💰 현금 지원 최고</span></div>
+          <h3>현금 지원 업계 최고<br>당일 바로 입금</h3>
+          <div class="bsec-amount">
+            <span class="bsec-amount-main">현금 지원 최대 50만원<br>렌탈 전문</span>
+            <span class="bsec-amount-sub">렌탈 제품 선택에 따라 최대 50만원 현금 지급</span>
+          </div>
+          <div class="bsec-guarantee">타 업체 대비 혜택 부족 시<br>차액 보상</div>
+        </div>
+        <div class="bsec-card">
+          <div class="bsec-top"><span class="bsec-icon">📱</span><span class="bsec-chip">📊 맞춤 추천</span></div>
+          <h3>고민할 필요 없이<br>맞춤으로 추천해드려요</h3>
+          <p>불필요한 부가서비스 강요 없이 전문 상담사가 1:1 맞춤으로 정수기·가전렌탈 전부 비교해드립니다</p>
+        </div>
+        <div class="bsec-card">
+          <div class="bsec-top"><span class="bsec-icon">🚀</span><span class="bsec-chip">🔧 빠른 설치</span></div>
+          <h3>더는 기다리지 마세요<br>빠르게 설치해드릴게요</h3>
+          <p>고객님이 원하시는 일정, 가장 빠른 날짜로 방문 설치해드립니다</p>
+        </div>
+      </div>
+    </div>
   </div>
 
   <!-- 8. 섞은 방식 -->
@@ -313,6 +523,31 @@ body {
     <div class="demo-light">
       <div class="sect">다른 업체와 <em>직접 비교</em>해드립니다</div>
       <div class="body">본문은 프리텐다드로 고정입니다. 제목 글꼴만 비교하시면 됩니다.</div>
+    </div>
+    <div class="bsec">
+      <span class="bsec-tag">왜 당현함인가요?</span>
+      <h2 class="bsec-title">당현함에서는<br><em>모든 혜택을 받을 수 있어요</em></h2>
+      <div class="bsec-grid">
+        <div class="bsec-card main">
+          <div class="bsec-top"><span class="bsec-icon">🎁</span><span class="bsec-chip">💰 현금 지원 최고</span></div>
+          <h3>현금 지원 업계 최고<br>당일 바로 입금</h3>
+          <div class="bsec-amount">
+            <span class="bsec-amount-main">현금 지원 최대 50만원<br>렌탈 전문</span>
+            <span class="bsec-amount-sub">렌탈 제품 선택에 따라 최대 50만원 현금 지급</span>
+          </div>
+          <div class="bsec-guarantee">타 업체 대비 혜택 부족 시<br>차액 보상</div>
+        </div>
+        <div class="bsec-card">
+          <div class="bsec-top"><span class="bsec-icon">📱</span><span class="bsec-chip">📊 맞춤 추천</span></div>
+          <h3>고민할 필요 없이<br>맞춤으로 추천해드려요</h3>
+          <p>불필요한 부가서비스 강요 없이 전문 상담사가 1:1 맞춤으로 정수기·가전렌탈 전부 비교해드립니다</p>
+        </div>
+        <div class="bsec-card">
+          <div class="bsec-top"><span class="bsec-icon">🚀</span><span class="bsec-chip">🔧 빠른 설치</span></div>
+          <h3>더는 기다리지 마세요<br>빠르게 설치해드릴게요</h3>
+          <p>고객님이 원하시는 일정, 가장 빠른 날짜로 방문 설치해드립니다</p>
+        </div>
+      </div>
     </div>
   </div>
 
