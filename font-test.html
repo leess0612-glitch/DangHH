@@ -96,6 +96,25 @@ body {
 .f-none .demo h2, .f-none .demo .cta, .f-none .demo .amt,
 .f-none .demo .num, .f-none .demo-light .sect { font-family:'Pretendard Variable',sans-serif; }
 
+/* ⑦ 클래스101 방식 — 글꼴은 프리텐다드 하나, 굵기 700, 자간 -1.5%, 색은 진하기로 위계 */
+.f-c101 .demo h2, .f-c101 .demo .cta, .f-c101 .demo .amt,
+.f-c101 .demo .num, .f-c101 .demo-light .sect {
+  font-family:'Pretendard Variable',sans-serif;
+  font-weight:700; letter-spacing:-0.015em;
+}
+.f-c101 .demo-stat .lbl { opacity:0.65; }
+.f-c101 .demo-badge .cond { opacity:0.8; font-weight:500; }
+.f-c101 .demo h2 em { color:#fee500; }
+
+/* ⑧ 섞은 방식 — 첫 화면 큰 글자·금액만 도현체, 아래 섹션 제목은 프리텐다드 700 */
+.f-mix .demo h2, .f-mix .demo .cta, .f-mix .demo .amt,
+.f-mix .demo .num { font-family:'BM DOHYEON'; }
+.f-mix .demo-light .sect {
+  font-family:'Pretendard Variable',sans-serif;
+  font-weight:700; letter-spacing:-0.015em;
+}
+.f-mix .demo-stat .lbl { opacity:0.65; }
+
 .tip {
   margin:22px 12px 0; padding:14px 16px; background:#fffbeb;
   border:1px solid #fde68a; border-radius:12px;
@@ -235,6 +254,52 @@ body {
       <span class="card-size">지금 진짜 사이트 상태</span>
     </div>
     <p class="card-note">제목도 본문 글씨 그대로. <b>지금 danghh.com/rental 이 이 상태</b>입니다.</p>
+    <div class="demo">
+      <div class="demo-badge"><span class="amt">최대 50만원</span><span class="cond">현금 당일입금</span></div>
+      <h2>놓치고 있던<br><em>내 최대 지원금</em><br>당현함이 알려드릴게요!</h2>
+      <div class="cta">내 최대 지원금 무료확인 →</div>
+      <div class="demo-stats">
+        <div class="demo-stat"><span class="num">12,847건</span><span class="lbl">누적 상담</span></div>
+        <div class="demo-stat"><span class="num">98.3%</span><span class="lbl">고객 만족도</span></div>
+        <div class="demo-stat"><span class="num">50만원</span><span class="lbl">렌탈 지원금</span></div>
+      </div>
+    </div>
+    <div class="demo-light">
+      <div class="sect">다른 업체와 <em>직접 비교</em>해드립니다</div>
+      <div class="body">본문은 프리텐다드로 고정입니다. 제목 글꼴만 비교하시면 됩니다.</div>
+    </div>
+  </div>
+
+  <!-- 7. 클래스101 방식 -->
+  <div class="card f-c101">
+    <div class="card-head">
+      <span class="card-name">⑦ 클래스101 방식</span>
+      <span class="card-size">글꼴 추가 없음</span>
+    </div>
+    <p class="card-note">글꼴은 ⑥번과 <b>똑같은 프리텐다드</b>. 굵기만 900→<b>700</b>으로 낮추고, 자간을 1.5% 좁히고, 작은 글씨는 진하기를 65%로 낮췄습니다. <b>⑥번과 바로 비교해 보세요.</b></p>
+    <div class="demo">
+      <div class="demo-badge"><span class="amt">최대 50만원</span><span class="cond">현금 당일입금</span></div>
+      <h2>놓치고 있던<br><em>내 최대 지원금</em><br>당현함이 알려드릴게요!</h2>
+      <div class="cta">내 최대 지원금 무료확인 →</div>
+      <div class="demo-stats">
+        <div class="demo-stat"><span class="num">12,847건</span><span class="lbl">누적 상담</span></div>
+        <div class="demo-stat"><span class="num">98.3%</span><span class="lbl">고객 만족도</span></div>
+        <div class="demo-stat"><span class="num">50만원</span><span class="lbl">렌탈 지원금</span></div>
+      </div>
+    </div>
+    <div class="demo-light">
+      <div class="sect">다른 업체와 <em>직접 비교</em>해드립니다</div>
+      <div class="body">본문은 프리텐다드로 고정입니다. 제목 글꼴만 비교하시면 됩니다.</div>
+    </div>
+  </div>
+
+  <!-- 8. 섞은 방식 -->
+  <div class="card f-mix">
+    <div class="card-head">
+      <span class="card-name">⑧ 섞은 방식</span>
+      <span class="card-size">206KB · 인잘알 방식</span>
+    </div>
+    <p class="card-note">첫 화면 큰 글자와 금액만 <b>도현체</b>로 힘을 주고, 아래 섹션 제목부터는 <b>프리텐다드 700</b>으로 차분하게. 광고 힘과 요즘 느낌을 반씩 가져갑니다.</p>
     <div class="demo">
       <div class="demo-badge"><span class="amt">최대 50만원</span><span class="cond">현금 당일입금</span></div>
       <h2>놓치고 있던<br><em>내 최대 지원금</em><br>당현함이 알려드릴게요!</h2>
