@@ -28,7 +28,8 @@
 <!-- ===== 당현함 통합 전환추적 v1 (세 페이지 공통 / 수정 시 3개 파일 모두 동일하게) ===== -->
 <script>
 /* 이 페이지를 통계에서 부를 이름 */
-var DH_PAGE = 'danghh-rental';
+/* ★작업본 표시★ 진짜 사이트(rental.html)로 옮길 때 'danghh-rental' 로 되돌릴 것 */
+var DH_PAGE = 'danghh-rental-v2';
 /* 네이버 전환추적 ID — [미정] 네이버 광고 계정 > 프리미엄 로그분석에서 발급받아 채우면 즉시 작동 */
 var DH_NAVER_ID = '';
 
@@ -97,7 +98,9 @@ window.addEventListener('scroll', function(){
 <!-- ===== 전환추적 끝 ===== -->
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>당현함 | 정수기·가전렌탈 최대 지원금 당일 현금지급</title>
+<!-- ★작업본 표시★ 검색엔진 수집 금지. 진짜 사이트로 옮길 때 이 줄 삭제할 것 -->
+<meta name="robots" content="noindex, nofollow">
+<title>[작업본] 당현함 | 정수기·가전렌탈 최대 지원금 당일 현금지급</title>
 <meta name="description" content="정수기·가전렌탈 가입 시 최대 40만원 현금 지원금 당일 지급. 타 업체보다 혜택이 적으면 차액 보상. 무료 비교 상담 신청하세요. ☎ 1600-4670">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://leess0612-glitch.github.io/DangHH/rental.html">
@@ -964,6 +967,54 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
   .cf-col-vs { flex: 0 0 96px; }
   .cf-col-us { flex: 0 0 110px; }
 }
+/* =========================================================
+   글꼴 3단 체계 적용 (2026-08-04 · AI티 개선)
+   - 본문      : 프리텐다드      (body에서 지정)
+   - 큰 제목/금액 : 지마켓산스 볼드  (아래 목록)
+   - 강조 낱말   : 나눔손글씨 펜   (.hand 클래스)
+   되돌리려면 이 블록만 통째로 지우면 원래 상태로 돌아감
+   ========================================================= */
+
+/* --- 큰 제목 --- */
+.hero h1,
+.section-title,
+.process-title-big,
+.benefit-card h3,
+.step-title-a,
+.step-title-b,
+.chevron-title,
+.form-success h3 { font-family: var(--font-head); }
+
+/* --- 금액·숫자 (지마켓산스는 숫자가 시원하게 나옴) --- */
+.hero-cash-badge .cash-amount,
+.hero-stat .num,
+.benefit-amount-highlight .amount-main,
+.benefit-guarantee,
+.plan-price-new,
+.cf-col-us .cf-head,
+.ok-label { font-family: var(--font-head); }
+
+/* --- 비교표 머리글·값 (줄 맞춤 유지 위해 함께 지정) --- */
+.cf-col-a .cf-head,
+.cf-col-vs .cf-head { font-family: var(--font-head); }
+
+/* --- 큰 버튼·로고 --- */
+.logo,
+.footer-logo,
+.hero-cta,
+.desk-cta-top,
+.desk-cta-bar-btn { font-family: var(--font-head); }
+
+/* --- 강조 낱말용 손글씨 ---
+   금액·조건에는 절대 쓰지 않음. 감성 문구에만 아주 조금 사용.
+   손글씨는 같은 크기라도 작아 보여서 1.25배로 키우고 자간을 살짝 벌림 */
+.hand {
+  font-family: var(--font-hand);
+  font-size: 1.25em;
+  letter-spacing: 0.02em;
+  font-weight: 400;
+  vertical-align: -0.03em;
+}
 </style>
 </head>
 <body>
@@ -1183,7 +1234,7 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
   <div class="section-inner" style="text-align:center;">
     <span class="section-tag">가입 프로세스</span>
     <h2 class="section-title">어려운 가입 과정을<br><em>쉽고 간편하게</em> 도와드려요</h2>
-    <p class="section-sub">당현함과 함께라면 3단계로 끝납니다</p>
+    <p class="section-sub hand">당현함과 함께라면 3단계로 끝납니다</p>
     <div class="process-steps-a fade-up">
       <div class="process-step-a">
         <div class="step-icon-a">📞</div>
@@ -1212,7 +1263,7 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
     <div style="text-align:center;margin-bottom:40px;">
       <span class="section-tag">설치 후기</span>
       <h2 class="section-title">실제 고객 <em>설치 후기</em></h2>
-      <p class="section-sub">당현함을 통해 가입한 고객님들의 생생한 후기</p>
+      <p class="section-sub hand">당현함을 통해 가입한 고객님들의 생생한 후기</p>
     </div>
     <div class="swiper reviewSwiper">
       <div class="swiper-wrapper">
@@ -1284,7 +1335,7 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
   <div class="section-inner" style="text-align:center;">
     <span class="section-tag">무료 상담</span>
     <h2 class="section-title" style="font-size:clamp(30px,5vw,52px);"><em>30초</em> 신청으로<br><em>내 최대 지원금</em> 확인</h2>
-    <p class="section-sub" style="margin-bottom:36px;">상담은 무료, 부담 없이 신청하세요</p>
+    <p class="section-sub hand" style="margin-bottom:36px;">상담은 무료, 부담 없이 신청하세요</p>
     <div class="form-card">
       <div id="formContent">
         <p class="form-headline"><span>어떤 렌탈 제품</span>이 필요하신가요?</p>
