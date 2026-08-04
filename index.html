@@ -41,6 +41,7 @@ function dhOnce(key){
 
 /* 전환 1건을 구글·메타·네이버에 동시에 알림 (개인정보는 보내지 않음) */
 function dhTrack(action, opts){
+ try{
   opts = opts || {};
   if(opts.once !== false && !dhOnce(action)) return;
 
@@ -58,6 +59,7 @@ function dhTrack(action, opts){
   if(DH_NAVER_ID && window.wcs && window.wcs_do && action !== 'scroll_50'){
     try{ var _c={}; _c['cnv'] = wcs.cnv('3','1'); wcs_do(_c); }catch(e){}
   }
+ }catch(e){ /* 추적이 실패해도 신청 접수는 절대 방해하지 않음 */ }
 }
 
 /* 네이버 스크립트는 ID가 채워졌을 때만 불러옴 */
