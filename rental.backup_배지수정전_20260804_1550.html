@@ -52,7 +52,7 @@ function dhTrack(action, opts){
   }
   /* 2) 메타 픽셀 */
   if(typeof fbq === 'function'){
-    var metaName = { lead_submit:'Lead', kakao_click:'Contact', phone_click:'Contact' }[action];
+    var metaName = { form_submit:'Lead', kakao_click:'Contact', phone_click:'Contact' }[action];
     if(metaName) fbq('track', metaName, { content_name: DH_PAGE + '/' + action });
     else fbq('trackCustom', action, { content_name: DH_PAGE });
   }
@@ -831,26 +831,12 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
 
 /* ===== HERO CASH BADGE ===== */
 .hero-cash-badge {
-  display: flex; flex-direction: column; align-items: center; gap: 2px;
-  width: fit-content; margin-left: auto; margin-right: auto;
+  display: block; width: fit-content; margin-left: auto; margin-right: auto;
   background: linear-gradient(135deg, #ff6b00, #ffb300);
-  color: white; font-weight: 900; line-height: 1.15;
-  padding: 12px 26px; border-radius: 999px; margin-bottom: 20px;
+  color: white; font-size: 16px; font-weight: 900;
+  padding: 8px 22px; border-radius: 999px; margin-bottom: 20px;
   box-shadow: 0 4px 16px rgba(255,107,0,0.45);
   letter-spacing: -0.3px;
-}
-/* 금액은 크게, 조건은 작게 — 첫 화면에서 숫자가 먼저 보이도록 */
-.hero-cash-badge .cash-amount { font-size: 32px; display: block; }
-.hero-cash-badge .cash-cond   { font-size: 14px; font-weight: 800; opacity: .95; display: block; }
-
-/* PC에서는 폭이 넉넉하므로 한 줄로 펴고, 제목(clamp 36~80px)에 맞춰 함께 커지게 */
-@media (min-width: 769px) {
-  .hero-cash-badge {
-    flex-direction: row; align-items: baseline; gap: 10px;
-    padding: 12px clamp(26px, 2.4vw, 34px); margin-bottom: 24px;
-  }
-  .hero-cash-badge .cash-amount { font-size: clamp(32px, 3.8vw, 42px); }
-  .hero-cash-badge .cash-cond   { font-size: clamp(16px, 1.9vw, 21px); }
 }
 
 /* ===== URGENCY ===== */
@@ -980,7 +966,7 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
 <!-- HERO -->
 <section class="hero">
   <div class="hero-badge">정수기 · 가전렌탈 전문</div>
-  <div class="hero-cash-badge"><span class="cash-amount">💰 최대 50만원</span><span class="cash-cond">현금 당일입금</span></div>
+  <div class="hero-cash-badge">💰 최대 50만원 현금 당일입금</div>
   <h1>놓치고 있던<br class="mob-br"> <em>내 최대 지원금</em><br>당현함이<br class="fold-br"> 알려드릴게요!</h1>
   <p>정수기·가전렌탈 시 최대 현금 지원, <strong>당일 지급</strong><br>모든 상품 비교 후 가장 유리한 조건으로 안내해드립니다</p>
   <a href="#apply" class="hero-cta">내 최대 지원금<br class="fold-br"> 무료확인 →</a>
@@ -1197,12 +1183,12 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
     </div>
     <div class="swiper reviewSwiper">
       <div class="swiper-wrapper">
-        <div class="swiper-slide"><img src="images/reviews/review-01.jpeg" style="width:100%;height:100%;object-fit:cover;border-radius:12px;"></div>
-        <div class="swiper-slide"><img src="images/reviews/review-02.PNG" style="width:100%;height:100%;object-fit:cover;border-radius:12px;"></div>
-        <div class="swiper-slide"><img src="images/reviews/review-03.PNG" style="width:100%;height:100%;object-fit:cover;border-radius:12px;"></div>
-        <div class="swiper-slide"><img src="images/reviews/review-04.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:12px;"></div>
+        <div class="swiper-slide"><img src="images/reviews/1280＿1743258022273.jpeg" style="width:100%;height:100%;object-fit:cover;border-radius:12px;"></div>
+        <div class="swiper-slide"><img src="images/reviews/2024-02-22 18;54;33.PNG" style="width:100%;height:100%;object-fit:cover;border-radius:12px;"></div>
+        <div class="swiper-slide"><img src="images/reviews/2024-07-04 16;52;45.PNG" style="width:100%;height:100%;object-fit:cover;border-radius:12px;"></div>
+        <div class="swiper-slide"><img src="images/reviews/20240705＿164934.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:12px;"></div>
         <div class="swiper-slide"><img src="images/reviews/20250602_175500.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:12px;"></div>
-        <div class="swiper-slide"><img src="images/reviews/review-06.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:12px;"></div>
+        <div class="swiper-slide"><img src="images/reviews/4 (2).jpg" style="width:100%;height:100%;object-fit:cover;border-radius:12px;"></div>
         <div class="swiper-slide"><img src="images/reviews/KakaoTalk_20240930_095327699_03.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:12px;"></div>
         <div class="swiper-slide"><img src="images/reviews/pexels-curtis-adams-1694007-24245798.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:12px;"></div>
         <div class="swiper-slide"><img src="images/reviews/pexels-heyho-6527053.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:12px;"></div>
@@ -1655,7 +1641,6 @@ async function submitForm() {
   }
   const btn = document.getElementById('submitBtn');
   btn.disabled = true; btn.textContent = '신청 중...';
-  dhTrack('lead_submit', { once: false });   /* 입력 검사 통과 시점에 전환 집계 */
 
   const serviceMap = { water:'정수기', rental:'가전렌탈' };
   const serviceText = [...selectedServices].map(s => serviceMap[s]).join('+');
@@ -1665,6 +1650,7 @@ async function submitForm() {
       method: 'POST', mode: 'no-cors',
       body: JSON.stringify({ name, phone, usim: 'N', service: serviceText })
     });
+    dhTrack('form_submit', { once: false });
     document.getElementById('formContent').style.display = 'none';
     document.getElementById('formSuccess').style.display = 'block';
   } catch(e) {
@@ -1726,13 +1712,13 @@ async function submitDeskForm() {
   const name = document.getElementById('deskName').value.trim();
   const phone = document.getElementById('deskPhone').value.trim();
   if (!phone || phone.replace(/\D/g,'').length !== 11) { alert('휴대폰 번호 11자리를 정확히 입력해주세요.\n(예: 010-1234-5678)'); return; }
-  dhTrack('lead_submit', { once: false });   /* 입력 검사 통과 시점에 전환 집계 */
   try {
     await fetch(SCRIPT_URL, {
       method: 'POST', mode: 'no-cors',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ name, phone, usim: '미지정', service: '미지정' })
     });
+    dhTrack('form_submit', { once: false });
     document.querySelector('.desk-cta-top').style.display = 'none';
     document.querySelector('.desk-cta-bottom').style.display = 'none';
     document.getElementById('deskSuccess').style.display = 'block';
@@ -1755,12 +1741,12 @@ async function submitStickyForm() {
   const name = document.getElementById('stickyName').value.trim();
   const phone = document.getElementById('stickyPhone').value.trim();
   if (!phone || phone.replace(/\D/g,'').length !== 11) { alert('휴대폰 번호 11자리를 정확히 입력해주세요.\n(예: 010-1234-5678)'); return; }
-  dhTrack('lead_submit', { once: false });   /* 입력 검사 통과 시점에 전환 집계 */
   try {
     await fetch(SCRIPT_URL, {
       method: 'POST', mode: 'no-cors',
       body: JSON.stringify({ name, phone, usim: '미지정', service: '미지정' })
     });
+    dhTrack('form_submit', { once: false });
     document.getElementById('stickyFormContent').style.display = 'none';
     document.getElementById('stickySuccess').style.display = 'block';
   } catch(e) {
