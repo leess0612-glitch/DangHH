@@ -843,6 +843,16 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
 .hero-cash-badge .cash-amount { font-size: 32px; display: block; }
 .hero-cash-badge .cash-cond   { font-size: 14px; font-weight: 800; opacity: .95; display: block; }
 
+/* PC에서는 폭이 넉넉하므로 한 줄로 펴고, 제목(clamp 36~80px)에 맞춰 함께 커지게 */
+@media (min-width: 769px) {
+  .hero-cash-badge {
+    flex-direction: row; align-items: baseline; gap: 10px;
+    padding: 12px clamp(26px, 2.4vw, 34px); margin-bottom: 24px;
+  }
+  .hero-cash-badge .cash-amount { font-size: clamp(32px, 3.8vw, 42px); }
+  .hero-cash-badge .cash-cond   { font-size: clamp(16px, 1.9vw, 21px); }
+}
+
 /* ===== URGENCY ===== */
 .hero-urgency {
   margin-top: 14px; margin-bottom: 0;
@@ -1187,12 +1197,12 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
     </div>
     <div class="swiper reviewSwiper">
       <div class="swiper-wrapper">
-        <div class="swiper-slide"><img src="images/reviews/1280＿1743258022273.jpeg" style="width:100%;height:100%;object-fit:cover;border-radius:12px;"></div>
-        <div class="swiper-slide"><img src="images/reviews/2024-02-22 18;54;33.PNG" style="width:100%;height:100%;object-fit:cover;border-radius:12px;"></div>
-        <div class="swiper-slide"><img src="images/reviews/2024-07-04 16;52;45.PNG" style="width:100%;height:100%;object-fit:cover;border-radius:12px;"></div>
-        <div class="swiper-slide"><img src="images/reviews/20240705＿164934.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:12px;"></div>
+        <div class="swiper-slide"><img src="images/reviews/review-01.jpeg" style="width:100%;height:100%;object-fit:cover;border-radius:12px;"></div>
+        <div class="swiper-slide"><img src="images/reviews/review-02.PNG" style="width:100%;height:100%;object-fit:cover;border-radius:12px;"></div>
+        <div class="swiper-slide"><img src="images/reviews/review-03.PNG" style="width:100%;height:100%;object-fit:cover;border-radius:12px;"></div>
+        <div class="swiper-slide"><img src="images/reviews/review-04.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:12px;"></div>
         <div class="swiper-slide"><img src="images/reviews/20250602_175500.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:12px;"></div>
-        <div class="swiper-slide"><img src="images/reviews/4 (2).jpg" style="width:100%;height:100%;object-fit:cover;border-radius:12px;"></div>
+        <div class="swiper-slide"><img src="images/reviews/review-06.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:12px;"></div>
         <div class="swiper-slide"><img src="images/reviews/KakaoTalk_20240930_095327699_03.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:12px;"></div>
         <div class="swiper-slide"><img src="images/reviews/pexels-curtis-adams-1694007-24245798.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:12px;"></div>
         <div class="swiper-slide"><img src="images/reviews/pexels-heyho-6527053.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:12px;"></div>
