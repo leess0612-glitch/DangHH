@@ -2,6 +2,98 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NBGKQ2Y301"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-NBGKQ2Y301');
+</script>
+
+<!-- Meta Pixel Code -->
+<script>
+  !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+  n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}
+  (window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init','1578163177053016');
+  fbq('track','PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1578163177053016&ev=PageView&noscript=1"/></noscript>
+<!-- End Meta Pixel Code -->
+
+<!-- ===== 당현함 통합 전환추적 v1 (세 페이지 공통 / 수정 시 3개 파일 모두 동일하게) ===== -->
+<script>
+/* 이 페이지를 통계에서 부를 이름 */
+var DH_PAGE = 'danghh-rental';
+/* 네이버 전환추적 ID — [미정] 네이버 광고 계정 > 프리미엄 로그분석에서 발급받아 채우면 즉시 작동 */
+var DH_NAVER_ID = '';
+
+/* 같은 방문에서 한 번만 세도록 막는 장치 */
+function dhOnce(key){
+  try{
+    if(sessionStorage.getItem('dh_'+key)) return false;
+    sessionStorage.setItem('dh_'+key,'1'); return true;
+  }catch(e){ return true; }
+}
+
+/* 전환 1건을 구글·메타·네이버에 동시에 알림 (개인정보는 보내지 않음) */
+function dhTrack(action, opts){
+  opts = opts || {};
+  if(opts.once !== false && !dhOnce(action)) return;
+
+  /* 1) 구글 애널리틱스 */
+  if(typeof gtag === 'function'){
+    gtag('event', action, { dh_page: DH_PAGE });
+  }
+  /* 2) 메타 픽셀 */
+  if(typeof fbq === 'function'){
+    var metaName = { form_submit:'Lead', kakao_click:'Contact', phone_click:'Contact' }[action];
+    if(metaName) fbq('track', metaName, { content_name: DH_PAGE + '/' + action });
+    else fbq('trackCustom', action, { content_name: DH_PAGE });
+  }
+  /* 3) 네이버 (ID를 채운 경우에만) */
+  if(DH_NAVER_ID && window.wcs && window.wcs_do && action !== 'scroll_50'){
+    try{ var _c={}; _c['cnv'] = wcs.cnv('3','1'); wcs_do(_c); }catch(e){}
+  }
+}
+
+/* 네이버 스크립트는 ID가 채워졌을 때만 불러옴 */
+(function(){
+  if(!DH_NAVER_ID) return;
+  var s=document.createElement('script'); s.async=true; s.src='//wcs.naver.net/wcslog.js';
+  s.onload=function(){
+    try{
+      if(!window.wcs_add) window.wcs_add={};
+      wcs_add['wa']=DH_NAVER_ID;
+      if(!window._nasa) window._nasa={};
+      if(window.wcs) wcs.inflow();
+      wcs_do(_nasa);
+    }catch(e){}
+  };
+  document.head.appendChild(s);
+})();
+
+/* 전화·카카오 링크 클릭 자동 감지 (버튼이 몇 개든 자동으로 잡힘) */
+document.addEventListener('click', function(e){
+  var a = e.target && e.target.closest ? e.target.closest('a') : null;
+  if(!a) return;
+  var href = a.getAttribute('href') || '';
+  if(href.indexOf('tel:') === 0) dhTrack('phone_click');
+  else if(href.indexOf('pf.kakao.com') > -1) dhTrack('kakao_click');
+}, true);
+
+/* 페이지를 절반 이상 읽었는지 */
+window.addEventListener('scroll', function(){
+  var h = document.documentElement.scrollHeight - window.innerHeight;
+  if(h > 0 && (window.scrollY / h) >= 0.5) dhTrack('scroll_50');
+}, { passive: true });
+</script>
+<!-- ===== 전환추적 끝 ===== -->
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>당현함 | 정수기·가전렌탈 최대 지원금 당일 현금지급</title>
 <meta name="description" content="정수기·가전렌탈 가입 시 최대 40만원 현금 지원금 당일 지급. 타 업체보다 혜택이 적으면 차액 보상. 무료 비교 상담 신청하세요. ☎ 1600-4670">
@@ -1556,6 +1648,7 @@ async function submitForm() {
       method: 'POST', mode: 'no-cors',
       body: JSON.stringify({ name, phone, usim: 'N', service: serviceText })
     });
+    dhTrack('form_submit', { once: false });
     document.getElementById('formContent').style.display = 'none';
     document.getElementById('formSuccess').style.display = 'block';
   } catch(e) {
@@ -1623,6 +1716,7 @@ async function submitDeskForm() {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ name, phone, usim: '미지정', service: '미지정' })
     });
+    dhTrack('form_submit', { once: false });
     document.querySelector('.desk-cta-top').style.display = 'none';
     document.querySelector('.desk-cta-bottom').style.display = 'none';
     document.getElementById('deskSuccess').style.display = 'block';
@@ -1650,6 +1744,7 @@ async function submitStickyForm() {
       method: 'POST', mode: 'no-cors',
       body: JSON.stringify({ name, phone, usim: '미지정', service: '미지정' })
     });
+    dhTrack('form_submit', { once: false });
     document.getElementById('stickyFormContent').style.display = 'none';
     document.getElementById('stickySuccess').style.display = 'block';
   } catch(e) {
