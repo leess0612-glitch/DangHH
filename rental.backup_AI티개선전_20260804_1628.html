@@ -1733,14 +1733,9 @@ async function submitDeskForm() {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ name, phone, usim: '미지정', service: '미지정' })
     });
-    /* 하단 바에서 완료 메시지만 남기고 입력칸·버튼은 정리.
-       요소가 없어도 오류 나지 않도록 있는 것만 건드림 */
-    const deskInner = document.querySelector('.desk-cta-bar-inner');
-    if (deskInner) [...deskInner.children].forEach(el => {
-      if (el.id !== 'deskSuccess') el.style.display = 'none';
-    });
-    const deskOk = document.getElementById('deskSuccess');
-    if (deskOk) deskOk.style.display = 'block';
+    document.querySelector('.desk-cta-top').style.display = 'none';
+    document.querySelector('.desk-cta-bottom').style.display = 'none';
+    document.getElementById('deskSuccess').style.display = 'block';
   } catch(e) {
     alert('오류가 발생했습니다. 1600-4670으로 문의해주세요.');
   }
