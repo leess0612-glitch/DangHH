@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+
+# 작업본·백업은 검색에 나오지 않도록
+Disallow: /_보관/
+Disallow: /font-test.html
+Disallow: /rental-v2.html
+Disallow: /*backup
+
+Sitemap: https://danghh.com/sitemap.xml
