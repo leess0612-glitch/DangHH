@@ -1786,7 +1786,8 @@ async function submitForm() {
   const serviceText = [...selectedServices].map(s => serviceMap[s]).join('+');
 
   try {
-    await dhSend(Object.assign({ name, phone, usim: 'N', service: serviceText }, dhInflow()));
+    await dhSend(Object.assign({ name, phone, usim: 'N', service: serviceText }, dhInflow()),
+                 () => { btn.textContent = '연결이 느려요. 다시 시도 중...'; });
     document.getElementById('formContent').style.display = 'none';
     document.getElementById('formSuccess').style.display = 'block';
   } catch(e) {
@@ -1849,8 +1850,13 @@ async function submitDeskForm() {
   const phone = document.getElementById('deskPhone').value.trim();
   if (!phone || phone.replace(/\D/g,'').length !== 11) { alert('휴대폰 번호 11자리를 정확히 입력해주세요.\n(예: 010-1234-5678)'); return; }
   dhTrack('lead_submit', { once: false });   /* 입력 검사 통과 시점에 전환 집계 */
+  /* 보내는 동안 버튼을 잠근다. 안 잠그면 느릴 때(최대 27초) 손님이 여러 번 누른다 */
+  const btn = document.querySelector('.desk-cta-bar-btn');
+  const 본래글자 = btn ? btn.textContent : '';
+  if (btn) { btn.disabled = true; btn.textContent = '신청 중...'; }
   try {
-    await dhSend(Object.assign({ name, phone, usim: '미지정', service: '미지정' }, dhInflow()));
+    await dhSend(Object.assign({ name, phone, usim: '미지정', service: '미지정' }, dhInflow()),
+                 () => { if (btn) btn.textContent = '다시 시도 중...'; });
     /* 하단 바에서 완료 메시지만 남기고 입력칸·버튼은 정리.
        요소가 없어도 오류 나지 않도록 있는 것만 건드림 */
     const deskInner = document.querySelector('.desk-cta-bar-inner');
@@ -1860,6 +1866,7 @@ async function submitDeskForm() {
     const deskOk = document.getElementById('deskSuccess');
     if (deskOk) deskOk.style.display = 'block';
   } catch(e) {
+    if (btn) { btn.disabled = false; btn.textContent = 본래글자; }
     alert('오류가 발생했습니다. 1600-4670으로 문의해주세요.');
   }
 }
@@ -1879,11 +1886,17 @@ async function submitStickyForm() {
   const phone = document.getElementById('stickyPhone').value.trim();
   if (!phone || phone.replace(/\D/g,'').length !== 11) { alert('휴대폰 번호 11자리를 정확히 입력해주세요.\n(예: 010-1234-5678)'); return; }
   dhTrack('lead_submit', { once: false });   /* 입력 검사 통과 시점에 전환 집계 */
+  /* 보내는 동안 버튼을 잠근다. 안 잠그면 느릴 때(최대 27초) 손님이 여러 번 누른다 */
+  const btn = document.querySelector('.sticky-form-btn');
+  const 본래글자 = btn ? btn.textContent : '';
+  if (btn) { btn.disabled = true; btn.textContent = '신청 중...'; }
   try {
-    await dhSend(Object.assign({ name, phone, usim: '미지정', service: '미지정' }, dhInflow()));
+    await dhSend(Object.assign({ name, phone, usim: '미지정', service: '미지정' }, dhInflow()),
+                 () => { if (btn) btn.textContent = '다시 시도 중...'; });
     document.getElementById('stickyFormContent').style.display = 'none';
     document.getElementById('stickySuccess').style.display = 'block';
   } catch(e) {
+    if (btn) { btn.disabled = false; btn.textContent = 본래글자; }
     alert('오류가 발생했습니다. 1600-4670으로 문의해주세요.');
   }
 }
