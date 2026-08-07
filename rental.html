@@ -1570,6 +1570,35 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
 <script>
 const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby6NFsBfLjk1XCGuuzLF5DHbwxAXPyz9HNQKJGkdh5BxFqQZ9EPg3Bl4XasN6ojTxdOGA/exec';
 
+/* ===== 신청 보내기 (실패하면 다시 시도) =====
+   구글이 잠깐 흔들리면 신청이 그대로 사라지던 문제를 막는다.
+   8초 안에 대답이 없거나 연결이 안 되면 잠깐 쉬었다 다시 보낸다(최대 3번).
+   이 쪽(렌탈)은 원래 시간 제한조차 없어서 "신청 중..."에서 멈추기도 했다.
+   ⚠ 다시 보내도 시트에 두 줄이 되지 않는 이유: 구글 쪽 당현함_신청폼.gs 가
+      "같은 번호가 2분 안에 또 오면 무시" 규칙을 갖고 있다. 둘은 한 쌍이므로
+      한쪽만 되돌리면 중복이 생긴다. (2026-08-07) */
+async function dhSend(payload) {
+  const 최대횟수 = 3;
+  let 마지막오류 = null;
+  for (let 회 = 1; 회 <= 최대횟수; 회++) {
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 8000);
+    try {
+      await fetch(SCRIPT_URL, {
+        method: 'POST', mode: 'no-cors', signal: controller.signal,
+        body: JSON.stringify(payload)
+      });
+      clearTimeout(timeout);
+      return;
+    } catch (err) {
+      clearTimeout(timeout);
+      마지막오류 = err;
+      if (회 < 최대횟수) await new Promise(r => setTimeout(r, 회 * 1200));
+    }
+  }
+  throw 마지막오류 || new Error('신청 전송 실패');
+}
+
 // ===== PC/모바일 네이버 카페 링크 분기 =====
 function openCafe(pcUrl, mobileUrl) {
   const isMobile = /Android|iPhone|iPad|iPod|BlackBerry|Windows Phone|Mobile/i.test(navigator.userAgent);
@@ -1753,10 +1782,7 @@ async function submitForm() {
   const serviceText = [...selectedServices].map(s => serviceMap[s]).join('+');
 
   try {
-    await fetch(SCRIPT_URL, {
-      method: 'POST', mode: 'no-cors',
-      body: JSON.stringify(Object.assign({ name, phone, usim: 'N', service: serviceText }, dhInflow()))
-    });
+    await dhSend(Object.assign({ name, phone, usim: 'N', service: serviceText }, dhInflow()));
     document.getElementById('formContent').style.display = 'none';
     document.getElementById('formSuccess').style.display = 'block';
   } catch(e) {
@@ -1820,11 +1846,7 @@ async function submitDeskForm() {
   if (!phone || phone.replace(/\D/g,'').length !== 11) { alert('휴대폰 번호 11자리를 정확히 입력해주세요.\n(예: 010-1234-5678)'); return; }
   dhTrack('lead_submit', { once: false });   /* 입력 검사 통과 시점에 전환 집계 */
   try {
-    await fetch(SCRIPT_URL, {
-      method: 'POST', mode: 'no-cors',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(Object.assign({ name, phone, usim: '미지정', service: '미지정' }, dhInflow()))
-    });
+    await dhSend(Object.assign({ name, phone, usim: '미지정', service: '미지정' }, dhInflow()));
     /* 하단 바에서 완료 메시지만 남기고 입력칸·버튼은 정리.
        요소가 없어도 오류 나지 않도록 있는 것만 건드림 */
     const deskInner = document.querySelector('.desk-cta-bar-inner');
@@ -1854,10 +1876,7 @@ async function submitStickyForm() {
   if (!phone || phone.replace(/\D/g,'').length !== 11) { alert('휴대폰 번호 11자리를 정확히 입력해주세요.\n(예: 010-1234-5678)'); return; }
   dhTrack('lead_submit', { once: false });   /* 입력 검사 통과 시점에 전환 집계 */
   try {
-    await fetch(SCRIPT_URL, {
-      method: 'POST', mode: 'no-cors',
-      body: JSON.stringify(Object.assign({ name, phone, usim: '미지정', service: '미지정' }, dhInflow()))
-    });
+    await dhSend(Object.assign({ name, phone, usim: '미지정', service: '미지정' }, dhInflow()));
     document.getElementById('stickyFormContent').style.display = 'none';
     document.getElementById('stickySuccess').style.display = 'block';
   } catch(e) {
