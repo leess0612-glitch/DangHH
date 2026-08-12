@@ -1109,6 +1109,115 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
    한글 글꼴은 글자 높이가 커서 1.1~1.2로는 모자람. 방문자 기기의 기본 글꼴이
    무엇이든 안전하도록 1.35로 여유를 둠 (칸은 가운데 정렬이라 보이는 위치는 그대로) */
 .ok-label { line-height: 1.35; }
+
+/* =====================================================================
+   ===== 마무리 손질 9가지 (2026-08-12 추가) =====
+   글자 크기·색·배치는 하나도 바꾸지 않고, 읽기 편함과 조작감만 손봄.
+   되돌리려면 이 블록만 통째로 지우면 됨. rental.html에도 같은 블록이 들어감.
+   (일부 선택자는 이 페이지에 없는 요소용 — 두 페이지가 같은 블록을 쓰도록 일부러 남겨둠)
+   ===================================================================== */
+
+/* --- 1. 한글 줄바꿈: 낱말이 중간에서 잘리지 않게 --- */
+h1, h2, h3,
+.section-title, .section-sub, .hero-desc, .hero-sub-assurance,
+.trust-sol-title, .trust-sol-desc, .trust-cert-label-item p,
+.benefit-card h3, .benefit-card p,
+.plan-title, .chevron-title, .chevron-desc,
+.step-title-a, .step-desc-a, .step-title-b, .step-desc-b,
+.faq-question, .faq-answer-inner,
+.form-headline, .sticky-form-title, .desk-cta-top {
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+/* 제목 줄 길이를 고르게 나눠 마지막 줄에 한 낱말만 남는 것 방지 */
+h1, h2, .section-title, .trust-sol-title, .process-title-big {
+  text-wrap: balance;
+}
+
+/* --- 2. 버튼을 누를 때 눌리는 느낌 (원래는 한 곳도 없었음) --- */
+.form-submit, .sticky-form-btn, .desk-cta-bar-btn, .mobile-cta-btn,
+.header-phone, .service-tab, .privacy-close, .cert-badge, .ict-cert-wrap, .hero-cta {
+  transition: transform 0.12s ease, background 0.2s, border-color 0.2s, box-shadow 0.2s;
+}
+.form-submit:active, .sticky-form-btn:active, .desk-cta-bar-btn:active,
+.mobile-cta-btn:active, .header-phone:active, .privacy-close:active,
+.cert-badge:active, .ict-cert-wrap:active, .plan-link:active, .hero-cta:active {
+  transform: translateY(1px) scale(0.985);
+}
+.service-tab:active { transform: scale(0.98); }
+.float-btn:active { transform: scale(1.02); }
+.faq-question:active { background: #f8fafc; }
+.mobile-menu a:active { background: #f1f5f9; }
+nav a:active { background: #dbeafe; }
+
+/* --- 3. 폰에서 누를 때 뜨는 회색 네모 없애기 (위 2번이 대신 반응) --- */
+a, button, .service-tab, .faq-question, .usim-check,
+.consent-item, .consent-all, .hamburger, .sticky-form-tab {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* --- 4. 키보드(탭키)로 이동할 때 지금 어디인지 보이게 --- */
+a:focus-visible, button:focus-visible,
+.service-tab:focus-visible, .faq-question:focus-visible,
+[tabindex]:focus-visible {
+  outline: 3px solid #1A6BFF;
+  outline-offset: 2px;
+  border-radius: 8px;
+}
+.hero :focus-visible, .form-section :focus-visible,
+.compare :focus-visible, footer :focus-visible {
+  outline-color: #fee500;
+}
+.form-group input:focus-visible, .sticky-form input:focus-visible {
+  outline: 3px solid rgba(20,97,240,0.30);
+  outline-offset: 1px;
+}
+input[type="checkbox"]:focus-visible {
+  outline: 2px solid #1A6BFF;
+  outline-offset: 2px;
+}
+
+/* --- 5. 그림자를 순수 검정 → 브랜드 남색 기운으로 (탁함 제거) --- */
+header { box-shadow: 0 2px 12px rgba(15,42,90,0.09); }
+.benefit-card { box-shadow: 0 2px 16px rgba(15,42,90,0.08); }
+.plan-card { box-shadow: 0 2px 12px rgba(15,42,90,0.06); }
+.process-step-a, .step-card-b, .trust-cert-label-item { box-shadow: 0 2px 16px rgba(15,42,90,0.09); }
+.trust-news-img, .trust-cert-img { box-shadow: 0 4px 24px rgba(15,42,90,0.13); }
+.form-card { box-shadow: 0 20px 60px rgba(8,26,70,0.26); }
+.faq-item { box-shadow: 0 1px 5px rgba(15,42,90,0.07); }
+.sticky-form-inner { box-shadow: 0 8px 32px rgba(15,42,90,0.18); }
+.mobile-cta-bar { box-shadow: 0 -3px 16px rgba(15,42,90,0.14); }
+.float-btn { box-shadow: 0 4px 16px rgba(15,42,90,0.18); }
+
+/* --- 6. 카드에 마우스 올릴 때 그림자도 함께 (원래는 위로 뜨기만 함) --- */
+.benefit-card, .process-step-a, .step-card-b {
+  transition: transform 0.22s cubic-bezier(0.22,1,0.36,1), box-shadow 0.22s ease;
+}
+.benefit-card:hover { box-shadow: 0 14px 34px rgba(15,42,90,0.15); }
+.process-step-a:hover, .step-card-b:hover { box-shadow: 0 14px 32px rgba(15,42,90,0.16); }
+.trust-cert-label-item { transition: transform 0.22s cubic-bezier(0.22,1,0.36,1), box-shadow 0.22s ease; }
+.trust-cert-label-item:hover { transform: translateY(-3px); box-shadow: 0 12px 28px rgba(15,42,90,0.14); }
+
+/* --- 7. 메뉴 눌러 이동할 때 부드럽게 + 고정 머리띠(64px)에 제목이 안 가리게 --- */
+html { scroll-behavior: smooth; scroll-padding-top: 78px; }
+
+/* --- 8. 본문 글자 사이 미세 조정 (한글이 성기게 보이는 것 완화) --- */
+.section-sub, .benefit-card p, .step-desc-a, .step-desc-b,
+.faq-answer-inner, .chevron-desc, .trust-cert-label-item p,
+.consent-item label, .form-group label {
+  letter-spacing: -0.2px;
+}
+
+/* --- 9. 움직임이 불편한 분 배려 (기기 설정에 따라 자동 적용) --- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .fade-up { opacity: 1 !important; transform: none !important; }
+}
 </style>
 </head>
 <body>
