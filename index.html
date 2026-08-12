@@ -212,7 +212,8 @@ function dhInflow(){
 -->
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <style>
-@font-face { font-family:'SUIT'; font-weight:300; font-display:swap; src:url('https://cdn.jsdelivr.net/gh/sun-typeface/SUIT@2/fonts/static/woff2/SUIT-Light.woff2') format('woff2'); }
+/* 가장 얇은 300(Light)은 불러오지 않음 — FAQ 열림 표시(+) 한 곳에만 쓰이는데
+   파일 하나가 165KB라 낭비. 빼면 브라우저가 400으로 대신 그리며 눈에 띄는 차이 없음 */
 @font-face { font-family:'SUIT'; font-weight:400; font-display:swap; src:url('https://cdn.jsdelivr.net/gh/sun-typeface/SUIT@2/fonts/static/woff2/SUIT-Regular.woff2') format('woff2'); }
 @font-face { font-family:'SUIT'; font-weight:500; font-display:swap; src:url('https://cdn.jsdelivr.net/gh/sun-typeface/SUIT@2/fonts/static/woff2/SUIT-Medium.woff2') format('woff2'); }
 @font-face { font-family:'SUIT'; font-weight:600; font-display:swap; src:url('https://cdn.jsdelivr.net/gh/sun-typeface/SUIT@2/fonts/static/woff2/SUIT-SemiBold.woff2') format('woff2'); }
