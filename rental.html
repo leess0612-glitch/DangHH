@@ -1037,6 +1037,37 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
   .cf-col-vs { flex: 0 0 96px; }
   .cf-col-us { flex: 0 0 110px; }
 }
+
+/* ===== 769~920px 구간 비교표 대응 (2026-08-12 추가, index.html과 동일 조치) =====
+   문제: 비교표 세 열이 165+315+345 = 825px 고정인데,
+         좁은 화면용 규칙(@media max-width:768px)은 768px 이하에서만 작동해서
+         769~920px 사이에서는 표가 화면보다 넓어져 페이지 전체에 가로 스크롤이 생겼음
+         (실측: 800px 화면에서 60px 넘침. PC에서 창을 좁게 줄였을 때 발생)
+   해결: 이 구간 전용으로 열 폭과 글자 크기를 같은 비율(0.78배)로 함께 축소 → 825px → 641px
+   ※ 3줄짜리 항목이 index.html은 6번째 칸, 이 페이지는 4번째 칸이라 그에 맞춤
+   ※ 끝 경계가 920px인 이유: 화면 폭에는 세로 스크롤바(약 17px)도 포함되므로
+     실제 쓸 수 있는 폭은 그만큼 좁음. 864px로 잡으면 865px에서 다시 넘침 */
+@media (min-width: 769px) and (max-width: 920px) {
+  .cf-col-a  { flex: 0 0 128px; }
+  .cf-col-vs { flex: 0 0 245px; }
+  .cf-col-us { flex: 0 0 268px; margin-top: -26px; margin-bottom: -26px; }
+  .cf-col-a .cf-head, .cf-col-vs .cf-head { font-size: 16px; padding: 10px 7px; }
+  .cf-col-a .cf-cell, .cf-col-vs .cf-cell { font-size: 16px; padding: 11px 7px; }
+  .cf-col-us .cf-head { font-size: 32px; min-height: 96px; padding: 14px 7px; }
+  .cf-col-us .cf-cell { padding: 8px 7px; }
+  .cf-head { min-height: 66px; }
+  .cf-cell { min-height: 80px; }
+  .cf-col-us .cf-cell:last-child { min-height: 106px; }
+  .cf-col-a .cf-cell:nth-child(4),
+  .cf-col-vs .cf-cell:nth-child(4),
+  .cf-col-us .cf-cell:nth-child(4) { min-height: 102px; }
+  .ok-label { font-size: 32px; }
+  .ok-sub { font-size: 14px; }
+}
+/* 비교표의 큰 글자("가능", "당일 지급")가 줄높이보다 커서 넘치던 것 방지 —
+   한글 글꼴은 글자 높이가 커서 1.1~1.2로는 모자람. 방문자 기기의 기본 글꼴이
+   무엇이든 안전하도록 1.35로 여유를 둠 (칸은 가운데 정렬이라 보이는 위치는 그대로) */
+.ok-label { line-height: 1.35; }
 </style>
 </head>
 <body>
