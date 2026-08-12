@@ -200,8 +200,27 @@ function dhInflow(){
 <meta property="og:image:height" content="300">
 <meta property="og:image:type" content="image/png">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%231a56db'/><text y='68' x='50' text-anchor='middle' font-size='54' font-family='sans-serif' font-weight='900' fill='white'>당</text></svg>">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=SUIT:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<!-- ===== SUIT 글꼴 불러오기 (2026-08-12 교체, index.html과 동일 조치) =====
+     문제: 원래는 구글 폰트에서 SUIT를 불러오게 되어 있었는데,
+           구글 폰트 창고에는 SUIT가 없어서 400 오류가 나고 있었음
+           → 지금까지 방문자는 각자 기기의 기본 글씨체(맑은 고딕·애플고딕 등)로 보고 있었음
+     해결: SUIT 제작사 공식 주소(jsDelivr)에서 직접 불러옴. 이름도 'SUIT'로 같아서 아래 코드는 그대로 사용
+     참고: font-display:swap = 글꼴을 받는 동안 기본 글씨로 먼저 보여주고 준비되면 바꿔치기
+           (이걸 안 넣으면 글꼴 받는 최대 3초 동안 글자가 아예 안 보임)
+     원래 줄:
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+     <link href="https://fonts.googleapis.com/css2?family=SUIT:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+-->
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<style>
+@font-face { font-family:'SUIT'; font-weight:300; font-display:swap; src:url('https://cdn.jsdelivr.net/gh/sun-typeface/SUIT@2/fonts/static/woff2/SUIT-Light.woff2') format('woff2'); }
+@font-face { font-family:'SUIT'; font-weight:400; font-display:swap; src:url('https://cdn.jsdelivr.net/gh/sun-typeface/SUIT@2/fonts/static/woff2/SUIT-Regular.woff2') format('woff2'); }
+@font-face { font-family:'SUIT'; font-weight:500; font-display:swap; src:url('https://cdn.jsdelivr.net/gh/sun-typeface/SUIT@2/fonts/static/woff2/SUIT-Medium.woff2') format('woff2'); }
+@font-face { font-family:'SUIT'; font-weight:600; font-display:swap; src:url('https://cdn.jsdelivr.net/gh/sun-typeface/SUIT@2/fonts/static/woff2/SUIT-SemiBold.woff2') format('woff2'); }
+@font-face { font-family:'SUIT'; font-weight:700; font-display:swap; src:url('https://cdn.jsdelivr.net/gh/sun-typeface/SUIT@2/fonts/static/woff2/SUIT-Bold.woff2') format('woff2'); }
+@font-face { font-family:'SUIT'; font-weight:800; font-display:swap; src:url('https://cdn.jsdelivr.net/gh/sun-typeface/SUIT@2/fonts/static/woff2/SUIT-ExtraBold.woff2') format('woff2'); }
+@font-face { font-family:'SUIT'; font-weight:900; font-display:swap; src:url('https://cdn.jsdelivr.net/gh/sun-typeface/SUIT@2/fonts/static/woff2/SUIT-Heavy.woff2') format('woff2'); }
+</style>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
