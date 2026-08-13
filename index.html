@@ -2160,15 +2160,20 @@ const heroFormWrap = document.querySelector('.hero-form-wrap');
 function updateScrollForms() {
   const heroGone = heroFormWrap ? heroFormWrap.getBoundingClientRect().bottom <= 0 : true;
   const isMobile = window.innerWidth <= 768;
-  if (heroGone) {
-    if (isMobile) { mobileCta.classList.add('visible'); }
-    else { deskCtaBar.classList.add('visible'); }
-  } else {
-    mobileCta.classList.remove('visible');
+  // 모바일은 처음부터 늘 띄운다 (2026-08-13)
+  // 이유: 인스타 유입이 평균 7초만 머물고 나가는데, 그 사이 누를 것이 없었다.
+  //       원래는 히어로 폼이 화면 밖으로 나가야 등장해서 첫 화면에선 안 보였음
+  if (isMobile) {
+    mobileCta.classList.add('visible');
     deskCtaBar.classList.remove('visible');
+    return;
   }
+  mobileCta.classList.remove('visible');
+  if (heroGone) { deskCtaBar.classList.add('visible'); }
+  else { deskCtaBar.classList.remove('visible'); }
 }
 window.addEventListener('scroll', updateScrollForms, { passive: true });
+updateScrollForms();  // 스크롤하지 않아도 첫 화면부터 보이도록 한 번 실행
 
 
 // Scroll animation
