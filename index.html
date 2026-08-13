@@ -1063,6 +1063,10 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
   .live-section { padding: 20px 16px; }
   .live-section-inner { flex-direction: column; gap: 12px; }
   .rolling-col { width: 100%; }
+  /* 폰에서는 한 줄만 보이고 일정 시간마다 다음 줄로 바뀐다 (2026-08-13)
+     45px = 줄 높이 44px + 상자 아래 테두리 1px */
+  .rolling-wrap { height: 45px; }
+  .rolling-item { border-bottom: none; }
 }
 
 @media (max-width: 768px) {
@@ -2063,14 +2067,32 @@ function openCafe(pcUrl, mobileUrl) {
   buildTrack(elC,itemsC,'ri-complete');
   buildTrack(elM,itemsM,'ri-cash');
 
-  if(itemsC.length>0){
-    document.documentElement.style.setProperty('--roll-c-dist','-'+(itemsC.length*ITEM_H)+'px');
-    elC.style.animationDuration=Math.max(itemsC.length*2,8)+'s';
+  // 폰: 한 줄씩 보여주고 정해진 시간마다 다음 줄로 넘긴다 (steps = 한 칸씩 딱딱 넘김)
+  // PC: 지금까지처럼 다섯 줄이 부드럽게 위로 흐른다
+  // 한줄초 값만 바꾸면 넘어가는 속도가 바뀐다 (2026-08-13)
+  var 한줄초=2.5;
+  function 굴림맞춤(el,개수){
+    if(개수<=0) return;
+    if(window.matchMedia('(max-width: 768px)').matches){
+      el.style.animationTimingFunction='steps('+개수+')';
+      el.style.animationDuration=(개수*한줄초)+'s';
+    } else {
+      el.style.animationTimingFunction='linear';
+      el.style.animationDuration=Math.max(개수*2,8)+'s';
+    }
   }
-  if(itemsM.length>0){
-    document.documentElement.style.setProperty('--roll-m-dist','-'+(itemsM.length*ITEM_H)+'px');
-    elM.style.animationDuration=Math.max(itemsM.length*2,8)+'s';
+  function 굴림갱신(){
+    if(itemsC.length>0){
+      document.documentElement.style.setProperty('--roll-c-dist','-'+(itemsC.length*ITEM_H)+'px');
+      굴림맞춤(elC,itemsC.length);
+    }
+    if(itemsM.length>0){
+      document.documentElement.style.setProperty('--roll-m-dist','-'+(itemsM.length*ITEM_H)+'px');
+      굴림맞춤(elM,itemsM.length);
+    }
   }
+  굴림갱신();
+  window.addEventListener('resize',굴림갱신);
 })();
 
 // Swiper
