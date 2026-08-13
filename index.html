@@ -2152,18 +2152,6 @@ function closeTerms() { document.getElementById('termsOverlay').classList.remove
 function closeTermsOutside(e) { if (e.target.id === 'termsOverlay') closeTerms(); }
 document.addEventListener('keydown', function(e) { if (e.key !== 'Escape') return; closePrivacy(); closeTerms(); });
 
-// 하단 바 "무료확인" 단추가 신청폼으로 가게 한다 (2026-08-13)
-// 왜: id="apply" 는 히어로 '구역 전체'(페이지 맨 위)에 붙어 있다. PC는 폼이 오른쪽에 나란히 있어
-//     맨 위로 가도 폼이 같이 보이지만, 모바일은 폼이 아래로 쌓여서 화면 밖에 남았다.
-function goApplyForm() {
-  const 폼 = document.querySelector('.hero-form-wrap');
-  if (!폼) { location.href = '#apply'; return; }   // 폼을 못 찾으면 원래대로
-  const 머리띠 = 72;                                // 위에 붙어 있는 머리띠(64px) + 여유 8px
-  const 목표 = 폼.getBoundingClientRect().top + window.scrollY - 머리띠;
-  try { window.scrollTo({ top: 목표, behavior: 'smooth' }); }
-  catch (e) { window.scrollTo(0, 목표); }           // 옛 브라우저 대비
-}
-
 // 스크롤 트리거 — 히어로 폼이 뷰포트 밖으로 나가면 CTA 바 등장
 const deskCtaBar = document.getElementById('deskCtaBar');
 const mobileCta  = document.getElementById('mobileCta');
