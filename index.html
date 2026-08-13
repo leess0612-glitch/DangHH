@@ -1827,7 +1827,7 @@ html { scroll-behavior: smooth; scroll-padding-top: 78px; }
 <!-- MOBILE BOTTOM CTA -->
 <div class="mobile-cta-bar" id="mobileCta">
   <div class="mobile-cta-bar-inner">
-    <button class="mobile-cta-btn" onclick="location.href='#applyForm'">내 최대 지원금 무료확인 →</button>
+    <button class="mobile-cta-btn" onclick="바로이동('applyForm')">내 최대 지원금 무료확인 →</button>
   </div>
 </div>
 
@@ -1835,7 +1835,7 @@ html { scroll-behavior: smooth; scroll-padding-top: 78px; }
 <div class="desk-cta-bar" id="deskCtaBar">
   <div class="desk-cta-bar-inner">
     <span class="desk-cta-top">놓치고 있던 내 최대 지원금, 지금 바로 확인하세요</span>
-    <button class="desk-cta-bar-btn" onclick="location.href='#apply'">무료 확인하기 →</button>
+    <button class="desk-cta-bar-btn" onclick="바로이동('apply')">무료 확인하기 →</button>
   </div>
 </div>
 
@@ -2179,6 +2179,19 @@ function resetForm() {
   document.getElementById('tab-rental').classList.remove('active');
   const btn = document.getElementById('submitBtn');
   btn.disabled = false; btn.textContent = '내 최대 지원금 무료확인';
+}
+
+// 하단 바 단추는 부드럽게 흐르지 않고 한 번에 이동한다 (2026-08-13)
+// 페이지 전체 설정이 '부드럽게'라서, 이동하는 순간만 잠깐 껐다가 되돌려 놓는다.
+// 자리표를 주소에 남기지 않으므로, 같은 단추를 다시 눌러도 매번 제대로 이동한다.
+function 바로이동(자리표) {
+  const el = document.getElementById(자리표);
+  if (!el) { location.href = '#' + 자리표; return; }
+  const 뿌리 = document.documentElement;
+  const 원래 = 뿌리.style.scrollBehavior;
+  뿌리.style.scrollBehavior = 'auto';
+  el.scrollIntoView({ block: 'start' });
+  뿌리.style.scrollBehavior = 원래;
 }
 
 // 개인정보처리방침 모달
