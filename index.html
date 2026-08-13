@@ -2181,7 +2181,14 @@ function updateScrollForms() {
   else { deskCtaBar.classList.remove('visible'); }
 }
 window.addEventListener('scroll', updateScrollForms, { passive: true });
-updateScrollForms();  // 스크롤하지 않아도 첫 화면부터 보이도록 한 번 실행
+// 아래 세 가지는 '스크롤 신호가 안 나오는 경우'를 메운다 (2026-08-13)
+//  - 즉시 1회: 스크롤하지 않아도 첫 화면부터 바가 보이도록
+//  - load: 주소 끝에 #applyForm 이 붙은 채로 열면 브라우저가 알아서 폼으로 내려가는데,
+//          그때는 스크롤 신호가 안 나와서 바가 그대로 남아 있었다
+//  - hashchange: 페이지 안에서 같은 자리표를 다시 누른 경우
+window.addEventListener('load', updateScrollForms);
+window.addEventListener('hashchange', updateScrollForms);
+updateScrollForms();
 
 
 // Scroll animation
