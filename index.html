@@ -301,13 +301,16 @@ nav a:hover { color: var(--primary); background: #eff6ff; }
 .hero-sub-assurance { font-size: 16px; color: rgba(255,255,255,0.75); margin-bottom: 8px; }
 .hero-stats {
   display: flex; gap: 0; margin-top: 40px; flex-wrap: wrap;
+  max-width: 520px;
 }
 .hero-stat {
-  display: flex; flex-direction: column; align-items: flex-start;
-  padding-right: 24px; margin-right: 24px;
+  display: flex; flex-direction: column; align-items: center; text-align: center;
+  flex: 1 1 0; min-width: 0;
+  padding: 0 24px;
   border-right: 1px solid rgba(255,255,255,0.2);
 }
-.hero-stat:last-child { border-right: none; margin-right: 0; padding-right: 0; }
+.hero-stat:last-child { border-right: none; }
+.hero-stat .num { white-space: nowrap; }
 .since-badge {
   display: inline-block;
   background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.25);
@@ -932,8 +935,8 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
   .hero-cash-badge { margin-left: auto; margin-right: auto; font-size: 22px; padding: 14px 40px; text-align: center; }
   .hero-form-wrap { width: 100%; flex: none; }
   .hero-form-wrap .form-card { max-width: 100%; }
-  .hero-stats { justify-content: center; margin-top: 28px; }
-  .hero-stat { align-items: center; padding: 0 16px; margin-right: 0; }
+  .hero-stats { justify-content: center; margin-top: 28px; max-width: 100%; margin-left: auto; margin-right: auto; }
+  .hero-stat { padding: 0 16px; }
   .hero-stat .num { font-size: 18px; }
   .since-badge { font-size: 10px; padding: 3px 8px; margin-bottom: 4px; }
   .mob-br { display: block; }
