@@ -276,7 +276,10 @@ nav a:hover { color: var(--primary); background: #eff6ff; }
 .hero {
   margin-top: 64px;
   background: linear-gradient(135deg, #0C2880 0%, #1461F0 60%, #1A6BFF 100%);
-  padding: 72px 20px; color: white; position: relative; overflow: hidden;
+  padding: 72px 20px; color: white; position: relative;
+  /* clip = 넘치는 장식만 잘라냄. hidden 이면 히어로가 '속으로 스크롤되는 상자'가 되어
+     하단 버튼으로 신청폼(#applyForm)에 갈 때 히어로 안쪽이 밀려 윗 내용이 사라졌다 (2026-08-13) */
+  overflow: hidden; overflow: clip;
 }
 .hero::before {
   content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
