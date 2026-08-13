@@ -2050,7 +2050,10 @@ function updateScrollForms() {
   }
 }
 window.addEventListener('scroll', updateScrollForms, { passive: true });
-updateScrollForms();  // 스크롤하지 않아도 첫 화면부터 보이도록 한 번 실행
+// 아래 세 가지는 '스크롤 신호가 안 나오는 경우'를 메운다 (2026-08-13, index.html과 같은 조치)
+window.addEventListener('load', updateScrollForms);
+window.addEventListener('hashchange', updateScrollForms);
+updateScrollForms();
 
 // Desktop bar phone format
 document.getElementById('deskPhone').addEventListener('input', function() {
