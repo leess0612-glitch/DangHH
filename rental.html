@@ -277,7 +277,10 @@ nav a:hover { color: var(--primary); background: #eff6ff; }
 .hero {
   margin-top: 64px;
   background: linear-gradient(135deg, #0C2880 0%, #1461F0 60%, #1A6BFF 100%);
-  padding: 100px 20px 90px; text-align: center; color: white; position: relative; overflow: hidden;
+  padding: 100px 20px 90px; text-align: center; color: white; position: relative;
+  /* clip = 넘치는 장식만 잘라냄. hidden 이면 히어로가 '속으로 스크롤되는 상자'가 되어
+     자리표로 이동할 때 히어로 안쪽이 밀릴 수 있다 (인터넷 페이지에서 실제로 발생, 2026-08-13) */
+  overflow: hidden; overflow: clip;
 }
 .hero::before {
   content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
@@ -321,6 +324,13 @@ nav a:hover { color: var(--primary); background: #eff6ff; }
 }
 .hero-stat .num { font-size: 28px; font-weight: 900; color: white; }
 .hero-stat .label { font-size: 13px; opacity: 0.8; margin-top: 2px; }
+/* 넓은 화면: 세 칸의 폭을 똑같이 맞춰 구분선이 고르게 놓이도록 (2026-08-13)
+   폰에서는 아래쪽 규칙이 위아래로 쌓으므로 여기 규칙을 적용하지 않는다 */
+@media (min-width: 769px) {
+  .hero-stats { max-width: 700px; margin-left: auto; margin-right: auto; }
+  .hero-stat { flex: 1 1 0; min-width: fit-content; text-align: center; }
+  .hero-stat .num { white-space: nowrap; }
+}
 
 /* ===== CARRIERS ===== */
 .carriers { background: white; padding: 28px 20px; border-bottom: 1px solid var(--border); }
@@ -1033,6 +1043,10 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
   .live-section { padding: 20px 16px; }
   .live-section-inner { flex-direction: column; gap: 12px; }
   .rolling-col { width: 100%; }
+  /* 폰에서는 한 줄만 보이고 일정 시간마다 다음 줄로 바뀐다 (2026-08-13)
+     45px = 줄 높이 44px + 상자 아래 테두리 1px */
+  .rolling-wrap { height: 45px; }
+  .rolling-item { border-bottom: none; }
 }
 
 /* ===== 초소형 화면 대응 ===== */
@@ -1732,7 +1746,7 @@ html { scroll-behavior: smooth; scroll-padding-top: 78px; }
 <!-- MOBILE BOTTOM CTA -->
 <div class="mobile-cta-bar" id="mobileCta">
   <div class="mobile-cta-bar-inner">
-    <button class="mobile-cta-btn" onclick="location.href='#apply'">내 최대 지원금 무료확인 →</button>
+    <button class="mobile-cta-btn" onclick="바로이동('apply')">내 최대 지원금 무료확인 →</button>
   </div>
 </div>
 
@@ -1928,14 +1942,28 @@ function openCafe(pcUrl, mobileUrl) {
   buildTrack(elC,itemsC,'ri-complete');
   buildTrack(elM,itemsM,'ri-cash');
 
-  if(itemsC.length>0){
-    document.documentElement.style.setProperty('--roll-c-dist','-'+(itemsC.length*ITEM_H)+'px');
-    elC.style.animationDuration=Math.max(itemsC.length*2,8)+'s';
+  // 폰·PC 모두 한 줄씩 딱딱 넘긴다 (steps = 한 칸씩 건너뜀, 부드럽게 흐르지 않음)
+  // 폰은 한 줄만 보이고, PC는 다섯 줄이 보이면서 한 줄씩 올라간다
+  // 아래 두 값만 바꾸면 넘어가는 속도가 바뀐다 (2026-08-13)
+  var 한줄초_폰=1.5, 한줄초_피시=2;
+  function 굴림맞춤(el,개수){
+    if(개수<=0) return;
+    var 폰=window.matchMedia('(max-width: 768px)').matches;
+    el.style.animationTimingFunction='steps('+개수+')';
+    el.style.animationDuration=(개수*(폰?한줄초_폰:한줄초_피시))+'s';
   }
-  if(itemsM.length>0){
-    document.documentElement.style.setProperty('--roll-m-dist','-'+(itemsM.length*ITEM_H)+'px');
-    elM.style.animationDuration=Math.max(itemsM.length*2,8)+'s';
+  function 굴림갱신(){
+    if(itemsC.length>0){
+      document.documentElement.style.setProperty('--roll-c-dist','-'+(itemsC.length*ITEM_H)+'px');
+      굴림맞춤(elC,itemsC.length);
+    }
+    if(itemsM.length>0){
+      document.documentElement.style.setProperty('--roll-m-dist','-'+(itemsM.length*ITEM_H)+'px');
+      굴림맞춤(elM,itemsM.length);
+    }
   }
+  굴림갱신();
+  window.addEventListener('resize',굴림갱신);
 })();
 
 // Swiper
@@ -2008,6 +2036,19 @@ async function submitForm() {
 }
 
 // 개인정보처리방침 모달
+// 하단 바 단추는 부드럽게 흐르지 않고 한 번에 이동한다 (2026-08-13)
+// 페이지 전체 설정이 '부드럽게'라서, 이동하는 순간만 잠깐 껐다가 되돌려 놓는다.
+// 자리표를 주소에 남기지 않으므로, 같은 단추를 다시 눌러도 매번 제대로 이동한다.
+function 바로이동(자리표) {
+  const el = document.getElementById(자리표);
+  if (!el) { location.href = '#' + 자리표; return; }
+  const 뿌리 = document.documentElement;
+  const 원래 = 뿌리.style.scrollBehavior;
+  뿌리.style.scrollBehavior = 'auto';
+  el.scrollIntoView({ block: 'start' });
+  뿌리.style.scrollBehavior = 원래;
+}
+
 function openPrivacy() { document.getElementById('privacyOverlay').classList.add('open'); }
 function closePrivacy() { document.getElementById('privacyOverlay').classList.remove('open'); }
 function closePrivacyOutside(e) { if (e.target.id === 'privacyOverlay') closePrivacy(); }
