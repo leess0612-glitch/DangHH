@@ -2031,20 +2031,26 @@ function updateScrollForms() {
   const ctaHidden = heroCta.getBoundingClientRect().bottom <= 0;
   const applyNear = applySection.getBoundingClientRect().top <= 100;
   const isMobile  = window.innerWidth <= 768;
+  // 모바일은 첫 화면부터 띄우고, 신청 구역에 다다르면 감춘다 (2026-08-13, index.html과 같은 조치)
+  // 원래는 히어로 단추가 화면 밖으로 나가야 등장해서 첫 화면에선 누를 것이 없었다.
+  if (isMobile) {
+    if (applyNear) { mobileCta.classList.remove('visible'); }
+    else { mobileCta.classList.add('visible'); }
+    stickyForm.classList.remove('visible');
+    deskCtaBar.classList.remove('visible');
+    return;
+  }
+  mobileCta.classList.remove('visible');
   if (ctaHidden && !applyNear) {
-    if (isMobile) {
-      mobileCta.classList.add('visible');
-    } else {
-      stickyForm.classList.add('visible');
-      deskCtaBar.classList.add('visible');
-    }
+    stickyForm.classList.add('visible');
+    deskCtaBar.classList.add('visible');
   } else {
-    mobileCta.classList.remove('visible');
     stickyForm.classList.remove('visible');
     deskCtaBar.classList.remove('visible');
   }
 }
 window.addEventListener('scroll', updateScrollForms, { passive: true });
+updateScrollForms();  // 스크롤하지 않아도 첫 화면부터 보이도록 한 번 실행
 
 // Desktop bar phone format
 document.getElementById('deskPhone').addEventListener('input', function() {
