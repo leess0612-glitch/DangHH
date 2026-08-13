@@ -319,6 +319,15 @@ nav a:hover { color: var(--primary); background: #eff6ff; }
 }
 .hero-stat .num { font-size: 36px; font-weight: 900; color: white; }
 .hero-stat .label { font-size: 15px; opacity: 0.8; margin-top: 4px; }
+/* 태블릿·좁은 노트북: 왼쪽 칸이 좁아 숫자가 넘치므로 위아래로 쌓고 구분선을 가로선으로 */
+@media (min-width: 769px) and (max-width: 1023px) {
+  .hero-stats { flex-direction: column; max-width: 320px; }
+  .hero-stat {
+    width: 100%; padding: 16px 24px;
+    border-right: none; border-bottom: 1px solid rgba(255,255,255,0.2);
+  }
+  .hero-stat:last-child { border-bottom: none; }
+}
 
 /* ===== CARRIERS ===== */
 .carriers { background: white; padding: 28px 20px; border-bottom: 1px solid var(--border); }
