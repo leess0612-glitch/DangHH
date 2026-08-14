@@ -1392,7 +1392,7 @@ html { scroll-behavior: smooth; scroll-padding-top: 78px; }
             <label for="c1" style="font-size:13px;color:var(--gray);cursor:pointer;line-height:1.5;">개인정보 수집 및 활용동의 <a href="javascript:void(0)" onclick="openPrivacy()" style="color:var(--gray);font-weight:600;font-size:12px;text-decoration:none;">›</a> <span style="color:#b0b8c1;font-weight:500;font-size:11px;">(필수)</span></label>
           </div>
           <p class="form-urgency">⏰ 오후 5:30 이전 설치 시 당일 현금 입금</p>
-          <button class="form-submit" id="submitBtn" onclick="submitForm()">내 최대 지원금 무료확인</button>
+          <button class="form-submit" id="submitBtn" onclick="submitForm()">놓친 지원금 무료확인</button>
           <p style="margin-top:10px;font-size:13px;color:var(--gray);text-align:center;">타업체보다 적다면? <strong style="color:var(--primary);">차액을 보상해드립니다.</strong></p>
         </div>
         <div class="form-success" id="formSuccess">
@@ -1843,7 +1843,7 @@ html { scroll-behavior: smooth; scroll-padding-top: 78px; }
 <!-- MOBILE BOTTOM CTA -->
 <div class="mobile-cta-bar" id="mobileCta">
   <div class="mobile-cta-bar-inner">
-    <button class="mobile-cta-btn" onclick="바로이동('applyForm')">내 최대 지원금 무료확인 →</button>
+    <button class="mobile-cta-btn" onclick="바로이동('applyForm')">놓친 지원금 무료확인 →</button>
   </div>
 </div>
 
@@ -2179,7 +2179,7 @@ async function submitForm() {
     document.getElementById('formSuccess').style.display = 'block';
   } catch(e) {
     alert('오류가 발생했습니다. 잠시 후 다시 시도하거나\n1600-4670으로 직접 문의해주세요.');
-    btn.disabled = false; btn.textContent = '내 최대 지원금 무료확인';
+    btn.disabled = false; btn.textContent = '놓친 지원금 무료확인';
   }
 }
 
@@ -2194,7 +2194,7 @@ function resetForm() {
   document.getElementById('tab-internet').classList.add('active');
   document.getElementById('tab-rental').classList.remove('active');
   const btn = document.getElementById('submitBtn');
-  btn.disabled = false; btn.textContent = '내 최대 지원금 무료확인';
+  btn.disabled = false; btn.textContent = '놓친 지원금 무료확인';
 }
 
 // 하단 바 단추는 부드럽게 흐르지 않고 한 번에 이동한다 (2026-08-13)
