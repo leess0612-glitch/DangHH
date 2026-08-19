@@ -1299,8 +1299,19 @@ html { scroll-behavior: smooth; scroll-padding-top: 78px; }
    폰은 배지가 가운데 정렬이라 이 처리를 하면 오히려 좌우가 비뚤어지므로 적용하지 않는다.
    (모서리를 각지게 하는 것은 PC·폰 공통이라 각 배지 기본 설정에 넣어 두었다) */
 @media (min-width: 769px) {
-  .hero-badge      { padding-left: 0; border-left: none; }
-  .hero-cash-badge { padding-left: 0; }
+  /* 왼쪽 화면 밖에서 띠가 뻗어 들어오는 모양.
+     -1000px 만큼 왼쪽으로 빼고 같은 값을 안쪽 여백으로 되돌려주면,
+     상자는 화면 밖에서 시작하지만 글자는 제목과 똑같은 자리에 선다.
+     밖으로 나간 부분은 .hero 의 overflow:clip 이 잘라낸다. */
+  .hero-badge {
+    display: block; width: fit-content;
+    margin-left: -1000px; padding-left: 1000px;
+    border-left: none; border-radius: 0 20px 20px 0;
+  }
+  .hero-cash-badge {
+    margin-left: -1000px; padding-left: 1000px;
+    border-radius: 0 999px 999px 0;
+  }
 }
 </style>
 </head>
