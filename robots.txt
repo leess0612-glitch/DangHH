@@ -5,6 +5,7 @@ Allow: /
 Disallow: /_보관/
 Disallow: /font-test.html
 Disallow: /rental-v2.html
+Disallow: /internet.html   # 옛 메인 — 새 메인과 내용이 겹쳐 검색에서 숨김 (2026-08-19)
 Disallow: /*backup
 
 Sitemap: https://danghh.com/sitemap.xml
