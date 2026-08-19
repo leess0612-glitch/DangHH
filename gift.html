@@ -800,6 +800,46 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
 </div>
 
 <script>
+// ───────────────────────────────────────────────────────────────
+// 들어온 페이지로 되돌려 보내기
+// 이 게시판의 메뉴는 원래 index.html 로 고정돼 있어서, 렌탈이나 지원금확인
+// 페이지에서 들어온 손님도 나갈 때는 무조건 첫 페이지로 튕겨 나갔다.
+// 그래서 어디서 들어왔는지 기억해 뒀다가 그 페이지로 돌려보낸다.
+// (검색 등으로 게시판에 바로 들어온 손님은 지금처럼 첫 페이지로 간다)
+// ───────────────────────────────────────────────────────────────
+(function () {
+  var 기본 = 'index.html';
+  var 아는쪽 = ['index.html', 'rental.html', 'check.html'];
+  var 열쇠 = 'dh_gift_back';
+  var 돌아갈쪽 = null;
+
+  // 이번 방문에서 이미 정해둔 값이 있으면 그대로 쓴다(새로고침해도 유지)
+  try { 돌아갈쪽 = sessionStorage.getItem(열쇠); } catch (e) {}
+
+  if (!돌아갈쪽) {
+    try {
+      var 온곳 = new URL(document.referrer);
+      if (온곳.hostname === location.hostname) {
+        var 파일 = 온곳.pathname.split('/').pop() || 기본;
+        if (아는쪽.indexOf(파일) > -1) 돌아갈쪽 = 파일;
+      }
+    } catch (e) {}
+    if (돌아갈쪽) { try { sessionStorage.setItem(열쇠, 돌아갈쪽); } catch (e) {} }
+  }
+
+  if (!돌아갈쪽 || 돌아갈쪽 === 기본) return;   // 첫 페이지면 바꿀 것이 없다
+
+  // 렌탈 페이지는 신청폼 이름이 다르다 (applyForm 이 없고 apply 다)
+  var 신청폼이름다름 = (돌아갈쪽 === 'rental.html');
+
+  var 링크들 = document.querySelectorAll('a[href^="index.html"]');
+  for (var i = 0; i < 링크들.length; i++) {
+    var 주소 = 링크들[i].getAttribute('href').replace('index.html', 돌아갈쪽);
+    if (신청폼이름다름) 주소 = 주소.replace('#applyForm', '#apply');
+    링크들[i].setAttribute('href', 주소);
+  }
+})();
+
 // 지난 명단 한 줄을 눌렀을 때: 접힘/펼침. 처음 펼칠 때만 내용을 불러온다.
 function 명단열기(btn) {
   var item = btn.parentElement;
