@@ -296,7 +296,7 @@ nav a:hover { color: var(--primary); background: #eff6ff; }
 .hero-form-wrap .form-card { max-width: 100%; margin: 0; }
 .hero-badge {
   display: inline-block; background: rgba(255,255,255,0.18); border: 1px solid rgba(255,255,255,0.3);
-  color: white; font-size: 13px; font-weight: 600; padding: 4px 16px 4px 0; border-radius: 0; border-left: none; margin-bottom: 10px;
+  color: white; font-size: 13px; font-weight: 600; padding: 4px 16px; border-radius: 0; margin-bottom: 10px;
 }
 .hero h1 { font-size: clamp(32px, 4.6vw, 64px); font-weight: 900; line-height: 1.2; margin-bottom: 20px; letter-spacing: -1.5px; }
 .hero h1 em { font-style: normal; color: #fee500; }
@@ -960,7 +960,7 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
   .hero { padding: 48px 20px 56px; }
   .hero-inner { flex-direction: column; gap: 32px; }
   .hero-content { text-align: center; }
-  .hero-badge { display: block; width: fit-content; margin-left: auto; margin-right: auto; padding: 4px 16px; border-left: 1px solid rgba(255,255,255,0.3); }
+  .hero-badge { display: block; width: fit-content; margin-left: auto; margin-right: auto; }
   .hero-cash-badge { margin-left: auto; margin-right: auto; font-size: 22px; padding: 14px 40px; text-align: center; }
   .hero-form-wrap { width: 100%; flex: none; }
   .hero-form-wrap .form-card { max-width: 100%; }
@@ -1006,7 +1006,7 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
   display: block; width: fit-content;
   background: #ff6b00; text-align: center;
   color: white; font-size: 28px; font-weight: 900;
-  padding: 15px 39px 15px 0; border-radius: 0; margin-bottom: 20px;
+  padding: 15px 39px; border-radius: 0; margin-bottom: 20px;
   box-shadow: 0 6px 20px rgba(255,107,0,0.55);
   letter-spacing: -0.3px;
   text-shadow: 0 1px 3px rgba(0,0,0,0.25);
@@ -1305,6 +1305,16 @@ html { scroll-behavior: smooth; scroll-padding-top: 78px; }
     scroll-behavior: auto !important;
   }
   .fade-up { opacity: 1 !important; transform: none !important; }
+}
+
+/* ===== 히어로 배지 왼쪽 정렬 맞추기 (2026-08-19) =====
+   PC는 히어로가 왼쪽 정렬이라, 배지 안쪽 왼쪽 여백 때문에 글자가 제목보다 안쪽에서 시작해 어긋나 보였다.
+   그래서 PC에서만 왼쪽 여백을 0으로 없애 배지 글자와 제목의 시작선을 일치시킨다.
+   폰은 배지가 가운데 정렬이라 이 처리를 하면 오히려 좌우가 비뚤어지므로 적용하지 않는다.
+   (모서리를 각지게 하는 것은 PC·폰 공통이라 각 배지 기본 설정에 넣어 두었다) */
+@media (min-width: 769px) {
+  .hero-badge      { padding-left: 0; border-left: none; }
+  .hero-cash-badge { padding-left: 0; }
 }
 </style>
 </head>
