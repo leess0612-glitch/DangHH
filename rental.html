@@ -381,7 +381,10 @@ section { padding: 72px 20px; }
 .ict-cert-sub { font-size: 14px; color: #6b7280; margin-top: 4px; line-height: 1.6; }
 
 /* ===== BENEFITS ===== */
-.benefits { background: #f8fafc; }
+/* 이 페이지는 요금제 비교 섹션이 숨겨져 있어(display:none), 섹션 순서를 바꾼 뒤
+   '왜 당현함인가요?'와 '가입 프로세스'의 회색 배경이 맞붙어 경계가 사라졌다.
+   그래서 이 페이지에서만 흰색으로 둔다 (index·check 는 회색 그대로) — 2026-08-19 */
+.benefits { background: #ffffff; }
 .benefits-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
