@@ -295,7 +295,7 @@ nav a:hover { color: var(--primary); background: #eff6ff; }
 .hero-form-wrap .form-card { max-width: 100%; margin: 0; }
 .hero-badge {
   display: inline-block; background: rgba(255,255,255,0.18); border: 1px solid rgba(255,255,255,0.3);
-  color: white; font-size: 13px; font-weight: 600; padding: 4px 16px; border-radius: 20px; margin-bottom: 10px;
+  color: white; font-size: 13px; font-weight: 600; padding: 4px 16px 4px 0; border-radius: 0; border-left: none; margin-bottom: 10px;
 }
 .hero h1 { font-size: clamp(32px, 4.6vw, 64px); font-weight: 900; line-height: 1.2; margin-bottom: 20px; letter-spacing: -1.5px; }
 .hero h1 em { font-style: normal; color: #fee500; }
@@ -946,7 +946,7 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
   .hero { padding: 48px 20px 56px; }
   .hero-inner { flex-direction: column; gap: 32px; }
   .hero-content { text-align: center; }
-  .hero-badge { display: block; width: fit-content; margin-left: auto; margin-right: auto; }
+  .hero-badge { display: block; width: fit-content; margin-left: auto; margin-right: auto; padding: 4px 16px; border-left: 1px solid rgba(255,255,255,0.3); }
   .hero-cash-badge { margin-left: auto; margin-right: auto; font-size: 22px; padding: 14px 40px; text-align: center; }
   .hero-form-wrap { width: 100%; flex: none; }
   .hero-form-wrap .form-card { max-width: 100%; }
