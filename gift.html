@@ -214,9 +214,26 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
 <!--최신명단-시작-->
   <div class="card">
     <div class="today-head">
-      <div class="today-date">2026년 8월 18일 <span class="dow">(화)</span><span class="today-tag">최신</span></div>
+      <div class="today-date">2026년 8월 19일 <span class="dow">(수)</span><span class="today-tag">최신</span></div>
+      <div class="today-count">총 10분 지급 완료</div>
     </div>
-    <div style="padding:18px 18px 4px;"><img src="gift-data/img/20260818.png" alt="2026년 8월 18일 사은품 지급명단" style="width:100%;max-width:720px;display:block;margin:0 auto;border:1px solid var(--border);border-radius:10px;"></div>
+      <div class="tbl-scroll">
+        <table class="gift">
+          <thead><tr><th style="width:22%">고객명</th><th style="width:18%">통신사</th><th style="width:35%">상품명</th><th style="width:25%">입금계좌</th></tr></thead>
+          <tbody>
+            <tr><td class="name">강#범</td><td class="telecom">LG</td><td class="product">인터넷</td><td class="bank">신한</td></tr>
+            <tr><td class="name">김#기</td><td class="telecom">KT</td><td class="product">인터넷 + TV</td><td class="bank">국민</td></tr>
+            <tr><td class="name">김#길</td><td class="telecom">-</td><td class="product">가전 렌탈</td><td class="bank">신한</td></tr>
+            <tr><td class="name">김#빈2</td><td class="telecom">-</td><td class="product">가전 렌탈</td><td class="bank">부산</td></tr>
+            <tr><td class="name">김#성</td><td class="telecom">SK</td><td class="product">인터넷+TV</td><td class="bank">국민</td></tr>
+            <tr><td class="name">김#숙</td><td class="telecom">-</td><td class="product">가전 렌탈</td><td class="bank">국민</td></tr>
+            <tr><td class="name">김#환</td><td class="telecom">-</td><td class="product">가전 렌탈</td><td class="bank">카카오뱅크</td></tr>
+            <tr><td class="name">원#경</td><td class="telecom">-</td><td class="product">가전 렌탈</td><td class="bank">토스뱅크</td></tr>
+            <tr><td class="name">하#솔</td><td class="telecom">SKY LIFE</td><td class="product">인터넷+TV</td><td class="bank">국민</td></tr>
+            <tr><td class="name">광###회1</td><td class="telecom">LG헬로</td><td class="product">인터넷 + TV</td><td class="bank">농협</td></tr>
+          </tbody>
+        </table>
+      </div>
     <div class="note">
       ※ 고객님 개인정보 보호를 위해 성함 일부를 가려 표기합니다. 매일 저녁 자동으로 갱신됩니다.
     </div>
@@ -231,8 +248,15 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
   </div>
 
 <!--지난명단-시작-->
-  <div class="past-title">지난 명단 <span class="cnt">(총 49건)</span></div>
+  <div class="past-title">지난 명단 <span class="cnt">(총 50건)</span></div>
   <div class="past-list">
+    <div class="past-item" data-date="2026-08-18" data-label="2026년 8월 18일" data-type="image" data-file="20260818.png">
+      <button class="past-btn" onclick="명단열기(this)">
+        <span class="d">2026년 8월 18일 <span class="dow">(화)</span></span>
+        <span class="r"><span class="pill">사진</span><span class="arrow">›</span></span>
+      </button>
+      <div class="past-body"></div>
+    </div>
     <div class="past-item" data-date="2026-08-14" data-label="2026년 8월 14일" data-type="image" data-file="20260814.png">
       <button class="past-btn" onclick="명단열기(this)">
         <span class="d">2026년 8월 14일 <span class="dow">(금)</span></span>
@@ -296,7 +320,7 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
       </button>
       <div class="past-body"></div>
     </div>
-    <div class="past-item" data-date="2026-08-03" data-label="2026년 8월 3일" data-type="image" data-file="20260803.png">
+    <div class="past-item hide" data-date="2026-08-03" data-label="2026년 8월 3일" data-type="image" data-file="20260803.png">
       <button class="past-btn" onclick="명단열기(this)">
         <span class="d">2026년 8월 3일 <span class="dow">(월)</span></span>
         <span class="r"><span class="pill">사진</span><span class="arrow">›</span></span>
@@ -577,7 +601,7 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
       <div class="past-body"></div>
     </div>
   </div>
-  <button class="more-btn" onclick="더보기(this)">지난 명단 더 보기 (39건) ▾</button>
+  <button class="more-btn" onclick="더보기(this)">지난 명단 더 보기 (40건) ▾</button>
 <!--지난명단-끝-->
 
 </div>
