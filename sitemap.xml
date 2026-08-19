@@ -5,11 +5,7 @@
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
-  <url>
-    <loc>https://danghh.com/rental.html</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
+  <!-- rental.html 은 뺐음: 광고 전용 페이지라 자연 검색에 노출시키지 않기로 함 (2026-08-19) -->
   <url>
     <loc>https://danghh.com/gift.html</loc>
     <changefreq>daily</changefreq>
