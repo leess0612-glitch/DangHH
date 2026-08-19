@@ -2,6 +2,191 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NBGKQ2Y301"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-NBGKQ2Y301');
+</script>
+
+<!-- Meta Pixel Code -->
+<script>
+  !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+  n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}
+  (window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init','1578163177053016');
+  fbq('track','PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1578163177053016&ev=PageView&noscript=1"/></noscript>
+<!-- End Meta Pixel Code -->
+
+<!-- ===== 당현함 통합 전환추적 v1 (세 페이지 공통 / 수정 시 3개 파일 모두 동일하게) ===== -->
+<script>
+/* 이 페이지를 통계에서 부를 이름 */
+var DH_PAGE = 'danghh-gift';
+/* 네이버 전환추적 ID — [미정] 네이버 광고 계정 > 프리미엄 로그분석에서 발급받아 채우면 즉시 작동 */
+var DH_NAVER_ID = '';
+
+/* 같은 방문에서 한 번만 세도록 막는 장치 */
+function dhOnce(key){
+  try{
+    if(sessionStorage.getItem('dh_'+key)) return false;
+    sessionStorage.setItem('dh_'+key,'1'); return true;
+  }catch(e){ return true; }
+}
+
+/* 전환 1건을 구글·메타·네이버에 동시에 알림 (개인정보는 보내지 않음) */
+function dhTrack(action, opts){
+ try{
+  opts = opts || {};
+  if(opts.once !== false && !dhOnce(action)) return;
+
+  /* 1) 구글 애널리틱스 */
+  if(typeof gtag === 'function'){
+    gtag('event', action, { dh_page: DH_PAGE });
+  }
+  /* 2) 메타 픽셀 */
+  if(typeof fbq === 'function'){
+    var metaName = { lead_submit:'Lead', kakao_click:'Contact', phone_click:'Contact' }[action];
+    if(metaName) fbq('track', metaName, { content_name: DH_PAGE + '/' + action });
+    else fbq('trackCustom', action, { content_name: DH_PAGE });
+  }
+  /* 3) 네이버 (ID를 채운 경우에만) */
+  if(DH_NAVER_ID && window.wcs && window.wcs_do && action !== 'scroll_50'){
+    try{ var _c={}; _c['cnv'] = wcs.cnv('3','1'); wcs_do(_c); }catch(e){}
+  }
+ }catch(e){ /* 추적이 실패해도 신청 접수는 절대 방해하지 않음 */ }
+}
+
+/* 네이버 스크립트는 ID가 채워졌을 때만 불러옴 */
+(function(){
+  if(!DH_NAVER_ID) return;
+  var s=document.createElement('script'); s.async=true; s.src='//wcs.naver.net/wcslog.js';
+  s.onload=function(){
+    try{
+      if(!window.wcs_add) window.wcs_add={};
+      wcs_add['wa']=DH_NAVER_ID;
+      if(!window._nasa) window._nasa={};
+      if(window.wcs) wcs.inflow();
+      wcs_do(_nasa);
+    }catch(e){}
+  };
+  document.head.appendChild(s);
+})();
+
+/* 전화·카카오 링크 클릭 자동 감지 (버튼이 몇 개든 자동으로 잡힘) */
+document.addEventListener('click', function(e){
+  var a = e.target && e.target.closest ? e.target.closest('a') : null;
+  if(!a) return;
+  var href = a.getAttribute('href') || '';
+  if(href.indexOf('tel:') === 0) dhTrack('phone_click');
+  else if(href.indexOf('pf.kakao.com') > -1) dhTrack('kakao_click');
+}, true);
+
+/* 페이지를 절반 이상 읽었는지 */
+window.addEventListener('scroll', function(){
+  var h = document.documentElement.scrollHeight - window.innerHeight;
+  if(h > 0 && (window.scrollY / h) >= 0.5) dhTrack('scroll_50');
+}, { passive: true });
+
+/* ===== 어디서 들어온 손님인지 기억하기 (30일 보관 / 광고끼리는 마지막 것이 이김) ===== */
+var DH_KEEP_DAYS = 30;
+/* [매체, 방식, 소재, 사람이 읽을 이름] — '*'는 아무 값이나 */
+var DH_KIND = [
+  ['naver','cpc','powerlink','네이버 파워링크'],
+  ['naver','cpc','*','네이버 파워컨텐츠'],
+  ['naver','sponsored_blog','*','블로그 의뢰'],
+  ['naver','display','*','네이버 GFA'],
+  ['instagram','paid_social','*','인스타 릴스광고'],
+  ['instagram','profile','*','인스타 프로필'],
+  ['daangn','display','*','당근 지역광고'],
+  ['kakao','message','*','카카오 채널']
+];
+function dhPickName(s, m, c){
+  for(var i=0;i<DH_KIND.length;i++){
+    var k = DH_KIND[i];
+    if(k[0]===s && k[1]===m && (k[2]==='*' || k[2]===c)) return k[3];
+  }
+  return [s, m].filter(Boolean).join(' ');   /* 표에 없는 새 광고는 원래 값 그대로 */
+}
+/* 주소 뒤에 붙은 꼬리표(utm_) 읽기 */
+function dhReadTag(){
+  var out = {}, q = location.search.replace(/^\?/, '');
+  if(!q) return out;
+  q.split('&').forEach(function(p){
+    var i = p.indexOf('='); if(i < 1) return;
+    var k = p.slice(0,i), v = p.slice(i+1);
+    try{ v = decodeURIComponent(v.replace(/\+/g,' ')); }catch(e){}
+    if(k.indexOf('utm_') === 0) out[k.slice(4)] = v;
+  });
+  return out;
+}
+/* 꼬리표가 없을 때는 어디서 넘어왔는지로 대신 적는다 */
+function dhFromReferrer(){
+  var r = document.referrer || '';
+  if(!r) return { summary:'직접방문', source:'(direct)' };
+  var host = '';
+  try{ host = new URL(r).hostname.replace(/^www\./,''); }catch(e){ return { summary:'직접방문', source:'(direct)' }; }
+  if(host === location.hostname) return null;          /* 우리 페이지끼리 이동 → 기존 기록 유지 */
+  if(host.indexOf('google.') > -1)    return { summary:'구글 검색',   source:'google' };
+  if(host.indexOf('cafe.naver') > -1) return { summary:'네이버 카페', source:'naver' };
+  if(host.indexOf('naver.') > -1)     return { summary:'네이버 검색', source:'naver' };
+  if(host.indexOf('daum.') > -1)      return { summary:'다음 검색',   source:'daum' };
+  if(host.indexOf('instagram') > -1)  return { summary:'인스타그램',  source:'instagram' };
+  if(host.indexOf('youtube') > -1)    return { summary:'유튜브',      source:'youtube' };
+  return { summary: host + ' 링크', source: host };
+}
+function dhSaveIn(o){
+  try{ o.until = Date.now() + DH_KEEP_DAYS*86400000; localStorage.setItem('dh_in', JSON.stringify(o)); }catch(e){}
+}
+function dhLoadIn(){
+  try{
+    var o = JSON.parse(localStorage.getItem('dh_in') || 'null');
+    if(!o) return null;
+    if(o.until && Date.now() > o.until){ localStorage.removeItem('dh_in'); return null; }
+    return o;
+  }catch(e){ return null; }
+}
+/* 페이지가 열릴 때 한 번만 판단한다 */
+(function(){
+  try{
+    var t = dhReadTag();
+    if(t.source || t.medium || t.campaign){        /* 광고 꼬리표를 달고 왔다 → 최신 것으로 덮어쓴다 */
+      dhSaveIn({
+        summary : [dhPickName(t.source, t.medium, t.content), t.campaign].filter(Boolean).join(' / '),
+        source  : t.source || '',
+        campaign: t.campaign || '',
+        detail  : [t.content, t.term].filter(Boolean).join(' / '),
+        page    : location.pathname || '/'
+      });
+      return;
+    }
+    if(dhLoadIn()) return;                          /* 광고 기록이 이미 있으면 지우지 않는다 */
+    var r = dhFromReferrer();
+    if(!r) return;
+    dhSaveIn({ summary:r.summary, source:r.source, campaign:'', detail:'', page: location.pathname || '/' });
+  }catch(e){}
+})();
+/* 신청서를 보낼 때 같이 실어 보낼 내용 */
+function dhInflow(){
+  try{
+    var o = dhLoadIn() || {};
+    return {
+      in_summary : o.summary  || '직접방문',
+      in_source  : o.source   || '(direct)',
+      in_campaign: o.campaign || '',
+      in_detail  : o.detail   || '',
+      in_page    : o.page     || (location.pathname || '/')
+    };
+  }catch(e){ return {}; }
+}
+</script>
+<!-- ===== 전환추적 끝 ===== -->
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>사은품 지급명단 | 당현함</title>
 <meta name="description" content="당현함 사은품 지급명단입니다. 인터넷 가입·정수기·가전렌탈 고객님께 당일 현금으로 지급해 드린 내역을 매일 공개합니다.">
