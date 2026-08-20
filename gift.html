@@ -114,6 +114,10 @@ if (typeof dhInflow !== 'function') { window.dhInflow = function () { return {};
 <meta property="og:title" content="사은품 지급명단 | 당현함">
 <meta property="og:description" content="당현함을 통해 가입하신 고객님께 당일 현금으로 지급해 드린 내역입니다. 매일 갱신됩니다.">
 <meta property="og:url" content="https://danghh.com/gift.html">
+<meta property="og:image" content="https://danghh.com/images/share-card.png">
+<meta property="og:image:width" content="800">
+<meta property="og:image:height" content="400">
+<meta property="og:image:type" content="image/png">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%231a56db'/><text y='68' x='50' text-anchor='middle' font-size='54' font-family='sans-serif' font-weight='900' fill='white'>당</text></svg>">
 
 <!-- SUIT 글꼴 (index.html과 동일한 방식 — 제작사 공식 주소에서 직접 불러옴) -->
@@ -878,6 +882,13 @@ function 더보기(btn) {
   if (남은수 === 0) btn.classList.add('done');
   else btn.textContent = '지난 명단 더 보기 (' + 남은수 + '건) ▾';
 }
+</script>
+<script>
+/* 휴대폰 메뉴: 메뉴 밖을 누르면 닫히게 — index.html과 같은 동작 (2026-08-21) */
+document.addEventListener('click', function (e) {
+  if (!e.target.closest('header') && !e.target.closest('.mobile-menu'))
+    document.getElementById('mobileMenu').classList.remove('open');
+});
 </script>
 </body>
 </html>
