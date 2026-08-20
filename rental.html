@@ -1187,6 +1187,31 @@ html { scroll-behavior: smooth; scroll-padding-top: 78px; }
   .fade-up { opacity: 1 !important; transform: none !important; }
 }
 </style>
+<style>
+/* ===== 사은품 지급명단 굴림칸 — 한 칸으로 합치고 브랜드 색으로 ===== */
+.live-section-inner{ max-width:560px }
+.rolling-col-header.type-cash{ background:#1461F0; color:#fff }
+.rolling-col-header .live-dot{ background:#fff }
+.rolling-item{ gap:8px }
+.ri-plan{
+  flex:1; min-width:0; font-size:12px; font-weight:600; color:#334155;
+  white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+}
+.ri-bank{
+  flex-shrink:0; font-size:11px; font-weight:700;
+  padding:2px 8px; border-radius:999px;
+  background:#fff1e3; color:#c2410c; white-space:nowrap;
+}
+.rolling-more{
+  display:block; text-align:center; margin-top:10px;
+  font-size:13px; font-weight:700; color:#1461F0; text-decoration:none;
+}
+.rolling-more:hover{ text-decoration:underline }
+@media (max-width:768px){
+  .ri-plan{ font-size:11px }
+  .ri-date{ font-size:10px }
+}
+</style>
 </head>
 <body>
 
@@ -1246,20 +1271,15 @@ html { scroll-behavior: smooth; scroll-padding-top: 78px; }
   </div>
 </section>
 
-<!-- LIVE ROLLING -->
-<div class="live-section">
+<!-- LIVE ROLLING : 진짜 사은품 지급명단(gift-data)을 읽어서 굴린다 -->
+<div class="live-section" id="liveSection" style="display:none;">
   <div class="live-section-inner">
     <div class="rolling-col">
-      <div class="rolling-col-header type-complete"><span class="live-dot"></span>접수완료</div>
-      <div class="rolling-wrap">
-        <div class="rolling-track-complete" id="rollingTrackComplete"></div>
-      </div>
-    </div>
-    <div class="rolling-col">
-      <div class="rolling-col-header type-cash"><span class="live-dot" style="background:#f59e0b;"></span>현금입금완료</div>
+      <div class="rolling-col-header type-cash"><span class="live-dot"></span><span id="rollingTitle">사은품 지급 완료</span></div>
       <div class="rolling-wrap">
         <div class="rolling-track-cash" id="rollingTrackCash"></div>
       </div>
+      <a class="rolling-more" href="gift.html">전체 지급명단 보기 →</a>
     </div>
   </div>
 </div>
@@ -1758,136 +1778,72 @@ function openCafe(pcUrl, mobileUrl) {
   window.open(isMobile ? mobileUrl : pcUrl, '_blank', 'noopener');
 }
 
-// ===== LIVE ROLLING =====
+// ===== LIVE ROLLING : 진짜 사은품 지급명단 =====
+// gift-data\index.json 에서 글씨 명단이 있는 최근 날짜 3개를 찾아,
+// 그 날짜 파일들을 읽어 한 줄씩 굴린다. 못 읽으면 이 칸은 통째로 감춘다.
 (function() {
-  function pad(n){ return n<10?'0'+n:''+n; }
-  function toKey(d){ return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate()); }
-  function isWorkday(d){ return d.getDay()!==0; }
+  var 날짜수 = 3, ITEM_H = 44;
+  var 섹션 = document.getElementById('liveSection');
+  var 트랙 = document.getElementById('rollingTrackCash');
+  var 제목 = document.getElementById('rollingTitle');
+  if (!섹션 || !트랙) return;
 
-  function getBizDays(n) {
-    var res=[], d=new Date(); d.setHours(0,0,0,0);
-    while(res.length<n){ if(isWorkday(d)) res.push(new Date(d)); d.setDate(d.getDate()-1); }
-    return res;
+  function 날짜적기(s){ var p = String(s).split('-'); return (+p[1]) + '월 ' + (+p[2]) + '일'; }
+
+  function 굴림맞춤(개수){
+    if (개수 <= 0) return;
+    var 폰 = window.matchMedia('(max-width: 768px)').matches;
+    document.documentElement.style.setProperty('--roll-m-dist', '-' + (개수 * ITEM_H) + 'px');
+    트랙.style.animationTimingFunction = 'steps(' + 개수 + ')';
+    트랙.style.animationDuration = (개수 * (폰 ? 1.5 : 2)) + 's';
   }
 
-  function fmt(d){ return (d.getMonth()+1)+'월 '+d.getDate()+'일'; }
-  function tm(t){ var p=t.split(':'); return +p[0]*60 + +p[1]; }
+  fetch('gift-data/index.json', { cache: 'no-store' })
+    .then(function(r){ return r.json(); })
+    .then(function(목록){
+      var 날짜들 = (목록.items || [])
+        .filter(function(it){ return it.type === 'data'; })
+        .slice(0, 날짜수)
+        .map(function(it){ return it.date; });
+      if (!날짜들.length) throw new Error('글씨 명단이 아직 없음');
+      return Promise.all(날짜들.map(function(d){
+        return fetch('gift-data/' + d + '.json', { cache: 'no-store' })
+          .then(function(r){ return r.json(); })
+          .then(function(j){ return { date: d, rows: j.rows || [] }; })
+          .catch(function(){ return { date: d, rows: [] }; });
+      }));
+    })
+    .then(function(날들){
+      var 줄들 = [];
+      날들.forEach(function(하루){
+        하루.rows.forEach(function(행){
+          var 이름 = 행[0] || '', 통신사 = 행[1] || '', 상품 = 행[2] || '', 은행 = 행[3] || '';
+          if (!이름) return;
+          줄들.push([날짜적기(하루.date), 이름, (통신사 ? 통신사 + ' ' : '') + 상품, 은행]);
+        });
+      });
+      if (!줄들.length) return;
 
-  var now=new Date(), nowMin=now.getHours()*60+now.getMinutes(), todayKey=toKey(now);
-  var biz=getBizDays(3);
+      // 두 번 이어붙여야 끊김 없이 무한히 돈다
+      줄들.concat(줄들).forEach(function(it){
+        var div = document.createElement('div');
+        div.className = 'rolling-item';
+        div.innerHTML = '<span class="ri-date">' + it[0] + '</span>' +
+                        '<span class="ri-name">' + it[1] + '</span>' +
+                        '<span class="ri-plan">' + it[2] + '</span>' +
+                        (it[3] ? '<span class="ri-bank">' + it[3] + '</span>' : '');
+        트랙.appendChild(div);
+      });
 
-  function ok(idx,t){
-    if(idx>=biz.length) return false;
-    var d=biz[idx], m=tm(t);
-    if(d.getDay()===6){ if(m<540||m>=840) return false; }
-    else { if(m<540||m>=1080) return false; if(m>=750&&m<810) return false; }
-    if(toKey(d)===todayKey && m>=nowMin) return false;
-    return true;
-  }
+      var 날짜개수 = 날들.filter(function(d){ return d.rows.length; }).length;
+      제목.textContent = (날짜개수 > 1 ? '최근 ' + 날짜개수 + '일' : 날짜적기(날들[0].date))
+                       + ' · ' + 줄들.length + '분 지급 완료';
 
-  // 접수완료 24개 [dayIdx, 시간, 이름, 서비스]
-  // dayIdx: 0=최근영업일, 1=그전, 2=전전
-  var rawC = [
-    [0,'9:08','박*민','정수기 접수완료'],
-    [0,'9:41','한*희','정수기 접수완료'],
-    [0,'10:12','강*호','정수기 접수완료'],
-    [0,'10:47','장*우','정수기 접수완료'],
-    [0,'11:05','임*아','공기청정기 접수완료'],
-    [0,'11:38','황*경','정수기 접수완료'],
-    [0,'13:42','남*철','정수기 접수완료'],
-    [0,'14:55','배*나','공기청정기 접수완료'],
-    [1,'9:23','홍*기','정수기 접수완료'],
-    [1,'9:55','전*미','정수기 접수완료'],
-    [1,'10:28','노*란','정수기 접수완료'],
-    [1,'11:02','하*빈','세탁기 접수완료'],
-    [1,'11:44','성*준','정수기 접수완료'],
-    [1,'12:15','방*인','정수기 접수완료'],
-    [1,'13:38','오*준','정수기 접수완료'],
-    [1,'15:21','서*훈','TV 접수완료'],
-    [2,'9:17','권*주','정수기 접수완료'],
-    [2,'9:49','문*성','정수기 접수완료'],
-    [2,'10:33','이*진','정수기 접수완료'],
-    [2,'11:08','조*연','정수기 접수완료'],
-    [2,'11:52','고*현','정수기 접수완료'],
-    [2,'12:07','윤*선','정수기 접수완료'],
-    [2,'14:12','심*은','정수기 접수완료'],
-    [2,'16:38','안*혜','냉장고 접수완료'],
-  ];
-
-  // 현금입금완료 24개
-  var rawM = [
-    [0,'9:15','이*선','현금입금완료'],
-    [0,'9:52','조*준','현금입금완료'],
-    [0,'10:24','오*란','현금입금완료'],
-    [0,'10:58','권*호','현금입금완료'],
-    [0,'11:31','문*선','현금입금완료'],
-    [0,'11:48','고*준','현금입금완료'],
-    [0,'13:55','나*원','현금입금완료'],
-    [0,'15:22','차*혜','현금입금완료'],
-    [1,'9:09','도*민','현금입금완료'],
-    [1,'9:44','표*수','현금입금완료'],
-    [1,'10:19','석*아','현금입금완료'],
-    [1,'10:53','길*준','현금입금완료'],
-    [1,'11:27','옥*영','현금입금완료'],
-    [1,'12:06','봉*철','현금입금완료'],
-    [1,'14:15','탁*선','현금입금완료'],
-    [1,'16:03','계*빈','현금입금완료'],
-    [2,'9:31','노*현','현금입금완료'],
-    [2,'10:06','어*민','현금입금완료'],
-    [2,'10:41','현*빈','현금입금완료'],
-    [2,'11:15','유*영','현금입금완료'],
-    [2,'11:59','가*철','현금입금완료'],
-    [2,'13:42','라*주','현금입금완료'],
-    [2,'15:48','사*선','현금입금완료'],
-    [2,'17:11','마*준','현금입금완료'],
-  ];
-
-  function filt(raw){
-    return raw.filter(function(it){ return ok(it[0],it[1]); })
-      .map(function(it){ return [fmt(biz[it[0]]),it[1],it[2],it[3]]; });
-  }
-
-  var itemsC=filt(rawC), itemsM=filt(rawM);
-
-  function buildTrack(el,data,cls){
-    data.concat(data).forEach(function(it){
-      var div=document.createElement('div');
-      div.className='rolling-item';
-      div.innerHTML='<span class="ri-date">'+it[0]+' '+it[1]+'</span>'+
-        '<span class="ri-name">'+it[2]+'</span>'+
-        '<span class="ri-service '+cls+'">'+it[3]+'</span>';
-      el.appendChild(div);
-    });
-  }
-
-  var ITEM_H=44;
-  var elC=document.getElementById('rollingTrackComplete');
-  var elM=document.getElementById('rollingTrackCash');
-  buildTrack(elC,itemsC,'ri-complete');
-  buildTrack(elM,itemsM,'ri-cash');
-
-  // 폰·PC 모두 한 줄씩 딱딱 넘긴다 (steps = 한 칸씩 건너뜀, 부드럽게 흐르지 않음)
-  // 폰은 한 줄만 보이고, PC는 다섯 줄이 보이면서 한 줄씩 올라간다
-  // 아래 두 값만 바꾸면 넘어가는 속도가 바뀐다 (2026-08-13)
-  var 한줄초_폰=1.5, 한줄초_피시=2;
-  function 굴림맞춤(el,개수){
-    if(개수<=0) return;
-    var 폰=window.matchMedia('(max-width: 768px)').matches;
-    el.style.animationTimingFunction='steps('+개수+')';
-    el.style.animationDuration=(개수*(폰?한줄초_폰:한줄초_피시))+'s';
-  }
-  function 굴림갱신(){
-    if(itemsC.length>0){
-      document.documentElement.style.setProperty('--roll-c-dist','-'+(itemsC.length*ITEM_H)+'px');
-      굴림맞춤(elC,itemsC.length);
-    }
-    if(itemsM.length>0){
-      document.documentElement.style.setProperty('--roll-m-dist','-'+(itemsM.length*ITEM_H)+'px');
-      굴림맞춤(elM,itemsM.length);
-    }
-  }
-  굴림갱신();
-  window.addEventListener('resize',굴림갱신);
+      굴림맞춤(줄들.length);
+      섹션.style.display = '';
+      window.addEventListener('resize', function(){ 굴림맞춤(줄들.length); });
+    })
+    .catch(function(){ /* 못 읽으면 칸을 감춘 채로 둔다 */ });
 })();
 
 // Swiper
