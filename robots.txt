@@ -3,6 +3,8 @@ Allow: /
 
 # 작업본·백업은 검색에 나오지 않도록
 Disallow: /_보관/
+# 은퇴한 옛 페이지 — 광고 직접 유입은 살리고 자연 검색 노출만 차단 (2026-08-20)
+Disallow: /internet.html
 Disallow: /font-test.html
 Disallow: /rental-v2.html
 Disallow: /*backup
