@@ -1,5 +1,5 @@
 /* ===================================================================
-   당현함 유입경로 공용 부품  —  dh-inflow.js  (2026-08-20 신설)
+   당현함 유입경로 공용 부품  —  dh-inflow.js  (2026-08-20 신설 / 같은 날 v2)
 
    ■ 무슨 일을 하나
      "이 손님이 어디서 왔는지"를 알아내 손님 브라우저에 30일 동안 기억해 두고,
@@ -19,7 +19,7 @@
      당장 안 고쳐도 자료를 잃지는 않는다.
 
    ■ 파일을 고친 뒤에는
-     네 개 html 의 <script src="js/dh-inflow.js?v=1"> 에서 v 숫자를 하나 올린다.
+     네 개 html 의 <script src="js/dh-inflow.js?v=2"> 에서 v 숫자를 하나 올린다.
      그래야 방문자 브라우저가 옛 파일을 재활용하지 않고 새로 받아 간다.
 =================================================================== */
 (function (global) {
@@ -33,15 +33,25 @@ var 매체이름 = {
   naver:'네이버', google:'구글', daum:'다음', bing:'빙',
   instagram:'인스타', facebook:'페이스북', threads:'스레드',
   youtube:'유튜브', tiktok:'틱톡', band:'밴드',
-  kakao:'카카오', daangn:'당근', tistory:'티스토리'
+  kakao:'카카오', daangn:'당근', tistory:'티스토리',
+  x:'엑스', twitter:'엑스', linkedin:'링크드인', pinterest:'핀터레스트', line:'라인'
 };
 
 /* -- 이름표 2 : 방식 (어떤 형태의 광고·링크인가) ------------------ */
 var 방식이름 = {
-  cpc:'검색광고', display:'배너광고', paid_social:'릴스·피드광고',
-  sponsored_blog:'블로그 의뢰', profile:'프로필', message:'메시지',
+  cpc:'검색광고', display:'배너광고',
+  /* paid_social 은 예전에 '릴스·피드광고' 였는데 인스타 기준이라 페북·틱톡·유튜브에 붙으면
+     어색했다. '광고' 로 줄이니 어느 매체에 붙여도 자연스럽다 (2026-08-20).
+     릴스인지 피드인지는 소재(utm_content) 칸에 적으면 된다.
+     video 도 같은 이유로 '광고' 로 통일 — 유튜브·틱톡은 매체 이름만으로 영상인 걸 안다 */
+  paid_social:'광고', video:'광고',
+  sponsored_blog:'블로그 의뢰',
+  /* 대행사에 링크를 넘길 때 쓴다. 대행사가 카페에 넣든 블로그에 넣든
+     실제로 거쳐 온 곳은 아래 '경유' 로 따로 적히므로 이 이름은 그대로 둔다 */
+  sponsored:'대행사 글',
+  profile:'프로필', message:'메시지',
   social:'소셜', organic:'검색', referral:'링크',
-  email:'메일', sms:'문자', video:'영상광고', affiliate:'제휴'
+  email:'메일', sms:'문자', affiliate:'제휴'
 };
 
 /* -- 이름표 3 : 조합만으로는 이름이 어색한 것만 따로 --------------
@@ -49,8 +59,9 @@ var 방식이름 = {
    여기 없으면 '매체이름 + 방식이름' 으로 자동 조합한다.
    (예: instagram+profile -> "인스타 프로필", naver+display -> "네이버 배너광고") */
 var 특별조합 = {
-  'naver|cpc|powerlink' : '네이버 파워링크',
-  'daangn|display'      : '당근 지역광고'
+  'naver|cpc|powerlink'     : '네이버 파워링크',
+  'naver|cpc|powercontents' : '네이버 파워컨텐츠',
+  'daangn|display'          : '당근 지역광고'
 };
 
 /* -- 이름표 4 : 꼬리표 없이 넘어왔을 때, 어느 사이트에서 왔나 ------
@@ -63,6 +74,8 @@ var 넘어온곳 = [
   ['post.naver.',   '네이버 포스트',     'naver'],
   ['in.naver.',     '네이버 인플루언서', 'naver'],
   ['search.naver.', '네이버 검색',       'naver'],
+  ['tv.naver.',     '네이버TV',          'naver'],
+  ['clip.naver.',   '네이버 클립',       'naver'],
   ['naver.',        '네이버',            'naver'],
   ['google.',       '구글 검색',         'google'],
   ['bing.',         '빙 검색',           'bing'],
@@ -80,7 +93,12 @@ var 넘어온곳 = [
   ['linkstory.',    '링크스토리',        'linkstory'],
   ['chatgpt.',      'ChatGPT',           'chatgpt'],
   ['gemini.',       '제미나이',          'gemini'],
-  ['perplexity.',   '퍼플렉시티',        'perplexity']
+  ['perplexity.',   '퍼플렉시티',        'perplexity'],
+  ['x.com',         '엑스',              'x'],
+  ['twitter.',      '엑스',              'x'],
+  ['t.co',          '엑스',              'x'],
+  ['linkedin.',     '링크드인',          'linkedin'],
+  ['pinterest.',    '핀터레스트',        'pinterest']
 ];
 
 /* -- 사람이 읽을 이름 만들기 ------------------------------------- */
@@ -164,9 +182,18 @@ function 지금판단() {
   var 꼬리표 = 꼬리표읽기();
 
   if (꼬리표.source || 꼬리표.medium || 꼬리표.campaign) {
+    /* ★2026-08-20 : 꼬리표가 있어도 '실제로 어느 사이트에서 눌렀는지' 를 같이 적는다.
+       예전에는 꼬리표가 있으면 이걸 버렸다. 그 바람에 대행사에 링크를 넘길 때
+       "이건 카페용, 이건 블로그용" 하고 미리 나눠 줘야 했는데, 대행사는 노출될 때까지
+       여러 곳에 반복해 올리므로 애초에 나눌 수가 없었다.
+       이제 링크는 대행사마다 하나만 주면 되고, 카페냐 블로그냐는 여기서 갈린다.
+       인스타처럼 중간에 링크스토리를 거치는 경우도 '(링크스토리 경유)' 로 드러나
+       중간에서 얼마나 새는지 신청 단위로 보인다. */
+    var 경유 = 넘어온곳찾기();
+    var 경유말 = (경유 && !경유.직접) ? ' (' + 경유.summary + ' 경유)' : '';
     저장하기({
       summary : [이름만들기(꼬리표.source, 꼬리표.medium, 꼬리표.content), 꼬리표.campaign]
-                  .filter(Boolean).join(' / '),
+                  .filter(Boolean).join(' / ') + 경유말,
       source  : 꼬리표.source || '',
       campaign: 꼬리표.campaign || '',
       detail  : [꼬리표.content, 꼬리표.term].filter(Boolean).join(' / '),
