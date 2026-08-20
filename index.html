@@ -1248,6 +1248,117 @@ html { scroll-behavior: smooth; scroll-padding-top: 78px; }
   }
 }
 </style>
+<style>
+/* ============================================================
+   첫 화면 지원금 명세 (추가분)
+   - 명세표는 '흰 종이', 신청폼은 '둥근 카드' — 재질을 다르게 해서
+     같은 흰색이라도 다른 물건으로 읽히게 한다
+   - 강조색: 주황(#ff6b00) = 위 배지와 같은 색
+   ============================================================ */
+
+/* ── 명세표 ── */
+.dh-ledger{
+  position:relative;
+  max-width:560px; margin:0 0 20px;
+  background:#ffffff;
+  border:1px solid rgba(12,40,128,.10);
+  border-radius:4px;                 /* 카드처럼 둥글지 않게 */
+  padding:16px 20px 14px;
+  box-shadow:0 6px 18px rgba(4,18,60,.22);   /* 신청폼보다 얕게 = 뒤에 눕는다 */
+}
+.dh-ledger::after{                   /* 영수증처럼 뜯긴 아래쪽 */
+  content:"";
+  position:absolute; left:0; right:0; bottom:-9px; height:9px;
+  background:radial-gradient(circle at 6px 0, #ffffff 5.2px, transparent 5.6px) repeat-x;
+  background-size:12px 9px;
+  pointer-events:none;
+}
+.dh-ledger-row{
+  display:flex; align-items:center; gap:10px;
+  padding:7px 0; border-bottom:1px dashed rgba(12,40,128,.14);
+}
+.dh-ledger-row:last-of-type{ border-bottom:0 }
+.dh-ledger-row .t{ font-size:20px; font-weight:600; color:#1e293b }
+.dh-ledger-row .d{ flex:1; border-bottom:1px dotted rgba(12,40,128,.22); transform:translateY(-4px) }
+.dh-ledger-row .v{ font-size:22px; font-weight:700; color:#0f172a; font-variant-numeric:tabular-nums; white-space:nowrap }
+.dh-ledger-row .v.small{ font-weight:800 }
+
+/* 비밀지원금 줄 — 어디와도 비교할 수 없는 유일한 항목이라 맨 아래에서 강조 */
+.dh-ledger-row.hi .t{ font-size:23px; font-weight:700; color:#ff6b00 }
+.dh-ledger-row.hi .v.small{ font-size:25px; color:#ff6b00 }
+.dh-ledger-row.hi .d{ border-bottom-color:rgba(255,107,0,.45) }
+
+/* 합계 */
+.dh-ledger-sum{
+  display:flex; align-items:baseline; justify-content:space-between; gap:10px;
+  margin-top:9px; padding-top:10px; border-top:2px solid rgba(12,40,128,.45);
+}
+.dh-ledger-sum .t{ font-size:16px; font-weight:600; color:#64748b }
+.dh-ledger-sum .v{ font-size:32px; font-weight:900; color:#0C2880; letter-spacing:-.5px; font-variant-numeric:tabular-nums }
+.dh-ledger-sum .v em{ font-style:normal; font-size:27px; font-weight:800; color:#ff6b00 }
+
+/* ── 휴대폰 ── */
+@media (max-width:900px){
+  .dh-ledger{ margin-left:auto; margin-right:auto; padding:12px 14px 10px }
+
+  /* 떠 있는 전화·카톡 단추를 줄이고, 명세 내용을 상자 가운데로 모아
+     금액이 단추에 가리지 않게 한다 (좌우 여백을 똑같이 줘서 한쪽만 비지 않게) */
+  .floating-btns{ right:14px }
+  .float-btn{ width:46px; height:46px; font-size:20px }
+  .dh-ledger-row{ padding:6px 36px }
+  .dh-ledger-sum{ padding-left:36px; padding-right:36px }
+
+  .dh-ledger-row .t{ font-size:16px }
+  .dh-ledger-row .v{ font-size:18px }
+  .dh-ledger-row.hi .t{ font-size:18px }
+  .dh-ledger-row.hi .v.small{ font-size:19px }
+  .dh-ledger-sum .t{ font-size:14px }
+  .dh-ledger-sum .v{ font-size:27px }
+  .dh-ledger-sum .v em{ font-size:23px }
+}
+
+/* ── 첫 화면 높이 조정: 명세표가 들어간 만큼 위아래를 당겨 아래가 안 잘리게 ── */
+.hero{ padding-top:28px }              /* 원래 72px */
+.hero-badge{ margin-bottom:6px }       /* 원래 10px */
+.hero-cash-badge{ margin-bottom:10px } /* 원래 20px */
+.hero h1{ margin-bottom:8px }          /* 원래 20px */
+.hero-stats{ margin-top:10px }         /* 원래 40px */
+.since-badge{ margin-bottom:6px }      /* 원래 10px */
+@media (max-width:900px){
+  .hero{ padding-top:40px }
+  .hero-cash-badge{ margin-bottom:12px }
+  .hero h1{ margin-bottom:10px }
+  .hero-stats{ margin-top:16px }
+}
+
+/* ── 명세표 아래 두 문장: 크기·밝기를 맞추고 한 덩어리로 묶는다 ── */
+.hero-desc{ margin-bottom:3px; line-height:1.4 }          /* 원래 14px / 1.7 */
+.hero-sub-assurance{
+  font-size:clamp(15px,1.7vw,19px);                       /* 원래 16px 고정 */
+  color:rgba(255,255,255,.88);                            /* 원래 75% */
+  line-height:1.4; margin-bottom:8px;
+}
+@media (max-width:900px){
+  /* 폰에서는 문장이 두 줄로 접히므로 문장 안쪽 줄간격을 조금 더 준다 */
+  .hero-desc{ line-height:1.5; margin-bottom:5px }
+  .hero-sub-assurance{ line-height:1.5 }
+}
+
+/* ── 앞뒤 서열: 신청폼이 앞, 명세표가 뒤, 누를 곳이 가장 진한 파랑 ── */
+.hero-form-wrap .form-card{ box-shadow:0 30px 70px rgba(4,18,60,.45), 0 6px 16px rgba(4,18,60,.28) }
+.form-submit,
+.mobile-cta-btn{                       /* 휴대폰 아래 고정 막대 — 같은 파랑 계열 */
+  background:linear-gradient(180deg,#1a6bff 0%,#0e48cc 100%);
+  box-shadow:0 8px 20px rgba(20,97,240,.45);
+}
+/* PC 아래 고정 막대와 옆 신청칸은 파란 바탕 위에 있어 파란 버튼이 묻힌다.
+   그래서 색은 주황 그대로 두고, 입체 효과만 똑같이 준다 */
+.desk-cta-bar-btn,
+.sticky-form-btn{
+  background:linear-gradient(180deg,#ff8124 0%,#e35a00 100%);
+  box-shadow:0 8px 20px rgba(255,107,0,.42);
+}
+</style>
 </head>
 <body>
 
@@ -1286,7 +1397,14 @@ html { scroll-behavior: smooth; scroll-padding-top: 78px; }
       <div class="hero-badge">인터넷 · 정수기 · 가전렌탈 전문</div>
       <div class="hero-cash-badge">지원금 128만원,<br class="mob-br"> 가만두면 손해!</div>
       <h1>놓친 지원금<br> <em>3분이면 확인 끝</em></h1>
-      <p class="hero-desc">약정 끝난 인터넷·TV·정수기<br class="mob-br"> 그대로 두면 최대 128만원을 버리는 겁니다<br>전체 통신사 비교 후 <strong>당일 현금 지급</strong>,<br class="mob-br"> 가장 유리한 조건으로 안내해드립니다</p>
+      <div class="dh-ledger">
+        <div class="dh-ledger-row"><span class="t">인터넷 가입</span><span class="d"></span><span class="v">48만원</span></div>
+        <div class="dh-ledger-row"><span class="t">유심 번호이동</span><span class="d"></span><span class="v">30만원</span></div>
+        <div class="dh-ledger-row"><span class="t">정수기 · 가전렌탈</span><span class="d"></span><span class="v">50만원</span></div>
+        <div class="dh-ledger-row hi"><span class="t">비밀지원금</span><span class="d"></span><span class="v small">상담 시 안내</span></div>
+        <div class="dh-ledger-sum"><span class="t">합계 최대</span><span class="v">128만원<em> +α</em></span></div>
+      </div>
+      <p class="hero-desc">전체 통신사 비교 후 <strong>당일 현금 지급</strong>,<br class="mob-br"> 가장 유리한 조건으로 안내해드립니다</p>
       <p class="hero-sub-assurance">타업체보다 적다면?<br class="mob-br"> <strong style="color:#FFF200;">차액을 보상해드립니다.</strong></p>
       <div class="hero-stats">
         <div class="hero-stat">
