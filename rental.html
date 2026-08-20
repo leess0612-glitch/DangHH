@@ -94,97 +94,16 @@ window.addEventListener('scroll', function(){
   if(h > 0 && (window.scrollY / h) >= 0.5) dhTrack('scroll_50');
 }, { passive: true });
 
-/* ===== 어디서 들어온 손님인지 기억하기 (30일 보관 / 광고끼리는 마지막 것이 이김) ===== */
-var DH_KEEP_DAYS = 30;
-/* [매체, 방식, 소재, 사람이 읽을 이름] — '*'는 아무 값이나 */
-var DH_KIND = [
-  ['naver','cpc','powerlink','네이버 파워링크'],
-  ['naver','cpc','*','네이버 파워컨텐츠'],
-  ['naver','sponsored_blog','*','블로그 의뢰'],
-  ['naver','display','*','네이버 GFA'],
-  ['instagram','paid_social','*','인스타 릴스광고'],
-  ['instagram','profile','*','인스타 프로필'],
-  ['daangn','display','*','당근 지역광고'],
-  ['kakao','message','*','카카오 채널']
-];
-function dhPickName(s, m, c){
-  for(var i=0;i<DH_KIND.length;i++){
-    var k = DH_KIND[i];
-    if(k[0]===s && k[1]===m && (k[2]==='*' || k[2]===c)) return k[3];
-  }
-  return [s, m].filter(Boolean).join(' ');   /* 표에 없는 새 광고는 원래 값 그대로 */
-}
-/* 주소 뒤에 붙은 꼬리표(utm_) 읽기 */
-function dhReadTag(){
-  var out = {}, q = location.search.replace(/^\?/, '');
-  if(!q) return out;
-  q.split('&').forEach(function(p){
-    var i = p.indexOf('='); if(i < 1) return;
-    var k = p.slice(0,i), v = p.slice(i+1);
-    try{ v = decodeURIComponent(v.replace(/\+/g,' ')); }catch(e){}
-    if(k.indexOf('utm_') === 0) out[k.slice(4)] = v;
-  });
-  return out;
-}
-/* 꼬리표가 없을 때는 어디서 넘어왔는지로 대신 적는다 */
-function dhFromReferrer(){
-  var r = document.referrer || '';
-  if(!r) return { summary:'직접방문', source:'(direct)' };
-  var host = '';
-  try{ host = new URL(r).hostname.replace(/^www\./,''); }catch(e){ return { summary:'직접방문', source:'(direct)' }; }
-  if(host === location.hostname) return null;          /* 우리 페이지끼리 이동 → 기존 기록 유지 */
-  if(host.indexOf('google.') > -1)    return { summary:'구글 검색',   source:'google' };
-  if(host.indexOf('cafe.naver') > -1) return { summary:'네이버 카페', source:'naver' };
-  if(host.indexOf('naver.') > -1)     return { summary:'네이버 검색', source:'naver' };
-  if(host.indexOf('daum.') > -1)      return { summary:'다음 검색',   source:'daum' };
-  if(host.indexOf('instagram') > -1)  return { summary:'인스타그램',  source:'instagram' };
-  if(host.indexOf('youtube') > -1)    return { summary:'유튜브',      source:'youtube' };
-  return { summary: host + ' 링크', source: host };
-}
-function dhSaveIn(o){
-  try{ o.until = Date.now() + DH_KEEP_DAYS*86400000; localStorage.setItem('dh_in', JSON.stringify(o)); }catch(e){}
-}
-function dhLoadIn(){
-  try{
-    var o = JSON.parse(localStorage.getItem('dh_in') || 'null');
-    if(!o) return null;
-    if(o.until && Date.now() > o.until){ localStorage.removeItem('dh_in'); return null; }
-    return o;
-  }catch(e){ return null; }
-}
-/* 페이지가 열릴 때 한 번만 판단한다 */
-(function(){
-  try{
-    var t = dhReadTag();
-    if(t.source || t.medium || t.campaign){        /* 광고 꼬리표를 달고 왔다 → 최신 것으로 덮어쓴다 */
-      dhSaveIn({
-        summary : [dhPickName(t.source, t.medium, t.content), t.campaign].filter(Boolean).join(' / '),
-        source  : t.source || '',
-        campaign: t.campaign || '',
-        detail  : [t.content, t.term].filter(Boolean).join(' / '),
-        page    : location.pathname || '/'
-      });
-      return;
-    }
-    if(dhLoadIn()) return;                          /* 광고 기록이 이미 있으면 지우지 않는다 */
-    var r = dhFromReferrer();
-    if(!r) return;
-    dhSaveIn({ summary:r.summary, source:r.source, campaign:'', detail:'', page: location.pathname || '/' });
-  }catch(e){}
-})();
-/* 신청서를 보낼 때 같이 실어 보낼 내용 */
-function dhInflow(){
-  try{
-    var o = dhLoadIn() || {};
-    return {
-      in_summary : o.summary  || '직접방문',
-      in_source  : o.source   || '(direct)',
-      in_campaign: o.campaign || '',
-      in_detail  : o.detail   || '',
-      in_page    : o.page     || (location.pathname || '/')
-    };
-  }catch(e){ return {}; }
-}
+/* ===== 어디서 들어온 손님인지 기억하기 =====
+   여기 있던 코드는 js/dh-inflow.js 로 옮겼다 (2026-08-20).
+   같은 코드가 네 파일(index·internet·rental·gift)에 통째로 복사돼 있어서,
+   광고 갈래 하나를 늘리려면 네 곳을 똑같이 고쳐야 했고
+   한 곳만 빠뜨리면 페이지마다 결과가 달라졌다. 이제 부품 파일 하나만 고치면 된다. */
+</script>
+<script src="js/dh-inflow.js?v=1"></script>
+<script>
+/* 부품 파일을 못 받아 왔더라도 신청 접수는 막히지 않게 한다 (유입 칸만 비게 된다) */
+if (typeof dhInflow !== 'function') { window.dhInflow = function () { return {}; }; }
 </script>
 <!-- ===== 전환추적 끝 ===== -->
 
