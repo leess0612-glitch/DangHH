@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NBGKQ2Y301"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-NBGKQ2Y301');
+</script>
+
+<!-- Meta Pixel Code -->
+<script>
+  !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+  n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}
+  (window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init','1578163177053016');
+  fbq('track','PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1578163177053016&ev=PageView&noscript=1"/></noscript>
+<!-- End Meta Pixel Code -->
+
+<!-- ===== 당현함 통합 전환추적 v1 (다섯 페이지 공통: index·internet·rental·gift·plans / 수정 시 5개 파일 모두 동일하게) ===== -->
+<script>
+/* 이 페이지를 통계에서 부를 이름 */
+var DH_PAGE = 'danghh-plans';
+/* 네이버 전환추적 ID — [미정] 네이버 광고 계정 > 프리미엄 로그분석에서 발급받아 채우면 즉시 작동 */
+var DH_NAVER_ID = '';
+
+/* 같은 방문에서 한 번만 세도록 막는 장치 */
+function dhOnce(key){
+  try{
+    if(sessionStorage.getItem('dh_'+key)) return false;
+    sessionStorage.setItem('dh_'+key,'1'); return true;
+  }catch(e){ return true; }
+}
+
+/* 전환 1건을 구글·메타·네이버에 동시에 알림 (개인정보는 보내지 않음) */
+function dhTrack(action, opts){
+ try{
+  opts = opts || {};
+  if(opts.once !== false && !dhOnce(action)) return;
+
+  /* 1) 구글 애널리틱스 */
+  if(typeof gtag === 'function'){
+    gtag('event', action, { dh_page: DH_PAGE });
+  }
+  /* 2) 메타 픽셀 */
+  if(typeof fbq === 'function'){
+    var metaName = { lead_submit:'Lead', kakao_click:'Contact', phone_click:'Contact' }[action];
+    if(metaName) fbq('track', metaName, { content_name: DH_PAGE + '/' + action });
+    else fbq('trackCustom', action, { content_name: DH_PAGE });
+  }
+  /* 3) 네이버 (ID를 채운 경우에만) */
+  if(DH_NAVER_ID && window.wcs && window.wcs_do && action !== 'scroll_50'){
+    try{ var _c={}; _c['cnv'] = wcs.cnv('3','1'); wcs_do(_c); }catch(e){}
+  }
+ }catch(e){ /* 추적이 실패해도 신청 접수는 절대 방해하지 않음 */ }
+}
+
+/* 네이버 스크립트는 ID가 채워졌을 때만 불러옴 */
+(function(){
+  if(!DH_NAVER_ID) return;
+  var s=document.createElement('script'); s.async=true; s.src='//wcs.naver.net/wcslog.js';
+  s.onload=function(){
+    try{
+      if(!window.wcs_add) window.wcs_add={};
+      wcs_add['wa']=DH_NAVER_ID;
+      if(!window._nasa) window._nasa={};
+      if(window.wcs) wcs.inflow();
+      wcs_do(_nasa);
+    }catch(e){}
+  };
+  document.head.appendChild(s);
+})();
+
+/* 전화·카카오 링크 클릭 자동 감지 (버튼이 몇 개든 자동으로 잡힘) */
+document.addEventListener('click', function(e){
+  var a = e.target && e.target.closest ? e.target.closest('a') : null;
+  if(!a) return;
+  var href = a.getAttribute('href') || '';
+  if(href.indexOf('tel:') === 0) dhTrack('phone_click');
+  else if(href.indexOf('pf.kakao.com') > -1) dhTrack('kakao_click');
+}, true);
+
+/* 페이지를 절반 이상 읽었는지 */
+window.addEventListener('scroll', function(){
+  var h = document.documentElement.scrollHeight - window.innerHeight;
+  if(h > 0 && (window.scrollY / h) >= 0.5) dhTrack('scroll_50');
+}, { passive: true });
+</script>
+<script src="js/dh-inflow.js?v=3"></script>
+<script>
+/* 부품 파일을 못 받아 왔더라도 신청 접수는 막히지 않게 한다 (유입 칸만 비게 된다) */
+if (typeof dhInflow !== 'function') { window.dhInflow = function () { return {}; }; }
+</script>
+<!-- ===== 전환추적 끝 ===== -->
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>통신사별 실제 요금표 | 당현함</title>
+<meta name="description" content="KT·SK브로드밴드·LG U+ 인터넷과 TV 결합 요금, 결합 조건별 월 요금과 현금 사은품 금액을 통신사별 요금표로 한눈에 확인하세요.">
+<link rel="canonical" href="https://danghh.com/plans.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="통신사별 실제 요금표 | 당현함">
+<meta property="og:description" content="KT·SK·LG U+ 인터넷 요금과 현금 사은품을 통신사별 요금표로 확인하세요.">
+<meta property="og:url" content="https://danghh.com/plans.html">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%231a56db'/><text y='68' x='50' text-anchor='middle' font-size='54' font-family='sans-serif' font-weight='900' fill='white'>당</text></svg>">
+
+<!-- SUIT 글꼴 (index.html과 동일한 방식 — 제작사 공식 주소에서 직접 불러옴) -->
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<style>
+@font-face { font-family:'SUIT'; font-weight:400; font-display:swap; src:url('https://cdn.jsdelivr.net/gh/sun-typeface/SUIT@2/fonts/static/woff2/SUIT-Regular.woff2') format('woff2'); }
+@font-face { font-family:'SUIT'; font-weight:500; font-display:swap; src:url('https://cdn.jsdelivr.net/gh/sun-typeface/SUIT@2/fonts/static/woff2/SUIT-Medium.woff2') format('woff2'); }
+@font-face { font-family:'SUIT'; font-weight:600; font-display:swap; src:url('https://cdn.jsdelivr.net/gh/sun-typeface/SUIT@2/fonts/static/woff2/SUIT-SemiBold.woff2') format('woff2'); }
+@font-face { font-family:'SUIT'; font-weight:700; font-display:swap; src:url('https://cdn.jsdelivr.net/gh/sun-typeface/SUIT@2/fonts/static/woff2/SUIT-Bold.woff2') format('woff2'); }
+@font-face { font-family:'SUIT'; font-weight:800; font-display:swap; src:url('https://cdn.jsdelivr.net/gh/sun-typeface/SUIT@2/fonts/static/woff2/SUIT-ExtraBold.woff2') format('woff2'); }
+@font-face { font-family:'SUIT'; font-weight:900; font-display:swap; src:url('https://cdn.jsdelivr.net/gh/sun-typeface/SUIT@2/fonts/static/woff2/SUIT-Heavy.woff2') format('woff2'); }
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --primary: #1461F0;
+  --primary-dark: #0E48CC;
+  --accent: #f59e0b;
+  --dark: #0f172a;
+  --gray: #64748b;
+  --light-gray: #f1f5f9;
+  --white: #ffffff;
+  --border: #e2e8f0;
+  --ground: #f8fafc;
+  /* 통신사 고유색 — index.html 카드 로고에 쓰는 색과 같음 */
+  --kt: #e60012;
+  --sk: #f97316;
+  --lg: #e6008c;
+}
+body { font-family: 'SUIT', 'Noto Sans KR', sans-serif; color: var(--dark); line-height: 1.6; overflow-x: hidden; background: var(--ground); }
+body.locked { overflow: hidden; }
+
+/* ===== HEADER (index.html과 동일) ===== */
+header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: white; box-shadow: 0 2px 12px rgba(15,42,90,0.09); }
+.header-inner { max-width: 1200px; margin: 0 auto; padding: 0 20px; height: 64px; display: flex; align-items: center; justify-content: space-between; }
+.logo { font-size: 22px; font-weight: 900; color: var(--primary); text-decoration: none; letter-spacing: -0.5px; }
+.logo span { color: var(--primary); }
+nav { display: flex; gap: 4px; align-items: center; }
+nav a { font-size: 14px; font-weight: 500; color: var(--gray); text-decoration: none; padding: 6px 10px; border-radius: 6px; transition: all 0.2s; }
+nav a:hover { color: var(--primary); background: #eff6ff; }
+nav a.on { color: var(--primary); background: #eff6ff; font-weight: 700; }
+.header-phone { display: flex; align-items: center; gap: 6px; background: var(--primary); color: white; padding: 8px 16px; border-radius: 8px; font-size: 15px; font-weight: 700; text-decoration: none; transition: transform 0.12s ease, background 0.2s; }
+.header-phone:hover { background: var(--primary-dark); }
+.header-phone:active { transform: translateY(1px) scale(0.985); }
+.hamburger { display: none; cursor: pointer; flex-direction: column; gap: 5px; }
+.hamburger span { display: block; width: 24px; height: 2px; background: var(--dark); border-radius: 2px; }
+.mobile-menu { display: none; position: fixed; top: 64px; left: 0; right: 0; background: white; padding: 12px 20px; box-shadow: 0 8px 20px rgba(0,0,0,0.1); z-index: 999; }
+.mobile-menu.open { display: block; }
+.mobile-menu a { display: block; padding: 13px 0; font-size: 15px; font-weight: 500; color: var(--dark); text-decoration: none; border-bottom: 1px solid var(--border); }
+.mobile-menu a:last-child { border-bottom: none; }
+.mobile-menu a:active { background: #f1f5f9; }
+
+/* ===== 페이지 머리띠 (gift.html과 동일한 틀) ===== */
+.page-head {
+  margin-top: 64px;
+  background: linear-gradient(135deg, #0C2880 0%, #1461F0 60%, #1A6BFF 100%);
+  color: white; padding: 44px 20px 40px; text-align: center;
+}
+.page-head h1 { font-size: 30px; font-weight: 900; letter-spacing: -1px; margin-bottom: 8px; text-wrap: balance; }
+.page-head p { font-size: 15px; color: rgba(255,255,255,0.85); word-break: keep-all; }
+.page-head .badge {
+  display: inline-block; background: rgba(255,255,255,0.18); border: 1px solid rgba(255,255,255,0.3);
+  font-size: 13px; font-weight: 600; padding: 4px 16px; border-radius: 20px; margin-bottom: 12px;
+}
+
+/* ===== 통신사 고르는 단추 (화면 위에 붙어서 따라옴) ===== */
+.tabbar { position: sticky; top: 64px; z-index: 500; background: var(--ground); border-bottom: 1px solid var(--border); }
+.tabs {
+  max-width: 860px; margin: 0 auto; padding: 12px 20px;
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;
+}
+.tab {
+  font-family: inherit; font-size: 17px; font-weight: 900; letter-spacing: -0.3px;
+  padding: 13px 8px; border-radius: 12px; cursor: pointer;
+  background: white; border: 1.5px solid var(--border); color: var(--gray);
+  box-shadow: 0 2px 12px rgba(15,42,90,0.06);
+  transition: transform 0.12s ease, background 0.2s, border-color 0.2s, box-shadow 0.2s, color 0.2s;
+}
+.tab.kt { color: var(--kt); }
+.tab.sk { color: var(--sk); }
+.tab.lg { color: var(--lg); font-size: 15px; }
+.tab:hover { border-color: currentColor; }
+.tab:active { transform: translateY(1px) scale(0.985); }
+.tab[aria-selected="true"] { color: white; box-shadow: 0 6px 18px rgba(15,42,90,0.16); }
+.tab.kt[aria-selected="true"] { background: var(--kt); border-color: var(--kt); }
+.tab.sk[aria-selected="true"] { background: var(--sk); border-color: var(--sk); }
+.tab.lg[aria-selected="true"] { background: var(--lg); border-color: var(--lg); }
+
+/* ===== 본문 ===== */
+.wrap { max-width: 860px; margin: 0 auto; padding: 26px 20px 60px; }
+.panel[hidden] { display: none; }
+.sheet-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-bottom: 14px; }
+.sheet-name { font-size: 20px; font-weight: 800; letter-spacing: -0.5px; word-break: keep-all; }
+.sheet-name .co { font-weight: 900; }
+.sheet-name.kt .co { color: var(--kt); }
+.sheet-name.sk .co { color: var(--sk); }
+.sheet-name.lg .co { color: var(--lg); }
+.zoom-hint {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 13px; font-weight: 700; color: var(--primary);
+  background: #eff6ff; padding: 6px 13px; border-radius: 20px; white-space: nowrap;
+}
+
+.sheet {
+  display: block; width: 100%; padding: 0; cursor: zoom-in;
+  background: white; border: 1px solid var(--border); border-radius: 16px;
+  box-shadow: 0 2px 12px rgba(15,42,90,0.05); overflow: hidden;
+  transition: transform 0.15s ease, border-color 0.2s, box-shadow 0.2s;
+}
+.sheet:hover { border-color: var(--primary); box-shadow: 0 8px 24px rgba(20,97,240,0.12); }
+.sheet:active { transform: scale(0.995); }
+.sheet img { display: block; width: 100%; height: auto; }
+
+.note { margin-top: 16px; padding: 15px 18px; background: white; border: 1px solid var(--border); border-radius: 12px; font-size: 13px; color: var(--gray); line-height: 1.8; word-break: keep-all; }
+
+/* 상담 유도 (gift.html과 동일한 틀) */
+.cta-box { margin-top: 30px; background: linear-gradient(135deg, #0C2880 0%, #1461F0 100%); border-radius: 16px; padding: 30px 24px; text-align: center; color: white; }
+.cta-box h3 { font-size: 21px; font-weight: 900; margin-bottom: 8px; letter-spacing: -0.5px; word-break: keep-all; }
+.cta-box p { font-size: 14.5px; color: rgba(255,255,255,0.85); margin-bottom: 20px; word-break: keep-all; }
+.cta-btns { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+.cta-btns a {
+  display: inline-flex; align-items: center; justify-content: center; gap: 7px;
+  padding: 14px 30px; border-radius: 10px; font-size: 16px; font-weight: 800; text-decoration: none;
+  transition: transform 0.12s ease, background 0.2s;
+}
+.cta-btns a:active { transform: translateY(1px) scale(0.985); }
+.cta-apply { background: #ff6b00; color: white; }
+.cta-apply:hover { background: #e85f00; }
+.cta-call { background: rgba(255,255,255,0.14); color: white; border: 1.5px solid rgba(255,255,255,0.45); }
+.cta-call:hover { background: rgba(255,255,255,0.24); }
+
+/* ===== 크게 보기 ===== */
+.zoom { position: fixed; inset: 0; z-index: 2000; background: rgba(10,20,45,0.94); display: none; overflow: auto; -webkit-overflow-scrolling: touch; }
+.zoom.open { display: block; }
+.zoom-inner { padding: 64px 0 40px; }
+.zoom-inner img { display: block; width: 800px; max-width: none; margin: 0 auto; }
+.zoom-close {
+  position: fixed; top: 14px; right: 14px; z-index: 2010;
+  width: 44px; height: 44px; border-radius: 50%; cursor: pointer;
+  background: white; border: none; color: var(--dark); font-size: 20px; font-weight: 800;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+  transition: transform 0.12s ease;
+}
+.zoom-close:active { transform: scale(0.94); }
+.zoom-tip {
+  position: fixed; top: 20px; left: 50%; transform: translateX(-50%); z-index: 2010;
+  color: rgba(255,255,255,0.85); font-size: 13px; font-weight: 600;
+  background: rgba(0,0,0,0.35); padding: 6px 14px; border-radius: 20px; white-space: nowrap;
+}
+
+/* ===== FOOTER (index.html과 동일) ===== */
+footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; font-size: 13px; line-height: 1.9; }
+.footer-inner { max-width: 1100px; margin: 0 auto; }
+.footer-top { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 20px; margin-bottom: 24px; padding-bottom: 24px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+.footer-logo { font-size: 20px; font-weight: 900; color: white; }
+.footer-links { display: flex; gap: 20px; flex-wrap: wrap; }
+.footer-links a { color: rgba(255,255,255,0.6); text-decoration: none; font-size: 13px; }
+.footer-links a:hover { color: white; }
+.footer-disclaimer { margin-top: 16px; font-size: 11px; color: rgba(255,255,255,0.3); line-height: 1.7; }
+
+/* 플로팅 */
+.floating-btns { position: fixed; right: 30px; bottom: 24px; display: flex; flex-direction: column; gap: 12px; z-index: 900; }
+.float-btn { width: 52px; height: 52px; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; box-shadow: 0 4px 16px rgba(0,0,0,0.15); transition: transform 0.2s; font-size: 22px; }
+.float-btn:hover { transform: scale(1.1); }
+.float-btn:active { transform: scale(1.02); }
+.float-phone { background: var(--primary); color: white; border: 1px solid white; }
+.float-kakao { background: #fee500; color: #3a1d00; }
+
+/* 키보드로 옮겨 다닐 때 어디에 있는지 보이게 (index.html과 동일) */
+a:focus-visible, button:focus-visible {
+  outline: 3px solid var(--primary);
+  outline-offset: 2px;
+}
+.page-head :focus-visible, .cta-box :focus-visible, footer :focus-visible {
+  outline-color: #ffffff;
+}
+
+@media (max-width: 768px) {
+  nav { display: none; }
+  .hamburger { display: flex; }
+  .header-phone { padding: 7px 12px; font-size: 13px; }
+  .page-head { padding: 34px 20px 30px; }
+  .page-head h1 { font-size: 24px; }
+  .page-head p { font-size: 13.5px; }
+  .tabs { padding: 10px 14px; gap: 8px; }
+  .tab { font-size: 16px; padding: 12px 4px; border-radius: 11px; }
+  .tab.lg { font-size: 13.5px; }
+  .wrap { padding: 22px 14px 50px; }
+  .sheet-name { font-size: 17px; }
+  .zoom-hint { font-size: 12px; padding: 5px 11px; }
+  .note { padding: 14px; font-size: 12.5px; }
+  .cta-box { padding: 26px 18px; }
+  .cta-box h3 { font-size: 18px; }
+  .cta-box p { font-size: 13.5px; }
+  .cta-btns a { padding: 13px 22px; font-size: 15px; width: 100%; }
+  .floating-btns { bottom: 20px; right: 16px; }
+  .zoom-inner { padding: 60px 0 30px; }
+}
+@media (hover: none) {
+  .tab:hover { border-color: var(--border); }
+  .tab[aria-selected="true"]:hover { border-color: currentColor; }
+  .sheet:hover { border-color: var(--border); box-shadow: 0 2px 12px rgba(15,42,90,0.05); }
+  .float-btn:hover { transform: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  * { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="header-inner">
+    <a href="index.html" class="logo">당<span>현</span>함</a>
+    <nav>
+      <a href="index.html#benefits">혜택안내</a>
+      <a href="plans.html" class="on">요금표</a>
+      <a href="index.html#reviews">설치후기</a>
+      <a href="gift.html">사은품지급명단</a>
+      <a href="index.html#faq">자주묻는질문</a>
+      <a href="index.html#applyForm" style="color:var(--primary);font-weight:700;">무료상담</a>
+    </nav>
+    <a href="tel:1600-4670" class="header-phone">
+      <svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+      1600-4670
+    </a>
+    <div class="hamburger" onclick="document.getElementById('mobileMenu').classList.toggle('open')">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</header>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html#benefits">혜택안내</a>
+  <a href="plans.html">요금표</a>
+  <a href="index.html#reviews">설치후기</a>
+  <a href="gift.html">사은품지급명단</a>
+  <a href="index.html#faq">자주묻는질문</a>
+  <a href="index.html#applyForm" style="color:var(--primary);font-weight:700;">무료상담 →</a>
+</div>
+
+<!-- 페이지 머리띠 -->
+<div class="page-head">
+  <div class="badge">📋 결합 조건별 실제 요금</div>
+  <h1>통신사별 실제 요금표</h1>
+  <p>인터넷·TV 월 요금과 현금 사은품 금액을<br>통신사별로 그대로 공개합니다</p>
+</div>
+
+<!-- 통신사 고르는 단추 -->
+<div class="tabbar">
+  <div class="tabs" role="tablist" aria-label="통신사 선택">
+    <button type="button" class="tab kt" role="tab" id="tab-kt" aria-controls="panel-kt" aria-selected="true" data-co="kt">kt</button>
+    <button type="button" class="tab sk" role="tab" id="tab-sk" aria-controls="panel-sk" aria-selected="false" tabindex="-1" data-co="sk">SK</button>
+    <button type="button" class="tab lg" role="tab" id="tab-lg" aria-controls="panel-lg" aria-selected="false" tabindex="-1" data-co="lg">LG U+</button>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <!-- KT -->
+  <section class="panel" id="panel-kt" role="tabpanel" aria-labelledby="tab-kt">
+    <div class="sheet-head">
+      <div class="sheet-name kt"><span class="co">KT</span> 인터넷 요금제 &amp; 사은품</div>
+      <span class="zoom-hint">🔍 표를 누르면 크게 볼 수 있어요</span>
+    </div>
+    <button type="button" class="sheet" data-src="images/plans/kt.jpg" data-label="KT 요금표">
+      <img data-src="images/plans/kt.jpg" width="800" height="1472" alt="KT 인터넷 요금표 — 결합 종류별(미결합·휴대폰결합·패밀리할인) 100메가·500메가·1기가 월 요금과 현금 사은품 금액">
+    </button>
+  </section>
+
+  <!-- SK -->
+  <section class="panel" id="panel-sk" role="tabpanel" aria-labelledby="tab-sk" hidden>
+    <div class="sheet-head">
+      <div class="sheet-name sk"><span class="co">SK브로드밴드</span> 인터넷 요금제 &amp; 사은품</div>
+      <span class="zoom-hint">🔍 표를 누르면 크게 볼 수 있어요</span>
+    </div>
+    <button type="button" class="sheet" data-src="images/plans/sk.jpg" data-label="SK 요금표">
+      <img data-src="images/plans/sk.jpg" width="800" height="1473" alt="SK브로드밴드 인터넷 요금표 — 결합 종류별(미결합·휴대폰결합·패밀리결합) 100메가·500메가·1기가 월 요금과 현금 사은품 금액">
+    </button>
+  </section>
+
+  <!-- LG U+ -->
+  <section class="panel" id="panel-lg" role="tabpanel" aria-labelledby="tab-lg" hidden>
+    <div class="sheet-head">
+      <div class="sheet-name lg"><span class="co">LG U+</span> 인터넷 요금제 &amp; 사은품</div>
+      <span class="zoom-hint">🔍 표를 누르면 크게 볼 수 있어요</span>
+    </div>
+    <button type="button" class="sheet" data-src="images/plans/lg.jpg" data-label="LG U+ 요금표">
+      <img data-src="images/plans/lg.jpg" width="800" height="1473" alt="LG U+ 인터넷 요금표 — 결합 종류별(미결합·휴대폰결합·패밀리할인) 100메가·500메가·1기가 월 요금과 현금 사은품 금액">
+    </button>
+  </section>
+
+  <p class="note">
+    ※ 표의 요금은 부가세 포함 금액이며, 약정 기간·결합 상품·설치 지역에 따라 달라질 수 있습니다.<br>
+    ※ 현금 사은품은 개통 확인 후 당일 지급을 원칙으로 하며, 상품과 조건에 따라 금액이 달라집니다.<br>
+    ※ 정확한 금액과 내게 맞는 결합 방법은 무료 상담에서 안내해 드립니다.
+  </p>
+
+  <div class="cta-box">
+    <h3>내 조건으로는 얼마까지 받을까요?</h3>
+    <p>쓰고 계신 휴대폰·가족 결합까지 따져서<br>가장 저렴한 조합을 찾아드립니다</p>
+    <div class="cta-btns">
+      <a href="index.html#applyForm" class="cta-apply">내 최대 지원금 무료확인 →</a>
+      <a href="tel:1600-4670" class="cta-call">📞 1600-4670</a>
+    </div>
+  </div>
+
+</div>
+
+<!-- 크게 보기 -->
+<div class="zoom" id="zoom" role="dialog" aria-modal="true" aria-label="요금표 크게 보기">
+  <span class="zoom-tip">손가락으로 밀어서 보세요</span>
+  <button type="button" class="zoom-close" id="zoomClose" aria-label="크게 보기 닫기">✕</button>
+  <div class="zoom-inner"><img id="zoomImg" alt=""></div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-logo">당<span>현</span>함</div>
+      <div class="footer-links">
+        <a href="index.html">개인정보처리방침</a>
+        <a href="index.html">서비스이용약관</a>
+        <a href="tel:1600-4670">1600-4670</a>
+      </div>
+    </div>
+    <div class="footer-info" style="font-size:13px;">
+      <strong style="color:rgba(255,255,255,0.8);">유진텔레콤</strong> | 대표: 조성현 | 사업자등록번호: 291-40-00301<br>
+      주소: 경상남도 함안군 산인면 송산로 122, 2층 201호(은혜벌) | 대표번호: 1600-4670
+    </div>
+    <div class="footer-disclaimer">
+      당현함은 KT, SKT, LG U+ 공식 파트너로서 인터넷 가입 및 가전렌탈 서비스를 제공합니다.<br>
+      제시된 요금 및 지원금은 약정 조건에 따라 변경될 수 있으며, 정확한 내용은 상담을 통해 안내드립니다.<br>
+      © 2026 당현함. All rights reserved.
+    </div>
+  </div>
+</footer>
+
+<div class="floating-btns">
+  <a href="tel:1600-4670" class="float-btn float-phone" title="전화 상담">
+    <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+  </a>
+  <a href="https://pf.kakao.com/_yxgTAs" class="float-btn float-kakao" title="카카오 상담">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3C6.477 3 2 6.477 2 10.5c0 2.667 1.556 5.011 3.9 6.4L5 21l4.1-2.7c.94.2 1.91.3 2.9.3 5.523 0 10-3.477 10-7.5S17.523 3 12 3z"/></svg>
+  </a>
+</div>
+
+<script>
+// ───────────────────────────────────────────────────────────────
+// 들어온 페이지로 되돌려 보내기
+// 이 페이지의 메뉴는 index.html 로 고정돼 있어서, 렌탈이나 지원금확인
+// 페이지에서 들어온 손님도 나갈 때는 무조건 첫 페이지로 튕겨 나갔다.
+// 그래서 어디서 들어왔는지 기억해 뒀다가 그 페이지로 돌려보낸다.
+// (검색 등으로 요금표에 바로 들어온 손님은 첫 페이지로 간다)
+// ───────────────────────────────────────────────────────────────
+(function () {
+  var 기본 = 'index.html';
+  var 아는쪽 = ['index.html', 'rental.html', 'internet.html'];
+  var 열쇠 = 'dh_plans_back';
+  var 돌아갈쪽 = null;
+
+  // 이번 방문에서 이미 정해둔 값이 있으면 그대로 쓴다(새로고침해도 유지)
+  try { 돌아갈쪽 = sessionStorage.getItem(열쇠); } catch (e) {}
+
+  if (!돌아갈쪽) {
+    try {
+      var 온곳 = new URL(document.referrer);
+      if (온곳.hostname === location.hostname) {
+        var 파일 = 온곳.pathname.split('/').pop() || 기본;
+        if (아는쪽.indexOf(파일) > -1) 돌아갈쪽 = 파일;
+      }
+    } catch (e) {}
+    if (돌아갈쪽) { try { sessionStorage.setItem(열쇠, 돌아갈쪽); } catch (e) {} }
+  }
+
+  if (!돌아갈쪽 || 돌아갈쪽 === 기본) return;   // 첫 페이지면 바꿀 것이 없다
+
+  // 렌탈 페이지는 신청폼 이름이 다르다 (applyForm 이 없고 apply 다)
+  var 신청폼이름다름 = (돌아갈쪽 === 'rental.html');
+
+  var 링크들 = document.querySelectorAll('a[href^="index.html"]');
+  for (var i = 0; i < 링크들.length; i++) {
+    var 주소 = 링크들[i].getAttribute('href').replace('index.html', 돌아갈쪽);
+    if (신청폼이름다름) 주소 = 주소.replace('#applyForm', '#apply');
+    링크들[i].setAttribute('href', 주소);
+  }
+})();
+
+// ───────────────────────────────────────────────────────────────
+// 통신사 골라 보기
+// 주소 뒤에 #kt / #sk / #lg 가 붙어 오면 그 통신사가 열린 채로 시작한다.
+// (홈페이지 요금제 카드가 이 방식으로 링크를 건다)
+// 그림은 실제로 볼 때 한 장씩만 불러온다 — 세 장을 한꺼번에 받으면 느려진다.
+// ───────────────────────────────────────────────────────────────
+(function () {
+  var 통신사들 = ['kt', 'sk', 'lg'];
+  var 탭들 = {}, 판들 = {};
+  통신사들.forEach(function (c) {
+    탭들[c] = document.getElementById('tab-' + c);
+    판들[c] = document.getElementById('panel-' + c);
+  });
+
+  function 그림채우기(c) {
+    var img = 판들[c].querySelector('img[data-src]');
+    if (!img) return;
+    img.src = img.getAttribute('data-src');
+    img.removeAttribute('data-src');
+  }
+
+  function 고르기(c, 주소도바꿀까) {
+    if (통신사들.indexOf(c) === -1) c = 'kt';
+    통신사들.forEach(function (x) {
+      var 켬 = (x === c);
+      탭들[x].setAttribute('aria-selected', 켬 ? 'true' : 'false');
+      탭들[x].setAttribute('tabindex', 켬 ? '0' : '-1');
+      판들[x].hidden = !켬;
+    });
+    그림채우기(c);
+    if (주소도바꿀까 && history.replaceState) {
+      // 뒤로가기를 눌렀을 때 들어온 페이지로 바로 돌아가도록, 기록을 쌓지 않고 바꿔치기만 한다
+      history.replaceState(null, '', '#' + c);
+    }
+    if (typeof dhTrack === 'function') dhTrack('plan_view_' + c, { once: false });
+  }
+
+  통신사들.forEach(function (c) {
+    탭들[c].addEventListener('click', function () { 고르기(c, true); });
+  });
+
+  // 키보드 좌우 화살표로도 옮길 수 있게
+  document.querySelector('.tabs').addEventListener('keydown', function (e) {
+    var 지금 = 통신사들.indexOf(document.activeElement.getAttribute('data-co'));
+    if (지금 === -1) return;
+    var 다음 = null;
+    if (e.key === 'ArrowRight') 다음 = (지금 + 1) % 3;
+    else if (e.key === 'ArrowLeft') 다음 = (지금 + 2) % 3;
+    else if (e.key === 'Home') 다음 = 0;
+    else if (e.key === 'End') 다음 = 2;
+    if (다음 === null) return;
+    e.preventDefault();
+    고르기(통신사들[다음], true);
+    탭들[통신사들[다음]].focus();
+  });
+
+  // 주소창의 #kt 같은 표시를 읽어서 시작 (뒤로가기로 돌아왔을 때도 맞춰줌)
+  function 주소읽기(주소도바꿀까) {
+    고르기((location.hash || '').replace('#', '').toLowerCase(), 주소도바꿀까);
+  }
+  window.addEventListener('hashchange', function () { 주소읽기(false); });
+  주소읽기(false);
+
+  // ───── 크게 보기 ─────
+  var 덮개 = document.getElementById('zoom');
+  var 큰그림 = document.getElementById('zoomImg');
+  var 닫기 = document.getElementById('zoomClose');
+  var 누른곳 = null;
+
+  function 열기(btn) {
+    큰그림.src = btn.getAttribute('data-src');
+    큰그림.alt = btn.getAttribute('data-label');
+    누른곳 = btn;
+    덮개.classList.add('open');
+    document.body.classList.add('locked');
+    덮개.scrollTop = 0;
+    닫기.focus();
+  }
+  function 닫기실행() {
+    덮개.classList.remove('open');
+    document.body.classList.remove('locked');
+    if (누른곳) { 누른곳.focus(); 누른곳 = null; }
+  }
+
+  Array.prototype.forEach.call(document.querySelectorAll('.sheet'), function (btn) {
+    btn.addEventListener('click', function () { 열기(btn); });
+  });
+  닫기.addEventListener('click', 닫기실행);
+  덮개.addEventListener('click', function (e) { if (e.target === 덮개 || e.target.className === 'zoom-inner') 닫기실행(); });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && 덮개.classList.contains('open')) 닫기실행();
+  });
+})();
+</script>
+
+</body>
+</html>
