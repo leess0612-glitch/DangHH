@@ -157,6 +157,14 @@ nav a.on { color: var(--primary); background: #eff6ff; font-weight: 700; }
 .mobile-menu.open { display: block; }
 .mobile-menu a { display: block; padding: 13px 0; font-size: 15px; font-weight: 500; color: var(--dark); text-decoration: none; border-bottom: 1px solid var(--border); }
 .mobile-menu a:last-child { border-bottom: none; }
+
+/* 메뉴가 6개(요금·사은품 추가)가 되면서 좁은 컴퓨터 화면에서 전화번호 버튼과 거의 붙었다.
+   769~880px 구간에서만 항목 사이 여백을 살짝 줄여 숨통을 틔운다 (2026-08-20)
+   768px 이하는 어차피 햄버거 메뉴로 접히므로 영향 없음 */
+@media (min-width: 769px) and (max-width: 880px) {
+  nav a { padding: 6px 7px; }
+  .header-inner { padding: 0 14px; }
+}
 .mobile-menu a:active { background: #f1f5f9; }
 
 /* ===== 페이지 머리띠 (gift.html과 동일한 틀) ===== */
