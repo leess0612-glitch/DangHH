@@ -108,6 +108,10 @@ if (typeof dhInflow !== 'function') { window.dhInflow = function () { return {};
 <meta property="og:title" content="통신사별 실제 요금표 | 당현함">
 <meta property="og:description" content="KT·SK·LG U+ 인터넷 요금과 현금 사은품을 통신사별 요금표로 확인하세요.">
 <meta property="og:url" content="https://danghh.com/plans.html">
+<meta property="og:image" content="https://danghh.com/images/share-card.png">
+<meta property="og:image:width" content="800">
+<meta property="og:image:height" content="400">
+<meta property="og:image:type" content="image/png">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%231a56db'/><text y='68' x='50' text-anchor='middle' font-size='54' font-family='sans-serif' font-weight='900' fill='white'>당</text></svg>">
 
 <!-- SUIT 글꼴 (index.html과 동일한 방식 — 제작사 공식 주소에서 직접 불러옴) -->
@@ -290,6 +294,26 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
 .float-phone { background: var(--primary); color: white; border: 1px solid white; }
 .float-kakao { background: #fee500; color: #3a1d00; }
 
+/* 휴대폰 아래 고정 신청 막대 — index.html의 .mobile-cta-bar와 같은 디자인.
+   이 페이지에는 신청폼이 없어 숨길 조건 없이 항상 떠 있는다 (2026-08-21) */
+.mobile-cta-bar {
+  display: none; position: fixed; bottom: 0; left: 0; right: 0; z-index: 950;
+  padding: 10px 16px; background: white; box-shadow: 0 -3px 16px rgba(0,0,0,0.12);
+}
+.mobile-cta-btn {
+  display: flex; align-items: center; justify-content: center;
+  width: 100%; height: 48px; border-radius: 12px; text-decoration: none;
+  color: white; font-size: 16px; font-weight: 800; letter-spacing: -0.3px;
+  background: linear-gradient(180deg, #1a6bff 0%, #0e48cc 100%);
+  box-shadow: 0 8px 20px rgba(20,97,240,0.45);
+  transition: transform 0.08s ease, background 0.2s, box-shadow 0.2s;
+}
+.mobile-cta-btn:active {
+  background: #0E48CC;
+  transform: translateY(2px) scale(0.96);
+  box-shadow: inset 0 2px 6px rgba(0,0,0,0.22);
+}
+
 /* 키보드로 옮겨 다닐 때 어디에 있는지 보이게 (index.html과 동일) */
 a:focus-visible, button:focus-visible {
   outline: 3px solid var(--primary);
@@ -317,7 +341,9 @@ a:focus-visible, button:focus-visible {
   .cta-box h3 { font-size: 18px; }
   .cta-box p { font-size: 13.5px; }
   .cta-apply { padding: 15px 20px; font-size: 18px; width: 100%; white-space: normal; }
-  .floating-btns { bottom: 20px; right: 16px; }
+  .floating-btns { bottom: 88px; right: 16px; }   /* 고정 막대(68px) 위로 */
+  .mobile-cta-bar { display: block; }
+  body { padding-bottom: 68px; }                   /* 회사정보 끝줄이 막대에 가리지 않게 */
   .zoom-inner { padding: 60px 0 30px; }
 }
 @media (hover: none) {
@@ -436,6 +462,11 @@ a:focus-visible, button:focus-visible {
   <span class="zoom-tip">손가락으로 밀어서 보세요</span>
   <button type="button" class="zoom-close" id="zoomClose" aria-label="크게 보기 닫기">✕</button>
   <div class="zoom-inner"><img id="zoomImg" alt=""></div>
+</div>
+
+<!-- 휴대폰 아래 고정 신청 막대 (뒤 페이지 기억 장치가 index.html 부분을 알아서 바꿔줌) -->
+<div class="mobile-cta-bar">
+  <a class="mobile-cta-btn" href="index.html#applyForm">내 최대 지원금 무료확인 →</a>
 </div>
 
 <!-- FOOTER -->
@@ -606,5 +637,12 @@ a:focus-visible, button:focus-visible {
 })();
 </script>
 
+<script>
+/* 휴대폰 메뉴: 메뉴 밖을 누르면 닫히게 — index.html과 같은 동작 (2026-08-21) */
+document.addEventListener('click', function (e) {
+  if (!e.target.closest('header') && !e.target.closest('.mobile-menu'))
+    document.getElementById('mobileMenu').classList.remove('open');
+});
+</script>
 </body>
 </html>
