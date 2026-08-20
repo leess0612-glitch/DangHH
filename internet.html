@@ -1903,18 +1903,21 @@ function openCafe(pcUrl, mobileUrl) {
       });
       if (!줄들.length) return;
 
+      var 날짜개수 = 날들.filter(function(d){ return d.rows.length; }).length;
+      // 하루치만 있으면 제목에 이미 날짜가 있으므로 줄마다 또 적지 않는다
+      var 날짜보이기 = 날짜개수 > 1;
+
       // 두 번 이어붙여야 끊김 없이 무한히 돈다
       줄들.concat(줄들).forEach(function(it){
         var div = document.createElement('div');
         div.className = 'rolling-item';
-        div.innerHTML = '<span class="ri-date">' + it[0] + '</span>' +
+        div.innerHTML = (날짜보이기 ? '<span class="ri-date">' + it[0] + '</span>' : '') +
                         '<span class="ri-name">' + it[1] + '</span>' +
                         '<span class="ri-plan">' + it[2] + '</span>' +
                         (it[3] ? '<span class="ri-bank">' + it[3] + '</span>' : '');
         트랙.appendChild(div);
       });
 
-      var 날짜개수 = 날들.filter(function(d){ return d.rows.length; }).length;
       제목.textContent = (날짜개수 > 1 ? '최근 ' + 날짜개수 + '일' : 날짜적기(날들[0].date))
                        + ' 사은품지급명단';
 
