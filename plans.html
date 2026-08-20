@@ -226,17 +226,24 @@ nav a.on { color: var(--primary); background: #eff6ff; font-weight: 700; }
 .cta-box { margin-top: 30px; background: linear-gradient(135deg, #0C2880 0%, #1461F0 100%); border-radius: 16px; padding: 30px 24px; text-align: center; color: white; }
 .cta-box h3 { font-size: 21px; font-weight: 900; margin-bottom: 8px; letter-spacing: -0.5px; word-break: keep-all; }
 .cta-box p { font-size: 14.5px; color: rgba(255,255,255,0.85); margin-bottom: 20px; word-break: keep-all; }
-.cta-btns { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
-.cta-btns a {
+/* 신청 버튼 — index.html 아래 고정 막대(.desk-cta-bar-btn)와 똑같은 디자인.
+   파란 바탕 위에서는 파란 버튼이 묻히므로 색은 주황, 입체 효과까지 그대로 가져왔다 */
+.cta-btns { display: flex; justify-content: center; }
+.cta-apply {
   display: inline-flex; align-items: center; justify-content: center; gap: 7px;
-  padding: 14px 30px; border-radius: 10px; font-size: 16px; font-weight: 800; text-decoration: none;
-  transition: transform 0.12s ease, background 0.2s;
+  padding: 15px 34px; border-radius: 8px; line-height: 1.2;
+  font-size: 21px; font-weight: 800; color: white; text-decoration: none;
+  border: 1.5px solid transparent; white-space: nowrap;
+  background: linear-gradient(180deg, #ff8124 0%, #e35a00 100%);
+  box-shadow: 0 8px 20px rgba(255,107,0,0.42);
+  transition: transform 0.08s ease, background 0.2s, box-shadow 0.2s;
 }
-.cta-btns a:active { transform: translateY(1px) scale(0.985); }
-.cta-apply { background: #ff6b00; color: white; }
-.cta-apply:hover { background: #e85f00; }
-.cta-call { background: rgba(255,255,255,0.14); color: white; border: 1.5px solid rgba(255,255,255,0.45); }
-.cta-call:hover { background: rgba(255,255,255,0.24); }
+.cta-apply:hover { background: #e85e00; }
+.cta-apply:active {
+  background: #d15a00;
+  transform: translateY(2px) scale(0.975);
+  box-shadow: inset 0 2px 6px rgba(0,0,0,0.20);
+}
 
 /* ===== 크게 보기 ===== */
 .zoom { position: fixed; inset: 0; z-index: 2000; background: rgba(10,20,45,0.94); display: none; overflow: auto; -webkit-overflow-scrolling: touch; }
@@ -301,7 +308,7 @@ a:focus-visible, button:focus-visible {
   .cta-box { padding: 26px 18px; }
   .cta-box h3 { font-size: 18px; }
   .cta-box p { font-size: 13.5px; }
-  .cta-btns a { padding: 13px 22px; font-size: 15px; width: 100%; }
+  .cta-apply { padding: 15px 20px; font-size: 18px; width: 100%; white-space: normal; }
   .floating-btns { bottom: 20px; right: 16px; }
   .zoom-inner { padding: 60px 0 30px; }
 }
@@ -310,6 +317,7 @@ a:focus-visible, button:focus-visible {
   .tab[aria-selected="true"]:hover { border-color: currentColor; }
   .sheet:hover { border-color: var(--border); box-shadow: 0 2px 12px rgba(15,42,90,0.05); }
   .float-btn:hover { transform: none; }
+  .cta-apply:hover { background: linear-gradient(180deg, #ff8124 0%, #e35a00 100%); }
 }
 @media (prefers-reduced-motion: reduce) {
   * { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
@@ -408,7 +416,6 @@ a:focus-visible, button:focus-visible {
     <p>쓰고 계신 휴대폰·가족 결합까지 따져서<br>가장 저렴한 조합을 찾아드립니다</p>
     <div class="cta-btns">
       <a href="index.html#applyForm" class="cta-apply">내 최대 지원금 무료확인 →</a>
-      <a href="tel:1600-4670" class="cta-call">📞 1600-4670</a>
     </div>
   </div>
 
