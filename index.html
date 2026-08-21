@@ -259,8 +259,14 @@ nav a:hover { color: var(--primary); background: #eff6ff; }
 }
 .hero-stat .num { font-size: 36px; font-weight: 900; color: white; }
 .hero-stat .label { font-size: 15px; opacity: 0.8; margin-top: 4px; }
-/* 태블릿·좁은 노트북: 왼쪽 칸이 좁아 숫자가 넘치므로 위아래로 쌓고 구분선을 가로선으로 */
-@media (min-width: 769px) and (max-width: 1023px) {
+/* 반쪽 창(910~1023): 나란히 놔도 숫자가 안 넘치는 폭이라 옆으로 붙인다.
+   좌우 여백만 24 -> 12로 줄여 '339,000건'이 들어갈 자리를 넉넉히 확보 (2026-08-21) */
+@media (min-width: 910px) and (max-width: 1023px) {
+  .hero-stats { flex-direction: row; max-width: none; }
+  .hero-stat { padding: 0 12px; }
+}
+/* 태블릿·좁은 노트북(909 이하): 왼쪽 칸이 좁아 숫자가 넘치므로 위아래로 쌓고 구분선을 가로선으로 */
+@media (min-width: 769px) and (max-width: 909px) {
   .hero-stats { flex-direction: column; max-width: 320px; }
   .hero-stat {
     width: 100%; padding: 16px 24px;
