@@ -1427,6 +1427,11 @@ html { scroll-behavior: smooth; scroll-padding-top: 78px; }
   .hero-inner > .live-section .rolling-col-header.type-cash{ background:#0C2880 }
   .hero-inner > .live-section .rolling-wrap{ border-color:#c7dcff }
 }
+/* 안전장치: 폭이 바뀌는 신호를 브라우저가 빠뜨려 명단이 히어로 안에 남더라도
+   컴퓨터 화면이 세 칸으로 깨지지 않게 막는다. 신호가 오면 곧바로 원래 자리로 돌아간다. */
+@media (min-width:769px){
+  .hero-inner > .live-section{ display:none !important }
+}
 </style>
 </head>
 <body>
@@ -2304,6 +2309,9 @@ updateScrollForms();
   else 폰.addListener(자리잡기);      // 옛 브라우저용
   window.addEventListener('resize', 자리잡기);
   window.addEventListener('orientationchange', function(){ setTimeout(자리잡기, 200); });
+  // 폭 신호를 빠뜨리는 브라우저를 대비해 스크롤할 때도 한 번씩 확인한다.
+  // 제자리에 있으면 아무 일도 하지 않으므로 화면이 느려지지 않는다.
+  window.addEventListener('scroll', 자리잡기, { passive: true });
 })();
 
 
