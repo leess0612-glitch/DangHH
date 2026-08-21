@@ -636,7 +636,9 @@ a.plan-card:active { transform: translateY(0) scale(0.99); }
 .memo-count.over { color: #dc2626; font-weight: 700; }
 .memo-toggle {
   display: inline-flex; align-items: center; gap: 6px;
-  background: none; border: none; padding: 2px 0; margin-bottom: 12px;
+  background: none; border: none;
+  /* 손가락으로 누르기 좋게 위아래를 넓혔다 — 높이 20px → 40px (2026-08-21) */
+  padding: 10px 0; margin: -8px 0 4px;
   font-family: 'SUIT', sans-serif; font-size: 13px; font-weight: 600;
   color: var(--gray); cursor: pointer; text-decoration: underline;
   text-underline-offset: 3px; text-decoration-color: #cbd5e1;
