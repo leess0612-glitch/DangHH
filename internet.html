@@ -2158,8 +2158,12 @@ updateScrollForms();
     }
   }
   자리잡기();
+  // 신호 한 가지만 믿지 않는다 — 하단 바가 안 뜨던 문제도 신호 하나가 빠져서 생겼다.
+  // 폭 경계를 넘는 신호(matchMedia)와 폭 변화 신호(resize)를 둘 다 받는다.
   if (폰.addEventListener) 폰.addEventListener('change', 자리잡기);
   else 폰.addListener(자리잡기);      // 옛 브라우저용
+  window.addEventListener('resize', 자리잡기);
+  window.addEventListener('orientationchange', function(){ setTimeout(자리잡기, 200); });
 })();
 
 
