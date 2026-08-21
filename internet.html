@@ -1841,25 +1841,47 @@ const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxmkjm-U5m29WEkjKpAV
    ⚠ 다시 보내도 시트에 두 줄이 되지 않는 이유: 구글 쪽 당현함_신청폼.gs 가
       "같은 번호가 2분 안에 또 오면 무시" 규칙을 갖고 있다. 둘은 한 쌍이므로
       한쪽만 되돌리면 중복이 생긴다. (2026-08-07) */
-async function dhSend(payload, 다시알림) {
+async function dhSend(payload, 상태알림) {
+  /* ===== 2026-08-21 고침 =====
+     전에는 8초 안에 대답이 없으면 '실패'로 보고 다시 보냈다. 그런데 구글이 느릴 때는
+     30~57초까지 걸린다(8/19 실측). 그래서 **접수는 됐는데 손님 화면엔 '오류'** 가 뜨고,
+     다시 보낸 요청도 전부 도착해 한 신청이 여러 줄로 쌓였다(8/21 실측: 2번 제출 → 5줄).
+     → 한 번 시도에 40초까지 기다린다. 대답이 오면 그 즉시 끝나므로 평소(2~4초)는 그대로다.
+     → 다만 손님을 무한정 붙잡지 않도록 전체 45초에서 끊는다.
+     ※ 다시 보내기 3번은 그대로 둔다. 그건 '보내기 자체가 실패'할 때 듣는 약이라 여전히 필요하다
+       (인터넷이 끊기면 기다림 없이 즉시 실패하므로 40초를 채우지 않는다).
+     ⚠ 구글 쪽 중복막기(같은 번호 120초)와 한 쌍이다 — 한쪽만 되돌리면 중복이 생긴다 */
   const 최대횟수 = 3;
+  const 한번한도 = 40000;   // 한 번 시도에 기다려 주는 최대 시간
+  const 전체한도 = 45000;   // 손님을 붙잡아 두는 전체 최대 시간
+  const 시작 = Date.now();
+  const 말하기 = function (문구) {
+    if (typeof 상태알림 === 'function') { try { 상태알림(문구); } catch (e) {} }
+  };
   let 마지막오류 = null;
+
   for (let 회 = 1; 회 <= 최대횟수; 회++) {
+    const 남은 = 전체한도 - (Date.now() - 시작);
+    if (남은 <= 0) break;
     const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), 8000);
+    const timeout = setTimeout(() => controller.abort(), Math.min(한번한도, 남은));
+    /* 오래 걸릴 때 화면이 멈춘 것처럼 보이지 않도록 문구를 단계별로 바꿔 준다 */
+    const 단계알림 = [
+      setTimeout(function () { 말하기('확인 중입니다...'); }, 8000),
+      setTimeout(function () { 말하기('거의 다 됐어요. 화면을 닫지 말아 주세요'); }, 20000)
+    ];
     try {
       await fetch(SCRIPT_URL, {
         method: 'POST', mode: 'no-cors', signal: controller.signal,
         body: JSON.stringify(payload)
       });
-      clearTimeout(timeout);
+      clearTimeout(timeout); 단계알림.forEach(clearTimeout);
       return;
     } catch (err) {
-      clearTimeout(timeout);
+      clearTimeout(timeout); 단계알림.forEach(clearTimeout);
       마지막오류 = err;
       if (회 < 최대횟수) {
-        /* 최대 27초까지 걸릴 수 있어 화면이 멈춘 것처럼 보인다 → 상태를 알려 준다 */
-        if (typeof 다시알림 === 'function') { try { 다시알림(); } catch (e) {} }
+        말하기('연결이 느려요. 다시 시도 중...');
         await new Promise(r => setTimeout(r, 회 * 1200));
       }
     }
@@ -2006,7 +2028,7 @@ async function submitForm() {
 
   try {
     await dhSend(Object.assign({ name, phone, usim, service: serviceText }, dhInflow()),
-                 () => { btn.textContent = '연결이 느려요. 다시 시도 중...'; });
+                 (문구) => { btn.textContent = 문구; });
     document.getElementById('formContent').style.display = 'none';
     document.getElementById('formSuccess').style.display = 'block';
   } catch(e) {
