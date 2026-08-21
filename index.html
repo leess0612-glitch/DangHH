@@ -676,6 +676,35 @@ a.plan-card:active { transform: translateY(0) scale(0.99); }
 }
 .form-group input:focus { border-color: var(--primary); }
 .form-group input::placeholder { color: #cbd5e1; }
+
+/* ===== 요청사항 메모칸 (2026-08-21) =====
+   평소엔 접혀 있고 눌러야 펴진다. 폼이 길어져 손님이 신청을 포기하는 것을 막기 위함이다.
+   글상자 모양은 위 이름·번호 칸과 똑같이 맞췄고, 높이만 다르게 준다. */
+.form-group textarea {
+  width: 100%; padding: 13px 16px; border: 2px solid var(--border); border-radius: 10px;
+  font-size: 15px; font-family: 'SUIT', sans-serif; transition: border-color 0.2s; outline: none;
+  line-height: 1.6; resize: vertical; min-height: 84px; color: var(--dark);
+}
+.form-group textarea:focus { border-color: var(--primary); }
+.form-group textarea::placeholder { color: #cbd5e1; }
+.memo-count { text-align: right; font-size: 12px; color: #94a3b8; margin-top: 5px; }
+.memo-count.over { color: #dc2626; font-weight: 700; }
+.memo-toggle {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: none; border: none; padding: 2px 0; margin-bottom: 12px;
+  font-family: 'SUIT', sans-serif; font-size: 13px; font-weight: 600;
+  color: var(--gray); cursor: pointer; text-decoration: underline;
+  text-underline-offset: 3px; text-decoration-color: #cbd5e1;
+}
+.memo-toggle:hover { color: var(--primary); text-decoration-color: var(--primary); }
+.memo-toggle .plus {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 16px; height: 16px; border-radius: 50%; background: var(--border);
+  color: var(--gray); font-size: 12px; font-weight: 800; line-height: 1; text-decoration: none;
+}
+.memo-toggle:hover .plus { background: #dbeafe; color: var(--primary); }
+.memo-fold { display: none; }
+.memo-fold.open { display: block; }
 .consent-box { border: 1px solid var(--border); border-radius: 12px; padding: 14px 16px; margin-bottom: 18px; }
 .consent-all {
   display: flex; align-items: center; gap: 8px; padding-bottom: 10px;
@@ -1520,6 +1549,14 @@ html { scroll-behavior: smooth; scroll-padding-top: 78px; }
             <label for="inputPhone">휴대폰 번호 <span style="font-size:11px;color:#b0b8c1;font-weight:500;">(필수)</span></label>
             <input type="tel" id="inputPhone" placeholder="휴대폰번호를 입력해주세요" maxlength="13">
           </div>
+          <!-- 요청사항 메모칸 — 평소엔 접혀 있다 (2026-08-21) -->
+          <button type="button" class="memo-toggle" id="memoToggle" onclick="요청사항펴기()">
+            <span class="plus">+</span> 요청사항 남기기
+          </button>
+          <div class="form-group memo-fold" id="memoFold">
+            <textarea id="inputMemo" maxlength="200" placeholder="예) 통화는 오후 2시 이후에 부탁드려요&#10;예) 지금 SK 쓰는데 KT로 바꾸면 얼마 받나요?"></textarea>
+            <div class="memo-count"><span id="memoCount">0</span> / 200자</div>
+          </div>
           <div style="display:flex;align-items:flex-start;gap:8px;margin-bottom:18px;">
             <input type="checkbox" id="c1" checked style="width:12px;height:12px;accent-color:#9ca3af;flex-shrink:0;margin-top:3px;cursor:pointer;opacity:0.7;">
             <label for="c1" style="font-size:13px;color:var(--gray);cursor:pointer;line-height:1.5;">개인정보 수집 및 활용동의 <a href="javascript:void(0)" onclick="openPrivacy()" style="color:var(--gray);font-weight:600;font-size:12px;text-decoration:none;">›</a> <span style="color:#b0b8c1;font-weight:500;font-size:11px;">(필수)</span></label>
@@ -2173,9 +2210,22 @@ document.getElementById('inputPhone').addEventListener('input', function() {
 });
 
 // Submit
+// 요청사항 메모칸 — 평소엔 접혀 있다가 눌러야 펴진다 (2026-08-21)
+function 요청사항펴기() {
+  document.getElementById('memoFold').classList.add('open');
+  document.getElementById('memoToggle').style.display = 'none';
+  document.getElementById('inputMemo').focus();
+}
+document.getElementById('inputMemo').addEventListener('input', function() {
+  const 표시 = document.getElementById('memoCount');
+  표시.textContent = this.value.length;
+  표시.parentNode.classList.toggle('over', this.value.length >= 200);
+});
+
 async function submitForm() {
   const name = document.getElementById('inputName').value.trim();
   const phone = document.getElementById('inputPhone').value.trim();
+  const memo = document.getElementById('inputMemo').value.trim();
   if (selectedServices.size === 0) { alert('서비스를 하나 이상 선택해주세요.'); return; }
   if (!phone || phone.replace(/\D/g,'').length !== 11) { alert('휴대폰 번호 11자리를 정확히 입력해주세요.\n(예: 010-1234-5678)'); return; }
   if (!document.getElementById('c1').checked) {
@@ -2190,7 +2240,7 @@ async function submitForm() {
   const usim = document.getElementById('usimCheck').checked ? 'Y' : 'N';
 
   try {
-    await dhSend(Object.assign({ name, phone, usim, service: serviceText }, dhInflow()),
+    await dhSend(Object.assign({ name, phone, usim, service: serviceText, memo }, dhInflow()),
                  (문구) => { btn.textContent = 문구; });
     document.getElementById('formContent').style.display = 'none';
     document.getElementById('formSuccess').style.display = 'block';
@@ -2206,6 +2256,12 @@ function resetForm() {
   document.getElementById('inputName').value = '';
   document.getElementById('inputPhone').value = '';
   document.getElementById('usimCheck').checked = false;
+  /* 요청사항 칸도 비우고 다시 접어 둔다 (2026-08-21) */
+  document.getElementById('inputMemo').value = '';
+  document.getElementById('memoCount').textContent = '0';
+  document.getElementById('memoCount').parentNode.classList.remove('over');
+  document.getElementById('memoFold').classList.remove('open');
+  document.getElementById('memoToggle').style.display = '';
   document.getElementById('c1').checked = true;   /* 페이지 기본값과 맞춘다 (2026-08-20) */
   selectedServices = new Set(['internet']);
   document.getElementById('tab-internet').classList.add('active');
