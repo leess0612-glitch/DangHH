@@ -1471,6 +1471,16 @@ html { scroll-behavior: smooth; scroll-padding-top: 78px; }
 @media (min-width:769px){
   .hero-inner > .live-section{ display:none !important }
 }
+
+/* ===== 아래 고정 띠가 푸터 글씨를 가리지 않게 (2026-08-24) =====
+   띠는 화면에 붙어 다니는데 페이지는 푸터에서 딱 끝나 버려, 맨 아래로 내려가면
+   띠가 푸터 마지막 글줄을 덮었다(컴퓨터 38px, 폰 28px 가려짐 — 실측).
+   푸터 안쪽 아래에 띠 높이만큼 빈 자리를 만들어 스크롤이 그만큼 더 내려가게 한다.
+   빈 자리는 푸터와 같은 남색이라 안 보이고, 띠는 글자가 없는 그 자리 위에 얹히므로
+   띠 안의 단추를 누르는 데도 아무 영향이 없다.
+   ※ 이 규칙은 파일 맨 끝에 있어야 앞의 footer 설정(padding: 40px 20px)을 이긴다 */
+@media (max-width: 768px) { footer { padding-bottom: 108px; } }  /* 폰 띠 68 + 여백 40 */
+@media (min-width: 769px) { footer { padding-bottom: 118px; } }  /* PC 띠 78 + 여백 40 */
 </style>
 </head>
 <body>
