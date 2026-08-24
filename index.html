@@ -1481,6 +1481,80 @@ html { scroll-behavior: smooth; scroll-padding-top: 78px; }
    ※ 이 규칙은 파일 맨 끝에 있어야 앞의 footer 설정(padding: 40px 20px)을 이긴다 */
 @media (max-width: 768px) { footer { padding-bottom: 108px; } }  /* 폰 띠 68 + 여백 40 */
 @media (min-width: 769px) { footer { padding-bottom: 118px; } }  /* PC 띠 78 + 여백 40 */
+/* ===== 대표 약속 카드 (2026-08-21 추가) ===== */
+.promise { background:#f8fafc; padding:70px 0 76px; text-align:center; }
+.promise-card {
+  margin-top:30px; display:grid; grid-template-columns:340px 1fr;
+  background:#fff; border:1px solid var(--border); border-radius:20px; overflow:hidden;
+  box-shadow:0 4px 24px rgba(15,42,90,0.10); text-align:left;
+}
+.promise-photo { position:relative; background:#eef2f7; }
+.promise-photo img { width:100%; height:100%; object-fit:cover; object-position:center 6%; display:block; }
+.promise-photo::after { content:''; position:absolute; inset:0; pointer-events:none; box-shadow:inset 0 0 0 1px rgba(15,42,90,0.16); }
+.promise-photo figcaption {
+  position:absolute; left:14px; right:14px; bottom:14px; padding:9px 12px 10px;
+  background:rgba(255,255,255,0.96); border:1px solid rgba(15,23,42,0.10); border-radius:12px;
+  color:var(--gray); font-size:12.5px; font-weight:600; text-align:center; letter-spacing:-0.2px;
+  box-shadow:0 6px 20px rgba(15,23,42,0.22);
+}
+.promise-photo figcaption b { font-size:19px; font-weight:900; color:var(--dark); display:block; margin-top:1px; letter-spacing:1px; }
+.promise-body { padding:36px 40px 32px; }
+.promise-head { font-size:22px; font-weight:900; letter-spacing:-0.5px; line-height:1.4; margin-bottom:22px; }
+.promise-head em { font-style:normal; color:var(--primary); }
+.promise-list { list-style:none; display:flex; flex-direction:column; gap:18px; }
+.promise-list li { display:flex; gap:14px; }
+.promise-num { flex:0 0 30px; height:30px; border-radius:9px; background:var(--primary); color:#fff;
+  font-size:15px; font-weight:900; display:flex; align-items:center; justify-content:center; margin-top:2px; }
+.promise-list strong { display:block; font-size:17px; font-weight:800; letter-spacing:-0.3px; margin-bottom:3px; }
+.promise-list p { font-size:14px; color:var(--gray); line-height:1.65; }
+.promise-oath { margin-top:26px; padding-top:20px; border-top:1px dashed var(--border);
+  display:block; }
+.promise-oath p { font-size:13.5px; color:#475569; line-height:1.6; margin-bottom:14px; }
+.promise-oath p b { color:var(--dark); font-weight:800; }
+.promise-sign { display:flex; align-items:center; justify-content:flex-end; gap:12px; padding-right:44px; }
+.promise-sign span { font-size:12px; color:var(--gray); white-space:nowrap; }
+.promise-sign img { width:126px; display:block; margin:0; }
+.promise-docs { margin-top:24px; }
+.promise-docs .lbl { font-size:14px; color:var(--gray); margin-bottom:12px; }
+.promise-docs-row { display:flex; gap:20px; justify-content:center; }
+.promise-doc { width:240px; border:1px solid var(--border); border-radius:12px; background:#fff; padding:10px 10px 12px;
+  cursor:zoom-in; transition:transform .2s, box-shadow .2s; box-shadow:0 2px 10px rgba(15,42,90,0.07); }
+.promise-doc:hover { transform:translateY(-3px); box-shadow:0 10px 24px rgba(15,42,90,0.14); }
+.promise-doc img { width:100%; aspect-ratio:1024/1448; object-fit:cover; object-position:top; border-radius:7px; display:block; background:#f8fafc; }
+.promise-doc span { display:block; margin-top:9px; font-size:12.5px; font-weight:700; color:#334155; text-align:center; }
+.promise-viewer { position:fixed; inset:0; background:rgba(15,23,42,0.88); display:none; align-items:center; justify-content:center; padding:30px; z-index:9999; cursor:zoom-out; }
+.promise-viewer.on { display:flex; }
+.promise-viewer img { max-width:100%; max-height:100%; border-radius:8px; }
+@media (max-width: 768px) {
+  .promise { padding:50px 0 54px; }
+  .promise-card { grid-template-columns:1fr; }
+  .promise-photo { aspect-ratio:16/12; }
+  .promise-photo img { object-position:center 20%; }
+  /* 폰: 이름표를 한 줄로 낮게 만들어 얼굴을 덜 가리게 (2026-08-21) */
+  .promise-photo figcaption {
+    left:10px; right:10px; bottom:8px; padding:6px 12px 7px;
+    display:flex; align-items:baseline; justify-content:center; gap:7px;
+    font-size:11.5px; border-radius:10px;
+  }
+  .promise-photo figcaption b { display:inline; font-size:15px; margin-top:0; letter-spacing:0.5px; }
+
+  .promise-body { padding:24px 20px 26px; }
+  .promise-head { font-size:19px; margin-bottom:18px; }
+  .promise-list strong { font-size:16px; }
+  .promise-oath p { margin-bottom:12px; }
+  .promise-sign { gap:8px; padding-right:48px; }
+  .promise-sign span { font-size:10.5px; }
+  .promise-sign img { width:80px; }
+  .promise-docs-row { gap:12px; }
+  .promise-doc { width:calc(50% - 6px); }
+}
+
+/* 아주 좁은 폰(320칸 안팎)에서도 날짜·서명이 한 줄에 들어가도록 */
+@media (max-width: 380px) {
+  .promise-sign { padding-right:48px; gap:6px; }
+  .promise-sign span { font-size:10px; }
+  .promise-sign img, .sign-img { width:74px; }
+}
 </style>
 </head>
 <body>
@@ -1615,6 +1689,64 @@ html { scroll-behavior: smooth; scroll-padding-top: 78px; }
   <div class="carriers-inner">
   </div>
 </div>
+
+<!-- PROMISE (대표 약속) -->
+<!-- 그림 이름표: image1=대표 사진 / image2=서명 / image3=인터넷 서약서(_s는 표지) / image4=렌탈 서약서(_s는 표지) -->
+<section class="promise">
+  <div class="section-inner">
+    <span class="section-tag">대표 약속</span>
+    <h2 class="section-title">대표가 <em>직접</em> 약속드립니다</h2>
+    <p class="section-sub">말로 그치지 않도록, 서면으로 남기고 서명했습니다</p>
+
+    <div class="promise-card fade-up">
+      <figure class="promise-photo">
+        <img src="images/promise/image1.webp" alt="당현함 운영사 유진텔레콤 대표 조성현" loading="lazy" decoding="async">
+        <figcaption>유진텔레콤 대표<b>조 성 현</b></figcaption>
+      </figure>
+      <div class="promise-body">
+        <p class="promise-head">고객님이 <em>걱정 없이</em> 가입하실 수 있도록<br>다음 세 가지를 지키겠습니다.</p>
+        <ul class="promise-list">
+          <li><span class="promise-num">1</span><div>
+            <strong>사은품 당일 100% 지급</strong>
+            <p>약속한 사은품은 개통 당일 지급하며, 1원이라도 미지급 시 약속 금액을 즉시 보상합니다.</p></div></li>
+          <li><span class="promise-num">2</span><div>
+            <strong>가입 내역서 및 필수 안내사항 고지</strong>
+            <p>월 요금, 약정 조건 등 꼭 아셔야 할 내용을 미리 말씀드리고, 언제든 다시 확인해 드립니다.</p></div></li>
+          <li><span class="promise-num">3</span><div>
+            <strong>개인정보 안전 관리 및 목적 외 사용 금지</strong>
+            <p>개인정보 보호법에 따라 관련 법규를 엄격히 지키며, 가입 목적 외에는 사용하지 않습니다.</p></div></li>
+        </ul>
+        <div class="promise-oath">
+          <p>위 서약을 위반하여 고객님께 피해가 발생할 경우 <b>모든 민·형사상 책임</b>을 감수할 것을 엄숙히 서약합니다.</p>
+          <div class="promise-sign">
+            <span>2026년 6월 29일 · 유진텔레콤 대표</span>
+            <img id="promiseSign" src="images/promise/image2.webp" alt="대표 조성현 서명">
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="promise-docs">
+      <p class="lbl">실제 서약서 원본입니다. 눌러서 확인해 보세요.</p>
+      <div class="promise-docs-row">
+        <div class="promise-doc" onclick="promiseZoom('images/promise/image3.jpg')">
+          <img src="images/promise/image3_s.jpg" alt="인터넷가입 안심보장 서약서" loading="lazy" decoding="async">
+          <span>인터넷가입 서약서</span>
+        </div>
+        <div class="promise-doc" onclick="promiseZoom('images/promise/image4.jpg')">
+          <img src="images/promise/image4_s.jpg" alt="렌탈 안심보장 서약서" loading="lazy" decoding="async">
+          <span>렌탈 서약서</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="promise-viewer" id="promiseViewer" onclick="this.classList.remove('on')"><img id="promiseViewerImg" src="" alt=""></div>
+<script>
+function promiseZoom(src){ document.getElementById('promiseViewerImg').src=src; document.getElementById('promiseViewer').classList.add('on'); }
+document.addEventListener('keydown', function(e){ if(e.key==='Escape') document.getElementById('promiseViewer').classList.remove('on'); });
+</script>
 
 <!-- TRUST SECTION -->
 <section class="trust-section">
