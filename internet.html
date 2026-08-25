@@ -169,7 +169,9 @@ header {
   max-width: 1200px; margin: 0 auto; padding: 0 20px;
   height: 64px; display: flex; align-items: center; justify-content: space-between;
 }
-.logo { font-size: 22px; font-weight: 900; color: var(--primary); text-decoration: none; letter-spacing: -0.5px; }
+/* 로고를 오른쪽 전화 단추와 같은 높이로 키움 (2026-08-25)
+   실측: 전화 단추 40px 높이 / 글씨 28px일 때 로고 글자높이 35px -> 32px 이면 40px 로 맞는다 */
+.logo { font-size: 32px; font-weight: 900; color: var(--primary); text-decoration: none; letter-spacing: -0.5px; }
 .logo span { color: var(--primary); }
 nav { display: flex; gap: 4px; align-items: center; }
 nav a { font-size: 14px; font-weight: 500; color: var(--gray); text-decoration: none; padding: 6px 10px; border-radius: 6px; transition: all 0.2s; }
@@ -910,6 +912,9 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
   nav { display: none; }
   .hamburger { display: flex; }
   .header-phone { padding: 7px 12px; font-size: 13px; }
+  /* 폰에서는 전화 단추가 작아진다(높이 35px). 로고도 그에 맞춰 낮춰 높이를 맞춘다
+     — 32px면 글자높이가 40px이라 단추보다 5px 커 보였다 */
+  .logo { font-size: 28px; }
   .hero { padding: 48px 20px 56px; }
   .hero-inner { flex-direction: column; gap: 32px; }
   .hero-content { text-align: center; }
