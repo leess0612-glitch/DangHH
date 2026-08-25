@@ -1556,6 +1556,77 @@ html { scroll-behavior: smooth; scroll-padding-top: 78px; }
   .promise-sign img, .sign-img { width:74px; }
 }
 </style>
+
+<style>
+/* ===== 신청 별도창(모달) — 2026-08-25 =====
+   첫 화면에서 번호부터 묻지 않고, 아래 고정 띠의 단추를 눌렀을 때만 부드럽게 나타난다. */
+.apply-overlay{
+  position:fixed; inset:0; z-index:2100;
+  background:rgba(6,18,54,.62);
+  display:flex; align-items:flex-start; justify-content:center;
+  padding:62px 16px 28px;
+  overflow-y:auto; -webkit-overflow-scrolling:touch;
+  opacity:0; visibility:hidden;
+  transition:opacity .30s ease, visibility 0s linear .30s;
+}
+.apply-overlay.open{ opacity:1; visibility:visible; transition:opacity .30s ease, visibility 0s linear 0s; }
+.apply-modal{
+  position:relative; width:100%; max-width:420px; margin:auto;
+  transform:translateY(18px) scale(.985);
+  transition:transform .34s cubic-bezier(.22,.72,.28,1);
+}
+.apply-overlay.open .apply-modal{ transform:none; }
+/* 히어로 안에 있을 때 쓰던 폭 규칙을 창 안에서는 풀어준다 */
+.apply-modal .hero-form-wrap{ flex:none; width:100%; }
+.apply-modal .form-card{ max-width:100%; margin:0; box-shadow:0 30px 80px rgba(2,10,40,.55); }
+/* 화면이 낮거나 요청사항을 펴서 내용이 길어지면 '창 안쪽'만 굴러가게 한다.
+   창 전체가 굴러가면 위에 달린 닫기(X) 단추가 화면 밖으로 밀려 안 보였다. */
+.apply-modal{ max-height: calc(100vh - 96px); max-height: calc(100dvh - 96px); }
+.apply-modal .form-card{
+  max-height: calc(100vh - 96px); max-height: calc(100dvh - 96px);
+  overflow-y:auto; -webkit-overflow-scrolling:touch; overscroll-behavior:contain;
+}
+.apply-close{
+  position:absolute; top:-44px; right:0;
+  width:36px; height:36px; padding:0; border:none; border-radius:50%;
+  background:rgba(255,255,255,.92); color:#0f172a;
+  font-size:15px; line-height:1; cursor:pointer;
+  display:flex; align-items:center; justify-content:center;
+  box-shadow:0 4px 14px rgba(0,0,0,.28);
+  font-family:'SUIT', sans-serif;
+}
+.apply-close:hover{ background:#fff; }
+/* 창이 떠 있는 동안 뒷 페이지가 같이 밀리지 않게 */
+body.apply-open{ overflow:hidden; }
+
+/* 개인정보처리방침·약관 창은 신청창(2100) '안에서' 열리므로 그보다 위여야 한다.
+   원래 2000이라 신청창 뒤에 가려져 아예 안 보였다 (2026-08-25 실측) */
+.privacy-overlay{ z-index:2300; }
+
+/* ===== 폼이 빠진 첫 화면 — 컴퓨터에서도 가운데로 모은다 (2026-08-25) =====
+   오른쪽 신청칸이 사라져 왼쪽으로 치우쳐 보이므로, 폰 화면과 같은 가운데 정렬로 맞춘다.
+   컴퓨터에서 배지 두 개가 '화면 왼쪽 밖에서 뻗어 들어오는 띠' 모양이었는데,
+   가운데 정렬과는 맞지 않으므로 그 설정을 풀고 폰과 똑같이 가운데 놓인 각진 배지로 바꾼다.
+   (렌탈 페이지가 이미 같은 방식이다) */
+@media (min-width:769px){
+  .hero-content{ max-width:820px; margin-left:auto; margin-right:auto; text-align:center; }
+  .hero-badge{
+    display:block; width:fit-content;
+    margin-left:auto; margin-right:auto;
+    padding-left:16px; padding-right:16px;
+    border-left:1px solid rgba(255,255,255,0.3);
+    border-radius:0;
+  }
+  .hero-cash-badge{
+    margin-left:auto; margin-right:auto;
+    padding-left:39px; padding-right:39px;
+    border-radius:0;
+  }
+  .dh-ledger{ margin-left:auto; margin-right:auto; }
+  .hero-stats{ margin-left:auto; margin-right:auto; justify-content:center; }
+}
+
+</style>
 </head>
 <body>
 
@@ -1569,7 +1640,7 @@ html { scroll-behavior: smooth; scroll-padding-top: 78px; }
       <a href="#reviews">설치후기</a>
       <a href="gift.html">사은품지급명단</a>
       <a href="#faq">자주묻는질문</a>
-      <a href="#applyForm" style="color:var(--primary);font-weight:700;">무료상담</a>
+      <a href="javascript:void(0)" onclick="신청창열기()" style="color:var(--primary);font-weight:700;">무료상담</a>
     </nav>
     <a href="tel:1600-4670" class="header-phone">
       <svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
@@ -1581,12 +1652,12 @@ html { scroll-behavior: smooth; scroll-padding-top: 78px; }
   </div>
 </header>
 <div class="mobile-menu" id="mobileMenu">
-  <a href="#compare" onclick="closeMobileMenu()">혜택안내</a>
-  <a href="plans.html" onclick="closeMobileMenu()">요금·사은품</a>
-  <a href="#reviews" onclick="closeMobileMenu()">설치후기</a>
-  <a href="gift.html" onclick="closeMobileMenu()">사은품지급명단</a>
-  <a href="#faq" onclick="closeMobileMenu()">자주묻는질문</a>
-  <a href="#applyForm" onclick="closeMobileMenu()" style="color:var(--primary);font-weight:700;">무료상담 →</a>
+  <a href="#compare" onclick="closeMobileMenu(true)">혜택안내</a>
+  <a href="plans.html" onclick="closeMobileMenu(true)">요금·사은품</a>
+  <a href="#reviews" onclick="closeMobileMenu(true)">설치후기</a>
+  <a href="gift.html" onclick="closeMobileMenu(true)">사은품지급명단</a>
+  <a href="#faq" onclick="closeMobileMenu(true)">자주묻는질문</a>
+  <a href="javascript:void(0)" onclick="closeMobileMenu(); 신청창열기();" style="color:var(--primary);font-weight:700;">무료상담 →</a>
 </div>
 
 <!-- HERO -->
@@ -1615,56 +1686,6 @@ html { scroll-behavior: smooth; scroll-padding-top: 78px; }
           <span class="since-badge">✅ 13년 무사고</span>
           <div class="num">97%</div>
           <div class="label">고객 만족도</div>
-        </div>
-      </div>
-    </div>
-    <div class="hero-form-wrap" id="applyForm">
-      <div class="form-card">
-        <div id="formContent">
-          <p class="form-headline"><span>내 지원금</span>이 얼마인지 확인해보세요</p>
-          <div class="service-tabs">
-            <div class="service-tab active" id="tab-internet" onclick="toggleService('internet')">
-              <div class="service-tab-icon">📡</div>인터넷
-            </div>
-            <div class="service-tab" id="tab-rental" onclick="toggleService('rental')">
-              <div class="service-tab-icon">🏠</div>렌탈
-            </div>
-          </div>
-          <p style="font-size:12px;color:var(--gray);margin-top:0;margin-bottom:14px;text-align:center;">(둘 다 선택 가능)</p>
-          <div class="usim-check">
-            <input type="checkbox" id="usimCheck">
-            <label for="usimCheck">휴대폰 기종 변경 없이<br class="fold-br"> 통신사만 바꾸고 추가 현금 받기 (유심 번호이동)</label>
-          </div>
-          <div class="form-group">
-            <label for="inputName">이름 <span style="font-size:11px;color:#94a3b8;font-weight:500;">(선택)</span></label>
-            <input type="text" id="inputName" placeholder="이름을 입력해주세요" maxlength="20">
-          </div>
-          <div class="form-group">
-            <label for="inputPhone">휴대폰 번호 <span style="font-size:11px;color:#b0b8c1;font-weight:500;">(필수)</span></label>
-            <input type="tel" id="inputPhone" placeholder="휴대폰번호를 입력해주세요" maxlength="13">
-          </div>
-          <!-- 요청사항 메모칸 — 평소엔 접혀 있다 (2026-08-21) -->
-          <button type="button" class="memo-toggle" id="memoToggle" onclick="요청사항펴기()">
-            <span class="plus">+</span> 요청사항 남기기
-          </button>
-          <div class="form-group memo-fold" id="memoFold">
-            <p class="memo-hint">예) 통화는 오후 2시 이후에 부탁드려요 · 지금 SK 쓰는데 KT로 바꾸면 얼마 받나요?</p>
-            <textarea id="inputMemo" maxlength="200" placeholder="남기실 말씀을 적어주세요"></textarea>
-            <div class="memo-count"><span id="memoCount">0</span> / 200자</div>
-          </div>
-          <div style="display:flex;align-items:flex-start;gap:8px;margin-bottom:18px;">
-            <input type="checkbox" id="c1" checked style="width:12px;height:12px;accent-color:#9ca3af;flex-shrink:0;margin-top:3px;cursor:pointer;opacity:0.7;">
-            <label for="c1" style="font-size:13px;color:var(--gray);cursor:pointer;line-height:1.5;">개인정보 수집 및 활용동의 <a href="javascript:void(0)" onclick="openPrivacy()" style="color:var(--gray);font-weight:600;font-size:12px;text-decoration:none;">›</a> <span style="color:#b0b8c1;font-weight:500;font-size:11px;">(필수)</span></label>
-          </div>
-          <p class="form-urgency">⏰ 오후 5:30 이전 설치 시 당일 현금 입금</p>
-          <button class="form-submit" id="submitBtn" onclick="submitForm()">놓친 지원금 무료확인</button>
-          <p style="margin-top:10px;font-size:13px;color:var(--gray);text-align:center;">타업체보다 적다면? <strong style="color:var(--primary);">차액을 보상해드립니다.</strong></p>
-        </div>
-        <div class="form-success" id="formSuccess">
-          <div class="s-icon">✅</div>
-          <h3>신청이 완료되었습니다!</h3>
-          <p>담당 상담사가 빠른 시간 내에<br>연락드리겠습니다.<br><br>바로 문의하시려면<br><strong style="color:var(--primary);font-size:17px;">1600-4670</strong></p>
-          <button onclick="resetForm()" style="margin-top:16px;background:none;border:1px solid #d1d5db;border-radius:8px;padding:10px 20px;font-size:14px;color:var(--gray);cursor:pointer;">다른 번호로 추가 신청</button>
         </div>
       </div>
     </div>
@@ -1742,23 +1763,15 @@ html { scroll-behavior: smooth; scroll-padding-top: 78px; }
     </div>
   </div>
 </section>
-<div class="promise-viewer" id="promiseViewer" onclick="this.classList.remove('on')"><img id="promiseViewerImg" src="" alt=""></div>
+<div class="promise-viewer" id="promiseViewer" onclick="서약서닫기()"><img id="promiseViewerImg" src="" alt=""></div>
 <script>
 function promiseZoom(src){ document.getElementById('promiseViewerImg').src=src; document.getElementById('promiseViewer').classList.add('on'); }
-document.addEventListener('keydown', function(e){ if(e.key==='Escape') document.getElementById('promiseViewer').classList.remove('on'); });
+/* 서약서 확대보기의 ESC 닫기는 아래 '맨위창닫기'가 대신 처리한다 (2026-08-25) */
 </script>
 
 <!-- TRUST SECTION -->
 <section class="trust-section">
   <div class="section-inner">
-
-    <!-- Part 1: 불안 해소 -->
-    <div class="trust-worry fade-up">
-      <span class="section-tag">업계 현실</span>
-      <h2 class="section-title trust-worry-title"><em>사기</em>일까, <em>먹튀</em>일까<br>걱정되시나요?</h2>
-      <p class="section-sub">실제 보도된 인터넷 가입 관련 뉴스입니다</p>
-      <img src="images/trust_news.png" alt="인터넷 가입 사기·먹튀 관련 실제 뉴스 기사" class="trust-news-img" loading="lazy" decoding="async">
-    </div>
 
     <!-- Part 2: 당현함 당일지급 -->
     <div class="trust-solution fade-up">
@@ -2158,10 +2171,67 @@ document.addEventListener('keydown', function(e){ if(e.key==='Escape') document.
   </div>
 </footer>
 
+<!-- APPLY MODAL : 신청 별도창 (2026-08-25) -->
+<div class="apply-overlay" id="applyOverlay" onclick="신청창바깥닫기(event)" aria-hidden="true">
+  <div class="apply-modal" role="dialog" aria-modal="true" aria-label="놓친 지원금 무료 확인 신청">
+    <button type="button" class="apply-close" onclick="신청창닫기()" aria-label="닫기">&#10005;</button>
+    <div class="hero-form-wrap" id="applyForm">
+      <div class="form-card">
+        <div id="formContent">
+          <p class="form-headline"><span>내 지원금</span>이 얼마인지 확인해보세요</p>
+          <div class="service-tabs">
+            <div class="service-tab active" id="tab-internet" onclick="toggleService('internet')">
+              <div class="service-tab-icon">📡</div>인터넷
+            </div>
+            <div class="service-tab" id="tab-rental" onclick="toggleService('rental')">
+              <div class="service-tab-icon">🏠</div>렌탈
+            </div>
+          </div>
+          <p style="font-size:12px;color:var(--gray);margin-top:0;margin-bottom:14px;text-align:center;">(둘 다 선택 가능)</p>
+          <div class="usim-check">
+            <input type="checkbox" id="usimCheck">
+            <label for="usimCheck">휴대폰 기종 변경 없이<br class="fold-br"> 통신사만 바꾸고 추가 현금 받기 (유심 번호이동)</label>
+          </div>
+          <div class="form-group">
+            <label for="inputName">이름 <span style="font-size:11px;color:#94a3b8;font-weight:500;">(선택)</span></label>
+            <input type="text" id="inputName" placeholder="이름을 입력해주세요" maxlength="20">
+          </div>
+          <div class="form-group">
+            <label for="inputPhone">휴대폰 번호 <span style="font-size:11px;color:#b0b8c1;font-weight:500;">(필수)</span></label>
+            <input type="tel" id="inputPhone" placeholder="휴대폰번호를 입력해주세요" maxlength="13">
+          </div>
+          <!-- 요청사항 메모칸 — 평소엔 접혀 있다 (2026-08-21) -->
+          <button type="button" class="memo-toggle" id="memoToggle" onclick="요청사항펴기()">
+            <span class="plus">+</span> 요청사항 남기기
+          </button>
+          <div class="form-group memo-fold" id="memoFold">
+            <p class="memo-hint">예) 통화는 오후 2시 이후에 부탁드려요 · 지금 SK 쓰는데 KT로 바꾸면 얼마 받나요?</p>
+            <textarea id="inputMemo" maxlength="200" placeholder="남기실 말씀을 적어주세요"></textarea>
+            <div class="memo-count"><span id="memoCount">0</span> / 200자</div>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:8px;margin-bottom:18px;">
+            <input type="checkbox" id="c1" checked style="width:12px;height:12px;accent-color:#9ca3af;flex-shrink:0;margin-top:3px;cursor:pointer;opacity:0.7;">
+            <label for="c1" style="font-size:13px;color:var(--gray);cursor:pointer;line-height:1.5;">개인정보 수집 및 활용동의 <a href="javascript:void(0)" onclick="openPrivacy()" style="color:var(--gray);font-weight:600;font-size:12px;text-decoration:none;">›</a> <span style="color:#b0b8c1;font-weight:500;font-size:11px;">(필수)</span></label>
+          </div>
+          <p class="form-urgency">⏰ 오후 5:30 이전 설치 시 당일 현금 입금</p>
+          <button class="form-submit" id="submitBtn" onclick="submitForm()">놓친 지원금 무료확인</button>
+          <p style="margin-top:10px;font-size:13px;color:var(--gray);text-align:center;">타업체보다 적다면? <strong style="color:var(--primary);">차액을 보상해드립니다.</strong></p>
+        </div>
+        <div class="form-success" id="formSuccess">
+          <div class="s-icon">✅</div>
+          <h3>신청이 완료되었습니다!</h3>
+          <p>담당 상담사가 빠른 시간 내에<br>연락드리겠습니다.<br><br>바로 문의하시려면<br><strong style="color:var(--primary);font-size:17px;">1600-4670</strong></p>
+          <button onclick="resetForm()" style="margin-top:16px;background:none;border:1px solid #d1d5db;border-radius:8px;padding:10px 20px;font-size:14px;color:var(--gray);cursor:pointer;">다른 번호로 추가 신청</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- MOBILE BOTTOM CTA -->
 <div class="mobile-cta-bar" id="mobileCta">
   <div class="mobile-cta-bar-inner">
-    <button class="mobile-cta-btn" onclick="바로이동('applyForm')">놓친 지원금 무료확인 →</button>
+    <button class="mobile-cta-btn" onclick="신청창열기()">놓친 지원금 무료확인 →</button>
   </div>
 </div>
 
@@ -2169,7 +2239,7 @@ document.addEventListener('keydown', function(e){ if(e.key==='Escape') document.
 <div class="desk-cta-bar" id="deskCtaBar">
   <div class="desk-cta-bar-inner">
     <span class="desk-cta-top">놓치고 있던 내 최대 지원금, 지금 바로 확인하세요</span>
-    <button class="desk-cta-bar-btn" onclick="바로이동('apply')">무료 확인하기 →</button>
+    <button class="desk-cta-bar-btn" onclick="신청창열기()">무료 확인하기 →</button>
   </div>
 </div>
 
@@ -2309,8 +2379,7 @@ function openCafe(pcUrl, mobileUrl) {
         트랙.appendChild(div);
       });
 
-      제목.textContent = (날짜개수 > 1 ? '최근 ' + 날짜개수 + '일' : 날짜적기(날들[0].date))
-                       + ' 사은품지급명단';
+      제목.textContent = '사은품지급명단';
 
       굴림맞춤(줄들.length);
       섹션.style.display = '';
@@ -2333,8 +2402,7 @@ new Swiper('.reviewSwiper', {
 function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('open'); }
 function closeMobileMenu() { document.getElementById('mobileMenu').classList.remove('open'); }
 document.addEventListener('click', e => {
-  if (!e.target.closest('header') && !e.target.closest('.mobile-menu'))
-    document.getElementById('mobileMenu').classList.remove('open');
+  if (!e.target.closest('header') && !e.target.closest('.mobile-menu')) closeMobileMenu();
 });
 
 // Service tab (다중 선택, 재클릭 해제)
@@ -2443,35 +2511,31 @@ function closePrivacyOutside(e) { if (e.target.id === 'privacyOverlay') closePri
 function openTerms() { document.getElementById('termsOverlay').classList.add('open'); }
 function closeTerms() { document.getElementById('termsOverlay').classList.remove('open'); }
 function closeTermsOutside(e) { if (e.target.id === 'termsOverlay') closeTerms(); }
-document.addEventListener('keydown', function(e) { if (e.key !== 'Escape') return; closePrivacy(); closeTerms(); });
+document.addEventListener('keydown', function(e) { if (e.key !== 'Escape') return; 맨위창닫기(); });
 
 // 스크롤 트리거 — 히어로 폼이 뷰포트 밖으로 나가면 CTA 바 등장
 const deskCtaBar = document.getElementById('deskCtaBar');
 const mobileCta  = document.getElementById('mobileCta');
-const heroFormWrap = document.querySelector('.hero-form-wrap');
+/* heroFormWrap 은 더 이상 히어로에 없다 (별도 창 안으로 옮김) */
 
 function updateScrollForms() {
-  const heroGone = heroFormWrap ? heroFormWrap.getBoundingClientRect().bottom <= 0 : true;
+  // 2026-08-25: 신청폼이 첫 화면에서 빠졌으므로 누를 곳은 아래 고정 띠 하나뿐이다.
+  // 그래서 스크롤 위치와 상관없이 처음부터 계속 띄운다.
+  // 다만 신청 창이 떠 있는 동안에는 창과 겹치므로 감춘다.
+  const 창열림 = document.body.classList.contains('apply-open');
   const isMobile = window.innerWidth <= 768;
-  // 모바일은 처음부터 띄우되, 신청폼이 화면에 넉넉히 보이면 다시 감춘다 (2026-08-13)
-  // 왜 띄우나: 인스타 유입이 평균 7초만 머물고 나가는데 그 사이 누를 것이 없었다.
-  // 왜 감추나: 폼 안에 글자가 똑같은 진짜 신청 단추가 있어 둘이 겹쳐 보이고,
-  //            이미 폼에 와 있으니 하단 바를 눌러도 아무 일 없는 것처럼 느껴진다.
-  //            300px = 첫 화면에서는 폼이 72px만 걸쳐 보이므로 바가 그대로 뜬다.
+  if (창열림) {
+    mobileCta.classList.remove('visible');
+    deskCtaBar.classList.remove('visible');
+    return;
+  }
   if (isMobile) {
-    let 폼보이는높이 = 0;
-    if (heroFormWrap) {
-      const f = heroFormWrap.getBoundingClientRect();
-      폼보이는높이 = Math.min(f.bottom, window.innerHeight) - Math.max(f.top, 0);
-    }
-    if (폼보이는높이 >= 300) { mobileCta.classList.remove('visible'); }
-    else { mobileCta.classList.add('visible'); }
+    mobileCta.classList.add('visible');
     deskCtaBar.classList.remove('visible');
     return;
   }
   mobileCta.classList.remove('visible');
-  if (heroGone) { deskCtaBar.classList.add('visible'); }
-  else { deskCtaBar.classList.remove('visible'); }
+  deskCtaBar.classList.add('visible');
 }
 window.addEventListener('scroll', updateScrollForms, { passive: true });
 // 아래 세 가지는 '스크롤 신호가 안 나오는 경우'를 메운다 (2026-08-13)
@@ -2496,15 +2560,15 @@ updateScrollForms();
 // 컴퓨터 화면은 건드리지 않는다 — 넓어지면 원래 자리(히어로 아래)로 되돌린다.
 (function(){
   var 명단 = document.getElementById('liveSection');
-  var 폼   = document.querySelector('.hero-form-wrap');
-  if (!명단 || !폼) return;
+  var 히어로 = document.querySelector('.hero-inner');
+  if (!명단 || !히어로) return;
   var 원래부모 = 명단.parentNode;
   var 원래다음 = 명단.nextSibling;   // 원래 자리를 가리키는 표시
   var 폰 = window.matchMedia('(max-width: 768px)');
 
   function 자리잡기(){
     if (폰.matches) {
-      if (명단.nextSibling !== 폼) 폼.parentNode.insertBefore(명단, 폼);
+      if (명단.parentNode !== 히어로 || 명단.nextSibling !== null) 히어로.appendChild(명단);
     } else {
       if (명단.parentNode !== 원래부모 || 명단.nextSibling !== 원래다음) {
         원래부모.insertBefore(명단, 원래다음);
@@ -2523,6 +2587,192 @@ updateScrollForms();
   window.addEventListener('scroll', 자리잡기, { passive: true });
 })();
 
+
+
+// ===== 떠 있는 창 관리 + 뒤로가기로 닫기 (2026-08-25) =====
+// 왜: 안드로이드 손님은 창을 닫을 때 습관적으로 뒤로가기를 누른다.
+//     그대로 두면 창이 닫히는 대신 페이지를 통째로 떠나 버린다(아이폰 화면 쓸어넘기기도 같다).
+// 어떻게: 창을 열 때 방문 기록에 빈 칸을 하나 넣어 둔다. 그러면 뒤로가기는
+//     '페이지를 떠나는 일'이 아니라 '그 빈 칸을 되돌리는 일'이 되어 창만 닫힌다.
+//
+// ★ 추적·접수에 영향 없음: 넣는 주소는 지금 주소(location.href) 그대로다.
+//    주소창도 안 바뀌고, 유입경로 부품(js/dh-inflow.js)이 읽는
+//    location.search / pathname / hostname 도 그대로다. 페이지를 다시 읽지도 않으므로
+//    localStorage(dh_in) · sessionStorage(dh_*) · 구글시트 전송과는 아무 상관이 없다.
+var 창목록 = [];             // 지금 떠 있는 창들 (나중에 연 것이 뒤)
+var 뒤로가기처리중 = false;   // 뒤로가기가 부른 닫기인지 구분
+var 되돌리기예약 = false;     // 우리가 스스로 부른 되돌리기인지 구분
+var 뺄칸수 = 0;               // 닫혔지만 아직 안 치운 빈 칸
+var 정리타이머 = null;
+
+function 창열림기록(이름, 닫기함수) {
+  창목록.push({ 이름: 이름, 닫기: 닫기함수 });
+  // 방금 닫힌 창이 쓰던 빈 칸이 아직 남아 있으면 그대로 물려받는다.
+  // (폰 메뉴에서 '무료상담'을 누르면 메뉴가 닫히는 것과 신청창이 열리는 것이
+  //  같은 순간에 일어난다. 이때 칸을 뺐다 넣었다 하면 순서가 꼬인다)
+  if (뺄칸수 > 0) {
+    뺄칸수--;
+    if (!뺄칸수 && 정리타이머) { clearTimeout(정리타이머); 정리타이머 = null; }
+    return;
+  }
+  try { history.pushState({ dh창: 1 }, '', location.href); } catch (e) {}
+}
+function 창목록에서빼기(이름) {
+  for (var i = 창목록.length - 1; i >= 0; i--) { if (창목록[i].이름 === 이름) { 창목록.splice(i, 1); return; } }
+}
+function 창닫힘기록(이름) {
+  var 자리 = -1;
+  for (var i = 창목록.length - 1; i >= 0; i--) { if (창목록[i].이름 === 이름) { 자리 = i; break; } }
+  if (자리 === -1) return;                 // 뒤로가기가 이미 처리한 창
+  창목록.splice(자리, 1);
+  if (뒤로가기처리중) return;              // 기록은 이미 스스로 물러났다
+  // X·바깥·ESC로 닫은 경우: 우리가 넣은 빈 칸을 스스로 치운다.
+  // 곧바로 다른 창이 열릴 수도 있으므로 한 박자 뒤에 정리한다.
+  뺄칸수++;
+  if (정리타이머) clearTimeout(정리타이머);
+  정리타이머 = setTimeout(빈칸정리, 0);
+}
+function 빈칸정리() {
+  정리타이머 = null;
+  if (뺄칸수 <= 0) return;
+  뺄칸수 = 0;
+  // ★ 지금 자리가 우리가 넣은 빈 칸일 때만 되돌린다.
+  //    아니면 손님이 사이트 밖으로 나가 버린다. 한 칸씩만 되돌려 절대 넘치지 않게 한다.
+  if (!(history.state && history.state.dh창)) return;
+  되돌리기예약 = true;
+  try { history.back(); } catch (e) { 되돌리기예약 = false; }
+  setTimeout(function(){ 되돌리기예약 = false; }, 600);   // 신호가 안 오는 경우 대비
+}
+function 맨위창닫기() {
+  if (!창목록.length) return;
+  창목록[창목록.length - 1].닫기();
+}
+window.addEventListener('popstate', function () {
+  // 우리가 스스로 부른 되돌리기면 그냥 흘려보낸다.
+  // (창이 두 개 겹쳐 있을 때 위 창을 닫으면서 아래 창까지 닫히던 문제를 막는다)
+  if (되돌리기예약) { 되돌리기예약 = false; return; }
+  if (!창목록.length) return;
+  var 맨위 = 창목록[창목록.length - 1];
+  뒤로가기처리중 = true;
+  var 닫혔나;
+  try { 닫혔나 = 맨위.닫기(); } catch (e) { 닫혔나 = true; }
+  뒤로가기처리중 = false;
+  if (닫혔나 === false) {
+    // 신청을 보내는 중이라 닫으면 안 되는 상황 — 빈 칸을 도로 넣어 제자리에 붙잡는다
+    try { history.pushState({ dh창: 1 }, '', location.href); } catch (e) {}
+    return;
+  }
+  var 자리 = 창목록.indexOf(맨위);
+  if (자리 > -1) 창목록.splice(자리, 1);
+});
+
+// ===== 신청 별도창 열고 닫기 =====
+// 왜: 첫 화면에서 곧바로 번호를 묻는 것이 손님에게 문턱이 된다고 보아,
+//     내용을 읽고 설득된 사람이 스스로 누를 때만 신청칸을 보여준다.
+function 신청창열기() {
+  var 창 = document.getElementById('applyOverlay');
+  if (!창 || 창.classList.contains('open')) return;
+  창.classList.add('open');
+  창.setAttribute('aria-hidden', 'false');
+  document.body.classList.add('apply-open');
+  창열림기록('apply', 신청창닫기);
+  if (typeof dhTrack === 'function') dhTrack('apply_open', { once: false });
+  updateScrollForms();
+  // 컴퓨터에서만 번호 칸에 커서를 놓는다(폰은 자판이 갑자기 올라와 놀란다)
+  if (window.innerWidth > 768) {
+    setTimeout(function(){ var p = document.getElementById('inputPhone'); if (p) p.focus(); }, 340);
+  }
+}
+function 신청창닫기() {
+  var 창 = document.getElementById('applyOverlay');
+  if (!창 || !창.classList.contains('open')) return true;
+  // ★ 구글 시트로 신청을 보내는 중에는 닫지 않는다.
+  //    보내기는 최대 45초까지 걸릴 수 있고, 그동안 화면에도 '화면을 닫지 말아 주세요'가 뜬다.
+  //    보내기가 끝나거나 실패하면 곧바로 다시 닫을 수 있게 된다.
+  var 단추 = document.getElementById('submitBtn');
+  var 성공 = document.getElementById('formSuccess');
+  var 보내는중 = !!(단추 && 단추.disabled && 성공 && getComputedStyle(성공).display === 'none');
+  if (보내는중) return false;
+  창.classList.remove('open');
+  창.setAttribute('aria-hidden', 'true');
+  document.body.classList.remove('apply-open');
+  창닫힘기록('apply');
+  updateScrollForms();
+  return true;
+}
+function 신청창바깥닫기(e) { if (e.target.id === 'applyOverlay') 신청창닫기(); }
+
+// ===== 개인정보처리방침 · 서비스이용약관 · 서약서 확대보기도 같은 방식으로 =====
+// 원래 있던 함수를 같은 이름으로 덮어써서, 페이지 곳곳의 누름단추는 그대로 두고 속만 바꾼다.
+openPrivacy = function () {
+  var e = document.getElementById('privacyOverlay');
+  if (!e || e.classList.contains('open')) return;
+  e.classList.add('open');
+  창열림기록('privacy', closePrivacy);
+};
+closePrivacy = function () {
+  var e = document.getElementById('privacyOverlay');
+  if (!e || !e.classList.contains('open')) return true;
+  e.classList.remove('open');
+  창닫힘기록('privacy');
+  return true;
+};
+openTerms = function () {
+  var e = document.getElementById('termsOverlay');
+  if (!e || e.classList.contains('open')) return;
+  e.classList.add('open');
+  창열림기록('terms', closeTerms);
+};
+closeTerms = function () {
+  var e = document.getElementById('termsOverlay');
+  if (!e || !e.classList.contains('open')) return true;
+  e.classList.remove('open');
+  창닫힘기록('terms');
+  return true;
+};
+promiseZoom = function (src) {
+  var e = document.getElementById('promiseViewer');
+  if (!e) return;
+  document.getElementById('promiseViewerImg').src = src;
+  if (e.classList.contains('on')) return;
+  e.classList.add('on');
+  창열림기록('promise', 서약서닫기);
+};
+function 서약서닫기() {
+  var e = document.getElementById('promiseViewer');
+  if (!e || !e.classList.contains('on')) return true;
+  e.classList.remove('on');
+  창닫힘기록('promise');
+  return true;
+}
+
+// ===== 폰 위쪽 메뉴(햄버거)도 뒤로가기로 닫히게 (2026-08-25) =====
+toggleMenu = function () {
+  var e = document.getElementById('mobileMenu');
+  if (!e) return;
+  if (e.classList.contains('open')) { closeMobileMenu(); return; }
+  e.classList.add('open');
+  창열림기록('menu', closeMobileMenu);
+};
+// 떠남=true 로 부르면 기록을 건드리지 않는다.
+// 메뉴 항목을 눌러 '다른 페이지로 가거나 페이지 안에서 자리를 옮기는' 경우가 그렇다.
+// 그때 우리가 빈 칸을 되돌리면 그 이동 자체와 부딪혀 엉뚱한 데로 간다.
+closeMobileMenu = function (떠남) {
+  var e = document.getElementById('mobileMenu');
+  if (!e || !e.classList.contains('open')) return true;
+  e.classList.remove('open');
+  if (떠남 === true) 창목록에서빼기('menu');
+  else 창닫힘기록('menu');
+  return true;
+};
+
+// 주소 끝에 #applyForm 을 달고 들어오면(옛 광고 링크·즐겨찾기) 창을 열어준다
+if (location.hash === '#applyForm' || location.hash === '#apply') {
+  window.addEventListener('load', function(){ setTimeout(신청창열기, 250); });
+}
+
+// 아래 고정 띠를 첫 화면부터 띄운다
+updateScrollForms();
 
 // Scroll animation
 const observer = new IntersectionObserver(entries => {
