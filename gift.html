@@ -209,11 +209,23 @@ table.gift tbody tr:last-child td { border-bottom: none; }
 .empty { padding: 50px 20px; text-align: center; color: var(--gray); font-size: 15px; }
 
 /* 상담 유도 */
-.cta-box { margin-top: 30px; background: linear-gradient(135deg, #0C2880 0%, #1461F0 100%); border-radius: 16px; padding: 30px 24px; text-align: center; color: white; }
-.cta-box h3 { font-size: 21px; font-weight: 900; margin-bottom: 8px; letter-spacing: -0.5px; }
-.cta-box p { font-size: 14.5px; color: rgba(255,255,255,0.85); margin-bottom: 18px; }
-.cta-box a { display: inline-block; background: #ff6b00; color: white; padding: 14px 34px; border-radius: 10px; font-size: 16px; font-weight: 800; text-decoration: none; transition: background 0.2s; }
-.cta-box a:hover { background: #e85f00; }
+/* 다음 명단의 주인공 — 스크롤을 따라오는 단추 (2026-08-25)
+   왜: 페이지 중간에 있던 파란 상자는 그 자리를 지나치면 다시 볼 수 없었다.
+       첫 페이지의 아래 단추처럼, 어디까지 내려가도 늘 눌 수 있게 화면에 띄운다. */
+.follow-cta {
+  position: fixed; left: 50%; bottom: 24px; z-index: 940;
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: 15px 30px; border-radius: 999px;
+  background: #ff6b00; color: #fff;
+  font-size: 16px; font-weight: 800; text-decoration: none; white-space: nowrap;
+  box-shadow: 0 10px 28px rgba(255,107,0,0.38), 0 2px 8px rgba(15,42,90,0.18);
+  opacity: 0; pointer-events: none;
+  transform: translate(-50%, 14px);
+  transition: opacity 0.28s ease, transform 0.28s ease, background 0.2s;
+}
+.follow-cta.visible { opacity: 1; pointer-events: auto; transform: translate(-50%, 0); }
+.follow-cta:hover { background: #e85f00; }
+.follow-cta.visible:active { transform: translate(-50%, 1px) scale(0.985); }
 
 /* 지난 명단 */
 .past-title { margin: 40px 0 14px; font-size: 19px; font-weight: 800; letter-spacing: -0.5px; display: flex; align-items: center; gap: 8px; }
@@ -242,7 +254,7 @@ table.gift tbody tr:last-child td { border-bottom: none; }
 .more-btn.done { display: none; }
 
 /* ===== FOOTER (index.html과 동일) ===== */
-footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; font-size: 13px; line-height: 1.9; }
+footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px 104px; font-size: 13px; line-height: 1.9; }
 .footer-inner { max-width: 1100px; margin: 0 auto; }
 .footer-top { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 20px; margin-bottom: 24px; padding-bottom: 24px; border-bottom: 1px solid rgba(255,255,255,0.1); }
 .footer-logo { font-size: 20px; font-weight: 900; color: white; }
@@ -273,13 +285,13 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
   table.gift th { font-size: 12.5px; padding: 11px 4px; }
   table.gift td { padding: 10px 4px; }
   .note { padding: 13px 16px; font-size: 11.5px; }
-  .cta-box { padding: 26px 18px; }
-  .cta-box h3 { font-size: 18px; }
-  .cta-box p { font-size: 13.5px; }
-  .cta-box a { padding: 13px 26px; font-size: 15px; }
+  .follow-cta { bottom: 16px; padding: 14px 22px; font-size: 14.5px; }
   .past-btn { padding: 14px 16px; font-size: 14px; }
   .past-body { padding: 4px 12px 18px; }
-  .floating-btns { bottom: 20px; right: 16px; }
+  .floating-btns { bottom: 78px; right: 16px; }   /* 따라오는 단추와 겹치지 않게 위로 */
+}
+@media (max-width: 360px) {
+  .follow-cta { padding: 13px 16px; font-size: 13px; }
 }
 @media (hover: none) {
   table.gift tbody tr:hover { background: inherit; }
@@ -378,13 +390,6 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
     </div>
   </div>
 <!--최신명단-끝-->
-
-  <!-- 상담 유도 -->
-  <div class="cta-box">
-    <h3>다음 명단의 주인공이 되어보세요</h3>
-    <p>인터넷 가입·정수기·가전렌탈 상담은 무료입니다<br>내가 받을 수 있는 최대 지원금을 확인해 보세요</p>
-    <a href="index.html#apply-now">내 최대 지원금 무료확인 →</a>
-  </div>
 
 <!--지난명단-시작-->
   <div class="past-title">지난 명단 <span class="cnt">(총 52건)</span></div>
@@ -782,6 +787,9 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
   </div>
 </footer>
 
+<!-- 스크롤을 따라오는 상담 단추 (파란 상자를 대신한다) -->
+<a href="index.html#apply-now" class="follow-cta" id="followCta">다음 명단의 주인공이 되어보세요 →</a>
+
 <div class="floating-btns">
   <a href="tel:1600-4670" class="float-btn float-phone" title="전화 상담">
     <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
@@ -832,6 +840,19 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
     주소 = 주소.replace('#apply-now', 바꿀자리표);
     링크들[i].setAttribute('href', 주소);
   }
+})();
+
+// ───────────────────────────────────────────────────────────────
+// 스크롤을 따라오는 상담 단추 띄우기
+// 첫 페이지의 아래 단추와 같은 방식이다. 화면이 그려진 뒤 한 박자 늦게
+// 살짝 떠오르게 해서, 글을 읽는 흐름을 끊지 않는다.
+// ───────────────────────────────────────────────────────────────
+(function () {
+  var 단추 = document.getElementById('followCta');
+  if (!단추) return;
+  var 띄우기 = function () { setTimeout(function () { 단추.classList.add('visible'); }, 260); };
+  if (document.readyState === 'complete') 띄우기();
+  else window.addEventListener('load', 띄우기);
 })();
 
 // 지난 명단 한 줄을 눌렀을 때: 접힘/펼침. 처음 펼칠 때만 내용을 불러온다.
