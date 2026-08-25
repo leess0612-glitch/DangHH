@@ -2766,9 +2766,12 @@ closeMobileMenu = function (떠남) {
   return true;
 };
 
-// 주소 끝에 #applyForm 을 달고 들어오면(옛 광고 링크·즐겨찾기) 창을 열어준다
+// 주소 끝에 #applyForm 이 붙어 있어도 창을 열지 않는다 (2026-08-25)
+// 왜: 예전 주소가 즐겨찾기·주소창 자동완성에 남아 있어, 그냥 danghh.com 을 열었는데도
+//     들어가자마자 신청칸이 튀어나왔다. 그러면 '읽고 스스로 누를 때만 보여준다'는
+//     이번 개편의 뜻이 사라진다. 자리표만 조용히 지우고, 창은 단추로만 열린다.
 if (location.hash === '#applyForm' || location.hash === '#apply') {
-  window.addEventListener('load', function(){ setTimeout(신청창열기, 250); });
+  try { history.replaceState(null, '', location.pathname + location.search); } catch (e) {}
 }
 
 // 아래 고정 띠를 첫 화면부터 띄운다
