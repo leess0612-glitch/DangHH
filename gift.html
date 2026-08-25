@@ -238,15 +238,18 @@ table.gift tbody tr:last-child td { border-bottom: none; }
   transition: transform 0.08s ease, background 0.2s, border-color 0.2s, box-shadow 0.2s;
 }
 .follow-cta:hover { background: #e85e00; }
-/* 누를 때: 살짝 내려앉고 색이 진해지며 그림자가 안쪽으로 들어간다 */
+/* 손가락으로 쓰는 기기에서는 마우스 올림 효과를 끈다 — 떼어도 남아서 눌림을 가린다 */
+@media (hover: none) {
+  .follow-cta:hover { background: linear-gradient(180deg, #ff8124 0%, #e35a00 100%); }
+}
+/* 누를 때: 살짝 내려앉고 색이 진해지며 그림자가 안쪽으로 들어간다.
+   ★ 이 줄은 반드시 위 (hover: none) 보다 아래에 있어야 한다.
+      위에 두면 손가락으로 누르는 동안 마우스 올림 규칙이 색을 도로 덮어써서
+      눌린 티가 안 난다 (첫 페이지에서 겪었던 것과 같은 문제) */
 .follow-cta:active {
   transform: translateY(2px) scale(0.975);
   background: #d15a00;
   box-shadow: inset 0 2px 6px rgba(0,0,0,0.20);
-}
-/* 손가락으로 쓰는 기기에서는 마우스 올림 효과를 끈다 — 떼어도 남아서 눌림을 가린다 */
-@media (hover: none) {
-  .follow-cta:hover { background: linear-gradient(180deg, #ff8124 0%, #e35a00 100%); }
 }
 
 /* 지난 명단 */
