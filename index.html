@@ -2766,13 +2766,22 @@ closeMobileMenu = function (떠남) {
   return true;
 };
 
-// 주소 끝에 #applyForm 이 붙어 있어도 창을 열지 않는다 (2026-08-25)
-// 왜: 예전 주소가 즐겨찾기·주소창 자동완성에 남아 있어, 그냥 danghh.com 을 열었는데도
-//     들어가자마자 신청칸이 튀어나왔다. 그러면 '읽고 스스로 누를 때만 보여준다'는
-//     이번 개편의 뜻이 사라진다. 자리표만 조용히 지우고, 창은 단추로만 열린다.
-if (location.hash === '#applyForm' || location.hash === '#apply') {
+// ===== 다른 페이지의 신청 단추로 들어온 경우 (2026-08-25) =====
+// #apply-now  : 사은품명단·요금제 페이지에서 "무료확인" 단추를 눌러 온 손님 -> 신청창을 바로 띄운다
+// #applyForm  : 신청칸이 첫 화면에 박혀 있던 시절의 옛 자리표 -> 창을 열지 않는다
+// #apply      : 같은 이유의 옛 자리표 -> 창을 열지 않는다
+// 왜 옛 자리표는 막나: 그 주소가 즐겨찾기·주소창 자동완성에 남아 있어서,
+//   그냥 danghh.com 을 열었는데도 들어가자마자 신청칸이 튀어나왔다.
+// 어느 쪽이든 자리표는 곧바로 지운다. 그래야 주소가 다시 쌓이지 않는다.
+(function () {
+  var 자리표 = location.hash;
+  if (자리표 !== '#apply-now' && 자리표 !== '#applyForm' && 자리표 !== '#apply') return;
   try { history.replaceState(null, '', location.pathname + location.search); } catch (e) {}
-}
+  if (자리표 !== '#apply-now') return;
+  var 띄우기 = function () { setTimeout(신청창열기, 250); };
+  if (document.readyState === 'complete') 띄우기();
+  else window.addEventListener('load', 띄우기);
+})();
 
 // 아래 고정 띠를 첫 화면부터 띄운다
 updateScrollForms();
