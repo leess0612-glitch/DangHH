@@ -1071,18 +1071,15 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
 }
 .rolling-track-complete { animation: rollUpComplete 48s linear infinite; }
 .rolling-track-cash     { animation: rollUpCash 48s linear infinite; }
-/* 2026-08-25: 글자와 줄 높이를 두 배로. 이름·상품이 작아서 잘 안 읽혔다.
-   ★ 줄 높이를 바꾸면 아래 스크립트의 ITEM_H 값도 같이 바꿔야 한다.
-     그 값으로 굴러가는 거리를 재기 때문에, 안 맞추면 명단이 어긋나게 흐른다. */
 .rolling-item {
-  height: 88px; display: flex; align-items: center;
+  height: 44px; display: flex; align-items: center;
   gap: 6px; border-bottom: 1px solid #f1f5f9; overflow: hidden;
 }
-.ri-date { color: #94a3b8; font-size: 22px; flex-shrink: 0; white-space: nowrap; }
-.ri-name { color: #1e293b; font-weight: 700; font-size: 26px; flex-shrink: 0; }
+.ri-date { color: #94a3b8; font-size: 11px; flex-shrink: 0; white-space: nowrap; }
+.ri-name { color: #1e293b; font-weight: 700; font-size: 13px; flex-shrink: 0; }
 .ri-service {
-  font-size: 22px; font-weight: 700;
-  padding: 4px 14px; border-radius: 999px; white-space: nowrap;
+  font-size: 11px; font-weight: 700;
+  padding: 2px 7px; border-radius: 999px; white-space: nowrap;
 }
 .ri-complete { background: #dcfce7; color: #15803d; }
 .ri-cash { background: #fef9c3; color: #92400e; }
@@ -1466,12 +1463,12 @@ html { scroll-behavior: smooth; scroll-padding-top: 78px; }
 .rolling-col-header .live-dot{ background:#fff }
 .rolling-item{ gap:8px }
 .ri-plan{
-  flex:1; min-width:0; font-size:24px; font-weight:600; color:#334155;
+  flex:1; min-width:0; font-size:12px; font-weight:600; color:#334155;
   white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
 }
 .ri-bank{
-  flex-shrink:0; font-size:22px; font-weight:700;
-  padding:4px 16px; border-radius:999px;
+  flex-shrink:0; font-size:11px; font-weight:700;
+  padding:2px 8px; border-radius:999px;
   background:#fff1e3; color:#c2410c; white-space:nowrap;
 }
 .rolling-more{
@@ -1480,16 +1477,8 @@ html { scroll-behavior: smooth; scroll-padding-top: 78px; }
 }
 .rolling-more:hover{ text-decoration:underline }
 @media (max-width:768px){
-  .ri-plan{ font-size:22px }
-  .ri-date{ font-size:20px }
-  /* 폰에서는 한 줄에 다 못 들어간다 (2026-08-25 실측: 상품명 칸이 87px인데 149px 필요,
-     178줄 중 94줄이 ... 로 잘렸다). 줄 높이가 두 배가 되어 자리가 남으므로 두 줄로 나눈다.
-       윗줄  날짜 · 이름 ......... 은행
-       아랫줄 상품명(줄 전체 폭)                         */
-  .rolling-item{ flex-wrap:wrap; align-content:center; row-gap:4px }
-  .ri-date, .ri-name{ order:1 }
-  .ri-bank{ order:2; margin-left:auto }
-  .ri-plan{ order:3; flex-basis:100% }
+  .ri-plan{ font-size:11px }
+  .ri-date{ font-size:10px }
   /* 폰에서도 세 줄이 보이게 (44px x 3줄 + 상자 아래 테두리 1px) */
   .rolling-wrap{ height:133px }
   .rolling-item{ border-bottom:1px solid #f1f5f9 }
@@ -1761,13 +1750,11 @@ body.apply-open{ overflow:hidden; }
   .dh-ledger{ margin-bottom:8px; }
 }
 
-/* ===== 지급명단 굴림칸 (2026-08-25) =====
+/* ===== 지급명단 굴림칸을 더 많이 보이게 (2026-08-25) =====
    한 번에 5줄(컴퓨터)·3줄(폰)만 보여서 '몇 명 안 되는구나'로 읽혔다.
    보이는 양을 늘리면 속도를 올리지 않아도 '많다'가 전달된다.
-   ★ 같은 날 오후, 글자가 작아 잘 안 읽힌다고 하여 줄 높이를 44 -> 88px 로 키웠다.
-     상자는 지금 크기를 그대로 두었으므로 보이는 줄 수가 절반이 된다.
-   높이 = 한 줄 88px x 줄 수 + 상자 아래 테두리 1px */
-.rolling-wrap{ height:356px; }        /* 컴퓨터 4줄 (88x4+1, 전에는 44px x 8줄 = 353) */
+   높이 = 한 줄 44px x 줄 수 + 상자 아래 테두리 1px */
+.rolling-wrap{ height:353px; }        /* 컴퓨터 8줄 */
 
 /* 명단 제목 색을 진한 남색으로 통일 (2026-08-25).
    전에는 컴퓨터 밝은파랑 / 폰 남색으로 갈려 있었다.
@@ -1775,7 +1762,7 @@ body.apply-open{ overflow:hidden; }
    바로 위 신뢰 숫자 칸에서 '숫자=밝은파랑 / 항목이름=남색'을 이미 쓰고 있어 위계도 맞다. */
 .rolling-col-header.type-cash{ background:#0C2880; color:#fff; }
 @media (max-width:768px){
-  .rolling-wrap{ height:178px; }      /* 폰 2줄 (88x2+1, 전에는 44px x 5줄 = 221) */
+  .rolling-wrap{ height:221px; }      /* 폰 5줄 */
   /* 명단이 이제 폰에서도 이 자리에 있으므로, 대표 약속을 미는 여백을 여기에 준다
      (컴퓨터 144px 의 폰 몫) */
   .live-section{ margin-bottom:88px; }
@@ -2529,7 +2516,7 @@ function openCafe(pcUrl, mobileUrl) {
 // gift-data\index.json 에서 글씨 명단이 있는 최근 날짜 3개를 찾아,
 // 그 날짜 파일들을 읽어 한 줄씩 굴린다. 못 읽으면 이 칸은 통째로 감춘다.
 (function() {
-  var 날짜수 = 3, ITEM_H = 88;   /* ★ 위 .rolling-item 의 height 와 반드시 같아야 한다 */
+  var 날짜수 = 3, ITEM_H = 44;
   var 섹션 = document.getElementById('liveSection');
   var 트랙 = document.getElementById('rollingTrackCash');
   var 제목 = document.getElementById('rollingTitle');
