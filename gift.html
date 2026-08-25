@@ -319,14 +319,14 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px 1
   table.gift th { font-size: 12.5px; padding: 11px 4px; }
   table.gift td { padding: 10px 4px; }
   .note { padding: 13px 16px; font-size: 11.5px; }
-  .follow-cta-wrap { bottom: 16px; }
-  .follow-cta { padding: 14px 22px; font-size: 14.5px; }
+  /* 폰에서는 주황 알약을 띄우지 않는다 (2026-08-25 사장님 지시)
+     왜: 다른 페이지는 폰에서 아래에 신청 단추 띠가 늘 붙어 있어 이 알약만 겉돌았다.
+         컴퓨터 화면(769px 이상)에서는 그대로 둔다. */
+  .follow-cta-wrap { display: none; }
   .past-btn { padding: 14px 16px; font-size: 14px; }
   .past-body { padding: 4px 12px 18px; }
-  .floating-btns { bottom: 78px; right: 16px; }   /* 따라오는 단추와 겹치지 않게 위로 */
-}
-@media (max-width: 360px) {
-  .follow-cta { padding: 13px 16px; font-size: 13px; }
+  /* 알약이 없어졌으므로 동그란 단추를 원래 자리(맨 아래)로 되돌린다 */
+  .floating-btns { bottom: 24px; right: 16px; }
 }
 @media (hover: none) {
   table.gift tbody tr:hover { background: inherit; }
