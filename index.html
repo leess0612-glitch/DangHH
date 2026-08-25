@@ -2389,7 +2389,9 @@ function promiseZoom(src){ document.getElementById('promiseViewerImg').src=src; 
           <p style="font-size:12px;color:var(--gray);margin-top:0;margin-bottom:14px;text-align:center;">(둘 다 선택 가능)</p>
           <div class="usim-check">
             <input type="checkbox" id="usimCheck">
-            <label for="usimCheck">휴대폰 기종 변경 없이<br class="fold-br"> 통신사만 바꾸고 추가 현금 받기 (유심 번호이동)</label>
+            <!-- 괄호 부분은 통째로 묶어 둔다 — 좁은 화면에서 '(유심 번호이 / 동)' 처럼
+                 글자 가운데가 끊기지 않고, 자리가 모자라면 통째로 아랫줄로 내려간다 -->
+            <label for="usimCheck">휴대폰 기종 변경 없이<br class="fold-br"> 통신사만 바꾸고 추가 현금 받기 <span style="white-space:nowrap;">(유심 번호이동)</span></label>
           </div>
           <div class="form-group">
             <label for="inputName">이름 <span style="font-size:11px;color:#94a3b8;font-weight:500;">(선택)</span></label>
