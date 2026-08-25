@@ -174,7 +174,8 @@ header {
    ★ 글자 높이는 '줄상자'가 아니라 '글자가 실제로 칠해지는 범위'로 재야 한다.
      줄상자로 재면 글자 위아래 빈 공간까지 세어져 실제보다 크게 나온다(32px일 때 30px인데 40px로 나왔다).
    실측: 전화 단추 40px / 43px일 때 글자가 칠해지는 높이 40px -> 딱 맞음 */
-.logo { font-size: 43px; font-weight: 900; color: var(--primary); text-decoration: none; letter-spacing: -0.5px; }
+.logo { font-size: 43px; font-weight: 900; color: var(--primary); text-decoration: none; letter-spacing: -0.5px;
+        line-height: 1; }   /* 줄간격을 1로: 안 그러면 글자 줄상자(69px)가 머리띠(64px)보다 커진다 */
 .logo span { color: var(--primary); }
 nav { display: flex; gap: 4px; align-items: center; }
 nav a { font-size: 14px; font-weight: 500; color: var(--gray); text-decoration: none; padding: 6px 10px; border-radius: 6px; transition: all 0.2s; }
