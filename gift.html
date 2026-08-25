@@ -228,7 +228,15 @@ table.gift tbody tr:last-child td { border-bottom: none; }
   display: inline-flex; align-items: center; justify-content: center;
   max-width: calc(100% - 32px);
   padding: 15px 30px;
-  background: linear-gradient(180deg, #ff8124 0%, #e35a00 100%);
+  /* ★ 마우스를 올리면 단추가 깜빡이던 문제 (2026-08-25 고침)
+     원인: 바탕이 '그라데이션(그림)'인데 마우스 올림 상태는 '단색'이다.
+          브라우저는 둘을 이어 그리지 못해 그라데이션을 즉시 지우는데,
+          밑에 깔린 색이 없으면 '완전 투명'에서 0.2초에 걸쳐 색이 차올라
+          그동안 단추가 사라졌다 나타났다.
+     해결: 그라데이션 밑에 위아래 색의 한가운데 색을 미리 깔아 둔다.
+     ※ background 로 모아쓰면 바탕색이 도로 지워지므로 나눠 쓸 것. */
+  background-color: #F16E12;
+  background-image: linear-gradient(180deg, #ff8124 0%, #e35a00 100%);
   color: #fff; font-family: 'SUIT', sans-serif;
   font-size: 16px; font-weight: 800; letter-spacing: -0.3px; line-height: 1;
   border: 1.5px solid transparent; border-radius: 12px;
@@ -240,7 +248,8 @@ table.gift tbody tr:last-child td { border-bottom: none; }
 .follow-cta:hover { background: #e85e00; }
 /* 손가락으로 쓰는 기기에서는 마우스 올림 효과를 끈다 — 떼어도 남아서 눌림을 가린다 */
 @media (hover: none) {
-  .follow-cta:hover { background: linear-gradient(180deg, #ff8124 0%, #e35a00 100%); }
+  /* 여기도 background 로 모아쓰면 밑에 깔아 둔 바탕색이 지워진다 → 그림만 되돌린다 */
+  .follow-cta:hover { background-image: linear-gradient(180deg, #ff8124 0%, #e35a00 100%); }
 }
 /* 누를 때: 살짝 내려앉고 색이 진해지며 그림자가 안쪽으로 들어간다.
    ★ 이 줄은 반드시 위 (hover: none) 보다 아래에 있어야 한다.
