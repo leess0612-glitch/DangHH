@@ -6,5 +6,7 @@ Disallow: /_보관/
 Disallow: /font-test.html
 Disallow: /rental-v2.html
 Disallow: /*backup
+# 시험본은 검색에 나오지 않게
+Disallow: /*-test.html
 
 Sitemap: https://danghh.com/sitemap.xml
