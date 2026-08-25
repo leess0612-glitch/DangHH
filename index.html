@@ -1189,12 +1189,12 @@ h1, h2, .section-title, .trust-sol-title, .process-title-big {
 
 /* --- 2. 버튼을 누를 때 눌리는 느낌 (원래는 한 곳도 없었음) --- */
 .form-submit, .sticky-form-btn, .desk-cta-bar-btn, .mobile-cta-btn,
-.header-phone, .service-tab, .privacy-close, .cert-badge, .ict-cert-wrap, .hero-cta {
+.header-phone, .service-tab, .privacy-close, .cert-badge, .ict-cert-wrap {
   transition: transform 0.12s ease, background 0.2s, border-color 0.2s, box-shadow 0.2s;
 }
 .form-submit:active, .sticky-form-btn:active, .desk-cta-bar-btn:active,
 .mobile-cta-btn:active, .header-phone:active, .privacy-close:active,
-.cert-badge:active, .ict-cert-wrap:active, .plan-link:active, .hero-cta:active {
+.cert-badge:active, .ict-cert-wrap:active, .plan-link:active {
   transform: translateY(1px) scale(0.985);
 }
 .service-tab:active { transform: scale(0.98); }
@@ -1213,16 +1213,11 @@ nav a:active { background: #dbeafe; }
 /* (가) 손가락으로 쓰는 기기에서는 '마우스 올림' 효과를 끔 — 떼어도 남아서 눌림을 가림 */
 @media (hover: none) {
   a.plan-card:hover { transform: none; }
-  .hero-cta:hover { transform: none; box-shadow: 0 8px 28px rgba(255,107,0,0.5); background: #ff6b00; }
   .form-submit:hover { transform: none; box-shadow: none; }
   .benefit-card:hover, .process-step-a:hover, .step-card-b:hover,
   .trust-cert-label-item:hover, .float-btn:hover { transform: none; }
 }
 /* (나) 큰 버튼은 더 확실히 눌리게 + 그림자도 낮춰 '내려앉는' 느낌 */
-.hero-cta:active {
-  transform: translateY(2px) scale(0.965);
-  box-shadow: 0 3px 10px rgba(255,107,0,0.45);
-}
 .form-submit:active {
   transform: translateY(2px) scale(0.98);
   box-shadow: 0 2px 8px rgba(20,97,240,0.30);
@@ -1231,7 +1226,7 @@ nav a:active { background: #dbeafe; }
   transform: translateY(2px) scale(0.975);
 }
 /* (다) 누르는 순간 바로 반응하도록 조금 더 빠르게 */
-.hero-cta, .form-submit, .mobile-cta-btn, .desk-cta-bar-btn, .sticky-form-btn {
+.form-submit, .mobile-cta-btn, .desk-cta-bar-btn, .sticky-form-btn {
   transition-duration: 0.08s, 0.2s, 0.2s, 0.2s;
 }
 /* (라) 누를 때 색이 진해지도록 (2026-08-12 보강)
@@ -1245,7 +1240,6 @@ nav a:active { background: #dbeafe; }
   box-shadow: inset 0 2px 6px rgba(0,0,0,0.22);
 }
 .form-submit:active { background: #0E48CC; }
-.hero-cta:active { background: #d15a00; }
 .desk-cta-bar-btn:active, .sticky-form-btn:active {
   background: #d15a00;
   box-shadow: inset 0 2px 6px rgba(0,0,0,0.20);
