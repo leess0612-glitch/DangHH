@@ -1442,16 +1442,27 @@ html { scroll-behavior: smooth; scroll-padding-top: 78px; }
 
 /* ── 앞뒤 서열: 신청폼이 앞, 명세표가 뒤, 누를 곳이 가장 진한 파랑 ── */
 .hero-form-wrap .form-card{ box-shadow:0 30px 70px rgba(4,18,60,.45), 0 6px 16px rgba(4,18,60,.28) }
+/* ★ 마우스를 올리면 단추가 깜빡이던 문제 (2026-08-25 고침)
+   원인: 바탕이 '위아래 그라데이션(그림)'인데 마우스 올림 상태는 '단색'이다.
+        브라우저는 그림과 단색을 부드럽게 이어 그리지 못해 그라데이션을 즉시 지우는데,
+        밑에 깔린 색이 없으면 '완전 투명'에서 시작해 0.2초에 걸쳐 색이 차오른다.
+        그 0.2초 동안 단추가 사라졌다 나타나는 것이 깜빡임이었다.
+   해결: 그라데이션 밑에 같은 색(위아래 색의 한가운데)을 미리 깔아 둔다.
+        그러면 투명해지는 구간 자체가 없어지고, 색은 지금처럼 0.2초 부드럽게 변한다.
+   ※ background 로 모아쓰면 바탕색이 도로 지워진다.
+      반드시 background-color / background-image 로 나눠 쓸 것. */
 .form-submit,
 .mobile-cta-btn{                       /* 휴대폰 아래 고정 막대 — 같은 파랑 계열 */
-  background:linear-gradient(180deg,#1a6bff 0%,#0e48cc 100%);
+  background-color:#145AE6;            /* 위아래 파랑의 한가운데 색 — 깜빡임 방지용 받침 */
+  background-image:linear-gradient(180deg,#1a6bff 0%,#0e48cc 100%);
   box-shadow:0 8px 20px rgba(20,97,240,.45);
 }
 /* PC 아래 고정 막대와 옆 신청칸은 파란 바탕 위에 있어 파란 버튼이 묻힌다.
    그래서 색은 주황 그대로 두고, 입체 효과만 똑같이 준다 */
 .desk-cta-bar-btn,
 .sticky-form-btn{
-  background:linear-gradient(180deg,#ff8124 0%,#e35a00 100%);
+  background-color:#F16E12;            /* 위아래 주황의 한가운데 색 — 깜빡임 방지용 받침 */
+  background-image:linear-gradient(180deg,#ff8124 0%,#e35a00 100%);
   box-shadow:0 8px 20px rgba(255,107,0,.42);
 }
 </style>
