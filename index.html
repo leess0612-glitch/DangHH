@@ -1041,7 +1041,8 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
 
 /* ===== LIVE ROLLING SECTION ===== */
 .live-section {
-  background: #f0f6ff; padding: 28px 20px;
+  /* 위아래 여백 (2026-08-25): 28 -> 84px. 표가 파란 칸에 꽉 끼어 답답했다 */
+  background: #f0f6ff; padding: 84px 20px;
   border-top: 1px solid #dbeafe; margin-bottom: 72px;
 }
 .live-section-inner {
@@ -1049,9 +1050,25 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
   display: flex; gap: 16px; align-items: flex-start;
 }
 .rolling-col { flex: 1; }
+/* 제목 띠를 두 배로 (글자 13->26, 위아래 여백 8->16) */
 .rolling-col-header {
-  text-align: center; font-size: 13px; font-weight: 700;
-  padding: 8px 0; border-radius: 10px 10px 0 0;
+  text-align: center; font-size: 26px; font-weight: 700;
+  padding: 16px 0; border-radius: 10px 10px 0 0;
+}
+/* 폰에서는 두 배가 너무 크게 보여 1.5배로 낮춘다. 화면이 좁아 같은 크기라도 크게 느껴진다 */
+@media (max-width: 768px) {
+  .rolling-col-header { font-size: 19.5px; padding: 12px 0; }
+}
+/* 제목 띠 안, 제목 글자 바로 아래 안내 한 줄 (2026-08-25)
+   왜: 명단은 영업일 저녁에 그날치가 올라가고 주말·공휴일은 쉰다.
+       그래서 오늘 낮에 보면 어제(또는 지난 영업일) 날짜가 보인다.
+       날짜를 읽기 '전에' 이 줄을 먼저 보게 해서 오해를 미리 푼다.
+   남색 바탕 위 흰 글씨라, 제목보다 흐리게 두어 제목을 가리지 않게 한다. */
+.rolling-note{
+  display:block; margin:5px 0 0;
+  font-size:13px; font-weight:600;
+  color:rgba(255,255,255,0.72);
+  letter-spacing:-0.2px; line-height:1.4;
 }
 .rolling-col-header.type-complete { background: #dcfce7; color: #15803d; }
 .rolling-col-header.type-cash { background: #fef9c3; color: #92400e; }
@@ -1071,15 +1088,18 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
 }
 .rolling-track-complete { animation: rollUpComplete 48s linear infinite; }
 .rolling-track-cash     { animation: rollUpCash 48s linear infinite; }
+/* 컴퓨터에서 명단 줄을 1.5배로 (높이 44->66, 글자도 모두 1.5배). 폰은 아래에서 원래 크기로 되돌린다.
+   ★ 줄 높이를 바꾸면 아래 스크립트의 '한줄' 값도 반드시 같이 바꿔야 한다.
+     그 값으로 굴러가는 거리를 재기 때문에, 안 맞추면 명단이 어긋나게 흐른다. */
 .rolling-item {
-  height: 44px; display: flex; align-items: center;
+  height: 66px; display: flex; align-items: center;
   gap: 6px; border-bottom: 1px solid #f1f5f9; overflow: hidden;
 }
-.ri-date { color: #94a3b8; font-size: 11px; flex-shrink: 0; white-space: nowrap; }
-.ri-name { color: #1e293b; font-weight: 700; font-size: 13px; flex-shrink: 0; }
+.ri-date { color: #94a3b8; font-size: 16.5px; flex-shrink: 0; white-space: nowrap; }
+.ri-name { color: #1e293b; font-weight: 700; font-size: 19.5px; flex-shrink: 0; }
 .ri-service {
-  font-size: 11px; font-weight: 700;
-  padding: 2px 7px; border-radius: 999px; white-space: nowrap;
+  font-size: 16.5px; font-weight: 700;
+  padding: 3px 10.5px; border-radius: 999px; white-space: nowrap;
 }
 .ri-complete { background: #dcfce7; color: #15803d; }
 .ri-cash { background: #fef9c3; color: #92400e; }
@@ -1092,7 +1112,7 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
   100% { transform: translateY(var(--roll-m-dist, -1056px)); }
 }
 @media (max-width: 768px) {
-  .live-section { padding: 20px 16px; }
+  .live-section { padding: 60px 16px; }   /* 폰 위아래 여백 (20 -> 60px) */
   .live-section-inner { flex-direction: column; gap: 12px; }
   .rolling-col { width: 100%; }
   /* 폰에서는 한 줄만 보이고 일정 시간마다 다음 줄로 바뀐다 (2026-08-13)
@@ -1466,16 +1486,29 @@ html { scroll-behavior: smooth; scroll-padding-top: 78px; }
 .live-section-inner{ max-width:560px }
 .rolling-col-header.type-cash{ background:#1461F0; color:#fff }
 .rolling-col-header .live-dot{ background:#fff }
-.rolling-item{ gap:8px }
 .ri-plan{
-  flex:1; min-width:0; font-size:12px; font-weight:600; color:#334155;
+  min-width:0; font-size:18px; font-weight:600; color:#334155;
   white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
 }
+/* 은행은 배지(알약) 대신 그냥 글씨로 (2026-08-25)
+   왜: 알약이 줄 끝에서 눈을 끌어, 정작 봐야 할 이름과 상품보다 먼저 읽혔다.
+       배지 여백이 빠지면서 칸도 좁아져 좁은 폰에서 자리 여유가 생긴다. */
 .ri-bank{
-  flex-shrink:0; font-size:11px; font-weight:700;
-  padding:2px 8px; border-radius:999px;
-  background:#fff1e3; color:#c2410c; white-space:nowrap;
+  font-size:16.5px; font-weight:600;
+  color:#64748b; white-space:nowrap;
 }
+/* ===== 안 보이는 칸으로 줄 맞추기 (2026-08-25) =====
+   왜: 전에는 글자를 그냥 이어 붙여서, 이름이 세 글자냐 네 글자냐에 따라
+       뒤 내용이 통째로 밀렸다. 그래서 줄마다 시작점이 달라 들쭉날쭉했다.
+   방법: 칸마다 자리를 미리 정해 둔다. 선도 배경도 안 그리니 눈에는 안 보이지만
+       내용이 짧든 길든 같은 세로선 위에 온다. 표에서 칸을 나누는 것과 같은 원리다.
+   폭은 글자 크기에 비례하는 단위(em)로 잡아, 컴퓨터든 폰이든 규칙 하나로 맞게 했다.
+   실측 최댓값: 날짜 '8월 20일' / 이름 '에###설' / 상품 'SKY LIFE 인터넷 + TV' / 은행 '카카오뱅크' */
+.rolling-item{ gap:8px; justify-content:center }
+.ri-date{ flex:none; width:4em;   text-align:center }
+.ri-name{ flex:none; width:4.4em; text-align:center }
+.ri-plan{ flex:none; width:10em;  text-align:center }
+.ri-bank{ flex:none; width:5.2em; text-align:center }
 .rolling-more{
   display:block; text-align:center; margin-top:10px;
   font-size:13px; font-weight:700; color:#1461F0; text-decoration:none;
@@ -1484,9 +1517,42 @@ html { scroll-behavior: smooth; scroll-padding-top: 78px; }
 @media (max-width:768px){
   .ri-plan{ font-size:11px }
   .ri-date{ font-size:10px }
+  /* ===== 폰은 원래 크기 한 줄로 (2026-08-25) =====
+     왜: 폰 가로는 317px뿐이라 1.5배 글자로는 네 칸이 한 줄에 안 들어간다(417px 필요).
+         두 줄로 나눠 봤더니 날짜·이름·은행이 위, 상품명이 아래로 흩어져 읽기 나빴다.
+         읽기 편한 쪽이 먼저이므로 폰은 원래 크기로 되돌리고,
+         칸 맞춤과 가운데 정렬만 살린다 — 읽기 편해진 진짜 이유가 그것이다.
+     ★ 줄 높이를 바꾸면 아래 스크립트의 '한줄' 값도 같이 바꿔야 한다. */
+  .rolling-item{ height:44px; flex-wrap:nowrap }
+  .ri-name{ font-size:13px }
+  .ri-bank{ font-size:11px }
+  .rolling-note{ font-size:11px; margin-top:3px }
   /* 폰에서도 세 줄이 보이게 (44px x 3줄 + 상자 아래 테두리 1px) */
   .rolling-wrap{ height:133px }
   .rolling-item{ border-bottom:1px solid #f1f5f9 }
+}
+
+/* ===== 좁은 폰 대비 (2026-08-25 실측) =====
+   화면 폭별로 재보니:
+     375px -> 자리 317, 필요 278 (여유 20)
+     360px -> 자리 302, 필요 278 (여유 12)
+     320px -> 자리 262, 한 줄에는 못 담음 — 은행이 화면 밖으로 잘림
+   그래서 두 단계로 나눠 받는다. */
+@media (max-width: 380px) {
+  /* (1) 틈과 칸을 조금씩 줄여 넉넉하게 만든다. 글자 크기는 그대로 */
+  .rolling-item{ gap:6px }
+  .ri-date{ width:3.9em }
+  .ri-name{ width:4.3em }
+  .ri-bank{ width:5em }
+}
+@media (max-width: 340px) {
+  /* (2) 아무리 줄여도 한 줄에는 못 담는다. 이때만 두 줄로 나눈다.
+         윗줄 날짜·이름·은행 / 아랫줄 상품명. 칸 폭은 그대로라 세로줄은 계속 맞는다 */
+  .rolling-item{ flex-wrap:wrap; align-content:center; row-gap:1px }
+  .ri-date{ order:1 }
+  .ri-name{ order:2 }
+  .ri-bank{ order:3 }
+  .ri-plan{ order:4; width:100% }
 }
 
 /* ===== 폰에서 명단이 히어로 안(신청폼 바로 앞)으로 들어갔을 때의 모습 (2026-08-21) =====
@@ -1745,7 +1811,7 @@ body.apply-open{ overflow:hidden; }
    한 번에 5줄(컴퓨터)·3줄(폰)만 보여서 '몇 명 안 되는구나'로 읽혔다.
    보이는 양을 늘리면 속도를 올리지 않아도 '많다'가 전달된다.
    높이 = 한 줄 44px x 줄 수 + 상자 아래 테두리 1px */
-.rolling-wrap{ height:353px; }        /* 컴퓨터 8줄 */
+.rolling-wrap{ height:536px; }        /* 컴퓨터 8줄 (66x8+1, 줄이 1.5배가 되어 353 -> 536) */
 
 /* 명단 제목 색을 진한 남색으로 통일 (2026-08-25).
    전에는 컴퓨터 밝은파랑 / 폰 남색으로 갈려 있었다.
@@ -1882,7 +1948,11 @@ body.apply-open{ overflow:hidden; }
 <div class="live-section" id="liveSection" style="display:none;">
   <div class="live-section-inner">
     <div class="rolling-col">
-      <div class="rolling-col-header type-cash"><span class="live-dot"></span><span id="rollingTitle">사은품지급명단</span></div>
+      <div class="rolling-col-header type-cash">
+        <span id="rollingTitle">사은품지급명단</span>
+        <!-- 날짜를 보기 '전에' 읽게 해서 '왜 어제 날짜지?' 하는 오해를 미리 푼다 -->
+        <span class="rolling-note">최근 영업일 기준 · 매일 저녁 갱신</span>
+      </div>
       <div class="rolling-wrap">
         <div class="rolling-track-cash" id="rollingTrackCash"></div>
       </div>
@@ -2506,7 +2576,14 @@ function openCafe(pcUrl, mobileUrl) {
 // gift-data\index.json 에서 글씨 명단이 있는 최근 날짜 3개를 찾아,
 // 그 날짜 파일들을 읽어 한 줄씩 굴린다. 못 읽으면 이 칸은 통째로 감춘다.
 (function() {
-  var 날짜수 = 3, ITEM_H = 44;
+  /* 명단을 몇 줄쯤 채울지. '며칠치'가 아니라 '몇 줄'로 잡는다 (2026-08-25)
+     왜: 3일치로 못박아 두었더니, 주말 이틀과 개통 없는 하루가 겹치면
+         6일 전 날짜까지 화면에 떠서 '실시간 지급' 느낌이 사라졌다.
+     실제 하루 건수: 8/24=31 · 8/21=32 · 8/20=30 · 8/19=27 -> 20이면 웬만한 날은 하루치로 끝난다 */
+  var 최소줄수 = 20;      /* 이만큼 차면 더 거슬러 올라가지 않는다 */
+  var 최대날짜 = 7;       /* 한산한 때라도 이 이상은 거슬러 올라가지 않는다 */
+  var 넉넉히 = 3;         /* 옛 자료라 건수가 안 적혀 있을 때 쓰던 예전 방식(최근 3일) */
+  var ITEM_H = 66;        /* 컴퓨터 줄 높이 — 위 .rolling-item 의 height 와 반드시 같아야 한다 */
   var 섹션 = document.getElementById('liveSection');
   var 트랙 = document.getElementById('rollingTrackCash');
   var 제목 = document.getElementById('rollingTitle');
@@ -2517,7 +2594,10 @@ function openCafe(pcUrl, mobileUrl) {
   function 굴림맞춤(개수){
     if (개수 <= 0) return;
     var 폰 = window.matchMedia('(max-width: 768px)').matches;
-    document.documentElement.style.setProperty('--roll-m-dist', '-' + (개수 * ITEM_H) + 'px');
+    /* ★ 줄 높이가 화면 크기에 따라 다르다. 위 .rolling-item 의 height 와 반드시 같아야 한다.
+         컴퓨터 66px(1.5배) / 폰 44px(원래 크기). 안 맞추면 명단이 어긋나게 흐른다. */
+    var 한줄 = 폰 ? 44 : ITEM_H;
+    document.documentElement.style.setProperty('--roll-m-dist', '-' + (개수 * 한줄) + 'px');
     트랙.style.animationTimingFunction = 'steps(' + 개수 + ')';
     트랙.style.animationDuration = (개수 * (폰 ? 0.8 : 0.9)) + 's';   /* 2026-08-25 : 한 줄당 2초/1.5초 -> 0.9초/0.8초 */
   }
@@ -2525,10 +2605,18 @@ function openCafe(pcUrl, mobileUrl) {
   fetch('gift-data/index.json', { cache: 'no-store' })
     .then(function(r){ return r.json(); })
     .then(function(목록){
-      var 날짜들 = (목록.items || [])
-        .filter(function(it){ return it.type === 'data'; })
-        .slice(0, 날짜수)
-        .map(function(it){ return it.date; });
+      /* 최근 날짜부터 거슬러 올라가며, 줄 수가 찰 때까지만 담는다.
+         어제 하루로 충분한 날에는 하루치만 쓰게 되어 오래된 날짜가 안 섞인다.
+         한산한 날에만 조용히 하루씩 더 붙어서 명단이 빈약해지지 않는다. */
+      var 자료들 = (목록.items || []).filter(function(it){ return it.type === 'data'; });
+      var 날짜들 = [], 모인줄 = 0;
+      for (var i = 0; i < 자료들.length && 날짜들.length < 최대날짜; i++) {
+        날짜들.push(자료들[i].date);
+        모인줄 += (자료들[i].count || 0);
+        if (모인줄 >= 최소줄수) break;
+      }
+      /* 옛 자료에는 건수가 안 적혀 있다. 그때는 예전처럼 최근 며칠로 채운다 */
+      if (!모인줄) 날짜들 = 자료들.slice(0, 넉넉히).map(function(it){ return it.date; });
       if (!날짜들.length) throw new Error('글씨 명단이 아직 없음');
       return Promise.all(날짜들.map(function(d){
         return fetch('gift-data/' + d + '.json', { cache: 'no-store' })
@@ -2548,9 +2636,11 @@ function openCafe(pcUrl, mobileUrl) {
       });
       if (!줄들.length) return;
 
-      var 날짜개수 = 날들.filter(function(d){ return d.rows.length; }).length;
-      // 하루치만 있으면 제목에 이미 날짜가 있으므로 줄마다 또 적지 않는다
-      var 날짜보이기 = 날짜개수 > 1;
+      // 날짜는 하루치여도 항상 적는다.
+      // 원래는 '하루치면 제목에 이미 날짜가 있으니 줄마다 또 적지 않는다'는 규칙이었는데,
+      // 지금 제목은 그냥 '사은품지급명단'이라 날짜가 없다. 그 전제가 깨져 있었다.
+      // 날짜가 적혀 있어야 '실제로 그날 지급했다'가 믿긴다.
+      var 날짜보이기 = true;
 
       // 두 번 이어붙여야 끊김 없이 무한히 돈다
       줄들.concat(줄들).forEach(function(it){
