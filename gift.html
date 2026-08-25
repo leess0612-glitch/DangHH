@@ -212,20 +212,42 @@ table.gift tbody tr:last-child td { border-bottom: none; }
 /* 다음 명단의 주인공 — 스크롤을 따라오는 단추 (2026-08-25)
    왜: 페이지 중간에 있던 파란 상자는 그 자리를 지나치면 다시 볼 수 없었다.
        첫 페이지의 아래 단추처럼, 어디까지 내려가도 늘 눌 수 있게 화면에 띄운다. */
-.follow-cta {
-  position: fixed; left: 50%; bottom: 24px; z-index: 940;
-  display: inline-flex; align-items: center; justify-content: center;
-  padding: 15px 30px; border-radius: 999px;
-  background: #ff6b00; color: #fff;
-  font-size: 16px; font-weight: 800; text-decoration: none; white-space: nowrap;
-  box-shadow: 0 10px 28px rgba(255,107,0,0.38), 0 2px 8px rgba(15,42,90,0.18);
-  opacity: 0; pointer-events: none;
-  transform: translate(-50%, 14px);
-  transition: opacity 0.28s ease, transform 0.28s ease, background 0.2s;
+/* 담는 칸이 자리를 잡고, 단추 자신은 눌림 효과만 맡는다.
+   (가운데 정렬을 단추의 transform 으로 하면 눌리는 움직임과 서로 부딪힌다) */
+.follow-cta-wrap {
+  position: fixed; left: 0; right: 0; bottom: 24px; z-index: 940;
+  display: flex; justify-content: center;
+  pointer-events: none;
+  opacity: 0; transform: translateY(14px);
+  transition: opacity 0.3s, transform 0.35s cubic-bezier(0.4,0,0.2,1);
 }
-.follow-cta.visible { opacity: 1; pointer-events: auto; transform: translate(-50%, 0); }
-.follow-cta:hover { background: #e85f00; }
-.follow-cta.visible:active { transform: translate(-50%, 1px) scale(0.985); }
+.follow-cta-wrap.visible { opacity: 1; transform: translateY(0); }
+/* 첫 페이지의 주황 버튼과 같은 규칙 — 위아래 그라데이션, 떠 있는 그림자, 둥근 모서리 */
+.follow-cta {
+  pointer-events: auto;
+  display: inline-flex; align-items: center; justify-content: center;
+  max-width: calc(100% - 32px);
+  padding: 15px 30px;
+  background: linear-gradient(180deg, #ff8124 0%, #e35a00 100%);
+  color: #fff; font-family: 'SUIT', sans-serif;
+  font-size: 16px; font-weight: 800; letter-spacing: -0.3px; line-height: 1;
+  border: 1.5px solid transparent; border-radius: 12px;
+  text-decoration: none; white-space: nowrap; cursor: pointer;
+  box-shadow: 0 8px 20px rgba(255,107,0,0.42);
+  -webkit-tap-highlight-color: transparent;
+  transition: transform 0.08s ease, background 0.2s, border-color 0.2s, box-shadow 0.2s;
+}
+.follow-cta:hover { background: #e85e00; }
+/* 누를 때: 살짝 내려앉고 색이 진해지며 그림자가 안쪽으로 들어간다 */
+.follow-cta:active {
+  transform: translateY(2px) scale(0.975);
+  background: #d15a00;
+  box-shadow: inset 0 2px 6px rgba(0,0,0,0.20);
+}
+/* 손가락으로 쓰는 기기에서는 마우스 올림 효과를 끈다 — 떼어도 남아서 눌림을 가린다 */
+@media (hover: none) {
+  .follow-cta:hover { background: linear-gradient(180deg, #ff8124 0%, #e35a00 100%); }
+}
 
 /* 지난 명단 */
 .past-title { margin: 40px 0 14px; font-size: 19px; font-weight: 800; letter-spacing: -0.5px; display: flex; align-items: center; gap: 8px; }
@@ -285,7 +307,8 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px 1
   table.gift th { font-size: 12.5px; padding: 11px 4px; }
   table.gift td { padding: 10px 4px; }
   .note { padding: 13px 16px; font-size: 11.5px; }
-  .follow-cta { bottom: 16px; padding: 14px 22px; font-size: 14.5px; }
+  .follow-cta-wrap { bottom: 16px; }
+  .follow-cta { padding: 14px 22px; font-size: 14.5px; }
   .past-btn { padding: 14px 16px; font-size: 14px; }
   .past-body { padding: 4px 12px 18px; }
   .floating-btns { bottom: 78px; right: 16px; }   /* 따라오는 단추와 겹치지 않게 위로 */
@@ -788,7 +811,9 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px 1
 </footer>
 
 <!-- 스크롤을 따라오는 상담 단추 (파란 상자를 대신한다) -->
-<a href="index.html#apply-now" class="follow-cta" id="followCta">다음 명단의 주인공이 되어보세요 →</a>
+<div class="follow-cta-wrap" id="followCta">
+  <a href="index.html#apply-now" class="follow-cta">다음 명단의 주인공이 되어보세요 →</a>
+</div>
 
 <div class="floating-btns">
   <a href="tel:1600-4670" class="float-btn float-phone" title="전화 상담">
