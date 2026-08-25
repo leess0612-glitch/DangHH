@@ -860,31 +860,64 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
 .sticky-form-btn:hover { background: #e85e00; }
 .sticky-form-success { text-align: center; padding: 8px 0; font-size: 13px; color: var(--primary); font-weight: 700; display: none; }
 
-/* ===== DESKTOP BOTTOM CTA BAR ===== */
+/* ===== 컴퓨터 화면 아래 상담 유도 — 떠 있는 카드 (2026-08-25) =====
+   전에는 화면 끝에서 끝까지 이어지는 파란 띠였다. 1440px 화면에서 재보니
+   알맹이는 가운데 860px뿐이고 좌우 581px(가로의 40%)이 내용 없는 파란 면적이었다.
+   그 모양은 광고 배너와 같아서 손님 눈이 자동으로 건너뛴다.
+   그래서 좌우를 잘라내고 내용만큼만 차지하는 카드로 띄운다.
+   ★ 카드 전체가 하나의 누르는 곳이다.
+     전에는 눌리는 곳이 주황 단추 212px뿐이었는데 이제 카드 617px 전체가 눌린다.
+     '크게 보이는 것'과 '크게 누를 수 있는 것'이 처음으로 일치한다. */
 .desk-cta-bar {
   display: none;
-  position: fixed; bottom: 0; left: 0; right: 0; z-index: 950;
-  background: #1248CC; border-top: 1.5px solid #0E48CC;
-  padding: 14px 24px 14px;
-  box-shadow: 0 -4px 16px rgba(0,0,0,0.2);
-  opacity: 0; transform: translateY(100%);
+  position: fixed; bottom: 24px; left: 0; right: 0; z-index: 950;
+  justify-content: center;
+  opacity: 0; transform: translateY(16px);
   transition: opacity 0.3s, transform 0.35s cubic-bezier(0.4,0,0.2,1);
   pointer-events: none;
 }
-.desk-cta-bar.visible { opacity: 1; transform: translateY(0); pointer-events: all; }
-.desk-cta-bar-inner { max-width: 860px; margin: 0 auto; display: flex; flex-direction: row; align-items: center; justify-content: center; gap: 20px; }
+.desk-cta-bar.visible { opacity: 1; transform: translateY(0); }
+/* 바깥 칸은 화면을 가로지르므로 눌림을 꺼 두고, 보일 때만 카드에 눌림을 준다.
+   (꺼 두지 않으면 안 보이는 동안에도 눌려서 뒤 내용을 못 누른다) */
+.desk-cta-bar.visible .desk-cta-card { pointer-events: auto; }
+.desk-cta-card {
+  pointer-events: none;
+  display: inline-flex; align-items: center; gap: 20px;
+  max-width: calc(100vw - 48px);
+  padding: 13px 16px 13px 28px;
+  background: #12336E;
+  border: 1.5px solid rgba(255,255,255,0.10); border-radius: 14px;
+  box-shadow: 0 14px 34px rgba(4,18,60,0.34), 0 2px 8px rgba(4,18,60,0.22);
+  cursor: pointer; font-family: 'SUIT', sans-serif; text-align: left;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform 0.08s ease, background 0.2s, box-shadow 0.2s;
+}
+.desk-cta-card:hover { background: #163C80; }
 .desk-cta-top { font-size: 18px; font-weight: 700; color: white; letter-spacing: -0.3px; }
 .desk-cta-bar-btn {
+  display: inline-flex; align-items: center;
   padding: 12px 28px; background: #ff6b00; color: white;
   font-size: 23px; font-weight: 800; border: 1.5px solid transparent; border-radius: 8px;
-  cursor: pointer; font-family: 'SUIT', sans-serif; transition: background 0.2s;
+  font-family: 'SUIT', sans-serif; transition: background 0.2s;
   white-space: nowrap; line-height: 1;
+  pointer-events: none;   /* 주황 조각은 따로 반응하지 않는다 — 카드가 하나로 움직인다 */
 }
-.desk-cta-bar-btn:hover { background: #e85e00; }
+/* 카드를 누르면 주황 조각도 함께 반응해야 '한 덩어리'로 읽힌다.
+   주황 조각은 카드의 자식이라 :hover / :active 가 스스로 걸리지 않으므로
+   반드시 카드 쪽에서 함께 지정해야 한다. */
+.desk-cta-card:hover .desk-cta-bar-btn { background: #e85e00; }
+.desk-cta-card:active {
+  transform: translateY(2px) scale(0.99);
+  box-shadow: 0 6px 16px rgba(4,18,60,0.30);
+}
+.desk-cta-card:active .desk-cta-bar-btn {
+  background: #d15a00;
+  box-shadow: inset 0 2px 6px rgba(0,0,0,0.20);
+}
 .desk-cta-success { font-size: 14px; font-weight: 700; color: white; text-align: center; display: none; }
 
 @media (min-width: 769px) {
-  .desk-cta-bar { display: block; }
+  .desk-cta-bar { display: flex; }
   .sticky-form { display: none !important; } /* B-OPTION: 원복 시 이 줄 삭제 */
 }
 
@@ -925,7 +958,9 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
   .floating-btns { bottom: 80px; }
 }
 @media (min-width: 769px) {
-  .floating-btns { bottom: 170px; }
+  /* 카드가 아래에서 99px(24 여백 + 75 높이)까지 차지한다.
+     769px처럼 좁은 컴퓨터 화면에서는 카드 오른쪽 끝과 동그란 단추가 겹쳐서 위로 올린다. */
+  .floating-btns { bottom: 120px; }
 }
 
 /* ===== ANIMATION ===== */
@@ -1480,7 +1515,7 @@ html { scroll-behavior: smooth; scroll-padding-top: 78px; }
    띠 안의 단추를 누르는 데도 아무 영향이 없다.
    ※ 이 규칙은 파일 맨 끝에 있어야 앞의 footer 설정(padding: 40px 20px)을 이긴다 */
 @media (max-width: 768px) { footer { padding-bottom: 108px; } }  /* 폰 띠 68 + 여백 40 */
-@media (min-width: 769px) { footer { padding-bottom: 118px; } }  /* PC 띠 78 + 여백 40 */
+@media (min-width: 769px) { footer { padding-bottom: 139px; } }  /* PC 카드 99(여백24+높이75) + 여백 40 */
 /* ===== 대표 약속 카드 (2026-08-21 추가) ===== */
 .promise { background:#ffffff; padding:34px 0 64px; text-align:center; }
 .promise-card {
@@ -1627,6 +1662,157 @@ body.apply-open{ overflow:hidden; }
 }
 
 </style>
+
+<style>
+/* ===== 신뢰 숫자 칸 (2026-08-25) =====
+   ★ 바탕은 흰색. 파란 숫자는 연한 파랑 위에서 묻히고 흰 바탕에서 가장 또렷하다.
+   ★ 위아래 여백은 --배수 로 조절한다(시험본에서 단추로 바꿔 본다).
+   ★ 세 칸이 모두 한 줄이라 글씨 크기를 똑같이 둔다(13년간 / 10만+ / 2만+).
+     업력을 뒷받침하는 '2012년부터'는 아래 작은 줄로 따로 살린다.
+   ★ 항목 이름은 알약을 없애고 글씨만 크게 남긴다. 알약 안에 있을 때보다 훨씬 잘 보인다. */
+.trust-nums{
+  --배수:4;
+  background:#ffffff;
+  /* 위는 --배수 그대로, 아래는 그 절반(배수 4 -> 기본의 2배)만 준다.
+     아래를 좁혀야 사은품 지급명단이 숫자 바로 밑에 가깝게 붙는다 */
+  padding: calc(84px * var(--배수)) 20px calc(76px * var(--배수) / 2);
+}
+.trust-nums-inner{
+  max-width:920px; margin:0 auto;
+  display:flex; align-items:stretch; justify-content:center;
+}
+.tn-item{
+  flex:1 1 0; min-width:0; text-align:center;
+  padding:0 14px;
+  border-right:1px solid #dbe6f7;
+  display:flex; flex-direction:column; align-items:center;
+}
+.tn-item:last-child{ border-right:none; }
+.tn-num{
+  flex:1 1 auto; width:100%;
+  display:flex; align-items:center; justify-content:center;
+}
+.tn-in{
+  display:block; text-align:center;
+  font-size:100px; font-weight:900; color:#1461F0;
+  letter-spacing:-4px; line-height:1.05;
+  white-space:nowrap;   /* 폭이 빠듯할 때 '13년간'이 두 줄로 접히던 것을 막는다 */
+  font-variant-numeric:tabular-nums;
+}
+.tn-tail{ font-size:0.6em; font-weight:800; letter-spacing:-1.5px; line-height:1.15; }
+/* '100,000+' 는 여덟 자리라 그대로면 칸을 넘는다 */
+.trust-nums.표기-전체 .tn-in{ font-size:62px; letter-spacing:-2.5px; }
+/* 항목 이름 : 알약 없이 큰 글씨로 */
+.tn-label{
+  display:block; margin-top:24px;
+  background:none; color:#0C2880;
+  font-size:66px; font-weight:800; letter-spacing:-3px;
+  padding:0; border-radius:0; white-space:nowrap; line-height:1.15;
+}
+
+/* 지급명단 아래를 원래(72px)의 2배로 넓혀 '대표 약속' 칸을 아래로 민다 */
+.live-section{ margin-bottom:144px; }
+
+/* 업력을 뒷받침하는 작은 줄 — 숫자들과 부딪히지 않게 아래에 조용히 둔다 */
+.tn-since{
+  margin:44px 0 0; text-align:center;
+  font-size:19px; font-weight:600; color:#64748b; letter-spacing:-0.4px;
+}
+
+@media (max-width:768px){
+  .trust-nums{
+    /* 폰은 화면이 좁아 컴퓨터와 같은 여백을 쓰면 빈 곳만 보인다 -> 기준값을 낮춘다
+       (컴퓨터 84/76 -> 폰 35/32) */
+    padding: calc(35px * var(--배수)) 10px calc(32px * var(--배수) / 2);
+  }
+  .tn-item{ padding:0 3px; }
+  .tn-in{ font-size:50px; letter-spacing:-2px; }
+  .trust-nums.표기-전체 .tn-in{ font-size:27px; letter-spacing:-1px; }
+  .tn-label{ font-size:28px; letter-spacing:-2px; margin-top:12px; }
+  .tn-since{ font-size:13px; margin-top:24px; }
+}
+
+/* ===== 첫 화면 설명 글씨 키우기 (2026-08-25) =====
+   통계 두 칸이 히어로에서 빠지면서 세로 자리가 생겼다. 그만큼 설명 문구를 키운다.
+   핵심 낱말(당일 현금 지급 / 차액을 보상해드립니다)은 한 단계 더 크게 해 눈이 먼저 걸리게 한다. */
+.hero-desc{ font-size:26px; line-height:1.45; margin-bottom:6px; }
+.hero-sub-assurance{ font-size:26px; line-height:1.45; }
+.hero-desc strong, .hero-sub-assurance strong{ font-size:1.22em; font-weight:900; }
+/* 글씨를 키운 만큼 명세표 아래 여백을 당겨 와 마지막 줄이 화면 밖으로 밀리지 않게 한다 */
+.dh-ledger{ margin-bottom:8px; }
+@media (max-width:768px){
+  .hero-desc{ font-size:18px; line-height:1.5; margin-bottom:6px; }
+  .hero-sub-assurance{ font-size:18px; line-height:1.5; }
+  .hero-desc strong, .hero-sub-assurance strong{ font-size:1.18em; }
+  /* 글씨를 키운 만큼 위쪽 여백을 당겨 온다.
+     안 그러면 마지막 줄('차액을 보상해드립니다')이 아래 흰 띠에 가린다 */
+  .hero{ padding-top:28px; }
+  .dh-ledger{ margin-bottom:8px; }
+}
+
+/* ===== 지급명단 굴림칸을 더 많이 보이게 (2026-08-25) =====
+   한 번에 5줄(컴퓨터)·3줄(폰)만 보여서 '몇 명 안 되는구나'로 읽혔다.
+   보이는 양을 늘리면 속도를 올리지 않아도 '많다'가 전달된다.
+   높이 = 한 줄 44px x 줄 수 + 상자 아래 테두리 1px */
+.rolling-wrap{ height:353px; }        /* 컴퓨터 8줄 */
+
+/* 명단 제목 색을 진한 남색으로 통일 (2026-08-25).
+   전에는 컴퓨터 밝은파랑 / 폰 남색으로 갈려 있었다.
+   남색이 흰 글자 대비가 2.4배 높고(12.9:1 vs 5.3:1),
+   바로 위 신뢰 숫자 칸에서 '숫자=밝은파랑 / 항목이름=남색'을 이미 쓰고 있어 위계도 맞다. */
+.rolling-col-header.type-cash{ background:#0C2880; color:#fff; }
+@media (max-width:768px){
+  .rolling-wrap{ height:221px; }      /* 폰 5줄 */
+  /* 명단이 이제 폰에서도 이 자리에 있으므로, 대표 약속을 미는 여백을 여기에 준다
+     (컴퓨터 144px 의 폰 몫) */
+  .live-section{ margin-bottom:88px; }
+}
+
+/* ===== 폰에서 대표 사진 작게 (2026-08-25) =====
+   폰에서는 사진이 화면 폭을 꽉 채워(375 x 281) 얼굴이 코앞에 들이닥치는 느낌이 들었다.
+   비율(16:12)은 그대로 두고 폭만 줄여 가운데에 놓는다. 잘리는 범위가 안 바뀌니 얼굴이 안 잘린다. */
+@media (max-width:768px){
+  .promise-photo{
+    width:210px; margin:24px auto 0;
+    border-radius:14px; overflow:hidden;
+  }
+  .promise-photo::after{ border-radius:14px; }
+  .promise-photo figcaption{ left:8px; right:8px; bottom:7px; padding:5px 9px 6px; font-size:10.5px; }
+  .promise-photo figcaption b{ font-size:13px; }
+}
+
+/* ===== 나머지 칸들의 위아래 여백 (2026-08-25) =====
+   시험본에서 단추로 단계를 바꿔 본다. 기준은 원래 값(컴퓨터 72px / 폰 52px).
+   좌우 여백은 건드리지 않는다(.promise 는 좌우가 0 이라 통째로 바꾸면 깨진다). */
+:root{ --칸배수:2.5; --칸배수폰:1.75; }
+.promise,
+.trust-section,
+.compare,
+.benefits,
+.plans,
+.process,
+.reviews,
+.faq{
+  padding-top: calc(72px * var(--칸배수));
+  padding-bottom: calc(72px * var(--칸배수));
+}
+@media (max-width:768px){
+  .promise,
+  .trust-section,
+  .compare,
+  .benefits,
+  .plans,
+  .process,
+  .reviews,
+  .faq{
+    /* 폰은 화면이 좁아 같은 배율을 그대로 쓰면 빈 곳만 길어진다.
+       단추를 올릴 때 폰은 늘어나는 폭의 절반만 따라 올라간다(--칸배수폰). */
+    padding-top: calc(52px * var(--칸배수폰));
+    padding-bottom: calc(52px * var(--칸배수폰));
+  }
+}
+
+</style>
 </head>
 <body>
 
@@ -1676,20 +1862,31 @@ body.apply-open{ overflow:hidden; }
       </div>
       <p class="hero-desc">전체 통신사 비교 후 <strong>당일 현금 지급</strong>,<br class="mob-br"> 가장 유리한 조건으로 안내해드립니다</p>
       <p class="hero-sub-assurance">타업체보다 적다면?<br class="mob-br"> <strong style="color:#FFF200;">차액을 보상해드립니다.</strong></p>
-      <div class="hero-stats">
-        <div class="hero-stat">
-          <span class="since-badge">📅 SINCE 2012</span>
-          <div class="num">339,000건</div>
-          <div class="label">누적 상담 건수</div>
-        </div>
-        <div class="hero-stat">
-          <span class="since-badge">✅ 13년 무사고</span>
-          <div class="num">97%</div>
-          <div class="label">고객 만족도</div>
-        </div>
-      </div>
     </div>
   </div>
+</section>
+
+<!-- TRUST NUMBERS : 13년 · 누적 가입 · 고객 후기 (2026-08-25)
+     첫 화면에 넣으면 이미 꽉 차서 안 보이고, 굴러가는 효과도 손님이 보기 전에 끝나 버린다.
+     그래서 스크롤해서 들어올 때 비로소 굴러 올라가도록 별도 칸으로 뺐다.
+     바로 아래 '사은품 지급명단'과 같은 바탕색이라 한 덩어리로 읽힌다
+     (누적 규모 -> 오늘도 지급 중, 순서로 이어짐). -->
+<section class="trust-nums 표기-만" id="trustNums">
+  <div class="trust-nums-inner">
+    <div class="tn-item 한줄">
+      <div class="tn-num"><span class="tn-in">13<span class="tn-tail">년간</span></span></div>
+      <div class="tn-label">당일지급</div>
+    </div>
+    <div class="tn-item 한줄">
+      <div class="tn-num"><span class="tn-in">10<span class="tn-tail">만+</span></span></div>
+      <div class="tn-label">누적 가입</div>
+    </div>
+    <div class="tn-item 한줄">
+      <div class="tn-num"><span class="tn-in">2<span class="tn-tail">만+</span></span></div>
+      <div class="tn-label">고객 후기</div>
+    </div>
+  </div>
+  <p class="tn-since" id="밑줄">2012년에 시작해 지금도 영업 중</p>
 </section>
 
 <!-- LIVE ROLLING : 진짜 사은품 지급명단(gift-data)을 읽어서 굴린다 -->
@@ -1715,9 +1912,7 @@ body.apply-open{ overflow:hidden; }
 <!-- 그림 이름표: image1=대표 사진 / image2=서명 / image3=인터넷 서약서(_s는 표지) / image4=렌탈 서약서(_s는 표지) -->
 <section class="promise">
   <div class="section-inner">
-    <span class="section-tag">대표 약속</span>
     <h2 class="section-title">대표가 <em>직접</em> 약속드립니다</h2>
-    <p class="section-sub">말로 그치지 않도록, 서면으로 남기고 서명했습니다</p>
 
     <div class="promise-card fade-up">
       <figure class="promise-photo">
@@ -1956,7 +2151,6 @@ function promiseZoom(src){ document.getElementById('promiseViewerImg').src=src; 
 <section id="reviews" class="reviews">
   <div class="section-inner">
     <div style="text-align:center;margin-bottom:40px;">
-      <span class="section-tag">설치 후기</span>
       <h2 class="section-title">실제 고객 <em>설치 후기</em></h2>
       <p class="section-sub">당현함을 통해 가입한 고객님들의 생생한 후기</p>
     </div>
@@ -2235,12 +2429,12 @@ function promiseZoom(src){ document.getElementById('promiseViewerImg').src=src; 
   </div>
 </div>
 
-<!-- DESKTOP BOTTOM CTA BAR -->
+<!-- 컴퓨터 화면 아래 상담 유도 — 카드 전체가 하나의 누르는 곳이다 -->
 <div class="desk-cta-bar" id="deskCtaBar">
-  <div class="desk-cta-bar-inner">
+  <button class="desk-cta-card" onclick="신청창열기()" aria-label="놓치고 있던 내 최대 지원금 무료로 확인하기">
     <span class="desk-cta-top">놓치고 있던 내 최대 지원금, 지금 바로 확인하세요</span>
-    <button class="desk-cta-bar-btn" onclick="신청창열기()">무료 확인하기 →</button>
-  </div>
+    <span class="desk-cta-bar-btn">무료 확인하기 →</span>
+  </button>
 </div>
 
 
@@ -2335,7 +2529,7 @@ function openCafe(pcUrl, mobileUrl) {
     var 폰 = window.matchMedia('(max-width: 768px)').matches;
     document.documentElement.style.setProperty('--roll-m-dist', '-' + (개수 * ITEM_H) + 'px');
     트랙.style.animationTimingFunction = 'steps(' + 개수 + ')';
-    트랙.style.animationDuration = (개수 * (폰 ? 1.5 : 2)) + 's';
+    트랙.style.animationDuration = (개수 * (폰 ? 0.8 : 0.9)) + 's';   /* 2026-08-25 : 한 줄당 2초/1.5초 -> 0.9초/0.8초 */
   }
 
   fetch('gift-data/index.json', { cache: 'no-store' })
@@ -2566,13 +2760,13 @@ updateScrollForms();
   var 원래다음 = 명단.nextSibling;   // 원래 자리를 가리키는 표시
   var 폰 = window.matchMedia('(max-width: 768px)');
 
+  /* 2026-08-25 : 폰에서도 컴퓨터와 같은 자리(신뢰 숫자 칸 아래)에 둔다.
+     예전에 폰에서만 히어로 안으로 올렸던 것은, 히어로 안에 신청폼이 있어서
+     '번호 적기 직전'에 명단을 보여 주려던 것이었다. 신청폼이 별도 창으로 빠지면서
+     그 이유가 사라졌고, 두 화면이 갈라져 있으면 색·여백이 계속 어긋난다. */
   function 자리잡기(){
-    if (폰.matches) {
-      if (명단.parentNode !== 히어로 || 명단.nextSibling !== null) 히어로.appendChild(명단);
-    } else {
-      if (명단.parentNode !== 원래부모 || 명단.nextSibling !== 원래다음) {
-        원래부모.insertBefore(명단, 원래다음);
-      }
+    if (명단.parentNode !== 원래부모 || 명단.nextSibling !== 원래다음) {
+      원래부모.insertBefore(명단, 원래다음);
     }
   }
   자리잡기();
