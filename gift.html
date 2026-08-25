@@ -304,6 +304,27 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px 1
 .float-phone { background: var(--primary); color: white; border: 1px solid white; }
 .float-kakao { background: #fee500; color: #3a1d00; }
 
+/* 휴대폰 아래 고정 신청 막대 — 다른 페이지(index·plans)와 같은 디자인 (2026-08-25)
+   이 페이지에는 신청폼이 없어 숨길 조건 없이 항상 떠 있는다 (요금 페이지와 같은 방식) */
+.mobile-cta-bar {
+  display: none; position: fixed; bottom: 0; left: 0; right: 0; z-index: 950;
+  padding: 10px 16px; background: white; box-shadow: 0 -3px 16px rgba(0,0,0,0.12);
+}
+.mobile-cta-btn {
+  display: flex; align-items: center; justify-content: center;
+  width: 100%; height: 48px; border-radius: 12px; text-decoration: none;
+  color: white; font-size: 16px; font-weight: 800; letter-spacing: -0.3px;
+  background-color: #145AE6;   /* 위아래 파랑의 한가운데 색 — 누를 때 깜빡임 방지용 받침 */
+  background-image: linear-gradient(180deg, #1a6bff 0%, #0e48cc 100%);
+  box-shadow: 0 8px 20px rgba(20,97,240,0.45);
+  transition: transform 0.08s ease, background 0.2s, box-shadow 0.2s;
+}
+.mobile-cta-btn:active {
+  background: #0E48CC;
+  transform: translateY(2px) scale(0.96);
+  box-shadow: inset 0 2px 6px rgba(0,0,0,0.22);
+}
+
 @media (max-width: 768px) {
   nav { display: none; }
   .hamburger { display: flex; }
@@ -323,10 +344,10 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px 1
      왜: 다른 페이지는 폰에서 아래에 신청 단추 띠가 늘 붙어 있어 이 알약만 겉돌았다.
          컴퓨터 화면(769px 이상)에서는 그대로 둔다. */
   .follow-cta-wrap { display: none; }
+  .mobile-cta-bar { display: block; }   /* 대신 다른 페이지와 같은 흰 띠 + 파란 단추를 띄운다 */
   .past-btn { padding: 14px 16px; font-size: 14px; }
   .past-body { padding: 4px 12px 18px; }
-  /* 알약이 없어졌으므로 동그란 단추를 원래 자리(맨 아래)로 되돌린다 */
-  .floating-btns { bottom: 24px; right: 16px; }
+  .floating-btns { bottom: 88px; right: 16px; }   /* 고정 막대(68px) 위로 */
 }
 @media (hover: none) {
   table.gift tbody tr:hover { background: inherit; }
@@ -820,7 +841,12 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px 1
   </div>
 </footer>
 
-<!-- 스크롤을 따라오는 상담 단추 (파란 상자를 대신한다) -->
+<!-- 휴대폰 아래 고정 신청 막대 (컴퓨터 화면에서는 안 보인다) -->
+<div class="mobile-cta-bar">
+  <a class="mobile-cta-btn" href="index.html#apply-now">내 최대 지원금 무료확인 →</a>
+</div>
+
+<!-- 컴퓨터 화면에서 스크롤을 따라오는 상담 단추 (파란 상자를 대신한다) -->
 <div class="follow-cta-wrap" id="followCta">
   <a href="index.html#apply-now" class="follow-cta">다음 명단의 주인공이 되어보세요 →</a>
 </div>
