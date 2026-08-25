@@ -146,9 +146,11 @@ body { font-family: 'SUIT', 'Noto Sans KR', sans-serif; color: var(--dark); line
 /* ===== HEADER (index.html과 동일) ===== */
 header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: white; box-shadow: 0 2px 12px rgba(0,0,0,0.08); }
 .header-inner { max-width: 1200px; margin: 0 auto; padding: 0 20px; height: 64px; display: flex; align-items: center; justify-content: space-between; }
-/* 로고를 오른쪽 전화 단추와 같은 높이로 키움 (2026-08-25)
-   실측: 전화 단추 40px 높이 / 글씨 28px일 때 로고 글자높이 35px -> 32px 이면 40px 로 맞는다 */
-.logo { font-size: 32px; font-weight: 900; color: var(--primary); text-decoration: none; letter-spacing: -0.5px; }
+/* 로고를 오른쪽 전화 단추와 같은 높이로 (2026-08-25 다시 잼)
+   ★ 글자 높이는 '줄상자'가 아니라 '글자가 실제로 칠해지는 범위'로 재야 한다.
+     줄상자로 재면 글자 위아래 빈 공간까지 세어져 실제보다 크게 나온다(32px일 때 30px인데 40px로 나왔다).
+   실측: 전화 단추 40px / 43px일 때 글자가 칠해지는 높이 40px -> 딱 맞음 */
+.logo { font-size: 43px; font-weight: 900; color: var(--primary); text-decoration: none; letter-spacing: -0.5px; }
 .logo span { color: var(--primary); }
 nav { display: flex; gap: 4px; align-items: center; }
 nav a { font-size: 14px; font-weight: 500; color: var(--gray); text-decoration: none; padding: 6px 10px; border-radius: 6px; transition: all 0.2s; }
@@ -331,9 +333,9 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px 1
   nav { display: none; }
   .hamburger { display: flex; }
   .header-phone { padding: 7px 12px; font-size: 13px; }
-  /* 폰에서는 전화 단추가 작아진다(높이 35px). 로고도 그에 맞춰 낮춰 높이를 맞춘다
-     — 32px면 글자높이가 40px이라 단추보다 5px 커 보였다 */
-  .logo { font-size: 28px; }
+  /* 폰에서는 전화 단추가 작아진다(높이 35px). 로고도 그에 맞춘다
+     실측: 37px일 때 글자가 칠해지는 높이 35px -> 딱 맞음 */
+  .logo { font-size: 37px; }
   .page-head { padding: 34px 20px 30px; }
   .page-head h1 { font-size: 24px; }
   .page-head p { font-size: 13.5px; }
