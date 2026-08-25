@@ -1482,6 +1482,14 @@ html { scroll-behavior: smooth; scroll-padding-top: 78px; }
 @media (max-width:768px){
   .ri-plan{ font-size:22px }
   .ri-date{ font-size:20px }
+  /* 폰에서는 한 줄에 다 못 들어간다 (2026-08-25 실측: 상품명 칸이 87px인데 149px 필요,
+     178줄 중 94줄이 ... 로 잘렸다). 줄 높이가 두 배가 되어 자리가 남으므로 두 줄로 나눈다.
+       윗줄  날짜 · 이름 ......... 은행
+       아랫줄 상품명(줄 전체 폭)                         */
+  .rolling-item{ flex-wrap:wrap; align-content:center; row-gap:4px }
+  .ri-date, .ri-name{ order:1 }
+  .ri-bank{ order:2; margin-left:auto }
+  .ri-plan{ order:3; flex-basis:100% }
   /* 폰에서도 세 줄이 보이게 (44px x 3줄 + 상자 아래 테두리 1px) */
   .rolling-wrap{ height:133px }
   .rolling-item{ border-bottom:1px solid #f1f5f9 }
