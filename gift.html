@@ -194,9 +194,12 @@ nav a.on { color: var(--primary); background: #eff6ff; font-weight: 700; }
 
 /* 표 */
 .tbl-scroll { overflow-x: auto; }
-table.gift { width: 100%; border-collapse: collapse; font-size: 15px; }
-table.gift th { background: var(--primary); color: white; font-weight: 700; font-size: 14px; padding: 13px 8px; text-align: center; white-space: nowrap; }
-table.gift td { padding: 11px 8px; text-align: center; border-bottom: 1px solid #eef2f7; white-space: nowrap; }
+/* 2026-08-25: 글자와 줄 높이를 두 배로 (15->30, 줄 안쪽 여백 11->22).
+   이름·상품이 작아서 뚜렷하게 안 읽혔다. 표는 .tbl-scroll 안에 있어
+   좁은 화면에서 넘치면 표 안쪽만 옆으로 밀린다(페이지는 안 밀린다). */
+table.gift { width: 100%; border-collapse: collapse; font-size: 30px; }
+table.gift th { background: var(--primary); color: white; font-weight: 700; font-size: 28px; padding: 26px 8px; text-align: center; white-space: nowrap; }
+table.gift td { padding: 22px 8px; text-align: center; border-bottom: 1px solid #eef2f7; white-space: nowrap; }
 table.gift tbody tr:nth-child(even) { background: #fafbfd; }
 table.gift tbody tr:hover { background: #eff6ff; }
 table.gift td.name { font-weight: 700; letter-spacing: 0.5px; }
@@ -306,9 +309,9 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px 1
   .today-head { padding: 18px 16px 15px; }
   .today-date { font-size: 18px; }
   .today-count { font-size: 13.5px; padding: 6px 12px; }
-  table.gift { font-size: 13px; }
-  table.gift th { font-size: 12.5px; padding: 11px 4px; }
-  table.gift td { padding: 10px 4px; }
+  table.gift { font-size: 26px; }
+  table.gift th { font-size: 25px; padding: 22px 4px; }
+  table.gift td { padding: 20px 4px; }
   .note { padding: 13px 16px; font-size: 11.5px; }
   .follow-cta-wrap { bottom: 16px; }
   .follow-cta { padding: 14px 22px; font-size: 14.5px; }
