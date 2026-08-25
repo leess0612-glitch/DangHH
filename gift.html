@@ -981,7 +981,7 @@ function 더보기(btn) {
   for (var i = 0; i < 숨은것.length && i < 10; i++) 숨은것[i].classList.remove('hide');
   var 남은수 = document.querySelectorAll('.past-item.hide').length;
   if (남은수 === 0) btn.classList.add('done');
-  else btn.textContent = '지난 명단 더 보기 (' + 남은수 + '건) ▾';
+  else btn.textContent = '지난 명단 더 보기 ▾';   /* 2026-08-25: 개수 표기 뺌 */
 }
 </script>
 <script>
