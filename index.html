@@ -1899,6 +1899,107 @@ body.apply-open{ overflow:hidden; }
   }
 }
 
+/* ==========================================================
+   v2 계산기 (2026-08-25)
+   디자인보드(안티그라비티\당현함 디자인보드\)를 따른다.
+   ⚠ 이 파일 맨 마지막 스타일 닫는 곳 바로 앞에 있어야 한다.
+     폰용 규칙이 기본 정의보다 앞에 오는 곳이 있어, 위쪽에 적으면 덮인다.
+     (주석 안에도 스타일 끝 태그를 글자로 적지 말 것 — 거기서 스타일이 닫혀버린다)
+   ========================================================== */
+.dh-calc {
+  --dh-blue:#1668E3; --dh-navy:#0B2E5C; --dh-paper:#EFF6FF;
+  --dh-text:#191F28; --dh-body:#333D4B; --dh-sub:#5F6672; --dh-dim:#8A9099; --dh-line:#EEEFF3;
+  background:#fff; border:1px solid var(--dh-line); border-radius:12px;
+  padding:20px; color:var(--dh-body); text-align:left;
+}
+.dh-calc-title {
+  font-size:19px; font-weight:800; color:var(--dh-text);
+  margin:0 0 16px; letter-spacing:-0.3px;
+}
+.dh-calc-q { margin-bottom:16px; }
+.dh-calc-label { display:block; font-size:13px; font-weight:500; color:var(--dh-sub); margin-bottom:8px; }
+/* "함께 하면 +50만" — 끄는 것을 '깎임'이 아니라 '해당 없음'으로 읽게 하는 표시.
+   색을 늘리지 않으려고 보조색 그대로 두고 굵기만 올린다. */
+.dh-plus { font-style:normal; font-size:12px; font-weight:800; color:var(--dh-sub); margin-left:4px; }
+
+/* 고른 칸 / 안 고른 칸
+   ⚠ 안 고른 칸 글씨에 흐림색(#8A9099)을 쓰면 칙칙하다. 본문색을 쓴다.
+   ⚠ transition 에 background(단축)를 쓰면 클래스가 바뀌어도 배경이 다시 안 칠해진다.
+     반드시 background-color 로 적을 것. */
+.dh-calc-carriers, .dh-calc-opts { display:flex; gap:8px; }
+.dh-carrier, .dh-opt {
+  flex:1; min-height:48px; border:1.5px solid var(--dh-line); background:#fff;
+  border-radius:8px; padding:12px 4px; cursor:pointer; text-align:center;
+  font-family:inherit; font-size:15px; font-weight:600; color:var(--dh-body);
+  transition:border-color .18s, background-color .18s, color .18s;
+}
+.dh-carrier { font-size:16px; font-weight:800; }
+.dh-opt { font-size:13px; }
+.dh-carrier:hover, .dh-opt:hover { border-color:#CFD8E3; }
+.dh-carrier.on, .dh-opt.on {
+  border-color:var(--dh-blue); background:var(--dh-paper);
+  color:var(--dh-blue); font-weight:800;   /* 테두리와 같은 색 — 칸이 한 덩어리로 읽힌다 */
+}
+
+.dh-calc-result { margin-top:16px; padding-top:16px; border-top:1px solid var(--dh-line);
+                  text-align:center; }
+.dh-calc-result-label { font-size:13px; color:var(--dh-sub); }
+.dh-calc-result-num { font-size:34px; font-weight:900; color:var(--dh-blue);
+                      line-height:1.15; letter-spacing:-1.2px; font-variant-numeric:tabular-nums; }
+.dh-calc-result-num em { font-style:normal; font-size:16px; font-weight:800;
+                         color:var(--dh-sub); letter-spacing:0; }
+/* 금액 옆 "+ 추가혜택" — 119만원이 끝이 아니라는 표시. 조건을 다 꺼도 늘 남는다 */
+.dh-calc-plus { font-size:16px; font-weight:800; color:var(--dh-blue);
+                letter-spacing:0; white-space:nowrap; }
+/* 무엇을 더해 그 금액이 되는지 — 손님이 "더 받는다"를 눈으로 확인하는 줄 */
+.dh-calc-break { font-size:13px; font-weight:600; color:var(--dh-body); margin-top:8px;
+                 line-height:1.6; }
+.dh-calc-break b { color:var(--dh-blue); font-weight:800; }
+.dh-calc-break .soft { color:var(--dh-sub); font-weight:500; white-space:nowrap; }
+.dh-calc-result-note { font-size:12px; color:var(--dh-dim); margin-top:8px; line-height:1.5; }
+
+/* 주 버튼 — 그라데이션 없음, 높이 48px */
+.dh-calc-cta { display:block; width:100%; height:48px; margin-top:16px; padding:0; border:none;
+               border-radius:8px; background:var(--dh-blue); color:#fff; font-size:16px;
+               font-weight:800; cursor:pointer; font-family:inherit; transition:background-color .18s; }
+.dh-calc-cta:hover { background:#1157C4; }
+.dh-calc-cta:focus-visible, .dh-carrier:focus-visible, .dh-opt:focus-visible {
+  outline:2px solid var(--dh-navy); outline-offset:2px; }
+
+@media (max-width:768px){
+  .dh-calc { padding:16px; }
+  .dh-calc-q { margin-bottom:12px; }
+  .dh-calc-title { font-size:16px; margin-bottom:12px; }
+  .dh-opt { font-size:12px; padding:12px 4px; }
+}
+
+
+/* 인터넷 속도 칸 — 속도값과 함께 '누가 쓰는지' 안내를 붙인다 (2026-08-26)
+   전에는 '혼자 조용히 / 가족이 여럿'처럼 쓰는 모습만 물었는데,
+   손님이 이미 아는 말(100M·500M·1G)을 먼저 보여주고 안내를 곁들이는 쪽으로 바꿬다. */
+.dh-speed {
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  gap:4px; padding:12px 4px; line-height:1.25;
+}
+.dh-speed-num {
+  display:flex; flex-wrap:wrap; align-items:baseline; justify-content:center; gap:4px;
+  font-size:16px; font-weight:800; color:var(--dh-text); letter-spacing:-0.3px;
+}
+.dh-speed-num em { font-style:normal; font-size:12px; font-weight:600; color:var(--dh-sub); }
+.dh-speed-guide {
+  font-size:12px; font-weight:500; color:var(--dh-sub);
+  letter-spacing:-0.2px; word-break:keep-all;
+}
+.dh-speed-badge {
+  font-style:normal; font-size:12px; font-weight:800;
+  color:var(--dh-blue); background:var(--dh-paper);
+  border-radius:999px; padding:4px 8px;
+}
+/* 고른 칸에서는 숫자·단위·안내가 모두 같은 파랑으로 함께 움직인다 */
+.dh-speed.on .dh-speed-num,
+.dh-speed.on .dh-speed-num em,
+.dh-speed.on .dh-speed-guide { color:var(--dh-blue); }
+.dh-speed.on .dh-speed-badge { background:#fff; }
 </style>
 </head>
 <body>
@@ -1956,6 +2057,77 @@ body.apply-open{ overflow:hidden; }
       </div>
       <p class="hero-desc">전체 통신사 비교 후 <strong>당일 현금 지급</strong>,<br class="mob-br"> 가장 유리한 조건으로 안내해드립니다</p>
       <p class="hero-sub-assurance">타업체보다 적다면?<br class="mob-br"> <strong style="color:#FFF200;">차액을 보상해드립니다.</strong></p>
+    </div>
+
+    <!-- ===== v2 계산기 (2026-08-25) — 옛 신청폼이 있던 오른쪽 자리 =====
+         번호를 남기기 전에 화면에서 먼저 자기 금액을 보게 한다.
+         들어오자마자 전부 켠 상태(119만원)가 떠 있고, 자기와 다른 것만 고치면 된다. -->
+    <div class="hero-form-wrap">
+      <div class="dh-calc" id="dhCalc">
+        <p class="dh-calc-title">우리 집은 얼마 받을까요?</p>
+
+        <div class="dh-calc-q">
+          <span class="dh-calc-label">어느 통신사로 하실까요?</span>
+          <div class="dh-calc-carriers">
+            <button type="button" class="dh-carrier on" data-carrier="sk" onclick="dh통신사고르기('sk')">SK</button>
+            <button type="button" class="dh-carrier" data-carrier="kt" onclick="dh통신사고르기('kt')">KT</button>
+            <button type="button" class="dh-carrier" data-carrier="lg" onclick="dh통신사고르기('lg')">LG</button>
+          </div>
+        </div>
+
+        <div class="dh-calc-q">
+          <span class="dh-calc-label">TV도 같이 보실까요?</span>
+          <div class="dh-calc-opts">
+            <button type="button" class="dh-opt" data-prod="net" onclick="dh상품고르기('net')">인터넷만</button>
+            <button type="button" class="dh-opt on" data-prod="net_tv" onclick="dh상품고르기('net_tv')">인터넷+TV</button>
+          </div>
+        </div>
+
+        <div class="dh-calc-q">
+          <span class="dh-calc-label">인터넷 속도</span>
+          <div class="dh-calc-opts">
+            <button type="button" class="dh-opt dh-speed" data-speed="100M" onclick="dh속도고르기('100M')">
+              <span class="dh-speed-num">100<em>Mbps</em></span>
+              <span class="dh-speed-guide">1-2인 가구</span>
+            </button>
+            <button type="button" class="dh-opt dh-speed" data-speed="500M" onclick="dh속도고르기('500M')">
+              <span class="dh-speed-num">500<em>Mbps</em><i class="dh-speed-badge">추천</i></span>
+              <span class="dh-speed-guide">3-4인 가구</span>
+            </button>
+            <button type="button" class="dh-opt dh-speed on" data-speed="1G" onclick="dh속도고르기('1G')">
+              <span class="dh-speed-num">1<em>Gbps</em></span>
+              <span class="dh-speed-guide">게임·고화질 스트리밍</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="dh-calc-q">
+          <span class="dh-calc-label">정수기·가전렌탈도 하실까요? <em class="dh-plus">함께 하면 +50만</em></span>
+          <div class="dh-calc-opts">
+            <button type="button" class="dh-opt" data-rental="0" onclick="dh렌탈고르기(false)">안 해요</button>
+            <button type="button" class="dh-opt on" data-rental="1" onclick="dh렌탈고르기(true)">같이 할래요</button>
+          </div>
+        </div>
+
+        <div class="dh-calc-q">
+          <span class="dh-calc-label">휴대폰은 그대로 두고 통신사만 바꾸실래요? <em class="dh-plus">함께 하면 +20만</em></span>
+          <div class="dh-calc-opts">
+            <button type="button" class="dh-opt" data-usim="0" onclick="dh유심고르기(false)">아니요</button>
+            <button type="button" class="dh-opt on" data-usim="1" onclick="dh유심고르기(true)">네 (유심 번호이동)</button>
+          </div>
+        </div>
+
+        <div class="dh-calc-result">
+          <div class="dh-calc-result-label">받으실 수 있는 금액</div>
+          <div class="dh-calc-result-num"><em>최대</em> <strong id="dhCalcSum">0</strong>만원 <span class="dh-calc-plus">+ 추가혜택</span></div>
+          <div class="dh-calc-break" id="dhCalcBreak"></div>
+          <div class="dh-calc-result-note">설치 후 오후 5:30 이전 기준 · 약정 조건에 따라 달라질 수 있습니다</div>
+        </div>
+
+        <button type="button" class="dh-calc-cta" onclick="dh계산기신청()">
+          우리 집 기준으로 정확히 확인받기 →
+        </button>
+      </div>
     </div>
   </div>
 </section>
@@ -2549,6 +2721,32 @@ function promiseZoom(src){ document.getElementById('promiseViewerImg').src=src; 
 
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script>
+/* ===================================================================
+   지급표 — 금액이 바뀌면 여기만 고친다 (2026-08-25)
+   출처: danghh.com/plans.html 의 요금표 그림 3장 (images/plans/*.jpg)
+
+   ★ 표를 읽고 안 것 3가지
+     ① 사은품은 결합 여부(미결합·휴대폰결합·패밀리)와 상관없다.
+        결합은 '내는 돈'(월 요금)만 가른다. 그래서 손님에게 결합을 안 묻는다.
+     ② TV 종류(이코노미/스탠다드, 베이직/에센스, 실속/프리미엄)가 달라도
+        사은품은 같다. 그래서 '인터넷+TV' 하나로 묶어도 금액이 정확하다.
+     ③ 500메가와 1기가는 여섯 칸 중 다섯이 같다. 진짜 차이는 100메가냐 아니냐다.
+   =================================================================== */
+var DH_지급표 = {
+  sk: { net:    { '100M': 11, '500M': 17, '1G': 17 },
+        net_tv: { '100M': 43, '500M': 47, '1G': 49 } },
+  kt: { net:    { '100M':  9, '500M': 14, '1G': 14 },
+        net_tv: { '100M': 37, '500M': 45, '1G': 45 } },
+  lg: { net:    { '100M': 20, '500M': 23, '1G': 23 },
+        net_tv: { '100M': 33, '500M': 47, '1G': 47 } }
+};
+var DH_렌탈금액 = 50;   /* 정수기·가전렌탈 함께 하면 더해짐 */
+var DH_유심금액 = 20;   /* 유심 번호이동 함께 하면 더해짐 */
+
+/* 처음에 미리 눌러둘 조합 — 전부 켠 상태 = 119만원
+   지금 화면·광고가 보여주는 118만원과 숫자가 이어져야 하기 때문. */
+var DH_기본값 = { 통신사:'sk', 상품:'net_tv', 속도:'1G', 렌탈:true, 유심:true };
+
 const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxmkjm-U5m29WEkjKpAV8RovWAo9JMFJmR6t2BCgQPboPdpLSVwORTJ1_-kRXeCAeS84A/exec';
 
 /* ===== 신청 보내기 (실패하면 다시 시도) =====
@@ -2864,6 +3062,11 @@ const deskCtaBar = document.getElementById('deskCtaBar');
 const mobileCta  = document.getElementById('mobileCta');
 /* heroFormWrap 은 더 이상 히어로에 없다 (별도 창 안으로 옮김) */
 
+/* 계산기 안에 이미 "정확히 확인받기" 단추가 있다.
+   그 단추가 화면에 보이는 동안에는 아래 고정 띠가 같은 말을 두 번 하는 셈이라 감춘다.
+   스크롤해서 단추가 위로 사라지면 그때 띠가 올라온다. (2026-08-25) */
+const dh계산기단추 = document.querySelector('.dh-calc-cta');
+
 function updateScrollForms() {
   // 2026-08-25: 신청폼이 첫 화면에서 빠졌으므로 누를 곳은 아래 고정 띠 하나뿐이다.
   // 그래서 스크롤 위치와 상관없이 처음부터 계속 띄운다.
@@ -2875,6 +3078,17 @@ function updateScrollForms() {
     deskCtaBar.classList.remove('visible');
     return;
   }
+
+  // 계산기 단추가 아직 화면에 남아 있으면 띠는 필요 없다
+  if (dh계산기단추) {
+    const 자리 = dh계산기단추.getBoundingClientRect();
+    if (자리.bottom > 0) {
+      mobileCta.classList.remove('visible');
+      deskCtaBar.classList.remove('visible');
+      return;
+    }
+  }
+
   if (isMobile) {
     mobileCta.classList.add('visible');
     deskCtaBar.classList.remove('visible');
@@ -3137,6 +3351,100 @@ const observer = new IntersectionObserver(entries => {
   entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
 }, { threshold: 0.1 });
 document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+
+/* ===================================================================
+   v2 계산기 동작 (2026-08-25)
+
+   ⚠ 이 자리(스크립트 맨 끝)여야 한다. 아래 코드가 selectedServices 를 건드리는데
+     그것은 위쪽에서 let 으로 선언된다. let 은 선언 줄보다 위에서 건드리면 오류가 나고
+     화면이 통째로 멈춘다. 지급표(값 정의)는 맨 위에 있어도 안전하다.
+   =================================================================== */
+var dh고른값 = Object.assign({}, DH_기본값);
+
+/* 통신사만 놓고 본 기본 금액 (렌탈·유심 빼고) */
+function dh기본금액(통신사) {
+  var 표 = DH_지급표[통신사];
+  if (!표) return 0;
+  return (표[dh고른값.상품] || {})[dh고른값.속도] || 0;
+}
+function dh금액(통신사) {
+  return dh기본금액(통신사)
+       + (dh고른값.렌탈 ? DH_렌탈금액 : 0)
+       + (dh고른값.유심 ? DH_유심금액 : 0);
+}
+
+function dh계산기그리기() {
+  ['sk','kt','lg'].forEach(function(c){
+    var 단추 = document.querySelector('.dh-carrier[data-carrier="' + c + '"]');
+    if (단추) 단추.classList.toggle('on', c === dh고른값.통신사);
+  });
+  document.querySelectorAll('[data-prod]').forEach(function(b){
+    b.classList.toggle('on', b.dataset.prod === dh고른값.상품); });
+  document.querySelectorAll('[data-speed]').forEach(function(b){
+    b.classList.toggle('on', b.dataset.speed === dh고른값.속도); });
+  document.querySelectorAll('[data-rental]').forEach(function(b){
+    b.classList.toggle('on', (b.dataset.rental === '1') === dh고른값.렌탈); });
+  document.querySelectorAll('[data-usim]').forEach(function(b){
+    b.classList.toggle('on', (b.dataset.usim === '1') === dh고른값.유심); });
+
+  var 합 = document.getElementById('dhCalcSum');
+  if (합) 합.textContent = dh금액(dh고른값.통신사);
+
+  /* 무엇을 더해 그 금액이 되는지 보여준다.
+     맨 끝 '추가혜택'은 늘 붙는다 — 위 "+ 추가혜택"이 무엇인지 여기서 답해준다. */
+  var 내역칸 = document.getElementById('dhCalcBreak');
+  if (내역칸) {
+    var 조각 = ['인터넷' + (dh고른값.상품 === 'net_tv' ? '+TV' : '')
+                + ' <b>' + dh기본금액(dh고른값.통신사) + '만</b>'];
+    if (dh고른값.렌탈) 조각.push('렌탈 <b>' + DH_렌탈금액 + '만</b>');
+    if (dh고른값.유심) 조각.push('유심 <b>' + DH_유심금액 + '만</b>');
+    조각.push('<b>추가혜택</b> <span class="soft">(상담 시 안내)</span>');
+    내역칸.innerHTML = 조각.join(' + ');
+  }
+}
+
+function dh통신사고르기(c){ dh고른값.통신사 = c; dh계산기그리기(); dhTrack('calc_carrier_' + c, {once:false}); }
+function dh상품고르기(p){ dh고른값.상품 = p; dh계산기그리기(); }
+function dh속도고르기(s){ dh고른값.속도 = s; dh계산기그리기(); }
+
+/* 렌탈·유심은 신청창 안의 서비스 탭·체크칸과 함께 움직여야 한다.
+   안 그러면 손님이 고른 것이 상담원에게 전해지지 않는다. */
+function dh렌탈고르기(v){
+  dh고른값.렌탈 = v;
+  if (v) selectedServices.add('rental'); else selectedServices.delete('rental');
+  selectedServices.add('internet');            /* 이 계산기는 인터넷 가입이 전제다 */
+  var 탭R = document.getElementById('tab-rental');
+  var 탭I = document.getElementById('tab-internet');
+  if (탭R) 탭R.classList.toggle('active', v);
+  if (탭I) 탭I.classList.add('active');
+  dh계산기그리기();
+}
+function dh유심고르기(v){
+  dh고른값.유심 = v;
+  var 칸 = document.getElementById('usimCheck');
+  if (칸) 칸.checked = v;
+  dh계산기그리기();
+}
+/* 손님이 신청창 안 유심 체크칸을 직접 건드린 경우에도 계산기가 따라간다 */
+(function(){
+  var 칸 = document.getElementById('usimCheck');
+  if (칸) 칸.addEventListener('change', function(){
+    dh고른값.유심 = 칸.checked;
+    dh계산기그리기();
+  });
+})();
+
+/* 계산기 아래 단추 → 신청창을 연다.
+   신청폼이 팝업으로 빠져 있어 그 창을 그대로 쓴다. */
+function dh계산기신청(){
+  dhTrack('calc_open_form', { once:false });   /* 계산기에서 신청창까지 온 사람 수 */
+  신청창열기();
+}
+
+dh계산기그리기();               /* 들어오자마자 기본값(119만원)으로 금액을 띄운다 */
+dh렌탈고르기(DH_기본값.렌탈);   /* 서비스 탭도 기본값에 맞춘다 */
+dh유심고르기(DH_기본값.유심);   /* 유심 체크칸도 맞춘다 */
 </script>
 </body>
 </html>
