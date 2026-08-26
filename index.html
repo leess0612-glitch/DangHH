@@ -2628,6 +2628,38 @@ function openCafe(pcUrl, mobileUrl) {
   var 제목 = document.getElementById('rollingTitle');
   if (!섹션 || !트랙) return;
 
+  /* ===== 자리표 되잡기 (2026-08-26) =====
+     문제: danghh.com/index.html#reviews 처럼 자리표를 달고 들어오면 엉뚱한 곳(가입 프로세스)에 섰다.
+     원인 둘이 겹쳐 있었다.
+       (1) 이 명단칸은 자료를 읽어온 뒤에야 나타나는데 높이가 833px 이나 되고,
+           위치가 후기보다 위라서 나타나는 순간 아래 내용이 통째로 그만큼 밀린다.
+       (2) 이 페이지는 자리표 이동이 'smooth' 라, 밀리기 전에 계산한 옛 위치로 천천히 내려간다.
+           게다가 새 탭으로 열면 smooth 이동이 아예 안 돌아서 맨 위에 서 버린다.
+     해결: 명단칸을 내놓은 직후에 자리표로 한 번 더, 부드럽게가 아니라 즉시 내려준다.
+     주의: 손님이 이미 스스로 화면을 움직이고 있으면 건드리지 않는다. 멋대로 움직이면 놀란다. */
+  var 손길있었나 = false;
+  ['wheel','touchstart','keydown','mousedown'].forEach(function(이름){
+    window.addEventListener(이름, function(){ 손길있었나 = true; }, { passive: true, once: true });
+  });
+
+  function 자리표되잡기(){
+    if (손길있었나) return;
+    var 자리표 = location.hash;
+    if (!자리표 || 자리표.length < 2) return;
+    var 목표;
+    try { 목표 = document.querySelector(자리표); } catch (e) { return; }
+    if (!목표) return;
+    /* 화면에 다 그려진 뒤라야 위치가 정확하다. 두 번 재보정한다.
+       requestAnimationFrame 은 다른 탭에 숨어 있으면 아예 안 돌아서 setTimeout 을 쓴다. */
+    var 내려주기 = function(){
+      if (손길있었나) return;
+      var 다시 = document.querySelector(자리표);
+      if (다시) 다시.scrollIntoView({ block: 'start', behavior: 'instant' });
+    };
+    setTimeout(내려주기, 0);
+    setTimeout(내려주기, 300);
+  }
+
   function 날짜적기(s){ var p = String(s).split('-'); return (+p[1]) + '월 ' + (+p[2]) + '일'; }
 
   function 굴림맞춤(개수){
@@ -2696,6 +2728,7 @@ function openCafe(pcUrl, mobileUrl) {
 
       굴림맞춤(줄들.length);
       섹션.style.display = '';
+      자리표되잡기();                                   /* 2026-08-26 : 위 설명 참고 */
       window.addEventListener('resize', function(){ 굴림맞춤(줄들.length); });
     })
     .catch(function(){ /* 못 읽으면 칸을 감춘 채로 둔다 */ });
