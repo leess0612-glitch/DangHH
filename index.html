@@ -261,8 +261,8 @@ nav a:hover { color: var(--primary); background: #eff6ff; }
 .hero h1 { font-size: clamp(32px, 4.6vw, 64px); font-weight: 900; line-height: 1.2; margin-bottom: 20px; letter-spacing: -1.5px; }
 .hero h1 em { font-style: normal; color: #fee500; }
 .mob-br { display: none; }
-.hero-desc { font-size: clamp(15px, 1.7vw, 19px); opacity: 0.88; margin-bottom: 14px; line-height: 1.7; }
-.hero-sub-assurance { font-size: 16px; color: rgba(255,255,255,0.75); margin-bottom: 8px; }
+.hero-desc { font-size: clamp(15px, 1.7vw, 19px); margin-bottom: 14px; line-height: 1.7; }
+.hero-sub-assurance { font-size: 16px; color:#fff; margin-bottom: 8px; }
 .hero-stats {
   display: flex; gap: 0; margin-top: 40px; flex-wrap: wrap;
   max-width: 520px;
@@ -1477,7 +1477,9 @@ html { scroll-behavior: smooth; scroll-padding-top: 78px; }
 .hero-desc{ margin-bottom:3px; line-height:1.4 }          /* 원래 14px / 1.7 */
 .hero-sub-assurance{
   font-size:clamp(15px,1.7vw,19px);                       /* 원래 16px 고정 */
-  color:rgba(255,255,255,.88);                            /* 원래 75% */
+  color:#fff;                                             /* 원래 75% → 88% → 흰색(2026-08-27)
+     ⚠ 파랑 배경이 그라데이션이라 밝은 오른쪽에서 88%는 대비 3.89로 미달이었다.
+     흰색이면 4.57로 통과한다. 서열은 밝기가 아니라 크기·굵기가 만든다. */
   line-height:1.4; margin-bottom:8px;
 }
 @media (max-width:900px){
