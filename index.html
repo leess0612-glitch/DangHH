@@ -358,6 +358,15 @@ section { padding: 72px 20px; }
 .trust-worry { text-align: center; margin-bottom: 20px; }
 .trust-news-img { width: 100%; max-width: 720px; aspect-ratio: 28/11; border-radius: 16px; box-shadow: 0 4px 24px rgba(0,0,0,0.10); margin-top: 24px; display: block; margin-left: auto; margin-right: auto; }
 .trust-solution { margin: 32px 0 96px; }
+
+/* ⚠ 아래 다섯 덩어리(.trust-solution-inner / .trust-sol-badge / -title / -desc / -notice)는
+   지금 어느 페이지에서도 쓰이지 않는다. 화면에 영향이 없다.
+   원래 이 칸은 '딱지 + 제목 + 설명글 + 안내글'로 짜인 파란 글씨 패널이었는데,
+   2026-04-15 에 그림 한 장(images/당일지급 크롭버전1.PNG)으로 통째로 교체됐다(커밋 cf13d45).
+   그래서 글씨용 설정만 주인 없이 남았다.
+   지우지 않고 두는 이유: 나중에 그림 대신 다시 글로 되돌릴 때 쓰던 크기·색·간격이
+   그대로 적힌 설계도이기 때문. 용량은 500바이트뿐이라 남겨 두는 편이 이득이다.
+   (렌탈 페이지는 이미 이 다섯 덩어리가 정리돼 없다 / 확인·기록 2026-08-27) */
 .trust-solution-inner {
   background: linear-gradient(135deg, #0C2880 0%, #1461F0 100%);
   border-radius: 20px; padding: 40px 48px; text-align: center; color: white;
