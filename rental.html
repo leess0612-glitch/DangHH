@@ -2803,6 +2803,36 @@ const observer = new IntersectionObserver(entries => {
   entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
 }, { threshold: 0.1 });
 document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+/* ── 메뉴 자리표를 주소에 남기지 않는다 (2026-08-27) ──
+   메뉴에서 '혜택안내'를 누르면 주소가 danghh.com/#compare 로 바뀌고 그대로 눌러앉는다.
+   그러면 새로고침할 때마다 첫 화면이 아니라 그 칸으로 떨어지고, 그 상태로 즐겨찾기에
+   들어가거나 주소창 자동완성에 남아 계속 따라다닌다.
+   바로 위 #apply 처리와 같은 병이다(그때는 들어가자마자 신청칸이 튀어나오는 사고가 났다).
+
+   화면은 건드리지 않는다 — 이동은 이미 끝났고 주소에서 꼬리표만 조용히 뗀다.
+   그래서 '무조건 맨 위로 올리기' 같은 방식과 달리, 폰에서 브라우저가 탭을 몰래
+   다시 불러올 때 손님 화면이 위로 튕기는 일이 없다.
+
+   ⚠ 페이지가 '열릴 때' 이미 붙어 있는 자리표는 손대지 않는다.
+      명단칸이 뜬 뒤 위치를 다시 잡아 주는 자리표되잡기() 가 그 값을 읽기 때문이다.
+      여기서는 손님이 직접 누른 경우만 지운다. */
+(function () {
+  var 지우기 = function () {
+    if (location.href.indexOf('#') < 0) return;
+    try { history.replaceState(null, '', location.pathname + location.search); } catch (e) {}
+  };
+  /* 부드럽게 내려가는 동안은 기다렸다가 뗀다 */
+  var 나중에지우기 = function () { setTimeout(지우기, 800); };
+  window.addEventListener('hashchange', 나중에지우기);
+  /* 로고처럼 href="#" 인 것은 hashchange 가 안 울려서 누름도 함께 본다 */
+  document.addEventListener('click', function (e) {
+    var 대상 = e.target;
+    if (!대상 || !대상.closest) return;
+    if (대상.closest('a[href^="#"]')) 나중에지우기();
+  }, true);
+})();
+
 </script>
 </body>
 </html>
