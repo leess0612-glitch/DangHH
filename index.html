@@ -150,7 +150,6 @@ if (typeof dhInflow !== 'function') { window.dhInflow = function () { return {};
 @font-face { font-family:'SUIT'; font-weight:800; font-display:swap; src:url('https://cdn.jsdelivr.net/gh/sun-typeface/SUIT@2/fonts/static/woff2/SUIT-ExtraBold.woff2') format('woff2'); }
 @font-face { font-family:'SUIT'; font-weight:900; font-display:swap; src:url('https://cdn.jsdelivr.net/gh/sun-typeface/SUIT@2/fonts/static/woff2/SUIT-Heavy.woff2') format('woff2'); }
 </style>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
 :root {
@@ -2206,6 +2205,243 @@ body.apply-open{ overflow:hidden; }
   </div>
 </div>
 
+<!-- ===== 후기칸 (2026-08-27 개편) =====
+     옛 모습: 사진만 옆으로 자동으로 넘어가는 슬라이드. 글도 별점도 이름도 없었다.
+     새 모습: 사진 + 이름 + 상품 + 별5개 + 후기 글. 한 줄에 한 장씩 여섯 개.
+     ㆍ자리: 사은품지급명단 바로 아래. 명단(사실) 다음에 후기(사람 목소리)가 오도록 했다.
+       후기는 그 자체로는 증거가 약하다 — 앞에 검증되는 기록이 서 있어야 '그 기록의 사례'로 읽힌다.
+     ㆍ한 줄에 두 장씩도 해 봤으나 글에 남는 폭이 450px 뿐이라 본문이 자주 잘렸다.
+       한 장씩 놓으니 글이 674px 를 쓰게 되어 여섯 개 모두 접히지 않고 다 보이고, 칸 길이도 오히려 짧아졌다.
+     ㆍ폰에서는 본문을 감추고 굵은 한 줄 요약까지만 보인다('더 읽기'를 누르면 전문).
+       폰은 글에 남는 폭이 197px 라 본문 세 줄이 아홉 줄처럼 잘게 쪼개져 오히려 안 읽힌다.
+     ㆍ움직임: 실적 숫자칸과 같은 '늦게떠오름'(1.4초, 제대로 올라온 뒤 시작).
+     ㆍ글: 당현함 랜딩페이지1\후기 폴더의 txt 원문 그대로. -->
+<style>
+.후기칸{ background:var(--white); }
+.후기목록{ max-width:1000px; margin:0 auto; display:flex; flex-direction:column; gap:20px; }
+.후기카드{
+  display:flex; gap:24px; align-items:stretch;
+  background:var(--white); border:1px solid var(--border); border-radius:16px;
+  padding:20px; box-shadow:0 2px 10px rgba(15,23,42,0.05);
+}
+/* ⚠ 사진에 height:100% 만 주면 안 된다 — 사진이 다 불러와진 순간 자기 원래 비율대로
+   높이를 밀어 올려 카드가 통째로 길어진다(2026-08-27 실제로 물림).
+   '틀 안에 깔아 두는' 방식이라야 사진이 높이에 관여하지 못한다. */
+.후기사진{
+  flex:0 0 260px; margin:0; position:relative; overflow:hidden;
+  min-height:195px; border-radius:12px; background:var(--light-gray);
+}
+.후기사진 img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block; }
+.후기글{ flex:1 1 auto; min-width:0; display:flex; flex-direction:column; justify-content:center; }
+.후기머리{ display:flex; align-items:baseline; gap:10px; flex-wrap:wrap; }
+.후기이름{ font-size:17px; font-weight:900; color:var(--dark); letter-spacing:-0.3px; }
+.후기상품{ font-size:14px; font-weight:700; color:var(--primary); }
+.후기별{ font-size:15px; letter-spacing:1px; margin-top:6px; line-height:1; }
+.후기제목{ font-size:16px; font-weight:800; color:var(--dark); line-height:1.45; margin:12px 0 6px; letter-spacing:-0.3px; }
+/* 본문은 네 줄까지만 — 글자 수가 아니라 줄 수로 잘라야 카드 높이가 저절로 맞는다 */
+.후기본문{
+  font-size:15px; line-height:1.75; color:var(--gray); margin:6px 0 0;
+  display:-webkit-box; -webkit-line-clamp:4; -webkit-box-orient:vertical; overflow:hidden;
+}
+.후기카드.펼침 .후기본문{ display:block; overflow:visible; }
+/* 본문을 펼치는 단추 — 주인공은 후기 내용이므로 강조색을 쓰지 않고 본문과 같은 회색 계통으로 둔다 */
+.더읽기{
+  align-self:flex-start; margin-top:10px; padding:0;
+  background:none; border:0; color:var(--gray);
+  font-size:13px; font-weight:700; cursor:pointer;
+  text-decoration:underline; text-underline-offset:2px; opacity:0.85;
+  transition:opacity 0.2s, color 0.2s;
+}
+.더읽기:hover{ color:var(--dark); opacity:1; }
+.더읽기.숨김{ display:none; }
+.후기링크들{ display:flex; justify-content:center; gap:12px; flex-wrap:wrap; margin-top:32px; }
+.후기링크{
+  display:inline-flex; align-items:center; gap:7px; padding:13px 24px;
+  border:2px solid var(--primary); border-radius:10px; font-size:14px; font-weight:700;
+  color:var(--primary); text-decoration:none; background:var(--white); transition:background-color 0.2s;
+}
+.후기링크:hover{ background:#eff6ff; }
+@media (max-width:768px){
+  .후기목록{ gap:14px; }
+  .후기카드{ gap:14px; padding:14px; border-radius:14px; }
+  /* 폰 사진은 정사각. 카드 높이만큼 늘리면 좌우가 많이 잘려 원래 모습이 안 보인다. */
+  .후기사진{ flex:0 0 110px; align-self:flex-start; height:110px; min-height:110px; border-radius:10px; }
+  .후기이름{ font-size:15px; }
+  .후기상품{ font-size:13px; }
+  .후기별{ font-size:13px; margin-top:5px; }
+  .후기제목{ font-size:15px; line-height:1.4; margin:8px 0 5px; }
+  .후기본문{ font-size:14px; line-height:1.65; -webkit-line-clamp:3; }
+  .더읽기{ font-size:12px; margin-top:8px; }
+  /* 폰에서는 본문을 감추고 굵은 한 줄 요약만 — '더 읽기'를 누르면 본문이 나온다 */
+  .후기목록.제목만 .후기카드:not(.펼침) .후기본문{ display:none; }
+}
+</style>
+
+<section id="reviews" class="reviews 후기칸">
+  <div class="section-inner">
+    <div style="text-align:center;margin-bottom:40px;">
+      <h2 class="section-title">실제 고객 <em>설치 후기</em></h2>
+      <p class="section-sub">당현함을 통해 가입한 고객님들의 생생한 후기</p>
+    </div>
+    <!-- '제목만'은 폰 폭에서만 작동한다. 컴퓨터에는 아무 영향이 없다. -->
+    <div class="후기목록 제목만" id="후기목록">
+      <article class="후기카드 늦게떠오름">
+        <figure class="후기사진">
+          <img src="images/reviews-story/story-08.jpg" loading="eager" decoding="async"
+               alt="이*준님의 SK 인터넷 가입 설치 후기 사진">
+        </figure>
+        <div class="후기글">
+          <div class="후기머리">
+            <span class="후기이름">이*준</span>
+            <span class="후기상품">SK 인터넷 가입</span>
+          </div>
+          <div class="후기별" aria-label="별점 5점 만점에 5점">⭐⭐⭐⭐⭐</div>
+          <p class="후기제목">사은품에 친절한 상담까지, 이사 후 인터넷 설치 당현함으로 딱이었어요!</p>
+          <p class="후기본문">이사 후 인터넷 설치 알아보다가 사은품과 친절한 설명에 당현함 선택했어요. 설치 전 상담원이 미리 연락주고 날짜 조율해주셨고, 기사님도 오시기 전에 연락 주시며 친절하게 설치해주셨습니다. 2~3일 내로 깔끔하게 완료됐고 인터넷 속도도 만족스러워요. 사은품도 약속대로 잘 챙겨주셔서 전체적으로 대만족입니다!</p>
+          <button type="button" class="더읽기">더 읽기</button>
+        </div>
+      </article>
+      <article class="후기카드 늦게떠오름">
+        <figure class="후기사진">
+          <img src="images/reviews-story/story-06.jpg" loading="eager" decoding="async"
+               alt="박*선님의 KT 인터넷TV 가입 설치 후기 사진">
+        </figure>
+        <div class="후기글">
+          <div class="후기머리">
+            <span class="후기이름">박*선</span>
+            <span class="후기상품">KT 인터넷TV 가입</span>
+          </div>
+          <div class="후기별" aria-label="별점 5점 만점에 5점">⭐⭐⭐⭐⭐</div>
+          <p class="후기제목">화질, 속도, 디자인까지 전부 만족! 다음 가입도 당현함이에요!</p>
+          <p class="후기본문">기존 TV 대비 화질과 속도 모두 완전 만족입니다. 셋탑박스도 작고 디자인 예쁘고, 리모컨 반응속도도 빠르고 편리해요. 설치기사님도 친절하게 설명해주시고 마무리까지 깔끔하게 해주셨습니다. 몇 년 동안 잘 쓸 것 같고, 다음 가입도 당현함으로 할 예정이에요!</p>
+          <button type="button" class="더읽기">더 읽기</button>
+        </div>
+      </article>
+      <article class="후기카드 늦게떠오름">
+        <figure class="후기사진">
+          <img src="images/reviews-story/story-03.jpg" loading="lazy" decoding="async"
+               alt="박*찬님의 LG 정수기 렌탈 설치 후기 사진">
+        </figure>
+        <div class="후기글">
+          <div class="후기머리">
+            <span class="후기이름">박*찬</span>
+            <span class="후기상품">LG 정수기 렌탈</span>
+          </div>
+          <div class="후기별" aria-label="별점 5점 만점에 5점">⭐⭐⭐⭐⭐</div>
+          <p class="후기제목">사은품 혜택에 반해서 선택했는데, 설치기사님까지 너무 친절해요!</p>
+          <p class="후기본문">이사 후 정수기 알아보다가 사은품 혜택이 좋아서 당현함 선택했어요. 카톡 상담도 빠르고 친절하게 진행됐고, 설치기사님도 꼼꼼하게 설명해주셔서 만족스러웠습니다. 정수기가 생각보다 더 예쁘고 기능도 좋아서 예쁘게 잘 쓸게요!</p>
+          <button type="button" class="더읽기">더 읽기</button>
+        </div>
+      </article>
+      <article class="후기카드 늦게떠오름">
+        <figure class="후기사진">
+          <img src="images/reviews-story/story-09.jpg" loading="lazy" decoding="async"
+               alt="김*철님의 LG 인터넷TV 가입 설치 후기 사진">
+        </figure>
+        <div class="후기글">
+          <div class="후기머리">
+            <span class="후기이름">김*철</span>
+            <span class="후기상품">LG 인터넷TV 가입</span>
+          </div>
+          <div class="후기별" aria-label="별점 5점 만점에 5점">⭐⭐⭐⭐⭐</div>
+          <p class="후기제목">SK 15년 쓰다가 갈아탔는데, 이동하길 정말 잘했어요!</p>
+          <p class="후기본문">약정 만료로 통신사 이동을 고민했는데 당현함 상담 받고 나서 바로 결정했어요. 15년 넘게 SK만 써서 걱정도 됐지만 큰 사은품에 빠른 상담·설치까지, 이동하길 정말 잘했다는 생각이 들었습니다. 당현함 최고예요!</p>
+          <button type="button" class="더읽기">더 읽기</button>
+        </div>
+      </article>
+      <article class="후기카드 늦게떠오름">
+        <figure class="후기사진">
+          <img src="images/reviews-story/story-10.jpg" loading="lazy" decoding="async"
+               alt="최*연님의 KT 인터넷TV 가입 설치 후기 사진">
+        </figure>
+        <div class="후기글">
+          <div class="후기머리">
+            <span class="후기이름">최*연</span>
+            <span class="후기상품">KT 인터넷TV 가입</span>
+          </div>
+          <div class="후기별" aria-label="별점 5점 만점에 5점">⭐⭐⭐⭐⭐</div>
+          <p class="후기제목">한 달 고민 끝에 선택했는데, 모든 게 만족스러워요!</p>
+          <p class="후기본문">믿을 만한 업체 찾는 데만 한 달, 고민 끝에 상담했는데 변경사항·질문 많아도 끝까지 친절하게 응대해주셔서 마음에 드는 상품으로 가입할 수 있었어요. LG 7년 쓰다가 KT로 갈아탔는데 리모컨·디자인 모두 확실히 업그레이드된 느낌이에요. 지니가 OTT도 다 틀어주고 인터넷 속도도 방 구석구석 짱짱해서 전체적으로 대만족입니다!</p>
+          <button type="button" class="더읽기">더 읽기</button>
+        </div>
+      </article>
+      <article class="후기카드 늦게떠오름">
+        <figure class="후기사진">
+          <img src="images/reviews-story/story-04.jpg" loading="lazy" decoding="async"
+               alt="최*호님의 쿠쿠 정수기 렌탈 설치 후기 사진">
+        </figure>
+        <div class="후기글">
+          <div class="후기머리">
+            <span class="후기이름">최*호</span>
+            <span class="후기상품">쿠쿠 정수기 렌탈</span>
+          </div>
+          <div class="후기별" aria-label="별점 5점 만점에 5점">⭐⭐⭐⭐⭐</div>
+          <p class="후기제목">투명한 혜택 안내에 당일 지급까지, 믿고 선택할 수 있었어요!</p>
+          <p class="후기본문">여러 비교사이트 살펴봤는데 당현함이 혜택·설치비·사은품 조건을 가장 명확하게 정리해줘서 빠르게 결정할 수 있었어요. 카카오톡으로 간편하게 신청하고 일정 조율 후 깔끔하게 설치 완료. 안내받은 혜택 그대로 지급됐고, 설치 완료 메시지 보내고 당일에 지급돼서 신뢰도가 더 높았습니다. 정수기 렌탈 고민 중이라면 강력 추천해요!</p>
+          <button type="button" class="더읽기">더 읽기</button>
+        </div>
+      </article>
+    </div>
+    <div class="후기링크들">
+      <a class="후기링크" href="javascript:void(0)" onclick="openCafe('https://cafe.naver.com/f-e/cafes/24827819/menus/324?viewType=I','https://m.cafe.naver.com/ca-fe/web/cafes/24827819/menus/324')">📡 인터넷 가입 후기 더보기 ›</a>
+      <a class="후기링크" href="javascript:void(0)" onclick="openCafe('https://cafe.naver.com/f-e/cafes/24827819/menus/398?viewType=I','https://m.cafe.naver.com/ca-fe/web/cafes/24827819/menus/398')">🏠 렌탈 후기 더보기 ›</a>
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+  // --- 본문 '더 읽기' ---
+  // 접힌 글이 아예 없는 짧은 후기에는 단추를 감춘다(눌러도 아무 일이 없으면 손님이 헷갈린다).
+  // ⚠ 접힌 글의 '진짜 길이'는 scrollHeight 로 알 수 없다 — 네 줄로 접는 방식에서는
+  //   브라우저가 접힌 높이를 그대로 돌려주는 경우가 있다. 그래서 아주 잠깐 펼쳐서 재고 되돌린다.
+  function 단추정리(){
+    document.querySelectorAll('.후기카드').forEach(function(카드){
+      var 본문 = 카드.querySelector('.후기본문');
+      var 단추 = 카드.querySelector('.더읽기');
+      if (!본문 || !단추 || 카드.classList.contains('펼침')) return;
+      var 접힌높이 = 본문.clientHeight;
+      카드.classList.add('펼침');
+      var 전체높이 = 본문.clientHeight;
+      카드.classList.remove('펼침');
+      단추.classList.toggle('숨김', 전체높이 <= 접힌높이 + 1);
+    });
+  }
+  document.querySelectorAll('.더읽기').forEach(function(단추){
+    단추.addEventListener('click', function(){
+      var 카드 = 단추.closest('.후기카드');
+      var 펼침 = 카드.classList.toggle('펼침');
+      단추.textContent = 펼침 ? '접기' : '더 읽기';
+    });
+  });
+  // 글꼴이 늦게 도착하면 줄 수가 달라진다 — 글꼴을 기다렸다가 한 번 더 센다.
+  단추정리();
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(단추정리);
+  window.addEventListener('load', 단추정리);
+  window.addEventListener('resize', 단추정리);
+
+  // --- 떠오르기: 이 칸 전용 관찰기 ---
+  // 페이지 끝의 '늦은관찰기'도 이 카드들을 보지만 그 하나만 믿지 않는다.
+  // 같은 표시를 두 번 붙여도 아무 일이 없으므로 겹쳐도 안전하다.
+  var 카드들 = document.querySelectorAll('.후기카드.늦게떠오름');
+  function 보이기(카드){ 카드.classList.add('보임'); }
+  if (window.IntersectionObserver) {
+    var 관찰기 = new IntersectionObserver(function(들){
+      들.forEach(function(ㄱ){ if (ㄱ.isIntersecting) 보이기(ㄱ.target); });
+    }, { threshold: 0.35, rootMargin: '0px 0px -12% 0px' });
+    카드들.forEach(function(카드){ 관찰기.observe(카드); });
+  }
+  function 훑기(){
+    카드들.forEach(function(카드){
+      if (카드.getBoundingClientRect().top < window.innerHeight * 0.9) 보이기(카드);
+    });
+  }
+  window.addEventListener('load', 훑기);
+  window.addEventListener('scroll', 훑기, { passive: true });
+})();
+</script>
+
+
 <!-- CARRIERS -->
 <div class="carriers">
   <div class="carriers-inner">
@@ -2451,41 +2687,7 @@ function promiseZoom(src){ document.getElementById('promiseViewerImg').src=src; 
 </section>
 
 <!-- REVIEWS -->
-<section id="reviews" class="reviews">
-  <div class="section-inner">
-    <div style="text-align:center;margin-bottom:40px;">
-      <h2 class="section-title">실제 고객 <em>설치 후기</em></h2>
-      <p class="section-sub">당현함을 통해 가입한 고객님들의 생생한 후기</p>
-    </div>
-    <div class="swiper reviewSwiper">
-      <div class="swiper-wrapper">
-        <div class="swiper-slide"><img src="images/reviews/review-07-sk.jpg" decoding="async" alt="SK브로드밴드 B tv 셋톱박스 설치 완료 모습" style="width:100%;height:100%;object-fit:cover;border-radius:12px;"></div>
-        <div class="swiper-slide"><img src="images/reviews/review-net-03.jpg" loading="lazy" decoding="async" alt="설치기사님이 거실에서 인터넷 공유기를 설치하는 모습" style="width:100%;height:100%;object-fit:cover;border-radius:12px;"></div>
-        <div class="swiper-slide"><img src="images/reviews/review-net-04.jpg" loading="lazy" decoding="async" alt="설치기사님이 공구와 인터넷 선을 펼쳐 놓고 작업하는 모습" style="width:100%;height:100%;object-fit:cover;border-radius:12px;"></div>
-        <div class="swiper-slide"><img src="images/reviews/review-cuckoo-01.jpg" loading="lazy" decoding="async" alt="온수·정수·냉수·살균수를 고르는 쿠쿠 정수기 조작 화면과 250ml 출수량 표시" style="width:100%;height:100%;object-fit:cover;border-radius:12px;"></div>
-        <div class="swiper-slide"><img src="images/reviews/review-08-lg.jpg" loading="lazy" decoding="async" alt="LG U+ 셋톱박스와 인터넷 공유기 설치 완료 모습" style="width:100%;height:100%;object-fit:cover;border-radius:12px;"></div>
-        <div class="swiper-slide"><img src="images/reviews/20250602_175500.jpg" loading="lazy" decoding="async" alt="주방에 설치한 LG 정수기의 냉수 120ml 조작 화면" style="width:100%;height:100%;object-fit:cover;border-radius:12px;"></div>
-        <div class="swiper-slide"><img src="images/reviews/KakaoTalk_20240930_095327699_03.jpg" loading="lazy" decoding="async" alt="거실 벽걸이 TV에 지니TV 홈 화면이 나오는 설치 완료 모습" style="width:100%;height:100%;object-fit:cover;border-radius:12px;"></div>
-        <div class="swiper-slide"><img src="images/reviews/review-03.PNG" loading="lazy" decoding="async" alt="주방에 설치한 흰색 쿠쿠 정수기 옆모습" style="width:100%;height:100%;object-fit:cover;border-radius:12px;"></div>
-        <div class="swiper-slide"><img src="images/reviews/review-net-01.jpg" loading="lazy" decoding="async" alt="설치기사님이 거실 벽에 TV를 설치하는 모습" style="width:100%;height:100%;object-fit:cover;border-radius:12px;"></div>
-        <div class="swiper-slide"><img src="images/reviews/review-net-02.jpg" loading="lazy" decoding="async" alt="간접조명이 있는 거실에 설치한 대형 TV" style="width:100%;height:100%;object-fit:cover;border-radius:12px;"></div>
-      </div>
-      <div class="swiper-pagination"></div>
-    </div>
-    <div style="display:flex;justify-content:center;gap:12px;margin-top:32px;flex-wrap:wrap;">
-      <a href="javascript:void(0)" onclick="openCafe('https://cafe.naver.com/f-e/cafes/24827819/menus/324?viewType=I','https://m.cafe.naver.com/ca-fe/web/cafes/24827819/menus/324')" style="display:inline-flex;align-items:center;gap:7px;padding:13px 24px;border:2px solid var(--primary);border-radius:10px;font-size:14px;font-weight:700;color:var(--primary);text-decoration:none;transition:all 0.2s;" onmouseover="this.style.background='#eff6ff'" onmouseout="this.style.background='white'">
-        📡 인터넷 가입 후기 더보기 ›
-      </a>
-      <a href="javascript:void(0)" onclick="openCafe('https://cafe.naver.com/f-e/cafes/24827819/menus/398?viewType=I','https://m.cafe.naver.com/ca-fe/web/cafes/24827819/menus/398')" style="display:inline-flex;align-items:center;gap:7px;padding:13px 24px;border:2px solid var(--primary);border-radius:10px;font-size:14px;font-weight:700;color:var(--primary);text-decoration:none;transition:all 0.2s;" onmouseover="this.style.background='#eff6ff'" onmouseout="this.style.background='white'">
-        🏠 렌탈 후기 더보기 ›
-      </a>
-      <a href="gift.html" style="display:inline-flex;align-items:center;gap:7px;padding:13px 24px;border:2px solid var(--primary);border-radius:10px;font-size:14px;font-weight:700;color:var(--primary);text-decoration:none;transition:all 0.2s;" onmouseover="this.style.background='#eff6ff'" onmouseout="this.style.background='white'">
-        🎁 사은품 지급명단 ›
-      </a>
-    </div>
 
-  </div>
-</section>
 
 <!-- FAQ -->
 <section id="faq" class="faq">
@@ -2753,7 +2955,6 @@ function promiseZoom(src){ document.getElementById('promiseViewerImg').src=src; 
   </a>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script>
 /* ===================================================================
    지급표 — 금액이 바뀌면 여기만 고친다 (2026-08-25)
@@ -2971,15 +3172,6 @@ function openCafe(pcUrl, mobileUrl) {
     });
 })();
 
-// Swiper
-new Swiper('.reviewSwiper', {
-  slidesPerView: 'auto',
-  spaceBetween: 16,
-  loop: true,
-  speed: 600,
-  autoplay: { delay: 1800, disableOnInteraction: false },
-  pagination: { el: '.swiper-pagination', clickable: true }
-});
 
 // Mobile menu
 function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('open'); }
