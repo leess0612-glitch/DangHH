@@ -149,7 +149,6 @@ if (typeof dhInflow !== 'function') { window.dhInflow = function () { return {};
 @font-face { font-family:'SUIT'; font-weight:800; font-display:swap; src:url('https://cdn.jsdelivr.net/gh/sun-typeface/SUIT@2/fonts/static/woff2/SUIT-ExtraBold.woff2') format('woff2'); }
 @font-face { font-family:'SUIT'; font-weight:900; font-display:swap; src:url('https://cdn.jsdelivr.net/gh/sun-typeface/SUIT@2/fonts/static/woff2/SUIT-Heavy.woff2') format('woff2'); }
 </style>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
 :root {
@@ -1736,6 +1735,199 @@ html { scroll-behavior: smooth; scroll-padding-top: 78px; }
   </div>
 </div>
 
+<!-- ===== 후기칸 (2026-08-27 개편, index.html 과 같은 모양) =====
+     옛 모습: 사진만 옆으로 자동으로 넘어가는 슬라이드. 글도 별점도 이름도 없었다.
+     새 모습: 사진 + 이름 + 상품 + 별5개 + 후기 글. 한 줄에 한 장씩 네 개(정수기 렌탈).
+     ㆍ자리: 사은품지급명단 바로 아래. 명단(사실) 다음에 후기(사람 목소리)가 오도록 했다.
+     ㆍ폰에서는 본문을 감추고 굵은 한 줄 요약까지만 보인다('더 읽기'를 누르면 전문).
+     ㆍ글: 당현함 랜딩페이지1\후기 폴더의 txt 원문 그대로. -->
+<style>
+.후기칸{ background:var(--white); }
+.후기목록{ max-width:1000px; margin:0 auto; display:flex; flex-direction:column; gap:20px; }
+.후기카드{
+  display:flex; gap:24px; align-items:stretch;
+  background:var(--white); border:1px solid var(--border); border-radius:16px;
+  padding:20px; box-shadow:0 2px 10px rgba(15,23,42,0.05);
+}
+/* ⚠ 사진에 height:100% 만 주면 안 된다 — 사진이 다 불러와진 순간 자기 원래 비율대로
+   높이를 밀어 올려 카드가 통째로 길어진다. '틀 안에 깔아 두는' 방식이라야 안전하다. */
+.후기사진{
+  flex:0 0 260px; margin:0; position:relative; overflow:hidden;
+  min-height:195px; border-radius:12px; background:var(--light-gray);
+}
+.후기사진 img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block; }
+.후기글{ flex:1 1 auto; min-width:0; display:flex; flex-direction:column; justify-content:center; }
+.후기머리{ display:flex; align-items:baseline; gap:10px; flex-wrap:wrap; }
+.후기이름{ font-size:17px; font-weight:900; color:var(--dark); letter-spacing:-0.3px; }
+.후기상품{ font-size:14px; font-weight:700; color:var(--primary); }
+.후기별{ font-size:15px; letter-spacing:1px; margin-top:6px; line-height:1; }
+.후기제목{ font-size:16px; font-weight:800; color:var(--dark); line-height:1.45; margin:12px 0 6px; letter-spacing:-0.3px; }
+/* 본문은 네 줄까지만 — 글자 수가 아니라 줄 수로 잘라야 카드 높이가 저절로 맞는다 */
+.후기본문{
+  font-size:15px; line-height:1.75; color:var(--gray); margin:6px 0 0;
+  display:-webkit-box; -webkit-line-clamp:4; -webkit-box-orient:vertical; overflow:hidden;
+}
+.후기카드.펼침 .후기본문{ display:block; overflow:visible; }
+.더읽기{
+  align-self:flex-start; margin-top:10px; padding:0;
+  background:none; border:0; color:var(--gray);
+  font-size:13px; font-weight:700; cursor:pointer;
+  text-decoration:underline; text-underline-offset:2px; opacity:0.85;
+  transition:opacity 0.2s, color 0.2s;
+}
+.더읽기:hover{ color:var(--dark); opacity:1; }
+.더읽기.숨김{ display:none; }
+.후기링크들{ display:flex; justify-content:center; gap:12px; flex-wrap:wrap; margin-top:32px; }
+.후기링크{
+  display:inline-flex; align-items:center; gap:7px; padding:13px 24px;
+  border:2px solid var(--primary); border-radius:10px; font-size:14px; font-weight:700;
+  color:var(--primary); text-decoration:none; background:var(--white); transition:background-color 0.2s;
+}
+.후기링크:hover{ background:#eff6ff; }
+@media (max-width:768px){
+  .후기목록{ gap:14px; }
+  .후기카드{ gap:14px; padding:14px; border-radius:14px; }
+  /* 폰 사진은 정사각. 카드 높이만큼 늘리면 좌우가 많이 잘려 원래 모습이 안 보인다. */
+  .후기사진{ flex:0 0 110px; align-self:flex-start; height:110px; min-height:110px; border-radius:10px; }
+  .후기이름{ font-size:15px; }
+  .후기상품{ font-size:13px; }
+  .후기별{ font-size:13px; margin-top:5px; }
+  .후기제목{ font-size:15px; line-height:1.4; margin:8px 0 5px; }
+  .후기본문{ font-size:14px; line-height:1.65; -webkit-line-clamp:3; }
+  .더읽기{ font-size:12px; margin-top:8px; }
+  /* 폰에서는 본문을 감추고 굵은 한 줄 요약만 — '더 읽기'를 누르면 본문이 나온다 */
+  .후기목록.제목만 .후기카드:not(.펼침) .후기본문{ display:none; }
+}
+</style>
+
+<section id="reviews" class="reviews 후기칸">
+  <div class="section-inner">
+    <div style="text-align:center;margin-bottom:40px;">
+      <span class="section-tag">설치 후기</span>
+      <h2 class="section-title">실제 고객 <em>설치 후기</em></h2>
+      <p class="section-sub">당현함을 통해 렌탈하신 고객님들의 생생한 후기</p>
+    </div>
+    <!-- '제목만'은 폰 폭에서만 작동한다. 컴퓨터에는 아무 영향이 없다. -->
+    <div class="후기목록 제목만" id="후기목록">
+      <article class="후기카드 늦게떠오름">
+        <figure class="후기사진">
+          <img src="images/reviews-story/story-01.jpg" loading="eager" decoding="async"
+               alt="김*영님의 SK매직 정수기 렌탈 설치 후기 사진">
+        </figure>
+        <div class="후기글">
+          <div class="후기머리">
+            <span class="후기이름">김*영</span>
+            <span class="후기상품">SK매직 정수기 렌탈</span>
+          </div>
+          <div class="후기별" aria-label="별점 5점 만점에 5점">⭐⭐⭐⭐⭐</div>
+          <p class="후기본문">여러 업체를 비교해봤는데 당현함이 조건이 가장 좋아서 선택했어요. 상담부터 설치까지 약속한 내용 그대로 진행되어 믿음이 갔고, 사은품 혜택도 생각보다 훨씬 푸짐해서 만족도가 높았습니다. SK매직 정수기 설치 후에도 불편함 없이 잘 쓰고 있어요. 주변에도 적극 추천 중입니다! 😊</p>
+          <button type="button" class="더읽기">더 읽기</button>
+        </div>
+      </article>
+      <article class="후기카드 늦게떠오름">
+        <figure class="후기사진">
+          <img src="images/reviews-story/story-03.jpg" loading="eager" decoding="async"
+               alt="박*찬님의 LG 정수기 렌탈 설치 후기 사진">
+        </figure>
+        <div class="후기글">
+          <div class="후기머리">
+            <span class="후기이름">박*찬</span>
+            <span class="후기상품">LG 정수기 렌탈</span>
+          </div>
+          <div class="후기별" aria-label="별점 5점 만점에 5점">⭐⭐⭐⭐⭐</div>
+          <p class="후기제목">사은품 혜택에 반해서 선택했는데, 설치기사님까지 너무 친절해요!</p>
+          <p class="후기본문">이사 후 정수기 알아보다가 사은품 혜택이 좋아서 당현함 선택했어요. 카톡 상담도 빠르고 친절하게 진행됐고, 설치기사님도 꼼꼼하게 설명해주셔서 만족스러웠습니다. 정수기가 생각보다 더 예쁘고 기능도 좋아서 예쁘게 잘 쓸게요!</p>
+          <button type="button" class="더읽기">더 읽기</button>
+        </div>
+      </article>
+      <article class="후기카드 늦게떠오름">
+        <figure class="후기사진">
+          <img src="images/reviews-story/story-04.jpg" loading="lazy" decoding="async"
+               alt="최*호님의 쿠쿠 정수기 렌탈 설치 후기 사진">
+        </figure>
+        <div class="후기글">
+          <div class="후기머리">
+            <span class="후기이름">최*호</span>
+            <span class="후기상품">쿠쿠 정수기 렌탈</span>
+          </div>
+          <div class="후기별" aria-label="별점 5점 만점에 5점">⭐⭐⭐⭐⭐</div>
+          <p class="후기제목">투명한 혜택 안내에 당일 지급까지, 믿고 선택할 수 있었어요!</p>
+          <p class="후기본문">여러 비교사이트 살펴봤는데 당현함이 혜택·설치비·사은품 조건을 가장 명확하게 정리해줘서 빠르게 결정할 수 있었어요. 카카오톡으로 간편하게 신청하고 일정 조율 후 깔끔하게 설치 완료. 안내받은 혜택 그대로 지급됐고, 설치 완료 메시지 보내고 당일에 지급돼서 신뢰도가 더 높았습니다. 정수기 렌탈 고민 중이라면 강력 추천해요!</p>
+          <button type="button" class="더읽기">더 읽기</button>
+        </div>
+      </article>
+      <article class="후기카드 늦게떠오름">
+        <figure class="후기사진">
+          <img src="images/reviews-story/story-11.jpg" loading="lazy" decoding="async"
+               alt="이*진님의 LG 정수기 렌탈 설치 후기 사진">
+        </figure>
+        <div class="후기글">
+          <div class="후기머리">
+            <span class="후기이름">이*진</span>
+            <span class="후기상품">LG 정수기 렌탈</span>
+          </div>
+          <div class="후기별" aria-label="별점 5점 만점에 5점">⭐⭐⭐⭐⭐</div>
+          <p class="후기제목">디자인부터 기능까지, 선택에 완전 만족해요!</p>
+          <p class="후기본문">제품 먼저 고른 후 혜택 비교하면서 당현함에서 바로 진행했어요. 설치도 빠르게 잘 됐고, 주기적으로 관리도 받을 수 있어 안심이 돼요. 디자인이 깔끔해서 주방이 훨씬 정돈된 느낌이고, 냉수·온수·얼음에 10ml 단위 용량 설정까지 기능적으로도 정말 만족스럽습니다!</p>
+          <button type="button" class="더읽기">더 읽기</button>
+        </div>
+      </article>
+    </div>
+    <div class="후기링크들">
+      <a class="후기링크" href="javascript:void(0)" onclick="openCafe('https://cafe.naver.com/f-e/cafes/24827819/menus/398?viewType=I','https://m.cafe.naver.com/ca-fe/web/cafes/24827819/menus/398')">🏠 렌탈 후기 더보기 ›</a>
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+  // --- 본문 '더 읽기' ---
+  // ⚠ 접힌 글의 '진짜 길이'는 scrollHeight 로 알 수 없다(네 줄로 접는 방식의 함정).
+  //   그래서 아주 잠깐 펼쳐서 재고 곧바로 되돌린다. 눈에는 보이지 않는다.
+  function 단추정리(){
+    document.querySelectorAll('.후기카드').forEach(function(카드){
+      var 본문 = 카드.querySelector('.후기본문');
+      var 단추 = 카드.querySelector('.더읽기');
+      if (!본문 || !단추 || 카드.classList.contains('펼침')) return;
+      var 접힌높이 = 본문.clientHeight;
+      카드.classList.add('펼침');
+      var 전체높이 = 본문.clientHeight;
+      카드.classList.remove('펼침');
+      단추.classList.toggle('숨김', 전체높이 <= 접힌높이 + 1);
+    });
+  }
+  document.querySelectorAll('.더읽기').forEach(function(단추){
+    단추.addEventListener('click', function(){
+      var 카드 = 단추.closest('.후기카드');
+      var 펼침 = 카드.classList.toggle('펼침');
+      단추.textContent = 펼침 ? '접기' : '더 읽기';
+    });
+  });
+  단추정리();
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(단추정리);
+  window.addEventListener('load', 단추정리);
+  window.addEventListener('resize', 단추정리);
+
+  // --- 떠오르기 ---
+  var 카드들 = document.querySelectorAll('.후기카드.늦게떠오름');
+  function 보이기(카드){ 카드.classList.add('보임'); }
+  if (window.IntersectionObserver) {
+    var 관찰기 = new IntersectionObserver(function(들){
+      들.forEach(function(ㄱ){ if (ㄱ.isIntersecting) 보이기(ㄱ.target); });
+    }, { threshold: 0.35, rootMargin: '0px 0px -12% 0px' });
+    카드들.forEach(function(카드){ 관찰기.observe(카드); });
+  }
+  function 훑기(){
+    카드들.forEach(function(카드){
+      if (카드.getBoundingClientRect().top < window.innerHeight * 0.9) 보이기(카드);
+    });
+  }
+  window.addEventListener('load', 훑기);
+  window.addEventListener('scroll', 훑기, { passive: true });
+})();
+</script>
+
+
 <!-- CARRIERS -->
 <!-- 2026-08-27 : ICT 인증 링크는 아래 '공식 인증' 칸 안으로 옮겼다 (index.html 과 같은 자리).
      같은 링크가 두 번 나오면 인증이 흔한 것처럼 보여 오히려 약해진다. -->
@@ -1977,39 +2169,7 @@ function promiseZoom(src){ document.getElementById('promiseViewerImg').src=src; 
 </section>
 
 <!-- REVIEWS -->
-<section id="reviews" class="reviews">
-  <div class="section-inner">
-    <div style="text-align:center;margin-bottom:40px;">
-      <span class="section-tag">설치 후기</span>
-      <h2 class="section-title">실제 고객 <em>설치 후기</em></h2>
-      <p class="section-sub">당현함을 통해 가입한 고객님들의 생생한 후기</p>
-    </div>
-    <div class="swiper reviewSwiper">
-      <div class="swiper-wrapper">
-        <div class="swiper-slide"><img src="images/reviews/review-rental-01.jpg" decoding="async" alt="거실에 설치한 LG 360도 공기청정기" style="width:100%;height:100%;object-fit:cover;border-radius:12px;"></div>
-        <div class="swiper-slide"><img src="images/reviews/review-01.jpeg" loading="lazy" decoding="async" alt="주방 싱크대에 설치한 SK매직 정수기와 물을 받는 컵" style="width:100%;height:100%;object-fit:cover;border-radius:12px;"></div>
-        <div class="swiper-slide"><img src="images/reviews/review-rental-02.jpg" loading="lazy" decoding="async" alt="욕실에 설치한 쿠쿠 인스퓨어 비데와 리모컨" style="width:100%;height:100%;object-fit:cover;border-radius:12px;"></div>
-        <div class="swiper-slide"><img src="images/reviews/review-cuckoo-01.jpg" loading="lazy" decoding="async" alt="온수·정수·냉수·살균수를 고르는 쿠쿠 정수기 조작 화면과 250ml 출수량 표시" style="width:100%;height:100%;object-fit:cover;border-radius:12px;"></div>
-        <div class="swiper-slide"><img src="images/reviews/review-rental-03.jpg" loading="lazy" decoding="async" alt="거실 벽 앞에 설치한 쿠쿠 공기청정기" style="width:100%;height:100%;object-fit:cover;border-radius:12px;"></div>
-        <div class="swiper-slide"><img src="images/reviews/20250602_175500.jpg" loading="lazy" decoding="async" alt="주방에 설치한 LG 정수기의 냉수 120ml 조작 화면" style="width:100%;height:100%;object-fit:cover;border-radius:12px;"></div>
-        <div class="swiper-slide"><img src="images/reviews/review-rental-04.jpg" loading="lazy" decoding="async" alt="물이 나오는 쿠쿠 인스퓨어 비데 세정 기능" style="width:100%;height:100%;object-fit:cover;border-radius:12px;"></div>
-        <div class="swiper-slide"><img src="images/reviews/review-03.PNG" loading="lazy" decoding="async" alt="주방에 설치한 흰색 쿠쿠 정수기 옆모습" style="width:100%;height:100%;object-fit:cover;border-radius:12px;"></div>
-        <div class="swiper-slide"><img src="images/reviews/review-cuckoo-02.jpg" loading="lazy" decoding="async" alt="커피머신 옆 주방에 설치한 쿠쿠 인스퓨어 정수기" style="width:100%;height:100%;object-fit:cover;border-radius:12px;"></div>
-        <div class="swiper-slide"><img src="images/reviews/review-cuckoo-03.jpg" loading="lazy" decoding="async" alt="화분과 책이 놓인 밝은 주방에 설치한 쿠쿠 정수기" style="width:100%;height:100%;object-fit:cover;border-radius:12px;"></div>
-      </div>
-      <div class="swiper-pagination"></div>
-    </div>
-    <div style="display:flex;justify-content:center;gap:12px;margin-top:32px;flex-wrap:wrap;">
-      <a href="javascript:void(0)" onclick="openCafe('https://cafe.naver.com/f-e/cafes/24827819/menus/398?viewType=I','https://m.cafe.naver.com/ca-fe/web/cafes/24827819/menus/398')" style="display:inline-flex;align-items:center;gap:7px;padding:13px 24px;border:2px solid var(--primary);border-radius:10px;font-size:14px;font-weight:700;color:var(--primary);text-decoration:none;transition:all 0.2s;" onmouseover="this.style.background='#eff6ff'" onmouseout="this.style.background='white'">
-        🏠 렌탈 후기 더보기 ›
-      </a>
-      <a href="gift.html" style="display:inline-flex;align-items:center;gap:7px;padding:13px 24px;border:2px solid var(--primary);border-radius:10px;font-size:14px;font-weight:700;color:var(--primary);text-decoration:none;transition:all 0.2s;" onmouseover="this.style.background='#eff6ff'" onmouseout="this.style.background='white'">
-        🎁 사은품 지급명단 ›
-      </a>
-    </div>
 
-  </div>
-</section>
 
 <!-- FAQ -->
 <section id="faq" class="faq">
@@ -2031,7 +2191,7 @@ function promiseZoom(src){ document.getElementById('promiseViewerImg').src=src; 
       </div>
       <div class="faq-item">
         <div class="faq-question" onclick="toggleFaq(this)">렌탈 약정 기간은 얼마나 되나요? <span class="faq-icon">+</span></div>
-        <div class="faq-answer"><div class="faq-answer-inner">제품 및 업체마다 다르며, 보통 3년(36개월) ~ 5년(60개월) 약정입니다. 약정 기간과 월 요금, 지원금 조건은 상담 시 정확히 안내드립니다.</div></div>
+        <div class="faq-answer"><div class="faq-answer-inner">인터넷은 3년 약정입니다. 약정 기간 중 이사를 가시더라도 이전설치 서비스를 받으시면 되니 걱정하지 않으셔도 됩니다.<br>렌탈은 3년 또는 5년을 많이 합니다. 다음에도 같은 브랜드로 희망하시면 5년 약정을 선택하세요.</div></div>
       </div>
       <div class="faq-item">
         <div class="faq-question" onclick="toggleFaq(this)">정수기 무타공 설치가 가능한가요? <span class="faq-icon">+</span></div>
@@ -2278,7 +2438,6 @@ function promiseZoom(src){ document.getElementById('promiseViewerImg').src=src; 
   </a>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script>
 const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby6NFsBfLjk1XCGuuzLF5DHbwxAXPyz9HNQKJGkdh5BxFqQZ9EPg3Bl4XasN6ojTxdOGA/exec';
 
@@ -2462,14 +2621,6 @@ function openCafe(pcUrl, mobileUrl) {
     });
 })();
 
-// Swiper
-new Swiper('.reviewSwiper', {
-  slidesPerView: 'auto',
-  spaceBetween: 16,
-  loop: true,
-  autoplay: { delay: 3000, disableOnInteraction: false },
-  pagination: { el: '.swiper-pagination', clickable: true }
-});
 
 // Mobile menu
 function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('open'); }
