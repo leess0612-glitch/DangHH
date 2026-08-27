@@ -1514,6 +1514,23 @@ html { scroll-behavior: smooth; scroll-padding-top: 78px; }
   .live-section{ margin-bottom:88px; }
 }
 
+/* ===== 숫자 칸 등장 효과 — 늦게 시작해서 천천히 (2026-08-27) =====
+   기존 .fade-up 은 칸이 화면 아래에 10%만 걸쳐도 시작해 0.6초 만에 끝난다.
+   그래서 손님 눈에 들어올 때쯤이면 이미 다 끝나 있어 효과가 없는 것처럼 보였다.
+   이 칸만 따로 떼어 ① 화면 안으로 제대로 들어온 뒤에 시작하고(시작 조건은 스크립트 끝의 관찰기)
+   ② 1.4초 동안 50px 를 천천히 올라오게 한다. 나머지 칸(요금제표·비교표 등)은 건드리지 않는다. */
+.늦게떠오름{
+  opacity:0; transform:translateY(50px);
+  transition:opacity 1.4s cubic-bezier(0.16,1,0.3,1), transform 1.4s cubic-bezier(0.16,1,0.3,1);
+}
+.늦게떠오름.보임{ opacity:1; transform:translateY(0); }
+/* 아래 작은 줄은 숫자보다 조금 늦게 따라 올라오게 해 눈이 숫자 -> 설명 순서로 가게 한다 */
+.tn-since.늦게떠오름{ transition-delay:0.25s; }
+/* 기기에서 '동작 줄이기'를 켠 손님에게는 움직임 없이 그냥 보이게 한다 */
+@media (prefers-reduced-motion: reduce){
+  .늦게떠오름{ opacity:1 !important; transform:none !important; transition:none !important; }
+}
+
 /* 명단 제목 색을 진한 남색으로 (index.html 과 같은 이유) —
    바로 위 신뢰 숫자 칸이 '숫자=밝은파랑 / 항목이름=남색'을 쓰므로 위계를 맞춘다 */
 .rolling-col-header.type-cash{ background:#0C2880; color:#fff }
@@ -1681,7 +1698,7 @@ html { scroll-behavior: smooth; scroll-padding-top: 78px; }
      그래서 스크롤해서 들어올 때 비로소 보이도록 별도 칸으로 뺐다.
      바로 아래 '사은품 지급명단'과 같은 흰 바탕이라 한 덩어리로 읽힌다. -->
 <section class="trust-nums" id="trustNums">
-  <div class="trust-nums-inner fade-up">
+  <div class="trust-nums-inner 늦게떠오름">
     <div class="tn-item">
       <div class="tn-num"><span class="tn-in">13<span class="tn-tail">년간</span></span></div>
       <div class="tn-label">당일지급</div>
@@ -1695,7 +1712,7 @@ html { scroll-behavior: smooth; scroll-padding-top: 78px; }
       <div class="tn-label">고객만족</div>
     </div>
   </div>
-  <p class="tn-since fade-up">(2012~2026년 8월 기준 · 누적 상담 339,000건)</p>
+  <p class="tn-since 늦게떠오름">(2012~2026년 8월 기준 · 누적 상담 339,000건)</p>
 </section>
 
 <!-- LIVE ROLLING : 진짜 사은품 지급명단(gift-data)을 읽어서 굴린다 -->
@@ -1969,16 +1986,16 @@ function promiseZoom(src){ document.getElementById('promiseViewerImg').src=src; 
     </div>
     <div class="swiper reviewSwiper">
       <div class="swiper-wrapper">
-        <div class="swiper-slide"><img src="images/reviews/review-01.jpeg" decoding="async" alt="주방 싱크대에 설치한 정수기와 물을 받는 컵" style="width:100%;height:100%;object-fit:cover;border-radius:12px;"></div>
+        <div class="swiper-slide"><img src="images/reviews/review-01.jpeg" decoding="async" alt="주방 싱크대에 설치한 SK매직 정수기와 물을 받는 컵" style="width:100%;height:100%;object-fit:cover;border-radius:12px;"></div>
         <div class="swiper-slide"><img src="images/reviews/review-07-sk.jpg" loading="lazy" decoding="async" alt="SK브로드밴드 B tv 셋톱박스 설치 완료 모습" style="width:100%;height:100%;object-fit:cover;border-radius:12px;"></div>
-        <div class="swiper-slide"><img src="images/reviews/review-02.PNG" loading="lazy" decoding="async" alt="온수·정수·냉수를 고르는 정수기 조작 화면과 120ml 출수량 표시" style="width:100%;height:100%;object-fit:cover;border-radius:12px;"></div>
+        <div class="swiper-slide"><img src="images/reviews/review-cuckoo-01.jpg" loading="lazy" decoding="async" alt="온수·정수·냉수·살균수를 고르는 쿠쿠 정수기 조작 화면과 250ml 출수량 표시" style="width:100%;height:100%;object-fit:cover;border-radius:12px;"></div>
         <div class="swiper-slide"><img src="images/reviews/review-04.jpg" loading="lazy" decoding="async" alt="설치를 마친 TV에서 야구 중계가 나오는 모습과 인터넷 공유기" style="width:100%;height:100%;object-fit:cover;border-radius:12px;"></div>
         <div class="swiper-slide"><img src="images/reviews/20250602_175500.jpg" loading="lazy" decoding="async" alt="주방에 설치한 LG 정수기의 냉수 120ml 조작 화면" style="width:100%;height:100%;object-fit:cover;border-radius:12px;"></div>
         <div class="swiper-slide"><img src="images/reviews/review-08-lg.jpg" loading="lazy" decoding="async" alt="LG U+ 셋톱박스와 인터넷 공유기 설치 완료 모습" style="width:100%;height:100%;object-fit:cover;border-radius:12px;"></div>
-        <div class="swiper-slide"><img src="images/reviews/review-03.PNG" loading="lazy" decoding="async" alt="주방에 설치한 흰색 정수기 옆모습" style="width:100%;height:100%;object-fit:cover;border-radius:12px;"></div>
+        <div class="swiper-slide"><img src="images/reviews/review-03.PNG" loading="lazy" decoding="async" alt="주방에 설치한 흰색 쿠쿠 정수기 옆모습" style="width:100%;height:100%;object-fit:cover;border-radius:12px;"></div>
         <div class="swiper-slide"><img src="images/reviews/KakaoTalk_20240930_095327699_03.jpg" loading="lazy" decoding="async" alt="거실 벽걸이 TV에 지니TV 홈 화면이 나오는 설치 완료 모습" style="width:100%;height:100%;object-fit:cover;border-radius:12px;"></div>
-        <div class="swiper-slide"><img src="images/reviews/review-06.jpg" loading="lazy" decoding="async" alt="가게에 설치한 검은색 정수기와 조작 화면" style="width:100%;height:100%;object-fit:cover;border-radius:12px;"></div>
-        <div class="swiper-slide"><img src="images/reviews/V2.jpg" loading="lazy" decoding="async" alt="주방 한쪽에 설치한 검은색 정수기" style="width:100%;height:100%;object-fit:cover;border-radius:12px;"></div>
+        <div class="swiper-slide"><img src="images/reviews/review-cuckoo-02.jpg" loading="lazy" decoding="async" alt="커피머신 옆 주방에 설치한 쿠쿠 인스퓨어 정수기" style="width:100%;height:100%;object-fit:cover;border-radius:12px;"></div>
+        <div class="swiper-slide"><img src="images/reviews/review-cuckoo-03.jpg" loading="lazy" decoding="async" alt="화분과 책이 놓인 밝은 주방에 설치한 쿠쿠 정수기" style="width:100%;height:100%;object-fit:cover;border-radius:12px;"></div>
       </div>
       <div class="swiper-pagination"></div>
     </div>
@@ -2803,6 +2820,15 @@ const observer = new IntersectionObserver(entries => {
   entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
 }, { threshold: 0.1 });
 document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+// 신뢰 숫자 칸 전용 관찰기 (2026-08-27)
+// 위 관찰기(threshold 0.1)는 화면 맨 아래에 살짝 걸치기만 해도 켜진다.
+// 여기는 아래쪽 12% 를 깎고 칸의 35% 가 보일 때 켜지므로, 제대로 올라온 뒤에 시작한다.
+const 늦은관찰기 = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('보임'); });
+}, { threshold: 0.35, rootMargin: '0px 0px -12% 0px' });
+document.querySelectorAll('.늦게떠오름').forEach(el => 늦은관찰기.observe(el));
+
 
 /* ── 메뉴 자리표를 주소에 남기지 않는다 (2026-08-27) ──
    메뉴에서 '혜택안내'를 누르면 주소가 danghh.com/#compare 로 바뀌고 그대로 눌러앉는다.
