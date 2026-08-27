@@ -391,7 +391,11 @@ section { padding: 72px 20px; }
 .benefit-amount-highlight {
   margin: 14px 0;
   padding: 14px 16px;
-  background: rgba(255,255,255,0.12);
+  /* ⚠ 2026-08-27: 아래 .benefit-guarantee 와 같은 이유로 덧칠을 뒤집었다.
+     흰색 12%를 덧칠하면 바탕이 #3169D9 로 밝아져 노란 큰 글씨 3.95,
+     흐린 흰색 작은 글씨 3.59 로 둘 다 미달이었다.
+     검정 15%로 바꾸면 6.35 / 5.29 로 글씨색을 안 건드리고 통과한다. */
+  background: rgba(0,0,0,0.15);
   border: 1.5px solid rgba(255,255,255,0.3);
   border-radius: 12px;
   text-align: center;
