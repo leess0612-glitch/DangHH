@@ -439,11 +439,15 @@ section { padding: 72px 20px; }
 .benefit-card p { font-size: 14px; color: var(--gray); line-height: 1.75; }
 .benefit-guarantee {
   margin-top: 16px; padding: 10px 14px;
-  background: rgba(255,255,255,0.12);
+  /* ⚠ 2026-08-27: 전에는 흰색 12%를 덧칠해 파랑을 '밝게' 만들었다.
+     그러면 노란 글씨 대비가 3.42까지 떨어져 어떤 노랑을 써도 4.5를 못 넘긴다.
+     덧칠을 검정 15%로 뒤집어 바탕을 어둡게 하면 5.82로 통과한다.
+     칸을 눌러 넣은 것처럼 보이게 하는 효과도 그대로다. */
+  background: rgba(0,0,0,0.15);
   border: 1.5px solid rgba(255,255,255,0.3);
   border-radius: 10px;
   font-size: 22px; font-weight: 900;
-  color: #FFF200;
+  color: #FFFF00;
   text-align: center;
 }
 
