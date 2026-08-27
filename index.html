@@ -2102,18 +2102,18 @@ body.apply-open{ overflow:hidden; }
         </div>
 
         <div class="dh-calc-q">
-          <span class="dh-calc-label">정수기·가전렌탈도 하실까요? <em class="dh-plus">함께 하면 +50만</em></span>
-          <div class="dh-calc-opts">
-            <button type="button" class="dh-opt" data-rental="0" onclick="dh렌탈고르기(false)">안 해요</button>
-            <button type="button" class="dh-opt on" data-rental="1" onclick="dh렌탈고르기(true)">같이 할래요</button>
-          </div>
-        </div>
-
-        <div class="dh-calc-q">
           <span class="dh-calc-label">휴대폰은 그대로 두고 통신사만 바꾸실래요? <em class="dh-plus">함께 하면 +20만</em></span>
           <div class="dh-calc-opts">
             <button type="button" class="dh-opt" data-usim="0" onclick="dh유심고르기(false)">아니요</button>
             <button type="button" class="dh-opt on" data-usim="1" onclick="dh유심고르기(true)">네 (유심 번호이동)</button>
+          </div>
+        </div>
+
+        <div class="dh-calc-q">
+          <span class="dh-calc-label">정수기·가전렌탈은 어떠세요? <em class="dh-plus">+50만 · 따로 신청 가능</em></span>
+          <div class="dh-calc-opts">
+            <button type="button" class="dh-opt" data-rental="0" onclick="dh렌탈고르기(false)">지금은 괜찮아요</button>
+            <button type="button" class="dh-opt on" data-rental="1" onclick="dh렌탈고르기(true)">관심 있어요</button>
           </div>
         </div>
 
@@ -3401,8 +3401,8 @@ function dh계산기그리기() {
   if (내역칸) {
     var 조각 = ['인터넷' + (dh고른값.상품 === 'net_tv' ? '+TV' : '')
                 + ' <b>' + dh기본금액(dh고른값.통신사) + '만</b>'];
-    if (dh고른값.렌탈) 조각.push('렌탈 <b>' + DH_렌탈금액 + '만</b>');
     if (dh고른값.유심) 조각.push('유심 <b>' + DH_유심금액 + '만</b>');
+    if (dh고른값.렌탈) 조각.push('렌탈 <b>' + DH_렌탈금액 + '만</b>');
     조각.push('<b>추가혜택</b> <span class="soft">(상담 시 안내)</span>');
     내역칸.innerHTML = 조각.join(' + ');
   }
