@@ -108,17 +108,23 @@ if (typeof dhInflow !== 'function') { window.dhInflow = function () { return {};
 <!-- ===== 전환추적 끝 ===== -->
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>당현함 | 정수기·가전렌탈 최대 지원금 당일 현금지급</title>
-<meta name="description" content="정수기·가전렌탈 가입 시 최대 40만원 현금 지원금 당일 지급. 타 업체보다 혜택이 적으면 차액 보상. 무료 비교 상담 신청하세요. ☎ 1600-4670">
+<!-- ⚠ 이 제목(검색용)과 아래 og:title(공유 카드용)은 일부러 다르게 둔다. 같게 맞추지 말 것.
+     - 제목 태그 : 검색 결과에 뜨는 제목. 찾는 낱말이 많이 들어가야 걸린다
+     - og:title : 카톡·카페에 링크를 붙였을 때 나오는 카드 제목. 짧아야 한 줄에 들어간다
+     (index.html 과 같은 규칙, 2026-08-27) -->
+<title>당현함 | 정수기렌탈 비데 공기청정기 안마의자 렌탈 사은품 많이 주는 곳, 현금지원금 당일입금 | 코웨이 청호 SK매직 웰스 LG 렌탈 비교</title>
+<!-- 2026-08-27 : 여기가 "최대 40만원"이라 화면 본문(최대 50만원)과 어긋나 있었다 -->
+<meta name="description" content="정수기·가전렌탈 가입 시 최대 50만원 현금 지원금 당일 지급. 타 업체보다 혜택이 적으면 차액 보상. 무료 비교 상담 신청하세요. ☎ 1600-4670">
 <!-- 광고 전용 페이지. 자연 검색에는 노출시키지 않는다. (2026-08-19) -->
 <meta name="robots" content="noindex, follow">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://danghh.com/rental.html">
-<meta property="og:title" content="당현함 | 정수기·가전렌탈 최대 지원금 당일 현금지급">
-<meta property="og:description" content="정수기·가전렌탈 가입 시 최대 40만원 현금 지원금 당일 지급. 타 업체보다 혜택 적으면 차액 보상. 무료 상담 신청하세요.">
-<meta property="og:image" content="https://danghh.com/images/logo.png">
-<meta property="og:image:width" content="300">
-<meta property="og:image:height" content="300">
+<meta property="og:title" content="당현함 | 렌탈 지원금 당일지급">
+<meta property="og:description" content="정수기·가전렌탈 가입 시 최대 50만원 현금 지원금 당일 지급. 타 업체보다 혜택 적으면 차액 보상. 무료 상담 신청하세요.">
+<!-- 2026-08-27 : 정사각 로고(300x300)라 카톡 카드가 작게 나왔다. index 와 같은 가로형 카드로 교체 -->
+<meta property="og:image" content="https://danghh.com/images/share-card.png">
+<meta property="og:image:width" content="800">
+<meta property="og:image:height" content="400">
 <meta property="og:image:type" content="image/png">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%231a56db'/><text y='68' x='50' text-anchor='middle' font-size='54' font-family='sans-serif' font-weight='900' fill='white'>당</text></svg>">
 <!-- ===== SUIT 글꼴 불러오기 (2026-08-12 교체, index.html과 동일 조치) =====
@@ -1346,6 +1352,257 @@ html { scroll-behavior: smooth; scroll-padding-top: 78px; }
 @media (max-width: 768px) { footer { padding-bottom: 108px; } }  /* 폰 띠 68 + 여백 40 */
 @media (min-width: 769px) { footer { padding-bottom: 156px; } }  /* PC 띠 116 + 여백 40 — 이 페이지 띠에는 이름·번호 입력칸이 들어 있어 다른 페이지(78)보다 높다 */
 </style>
+
+<style>
+/* ==========================================================
+   2026-08-27 : danghh.com(index.html)에서 옮겨온 칸들의 모양
+   ========================================================== */
+
+/* ===== 첫 화면 : 차액 보상 강조 (새로 만듦) =====
+   첫 화면의 누름단추를 뺀 자리에, 손님이 가장 크게 걱정하는
+   '여기가 제일 많이 주는 게 맞나'에 정면으로 답하는 칸을 둔다. */
+.hero-guarantee{
+  width:fit-content; max-width:100%;
+  margin:20px auto 0;
+  background:rgba(255,255,255,0.10);
+  border:2px solid rgba(255,242,0,0.55);
+  padding:18px 30px 20px;
+  text-align:center;
+}
+.hero-guarantee p{ margin:0; opacity:1; }
+.hg-badge{
+  display:inline-block; background:#FFF200; color:#0C2880;
+  font-size:14px; font-weight:900; letter-spacing:-0.3px;
+  padding:5px 14px; margin-bottom:12px;
+}
+.hg-line{
+  font-size:clamp(16px,2.1vw,21px); font-weight:700;
+  color:rgba(255,255,255,0.92); line-height:1.4; margin-bottom:5px !important;
+}
+.hg-line em{ font-style:normal; color:#FFF200; font-weight:900; }
+.hg-main{
+  font-size:clamp(23px,3.5vw,37px); font-weight:900; color:#fff;
+  letter-spacing:-1.2px; line-height:1.25;
+}
+.hg-main strong{ color:#FFF200; font-weight:900; }
+.hg-note{ margin-top:12px !important; font-size:13px; color:rgba(255,255,255,0.8); }
+@media (max-width:768px){
+  .hero-guarantee{ margin-top:20px; padding:16px 18px 18px; }
+  .hg-badge{ font-size:13px; margin-bottom:10px; }
+}
+
+/* ===== 첫 화면 : 지원금 명세표 (index.html 에서 옮김) =====
+   명세표는 '흰 종이'. 강조색 주황(#ff6b00)은 위 배지와 같은 색. */
+.dh-ledger{
+  position:relative;
+  max-width:560px; margin:24px auto 0;
+  background:#ffffff;
+  border:1px solid rgba(12,40,128,.10);
+  border-radius:4px;
+  padding:16px 20px 14px;
+  box-shadow:0 6px 18px rgba(4,18,60,.22);
+  text-align:left;
+}
+.dh-ledger::after{                   /* 영수증처럼 뜯긴 아래쪽 */
+  content:"";
+  position:absolute; left:0; right:0; bottom:-9px; height:9px;
+  background:radial-gradient(circle at 6px 0, #ffffff 5.2px, transparent 5.6px) repeat-x;
+  background-size:12px 9px;
+  pointer-events:none;
+}
+.dh-ledger-row{
+  display:flex; align-items:center; gap:10px;
+  padding:7px 0; border-bottom:1px dashed rgba(12,40,128,.14);
+}
+.dh-ledger-row:last-of-type{ border-bottom:0 }
+.dh-ledger-row .t{ font-size:20px; font-weight:600; color:#1e293b }
+.dh-ledger-row .d{ flex:1; border-bottom:1px dotted rgba(12,40,128,.22); transform:translateY(-4px) }
+.dh-ledger-row .v{ font-size:22px; font-weight:700; color:#0f172a; font-variant-numeric:tabular-nums; white-space:nowrap }
+.dh-ledger-row .v.small{ font-weight:800 }
+/* 비밀지원금 줄 — 어디와도 비교할 수 없는 유일한 항목이라 맨 아래에서 강조 */
+.dh-ledger-row.hi .t{ font-size:23px; font-weight:700; color:#ff6b00 }
+.dh-ledger-row.hi .v.small{ font-size:25px; color:#ff6b00 }
+.dh-ledger-row.hi .d{ border-bottom-color:rgba(255,107,0,.45) }
+.dh-ledger-sum{
+  display:flex; align-items:baseline; justify-content:space-between; gap:10px;
+  margin-top:9px; padding-top:10px; border-top:2px solid rgba(12,40,128,.45);
+}
+.dh-ledger-sum .t{ font-size:16px; font-weight:600; color:#64748b }
+.dh-ledger-sum .v{ font-size:32px; font-weight:900; color:#0C2880; letter-spacing:-.5px; font-variant-numeric:tabular-nums }
+.dh-ledger-sum .v em{ font-style:normal; font-size:27px; font-weight:800; color:#ff6b00 }
+@media (max-width:900px){
+  .dh-ledger{ padding:12px 14px 10px }
+  /* 떠 있는 전화·카톡 단추에 금액이 가리지 않도록 좌우를 똑같이 비운다 */
+  .floating-btns{ right:14px }
+  .float-btn{ width:46px; height:46px; font-size:20px }
+  .dh-ledger-row{ padding:6px 36px }
+  .dh-ledger-sum{ padding-left:36px; padding-right:36px }
+  .dh-ledger-row .t{ font-size:16px }
+  .dh-ledger-row .v{ font-size:18px }
+  .dh-ledger-row.hi .t{ font-size:18px }
+  .dh-ledger-row.hi .v.small{ font-size:19px }
+  .dh-ledger-sum .t{ font-size:14px }
+  .dh-ledger-sum .v{ font-size:27px }
+  .dh-ledger-sum .v em{ font-size:23px }
+}
+
+/* ===== 첫 화면 : 단추를 뺀 만큼 위아래 여백을 당긴다 =====
+   위 여백을 40px 로 줄인 이유: 이 자리가 20px 만 넉넉해도 차액 보상 칸의
+   아래쪽이 컴퓨터 화면(높이 860 기준)에서 고정 띠에 6px 잘렸다(실측) */
+.hero{ padding-top:40px; padding-bottom:64px; }
+.hero h1{ margin-bottom:14px; }
+.hero .hero-desc{ font-size:clamp(15px,2vw,19px); margin-bottom:22px !important; line-height:1.5; }
+/* 마지막 줄이라 아래 여백을 없앤다.
+   (원래 .hero p 규칙이 아래 60px 을 주는데, 뒤에 통계 3칸이 있을 때 이야기였다) */
+.hero .hero-urgency{ margin-bottom:0; }
+@media (max-width:768px){
+  .hero{ padding-top:40px; padding-bottom:48px; }
+  .hero .hero-desc{ margin-bottom:18px !important; }
+}
+
+/* ===== 신뢰 숫자 칸 (index.html 에서 옮김) =====
+   ★ 바탕은 흰색. 파란 숫자는 흰 바탕에서 가장 또렷하다.
+   ★ 위아래 여백은 --배수 로 조절한다.
+   ★ 세 칸이 모두 한 줄이라 글씨 크기를 똑같이 둔다. */
+.trust-nums{
+  --배수:4;
+  background:#ffffff;
+  padding: calc(84px * var(--배수)) 20px calc(76px * var(--배수) / 2);
+}
+.trust-nums-inner{
+  max-width:920px; margin:0 auto;
+  display:flex; align-items:stretch; justify-content:center;
+}
+.tn-item{
+  flex:1 1 0; min-width:0; text-align:center;
+  padding:0 14px;
+  border-right:1px solid #dbe6f7;
+  display:flex; flex-direction:column; align-items:center;
+}
+.tn-item:last-child{ border-right:none; }
+.tn-num{
+  flex:1 1 auto; width:100%;
+  display:flex; align-items:center; justify-content:center;
+}
+.tn-in{
+  display:block; text-align:center;
+  font-size:100px; font-weight:900; color:#1461F0;
+  letter-spacing:-4px; line-height:1.05;
+  white-space:nowrap;
+  font-variant-numeric:tabular-nums;
+}
+.tn-tail{ font-size:0.6em; font-weight:800; letter-spacing:-1.5px; line-height:1.15; }
+.tn-label{
+  display:block; margin-top:24px;
+  background:none; color:#0C2880;
+  font-size:66px; font-weight:800; letter-spacing:-3px;
+  padding:0; border-radius:0; white-space:nowrap; line-height:1.15;
+}
+/* 업력을 뒷받침하는 작은 줄 — 숫자들과 부딪히지 않게 아래에 조용히 둔다 */
+.tn-since{
+  margin:44px 0 0; text-align:center;
+  font-size:19px; font-weight:600; color:#64748b; letter-spacing:-0.4px;
+}
+/* 지급명단 아래를 넓혀 '대표 약속' 칸을 아래로 민다 */
+.live-section{ margin-bottom:144px; }
+@media (max-width:768px){
+  .trust-nums{ padding: calc(35px * var(--배수)) 10px calc(32px * var(--배수) / 2); }
+  .tn-item{ padding:0 3px; }
+  .tn-in{ font-size:50px; letter-spacing:-2px; }
+  .tn-label{ font-size:28px; letter-spacing:-2px; margin-top:12px; }
+  .tn-since{ font-size:13px; margin-top:24px; }
+  .live-section{ margin-bottom:88px; }
+}
+
+/* 명단 제목 색을 진한 남색으로 (index.html 과 같은 이유) —
+   바로 위 신뢰 숫자 칸이 '숫자=밝은파랑 / 항목이름=남색'을 쓰므로 위계를 맞춘다 */
+.rolling-col-header.type-cash{ background:#0C2880; color:#fff }
+
+/* ===== 대표 약속 카드 (index.html 에서 옮김) ===== */
+.promise { background:#ffffff; padding:34px 0 64px; text-align:center; }
+.promise-card {
+  margin-top:30px; display:grid; grid-template-columns:340px 1fr;
+  background:#fff; border:1px solid var(--border); border-radius:20px; overflow:hidden;
+  box-shadow:0 4px 24px rgba(15,42,90,0.10); text-align:left;
+}
+.promise-photo { position:relative; background:#eef2f7; }
+.promise-photo img { width:100%; height:100%; object-fit:cover; object-position:center 6%; display:block; }
+.promise-photo::after { content:''; position:absolute; inset:0; pointer-events:none; box-shadow:inset 0 0 0 1px rgba(15,42,90,0.16); }
+.promise-body { padding:36px 40px 32px; }
+.promise-head { font-size:22px; font-weight:900; letter-spacing:-0.5px; line-height:1.4; margin-bottom:22px; }
+.promise-head em { font-style:normal; color:var(--primary); }
+.promise-list { list-style:none; display:flex; flex-direction:column; gap:18px; }
+.promise-list li { display:flex; gap:14px; }
+.promise-num { flex:0 0 30px; height:30px; border-radius:9px; background:var(--primary); color:#fff;
+  font-size:15px; font-weight:900; display:flex; align-items:center; justify-content:center; margin-top:2px; }
+.promise-list strong { display:block; font-size:17px; font-weight:800; letter-spacing:-0.3px; margin-bottom:3px; }
+.promise-list p { font-size:14px; color:var(--gray); line-height:1.65; }
+.promise-oath { margin-top:26px; padding-top:20px; border-top:1px dashed var(--border); display:block; }
+.promise-oath p { font-size:13.5px; color:#475569; line-height:1.6; margin-bottom:14px; }
+.promise-oath p b { color:var(--dark); font-weight:800; }
+.promise-sign { display:flex; align-items:center; justify-content:flex-end; gap:12px; padding-right:44px; }
+.promise-sign span { font-size:12px; color:var(--gray); white-space:nowrap; }
+.promise-sign img { width:126px; display:block; margin:0; }
+.promise-docs { margin-top:24px; }
+.promise-docs .lbl { font-size:14px; color:var(--gray); margin-bottom:12px; }
+.promise-docs-row { display:flex; gap:20px; justify-content:center; }
+.promise-doc { width:240px; border:1px solid var(--border); border-radius:12px; background:#fff; padding:10px 10px 12px;
+  cursor:zoom-in; transition:transform .2s, box-shadow .2s; box-shadow:0 2px 10px rgba(15,42,90,0.07); }
+.promise-doc:hover { transform:translateY(-3px); box-shadow:0 10px 24px rgba(15,42,90,0.14); }
+.promise-doc img { width:100%; aspect-ratio:1024/1448; object-fit:cover; object-position:top; border-radius:7px; display:block; background:#f8fafc; }
+.promise-doc span { display:block; margin-top:9px; font-size:12.5px; font-weight:700; color:#334155; text-align:center; }
+.promise-viewer { position:fixed; inset:0; background:rgba(15,23,42,0.88); display:none; align-items:center; justify-content:center; padding:30px; z-index:9999; cursor:zoom-out; }
+.promise-viewer.on { display:flex; }
+.promise-viewer img { max-width:100%; max-height:100%; border-radius:8px; }
+@media (max-width: 768px) {
+  .promise { padding:24px 0 44px; }
+  .promise-card { grid-template-columns:1fr; }
+  .promise-photo { aspect-ratio:16/12; }
+  .promise-photo img { object-position:center 20%; }
+  .promise-body { padding:24px 20px 26px; }
+  .promise-head { font-size:19px; margin-bottom:18px; }
+  .promise-list strong { font-size:16px; }
+  .promise-oath p { margin-bottom:12px; }
+  .promise-sign { gap:8px; padding-right:48px; }
+  .promise-sign span { font-size:10.5px; }
+  .promise-sign img { width:80px; }
+  .promise-docs-row { gap:12px; }
+  .promise-doc { width:calc(50% - 6px); }
+  /* 폰에서는 사진이 화면 폭을 꽉 채워 얼굴이 코앞에 들이닥친다. 비율은 그대로 두고 폭만 줄인다 */
+  .promise-photo{ width:210px; margin:24px auto 0; border-radius:14px; overflow:hidden; }
+  .promise-photo::after{ border-radius:14px; }
+}
+/* 아주 좁은 폰(320칸 안팎)에서도 날짜·서명이 한 줄에 들어가도록 */
+@media (max-width: 380px) {
+  .promise-sign { padding-right:48px; gap:6px; }
+  .promise-sign span { font-size:10px; }
+  .promise-sign img, .sign-img { width:74px; }
+}
+
+/* ===== 당일지급·공식 인증 그림 칸 (index.html 에서 옮김) ===== */
+.trust-section { background:#ffffff; }
+.trust-solution { margin:32px 0 96px; }
+.trust-solution-img { width:100%; max-width:480px; aspect-ratio:811/787; display:block; margin:0 auto; }
+.trust-cert { text-align:center; margin-top:60px; }
+.trust-cert-img { width:100%; max-width:720px; aspect-ratio:1060/822; border-radius:16px; box-shadow:0 4px 24px rgba(15,42,90,0.10); display:block; margin:0 auto 28px; }
+
+/* ===== 간이 신청칸의 개인정보 안내 (2026-08-27 새로 넣음) =====
+   옆칸·아래 띠에서 번호를 받으면서 동의 표시가 없던 것을 메운다 */
+.mini-consent{
+  margin:8px 0 0; font-size:11px; line-height:1.45; text-align:center;
+  color:#94a3b8;
+}
+.mini-consent a{ color:#94a3b8; text-decoration:underline; }
+.mini-consent.desk{
+  margin:6px auto 0; max-width:860px;
+  color:rgba(255,255,255,0.72); font-size:11px;
+}
+.mini-consent.desk a{ color:rgba(255,255,255,0.85); }
+
+/* 아래 고정 띠에 안내 한 줄이 더 붙어 띠가 높아졌다(116 -> 약 137).
+   푸터 마지막 글줄이 띠에 가리지 않도록 그만큼 빈 자리를 더 준다. */
+@media (min-width: 769px) { footer { padding-bottom: 180px; } }
+</style>
 </head>
 <body>
 
@@ -1377,11 +1634,11 @@ html { scroll-behavior: smooth; scroll-padding-top: 78px; }
   </div>
 </header>
 <div class="mobile-menu" id="mobileMenu">
-  <a href="#compare" onclick="closeMobileMenu()">혜택안내</a>
-  <a href="#reviews" onclick="closeMobileMenu()">설치후기</a>
-  <a href="gift.html" onclick="closeMobileMenu()">사은품지급명단</a>
-  <a href="#faq" onclick="closeMobileMenu()">자주묻는질문</a>
-  <a href="#apply" onclick="closeMobileMenu()" style="color:var(--primary);font-weight:700;">무료상담 →</a>
+  <a href="#compare" onclick="closeMobileMenu(true)">혜택안내</a>
+  <a href="#reviews" onclick="closeMobileMenu(true)">설치후기</a>
+  <a href="gift.html" onclick="closeMobileMenu(true)">사은품지급명단</a>
+  <a href="#faq" onclick="closeMobileMenu(true)">자주묻는질문</a>
+  <a href="#apply" onclick="closeMobileMenu(true)" style="color:var(--primary);font-weight:700;">무료상담 →</a>
 </div>
 
 <!-- HERO -->
@@ -1389,31 +1646,67 @@ html { scroll-behavior: smooth; scroll-padding-top: 78px; }
   <div class="hero-badge">정수기 · 가전렌탈 전문</div>
   <div class="hero-cash-badge"><span class="cash-amount">💰 최대 50만원</span><span class="cash-cond">현금 당일입금</span></div>
   <h1>놓치고 있던<br class="mob-br"> <em>내 최대 지원금</em><br>당현함이<br class="fold-br"> 알려드릴게요!</h1>
-  <p>정수기·가전렌탈 시 최대 현금 지원, <strong>당일 지급</strong><br>모든 상품 비교 후 가장 유리한 조건으로 안내해드립니다</p>
-  <a href="#apply" class="hero-cta">내 최대 지원금<br class="fold-br"> 무료확인 →</a>
-  <p style="margin-top:10px;margin-bottom:0;font-size:15px;color:rgba(255,255,255,0.75);">타업체보다 적다면? <strong style="color:#FFF200;">차액을 보상해드립니다.</strong></p>
+  <p class="hero-desc">정수기·가전렌탈 시 최대 현금 지원, <strong>당일 지급</strong><br>모든 상품 비교 후 가장 유리한 조건으로 안내해드립니다</p>
+
+  <!-- ===== 차액 보상 강조 (2026-08-27) =====
+       첫 화면의 누름단추를 뺀 자리에, 손님이 가장 크게 걱정하는
+       '여기가 정말 제일 많이 주는 곳인가'에 정면으로 답한다.
+       누를 곳은 화면 아래 고정 띠(폰)·옆 신청칸(컴퓨터)이 대신한다.
+       ★ 순서 주의 : 명세표(아래)보다 반드시 위에 둔다.
+         명세표가 높이 257px 이라, 아래에 두면 폰 첫 화면에서 이 칸이 잘린다(실측). -->
+  <div class="hero-guarantee">
+    <p class="hg-badge">차액 보상 약속</p>
+    <p class="hg-line">다른 곳이 <em>단 1원이라도</em> 더 준다면</p>
+    <p class="hg-main">그 <strong>차액을 그대로</strong><br class="mob-br"> 보상해드립니다</p>
+    <p class="hg-note">비교하신 조건을 보여 주시면 그 자리에서 맞춰 드립니다</p>
+  </div>
+
+  <!-- ===== 지원금 명세표 — 지금은 잠시 꺼 둠 (2026-08-27) =====
+       상품별 실제 지원금을 아직 못 받아 금액 자리가 비어 있습니다.
+       숫자 세 개를 받으면 아래 대괄호 자리를 채우고, 이 주석의 시작·끝만 걷어내면 켜집니다.
+       (모양을 만드는 스타일은 이미 이 파일 안에 들어 있어 따로 손댈 것이 없습니다)
+
+  <div class="dh-ledger">
+    <div class="dh-ledger-row"><span class="t">정수기 렌탈</span><span class="d"></span><span class="v">[금액]만원</span></div>
+    <div class="dh-ledger-row"><span class="t">비데·공기청정기 등</span><span class="d"></span><span class="v">[금액]만원</span></div>
+    <div class="dh-ledger-row"><span class="t">2종 이상 동시 신청</span><span class="d"></span><span class="v">[금액]만원</span></div>
+    <div class="dh-ledger-row hi"><span class="t">비밀지원금</span><span class="d"></span><span class="v small">상담 시 안내</span></div>
+    <div class="dh-ledger-sum"><span class="t">합계</span><span class="v">50만원<em> +α</em></span></div>
+  </div>
+  -->
+
   <p class="hero-urgency">⏰ 오늘 오후 5:30 이전 설치 시 당일 입금</p>
-  <div class="hero-stats" style="margin-top:112px;">
-    <div class="hero-stat">
-      <span class="since-badge">📅 SINCE 2012</span>
-      <div class="num">339,000건</div>
-      <div class="label">누적 상담 건수</div>
+</section>
+
+<!-- ===== 신뢰 숫자 칸 (2026-08-27, index.html 에서 옮김) =====
+     첫 화면에 넣으면 이미 꽉 차서 안 보이고, 굴러가는 효과도 손님이 보기 전에 끝난다.
+     그래서 스크롤해서 들어올 때 비로소 보이도록 별도 칸으로 뺐다.
+     바로 아래 '사은품 지급명단'과 같은 흰 바탕이라 한 덩어리로 읽힌다. -->
+<section class="trust-nums" id="trustNums">
+  <div class="trust-nums-inner">
+    <div class="tn-item">
+      <div class="tn-num"><span class="tn-in">13<span class="tn-tail">년간</span></span></div>
+      <div class="tn-label">당일지급</div>
     </div>
-    <div class="hero-stat">
-      <span class="since-badge">✅ 13년 무사고</span>
-      <div class="num">97%</div>
-      <div class="label">고객 만족도</div>
+    <div class="tn-item">
+      <div class="tn-num"><span class="tn-in">33<span class="tn-tail">만+</span></span></div>
+      <div class="tn-label">누적상담</div>
     </div>
-    <div class="hero-stat">
-      <span class="since-badge">💸 당일 지급 원칙</span>
-      <div class="num">최대 50만원</div>
-      <div class="label">렌탈 지원금</div>
+    <div class="tn-item">
+      <div class="tn-num"><span class="tn-in">97<span class="tn-tail">%</span></span></div>
+      <div class="tn-label">고객만족</div>
     </div>
   </div>
+  <p class="tn-since">(2012~2026년 8월 기준 · 누적 상담 339,000건)</p>
 </section>
 
 <!-- LIVE ROLLING : 진짜 사은품 지급명단(gift-data)을 읽어서 굴린다 -->
-<div class="live-section" id="liveSection" style="display:none;">
+<!-- 2026-08-27 : 예전에는 display:none 이라 자료를 읽어온 뒤에야 자리가 생겼다.
+     그 순간 아래 내용이 통째로 776px 밀려서, 메뉴에서 "설치후기"를 누르면
+     엉뚱하게 "가입 프로세스"에 서 버렸다(실측).
+     -> visibility 로 바꿔 처음부터 자리를 잡아 둔다. 자료가 오면 보이기만 하므로 밀림이 없다.
+     칸 높이는 글 개수와 무관하게 CSS 로 정해져 있어(컴퓨터 335 / 폰 133) 자리가 정확히 맞는다. -->
+<div class="live-section" id="liveSection" style="visibility:hidden;">
   <div class="live-section-inner">
     <div class="rolling-col">
       <div class="rolling-col-header type-cash">
@@ -1429,17 +1722,93 @@ html { scroll-behavior: smooth; scroll-padding-top: 78px; }
 </div>
 
 <!-- CARRIERS -->
+<!-- 2026-08-27 : ICT 인증 링크는 아래 '공식 인증' 칸 안으로 옮겼다 (index.html 과 같은 자리).
+     같은 링크가 두 번 나오면 인증이 흔한 것처럼 보여 오히려 약해진다. -->
 <div class="carriers">
   <div class="carriers-inner">
-    <a href="https://www.ictmarket.or.kr:8443/ajax/ajax3.do?id=PRE0000152938&seq=1&yn=1" target="_blank" rel="noopener" class="ict-cert-wrap">
-      <div class="ict-cert-icon">ICT<br>인증</div>
-      <div class="ict-cert-text">
-        <div class="ict-cert-title">KAIT 사전승낙 인증업체</div>
-        <div class="ict-cert-sub">한국정보통신진흥협회 온라인 판매 심사기준 통과<br>이동통신사업자로부터 온라인 판매를 승낙받은 당현함</div>
-      </div>
-    </a>
   </div>
 </div>
+
+<!-- PROMISE (대표 약속) — 2026-08-27, index.html 에서 옮김 -->
+<!-- 그림 이름표: image1=대표 사진 / image2=서명 / image3=인터넷 서약서(_s는 표지) / image4=렌탈 서약서(_s는 표지)
+     ※ 렌탈 페이지이므로 렌탈 서약서를 앞에 둔다 -->
+<section class="promise">
+  <div class="section-inner">
+    <h2 class="section-title">대표가 <em>직접</em> 약속드립니다</h2>
+
+    <div class="promise-card fade-up">
+      <figure class="promise-photo">
+        <img src="images/promise/image1.webp" alt="당현함 운영사 유진텔레콤 대표 조성현" loading="lazy" decoding="async">
+      </figure>
+      <div class="promise-body">
+        <p class="promise-head">고객님이 <em>걱정 없이</em> 가입하실 수 있도록<br>다음 세 가지를 지키겠습니다.</p>
+        <ul class="promise-list">
+          <li><span class="promise-num">1</span><div>
+            <strong>사은품 당일 100% 지급</strong>
+            <p>약속한 사은품은 설치 당일 지급하며, 1원이라도 미지급 시 약속 금액을 즉시 보상합니다.</p></div></li>
+          <li><span class="promise-num">2</span><div>
+            <strong>렌탈 계약 내역 및 필수 안내사항 고지</strong>
+            <p>월 요금, 약정 기간, 의무 사용 조건 등 꼭 아셔야 할 내용을 미리 말씀드리고, 언제든 다시 확인해 드립니다.</p></div></li>
+          <li><span class="promise-num">3</span><div>
+            <strong>개인정보 안전 관리 및 목적 외 사용 금지</strong>
+            <p>개인정보 보호법에 따라 관련 법규를 엄격히 지키며, 가입 목적 외에는 사용하지 않습니다.</p></div></li>
+        </ul>
+        <div class="promise-oath">
+          <p>위 서약을 위반하여 고객님께 피해가 발생할 경우 <b>모든 민·형사상 책임</b>을 감수할 것을 엄숙히 서약합니다.</p>
+          <div class="promise-sign">
+            <span>2026년 6월 29일 · 유진텔레콤 대표</span>
+            <img id="promiseSign" src="images/promise/image2.webp" alt="대표 조성현 서명">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="promise-docs">
+      <p class="lbl">실제 서약서 원본입니다. 눌러서 확인해 보세요.</p>
+      <div class="promise-docs-row">
+        <div class="promise-doc" onclick="promiseZoom('images/promise/image4.jpg')">
+          <img src="images/promise/image4_s.jpg" alt="렌탈 안심보장 서약서" loading="lazy" decoding="async">
+          <span>렌탈 서약서</span>
+        </div>
+        <div class="promise-doc" onclick="promiseZoom('images/promise/image3.jpg')">
+          <img src="images/promise/image3_s.jpg" alt="인터넷가입 안심보장 서약서" loading="lazy" decoding="async">
+          <span>인터넷가입 서약서</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="promise-viewer" id="promiseViewer" onclick="서약서닫기()"><img id="promiseViewerImg" src="" alt=""></div>
+<script>
+function promiseZoom(src){ document.getElementById('promiseViewerImg').src=src; document.getElementById('promiseViewer').classList.add('on'); }
+/* 서약서 확대보기의 ESC·뒤로가기 닫기는 파일 아래쪽 '창 관리'가 대신 처리한다 */
+</script>
+
+<!-- TRUST SECTION — 2026-08-27, index.html 에서 옮김 -->
+<section class="trust-section">
+  <div class="section-inner">
+
+    <!-- 당현함 당일지급 -->
+    <div class="trust-solution fade-up">
+      <img src="images/당일지급 크롭버전1.PNG" alt="당현함 당일지급" class="trust-solution-img" loading="lazy" decoding="async">
+    </div>
+
+    <!-- 공식 인증 -->
+    <div class="trust-cert fade-up">
+      <span class="section-tag">공식 인증</span>
+      <h2 class="section-title">당현함은 <em>정식으로 인정받은</em><br>접수센터입니다</h2>
+      <img src="images/인증서 크롭버전1.PNG" alt="사전승낙서 및 사업자등록증" class="trust-cert-img" loading="lazy" decoding="async">
+      <a href="https://www.ictmarket.or.kr:8443/ajax/ajax3.do?id=PRE0000152938&seq=1&yn=1" target="_blank" rel="noopener" class="ict-cert-wrap">
+        <div class="ict-cert-icon">ICT<br>인증</div>
+        <div class="ict-cert-text">
+          <div class="ict-cert-title">KAIT 사전승낙서 보기</div>
+          <div class="ict-cert-sub">한국정보통신진흥협회 온라인 판매 심사기준 통과<br>이동통신사업자로부터 온라인 판매를 승낙받은 당현함</div>
+        </div>
+      </a>
+    </div>
+
+  </div>
+</section>
 
 <!-- COMPARE -->
 <section id="compare" class="compare">
@@ -1699,9 +2068,11 @@ html { scroll-behavior: smooth; scroll-padding-top: 78px; }
           <textarea id="inputMemo" maxlength="200" placeholder="남기실 말씀을 적어주세요"></textarea>
           <div class="memo-count"><span id="memoCount">0</span> / 200자</div>
         </div>
+        <!-- 2026-08-27 : index.html 과 같은 방식으로 맞춤 — 미리 체크된 상태로 두고 작고 흐리게.
+             손 대는 단계가 하나 줄어든다. 끄고 싶으면 checked 를 지우면 된다. -->
         <div style="display:flex;align-items:flex-start;gap:8px;margin-bottom:18px;">
-          <input type="checkbox" id="c1" style="width:17px;height:17px;accent-color:var(--primary);flex-shrink:0;margin-top:2px;cursor:pointer;">
-          <label for="c1" style="font-size:13px;color:var(--gray);cursor:pointer;line-height:1.5;">개인정보 수집 및 이용에 동의합니다. <span style="color:#dc2626;font-weight:600;">(필수)</span><br class="fold-br"> <a href="javascript:void(0)" onclick="openPrivacy()" style="color:var(--primary);font-weight:600;font-size:12px;text-decoration:none;">내용보기 ›</a></label>
+          <input type="checkbox" id="c1" checked style="width:12px;height:12px;accent-color:#9ca3af;flex-shrink:0;margin-top:3px;cursor:pointer;opacity:0.7;">
+          <label for="c1" style="font-size:13px;color:var(--gray);cursor:pointer;line-height:1.5;">개인정보 수집 및 활용동의 <a href="javascript:void(0)" onclick="openPrivacy()" style="color:var(--gray);font-weight:600;font-size:12px;text-decoration:none;">›</a> <span style="color:#b0b8c1;font-weight:500;font-size:11px;">(필수)</span></label>
         </div>
         <p class="form-urgency">⏰ 오늘 오후 5:30 이전 설치 시 당일 현금 입금</p>
         <button class="form-submit" id="submitBtn" onclick="submitForm()">내 최대 지원금 무료확인</button>
@@ -1858,6 +2229,8 @@ html { scroll-behavior: smooth; scroll-padding-top: 78px; }
     <button class="desk-cta-bar-btn" onclick="submitDeskForm()">무료확인 →</button>
     <div class="desk-cta-success" id="deskSuccess">✅ 신청 완료! 곧 연락드리겠습니다.</div>
   </div>
+  <!-- 2026-08-27 : 여기서도 번호를 받는데 동의 표시가 없었다 -->
+  <p class="mini-consent desk" id="deskConsent">무료확인을 누르시면 <a href="javascript:void(0)" onclick="openPrivacy()">개인정보 수집·이용</a>에 동의하신 것으로 봅니다</p>
 </div>
 
 <!-- STICKY MINI FORM -->
@@ -1872,6 +2245,8 @@ html { scroll-behavior: smooth; scroll-padding-top: 78px; }
         <input type="text" id="stickyName" placeholder="이름 (선택)">
         <input type="tel" id="stickyPhone" placeholder="휴대폰 번호 (필수)">
         <button class="sticky-form-btn" onclick="submitStickyForm()">무료확인 →</button>
+        <!-- 2026-08-27 : 여기서도 번호를 받는데 동의 표시가 없었다 -->
+        <p class="mini-consent">무료확인을 누르시면 <a href="javascript:void(0)" onclick="openPrivacy()">개인정보 수집·이용</a>에 동의하신 것으로 봅니다</p>
       </div>
       <div class="sticky-form-success" id="stickySuccess">✅ 신청 완료!<br>곧 연락드리겠습니다.</div>
     </div>
@@ -1969,6 +2344,34 @@ function openCafe(pcUrl, mobileUrl) {
   var 제목 = document.getElementById('rollingTitle');
   if (!섹션 || !트랙) return;
 
+  /* ===== 자리표 되잡기 (2026-08-27, index.html 에서 옮김) =====
+     문제: rental.html#reviews 처럼 자리표를 달고 들어오면 엉뚱한 곳에 선다.
+     원인: 이 명단칸은 자료를 읽어온 뒤에야 나타나는데 높이가 커서,
+           나타나는 순간 아래 내용이 통째로 그만큼 밀린다.
+     해결: 명단칸을 내놓은 직후에 자리표로 한 번 더, 즉시 내려준다.
+     주의: 손님이 이미 스스로 화면을 움직이고 있으면 건드리지 않는다. */
+  var 손길있었나 = false;
+  ['wheel','touchstart','keydown','mousedown'].forEach(function(이름){
+    window.addEventListener(이름, function(){ 손길있었나 = true; }, { passive: true, once: true });
+  });
+
+  function 자리표되잡기(){
+    if (손길있었나) return;
+    var 자리표 = location.hash;
+    if (!자리표 || 자리표.length < 2) return;
+    var 목표;
+    try { 목표 = document.querySelector(자리표); } catch (e) { return; }
+    if (!목표) return;
+    /* 화면에 다 그려진 뒤라야 위치가 정확하다. 두 번 재보정한다. */
+    var 내려주기 = function(){
+      if (손길있었나) return;
+      var 다시 = document.querySelector(자리표);
+      if (다시) 다시.scrollIntoView({ block: 'start', behavior: 'instant' });
+    };
+    setTimeout(내려주기, 0);
+    setTimeout(내려주기, 300);
+  }
+
   function 날짜적기(s){ var p = String(s).split('-'); return (+p[1]) + '월 ' + (+p[2]) + '일'; }
 
   function 굴림맞춤(개수){
@@ -2033,10 +2436,15 @@ function openCafe(pcUrl, mobileUrl) {
       제목.textContent = '사은품지급명단';
 
       굴림맞춤(줄들.length);
-      섹션.style.display = '';
+      섹션.style.visibility = 'visible';        /* 2026-08-27 : 자리는 이미 잡혀 있다 */
+      자리표되잡기();                                   /* 2026-08-27 : 위 설명 참고 */
       window.addEventListener('resize', function(){ 굴림맞춤(줄들.length); });
     })
-    .catch(function(){ /* 못 읽으면 칸을 감춘 채로 둔다 */ });
+    .catch(function(){
+      /* 못 읽었을 때만 칸을 접는다. 이때는 아래가 위로 당겨지지만,
+         자료를 못 읽는 일은 드물고 빈 칸을 남겨 두는 것보다 낫다 */
+      섹션.style.display = 'none';
+    });
 })();
 
 // Swiper
@@ -2052,8 +2460,9 @@ new Swiper('.reviewSwiper', {
 function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('open'); }
 function closeMobileMenu() { document.getElementById('mobileMenu').classList.remove('open'); }
 document.addEventListener('click', e => {
+  /* 2026-08-27 : 창 기록을 남기려면 반드시 closeMobileMenu 를 거쳐야 한다 */
   if (!e.target.closest('header') && !e.target.closest('.mobile-menu'))
-    document.getElementById('mobileMenu').classList.remove('open');
+    closeMobileMenu();
 });
 
 // Service tab (다중 선택, 재클릭 해제)
@@ -2152,10 +2561,11 @@ const stickyForm = document.getElementById('stickyForm');
 const deskCtaBar = document.getElementById('deskCtaBar');
 const mobileCta  = document.getElementById('mobileCta');
 const applySection = document.getElementById('apply');
-const heroCta = document.querySelector('.hero-cta');
 
 function updateScrollForms() {
-  const ctaHidden = heroCta.getBoundingClientRect().bottom <= 0;
+  /* 2026-08-27 : 첫 화면의 누름단추를 뺐으므로, 예전처럼 '단추가 화면 밖으로 나가면'을
+     기준으로 삼을 수 없다(그 단추가 이제 없다). index.html 과 같이 처음부터 띄운다.
+     신청 구역에 다다르면 겹치므로 그때만 감춘다. */
   const applyNear = applySection.getBoundingClientRect().top <= 100;
   const isMobile  = window.innerWidth <= 768;
   // 모바일은 첫 화면부터 띄우고, 신청 구역에 다다르면 감춘다 (2026-08-13, index.html과 같은 조치)
@@ -2168,7 +2578,7 @@ function updateScrollForms() {
     return;
   }
   mobileCta.classList.remove('visible');
-  if (ctaHidden && !applyNear) {
+  if (!applyNear) {
     stickyForm.classList.add('visible');
     deskCtaBar.classList.add('visible');
   } else {
@@ -2218,6 +2628,8 @@ async function submitDeskForm() {
     });
     const deskOk = document.getElementById('deskSuccess');
     if (deskOk) deskOk.style.display = 'block';
+    const deskC = document.getElementById('deskConsent');
+    if (deskC) deskC.style.display = 'none';
   } catch(e) {
     if (btn) { btn.disabled = false; btn.textContent = 본래글자; }
     alert('오류가 발생했습니다. 1600-4670으로 문의해주세요.');
@@ -2253,6 +2665,139 @@ async function submitStickyForm() {
     alert('오류가 발생했습니다. 1600-4670으로 문의해주세요.');
   }
 }
+
+
+// ===== 떠 있는 창 관리 + 뒤로가기로 닫기 (2026-08-27, index.html 에서 옮김) =====
+// 왜: 안드로이드 손님은 창을 닫을 때 습관적으로 뒤로가기를 누른다.
+//     그대로 두면 창이 닫히는 대신 페이지를 통째로 떠나 버린다(아이폰 화면 쓸어넘기기도 같다).
+// 어떻게: 창을 열 때 방문 기록에 빈 칸을 하나 넣어 둔다. 그러면 뒤로가기는
+//     '페이지를 떠나는 일'이 아니라 '그 빈 칸을 되돌리는 일'이 되어 창만 닫힌다.
+//
+// ★ 추적·접수에 영향 없음: 넣는 주소는 지금 주소(location.href) 그대로다.
+//    주소창도 안 바뀌고, 유입경로 부품(js/dh-inflow.js)이 읽는 값도 그대로다.
+var 창목록 = [];             // 지금 떠 있는 창들 (나중에 연 것이 뒤)
+var 뒤로가기처리중 = false;   // 뒤로가기가 부른 닫기인지 구분
+var 되돌리기예약 = false;     // 우리가 스스로 부른 되돌리기인지 구분
+var 뺄칸수 = 0;               // 닫혔지만 아직 안 치운 빈 칸
+var 정리타이머 = null;
+
+function 창열림기록(이름, 닫기함수) {
+  창목록.push({ 이름: 이름, 닫기: 닫기함수 });
+  // 방금 닫힌 창이 쓰던 빈 칸이 아직 남아 있으면 그대로 물려받는다.
+  if (뺄칸수 > 0) {
+    뺄칸수--;
+    if (!뺄칸수 && 정리타이머) { clearTimeout(정리타이머); 정리타이머 = null; }
+    return;
+  }
+  try { history.pushState({ dh창: 1 }, '', location.href); } catch (e) {}
+}
+function 창목록에서빼기(이름) {
+  for (var i = 창목록.length - 1; i >= 0; i--) { if (창목록[i].이름 === 이름) { 창목록.splice(i, 1); return; } }
+}
+function 창닫힘기록(이름) {
+  var 자리 = -1;
+  for (var i = 창목록.length - 1; i >= 0; i--) { if (창목록[i].이름 === 이름) { 자리 = i; break; } }
+  if (자리 === -1) return;                 // 뒤로가기가 이미 처리한 창
+  창목록.splice(자리, 1);
+  if (뒤로가기처리중) return;              // 기록은 이미 스스로 물러났다
+  // X·바깥·ESC로 닫은 경우: 우리가 넣은 빈 칸을 스스로 치운다.
+  뺄칸수++;
+  if (정리타이머) clearTimeout(정리타이머);
+  정리타이머 = setTimeout(빈칸정리, 0);
+}
+function 빈칸정리() {
+  정리타이머 = null;
+  if (뺄칸수 <= 0) return;
+  뺄칸수 = 0;
+  // ★ 지금 자리가 우리가 넣은 빈 칸일 때만 되돌린다. 아니면 손님이 사이트 밖으로 나가 버린다.
+  if (!(history.state && history.state.dh창)) return;
+  되돌리기예약 = true;
+  try { history.back(); } catch (e) { 되돌리기예약 = false; }
+  setTimeout(function(){ 되돌리기예약 = false; }, 600);
+}
+function 맨위창닫기() {
+  if (!창목록.length) return;
+  창목록[창목록.length - 1].닫기();
+}
+window.addEventListener('popstate', function () {
+  // 우리가 스스로 부른 되돌리기면 그냥 흘려보낸다.
+  if (되돌리기예약) { 되돌리기예약 = false; return; }
+  if (!창목록.length) return;
+  var 맨위 = 창목록[창목록.length - 1];
+  뒤로가기처리중 = true;
+  var 닫혔나;
+  try { 닫혔나 = 맨위.닫기(); } catch (e) { 닫혔나 = true; }
+  뒤로가기처리중 = false;
+  if (닫혔나 === false) {
+    try { history.pushState({ dh창: 1 }, '', location.href); } catch (e) {}
+    return;
+  }
+  var 자리 = 창목록.indexOf(맨위);
+  if (자리 > -1) 창목록.splice(자리, 1);
+});
+document.addEventListener('keydown', function(e) { if (e.key !== 'Escape') return; 맨위창닫기(); });
+
+// 원래 있던 함수를 같은 이름으로 덮어써서, 페이지 곳곳의 누름단추는 그대로 두고 속만 바꾼다.
+openPrivacy = function () {
+  var e = document.getElementById('privacyOverlay');
+  if (!e || e.classList.contains('open')) return;
+  e.classList.add('open');
+  창열림기록('privacy', closePrivacy);
+};
+closePrivacy = function () {
+  var e = document.getElementById('privacyOverlay');
+  if (!e || !e.classList.contains('open')) return true;
+  e.classList.remove('open');
+  창닫힘기록('privacy');
+  return true;
+};
+openTerms = function () {
+  var e = document.getElementById('termsOverlay');
+  if (!e || e.classList.contains('open')) return;
+  e.classList.add('open');
+  창열림기록('terms', closeTerms);
+};
+closeTerms = function () {
+  var e = document.getElementById('termsOverlay');
+  if (!e || !e.classList.contains('open')) return true;
+  e.classList.remove('open');
+  창닫힘기록('terms');
+  return true;
+};
+promiseZoom = function (src) {
+  var e = document.getElementById('promiseViewer');
+  if (!e) return;
+  document.getElementById('promiseViewerImg').src = src;
+  if (e.classList.contains('on')) return;
+  e.classList.add('on');
+  창열림기록('promise', 서약서닫기);
+};
+function 서약서닫기() {
+  var e = document.getElementById('promiseViewer');
+  if (!e || !e.classList.contains('on')) return true;
+  e.classList.remove('on');
+  창닫힘기록('promise');
+  return true;
+}
+
+// ===== 폰 위쪽 메뉴(햄버거)도 뒤로가기로 닫히게 =====
+toggleMenu = function () {
+  var e = document.getElementById('mobileMenu');
+  if (!e) return;
+  if (e.classList.contains('open')) { closeMobileMenu(); return; }
+  e.classList.add('open');
+  창열림기록('menu', closeMobileMenu);
+};
+// 떠남=true 로 부르면 기록을 건드리지 않는다.
+// 메뉴 항목을 눌러 '다른 페이지로 가거나 페이지 안에서 자리를 옮기는' 경우가 그렇다.
+closeMobileMenu = function (떠남) {
+  var e = document.getElementById('mobileMenu');
+  if (!e || !e.classList.contains('open')) return true;
+  e.classList.remove('open');
+  if (떠남 === true) 창목록에서빼기('menu');
+  else 창닫힘기록('menu');
+  return true;
+};
 
 
 // Scroll animation
