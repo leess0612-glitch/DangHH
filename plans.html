@@ -229,14 +229,21 @@ nav a.on { color: var(--primary); background: #eff6ff; font-weight: 700; }
 /* ===== 페이지 머리띠 (gift.html과 동일한 틀) ===== */
 .page-head {
   margin-top: 64px;
-  background: linear-gradient(135deg, #0C2880 0%, #1461F0 60%, #1A6BFF 100%);
-  color: white; padding: 44px 20px 40px; text-align: center;
+  /* 2026-08-28: 파란 그라데이션 -> 흰 바탕으로 바꿈 (사장님 지시).
+     index.html 의 '설치 후기' 칸과 같은 규칙을 따른다 —
+     흰 바탕 · 제목은 진한 남색 · 설명은 회색 · 강조할 낱말만 파랑.
+     아래 칸이 연회색(#f8fafc)이라 흰색과 맞닿으면 경계가 저절로 생긴다. */
+  background: #ffffff;
+  color: var(--dark); padding: 44px 20px 40px; text-align: center;
+  border-bottom: 1px solid var(--border);
 }
-.page-head h1 { font-size: 30px; font-weight: 900; letter-spacing: -1px; margin-bottom: 8px; text-wrap: balance; }
-.page-head p { font-size: 15px; color: rgba(255,255,255,0.85); word-break: keep-all; }
+.page-head h1 { font-size: clamp(24px, 3.5vw, 34px); font-weight: 900; letter-spacing: -1px; margin-bottom: 8px; text-wrap: balance; }
+.page-head h1 em { font-style: normal; color: var(--primary); }
+.page-head p { font-size: 16px; color: var(--gray); word-break: keep-all; }
 .page-head .badge {
-  display: inline-block; background: rgba(255,255,255,0.18); border: 1px solid rgba(255,255,255,0.3);
-  font-size: 13px; font-weight: 600; padding: 4px 16px; border-radius: 20px; margin-bottom: 12px;
+  /* 흰 바탕에서는 반투명 흰 알약이 안 보인다. 연한 파란 알약으로 바꾼다. */
+  display: inline-block; background: #eff6ff; border: 1px solid #dbeafe; color: var(--primary);
+  font-size: 13px; font-weight: 700; padding: 4px 16px; border-radius: 20px; margin-bottom: 12px;
 }
 
 /* ===== 통신사 고르는 단추 (화면 위에 붙어서 따라옴) ===== */
@@ -472,7 +479,8 @@ a:focus-visible, button:focus-visible {
   outline: 3px solid var(--primary);
   outline-offset: 2px;
 }
-.page-head :focus-visible, .cta-box :focus-visible, footer :focus-visible {
+/* 2026-08-28: 제목 칸이 흰 바탕이 되어 흰 테두리는 안 보인다. 목록에서 뺐다. */
+.cta-box :focus-visible, footer :focus-visible {
   outline-color: #ffffff;
 }
 
@@ -562,7 +570,7 @@ a:focus-visible, button:focus-visible {
 <!-- 페이지 머리띠 -->
 <div class="page-head">
   <div class="badge">📋 결합 조건별 실제 요금</div>
-  <h1>통신사별 실제 요금표</h1>
+  <h1>통신사별 <em>실제 요금표</em></h1>
   <p>인터넷·TV 월 요금과 현금 사은품 금액을<br>통신사별로 그대로 공개합니다</p>
 </div>
 

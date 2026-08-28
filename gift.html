@@ -227,14 +227,21 @@ nav a.on { color: var(--primary); background: #eff6ff; font-weight: 700; }
 /* ===== 페이지 머리띠 ===== */
 .page-head {
   margin-top: 64px;
-  background: linear-gradient(135deg, #0C2880 0%, #1461F0 60%, #1A6BFF 100%);
-  color: white; padding: 44px 20px 40px; text-align: center;
+  /* 2026-08-28: 파란 그라데이션 -> 흰 바탕으로 바꿈 (사장님 지시).
+     index.html 의 '설치 후기' 칸과 같은 규칙을 따른다 —
+     흰 바탕 · 제목은 진한 남색 · 설명은 회색 · 강조할 낱말만 파랑.
+     아래 칸이 연회색(#f8fafc)이라 흰색과 맞닿으면 경계가 저절로 생긴다. */
+  background: #ffffff;
+  color: var(--dark); padding: 44px 20px 40px; text-align: center;
+  border-bottom: 1px solid var(--border);
 }
-.page-head h1 { font-size: 30px; font-weight: 900; letter-spacing: -1px; margin-bottom: 8px; }
-.page-head p { font-size: 15px; color: rgba(255,255,255,0.85); }
+.page-head h1 { font-size: clamp(24px, 3.5vw, 34px); font-weight: 900; letter-spacing: -1px; margin-bottom: 8px; text-wrap: balance; }
+.page-head h1 em { font-style: normal; color: var(--primary); }
+.page-head p { font-size: 16px; color: var(--gray); word-break: keep-all; }
 .page-head .badge {
-  display: inline-block; background: rgba(255,255,255,0.18); border: 1px solid rgba(255,255,255,0.3);
-  font-size: 13px; font-weight: 600; padding: 4px 16px; border-radius: 20px; margin-bottom: 12px;
+  /* 흰 바탕에서는 반투명 흰 알약이 안 보인다. 연한 파란 알약으로 바꾼다. */
+  display: inline-block; background: #eff6ff; border: 1px solid #dbeafe; color: var(--primary);
+  font-size: 13px; font-weight: 700; padding: 4px 16px; border-radius: 20px; margin-bottom: 12px;
 }
 
 /* ===== 본문 ===== */
@@ -499,7 +506,7 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px 1
 <!-- 페이지 머리띠 -->
 <div class="page-head">
   <div class="badge">🎁 매일 업데이트</div>
-  <h1>사은품 지급명단</h1>
+  <h1>사은품 <em>지급명단</em></h1>
   <p>당현함을 통해 가입하신 고객님께<br>당일 현금으로 지급해 드린 내역입니다</p>
 </div>
 
