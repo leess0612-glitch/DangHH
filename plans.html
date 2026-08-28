@@ -297,9 +297,8 @@ nav a.on { color: var(--primary); background: #eff6ff; font-weight: 700; }
 .note { margin-top: 16px; padding: 15px 18px; background: white; border: 1px solid var(--border); border-radius: 12px; font-size: 13px; color: var(--gray); line-height: 1.8; word-break: keep-all; }
 
 /* 상담 유도 (gift.html과 동일한 틀) */
-.cta-box { margin-top: 30px; background: linear-gradient(135deg, #0C2880 0%, #1461F0 100%); border-radius: 16px; padding: 30px 24px; text-align: center; color: white; }
-.cta-box h3 { font-size: 21px; font-weight: 900; margin-bottom: 8px; letter-spacing: -0.5px; word-break: keep-all; }
-.cta-box p { font-size: 14.5px; color: rgba(255,255,255,0.85); margin-bottom: 20px; word-break: keep-all; }
+/* 2026-08-28: 맨 아래 파란 상자(.cta-box)를 뺐으므로 그 규칙들도 함께 지웠다.
+   되살리려면 보관함의 plans.backup_로고머리띠개편전_20260828.html 에서 가져오면 된다. */
 /* 신청 버튼 — index.html 아래 고정 막대(.desk-cta-bar-btn)와 똑같은 디자인.
    파란 바탕 위에서는 파란 버튼이 묻히므로 색은 주황, 입체 효과까지 그대로 가져왔다 */
 .cta-btns { display: flex; justify-content: center; }
@@ -376,7 +375,11 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
      1600 이면 최악의 경우에도 22px 떨어진다. */
 .consult-panel {
   display: none;
-  position: fixed; right: 20px; top: 120px; z-index: 900;
+  /* 2026-08-28: 위쪽(120)에 붙어 있던 것을 화면 세로 한가운데로 옮겼다 (사장님 지시).
+     ★ 창이 아주 낮을 때 머리띠(64) 밑으로 파고들지 않도록 위쪽 한계를 함께 둔다.
+       max() 는 '둘 중 큰 값'이라 낮은 창에서는 84 가 이겨 머리띠를 피한다. */
+  position: fixed; right: 20px; top: max(84px, 50%); transform: translateY(-50%); z-index: 900;
+  max-height: calc(100vh - 104px); overflow-y: auto;
   width: 200px; padding: 16px 14px;
   background: white; border: 1px solid #e2e8f0; border-radius: 14px;
   box-shadow: 0 10px 30px rgba(15,23,42,0.13);
@@ -479,8 +482,9 @@ a:focus-visible, button:focus-visible {
   outline: 3px solid var(--primary);
   outline-offset: 2px;
 }
-/* 2026-08-28: 제목 칸이 흰 바탕이 되어 흰 테두리는 안 보인다. 목록에서 뺐다. */
-.cta-box :focus-visible, footer :focus-visible {
+/* 2026-08-28: 제목 칸이 흰 바탕이 되어 흰 테두리는 안 보인다. 목록에서 뺐다.
+   같은 날 파란 상자(.cta-box)도 없어져 꼬리말만 남았다. */
+footer :focus-visible {
   outline-color: #ffffff;
 }
 
@@ -503,9 +507,6 @@ a:focus-visible, button:focus-visible {
   .sheet-name { font-size: 17px; }
   .zoom-hint { font-size: 12px; padding: 5px 11px; }
   .note { padding: 14px; font-size: 12.5px; }
-  .cta-box { padding: 26px 18px; }
-  .cta-box h3 { font-size: 18px; }
-  .cta-box p { font-size: 13.5px; }
   .cta-apply { padding: 15px 20px; font-size: 18px; width: 100%; white-space: normal; }
   .floating-btns { bottom: 88px; right: 16px; }   /* 고정 막대(68px) 위로 */
   .mobile-cta-bar { display: block; }
@@ -624,13 +625,8 @@ a:focus-visible, button:focus-visible {
     ※ 정확한 금액과 내게 맞는 결합 방법은 무료 상담에서 안내해 드립니다.
   </p>
 
-  <div class="cta-box">
-    <h3>내 조건으로는 얼마까지 받을까요?</h3>
-    <p>쓰고 계신 휴대폰·가족 결합까지 따져서<br>가장 저렴한 조합을 찾아드립니다</p>
-    <div class="cta-btns">
-      <a href="index.html#apply-now" class="cta-apply">내 최대 지원금 무료확인 →</a>
-    </div>
-  </div>
+  <!-- 2026-08-28: 맨 아래 파란 상자를 뺐다 (사장님 지시).
+       같은 몫은 아래 '따라오는 남색 카드'와 오른쪽 상담 상자가 이미 하고 있다. -->
 
 </div>
 

@@ -898,7 +898,11 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
      1600 이면 최악의 경우에도 22px 떨어진다. */
 .consult-panel {
   display: none;
-  position: fixed; right: 20px; top: 120px; z-index: 900;
+  /* 2026-08-28: 위쪽(120)에 붙어 있던 것을 화면 세로 한가운데로 옮겼다 (사장님 지시).
+     ★ 창이 아주 낮을 때 머리띠(64) 밑으로 파고들지 않도록 위쪽 한계를 함께 둔다.
+       max() 는 '둘 중 큰 값'이라 낮은 창에서는 84 가 이겨 머리띠를 피한다. */
+  position: fixed; right: 20px; top: max(84px, 50%); transform: translateY(-50%); z-index: 900;
+  max-height: calc(100vh - 104px); overflow-y: auto;
   width: 200px; padding: 16px 14px;
   background: white; border: 1px solid #e2e8f0; border-radius: 14px;
   box-shadow: 0 10px 30px rgba(15,23,42,0.13);
