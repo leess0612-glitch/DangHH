@@ -115,14 +115,14 @@ if (typeof dhInflow !== 'function') { window.dhInflow = function () { return {};
      낱말 순서 주의 : '티비'는 반드시 '인터넷' 쪽에 붙인다. '티비 정수기렌탈' 처럼 이어 놓으면
      티비를 렌탈하는 것으로 읽힌다(사장님 지적). 정수기렌탈은 맨 끝에 세로줄로 떼어 둔다. -->
 <title>당현함 | 인터넷 가입 사은품 많이 주는 곳 비교사이트, 현금지원금 당일입금 | 인터넷·티비 설치 신청 변경 SKT SK KT LG U플러스 | 정수기렌탈</title>
-<meta name="description" content="약정 끝난 인터넷·TV·정수기 그대로 두면 최대 119만원을 버리는 겁니다. 전체 통신사 비교로 내 지원금을 무료로 확인하세요. ☎ 1600-4670">
+<meta name="description" content="약정 끝난 인터넷·TV·정수기 그대로 두면 최대 132만원을 버리는 겁니다. 전체 통신사 비교로 내 지원금을 무료로 확인하세요. ☎ 1600-4670">
 <!-- 검색 허용. (2026-08-19) 이 파일은 원래 광고 전용 check.html 이라 noindex 로 검색을 막아뒀었는데,
      메인으로 올라오면서 차단까지 따라와 danghh.com 전체가 검색에서 빠질 뻔했다. 그래서 걷어냄. -->
 <link rel="canonical" href="https://danghh.com/">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://danghh.com">
 <meta property="og:title" content="당현함 | 놓친 지원금 3분 확인">
-<meta property="og:description" content="약정 끝난 인터넷·TV·정수기 그대로 두면 최대 119만원을 버리는 겁니다. 전체 통신사 비교로 내 지원금을 무료로 확인하세요.">
+<meta property="og:description" content="약정 끝난 인터넷·TV·정수기 그대로 두면 최대 132만원을 버리는 겁니다. 전체 통신사 비교로 내 지원금을 무료로 확인하세요.">
 <meta property="og:image" content="https://danghh.com/images/share-card.png">
 <meta property="og:image:width" content="800">
 <meta property="og:image:height" content="400">
@@ -1943,6 +1943,7 @@ body.apply-open{ overflow:hidden; }
 /* "함께 하면 +50만" — 끄는 것을 '깎임'이 아니라 '해당 없음'으로 읽게 하는 표시.
    색을 늘리지 않으려고 보조색 그대로 두고 굵기만 올린다. */
 .dh-plus { font-style:normal; font-size:12px; font-weight:800; color:var(--dh-sub); margin-left:4px; }
+.dh-plus b { font-weight:800; }   /* 통신사에 따라 바뀌는 유심 금액 — 굵기는 옆 글씨와 같게 */
 
 /* 고른 칸 / 안 고른 칸
    ⚠ 안 고른 칸 글씨에 흐림색(#8A9099)을 쓰면 칙칙하다. 본문색을 쓴다.
@@ -1970,7 +1971,7 @@ body.apply-open{ overflow:hidden; }
                       line-height:1.15; letter-spacing:-1.2px; font-variant-numeric:tabular-nums; }
 .dh-calc-result-num em { font-style:normal; font-size:16px; font-weight:800;
                          color:var(--dh-sub); letter-spacing:0; }
-/* 금액 옆 "+ 추가혜택" — 119만원이 끝이 아니라는 표시. 조건을 다 꺼도 늘 남는다 */
+/* 금액 옆 "+ 추가혜택" — 132만원이 끝이 아니라는 표시. 조건을 다 꺼도 늘 남는다 */
 .dh-calc-plus { font-size:16px; font-weight:800; color:var(--dh-blue);
                 letter-spacing:0; white-space:nowrap; }
 /* 무엇을 더해 그 금액이 되는지 — 손님이 "더 받는다"를 눈으로 확인하는 줄 */
@@ -2068,14 +2069,15 @@ body.apply-open{ overflow:hidden; }
   <div class="hero-inner">
     <div class="hero-content">
       <div class="hero-badge">인터넷 · 정수기 · 가전렌탈 전문</div>
-      <div class="hero-cash-badge">지원금 119만원,<br class="mob-br"> 가만두면 손해!</div>
+      <div class="hero-cash-badge">지원금 132만원,<br class="mob-br"> 가만두면 손해!</div>
       <h1>놓친 지원금<br> <em>3분이면 확인 끝</em></h1>
       <div class="dh-ledger">
-        <div class="dh-ledger-row"><span class="t">인터넷 가입</span><span class="d"></span><span class="v">49만원</span></div>
-        <div class="dh-ledger-row"><span class="t">유심 번호이동</span><span class="d"></span><span class="v">20만원</span></div>
+        <!-- 금액은 '실제로 받을 수 있는 최대'(SK: 52+30+50=132)를 적는다 (2026-08-28) -->
+        <div class="dh-ledger-row"><span class="t">인터넷 가입</span><span class="d"></span><span class="v">52만원</span></div>
+        <div class="dh-ledger-row"><span class="t">유심 번호이동</span><span class="d"></span><span class="v">30만원</span></div>
         <div class="dh-ledger-row"><span class="t">정수기 · 가전렌탈</span><span class="d"></span><span class="v">50만원</span></div>
         <div class="dh-ledger-row hi"><span class="t">비밀지원금</span><span class="d"></span><span class="v small">상담 시 안내</span></div>
-        <div class="dh-ledger-sum"><span class="t">합계</span><span class="v">119만원<em> +α</em></span></div>
+        <div class="dh-ledger-sum"><span class="t">합계</span><span class="v">132만원<em> +α</em></span></div>
       </div>
       <p class="hero-desc">전체 통신사 비교 후 <strong>당일 현금 지급</strong>,<br class="mob-br"> 가장 유리한 조건으로 안내해드립니다</p>
       <p class="hero-sub-assurance">타업체보다 적다면?<br class="mob-br"> <strong style="color:#FEE500;">차액을 보상해드립니다.</strong></p>
@@ -2083,7 +2085,7 @@ body.apply-open{ overflow:hidden; }
 
     <!-- ===== v2 계산기 (2026-08-25) — 옛 신청폼이 있던 오른쪽 자리 =====
          번호를 남기기 전에 화면에서 먼저 자기 금액을 보게 한다.
-         들어오자마자 전부 켠 상태(119만원)가 떠 있고, 자기와 다른 것만 고치면 된다. -->
+         들어오자마자 전부 켠 상태(SK 132만원)가 떠 있고, 자기와 다른 것만 고치면 된다. -->
     <div class="hero-form-wrap">
       <div class="dh-calc" id="dhCalc">
         <p class="dh-calc-title">우리 집은 얼마 받을까요?</p>
@@ -2124,7 +2126,7 @@ body.apply-open{ overflow:hidden; }
         </div>
 
         <div class="dh-calc-q">
-          <span class="dh-calc-label">휴대폰은 그대로 두고 통신사만 바꾸실래요? <em class="dh-plus">함께 하면 +20만</em></span>
+          <span class="dh-calc-label">휴대폰은 그대로 두고 통신사만 바꾸실래요? <em class="dh-plus">함께 하면 +<b id="dh유심안내">30</b>만</em></span>
           <div class="dh-calc-opts">
             <button type="button" class="dh-opt" data-usim="0" onclick="dh유심고르기(false)">아니요</button>
             <button type="button" class="dh-opt on" data-usim="1" onclick="dh유심고르기(true)">네 (유심 번호이동)</button>
@@ -2579,8 +2581,8 @@ function promiseZoom(src){ document.getElementById('promiseViewerImg').src=src; 
         </div>
         <h3>현금 지원 업계 최고<br>당일 바로 입금</h3>
         <div class="benefit-amount-highlight">
-          <span class="amount-main">현금 지원 최대 119만원+α<br class="mob-br"> 업계 1등</span>
-          <span class="amount-sub">비밀지원금 + 인터넷 49만원 + 유심 20만원 + 렌탈 50만원</span>
+          <span class="amount-main">현금 지원 최대 132만원+α<br class="mob-br"> 업계 1등</span>
+          <span class="amount-sub">비밀지원금 + 인터넷 52만원 + 유심 30만원 + 렌탈 50만원</span>
         </div>
         <p>요금은 통신사 본사 그대로,<br>현금은 업계 최고 수준으로 드립니다.<br>타 업체보다 혜택이 적다면<br>차액만큼 추가 보상해드려요.</p>
         <div class="benefit-guarantee">타 업체 대비 혜택 부족 시<br class="mob-br"> 차액 보상</div>
@@ -2963,18 +2965,26 @@ function promiseZoom(src){ document.getElementById('promiseViewerImg').src=src; 
    =================================================================== */
 var DH_지급표 = {
   sk: { net:    { '100M': 11, '500M': 17, '1G': 17 },
-        net_tv: { '100M': 43, '500M': 47, '1G': 49 } },
+        net_tv: { '100M': 43, '500M': 47, '1G': 52 } },   /* 1기가 49 -> 52 (2026-08-28 가이드 확인) */
   kt: { net:    { '100M':  9, '500M': 14, '1G': 14 },
         net_tv: { '100M': 37, '500M': 45, '1G': 45 } },
   lg: { net:    { '100M': 20, '500M': 23, '1G': 23 },
         net_tv: { '100M': 33, '500M': 47, '1G': 47 } }
 };
 var DH_렌탈금액 = 50;   /* 정수기·가전렌탈 함께 하면 더해짐 */
-var DH_유심금액 = 20;   /* 유심 번호이동 함께 하면 더해짐 */
+/* 유심 번호이동 — 통신사마다 다르다 (2026-08-28)
+   전에는 어디나 20만원 하나로 계산했다. 실제로는 KT가 가장 많이 준다.
+   ★ 이 값이 바뀌면 통신사별 총액 순서(버튼 차례)도 다시 봐야 한다.
+     SK 52+30+50=132 · KT 45+35+50=130 · LG 47+30+50=127 */
+var DH_유심표 = { sk: 30, kt: 35, lg: 30 };
+function DH유심(통신사){ return DH_유심표[통신사] || 0; }
 
-/* 처음에 미리 눌러둘 조합 — 전부 켠 상태 = 119만원
-   화면 명세표(인터넷 49 + 유심 20 + 렌탈 50 = 119만원)와 숫자가 이어져야 하기 때문.
-   2026-08-27: 명세표가 48/합계118 이던 것을 계산기 최대치에 맞춰 49/119로 고쳤다. */
+/* 처음에 미리 눌러둘 조합 — 전부 켠 상태 = 132만원
+   화면 명세표(인터넷 52 + 유심 30 + 렌탈 50 = 132만원)와 숫자가 이어져야 하기 때문.
+   2026-08-27: 명세표가 48/합계118 이던 것을 계산기 최대치에 맞춰 49/119로 고쳤다.
+   2026-08-28: 유심이 통신사별로 갈리고(SK30·KT35·LG30) SK 1기가가 52로 오르면서
+               실제 받을 수 있는 최대는 SK 132만원이 되었다. 버튼 차례도 총액이 큰 순
+               (SK 132 · KT 130 · LG 127)이라 지금 차례 그대로가 맞다. */
 var DH_기본값 = { 통신사:'sk', 상품:'net_tv', 속도:'1G', 렌탈:true, 유심:true };
 
 const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxmkjm-U5m29WEkjKpAV8RovWAo9JMFJmR6t2BCgQPboPdpLSVwORTJ1_-kRXeCAeS84A/exec';
@@ -3639,7 +3649,7 @@ function dh기본금액(통신사) {
 function dh금액(통신사) {
   return dh기본금액(통신사)
        + (dh고른값.렌탈 ? DH_렌탈금액 : 0)
-       + (dh고른값.유심 ? DH_유심금액 : 0);
+       + (dh고른값.유심 ? DH유심(통신사) : 0);
 }
 
 function dh계산기그리기() {
@@ -3659,13 +3669,17 @@ function dh계산기그리기() {
   var 합 = document.getElementById('dhCalcSum');
   if (합) 합.textContent = dh금액(dh고른값.통신사);
 
+  /* 유심 질문 옆 '함께 하면 +○○만' — 통신사마다 다르므로 같이 바꾼다 (2026-08-28) */
+  var 유심안내 = document.getElementById('dh유심안내');
+  if (유심안내) 유심안내.textContent = DH유심(dh고른값.통신사);
+
   /* 무엇을 더해 그 금액이 되는지 보여준다.
      맨 끝 '추가혜택'은 늘 붙는다 — 위 "+ 추가혜택"이 무엇인지 여기서 답해준다. */
   var 내역칸 = document.getElementById('dhCalcBreak');
   if (내역칸) {
     var 조각 = ['인터넷' + (dh고른값.상품 === 'net_tv' ? '+TV' : '')
                 + ' <b>' + dh기본금액(dh고른값.통신사) + '만</b>'];
-    if (dh고른값.유심) 조각.push('유심 <b>' + DH_유심금액 + '만</b>');
+    if (dh고른값.유심) 조각.push('유심 <b>' + DH유심(dh고른값.통신사) + '만</b>');
     if (dh고른값.렌탈) 조각.push('렌탈 <b>' + DH_렌탈금액 + '만</b>');
     조각.push('<b>추가혜택</b> <span class="soft">(상담 시 안내)</span>');
     내역칸.innerHTML = 조각.join(' + ');
@@ -3710,13 +3724,13 @@ function dh계산기신청(){
   신청창열기();
 }
 
-dh계산기그리기();               /* 들어오자마자 기본값(119만원)으로 금액을 띄운다 */
+dh계산기그리기();               /* 들어오자마자 기본값(SK 132만원)으로 금액을 띄운다 */
 
 /* ⚠ 여기서 dh렌탈고르기·dh유심고르기를 부르지 않는다 (2026-08-27)
    전에는 계산기의 '처음 상태'(렌탈 켜짐·유심 켜짐)까지 신청창 탭·체크칸으로 옮겼다.
    그러면 손님이 아무것도 안 만져도 시트에 '인터넷+가전렌탈'·유심 'Y'가 적혀,
    상담원이 보는 신호가 손님마다 똑같아진다(2026-08-27 시트 34번 줄로 실제 확인).
-   ★ 계산기 자기 화면의 켜짐 표시와 금액(119만원)은 위 dh계산기그리기()가 이미 맡는다.
+   ★ 계산기 자기 화면의 켜짐 표시와 금액(132만원)은 위 dh계산기그리기()가 이미 맡는다.
      여기를 지워도 첫 화면 숫자는 그대로다.
    ★ 손님이 정수기·유심 버튼을 손으로 누르면 그때 dh렌탈고르기·dh유심고르기가 불려
      신청창으로 옮겨진다. 즉 '손님이 직접 고른 것'만 시트에 남는다. */
