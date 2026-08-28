@@ -429,8 +429,12 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
 .cs-phone:hover { background: var(--primary-dark); }
 .cs-kakao { background: #fee500; color: #3a1d00; }
 .cs-kakao:hover { background: #f7d200; }
-.cs-apply { background: #ff6b00; color: white; }
-.cs-apply:hover { background: #e85e00; }
+/* 2026-08-28: 패널의 '무료 상담 신청'(주황) 단추를 뺐다 (사장님 지시).
+   까닭: 아래 남색 카드(또는 gift 의 주황 따라오는 단추)와 가는 곳이 똑같아 겹쳤다.
+   이제 이 패널은 '지금 바로 연락하기'(전화·카톡) 한 가지 뜻만 갖는다.
+   되살리려면 이 자리에 아래 두 줄을 넣고 html 에 단추를 다시 넣으면 된다.
+     .cs-apply { background: #ff6b00; color: white; }
+     .cs-apply:hover { background: #e85e00; } */
 .float-btn { width: 52px; height: 52px; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; box-shadow: 0 4px 16px rgba(0,0,0,0.15); transition: transform 0.2s; font-size: 22px; }
 .float-btn:hover { transform: scale(1.1); }
 .float-btn:active { transform: scale(1.02); }
@@ -713,7 +717,6 @@ footer :focus-visible {
     <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><use href="#dh-ico-kakao"/></svg>
     카톡 상담
   </a>
-  <a href="index.html#apply-now" class="cs-btn cs-apply">무료 상담 신청</a>
 </div>
 
 <div class="floating-btns">
