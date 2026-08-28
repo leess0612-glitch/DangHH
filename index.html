@@ -215,7 +215,16 @@ header {
    ★ 그냥 가운데 정렬하면 왼쪽 로고 때문에 오른쪽으로 밀린다.
      그래서 흐름에서 빼내어(absolute) 가운데에 고정하고 부모에 자리표(relative)를 준다. */
 .header-inner { position: relative; }
-.header-inner nav { position: absolute; left: 50%; transform: translateX(-50%); }
+/* ★ width: max-content 가 없으면 좁은 화면에서 메뉴 글자가 두 줄로 접힌다 (2026-08-28 실제로 겪음).
+     까닭: 흐름에서 빼낸(absolute) 칸에 left 만 주면, 쓸 수 있는 너비가
+          '왼쪽 끝(50%)부터 오른쪽 끝까지' 즉 화면의 절반뿐이 된다.
+          메뉴가 그보다 넓어지는 순간 글자가 접힌다 (혜택안/내 처럼).
+     max-content 는 '내용 만큼'이라 자리에 상관없이 한 줄을 지킨다. */
+.header-inner nav {
+  position: absolute; left: 50%; transform: translateX(-50%);
+  width: max-content; max-width: none;
+}
+.header-inner nav a { white-space: nowrap; }
 nav { display: flex; gap: 4px; align-items: center; }
 nav a { font-size: 14px; font-weight: 500; color: var(--gray); text-decoration: none; padding: 6px 10px; border-radius: 6px; transition: all 0.2s; }
 nav a:hover { color: var(--primary); background: #eff6ff; }
