@@ -176,10 +176,12 @@ header {
   max-width: 1200px; margin: 0 auto; padding: 0 20px;
   height: 64px; display: flex; align-items: center; justify-content: space-between;
 }
-/* 로고를 오른쪽 전화 단추와 같은 높이로 (2026-08-25 다시 잼)
+/* 로고 43px = 글자가 칠해지는 높이 40px (2026-08-25 실측)
    ★ 글자 높이는 '줄상자'가 아니라 '글자가 실제로 칠해지는 범위'로 재야 한다.
      줄상자로 재면 글자 위아래 빈 공간까지 세어져 실제보다 크게 나온다(32px일 때 30px인데 40px로 나왔다).
-   실측: 전화 단추 40px / 43px일 때 글자가 칠해지는 높이 40px -> 딱 맞음 */
+   2026-08-28: 예전에는 전화 단추(40)와 '같은 높이'로 맞췄는데, 그러면 속이 꽉 찬 단추가
+     속이 빈 글씨를 이겨서 로고가 눌렸다(오른쪽 색 덩어리가 로고 글자의 3.7배였다).
+     그래서 로고는 43 그대로 두고 단추 쪽을 36으로 낮췄다. 이제 로고 40 > 단추 36. */
 .logo { font-size: 43px; font-weight: 900; color: var(--primary); text-decoration: none; letter-spacing: -0.5px;
         line-height: 1; }   /* 줄간격을 1로: 안 그러면 글자 줄상자(69px)가 머리띠(64px)보다 커진다 */
 .logo span { color: var(--primary); }
@@ -188,7 +190,7 @@ nav a { font-size: 14px; font-weight: 500; color: var(--gray); text-decoration: 
 nav a:hover { color: var(--primary); background: #eff6ff; }
 .header-phone {
   display: flex; align-items: center; gap: 6px;
-  background: var(--primary); color: white; padding: 8px 16px;
+  background: var(--primary); color: white; padding: 6px 14px;   /* 2026-08-28: 8px 16px -> 높이 40에서 36으로 */
   border-radius: 8px; font-size: 15px; font-weight: 700; text-decoration: none; transition: background 0.2s;
 }
 .header-phone:hover { background: var(--primary-dark); }
@@ -197,20 +199,20 @@ nav a:hover { color: var(--primary); background: #eff6ff; }
    전화 단추와 같은 크기·모양으로 맞춰 한 쌍처럼 보이게 한다. */
 .header-cta { display: flex; align-items: center; gap: 8px; }
 /* 좁은 컴퓨터 화면에서 전화번호가 두 줄로 접혀 단추가 64px로 부풀었다 (실측).
-   min-height: 카톡 글씨를 뺀 화면에서 그림만 남아 33px로 낮아지는 것을 40px로 맞춘다. */
-.header-cta > a { white-space: nowrap; flex: none; min-height: 40px; }
+   min-height: 두 단추의 높이를 하나로 묶어 준다. 2026-08-28에 40 -> 36으로 낮춤. */
+.header-cta > a { white-space: nowrap; flex: none; min-height: 36px; }
+/* 2026-08-28: 카톡 단추를 36x36 네모 그림 단추로 바꿨다.
+   전에는 넓은 화면에서 '카카오 상담' 글씨가 붙어 가로 124px짜리 노란 판이 됐는데,
+   노랑은 파랑보다 밝아 제일 먼저 눈에 들어와서 왼쪽 로고를 눌렀다.
+   글씨를 빼니 노란 넓이가 3분의 1이 되고, 전화 단추와 한 쌍처럼 붙어 보인다.
+   (예전에는 769~1024px 구간에서만 글씨를 뺐는데, 이제 모든 화면에서 뺀다) */
 .header-kakao {
-  display: flex; align-items: center; gap: 6px;
-  background: #fee500; color: #3a1d00; padding: 8px 16px;
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+  background: #fee500; color: #3a1d00; padding: 0; width: 36px;
   border-radius: 8px; font-size: 15px; font-weight: 700; text-decoration: none; transition: background 0.2s;
 }
 .header-kakao:hover { background: #f7d200; }
-/* 좁은 컴퓨터 화면(태블릿 가로 등)에서는 글씨를 빼고 그림만 남긴다.
-   실측: 769px에서 글씨까지 두면 로고와 메뉴가 딱 붙어 숨이 막힌다 */
-@media (min-width: 769px) and (max-width: 1024px) {
-  .header-kakao { padding: 8px 12px; }
-  .header-kakao .kakao-label { display: none; }
-}
+.header-kakao .kakao-label { display: none; }
 .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 5px; }
 .hamburger span { display: block; width: 24px; height: 2px; background: var(--dark); border-radius: 2px; }
 .mobile-menu {
