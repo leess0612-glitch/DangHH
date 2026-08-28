@@ -899,10 +899,14 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
 .consult-panel {
   display: none;
   /* 2026-08-28: 위쪽(120)에 붙어 있던 것을 화면 세로 한가운데로 옮겼다 (사장님 지시).
-     ★ 창이 아주 낮을 때 머리띠(64) 밑으로 파고들지 않도록 위쪽 한계를 함께 둔다.
-       max() 는 '둘 중 큰 값'이라 낮은 창에서는 84 가 이겨 머리띠를 피한다. */
-  position: fixed; right: 20px; top: max(84px, 50%); transform: translateY(-50%); z-index: 900;
-  max-height: calc(100vh - 104px); overflow-y: auto;
+     ★ 낮은 창에서 머리띠(64)를 파고들지 않게 하는 방법 —
+       처음엔 top 에 max(84px, 50%) 를 썼는데, 가운데맞춤(translateY -50%)이 그 뒤에
+       다시 절반만큼 끌어올려서 창 280 에서 12px 겹쳤다 (실측).
+       그래서 위치가 아니라 '키'를 묶는다: 위아래로 84 씩 비워 두면
+       한가운데에 놓아도 위쪽 끝이 84 밑으로는 못 내려온다. 168 = 84 x 2.
+       상자가 그보다 커지면 상자 안에서 굴려 볼 수 있다. */
+  position: fixed; right: 20px; top: 50%; transform: translateY(-50%); z-index: 900;
+  max-height: calc(100vh - 168px); overflow-y: auto;
   width: 200px; padding: 16px 14px;
   background: white; border: 1px solid #e2e8f0; border-radius: 14px;
   box-shadow: 0 10px 30px rgba(15,23,42,0.13);
