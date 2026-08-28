@@ -655,7 +655,10 @@ a.plan-card:active { transform: translateY(0) scale(0.99); }
 .reviews { background: white; overflow: hidden; }
 
 /* ===== FAQ ===== */
-.faq { background: #f8fafc; }
+/* 2026-08-28 : 후기칸이 위(명단 아래)로 옮겨가면서, 사이에 있던 흰 칸이 사라져
+   '가입 프로세스'와 이 칸이 둘 다 회색으로 맞붙어 경계가 없어졌다. 여기를 흰색으로 바꿔 갈라놓는다.
+   (아래 바닥줄은 진한 남색이라 흰색과 붙어도 경계가 뚜렷하다) */
+.faq { background: #ffffff; }
 .faq-list { max-width: 760px; margin: 0 auto; }
 .faq-item { background: white; border-radius: 12px; margin-bottom: 12px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
 .faq-question {

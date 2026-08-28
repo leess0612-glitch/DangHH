@@ -331,10 +331,10 @@ section { padding: 72px 20px; }
 .ict-cert-sub { font-size: 14px; color: #6b7280; margin-top: 4px; line-height: 1.6; }
 
 /* ===== BENEFITS ===== */
-/* 이 페이지는 요금제 비교 섹션이 숨겨져 있어(display:none), 섹션 순서를 바꾼 뒤
-   '왜 당현함인가요?'와 '가입 프로세스'의 회색 배경이 맞붙어 경계가 사라졌다.
-   그래서 이 페이지에서만 흰색으로 둔다 (index·check 는 회색 그대로) — 2026-08-19 */
-.benefits { background: #ffffff; }
+/* 2026-08-28 : index.html 과 같은 연회색으로 되돌렸다(흰 카드가 또렷하게 떠 보이도록).
+   이 페이지는 요금제 비교 칸이 숨겨져 있어(display:none) 이 칸과 '가입 프로세스'가 바로 맞붙는다.
+   둘 다 회색이면 경계가 사라지므로(2026-08-19 에 겪음) 아래에서 가입 프로세스를 흰색으로 바꾼다. */
+.benefits { background: #f8fafc; }
 .benefits-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -467,7 +467,9 @@ a.plan-card:active { transform: translateY(0) scale(0.99); }
 .plan-price-unit { font-size: 14px; color: var(--gray); }
 
 /* ===== PROCESS ===== */
-.process { background: #f8fafc; }
+/* 2026-08-28 : 바로 위 '왜 당현함인가요?' 칸이 회색이 되어, 여기는 흰색으로 둔다.
+   (index.html 은 사이에 요금제 칸이 있어 회색 그대로다) */
+.process { background: #ffffff; }
 .compare-version-label {
   display: inline-block; padding: 4px 14px; border-radius: 20px;
   font-size: 11px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase;
