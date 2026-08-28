@@ -1978,10 +1978,18 @@ body.apply-open{ overflow:hidden; }
 .dh-calc-plus { font-size:16px; font-weight:800; color:var(--dh-blue);
                 letter-spacing:0; white-space:nowrap; }
 /* 무엇을 더해 그 금액이 되는지 — 손님이 "더 받는다"를 눈으로 확인하는 줄 */
-.dh-calc-break { font-size:13px; font-weight:600; color:var(--dh-body); margin-top:8px;
+.dh-calc-break { font-size:15px; font-weight:600; color:var(--dh-body); margin-top:8px;
                  line-height:1.6; }
 .dh-calc-break b { color:var(--dh-blue); font-weight:800; }
 .dh-calc-break .soft { color:var(--dh-sub); font-weight:500; white-space:nowrap; }
+/* 명세표에 있던 '추가혜택 - 상담 시 안내'를 계산기 안으로 옮긴 줄 (2026-08-28).
+   원래 계산기에도 같은 말이 있었지만 13px 회색이라 사실상 안 보였다.
+   명세표에서 쓰던 주황(#ff6b00)으로 되살려, 금액을 다 알려주지 않는다는 것을 눈에 띄게 한다. */
+.dh-calc-secret { display:flex; align-items:baseline; gap:8px; margin-top:12px;
+                  padding-top:12px; border-top:1px dotted rgba(255,107,0,.45); }
+.dh-calc-secret .s-t { font-size:16px; font-weight:800; color:#ff6b00 }
+.dh-calc-secret .s-d { flex:1; border-bottom:1px dotted rgba(255,107,0,.45); transform:translateY(-4px) }
+.dh-calc-secret .s-v { font-size:19px; font-weight:800; color:#ff6b00; white-space:nowrap }
 .dh-calc-result-note { font-size:12px; color:var(--dh-dim); margin-top:8px; line-height:1.5; }
 
 /* 주 버튼 — 그라데이션 없음, 높이 48px */
@@ -2074,14 +2082,14 @@ body.apply-open{ overflow:hidden; }
       <div class="hero-badge">인터넷 · 정수기 · 가전렌탈 전문</div>
       <div class="hero-cash-badge">지원금 132만원,<br class="mob-br"> 가만두면 손해!</div>
       <h1>놓친 지원금<br> <em>3분이면 확인 끝</em></h1>
-      <div class="dh-ledger">
-        <!-- 금액은 '실제로 받을 수 있는 최대'(SK: 52+30+50=132)를 적는다 (2026-08-28) -->
-        <div class="dh-ledger-row"><span class="t">인터넷 가입</span><span class="d"></span><span class="v">52만원</span></div>
-        <div class="dh-ledger-row"><span class="t">유심 번호이동</span><span class="d"></span><span class="v">30만원</span></div>
-        <div class="dh-ledger-row"><span class="t">정수기 · 가전렌탈</span><span class="d"></span><span class="v">50만원</span></div>
-        <div class="dh-ledger-row hi"><span class="t">추가혜택</span><span class="d"></span><span class="v small">상담 시 안내</span></div>
-        <div class="dh-ledger-sum"><span class="t">합계</span><span class="v">132만원<em> +α</em></span></div>
-      </div>
+      <!-- ===== 지원금 명세표를 뺐다 (2026-08-28) =====
+           오른쪽 계산기가 같은 일을 더 크게 하고 있었다. 실측 근거:
+           · 132만원이 한 화면에 4번 나왔다(배지·합계·계산기·계산기 아래줄). 반복이 강조를 깎는다 → 2번으로.
+           · 첫 화면 글자 크기가 17가지였다. 명세표가 혼자 쓰던 32·27·25·22·20이 빠진다.
+           · 폰에서 계산기 시작 위치가 776 → 511 로 265px 올라와 첫 화면 안에 들어온다.
+           ★ 명세표에 있던 '추가혜택 - 상담 시 안내'만 아래 계산기 안으로 옮겼다.
+             계산기 잔글씨(13px 회색)로는 궁금증을 못 만들기 때문이다.
+           스타일(.dh-ledger…)은 지우지 않고 남겨 뒀다. 되살릴 때 이 자리에 markup만 넣으면 된다. -->
       <p class="hero-desc">전체 통신사 비교 후 <strong>당일 현금 지급</strong>,<br class="mob-br"> 가장 유리한 조건으로 안내해드립니다</p>
       <p class="hero-sub-assurance">타업체보다 적다면?<br class="mob-br"> <strong style="color:#FEE500;">차액을 보상해드립니다.</strong></p>
     </div>
@@ -2148,6 +2156,7 @@ body.apply-open{ overflow:hidden; }
           <div class="dh-calc-result-label">받으실 수 있는 금액</div>
           <div class="dh-calc-result-num"><em>최대</em> <strong id="dhCalcSum">0</strong>만원 <span class="dh-calc-plus">+ 추가혜택</span></div>
           <div class="dh-calc-break" id="dhCalcBreak"></div>
+          <div class="dh-calc-secret"><span class="s-t">추가혜택</span><span class="s-d"></span><span class="s-v">상담 시 안내</span></div>
           <div class="dh-calc-result-note">설치 후 오후 5:30 이전 기준 · 약정 조건에 따라 달라질 수 있습니다</div>
         </div>
 
@@ -3684,7 +3693,8 @@ function dh계산기그리기() {
                 + ' <b>' + dh기본금액(dh고른값.통신사) + '만</b>'];
     if (dh고른값.유심) 조각.push('유심 <b>' + DH유심(dh고른값.통신사) + '만</b>');
     if (dh고른값.렌탈) 조각.push('렌탈 <b>' + DH_렌탈금액 + '만</b>');
-    조각.push('<b>추가혜택</b> <span class="soft">(상담 시 안내)</span>');
+    /* '추가혜택 (상담 시 안내)'는 아래 주황 칸(.dh-calc-secret)으로 옮겼다 (2026-08-28).
+       여기에 두면 같은 말이 두 번 적힌다. */
     내역칸.innerHTML = 조각.join(' + ');
   }
 }
