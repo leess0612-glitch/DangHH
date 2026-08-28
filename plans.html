@@ -351,6 +351,9 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
 
 /* 플로팅 */
 .floating-btns { position: fixed; right: 30px; bottom: 24px; display: flex; flex-direction: column; gap: 12px; z-index: 900; }
+/* 아래 카드가 24 여백 + 75 높이까지 차지한다. 좁은 컴퓨터 화면에서 카드 오른쪽 끝과
+   동그란 단추가 겹치므로 위로 올린다 (index.html 과 같은 규칙) */
+@media (min-width: 769px) { .floating-btns { bottom: 120px; } }
 /* 컴퓨터에서는 떠다니는 동그란 단추를 없앤다 (2026-08-25)
    전화 단추는 삭제하고, 카톡 단추는 위 머리띠로 옮겼다. 폰에서는 그대로 둔다. */
 /* 2026-08-25 에는 컴퓨터에서 이 단추를 없애고 카톡을 머리띠로 올렸었다.
@@ -394,6 +397,54 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
 .float-btn:active { transform: scale(1.02); }
 .float-phone { background: var(--primary); color: white; border: 1px solid white; }
 .float-kakao { background: #fee500; color: #3a1d00; }
+
+
+/* ═════ 컴퓨터 화면 아래 '따라오는' 신청 카드 — 2026-08-28 ═════
+   index.html 의 .desk-cta-bar 를 그대로 옮겨 온 것이다.
+   까닭(index 에 적힌 그대로): 좌우로 꽉 찬 띠는 광고 배너와 모양이 같아서
+     손님 눈이 자동으로 건너뛴다. 그래서 좌우를 잘라내고 내용만큼만 차지하는 카드로 띄운다.
+   ★ 카드 전체가 하나의 누르는 곳이다.
+   이 페이지에는 신청폼이 없으므로 index.html 의 신청 자리로 보낸다.
+   폰(768 이하)에서는 아래 흰 띠가 그 몫을 하므로 이 카드는 뜨지 않는다. */
+.desk-cta-bar {
+  display: none;
+  position: fixed; bottom: 24px; left: 0; right: 0; z-index: 940;
+  justify-content: center;
+  opacity: 0; transform: translateY(16px);
+  transition: opacity 0.3s, transform 0.35s cubic-bezier(0.4,0,0.2,1);
+  pointer-events: none;
+}
+.desk-cta-bar.visible { opacity: 1; transform: translateY(0); }
+/* 바깥 칸은 화면을 가로지르므로 눌림을 꺼 두고, 보일 때만 카드에 눌림을 준다 */
+.desk-cta-bar.visible .desk-cta-card { pointer-events: auto; }
+.desk-cta-card {
+  pointer-events: none;
+  display: inline-flex; align-items: center; gap: 20px;
+  max-width: calc(100vw - 48px);
+  padding: 13px 16px 13px 28px;
+  background: #12336E;
+  border: 1.5px solid rgba(255,255,255,0.10); border-radius: 14px;
+  box-shadow: 0 14px 34px rgba(4,18,60,0.34), 0 2px 8px rgba(4,18,60,0.22);
+  cursor: pointer; font-family: 'SUIT', sans-serif; text-align: left;
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform 0.08s ease, background 0.2s, box-shadow 0.2s;
+}
+.desk-cta-card:hover { background: #163C80; }
+.desk-cta-top { font-size: 18px; font-weight: 700; color: white; letter-spacing: -0.3px; }
+.desk-cta-bar-btn {
+  display: inline-flex; align-items: center;
+  padding: 12px 28px; background: #ff6b00; color: white;
+  font-size: 23px; font-weight: 800; border: 1.5px solid transparent; border-radius: 8px;
+  font-family: 'SUIT', sans-serif; transition: background 0.2s;
+  white-space: nowrap; line-height: 1;
+  pointer-events: none;   /* 주황 조각은 따로 반응하지 않는다 — 카드가 하나로 움직인다 */
+}
+/* 카드를 누르면 주황 조각도 함께 반응해야 '한 덩어리'로 읽힌다 */
+.desk-cta-card:hover .desk-cta-bar-btn { background: #e85e00; }
+.desk-cta-card:active { transform: translateY(2px) scale(0.99); box-shadow: 0 6px 16px rgba(4,18,60,0.30); }
+.desk-cta-card:active .desk-cta-bar-btn { background: #d15a00; box-shadow: inset 0 2px 6px rgba(0,0,0,0.20); }
+@media (min-width: 769px) { .desk-cta-bar { display: flex; } }
 
 /* 휴대폰 아래 고정 신청 막대 — index.html의 .mobile-cta-bar와 같은 디자인.
    이 페이지에는 신청폼이 없어 숨길 조건 없이 항상 떠 있는다 (2026-08-21) */
@@ -582,6 +633,14 @@ a:focus-visible, button:focus-visible {
   <div class="zoom-inner"><img id="zoomImg" alt=""></div>
 </div>
 
+<!-- 컴퓨터 화면 아래 따라오는 신청 카드 (2026-08-28) -->
+<div class="desk-cta-bar" id="deskCtaBar">
+  <a class="desk-cta-card" href="index.html#apply-now" aria-label="놓치고 있던 내 최대 지원금 무료로 확인하기">
+    <span class="desk-cta-top">놓치고 있던 내 최대 지원금, 지금 바로 확인하세요</span>
+    <span class="desk-cta-bar-btn">무료 확인하기 →</span>
+  </a>
+</div>
+
 <!-- 휴대폰 아래 고정 신청 막대 (뒤 페이지 기억 장치가 index.html 부분을 알아서 바꿔줌) -->
 <div class="mobile-cta-bar">
   <a class="mobile-cta-btn" href="index.html#apply-now">내 최대 지원금 무료확인 →</a>
@@ -621,6 +680,7 @@ a:focus-visible, button:focus-visible {
     <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><use href="#dh-ico-kakao"/></svg>
     카톡 상담
   </a>
+  <a href="index.html#apply-now" class="cs-btn cs-apply">무료 상담 신청</a>
 </div>
 
 <div class="floating-btns">
@@ -776,6 +836,17 @@ document.addEventListener('click', function (e) {
   if (!e.target.closest('header') && !e.target.closest('.mobile-menu'))
     document.getElementById('mobileMenu').classList.remove('open');
 });
+</script>
+<script>
+/* 아래 따라오는 카드를 잠깐 뒤에 부드럽게 띄운다 (gift.html 과 같은 방식).
+   이 페이지에는 신청폼이 없어 감출 조건이 없으므로 한 번 뜨면 계속 머문다. */
+(function () {
+  var 카드 = document.getElementById('deskCtaBar');
+  if (!카드) return;
+  var 띄우기 = function () { setTimeout(function () { 카드.classList.add('visible'); }, 260); };
+  if (document.readyState === 'complete') 띄우기();
+  else window.addEventListener('load', 띄우기);
+})();
 </script>
 </body>
 </html>
