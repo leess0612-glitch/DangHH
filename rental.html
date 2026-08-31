@@ -1666,14 +1666,14 @@ html { scroll-behavior: smooth; scroll-padding-top: 78px; }
 
 /* ===== 대표 약속 카드 (index.html 에서 옮김) ===== */
 .promise { background:#ffffff; padding:34px 0 64px; text-align:center; }
+/* 2026-08-31 대표 사진(얼굴) 제거.
+   왼쪽 사진칸이 없어져 글씨 한 칸만 남는다. 1100px 를 다 쓰면 한 줄이 너무 길어
+   읽기 나쁘므로, 카드 폭을 760px 로 줄여 가운데에 놓는다. */
 .promise-card {
-  margin-top:30px; display:grid; grid-template-columns:340px 1fr;
+  margin:30px auto 0; display:block; max-width:760px;
   background:#fff; border:1px solid var(--border); border-radius:20px; overflow:hidden;
   box-shadow:0 4px 24px rgba(15,42,90,0.10); text-align:left;
 }
-.promise-photo { position:relative; background:#eef2f7; }
-.promise-photo img { width:100%; height:100%; object-fit:cover; object-position:center 6%; display:block; }
-.promise-photo::after { content:''; position:absolute; inset:0; pointer-events:none; box-shadow:inset 0 0 0 1px rgba(15,42,90,0.16); }
 .promise-body { padding:36px 40px 32px; }
 .promise-head { font-size:22px; font-weight:900; letter-spacing:-0.5px; line-height:1.4; margin-bottom:22px; }
 .promise-head em { font-style:normal; color:var(--primary); }
@@ -1702,9 +1702,6 @@ html { scroll-behavior: smooth; scroll-padding-top: 78px; }
 .promise-viewer img { max-width:100%; max-height:100%; border-radius:8px; }
 @media (max-width: 768px) {
   .promise { padding:24px 0 44px; }
-  .promise-card { grid-template-columns:1fr; }
-  .promise-photo { aspect-ratio:16/12; }
-  .promise-photo img { object-position:center 20%; }
   .promise-body { padding:24px 20px 26px; }
   .promise-head { font-size:19px; margin-bottom:18px; }
   .promise-list strong { font-size:16px; }
@@ -1714,9 +1711,6 @@ html { scroll-behavior: smooth; scroll-padding-top: 78px; }
   .promise-sign img { width:80px; }
   .promise-docs-row { gap:12px; }
   .promise-doc { width:calc(50% - 6px); }
-  /* 폰에서는 사진이 화면 폭을 꽉 채워 얼굴이 코앞에 들이닥친다. 비율은 그대로 두고 폭만 줄인다 */
-  .promise-photo{ width:210px; margin:24px auto 0; border-radius:14px; overflow:hidden; }
-  .promise-photo::after{ border-radius:14px; }
 }
 /* 아주 좁은 폰(320칸 안팎)에서도 날짜·서명이 한 줄에 들어가도록 */
 @media (max-width: 380px) {
@@ -2102,16 +2096,14 @@ html { scroll-behavior: smooth; scroll-padding-top: 78px; }
 </div>
 
 <!-- PROMISE (대표 약속) — 2026-08-27, index.html 에서 옮김 -->
-<!-- 그림 이름표: image1=대표 사진 / image2=서명 / image3=인터넷 서약서(_s는 표지) / image4=렌탈 서약서(_s는 표지)
+<!-- 그림 이름표: image2=서명 / image3=인터넷 서약서(_s는 표지) / image4=렌탈 서약서(_s는 표지)
+     (image1=대표 얼굴 사진은 2026-08-31 제거하고 당현함_보관 폴더로 옮겼다)
      ※ 렌탈 페이지이므로 렌탈 서약서를 앞에 둔다 -->
 <section class="promise">
   <div class="section-inner">
     <h2 class="section-title">대표가 <em>직접</em> 약속드립니다</h2>
 
     <div class="promise-card fade-up">
-      <figure class="promise-photo">
-        <img src="images/promise/image1.webp" alt="당현함 운영사 유진텔레콤 대표 조성현" loading="lazy" decoding="async">
-      </figure>
       <div class="promise-body">
         <p class="promise-head">고객님이 <em>걱정 없이</em> 가입하실 수 있도록<br>다음 세 가지를 지키겠습니다.</p>
         <ul class="promise-list">
