@@ -2229,7 +2229,13 @@ body.apply-open{ overflow:hidden; }
 .hero-desc{ color:#333D4B; }
 .hero-desc strong{ color:#191F28; }
 .hero-sub-assurance{ color:#333D4B; }
-/* 인라인으로 박힌 노랑(style="color:#FEE500")을 이기려면 !important 가 필요하다. */
+/* 인라인으로 박힌 노랑(style="color:#FEE500")을 이기려면 !important 가 필요하다.
+   ★ 주황이 두 가지인 이유 (2026-08-31 사장님 선택) —
+     · 이 줄(차액 120% 보상)은 흰 바탕 위 글씨라 진한 #C24E00 (대비 4.79).
+       밝은 #FF6B00 은 흰 바탕에서 2.86 이라 흐리다.
+     · 계산기 안 '추가혜택 / 상담 시 안내'는 밝은 #FF6B00 그대로 둔다.
+       바로 위 132만원 배지와 같은 색으로 묶어, 계산기 안에서 한 덩어리로 읽히게 하는 쪽을 골랐다.
+     두 색을 하나로 모은 판(둘 다 #C24E00)도 만들어 견주었고, 이쪽을 택했다. */
 .hero-sub-assurance strong{ color:#C24E00 !important; }
 
 /* ⑤ 계산기 카드 — 흰 바탕 위의 흰 카드라 경계가 사라진다. 테두리를 조금 진하게 하고
@@ -2241,19 +2247,6 @@ body.apply-open{ overflow:hidden; }
 .hero-form-wrap .form-card{
   box-shadow:0 4px 20px rgba(15,23,42,0.06);
 }
-
-/* ⑥ 글자에 쓰는 주황을 한 가지(#C24E00)로.
-   주황은 쓰임에 따라 둘로 나뉜다:
-     · 바탕용 #FF6B00 — 금액 배지처럼 '덩어리'를 칠하는 색. 위에 흰 글씨를 얹는다.
-     · 글씨용 #C24E00 — 글자 자체에 쓰는 색.
-   밝은 #FF6B00 을 글씨로 쓰면 흰 바탕에서 대비가 2.86 이라 기준(4.5)에 못 미친다.
-   #C24E00 은 4.79 로 통과하고, 눈에는 여전히 주황이다.
-   ★ 값이 다른 것이 오히려 '같아 보인다' — 넓은 면적의 색은 진해 보이고 가는 글씨의 색은
-     옅어 보이므로, 같은 값을 쓰면 배지는 쨍하고 글씨는 흐려 따로 논다. */
-.dh-calc-secret .s-t,
-.dh-calc-secret .s-v { color:#C24E00; }
-.dh-calc-secret { border-top-color:rgba(194,78,0,.45); }
-.dh-calc-secret .s-d { border-bottom-color:rgba(194,78,0,.45); }
 </style>
 </head>
 <body>
