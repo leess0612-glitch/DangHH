@@ -949,9 +949,13 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
        키를 (창높이 x 0.84 - 168) 로 묶으면, 42% 에 가운데를 맞춰도
        위쪽 끝이 항상 84 아래로는 못 내려온다. (실측으로 확인: 창 1000/400/280 모두 84 이상)
        상자가 그보다 커지면 상자 안에서 굴려 볼 수 있다. */
-  position: fixed; right: 20px; top: 42%; transform: translateY(-50%); z-index: 900;
+  position: fixed; right: 14px; top: 42%; transform: translateY(-50%); z-index: 900;
   max-height: calc(84vh - 168px); overflow-y: auto;
-  width: 200px; padding: 16px 14px;
+  /* 폭을 넓힌 이유는 위 .consult-hours 주석 참고 (13px 한 줄에 186px 필요).
+     ★ 폭만 늘리면 왼쪽 계산기와의 간격이 그만큼 줄어든다 — 1600 화면에서 23 -> 3 이 되어
+       붙어 보였다(실측). 그래서 셋을 같이 조정했다:
+       폭 200->216 · 좌우 안쪽여백 14->12(안쪽 폭 190 확보, 4px 여유) · 오른쪽 띄움 20->14. */
+  width: 216px; padding: 16px 12px;
   background: white; border: 1px solid #e2e8f0; border-radius: 14px;
   box-shadow: 0 10px 30px rgba(15,23,42,0.13);
   font-family: 'SUIT', 'Noto Sans KR', sans-serif;
@@ -962,12 +966,19 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
    대신 아래에 영업시간 한 줄을 두어 '언제 받을 수 있는지'를 알려 준다. */
 .consult-hours {
   margin: 10px 0 0; padding-top: 10px; border-top: 1px solid #eef2f7;
-  font-size: 11.5px; line-height: 1.6; color: #7b8b99; letter-spacing: -0.2px;
+  /* 11.5px/#7b8b99 는 흰 바탕 대비 3.5:1 로 작은 글씨 기준(4.5)에 미달이었고,
+     디자인보드 '11px 이하 금지'의 경계값이기도 했다. 13px/#5f6672 는 5.78:1 로 통과한다.
+     ★ 크기를 올리면 한 줄에 186px 이 필요한데 옛 카드(200)의 안쪽 폭은 170 뿐이라 두 줄로 꺾인다.
+       그래서 아래 .consult-panel 의 폭·여백도 함께 바꿨다. 둘은 한 쌍이다. (2026-08-31) */
+  font-size: 13px; line-height: 1.6; color: #5f6672; letter-spacing: -0.2px;
 }
 /* 영업시간 밖 안내. 바탕색 없이 글씨만 (사장님 지시) */
 .consult-note {
   margin: 10px 0 0; padding-top: 10px; border-top: 1px solid #eef2f7;
-  font-size: 11.5px; line-height: 1.6; color: #64748b; letter-spacing: -0.2px;
+  /* 영업시간줄과 같은 자리의 '영업시간 밖' 상태다. 크기·색을 하나로 맞춘다.
+     이 줄은 밤에 들어온 손님에게 '카톡을 남기면 된다'를 알려 주는 자리라,
+     잔글씨로 두면 안 읽히고 그 손님을 놓친다. (2026-08-31) */
+  font-size: 13px; line-height: 1.6; color: #5f6672; letter-spacing: -0.2px;
 }
 .consult-note b { font-weight: 800; color: #475569; }
 .cs-btn {
@@ -3255,7 +3266,10 @@ document.querySelectorAll('.늦게떠오름').forEach(el => 늦은관찰기.obse
     시간줄.style.display = 'none';
     안내.style.display = '';
     var 첫줄 = (쉬는날 && 쉬는날인가(지금)) ? '오늘은 쉬는 날이에요.' : '지금은 상담시간이 아니에요.';
-    안내.innerHTML = 첫줄 + '<br>카톡을 남겨 주시면 <b>' + 언제 + '</b>에 바로 연락드립니다.';
+    /* 굵게 하는 곳을 '언제'에서 '무엇을 하면 되는지'로 옮겼다 (2026-08-31).
+       손님이 해야 할 행동은 카톡을 남기는 것이고, 바로 위에 노란 카톡 단추가 있다.
+       굵은 글씨가 그 단추를 가리켜야 행동으로 이어진다. */
+    안내.innerHTML = 첫줄 + '<br><b>카톡을 남겨 주시면</b> ' + 언제 + '에 바로 연락드립니다.';
   }
 
   판정();
