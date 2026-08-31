@@ -1806,6 +1806,87 @@ html { scroll-behavior: smooth; scroll-padding-top: 78px; }
 /* 폴드5 전면(344)에서 낱말 가운데가 끊겼다(실측). 낱말 단위로만 끊고,
    끝줄에 한 낱말만 남지 않도록 줄을 고르게 나눈다(첫 페이지 질문줄과 같은 방법). */
 .hero-guarantee p{ word-break:keep-all; text-wrap:balance; }
+
+/* ══════════════ 첫 화면 흰 바탕 (2026-08-31) ══════════════
+   첫 페이지(index)를 흰 바탕으로 바꾼 것과 짝을 맞춘다.
+   ★ 되돌리려면 이 묶음만 지우면 파란 첫 화면으로 정확히 돌아온다.
+   첫 페이지(index.html)에도 같은 성격의 묶음이 있다. 두 곳을 함께 보고 고칠 것.
+
+   흰 바탕으로 오면 첫 화면 글자 16곳 중 14곳이 안 보이게 된다(실측):
+     흰 글씨 12곳 -> 대비 1.0 / 노란 글씨 2곳 -> 대비 1.17~1.28
+   그래서 색을 통째로 다시 잡는다. 규칙은 첫 페이지와 같다 —
+     파랑 #1668E3 = 브랜드·행동 / 주황 #C24E00 = 돈·보상 이야기 */
+
+/* ① 바탕과 경계.
+   히어로 바로 아래 '신뢰 숫자' 칸이 이미 흰색이라, 둘 다 흰색이 되면
+   머리띠·첫 화면·신뢰 숫자 세 칸이 한 덩어리로 보인다. 옅은 선으로 나눈다. */
+.hero{
+  background:#FFFFFF;
+  color:#191F28;
+  border-top:1px solid #EEEFF3;
+  border-bottom:1px solid #EEEFF3;
+}
+
+/* ② 맨 위 작은 배지 — 반투명 흰색이라 흰 바탕에서 사라진다 */
+.hero .hero-badge{
+  background:#EFF6FF; border:1px solid #D6E4FB; color:#1668E3;
+}
+
+/* ③ 금액 배지 — 그라데이션을 뺀다.
+   #FF6B00 -> #FFB300 그라데이션이었는데, 그 위 흰 글씨 대비가
+   시작 2.86, 끝 1.79 로 오른쪽으로 갈수록 글씨가 사라졌다(실측).
+   파란 바탕에서는 배지가 도드라져 덜 티가 났지만 흰 바탕에서는 그대로 드러난다.
+   디자인보드에도 '그라데이션 금지'가 있다. 첫 페이지와 같은 단색 #FF6B00 으로.
+   ★ 바깥으로 번지는 그림자만 뺀다. 글자 그림자는 주황 위 흰 글씨를 받쳐 주므로 남긴다. */
+.hero .hero-cash-badge{
+  background:#FF6B00;
+  box-shadow:none;
+  /* 첫 페이지 배지에는 있는데 여기엔 없던 것 — 주황 위 흰 글씨(대비 2.86)를 받쳐 준다.
+     바깥 그림자와 달리 이건 글자를 읽기 쉽게 하는 것이라 흰 바탕에서도 남긴다. */
+  text-shadow:0 1px 3px rgba(0,0,0,0.25);
+}
+
+/* ④ 큰제목과 본문 */
+.hero h1{ color:#191F28; }
+.hero h1 em{ color:#1668E3; }        /* 노랑 #FEE500 은 흰 바탕에서 대비 1.28 이라 안 보인다 */
+.hero .hero-desc{ color:#333D4B; }
+.hero .hero-desc strong{ color:#191F28; }
+.hero .hero-urgency{ color:#5F6672; }
+
+/* ⑤ 차액보상 박스 — 반투명 흰 바탕(10%)과 반투명 노란 테두리라 둘 다 흰 바탕에서 사라진다.
+   흰 카드에 옅은 테두리와 아주 옅은 그림자를 줘서 박스 모양을 되살린다.
+   ★ 처음엔 Paper Blue 를 깔았는데, 폰에서 '단 1원이라도' 가 16px 로 작아지면서
+     Paper Blue 위 주황 글씨 대비가 4.40 이 되어 작은 글씨 기준(4.5)에 못 미쳤다(실측 390).
+     흰 바탕이면 4.79 로 통과한다. 첫 페이지 계산기 카드와도 같은 결이 된다. */
+.hero .hero-guarantee{
+  background:#FFFFFF;
+  border:1px solid #E2E8F0;
+  box-shadow:0 4px 20px rgba(15,23,42,0.06);
+  /* 흰 바탕이 되면서 첫 화면 아래가 183px 비었다(실측 1425x900).
+     카드가 330x155 로 화면에 비해 작아 허전해 보여 키운다. */
+  padding:32px 56px 34px;
+}
+.hero-guarantee .hg-badge{ font-size:15px; margin-bottom:16px; }
+.hero-guarantee .hg-line{ font-size:clamp(18px, 2.6vw, 26px); }
+.hero-guarantee .hg-main{ font-size:clamp(26px, 4.4vw, 48px); }
+
+/* 폰에서는 좌우 여백을 줄인다 — 56px 씩 두면 폴드5(344)에서 글자 자리가 192px 밖에
+   안 남아 '타업체가 단 / 1원이라도' 로 꺾였다(실측). */
+@media (max-width:768px){
+  .hero .hero-guarantee{ padding:22px 20px 24px; }
+}
+/* '단 1원이라도' 는 한 덩어리다. 낱말 사이에서 끊기지 않게 묶는다 */
+.hero-guarantee .hg-line em{ white-space:nowrap; }
+/* '당현함 약속' 배지 — 형광 노랑(#FFF200)은 흰 바탕에서 화면에서 가장 튀는 덩어리가 된다.
+   ★ 주황은 아래 두 줄(돈 이야기)에만 쓰고, 이 배지는 이름표이므로 파랑으로 둔다.
+     Paper Blue 위 파랑은 4.68 로 통과한다. */
+.hero-guarantee .hg-badge{
+  background:#EFF6FF; color:#1668E3; border:1px solid #D6E4FB;
+}
+.hero-guarantee .hg-line{ color:#333D4B; }
+.hero-guarantee .hg-line em{ color:#C24E00; }
+.hero-guarantee .hg-main{ color:#191F28; }
+.hero-guarantee .hg-main strong{ color:#C24E00; }
 </style>
 </head>
 <body>
