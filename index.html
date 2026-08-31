@@ -2247,6 +2247,93 @@ body.apply-open{ overflow:hidden; }
 .hero-form-wrap .form-card{
   box-shadow:0 4px 20px rgba(15,23,42,0.06);
 }
+
+/* ══════════════ 첫 화면 숨통 트기 (2026-08-31) ══════════════
+   왜 좁았나 — 예전에 명세표(높이 257px)를 넣으면서 '아래가 잘리지 않게'
+   위 여백과 덩어리 사이 여백을 모두 절반 이하로 줄여 놓았다.
+   그런데 명세표를 뺐다. 좁혀야 했던 이유가 사라졌는데 좁힌 값만 남아 있었다.
+   실측: 덩어리 사이 틈이 6·10·8·6px 뿐이라 다섯 덩어리가 한 덩어리처럼 보였다.
+   ★ 폰은 손대지 않는다 — 폰은 계산기가 첫 화면 안에 겨우 들어와 있어서
+     여백을 늘리면 다시 밀린다. 그래서 931px 이상에서만 넉넉하게 한다. */
+@media (min-width: 931px){
+  .hero{ padding-top:56px; }              /* 28 -> 56 (원래 72) */
+  .hero-badge{ margin-bottom:12px; }      /* 6  -> 12 */
+  .hero-cash-badge{ margin-bottom:20px; } /* 10 -> 20 */
+  .hero-desc{ margin-bottom:20px; }       /* 6  -> 20 */
+
+  /* 왼쪽 글이 계산기 쪽으로 너무 뻗지 않게 폭을 묶는다.
+     실측: 본문 한 줄만 616px 로 유난히 길어(다른 줄은 200~430) 그 줄에서만
+     계산기와 68px 까지 붙어 보였다. 폭을 묶으면 그 줄이 두 줄로 나뉜다.
+     ★ 931px 이상에서만 — 그 아래에서는 주황 배지가 화면 왼쪽 밖으로
+       흘러나가는 처리(margin-left:-1000px)를 쓰고 있어 가운데맞춤과 부딪힌다. */
+  .hero-content > *{ max-width:560px; margin-left:auto; margin-right:auto; }
+
+  /* 큰제목 64 -> 88. 첫 화면에서 눈이 가장 먼저 닿아야 할 곳이다.
+     ★ 88 이 한계다. 폭 제한이 560px 인데 긴 줄('3분이면 확인 끝')이
+       64px 일 때 391, 88px 일 때 542 를 쓴다. 96px 이면 560 을 넘어 세 줄로 꺾인다(실측). */
+  .hero h1{ font-size:clamp(32px, 6.2vw, 88px); }
+
+  /* 세 덩어리를 고르게 벌린다 —
+     · 배지 + 주황배지 (금액)
+     · 큰제목
+     · 본문 + 차액보상 (믿을 이유)
+     계산기 높이만큼 늘려 위아래로 붙이는 방법도 해 봤는데, 사이가 182·162 로 벌어져
+     세 덩어리가 남처럼 읽혔다. 90 으로 좁히니 한 이야기로 이어진다(사장님 선택). */
+  .hero-content{
+    display:flex; flex-direction:column; align-items:center;
+    align-self:center;
+  }
+  /* 주황배지가 제 여백 20px 을 이미 갖고 있어(플렉스에서는 여백이 합쳐지지 않는다)
+     위는 70 으로 둬야 실제 틈이 90 이 된다. */
+  .hero h1{ margin-top:70px; margin-bottom:90px; }
+  .hero-content > :last-child{ margin-bottom:0; }
+}
+
+/* ── 세로가 넉넉하지 않은 화면에서는 위 여백을 줄인다 ──
+   25인치 1920x1080 모니터에서 브라우저 창 안쪽은 보통 세로 930 안팎이다
+   (북마크 줄·작업표시줄을 빼고 남는 높이). 그때 계산기 아랫줄과 '차액 120% 보상' 이
+   23px 잘렸고, 계산기 맨 아래 단추까지 걸렸다(실측 1905x930).
+   머리띠 64 + 위 여백 + 계산기 832 가 화면 높이 안에 들어와야 하므로,
+   세로 1000 이하에서는 위 여백을 56 -> 28 로 줄인다. 930 에서 5px 남는다.
+   ★ 세로가 924 보다 낮은 화면은 위 여백을 0 으로 해도 안 들어간다(계산기가 832 이므로).
+     그건 이 화면의 한계이고, 그때는 조금 굴려 보게 된다. */
+@media (min-width: 931px) and (max-height: 1000px){
+  .hero{ padding-top:28px; }
+}
+
+/* ══════════════ 속도 칸 '추천' 배지를 왼쪽 위 모서리로 ══════════════
+   전에는 배지가 안내줄에 있어 '추천 3-4인 가구' 가 한 줄이 되는 바람에
+   '3-4인 가구에게 추천' 으로 읽혔다. 상품 추천이 아니라 가구 수 추천처럼.
+
+   ★ 왜 '걸치는' 방식인가 — 배지에 따로 줄을 내주면 칸이 23px 길어지고
+     계산기 전체가 그만큼 늘어난다. 테두리에 걸치면 높이를 하나도 안 쓴다.
+   ★ 왜 가운데가 아니라 왼쪽인가 — 숫자('500 Mbps')가 칸 가운데에 있어서다.
+   ★ 왜 사선(리본)이 아닌가 — 폰에서 칸이 가로 100px 이라, 모서리 대각선으로
+     '추천' 두 글자(21px)와 여백을 담으려면 가로·세로 21px 씩 들어와야 하는데
+     '500' 글자가 왼쪽 18px·위 13px 자리에서 시작해 그 안에 들어온다. 즉 가려진다(실측).
+   ★ 세로로는 안 겹친다 — 배지는 칸 위에서 +7px 까지, 숫자는 12px 부터 시작한다.
+     칸 위쪽 12px 이 안쪽 여백이라 그 자리가 원래 비어 있다. */
+.dh-speed{ position:relative; }
+.dh-speed-top{
+  position:absolute; top:-12px; left:6px;
+  /* 실측으로 맞춘 값. -9 로 두면 배지 아래와 '500' 글자 사이가 2px 뿐이라 붙어 보인다.
+     -12 면 아래로 5px, 위(라벨까지)로 8px 이 남아 양쪽이 고르다.
+     배지와 숫자는 가로로 겹치므로(배지 7~44, 숫자 22~85) 세로 간격이 전부다. */
+  display:flex; align-items:center;
+}
+
+/* 배지가 위로 12px 나가는데 '인터넷 속도' 글씨까지 11px 뿐이라 자리가 모자란다.
+   이 칸의 라벨 여백만 8 -> 16 으로 늘려 여유를 8px 로 만든다.
+   (다른 질문칸 라벨은 그대로 둔다. 다 늘리면 계산기가 40px 길어진다) */
+.dh-q-speed .dh-calc-label{ margin-bottom:16px; }
+
+/* 라벨 여백에 쓴 8px 은 안내줄에서 되돌려받는다(고르는 단추는 48px 그대로).
+   ★ 안내문 자리를 두 줄(30px)에서 한 줄(15px)로 줄일 수 있게 됐다 —
+     1Gbps 안내가 '영상 업로드·고화질 스트리밍'(한 줄에 134px 필요) 이라 두 줄로 꺾였고,
+     그래서 세 칸 모두 두 줄 자리를 비워 두고 있었다. 100M·500M 칸에는 늘 빈 줄이 하나 있었다.
+     '업무·스트리밍' 으로 줄이면 가장 좁은 폰(360, 칸 안쪽 80px)에서도 한 줄로 들어간다. */
+.dh-speed-guide{ min-height:15px; }   /* 12px x 1.25 = 한 줄 */
+.dh-speed{ min-height:0; }            /* 속도 칸은 안쪽 내용으로 높이가 정해진다 */
 </style>
 </head>
 <body>
@@ -2334,7 +2421,7 @@ body.apply-open{ overflow:hidden; }
           </div>
         </div>
 
-        <div class="dh-calc-q">
+        <div class="dh-calc-q dh-q-speed">
           <span class="dh-calc-label">인터넷 속도</span>
           <div class="dh-calc-opts">
             <button type="button" class="dh-opt dh-speed" data-speed="100M" onclick="dh속도고르기('100M')">
@@ -2342,12 +2429,13 @@ body.apply-open{ overflow:hidden; }
               <span class="dh-speed-guide">1-2인 가구</span>
             </button>
             <button type="button" class="dh-opt dh-speed" data-speed="500M" onclick="dh속도고르기('500M')">
+              <span class="dh-speed-top"><i class="dh-speed-badge">추천</i></span>
               <span class="dh-speed-num">500<em>Mbps</em></span>
-              <span class="dh-speed-guide"><i class="dh-speed-badge">추천</i>3-4인 가구</span>
+              <span class="dh-speed-guide">3-4인 가구</span>
             </button>
             <button type="button" class="dh-opt dh-speed on" data-speed="1G" onclick="dh속도고르기('1G')">
               <span class="dh-speed-num">1<em>Gbps</em></span>
-              <span class="dh-speed-guide">영상 업로드·고화질 스트리밍</span>
+              <span class="dh-speed-guide">업무·스트리밍</span>
             </button>
           </div>
         </div>
@@ -2373,7 +2461,7 @@ body.apply-open{ overflow:hidden; }
           <div class="dh-calc-result-num"><em>최대</em> <strong id="dhCalcSum">0</strong>만원 <span class="dh-calc-plus">+ 추가혜택</span></div>
           <div class="dh-calc-break" id="dhCalcBreak"></div>
           <div class="dh-calc-secret"><span class="s-t">추가혜택</span><span class="s-d"></span><span class="s-v">상담 시 안내</span></div>
-          <div class="dh-calc-result-note">설치 후 오후 5:30 이전 기준 · 약정 조건에 따라 달라질 수 있습니다</div>
+          <div class="dh-calc-result-note">요금제에 따라 달라질 수 있습니다</div>
         </div>
 
         <button type="button" class="dh-calc-cta" onclick="dh계산기신청()">
