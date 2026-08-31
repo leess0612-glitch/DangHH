@@ -1764,6 +1764,49 @@ html { scroll-behavior: smooth; scroll-padding-top: 78px; }
    푸터 마지막 글줄이 띠에 가리지 않도록 그만큼 빈 자리를 더 준다. */
 @media (min-width: 769px) { footer { padding-bottom: 180px; } }
 </style>
+<style>
+/* ══════════════ 첫 화면 문단 글자 크기 바로잡기 (2026-08-31) ══════════════
+   ★ 무엇이 잘못돼 있었나 —
+     320번 줄에 `.hero p { font-size: clamp(15px, 2vw, 19px) }` 가 있다.
+     첫 화면 안의 '모든 문단'에 걸리는 규칙인데, 차액보상 박스의 줄들과
+     ⏰ 줄이 전부 문단(<p>)이라 여기에 걸린다.
+     그리고 `.hero p`(클래스1+요소1)가 `.hg-main`(클래스1)보다 우선순위가 높다.
+     그래서 설계한 크기가 하나도 안 나오고 전부 한 가지로 뭉개져 있었다(실측 1425 화면):
+
+        차액 120% 보상 약속   설계 14  ->  실제 19
+        다른 곳이 ... 더 준다면 설계 21  ->  실제 19
+        그 차액의 120%를 ...   설계 37  ->  실제 19   ← 가장 중요한 줄이 절반 크기로
+        비교하신 조건을 ...    설계 13  ->  실제 19
+        ⏰ 오늘 오후 5:30 ...  설계 13  ->  실제 19
+
+     박스가 밋밋해 보이던 까닭이 디자인이 아니라 이것이었다.
+
+   ★ 이 함정은 전에도 걸렸던 자리다 —
+     `.hg-line` 의 margin-bottom 과 `.hero-guarantee p` 의 opacity 에는 이미
+     덧대어 고친 흔적이 있다. 여백과 투명도는 고쳤는데 글자 크기만 놓쳤다.
+     `.hero-desc` 는 1594번 줄에서 `.hero .hero-desc` 로 제대로 고쳐 두었다.
+
+   ★ 고치는 방법 — 선택자를 한 단계 올려 `.hero p` 를 이기게 한다.
+     `.hero-guarantee .hg-main` 은 클래스가 둘이라 `.hero p` 를 이긴다.
+     원래 값을 바꾸는 게 아니라, 원래 값이 나오게 하는 것이다.
+
+   ★ 새 규칙을 이 파일에 더 넣을 때 —
+     첫 화면 안의 문단에 크기를 주려면 반드시 `.hero` 나 `.hero-guarantee` 를
+     앞에 붙일 것. 클래스 하나짜리 선택자는 `.hero p` 에 진다. */
+.hero-guarantee .hg-badge{ font-size:14px; }
+.hero-guarantee .hg-line { font-size:clamp(16px, 2.1vw, 21px); }
+.hero-guarantee .hg-main { font-size:clamp(23px, 3.5vw, 37px); }
+.hero-guarantee .hg-note { font-size:13px; }
+.hero .hero-urgency{ font-size:13px; }
+
+@media (max-width:768px){
+  .hero-guarantee .hg-badge{ font-size:13px; }
+}
+
+/* 폴드5 전면(344)에서 낱말 가운데가 끊겼다(실측). 낱말 단위로만 끊고,
+   끝줄에 한 낱말만 남지 않도록 줄을 고르게 나눈다(첫 페이지 질문줄과 같은 방법). */
+.hero-guarantee p{ word-break:keep-all; text-wrap:balance; }
+</style>
 </head>
 <body>
 <!-- 당현함 로고 원본 정의 (2026-08-28). 아래에서 <use> 로 불러 쓴다.
@@ -1819,10 +1862,9 @@ html { scroll-behavior: smooth; scroll-padding-top: 78px; }
        ★ 순서 주의 : 명세표(아래)보다 반드시 위에 둔다.
          명세표가 높이 257px 이라, 아래에 두면 폰 첫 화면에서 이 칸이 잘린다(실측). -->
   <div class="hero-guarantee">
-    <p class="hg-badge">차액 120% 보상 약속</p>
-    <p class="hg-line">다른 곳이 <em>단 1원이라도</em> 더 준다면</p>
-    <p class="hg-main">그 <strong>차액의 120%를</strong><br class="mob-br"> 드립니다</p>
-    <p class="hg-note">비교하신 조건을 보여 주시면 그 자리에서 맞춰 드립니다</p>
+    <p class="hg-badge">당현함 약속</p>
+    <p class="hg-line">타업체가 <em>단 1원이라도</em> 더 준다면</p>
+    <p class="hg-main"><strong>차액 120% 보상</strong></p>
   </div>
 
   <!-- ===== 지원금 명세표 — 지금은 잠시 꺼 둠 (2026-08-27) =====
@@ -3188,6 +3230,16 @@ function toggleService(type) {
     });
   }, { rootMargin: '400px 0px' });
   관찰.observe(띠);
+
+  /* 안전장치 : 위 감지가 어떤 이유로든 작동하지 않아도 사진이 비어 있지 않게 한다.
+     첫 화면이 다 뜬 뒤(load), 브라우저가 한가해진 틈에 조용히 받아 둔다.
+     - 첫 화면 속도에는 영향이 없다. 다 뜬 다음에 시작하기 때문이다.
+     - 감지가 정상으로 돌면 그쪽이 먼저 끝내므로 두 번 받는 일은 없다
+       (data-src 가 이미 지워져 있어 다받기() 가 할 일이 없다). */
+  window.addEventListener('load', function(){
+    var 한가할때 = window.requestIdleCallback || function(f){ return setTimeout(f, 2500); };
+    한가할때(function(){ 다받기(); 관찰.disconnect(); });
+  });
 })();
 
 function toggleFaq(el) { el.parentElement.classList.toggle('open'); }
