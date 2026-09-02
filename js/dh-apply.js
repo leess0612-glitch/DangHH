@@ -347,17 +347,13 @@
   window.신청창닫기 = function () { return 닫기(); };
   window.신청창바깥닫기 = function (e) { if (e && e.target && e.target.id === 'applyOverlay') 닫기(); };
 
+  /* 인터넷·렌탈 탭 켜고 끄기 — 메인(index.html)과 똑같이 움직인다.
+     둘 다 꺼도 막지 않는다. 그 상태로 보내기를 누르면 "하나 이상 선택" 알림이 뜬다. */
   window.toggleService = function (종류) {
     if (종류 !== 'internet' && 종류 !== 'rental') return;
-    var 켤까 = !고른서비스[종류];
-    /* 마지막 하나까지 끄지는 못하게 한다 — 무엇을 신청하는지 알 수 없어진다 */
-    if (!켤까) {
-      var 남는수 = (고른서비스.internet ? 1 : 0) + (고른서비스.rental ? 1 : 0) - 1;
-      if (남는수 <= 0) return;
-    }
-    고른서비스[종류] = 켤까;
+    고른서비스[종류] = !고른서비스[종류];
     var 탭 = document.getElementById('tab-' + 종류);
-    if (탭) 탭.classList.toggle('active', 켤까);
+    if (탭) 탭.classList.toggle('active', 고른서비스[종류]);
   };
 
   window.요청사항펴기 = function () {
