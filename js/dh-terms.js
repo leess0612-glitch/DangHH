@@ -132,10 +132,18 @@ window.DH_약관 = {
   /* 창을 담을 상자가 페이지에 없으면 만들어 붙인다 */
   function 상자만들기(종류) {
     var id = (종류 === 'privacy' ? 'privacyOverlay' : 'termsOverlay');
-    var 이미있나 = document.getElementById(id);
-    if (이미있나) return 이미있나;
-
     var 글 = window.DH_약관[종류];
+    var 이미있나 = document.getElementById(id);
+    if (이미있나) {
+      /* 페이지 안에 옛 창이 남아 있으면 그 안의 글만 이 파일 것으로 갈아 끼운다.
+         덕분에 index.html·rental.html 은 불러오는 한 줄만 넣으면 글이 통일된다. */
+      var 몸 = 이미있나.querySelector('.privacy-modal-body');
+      var 제 = 이미있나.querySelector('.privacy-modal-head h3');
+      if (몸) 몸.innerHTML = 글.본문;
+      if (제) 제.textContent = 글.제목;
+      return 이미있나;
+    }
+
     var 덮개 = document.createElement('div');
     덮개.className = 'privacy-overlay';
     덮개.id = id;

@@ -113,6 +113,7 @@ window.addEventListener('scroll', function(){
 }, { passive: true });
 </script>
 <script src="js/dh-inflow.js?v=3"></script>
+<script src="js/dh-terms.js?v=1"></script>
 <script>
 /* 부품 파일을 못 받아 왔더라도 신청 접수는 막히지 않게 한다 (유입 칸만 비게 된다) */
 if (typeof dhInflow !== 'function') { window.dhInflow = function () { return {}; }; }
@@ -120,7 +121,7 @@ if (typeof dhInflow !== 'function') { window.dhInflow = function () { return {};
 <!-- ===== 전환추적 끝 ===== -->
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>통신사별 실제 요금표 | 당현함</title>
+<title>통신사별 요금표 | 당현함</title>
 <meta name="description" content="KT·SK브로드밴드·LG U+ 인터넷과 TV 결합 요금, 결합 조건별 월 요금과 현금 사은품 금액을 통신사별 요금표로 한눈에 확인하세요.">
 <link rel="canonical" href="https://danghh.com/plans.html">
 <meta property="og:type" content="website">
@@ -158,6 +159,8 @@ if (typeof dhInflow !== 'function') { window.dhInflow = function () { return {};
   --kt: #e60012;
   --sk: #f97316;
   --lg: #e6008c;
+  --sky: #0064B4;
+  --hello: #B4192F;
 }
 body { font-family: 'SUIT', 'Noto Sans KR', sans-serif; color: var(--dark); line-height: 1.6; overflow-x: hidden; background: var(--ground); }
 body.locked { overflow: hidden; }
@@ -289,24 +292,31 @@ nav a.on { color: var(--primary); background: #eff6ff; font-weight: 700; }
 .tabbar { position: sticky; top: 64px; z-index: 500; background: var(--ground); border-bottom: 1px solid var(--border); }
 .tabs {
   max-width: 860px; margin: 0 auto; padding: 12px 20px;
-  display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;
+  display: flex; gap: 8px; justify-content: center;
+  overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none;
 }
+.tabs::-webkit-scrollbar { display: none; }
 .tab {
   font-family: inherit; font-size: 17px; font-weight: 900; letter-spacing: -0.3px;
-  padding: 13px 8px; border-radius: 12px; cursor: pointer;
+  flex: 0 0 auto; white-space: nowrap;
+  padding: 13px 16px; border-radius: 12px; cursor: pointer;
   background: white; border: 1.5px solid var(--border); color: var(--gray);
   box-shadow: 0 2px 12px rgba(15,42,90,0.06);
   transition: transform 0.12s ease, background 0.2s, border-color 0.2s, box-shadow 0.2s, color 0.2s;
 }
 .tab.kt { color: var(--kt); }
 .tab.sk { color: var(--sk); }
-.tab.lg { color: var(--lg); font-size: 15px; }
+.tab.lg { color: var(--lg); }
+.tab.sky { color: var(--sky); }
+.tab.hello { color: var(--hello); }
 .tab:hover { border-color: currentColor; }
 .tab:active { transform: translateY(1px) scale(0.985); }
 .tab[aria-selected="true"] { color: white; box-shadow: 0 6px 18px rgba(15,42,90,0.16); }
 .tab.kt[aria-selected="true"] { background: var(--kt); border-color: var(--kt); }
 .tab.sk[aria-selected="true"] { background: var(--sk); border-color: var(--sk); }
 .tab.lg[aria-selected="true"] { background: var(--lg); border-color: var(--lg); }
+.tab.sky[aria-selected="true"] { background: var(--sky); border-color: var(--sky); }
+.tab.hello[aria-selected="true"] { background: var(--hello); border-color: var(--hello); }
 
 /* ===== 본문 ===== */
 .wrap { max-width: 860px; margin: 0 auto; padding: 26px 20px 60px; }
@@ -565,8 +575,7 @@ footer :focus-visible {
   .page-head h1 { font-size: 24px; }
   .page-head p { font-size: 13.5px; }
   .tabs { padding: 10px 14px; gap: 8px; }
-  .tab { font-size: 16px; padding: 12px 4px; border-radius: 11px; }
-  .tab.lg { font-size: 13.5px; }
+  .tab { font-size: 15px; padding: 12px 14px; border-radius: 11px; }
   .wrap { padding: 22px 14px 50px; }
   .sheet-name { font-size: 17px; }
   .zoom-hint { font-size: 12px; padding: 5px 11px; }
@@ -587,6 +596,138 @@ footer :focus-visible {
 }
 @media (prefers-reduced-motion: reduce) {
   * { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+}
+
+/* ===== 요금표 (2026-09-02: 그림 3장 → 글자 표 5개로 바꿈) ===== */
+.rate-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin: 24px 0 8px; }
+.rate-head h2 { font-size: 19px; font-weight: 800; letter-spacing: -0.4px; color: var(--dark); }
+.scroll-hint { display: none; }   /* 컴퓨터 화면에서는 감춘다 */
+
+/* 결합 방법 안내 (표 위) */
+.join-guide { display: grid; gap: 8px; margin-bottom: 16px; }
+.join-guide .row {
+  display: grid; grid-template-columns: 104px 1fr; gap: 12px; align-items: center;
+  background: white; border: 1px solid var(--border); border-radius: 12px; padding: 12px 16px;
+}
+.join-guide .row b {
+  display: inline-block; text-align: center; font-size: 14px; font-weight: 800; color: var(--dark);
+  background: var(--ground); border: 1px solid var(--border); border-radius: 8px; padding: 8px 4px;
+}
+.join-guide .row span { font-size: 14px; color: var(--dark); line-height: 1.6; word-break: keep-all; }
+.join-guide .row span em { display: block; font-style: normal; font-size: 13px; color: var(--gray); margin-top: 4px; }
+
+/* 표 몸통 */
+.rate-wrap { background: white; border: 1px solid var(--border); border-radius: 16px; overflow: hidden; }
+.table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+table.rate { border-collapse: collapse; width: 100%; }
+table.rate th, table.rate td {
+  border-bottom: 1px solid var(--border); border-right: 1px solid var(--border);
+  padding: 12px 8px; text-align: center; font-size: 15px; font-weight: 400; color: var(--dark);
+}
+table.rate tr:last-child th, table.rate tr:last-child td { border-bottom: none; }
+table.rate tbody tr.prod-start:not(:first-child) th,
+table.rate tbody tr.prod-start:not(:first-child) td { border-top: 2px solid var(--border); }
+table.rate th:last-child, table.rate td:last-child { border-right: none; }
+table.rate thead th {
+  background: #E8EFFD; color: var(--dark); font-size: 14px; font-weight: 800;
+  white-space: nowrap; padding: 10px 8px;
+}
+table.rate thead th.speed-head { font-size: 15px; }
+table.rate thead th.fee-head, table.rate thead th.gift-head { font-size: 13px; font-weight: 600; }
+table.rate thead th.kind-head { width: 96px; min-width: 96px; }
+table.rate td { min-width: 88px; }
+table.rate td.gift { min-width: 76px; }
+table.rate thead th:last-child { border-right: none; }
+table.rate th.prod {
+  text-align: left; vertical-align: middle; background: white; font-weight: 700;
+  width: 168px; min-width: 168px; padding: 12px 16px; word-break: keep-all;
+}
+table.rate th.prod .pname { display: block; font-size: 15px; font-weight: 700; line-height: 1.4; }
+table.rate th.prod .ch { display: block; font-size: 13px; font-weight: 400; color: var(--gray); margin-top: 4px; }
+table.rate th.prod .best {
+  display: inline-block; font-size: 12px; font-weight: 800; color: var(--primary);
+  background: #eff6ff; border-radius: 999px; padding: 4px 8px; margin-bottom: 8px;
+}
+table.rate th.kind { font-size: 14px; font-weight: 600; color: var(--dark); background: var(--ground); width: 104px; min-width: 104px; white-space: nowrap; }
+table.rate td.gift { vertical-align: middle; background: #FFF8F8; }
+table.rate td.gift b { font-size: 18px; font-weight: 900; color: #E60012; letter-spacing: -0.5px; }
+table.rate td.gift span { font-size: 12px; font-weight: 600; color: #E60012; margin-left: 1px; }
+
+/* 표 아래 작은 상자 (TV 추가·설치비) */
+.sub-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 12px; }
+.sub-box { background: white; border: 1px solid var(--border); border-radius: 12px; padding: 16px; }
+.sub-box h3 { font-size: 15px; font-weight: 800; color: var(--dark); margin-bottom: 4px; }
+.sub-box .sub-gift { font-size: 14px; font-weight: 700; color: #E60012; margin-bottom: 8px; }
+.sub-box dl { display: grid; grid-template-columns: 1fr auto; gap: 8px 12px; margin-top: 8px; }
+.sub-box dt { font-size: 14px; color: var(--gray); word-break: keep-all; }
+.sub-box dd { font-size: 14px; font-weight: 700; color: var(--dark); text-align: right; white-space: nowrap; }
+
+/* 회사별 주석 */
+.rate-note { margin-top: 12px; padding: 16px; background: white; border: 1px solid var(--border); border-radius: 12px; }
+.rate-note li { list-style: none; font-size: 13px; color: var(--gray); line-height: 1.8; word-break: keep-all; padding-left: 12px; position: relative; }
+.rate-note li::before { content: '·'; position: absolute; left: 0; }
+
+@media (max-width: 768px) {
+  .rate-head { flex-direction: column; align-items: flex-start; gap: 4px; }
+  .rate-head h2 { font-size: 17px; }
+  .scroll-hint { display: block; font-size: 12px; font-weight: 600; color: var(--gray); margin: 0 0 8px; }
+  .join-guide .row { grid-template-columns: 88px 1fr; gap: 8px; padding: 12px; }
+  .join-guide .row b { font-size: 13px; padding: 8px 4px; }
+  .join-guide .row span { font-size: 13px; }
+  table.rate th.prod { width: 132px; min-width: 132px; padding: 12px; }
+  table.rate th.prod .pname { font-size: 14px; }
+  table.rate th, table.rate td { font-size: 14px; padding: 12px 4px; }
+  table.rate th.kind { width: 88px; min-width: 88px; font-size: 13px; }
+  table.rate td.gift b { font-size: 16px; }
+  .sub-grid { grid-template-columns: 1fr; }
+}
+
+/* 표 제목 안의 통신사 이름 색 */
+.rate-head h2 .co { font-weight: 900; }
+.co.kt { color: var(--kt); }
+.co.sk { color: var(--sk); }
+.co.lg { color: var(--lg); }
+.co.sky { color: var(--sky); }
+.co.hello { color: var(--hello); }
+
+/* 옆으로 밀어도 상품 이름 칸은 왼쪽에 붙어 있게 (폰에서 어떤 상품인지 놓치지 않도록) */
+table.rate th.prod, table.rate thead th:first-child { position: sticky; left: 0; z-index: 2; }
+table.rate thead th:first-child { z-index: 3; }
+table.rate th.prod { box-shadow: 1px 0 0 var(--border); }
+
+/* 폰에서는 통신사 단추를 두 줄로 접어 다섯 개가 한눈에 보이게 */
+@media (max-width: 768px) {
+  .tabs { flex-wrap: wrap; overflow-x: visible; }
+}
+
+/* 구분칸 아래 딸린 작은 설명 (예: 30% 할인 적용 → 사은품 변동) */
+table.rate th.kind .kind-sub { display: block; font-size: 12px; font-weight: 400; color: var(--gray); margin-top: 4px; white-space: nowrap; }
+
+/* 대부분 놓치고 있는 가족결합 할인 상자 */
+.bundle { margin-top: 12px; background: white; border: 1px solid var(--border); border-radius: 12px; padding: 16px; }
+.bundle h3 { font-size: 16px; font-weight: 800; color: var(--dark); margin-bottom: 12px; }
+.bundle h4 { font-size: 14px; font-weight: 700; color: var(--gray); margin: 16px 0 8px; }
+table.bundle-tbl { border-collapse: collapse; width: 100%; }
+table.bundle-tbl th, table.bundle-tbl td {
+  border: 1px solid var(--border); padding: 10px 12px;
+  font-size: 13px; font-weight: 400; color: var(--dark);
+  text-align: left; vertical-align: top; line-height: 1.6; word-break: keep-all;
+}
+table.bundle-tbl thead th { background: #E8EFFD; font-weight: 700; text-align: center; white-space: nowrap; }
+table.bundle-tbl td.b-first { font-weight: 700; background: var(--ground); white-space: nowrap; vertical-align: middle; }
+.bundle-note { margin-top: 12px; }
+.bundle-note li { list-style: none; font-size: 13px; color: var(--gray); line-height: 1.8; padding-left: 12px; position: relative; word-break: keep-all; }
+.bundle-note li::before { content: '·'; position: absolute; left: 0; }
+@media (max-width: 768px) {
+  .bundle { padding: 12px; }
+  table.bundle-tbl th, table.bundle-tbl td { padding: 8px; font-size: 12.5px; }
+  table.bundle-tbl { min-width: 520px; }
+}
+
+/* 컴퓨터 화면 아래에 따라다니는 신청 카드가 푸터 글을 가리지 않도록 자리를 비워 둔다
+   (2026-09-02 실측: 카드 높이 77px + 아래 여백 24px) */
+@media (min-width: 769px) {
+  footer .footer-inner { padding-bottom: 104px; }
 }
 </style>
 </head>
@@ -634,55 +775,57 @@ footer :focus-visible {
 
 <!-- 페이지 머리띠 -->
 <div class="page-head">
-  <div class="badge">📋 결합 조건별 실제 요금</div>
-  <h1>통신사별 <em>실제 요금표</em></h1>
-  <p>인터넷·TV 월 요금과 현금 사은품 금액을<br>통신사별로 그대로 공개합니다</p>
+  <h1>통신사별 <em>요금표</em></h1>
+  <p>사은품은 경품고시제 가이드상 최대 기본 사은품만 표기</p>
 </div>
 
 <!-- 통신사 고르는 단추 -->
 <div class="tabbar">
   <div class="tabs" role="tablist" aria-label="통신사 선택">
-    <button type="button" class="tab kt" role="tab" id="tab-kt" aria-controls="panel-kt" aria-selected="true" data-co="kt">kt</button>
+    <button type="button" class="tab kt" role="tab" id="tab-kt" aria-controls="panel-kt" aria-selected="true" data-co="kt">KT</button>
     <button type="button" class="tab sk" role="tab" id="tab-sk" aria-controls="panel-sk" aria-selected="false" tabindex="-1" data-co="sk">SK</button>
     <button type="button" class="tab lg" role="tab" id="tab-lg" aria-controls="panel-lg" aria-selected="false" tabindex="-1" data-co="lg">LG U+</button>
+    <button type="button" class="tab sky" role="tab" id="tab-sky" aria-controls="panel-sky" aria-selected="false" tabindex="-1" data-co="sky">스카이라이프</button>
+    <button type="button" class="tab hello" role="tab" id="tab-hello" aria-controls="panel-hello" aria-selected="false" tabindex="-1" data-co="hello">헬로비전</button>
   </div>
 </div>
 
 <div class="wrap">
 
-  <!-- KT -->
   <section class="panel" id="panel-kt" role="tabpanel" aria-labelledby="tab-kt">
-    <div class="sheet-head">
-      <div class="sheet-name kt"><span class="co">KT</span> 인터넷 요금제 &amp; 사은품</div>
-      <span class="zoom-hint">🔍 표를 누르면 크게 볼 수 있어요</span>
+    <div class="rate-head">
+      <h2><span class="co kt">KT</span> 인터넷TV 요금표 한눈에 보기!</h2>
     </div>
-    <button type="button" class="sheet" data-src="images/plans/kt.jpg" data-label="KT 요금표">
-      <img data-src="images/plans/kt.jpg" width="800" height="1472" alt="KT 인터넷 요금표 — 결합 종류별(미결합·휴대폰결합·패밀리할인) 100메가·500메가·1기가 월 요금과 현금 사은품 금액">
-    </button>
+    <div class="rate-body"></div>
   </section>
 
-  <!-- SK -->
   <section class="panel" id="panel-sk" role="tabpanel" aria-labelledby="tab-sk" hidden>
-    <div class="sheet-head">
-      <div class="sheet-name sk"><span class="co">SK브로드밴드</span> 인터넷 요금제 &amp; 사은품</div>
-      <span class="zoom-hint">🔍 표를 누르면 크게 볼 수 있어요</span>
+    <div class="rate-head">
+      <h2><span class="co sk">SK브로드밴드</span> 인터넷TV 요금표 한눈에 보기!</h2>
     </div>
-    <button type="button" class="sheet" data-src="images/plans/sk.jpg" data-label="SK 요금표">
-      <img data-src="images/plans/sk.jpg" width="800" height="1473" alt="SK브로드밴드 인터넷 요금표 — 결합 종류별(미결합·휴대폰결합·패밀리결합) 100메가·500메가·1기가 월 요금과 현금 사은품 금액">
-    </button>
+    <div class="rate-body"></div>
   </section>
 
-  <!-- LG U+ -->
   <section class="panel" id="panel-lg" role="tabpanel" aria-labelledby="tab-lg" hidden>
-    <div class="sheet-head">
-      <div class="sheet-name lg"><span class="co">LG U+</span> 인터넷 요금제 &amp; 사은품</div>
-      <span class="zoom-hint">🔍 표를 누르면 크게 볼 수 있어요</span>
+    <div class="rate-head">
+      <h2><span class="co lg">LG U+</span> 인터넷TV 요금표 한눈에 보기!</h2>
     </div>
-    <button type="button" class="sheet" data-src="images/plans/lg.jpg" data-label="LG U+ 요금표">
-      <img data-src="images/plans/lg.jpg" width="800" height="1473" alt="LG U+ 인터넷 요금표 — 결합 종류별(미결합·휴대폰결합·패밀리할인) 100메가·500메가·1기가 월 요금과 현금 사은품 금액">
-    </button>
+    <div class="rate-body"></div>
   </section>
 
+  <section class="panel" id="panel-sky" role="tabpanel" aria-labelledby="tab-sky" hidden>
+    <div class="rate-head">
+      <h2><span class="co sky">KT 스카이라이프</span> 인터넷TV 요금표 한눈에 보기!</h2>
+    </div>
+    <div class="rate-body"></div>
+  </section>
+
+  <section class="panel" id="panel-hello" role="tabpanel" aria-labelledby="tab-hello" hidden>
+    <div class="rate-head">
+      <h2><span class="co hello">LG 헬로비전</span> 인터넷TV 요금표 한눈에 보기!</h2>
+    </div>
+    <div class="rate-body"></div>
+  </section>
   <p class="note">
     ※ 표의 요금은 부가세 포함 금액이며, 약정 기간·결합 상품·설치 지역에 따라 달라질 수 있습니다.<br>
     ※ 현금 사은품은 개통 확인 후 당일 지급을 원칙으로 하며, 상품과 조건에 따라 금액이 달라집니다.<br>
@@ -694,12 +837,6 @@ footer :focus-visible {
 
 </div>
 
-<!-- 크게 보기 -->
-<div class="zoom" id="zoom" role="dialog" aria-modal="true" aria-label="요금표 크게 보기">
-  <span class="zoom-tip">손가락으로 밀어서 보세요</span>
-  <button type="button" class="zoom-close" id="zoomClose" aria-label="크게 보기 닫기">✕</button>
-  <div class="zoom-inner"><img id="zoomImg" alt=""></div>
-</div>
 
 <!-- 컴퓨터 화면 아래 따라오는 신청 카드 (2026-08-28) -->
 <div class="desk-cta-bar" id="deskCtaBar">
@@ -720,8 +857,8 @@ footer :focus-visible {
     <div class="footer-top">
       <div class="footer-logo"><svg class="footer-mark" width="21" height="14" viewBox="25.6 68 246.4 162.4" aria-hidden="true"><use href="#dh-logo" fill="currentColor"/></svg><span>당<span>현</span>함</span></div>
       <div class="footer-links">
-        <a href="index.html">개인정보처리방침</a>
-        <a href="index.html">서비스이용약관</a>
+        <a href="javascript:void(0)" onclick="openPrivacy()">개인정보처리방침</a>
+        <a href="javascript:void(0)" onclick="openTerms()">서비스이용약관</a>
         <a href="tel:1600-4670">1600-4670</a>
       </div>
     </div>
@@ -808,21 +945,456 @@ footer :focus-visible {
 // 통신사 골라 보기
 // 주소 뒤에 #kt / #sk / #lg 가 붙어 오면 그 통신사가 열린 채로 시작한다.
 // (홈페이지 요금제 카드가 이 방식으로 링크를 건다)
-// 그림은 실제로 볼 때 한 장씩만 불러온다 — 세 장을 한꺼번에 받으면 느려진다.
+// 표는 실제로 볼 때 한 회사씩만 그린다 — 다섯 개를 한꺼번에 그리면 느려진다.
 // ───────────────────────────────────────────────────────────────
+/* ───────────────────────────────────────────────────────────────
+   통신사별 요금·사은품 자료 (2026-09-02)
+
+   ★ 요금이 바뀌면 이 자료만 고치면 화면이 알아서 다시 그려진다.
+     그림(images/plans/*.jpg)을 새로 만들 필요가 없다.
+
+   출처
+     KT   요금·사은품 = 당현함 요금표 그림 / 모든G 요금·TV추가 임대료 = 사장님 확인값
+     SK   요금·사은품 = 당현함 요금표 그림
+     LG   요금·사은품 = 당현함 요금표 그림
+     스카이 요금·설치비 = 사장님 확인값 / 사은품·와이파이조건 = 사장님 제공 그림
+     헬로  요금·사은품 = 공개된 헬로비전 요금표 기준
+     설치비 = 각 통신사 공개 기준(평일)
+   ─────────────────────────────────────────────────────────────── */
+var 요금자료 = {
+
+  kt: {
+    탭이름: 'KT',
+    제목: '인터넷 요금제 &amp; 사은품',
+    속도: ['100메가', '500메가', '1기가'],
+    결합안내: [
+      ['미결합', 'KT 휴대폰이나 KT 인터넷이 없는 경우', '설치 후 일정기간 내 휴대폰 결합할인 가능'],
+      ['휴대폰결합', 'KT 휴대폰과 KT 인터넷을 결합하는 방법', '기본료 64.9 기준 적용 / 결합 가능한 휴대폰 기본료 합산금액에 따라 할인지원'],
+      ['패밀리할인', 'KT 인터넷+KT 인터넷끼리 결합하는 방법', '기존 본인명의 또는 2촌이내 가족명의 인터넷만 결합가능']
+    ],
+    상품: [
+      { 이름: '인터넷 단독',
+        사은품: ['9만원', '14만원', '14만원'],
+        요금: [
+          ['미결합',    ['22,000원', '33,000원', '38,500원']],
+          ['휴대폰결합', ['16,500원', '22,000원', '27,500원']],
+          ['패밀리할인', ['16,500원', '22,000원', '27,500원']]
+        ] },
+      { 이름: '인터넷 + 지니TV 베이직', 채널: '237채널', 추천: true,
+        사은품: ['37만원', '45만원', '45만원'],
+        요금: [
+          ['미결합',    ['37,400원', '42,900원', '48,400원']],
+          ['휴대폰결합', ['31,900원', '37,400원', '42,900원']],
+          ['패밀리할인', ['31,900원', '37,400원', '42,900원']]
+        ] },
+      { 이름: '인터넷 + 지니TV 모든G', 채널: '255채널',
+        사은품: ['37만원', '45만원', '45만원'],
+        요금: [
+          ['미결합',    ['45,100원', '50,600원', '56,100원']],
+          ['휴대폰결합', ['39,600원', '45,100원', '50,600원']],
+          ['패밀리할인', ['39,600원', '45,100원', '50,600원']]
+        ] }
+    ],
+    추가TV: { 사은품: '3만원', 줄: [['지니TV 베이직', '10,670원'], ['지니TV 모든G', '24,640원']] },
+    결합할인: {
+      표들: [
+        { 머리: ['결합 종류', '결합 상품', '결합 조건', '혜택 요약'],
+          줄들: [
+            ['인터넷 + 휴대폰', '프리미엄<br>싱글결합', '고가 요금제 1회선<br>+ 500메가 이상 인터넷', '인터넷 5,500원<br>휴대폰 요금 25% 할인'],
+            ['', '프리미엄<br>가족결합', '고가 요금제 2회선 이상<br>+ 인터넷', '인터넷 5,500원<br>휴대폰 요금 25% 할인'],
+            ['', '총액결합할인', '요금제 상관없이<br>휴대폰 + 인터넷', '최소 1,650원 ~<br>최대 33,110원 할인'],
+            ['인터넷 + 인터넷', '패밀리 결합', '인터넷 2대 이상', '인터넷 5,500원']
+          ] },
+        { 제목: '총액 결합 할인표',
+          머리: ['월 요금 합산', '~ 22,000원', '~ 64,900원', '~ 108,900원', '~ 141,900원', '~ 174,900원', '174,900원 초과'],
+          줄들: [
+            ['인터넷 할인', '2,200원', '5,500원', '5,500원', '5,500원', '5,500원', '5,500원'],
+            ['휴대폰 할인', '—', '—', '5,500원', '16,610원', '22,110원', '27,610원']
+          ] }
+      ],
+      주석: ['고가 요금제란 월 77,000원 이상 요금제를 말합니다.',
+             '휴대폰 2대 이상이고 각각 77,000원 이상이면 프리미엄 가족결합, 그보다 낮으면 총액결합 할인이 유리합니다.']
+    },
+    설치비: [['인터넷 단독', '36,000원'], ['인터넷 + TV', '56,200원'], ['TV 1대 추가', '+15,400원']],
+    주석: [
+      '요금은 와이파이 공유기가 빠진 금액입니다. 공유기를 넣으면 임대료 1,100원이 붙습니다(1기가는 무상 임대).',
+      'TV 셋톱은 기가지니A 기준입니다. 기가지니3으로 바꾸면 추가금이 생길 수 있습니다.'
+    ]
+  },
+
+  sk: {
+    탭이름: 'SK',
+    제목: '인터넷 요금제 &amp; 사은품',
+    속도: ['100메가', '500메가', '1기가'],
+    결합안내: [
+      ['미결합', 'SK 휴대폰이나 SK 인터넷이 없는 경우', '설치 후 일정기간 내 휴대폰 결합할인 가능'],
+      ['휴대폰결합', 'SK 휴대폰과 SK 인터넷을 결합하는 방법', 'SK 휴대폰 1~5회선, SK 인터넷 2회선까지 결합 가능'],
+      ['패밀리결합', 'SK 인터넷+SK 인터넷끼리 결합하는 방법', '기존 본인명의 또는 2촌이내 가족명의 인터넷만 결합가능']
+    ],
+    상품: [
+      { 이름: '인터넷 단독',
+        사은품: ['11만원', '17만원', '17만원'],
+        요금: [
+          ['미결합',    ['22,000원', '33,000원', '38,500원']],
+          ['휴대폰결합', ['17,600원', '22,000원', '25,300원']],
+          ['패밀리결합', ['16,500원', '22,000원', '27,500원']]
+        ] },
+      { 이름: '인터넷 + B tv 이코노미', 채널: '183채널',
+        사은품: ['43만원', '47만원', '49만원'],
+        요금: [
+          ['미결합',    ['34,100원', '41,800원', '47,300원']],
+          ['휴대폰결합', ['30,800원', '35,200원', '38,500원']],
+          ['패밀리결합', ['30,800원', '36,300원', '41,800원']]
+        ] },
+      { 이름: '인터넷 + B tv 스탠다드', 채널: '235채널', 추천: true,
+        사은품: ['43만원', '47만원', '49만원'],
+        요금: [
+          ['미결합',    ['37,400원', '45,100원', '50,600원']],
+          ['휴대폰결합', ['34,100원', '38,500원', '41,800원']],
+          ['패밀리결합', ['34,100원', '39,600원', '45,100원']]
+        ] }
+    ],
+    추가TV: { 사은품: '3만원', 줄: [['B tv 이코노미', '8,250원'], ['B tv 스탠다드', '9,900원']] },
+    결합할인: {
+      표들: [
+        { 머리: ['구분', '결합 조건', '인터넷 할인', '휴대폰 할인'],
+          줄들: [
+            ['요즘 가족결합',
+             '휴대폰 결합상품,<br>휴대폰 1회선~5회선까지<br>결합 가능',
+             '100메가 &nbsp;4,400원<br>500메가 &nbsp;11,000원<br>1기가 &nbsp;&nbsp;&nbsp;13,200원',
+             '최소 3,500원 ~<br>최대 24,000원']
+          ] }
+      ],
+      주석: ['자세한 결합 조건은 상담에서 확인해 드립니다.']
+    },
+    설치비: [['인터넷 단독', '36,300원'], ['인터넷 + TV', '56,100원'], ['TV 1대 추가', '+17,600원']],
+    주석: [
+      '요금은 와이파이 공유기가 빠진 금액입니다. 공유기를 넣으면 임대료 1,100원이 붙습니다.',
+      'TV 셋톱은 스마트3 기준입니다. 애플TV 셋톱이나 AI 2 셋톱으로 바꾸면 추가금이 생길 수 있습니다.'
+    ]
+  },
+
+  lg: {
+    탭이름: 'LG U+',
+    제목: '인터넷 요금제 &amp; 사은품',
+    속도: ['100메가', '500메가', '1기가'],
+    결합안내: [
+      ['미결합', 'LG 휴대폰이나 LG 인터넷이 없는 경우', '설치 후 일정기간 내 휴대폰 결합할인 가능'],
+      ['휴대폰결합', 'LG 휴대폰과 LG 인터넷을 결합하는 방법', '결합가능한 휴대폰 회선수에 따라 할인지원. 최대 10대까지 결합 가능'],
+      ['패밀리할인', 'LG 인터넷+LG 인터넷끼리 결합하는 방법', '기존 본인명의 또는 2촌이내 가족명의 인터넷만 결합가능']
+    ],
+    상품: [
+      { 이름: '인터넷 단독',
+        사은품: ['20만원', '23만원', '23만원'],
+        요금: [
+          ['미결합',    ['22,000원', '33,000원', '38,500원']],
+          ['휴대폰결합', ['16,500원', '23,100원', '25,300원']],
+          ['패밀리할인', ['16,500원', '27,500원', '33,000원']]
+        ] },
+      { 이름: '인터넷 + 실속TV', 채널: '216채널', 추천: true,
+        사은품: ['33만원', '47만원', '47만원'],
+        요금: [
+          ['미결합',    ['39,600원', '45,100원', '50,600원']],
+          ['휴대폰결합', ['34,100원', '35,200원', '37,400원']],
+          ['패밀리할인', ['34,100원', '39,600원', '45,100원']]
+        ] },
+      { 이름: '인터넷 + 프리미엄TV', 채널: '251채널',
+        사은품: ['33만원', '47만원', '47만원'],
+        요금: [
+          ['미결합',    ['42,900원', '48,400원', '53,900원']],
+          ['휴대폰결합', ['37,400원', '38,500원', '40,700원']],
+          ['패밀리할인', ['37,400원', '42,900원', '48,400원']]
+        ] }
+    ],
+    추가TV: { 사은품: '3만원', 줄: [
+      ['실속형 (100메가)', '11,000원'], ['프리미엄 (100메가)', '12,650원'],
+      ['실속형 (500메가)', '9,900원'],  ['프리미엄 (500메가)', '11,550원']
+    ] },
+    결합할인: {
+      표들: [
+        { 머리: ['결합 종류', '결합 상품', '결합 조건', '혜택 요약'],
+          줄들: [
+            /* ─── 2026-09-02 사장님 지시로 '특수 상황' 세 줄(신혼플러스·펫플러스·시니어플러스)을 감춰 뒀다.
+                   지운 게 아니라 가려 둔 것이라, 다시 넣고 싶으면 이 주석의 시작(슬래시별)과
+                   끝(별슬래시)만 지우면 그대로 되살아난다. ───
+            ['특수 상황', '신혼플러스', '예비 부부·신혼 부부<br>(5G 85요금제, LTE 78요금제 이상)', '모바일 요금 6개월 무료<br>+ 월 최대 22,850원 할인'],
+            ['', '펫플러스 /<br>스마트홈', '공기청정기 렌탈 이용 시', '렌탈료 최대 21,000원 할인<br>구매 시 약 23만원 할인'],
+            ['', '시니어 플러스', '약 65세 이상 사용자', '인터넷 3,100원<br>추가 할인'],
+            ─── 여기까지가 감춰 둔 부분 ─── */
+            ['인터넷 + 휴대폰', '투게더 결합', '모바일 5회선, 인터넷 5회선까지<br>(요금제에 따라 할인 금액 달라짐)', '인터넷 11,000원<br>휴대폰 최대 20,000원 할인'],
+            ['', '참 쉬운<br>가족결합', '모바일 10회선, 인터넷 3회선까지<br>(요금제에 따라 할인 금액 달라짐)', '인터넷 13,200원<br>휴대폰 최대 5,500원 할인'],
+            ['인터넷 + 인터넷', '패밀리 결합', '인터넷 2대 이상', '인터넷 5,500원']
+          ] },
+        { 제목: '휴대폰 회선 수에 따른 할인',
+          머리: ['결합 상품', '휴대폰 월 요금', '1회선', '2회선', '3회선', '4회선 이상'],
+          줄들: [
+            ['참 쉬운 가족결합', '69,000원 미만', '할인 없음', '2,200원', '3,300원', '4,400원'],
+            ['', '69,000원 이상', '할인 없음', '3,300원', '5,500원', '6,600원'],
+            ['', '88,000원 이상', '할인 없음', '4,400원', '6,600원', '8,800원'],
+            ['투게더 결합', '85,000원 이상', '할인 없음', '10,000원', '14,000원', '20,000원']
+          ] },
+        { 제목: '인터넷 속도에 따른 할인',
+          머리: ['결합 상품', '100메가', '500메가', '1기가'],
+          줄들: [
+            ['참 쉬운 가족결합', '5,500원', '9,900원', '13,200원'],
+            ['투게더 결합', '결합 불가', '11,000원', '11,000원']
+          ] }
+      ],
+      주석: ['할인 금액은 묶는 휴대폰 요금제와 회선 수에 따라 달라집니다.']
+    },
+    설치비: [['인터넷 단독', '36,300원'], ['인터넷 + TV', '56,100원'], ['TV 1대 추가', '+22,000원']],
+    주석: [
+      '와이파이 공유기는 무상으로 드립니다. 스마트인터넷으로 바꾸면 2,200원이 붙습니다.',
+      'TV 셋톱은 UHD4 기준입니다.'
+    ]
+  },
+
+  sky: {
+    탭이름: '스카이라이프',
+    제목: '인터넷 요금제 &amp; 사은품',
+    속도: ['100메가', '200메가', '500메가', '1기가'],
+    결합안내: [],
+    상품: [
+      { 이름: '인터넷 단독',
+        사은품: ['10만원', '12만원', '14만원', '15만원'],
+        요금: [
+          ['월 요금', ['23,100원', '24,200원', '33,000원', '38,500원']]
+        ] },
+      { 이름: '인터넷 + 베이직TV', 채널: '196채널',
+        사은품: ['35만원', '36만원', '42만원', '45만원'],
+        요금: [
+          ['월 요금',      ['33,000원', '35,200원', '40,700원', '46,200원'], ['35만원', '36만원', '42만원', '45만원']],
+          ['30% 할인 적용', ['24,200원', '26,400원', '—', '—'], ['문의', '문의', '—', '—']]
+        ] },
+      { 이름: '인터넷 + 플러스TV', 채널: '206채널',
+        사은품: ['35만원', '36만원', '42만원', '45만원'],
+        요금: [
+          ['월 요금',      ['34,100원', '36,300원', '41,800원', '47,300원'], ['35만원', '36만원', '42만원', '45만원']],
+          ['30% 할인 적용', ['25,300원', '27,500원', '—', '—'], ['문의', '문의', '—', '—']]
+        ] }
+    ],
+    추가TV: { 사은품: '', 줄: [['베이직TV', '7,700원'], ['플러스TV', '8,250원']] },
+    결합할인: {
+      표들: [
+        { 머리: ['결합 종류', '결합 상품', '내용'],
+          줄들: [
+            ['TV + 인터넷', '요금할인형<br>(홈결합)', '평생 최대 30% 할인으로<br>통신비 절약'],
+            ['', '사은품형', '요금 할인 대신<br>원하는 사은품 수령 가능'],
+            ['TV + 인터넷 + 모바일', '20% 더블할인<br>가족결합', 'KT 스카이라이프 알뜰폰 후불요금제<br>1~2회선 + 인터넷TV 결합']
+          ] }
+      ],
+      주석: ['요금할인형과 사은품형 가운데 하나를 고르시면 됩니다.']
+    },
+    설치비: [['인터넷 단독', '36,000원'], ['인터넷 + TV', '48,500원'], ['TV 1대 추가', '+11,000원']],
+    주석: [
+      '와이파이 공유기는 100메가만 임대료 1,100원이 붙고, 200메가·500메가·1기가는 무상 임대입니다.',
+      '30% 할인은 100메가와 200메가에서만 됩니다. 할인을 받으면 위에 적힌 사은품 금액이 달라지니, 정확한 금액은 상담에서 안내해 드립니다.'
+    ]
+  },
+
+  hello: {
+    탭이름: '헬로비전',
+    제목: '인터넷 요금제 &amp; 사은품',
+    속도: ['100메가', '160메가', '500메가', '1기가'],
+    결합안내: [
+      ['미결합', '헬로모바일 휴대폰이 없는 경우', ''],
+      ['휴대폰결합', '헬로모바일 휴대폰 1대를 결합하는 방법', '100메가는 결합 요금이 따로 없음']
+    ],
+    상품: [
+      { 이름: '인터넷 단독',
+        사은품: ['13만원', '13만원', '18만원', '20만원'],
+        요금: [
+          ['미결합',    ['21,890원', '27,610원', '31,460원', '33,000원']],
+          ['휴대폰결합', ['—', '22,080원', '25,160원', '23,100원']]
+        ] },
+      { 이름: '인터넷 + 헬로tv 플러스', 채널: '102채널',
+        사은품: ['23만원', '23만원', '31만원', '34만원'],
+        요금: [
+          ['미결합',    ['25,130원', '29,860원', '32,890원', '34,100원']],
+          ['휴대폰결합', ['—', '24,340원', '26,590원', '24,200원']]
+        ] },
+      { 이름: '인터넷 + UHD 이코노미', 채널: '109채널',
+        사은품: ['30만원', '30만원', '35만원', '40만원'],
+        요금: [
+          ['미결합',    ['32,830원', '37,560원', '40,590원', '41,800원']],
+          ['휴대폰결합', ['—', '32,040원', '34,290원', '31,900원']]
+        ] },
+      { 이름: '인터넷 + UHD 뉴베이직', 채널: '245채널',
+        사은품: ['30만원', '30만원', '35만원', '40만원'],
+        요금: [
+          ['미결합',    ['35,030원', '39,760원', '42,790원', '44,000원']],
+          ['휴대폰결합', ['—', '34,240원', '36,490원', '34,100원']]
+        ] },
+      { 이름: '인터넷 + UHD 뉴프리미엄', 채널: '245채널',
+        사은품: ['30만원', '30만원', '35만원', '40만원'],
+        요금: [
+          ['미결합',    ['37,230원', '41,960원', '44,990원', '46,200원']],
+          ['휴대폰결합', ['—', '36,440원', '38,690원', '36,300원']]
+        ] },
+      { 이름: '인터넷 + 프로라이트', 채널: '218채널',
+        사은품: ['—', '30만원', '35만원', '40만원'],
+        요금: [
+          ['미결합',    ['—', '39,760원', '42,790원', '44,000원']],
+          ['휴대폰결합', ['—', '34,240원', '36,490원', '34,100원']]
+        ] }
+    ],
+    추가TV: { 제목: '셋톱박스 월 임대료', 사은품: '', 줄: [['UHD 셋톱', '7,700원 (3·4년 약정 시 4,400원)'], ['HD 셋톱', '7,700원 (3·4년 약정 시 2,200원)']] },
+    결합할인: {
+      표들: [
+        { 머리: ['결합 종류', '결합 상품', '결합 조건'],
+          줄들: [
+            ['인터넷 + 휴대폰', '헬로모바일 결합', '헬로모바일 +<br>헬로tv 뉴베이직·뉴프리미엄'],
+            ['', '온가족케이블플랜', 'SKT 모바일 2회선 이상<br>+ 헬로비전 인터넷'],
+            ['', '케이블<br>총액 결합할인', 'KT 모바일 1회선 이상<br>+ 헬로비전 인터넷'],
+            ['', '참 쉬운<br>케이블 가족결합', 'LG U+ 모바일 1회선 이상<br>+ 헬로비전 인터넷']
+          ] },
+        { 제목: '인터넷 할인 금액',
+          머리: ['묶는 휴대폰', '결합 종류', '100메가', '500메가', '1기가'],
+          줄들: [
+            ['LG · KT · SK', '인터넷 단독', '5,090원', '5,860원', '6,160원'],
+            ['', '인터넷 + TV', '2,537원', '2,922원', '6,160원']
+          ] }
+      ],
+      주석: ['묶는 휴대폰 회사에 따라 결합 상품 이름이 달라집니다.']
+    },
+    설치비: [['인터넷 단독', '36,300원'], ['인터넷 + TV', '56,100원'], ['TV 1대 추가', '+22,000원']],
+    주석: [
+      '요금에 부가세와 셋톱 대여료가 이미 들어 있습니다.',
+      '와이파이 공유기는 무상으로 드립니다. 공유기와 셋톱은 빌려 쓰는 것이라 약정이 끝나면 돌려주셔야 합니다.'
+    ]
+  }
+};
+
 (function () {
-  var 통신사들 = ['kt', 'sk', 'lg'];
-  var 탭들 = {}, 판들 = {};
+  var 통신사들 = ['kt', 'sk', 'lg', 'sky', 'hello'];
+  var 탭들 = {}, 판들 = {}, 그렸나 = {};
   통신사들.forEach(function (c) {
     탭들[c] = document.getElementById('tab-' + c);
     판들[c] = document.getElementById('panel-' + c);
   });
 
-  function 그림채우기(c) {
-    var img = 판들[c].querySelector('img[data-src]');
-    if (!img) return;
-    img.src = img.getAttribute('data-src');
-    img.removeAttribute('data-src');
+  /* '37만원' 을 '37' 크게 + '만원' 작게 로 바꾼다 */
+  function 사은품글(v) {
+    var m = /^(\d+)만원$/.exec(v);
+    return m ? '<b>' + m[1] + '</b><span>만원</span>' : v;
+  }
+  function 감싸기(s) { return String(s); }
+
+  function 표HTML(자료) {
+    var h = '';
+
+    /* 결합 방법 안내 */
+    if (자료.결합안내 && 자료.결합안내.length) {
+      h += '<div class="join-guide">';
+      자료.결합안내.forEach(function (r) {
+        h += '<div class="row"><b>' + r[0] + '</b><span>' + r[1] +
+             (r[2] ? '<em>* ' + r[2] + '</em>' : '') + '</span></div>';
+      });
+      h += '</div>';
+    }
+
+    /* 요금·사은품 표 — 업계 표준 형식(속도마다 요금·사은품을 나란히) */
+    /* 폰에서만 보이는 안내 — 표 바로 위에 둔다 */
+    h += '<p class="scroll-hint">표를 옆으로 밀면 다른 속도가 보여요</p>';
+    h += '<div class="rate-wrap"><div class="table-scroll"><table class="rate two-line">';
+    h += '<thead><tr><th class="prod-head" rowspan="2">인터넷 상품</th>' +
+         '<th class="kind-head" rowspan="2">결합 여부</th>';
+    자료.속도.forEach(function (s) { h += '<th colspan="2" class="speed-head">' + s + '</th>'; });
+    h += '</tr><tr>';
+    자료.속도.forEach(function () { h += '<th class="fee-head">요금</th><th class="gift-head">사은품</th>'; });
+    h += '</tr></thead><tbody>';
+
+    자료.상품.forEach(function (p) {
+      var 줄수 = p.요금.length;
+      /* 줄마다 사은품이 다른 상품(예: 스카이라이프 30% 할인)은 칸을 합치지 않고 줄마다 적는다 */
+      var 줄별사은품 = p.요금.some(function (r) { return r.length > 2; });
+      p.요금.forEach(function (r, i) {
+        h += '<tr' + (i === 0 ? ' class="prod-start"' : '') + '>';
+        if (i === 0) {
+          h += '<th class="prod" rowspan="' + 줄수 + '">' +
+               (p.추천 ? '<span class="best">추천상품</span>' : '') +
+               '<span class="pname">' + p.이름 + '</span>' +
+               (p.채널 ? '<span class="ch">' + p.채널 + '</span>' : '') + '</th>';
+        }
+        h += '<th class="kind">' + r[0] + '</th>';
+        r[1].forEach(function (v, j) {
+          h += '<td>' + 감싸기(v) + '</td>';
+          if (줄별사은품) {
+            h += '<td class="gift">' + 사은품글((r[2] || p.사은품)[j]) + '</td>';
+          } else if (i === 0) {
+            /* 사은품은 결합 방법과 상관없이 같은 금액이라 여러 줄을 하나로 합쳐 둔다 */
+            h += '<td class="gift" rowspan="' + 줄수 + '">' + 사은품글(p.사은품[j]) + '</td>';
+          }
+        });
+        h += '</tr>';
+      });
+    });
+    h += '</tbody></table></div></div>';
+
+    /* TV 추가·설치비 */
+    h += '<div class="sub-grid">';
+    if (자료.추가TV) {
+      h += '<div class="sub-box"><h3>' + (자료.추가TV.제목 || 'TV 추가 시 월 임대료') + '</h3>';
+      if (자료.추가TV.사은품) h += '<p class="sub-gift">추가 사은품 ' + 자료.추가TV.사은품 + '</p>';
+      h += '<dl>';
+      자료.추가TV.줄.forEach(function (r) { h += '<dt>' + r[0] + '</dt><dd>' + r[1] + '</dd>'; });
+      h += '</dl></div>';
+    }
+    if (자료.설치비) {
+      h += '<div class="sub-box"><h3>설치비 (평일 기준)</h3><dl>';
+      자료.설치비.forEach(function (r) { h += '<dt>' + r[0] + '</dt><dd>' + r[1] + '</dd>'; });
+      h += '</dl></div>';
+    }
+    h += '</div>';
+
+    /* 회사별 주석 + 모든 회사 공통 주석 */
+    h += '<ul class="rate-note">';
+    (자료.주석 || []).forEach(function (t) { h += '<li>' + t + '</li>'; });
+    h += '<li>주말·공휴일에 설치하면 설치비가 약 25% 올라갑니다.</li>';
+    h += '</ul>';
+
+    /* 대부분 놓치고 있는 가족결합 할인 */
+    if (자료.결합할인) {
+      h += '<div class="bundle"><h3>대부분 놓치고 있는 가족결합 할인</h3>';
+      자료.결합할인.표들.forEach(function (b) {
+        if (b.제목) h += '<h4>' + b.제목 + '</h4>';
+        h += '<div class="table-scroll"><table class="bundle-tbl"><thead><tr>';
+        b.머리.forEach(function (m) { h += '<th>' + m + '</th>'; });
+        h += '</tr></thead><tbody>';
+        b.줄들.forEach(function (r, ri) {
+          h += '<tr>';
+          r.forEach(function (v, ci) {
+            if (ci === 0) {
+              /* 첫 칸이 빈 줄은 위 칸과 같은 항목이므로, 위 칸을 세로로 늘여 하나로 묶는다 */
+              if (v === '') return;
+              var 묶음 = 1;
+              for (var k = ri + 1; k < b.줄들.length && b.줄들[k][0] === ''; k++) 묶음++;
+              h += '<td class="b-first"' + (묶음 > 1 ? ' rowspan="' + 묶음 + '"' : '') + '>' + v + '</td>';
+            } else {
+              h += '<td>' + v + '</td>';
+            }
+          });
+          h += '</tr>';
+        });
+        h += '</tbody></table></div>';
+      });
+      if (자료.결합할인.주석) {
+        h += '<ul class="bundle-note">';
+        자료.결합할인.주석.forEach(function (t) { h += '<li>' + t + '</li>'; });
+        h += '</ul>';
+      }
+      h += '</div>';
+    }
+
+    return h;
+  }
+
+  function 판채우기(c) {
+    if (그렸나[c]) return;
+    var 자료 = 요금자료[c];
+    if (!자료 || !판들[c]) return;
+    판들[c].querySelector('.rate-body').innerHTML = 표HTML(자료);
+    그렸나[c] = true;
   }
 
   function 고르기(c, 주소도바꿀까) {
@@ -833,7 +1405,7 @@ footer :focus-visible {
       탭들[x].setAttribute('tabindex', 켬 ? '0' : '-1');
       판들[x].hidden = !켬;
     });
-    그림채우기(c);
+    판채우기(c);
     if (주소도바꿀까 && history.replaceState) {
       // 뒤로가기를 눌렀을 때 들어온 페이지로 바로 돌아가도록, 기록을 쌓지 않고 바꿔치기만 한다
       history.replaceState(null, '', '#' + c);
@@ -849,11 +1421,12 @@ footer :focus-visible {
   document.querySelector('.tabs').addEventListener('keydown', function (e) {
     var 지금 = 통신사들.indexOf(document.activeElement.getAttribute('data-co'));
     if (지금 === -1) return;
+    var 끝 = 통신사들.length;
     var 다음 = null;
-    if (e.key === 'ArrowRight') 다음 = (지금 + 1) % 3;
-    else if (e.key === 'ArrowLeft') 다음 = (지금 + 2) % 3;
+    if (e.key === 'ArrowRight') 다음 = (지금 + 1) % 끝;
+    else if (e.key === 'ArrowLeft') 다음 = (지금 + 끝 - 1) % 끝;
     else if (e.key === 'Home') 다음 = 0;
-    else if (e.key === 'End') 다음 = 2;
+    else if (e.key === 'End') 다음 = 끝 - 1;
     if (다음 === null) return;
     e.preventDefault();
     고르기(통신사들[다음], true);
@@ -866,36 +1439,6 @@ footer :focus-visible {
   }
   window.addEventListener('hashchange', function () { 주소읽기(false); });
   주소읽기(false);
-
-  // ───── 크게 보기 ─────
-  var 덮개 = document.getElementById('zoom');
-  var 큰그림 = document.getElementById('zoomImg');
-  var 닫기 = document.getElementById('zoomClose');
-  var 누른곳 = null;
-
-  function 열기(btn) {
-    큰그림.src = btn.getAttribute('data-src');
-    큰그림.alt = btn.getAttribute('data-label');
-    누른곳 = btn;
-    덮개.classList.add('open');
-    document.body.classList.add('locked');
-    덮개.scrollTop = 0;
-    닫기.focus();
-  }
-  function 닫기실행() {
-    덮개.classList.remove('open');
-    document.body.classList.remove('locked');
-    if (누른곳) { 누른곳.focus(); 누른곳 = null; }
-  }
-
-  Array.prototype.forEach.call(document.querySelectorAll('.sheet'), function (btn) {
-    btn.addEventListener('click', function () { 열기(btn); });
-  });
-  닫기.addEventListener('click', 닫기실행);
-  덮개.addEventListener('click', function (e) { if (e.target === 덮개 || e.target.className === 'zoom-inner') 닫기실행(); });
-  document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape' && 덮개.classList.contains('open')) 닫기실행();
-  });
 })();
 </script>
 
