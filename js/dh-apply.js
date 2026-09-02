@@ -160,6 +160,10 @@
       '#applyOverlay .apply-close:hover{background:#fff;}',
       /* 창이 떠 있는 동안 뒷 페이지가 같이 밀리지 않게 */
       'body.apply-open{overflow:hidden;}',
+      /* 창이 떠 있는 동안 화면에 붙어 따라다니는 단추들을 감춘다 (메인과 같은 동작).
+         자바스크립트로 켜고 끄지 않고 화면 규칙만 쓰므로, 창이 닫히면 저절로 되돌아온다. */
+      'body.apply-open .mobile-cta-bar,body.apply-open .desk-cta-bar,',
+      'body.apply-open .follow-cta-wrap,body.apply-open .consult-panel{display:none;}',
 
       /* ===== 창 안 신청칸 ===== */
       '#applyOverlay .form-headline{font-size:17px;font-weight:800;color:var(--dark,#0f172a);',
@@ -394,6 +398,66 @@
   window.신청창열기 = 열기;
   window.신청창닫기 = function () { return 닫기(); };
   window.신청창바깥닫기 = function (e) { if (e && e.target && e.target.id === 'applyOverlay') 닫기(); };
+
+  /* ===== 폰 위쪽 메뉴(햄버거)도 ESC·뒤로가기로 닫히게 =====
+     페이지의 햄버거 단추를 onclick="toggleMenu()" 로 걸면 된다.
+     ⚠ closeMobileMenu(true) 로 부르면 뒤로가기 기록을 건드리지 않는다.
+        메뉴 항목을 눌러 '다른 페이지로 가는' 경우가 그렇다. 그때 우리가 빈 칸을
+        되돌리면 그 이동 자체와 부딪혀 엉뚱한 데로 간다. */
+  window.toggleMenu = function () {
+    var e = document.getElementById('mobileMenu');
+    if (!e) return;
+    if (e.classList.contains('open')) { window.closeMobileMenu(); return; }
+    e.classList.add('open');
+    창열림기록('menu', window.closeMobileMenu);
+  };
+  window.closeMobileMenu = function (떠남) {
+    var e = document.getElementById('mobileMenu');
+    if (!e || !e.classList.contains('open')) return true;
+    e.classList.remove('open');
+    if (떠남 === true) 창목록에서빼기('menu');
+    else 창닫힘기록('menu');
+    return true;
+  };
+
+  /* ===== 개인정보처리방침·서비스이용약관 창도 같은 규칙으로 =====
+     약관 파일(js/dh-terms.js)은 메인·렌탈도 함께 쓰므로 손대지 않는다.
+     대신 여는 함수를 한 겹 감싸고, 창이 닫히는 것은 '지켜보기'로 알아챈다.
+
+     왜 지켜보나: 그 파일이 만든 X 단추와 바깥 누르기는 파일 안쪽 함수를 직접 부른다.
+     바깥에서 closePrivacy() 를 감싸는 것만으로는 그 두 경우를 놓친다.
+
+     ⚠ 지켜보기는 한 박자 늦게 알려 준다. 그래서 뒤로가기로 닫는 길에서는
+        아래 닫기함수가 '그 자리에서' 창닫힘기록을 부른다. 지켜보기가 뒤늦게
+        같은 것을 또 불러도, 이미 목록에서 빠졌으므로 그냥 무시된다. */
+  (function () {
+    [['privacy', 'privacyOverlay'], ['terms', 'termsOverlay']].forEach(function (짝) {
+      var 종류 = 짝[0], 상자id = 짝[1];
+      var 여는이름 = (종류 === 'privacy') ? 'openPrivacy' : 'openTerms';
+      var 닫는이름 = (종류 === 'privacy') ? 'closePrivacy' : 'closeTerms';
+      var 원래열기 = window[여는이름];
+      if (typeof 원래열기 !== 'function') return;   // 약관 파일을 못 받아 온 경우
+      var 지켜봄 = false;
+
+      window[여는이름] = function () {
+        원래열기.apply(null, arguments);
+        var 상자 = document.getElementById(상자id);
+        if (!상자 || !상자.classList.contains('open')) return;
+        if (!지켜봄 && window.MutationObserver) {
+          지켜봄 = true;
+          new MutationObserver(function () {
+            if (!상자.classList.contains('open')) 창닫힘기록(종류);
+          }).observe(상자, { attributes: true, attributeFilter: ['class'] });
+        }
+        창열림기록(종류, function () {
+          var 닫기함수 = window[닫는이름];
+          if (typeof 닫기함수 === 'function') 닫기함수();
+          창닫힘기록(종류);      // 뒤로가기 처리 중에 '그 자리에서' 알린다
+          return true;
+        });
+      };
+    });
+  })();
 
   /* 인터넷·렌탈 탭 켜고 끄기 — 메인(index.html)과 똑같이 움직인다.
      둘 다 꺼도 막지 않는다. 그 상태로 보내기를 누르면 "하나 이상 선택" 알림이 뜬다. */
