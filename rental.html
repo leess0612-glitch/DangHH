@@ -120,6 +120,7 @@ window.addEventListener('scroll', function(){
    한 곳만 빠뜨리면 페이지마다 결과가 달라졌다. 이제 부품 파일 하나만 고치면 된다. */
 </script>
 <script src="js/dh-inflow.js?v=3"></script>
+<script src="js/dh-terms.js?v=1"></script>
 <script>
 /* 부품 파일을 못 받아 왔더라도 신청 접수는 막히지 않게 한다 (유입 칸만 비게 된다) */
 if (typeof dhInflow !== 'function') { window.dhInflow = function () { return {}; }; }
@@ -2297,6 +2298,12 @@ html { scroll-behavior: smooth; scroll-padding-top: 78px; }
   .더읽기{ font-size:12px; margin-top:8px; }
   /* 폰에서는 본문을 감추고 굵은 한 줄 요약만 — '더 읽기'를 누르면 본문이 나온다 */
   .후기목록.제목만 .후기카드:not(.펼침) .후기본문{ display:none; }
+}
+
+/* 컴퓨터 화면 아래에 따라다니는 신청 카드가 푸터 글을 가리지 않도록 자리를 비워 둔다
+   (2026-09-02 실측: 카드 높이 77px + 아래 여백 24px) */
+@media (min-width: 769px) {
+  footer .footer-inner { padding-bottom: 104px; }
 }
 </style>
 
