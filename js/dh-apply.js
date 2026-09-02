@@ -258,10 +258,29 @@
     return true;
   }
 
+  /* 신청창 '위에' 개인정보처리방침·약관 창이 겹쳐 떠 있는지 본다.
+     겹쳐 있을 때 뒤로가기·ESC 는 위에 있는 그 창만 닫아야 한다.
+     (둘 다 닫히면 손님이 방금 읽던 신청칸까지 사라진다) */
+  function 약관창열려있나() {
+    var 이름 = ['privacyOverlay', 'termsOverlay'];
+    for (var i = 0; i < 이름.length; i++) {
+      var e = document.getElementById(이름[i]);
+      if (e && e.classList.contains('open')) return 이름[i];
+    }
+    return null;
+  }
+
   window.addEventListener('popstate', function () {
     if (스스로되돌림) { 스스로되돌림 = false; return; }
     var 창 = document.getElementById('applyOverlay');
     if (!창 || !창.classList.contains('open')) return;
+    if (약관창열려있나()) {
+      /* 위에 겹친 약관 창만 닫고, 신청창은 그대로 둔다 */
+      if (약관창열려있나() === 'privacyOverlay') { if (typeof closePrivacy === 'function') closePrivacy(); }
+      else if (typeof closeTerms === 'function') closeTerms();
+      try { history.pushState({ dh신청: 1 }, '', location.href); 기록넣음 = true; } catch (e) {}
+      return;
+    }
     기록넣음 = false;                    // 빈 칸은 이미 스스로 물러났다
     if (닫기(true) === false) {
       /* 신청을 보내는 중이라 닫으면 안 되는 상황 — 빈 칸을 도로 넣어 제자리에 붙잡는다 */
@@ -269,11 +288,15 @@
     }
   });
 
+  /* ⚠ 마지막 인자 true(먼저 듣기)가 중요하다.
+     약관 파일(js/dh-terms.js)도 ESC 를 듣는데, 그 파일이 먼저 실려 있어 그냥 두면
+     약관 창이 닫힌 '뒤에' 이 코드가 돌아, 한 번의 ESC 로 신청창까지 같이 닫혔다. */
   document.addEventListener('keydown', function (e) {
     if (e.key !== 'Escape') return;
+    if (약관창열려있나()) return;        // 위에 겹친 약관 창이 먼저 닫힌다
     var 창 = document.getElementById('applyOverlay');
     if (창 && 창.classList.contains('open')) 닫기();
-  });
+  }, true);
 
   /* ───────────────────────────────────────────────────────────
      4) 신청 보내기 (실패하면 다시 시도)
