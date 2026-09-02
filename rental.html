@@ -820,6 +820,21 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
 .footer-disclaimer { margin-top: 16px; font-size: 11px; color: rgba(255,255,255,0.3); line-height: 1.7; }
 
 /* ===== STICKY MINI FORM ===== */
+/* ⚠ 지금은 어느 화면에서도 안 뜨는 폼입니다 (2026-09-02 확인) ⚠
+   ── 왜 안 뜨나 ──
+   ① 컴퓨터(769 이상) : 아래 `@media (min-width: 769px)` 에서 display:none !important 로 막혀 있다
+   ② 폰(768 이하)     : updateScrollForms() 가 `if (isMobile)` 갈래에서
+                        stickyForm.classList.remove('visible') 로 항상 끈다
+   즉 CSS 와 자바스크립트 양쪽에서 막혀 있어, 켜려면 두 곳을 함께 풀어야 한다.
+
+   ── 지금 실제로 쓰는 신청 통로 ──
+   · 컴퓨터 : 아래 고정 띠(.desk-cta-bar) — 이름·번호·희망 제품
+   · 폰     : 아래 고정 띠(.mobile-cta-bar) 는 단추 하나. 누르면 큰 신청폼(#apply)으로 간다
+   · 큰 신청폼(#apply) : 제품 아이콘·이름·번호·요청사항
+
+   ── 그래서 ──
+   이 폼(모양·markup·submitStickyForm)을 고쳐도 손님 화면에는 아무 변화가 없다.
+   지우지 않고 남겨 둔 것은 되살릴 수 있게 하기 위함이다. 손대기 전에 위 ①②를 먼저 풀 것. */
 .sticky-form {
   position: fixed; top: 120px; right: 0; z-index: 800;
   display: flex; align-items: flex-start;
@@ -3060,6 +3075,7 @@ function promiseZoom(src){ document.getElementById('promiseViewerImg').src=src; 
 </div>
 
 <!-- STICKY MINI FORM -->
+<!-- ⚠ 지금은 어느 화면에서도 안 뜹니다 — 자세한 까닭은 위 스타일의 `.sticky-form` 앞 메모 참고 (2026-09-02) -->
 <div class="sticky-form" id="stickyForm">
   <div class="sticky-form-tab" onclick="toggleStickyForm()">
     <span class="tab-arrow"></span>
@@ -3442,7 +3458,7 @@ function updateScrollForms() {
   if (isMobile) {
     if (applyNear) { mobileCta.classList.remove('visible'); }
     else { mobileCta.classList.add('visible'); }
-    stickyForm.classList.remove('visible');
+    stickyForm.classList.remove('visible');   /* 폰에서는 옆 폼을 늘 끈다 — 지금은 어느 화면에서도 안 뜬다 */
     deskCtaBar.classList.remove('visible');
     return;
   }
