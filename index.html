@@ -1503,8 +1503,11 @@ header { box-shadow: 0 2px 12px rgba(15,42,90,0.09); }
 .trust-cert-label-item { transition: transform 0.22s cubic-bezier(0.22,1,0.36,1), box-shadow 0.22s ease; }
 .trust-cert-label-item:hover { transform: translateY(-3px); box-shadow: 0 12px 28px rgba(15,42,90,0.14); }
 
-/* --- 7. 메뉴 눌러 이동할 때 부드럽게 + 고정 머리띠(64px)에 제목이 안 가리게 --- */
-html { scroll-behavior: smooth; scroll-padding-top: 78px; }
+/* --- 7. 메뉴 눌러 이동할 때 바로 이동 + 고정 머리띠(64px)에 제목이 안 가리게 --- */
+/* 2026-09-02: smooth -> auto (사장님 지시). 위쪽 187번째 줄 근처에도 auto 가 있었지만
+   같은 세기의 규칙은 나중에 적힌 쪽이 이기므로 그쪽이 무시되고 있었다.
+   ⚠ scroll-padding-top 은 지우면 안 된다 — 메뉴를 눌렀을 때 제목이 머리띠 밑에 숨는다. */
+html { scroll-behavior: auto; scroll-padding-top: 78px; }
 
 /* --- 8. 본문 글자 사이 미세 조정 (한글이 성기게 보이는 것 완화) --- */
 .section-sub, .benefit-card p, .step-desc-a, .step-desc-b,
