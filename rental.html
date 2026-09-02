@@ -893,7 +893,15 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
   pointer-events: none;
 }
 .desk-cta-bar.visible { opacity: 1; transform: translateY(0); pointer-events: all; }
-.desk-cta-bar-inner { max-width: 1040px;   /* 860 -> 1040 : 희망 제품 칸이 늘면서 넘쳤다(실측 14px) */ margin: 0 auto; display: flex; flex-direction: row; align-items: flex-end; justify-content: center; gap: 10px; }
+.desk-cta-bar-inner {
+  max-width: 1040px;   /* 860 -> 1040 : 희망 제품 칸이 늘면서 넘쳤다(실측 14px) */
+  margin: 0 auto; display: flex; flex-direction: row; align-items: flex-end;
+  justify-content: center; gap: 10px;
+  /* 좁은 컴퓨터 화면(785 실측)에서는 네 칸이 한 줄에 안 들어간다 —
+     필요한 폭 874, 쓸 수 있는 폭 737. 그때만 두 줄로 접히게 한다.
+     넓은 화면에서는 그대로 한 줄이다. */
+  flex-wrap: wrap;
+}
 .desk-cta-phone-wrap { display: flex; flex-direction: column; gap: 6px; align-items: center; }
 .desk-cta-top { font-size: 21px; font-weight: 800; color: white; text-align: center; letter-spacing: -0.3px; }
 .desk-cta-bar input {
