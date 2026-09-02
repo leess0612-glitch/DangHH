@@ -13,6 +13,10 @@ _보관/
 *backup*.html
 *-v2.html
 *-test.html
+# (2026-09-02) 위 줄은 이름이 정확히 '-test.html' 로 끝나는 것만 막는다.
+#   plans-test2.html 이 이 규칙을 비켜 가 2시간 넘게 danghh.com 에 올라가 있었다.
+#   그래서 이름 어디에든 test 가 들어가면 막도록 한 줄 더한다.
+*test*.html
 font-test.html
 
 # (2026-08-27) images/reviews-story/ 는 라이브 후기칸이 실제로 쓰는 사진이라 올린다.

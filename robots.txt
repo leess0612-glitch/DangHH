@@ -8,5 +8,7 @@ Disallow: /rental-v2.html
 Disallow: /*backup
 # 시험본은 검색에 나오지 않게
 Disallow: /*-test.html
+# (2026-09-02) 이름 어디에든 test 가 들어가면 검색에 안 나오게 (예: plans-test2.html)
+Disallow: /*test
 
 Sitemap: https://danghh.com/sitemap.xml
