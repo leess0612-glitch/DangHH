@@ -1324,6 +1324,28 @@ var 요금자료 = {
     });
     h += '</tbody></table></div></div>';
 
+    /* TV 추가·설치비 */
+    h += '<div class="sub-grid">';
+    if (자료.추가TV) {
+      h += '<div class="sub-box"><h3>' + (자료.추가TV.제목 || 'TV 추가 시 월 임대료') + '</h3>';
+      if (자료.추가TV.사은품) h += '<p class="sub-gift">추가 사은품 ' + 자료.추가TV.사은품 + '</p>';
+      h += '<dl>';
+      자료.추가TV.줄.forEach(function (r) { h += '<dt>' + r[0] + '</dt><dd>' + r[1] + '</dd>'; });
+      h += '</dl></div>';
+    }
+    if (자료.설치비) {
+      h += '<div class="sub-box"><h3>설치비 (평일 기준)</h3><dl>';
+      자료.설치비.forEach(function (r) { h += '<dt>' + r[0] + '</dt><dd>' + r[1] + '</dd>'; });
+      h += '</dl></div>';
+    }
+    h += '</div>';
+
+    /* 회사별 주석 + 모든 회사 공통 주석 */
+    h += '<ul class="rate-note">';
+    (자료.주석 || []).forEach(function (t) { h += '<li>' + t + '</li>'; });
+    h += '<li>주말·공휴일에 설치하면 설치비가 약 25% 올라갑니다.</li>';
+    h += '</ul>';
+
     /* 대부분 놓치고 있는 가족결합 할인 */
     if (자료.결합할인) {
       h += '<div class="bundle"><h3>대부분 놓치고 있는 가족결합 할인</h3>';
@@ -1356,28 +1378,6 @@ var 요금자료 = {
       }
       h += '</div>';
     }
-
-    /* TV 추가·설치비 */
-    h += '<div class="sub-grid">';
-    if (자료.추가TV) {
-      h += '<div class="sub-box"><h3>' + (자료.추가TV.제목 || 'TV 추가 시 월 임대료') + '</h3>';
-      if (자료.추가TV.사은품) h += '<p class="sub-gift">추가 사은품 ' + 자료.추가TV.사은품 + '</p>';
-      h += '<dl>';
-      자료.추가TV.줄.forEach(function (r) { h += '<dt>' + r[0] + '</dt><dd>' + r[1] + '</dd>'; });
-      h += '</dl></div>';
-    }
-    if (자료.설치비) {
-      h += '<div class="sub-box"><h3>설치비 (평일 기준)</h3><dl>';
-      자료.설치비.forEach(function (r) { h += '<dt>' + r[0] + '</dt><dd>' + r[1] + '</dd>'; });
-      h += '</dl></div>';
-    }
-    h += '</div>';
-
-    /* 회사별 주석 + 모든 회사 공통 주석 */
-    h += '<ul class="rate-note">';
-    (자료.주석 || []).forEach(function (t) { h += '<li>' + t + '</li>'; });
-    h += '<li>주말·공휴일에 설치하면 설치비가 약 25% 올라갑니다.</li>';
-    h += '</ul>';
 
     return h;
   }
