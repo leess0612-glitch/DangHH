@@ -113,6 +113,7 @@ window.addEventListener('scroll', function(){
 }, { passive: true });
 </script>
 <script src="js/dh-inflow.js?v=3"></script>
+<script src="js/dh-terms.js?v=1"></script>
 <script>
 /* 부품 파일을 못 받아 왔더라도 신청 접수는 막히지 않게 한다 (유입 칸만 비게 된다) */
 if (typeof dhInflow !== 'function') { window.dhInflow = function () { return {}; }; }
@@ -856,8 +857,8 @@ table.bundle-tbl td.b-first { font-weight: 700; background: var(--ground); white
     <div class="footer-top">
       <div class="footer-logo"><svg class="footer-mark" width="21" height="14" viewBox="25.6 68 246.4 162.4" aria-hidden="true"><use href="#dh-logo" fill="currentColor"/></svg><span>당<span>현</span>함</span></div>
       <div class="footer-links">
-        <a href="privacy-test.html">개인정보처리방침</a>
-        <a href="terms-test.html">서비스이용약관</a>
+        <a href="javascript:void(0)" onclick="openPrivacy()">개인정보처리방침</a>
+        <a href="javascript:void(0)" onclick="openTerms()">서비스이용약관</a>
         <a href="tel:1600-4670">1600-4670</a>
       </div>
     </div>
