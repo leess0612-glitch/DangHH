@@ -115,7 +115,7 @@ window.addEventListener('scroll', function(){
 <script src="js/dh-inflow.js?v=3"></script>
 <script src="js/dh-terms.js?v=1"></script>
 <!-- 신청창(팝업) 공용 부품 — 이 줄 덕분에 이 페이지에서도 신청칸이 그 자리에서 뜬다 (2026-09-02) -->
-<script src="js/dh-apply.js?v=1"></script>
+<script src="js/dh-apply.js?v=2"></script>
 <script>
 /* 부품 파일을 못 받아 왔더라도 신청 접수는 막히지 않게 한다 (유입 칸만 비게 된다) */
 if (typeof dhInflow !== 'function') { window.dhInflow = function () { return {}; }; }
@@ -783,7 +783,7 @@ table.bundle-tbl td.b-first { font-weight: 700; background: var(--ground); white
         <span class="kakao-label">카카오 상담</span>
       </a>
     </div>
-    <div class="hamburger" onclick="document.getElementById('mobileMenu').classList.toggle('open')">
+    <div class="hamburger" onclick="toggleMenu()">
       <span></span><span></span><span></span>
     </div>
   </div>
@@ -794,7 +794,7 @@ table.bundle-tbl td.b-first { font-weight: 700; background: var(--ground); white
   <a href="index.html#reviews">설치후기</a>
   <a href="gift.html">사은품지급명단</a>
   <a href="index.html#faq">자주묻는질문</a>
-  <a href="javascript:void(0)" onclick="document.getElementById('mobileMenu').classList.remove('open'); 신청창열기();" style="color:var(--primary);font-weight:700;">무료상담 →</a>
+  <a href="javascript:void(0)" onclick="closeMobileMenu(); 신청창열기();" style="color:var(--primary);font-weight:700;">무료상담 →</a>
 </div>
 
 <!-- 페이지 머리띠 -->
@@ -1483,8 +1483,10 @@ var 요금자료 = {
 <script>
 /* 휴대폰 메뉴: 메뉴 밖을 누르면 닫히게 — index.html과 같은 동작 (2026-08-21) */
 document.addEventListener('click', function (e) {
-  if (!e.target.closest('header') && !e.target.closest('.mobile-menu'))
-    document.getElementById('mobileMenu').classList.remove('open');
+  if (e.target.closest('header') || e.target.closest('.mobile-menu')) return;
+  /* 공용 부품(js/dh-apply.js)이 있으면 그쪽으로 닫는다 — 뒤로가기 기록까지 정리해 준다 */
+  if (typeof closeMobileMenu === 'function') closeMobileMenu();
+  else document.getElementById('mobileMenu').classList.remove('open');
 });
 </script>
 <script>
