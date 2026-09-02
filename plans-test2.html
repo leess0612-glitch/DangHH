@@ -713,8 +713,7 @@ table.bundle-tbl th, table.bundle-tbl td {
   text-align: left; vertical-align: top; line-height: 1.6; word-break: keep-all;
 }
 table.bundle-tbl thead th { background: #E8EFFD; font-weight: 700; text-align: center; white-space: nowrap; }
-table.bundle-tbl td.b-first { font-weight: 700; background: var(--ground); white-space: nowrap; }
-table.bundle-tbl td.b-first.cont { border-top-color: transparent; background: var(--ground); }
+table.bundle-tbl td.b-first { font-weight: 700; background: var(--ground); white-space: nowrap; vertical-align: middle; }
 .bundle-note { margin-top: 12px; }
 .bundle-note li { list-style: none; font-size: 13px; color: var(--gray); line-height: 1.8; padding-left: 12px; position: relative; word-break: keep-all; }
 .bundle-note li::before { content: '·'; position: absolute; left: 0; }
@@ -1333,10 +1332,18 @@ var 요금자료 = {
         h += '<div class="table-scroll"><table class="bundle-tbl"><thead><tr>';
         b.머리.forEach(function (m) { h += '<th>' + m + '</th>'; });
         h += '</tr></thead><tbody>';
-        b.줄들.forEach(function (r) {
+        b.줄들.forEach(function (r, ri) {
           h += '<tr>';
-          r.forEach(function (v, i) {
-            h += '<td' + (i === 0 ? ' class="b-first' + (v === '' ? ' cont' : '') + '"' : '') + '>' + v + '</td>';
+          r.forEach(function (v, ci) {
+            if (ci === 0) {
+              /* 첫 칸이 빈 줄은 위 칸과 같은 항목이므로, 위 칸을 세로로 늘여 하나로 묶는다 */
+              if (v === '') return;
+              var 묶음 = 1;
+              for (var k = ri + 1; k < b.줄들.length && b.줄들[k][0] === ''; k++) 묶음++;
+              h += '<td class="b-first"' + (묶음 > 1 ? ' rowspan="' + 묶음 + '"' : '') + '>' + v + '</td>';
+            } else {
+              h += '<td>' + v + '</td>';
+            }
           });
           h += '</tr>';
         });
