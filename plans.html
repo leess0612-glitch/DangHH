@@ -705,9 +705,16 @@ table.rate th.prod, table.rate thead th:first-child { position: sticky; left: 0;
 table.rate thead th:first-child { z-index: 3; }
 table.rate th.prod { box-shadow: 1px 0 0 var(--border); }
 
+/* 컴퓨터에서는 줄바꿈 자리가 없는 것처럼 둔다 (한 줄에 다섯 개가 다 들어간다) */
+.tabs .tab-break { display: none; }
+
 /* 폰에서는 통신사 단추를 두 줄로 접어 다섯 개가 한눈에 보이게 */
 @media (max-width: 768px) {
   .tabs { flex-wrap: wrap; overflow-x: visible; }
+  /* 2026-09-02: 저절로 접히면 스카이라이프까지 첫 줄에 올라와 넉 대 하나로 갈라졌다.
+     KT·SK·LG U+ 까지 첫 줄, 스카이라이프·헬로비전은 둘째 줄로 내린다 (사장님 지시).
+     폭 100% 짜리 빈 칸을 끼워 넣어 그 자리에서 줄이 끊기게 한 것이다. */
+  .tabs .tab-break { display: block; flex: 0 0 100%; width: 100%; height: 0; margin: 0; }
 }
 
 /* 구분칸 아래 딸린 작은 설명 (예: 30% 할인 적용 → 사은품 변동) */
@@ -796,6 +803,7 @@ table.bundle-tbl td.b-first { font-weight: 700; background: var(--ground); white
     <button type="button" class="tab kt" role="tab" id="tab-kt" aria-controls="panel-kt" aria-selected="true" data-co="kt">KT</button>
     <button type="button" class="tab sk" role="tab" id="tab-sk" aria-controls="panel-sk" aria-selected="false" tabindex="-1" data-co="sk">SK</button>
     <button type="button" class="tab lg" role="tab" id="tab-lg" aria-controls="panel-lg" aria-selected="false" tabindex="-1" data-co="lg">LG U+</button>
+    <span class="tab-break" role="presentation" aria-hidden="true"></span>
     <button type="button" class="tab sky" role="tab" id="tab-sky" aria-controls="panel-sky" aria-selected="false" tabindex="-1" data-co="sky">스카이라이프</button>
     <button type="button" class="tab hello" role="tab" id="tab-hello" aria-controls="panel-hello" aria-selected="false" tabindex="-1" data-co="hello">헬로비전</button>
   </div>
