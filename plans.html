@@ -604,21 +604,7 @@ footer :focus-visible {
 .scroll-hint { display: none; }   /* 컴퓨터 화면에서는 감춘다 */
 
 /* 결합 방법 안내 (표 위) */
-.join-guide { display: grid; gap: 8px; margin-bottom: 12px; }
-/* 결합구분 칸과 요금표 사이 안내 상자 (2026-09-02: 페이지 머리띠에서 이리로 옮기고 키움).
-   광고 규정상 기본 사은품만 적을 수 있으니, 이 숫자가 끝이 아니라는 것을 손님이 꼭 보고
-   넘어가야 한다. 상자 색을 사은품 칸(#FFF8F8)·숫자 색(#E60012)과 맞춰
-   '이 글은 저 빨간 숫자에 대한 설명'임이 색으로 먼저 읽히게 했다.
-   빨강/연분홍 대비 4.58:1 — 본문 기준 4.5 를 넘는다. */
-.gift-note {
-  color: #E60012; line-height: 1.5; word-break: keep-all;
-  background: #FFF8F8; border: 1px solid #FADBDB; border-radius: 10px;
-  padding: 10px 14px; margin: 0 0 12px;
-}
-/* 윗줄은 '왜 이것만 적혀 있는지'(규정), 아랫줄은 '그래서 손님이 얻는 것'.
-   손님에게 중요한 쪽이 아랫줄이라 한 단계 크고 굵게 둔다. */
-.gift-note .why  { display: block; font-size: 15px; font-weight: 600; }
-.gift-note .more { display: block; font-size: 16px; font-weight: 800; margin-top: 4px; }
+.join-guide { display: grid; gap: 8px; margin-bottom: 16px; }
 .join-guide .row {
   display: grid; grid-template-columns: 104px 1fr; gap: 12px; align-items: center;
   background: white; border: 1px solid var(--border); border-radius: 12px; padding: 12px 16px;
@@ -651,7 +637,7 @@ table.rate thead th.speed-head { font-size: 15px; }
 table.rate thead th.fee-head, table.rate thead th.gift-head { font-size: 13px; font-weight: 600; }
 table.rate thead th.kind-head { width: 96px; min-width: 96px; }
 table.rate td { min-width: 88px; }
-table.rate td.gift { min-width: 76px; }
+table.rate td.gift { min-width: 86px; }   /* 2026-09-02: 76 -> 86, 아래 '+ 추가혜택' 이 벽에 붙지 않도록 */
 table.rate thead th:last-child { border-right: none; }
 table.rate th.prod {
   text-align: left; vertical-align: middle; background: white; font-weight: 700;
@@ -669,6 +655,13 @@ table.rate td.gift { vertical-align: middle; background: #FFF8F8; }
    이 표에서 손님이 가장 먼저 찾는 숫자라 요금(15px)보다 확실히 커야 한다. */
 table.rate td.gift b { font-size: 22px; font-weight: 900; color: #E60012; letter-spacing: -0.5px; }
 table.rate td.gift span { font-size: 13px; font-weight: 600; color: #E60012; margin-left: 1px; }
+/* 금액 아래 '+ 추가혜택' — 표에 적힌 숫자가 끝이 아니라는 표시를 칸마다 붙인다 (2026-09-02).
+   광고 규정상 표에는 기본 사은품까지만 적을 수 있어, 실제 지급액이 더 크다는 점을
+   손님이 어느 칸을 보든 알 수 있어야 한다. */
+table.rate td.gift em.plus {
+  display: block; font-style: normal; font-size: 12px; font-weight: 700;
+  color: #E60012; margin-top: 2px; white-space: nowrap; letter-spacing: -0.3px;
+}
 
 /* 표 아래 작은 상자 (TV 추가·설치비) */
 .sub-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 12px; }
@@ -793,8 +786,8 @@ table.bundle-tbl td.b-first { font-weight: 700; background: var(--ground); white
 <!-- 페이지 머리띠 -->
 <div class="page-head">
   <h1>통신사별 <em>요금표</em></h1>
-  <!-- 2026-09-02: '경품고시제' 안내 문구를 결합구분 칸과 요금표 사이로 옮겼다 (사장님 지시).
-       설명하는 대상(표 안의 빨간 사은품 금액) 바로 위에 두는 편이 눈에 잘 들어온다. -->
+  <!-- 2026-09-02: 여기 있던 '사은품은 경품고시제 가이드상 최대 기본 사은품만 표기' 한 줄을
+       뺐다 (사장님 지시). 표 안 사은품 칸마다 붙는 '+ 추가혜택'이 같은 몫을 한다. -->
 </div>
 
 <!-- 통신사 고르는 단추 -->
@@ -1294,7 +1287,11 @@ var 요금자료 = {
   /* '37만원' 을 '37' 크게 + '만원' 작게 로 바꾼다 */
   function 사은품글(v) {
     var m = /^(\d+)만원$/.exec(v);
-    return m ? '<b>' + m[1] + '</b><span>만원</span>' : v;
+    /* '—' 이나 '문의' 처럼 금액이 아닌 칸에는 '+ 추가혜택'을 붙이지 않는다.
+       사은품이 없는 칸에 붙으면 사실과 달라진다. */
+    if (!m) return v;
+    return '<b>' + m[1] + '</b><span>만원</span>' +
+           '<em class="plus">+ 추가혜택</em>';
   }
   function 감싸기(s) { return String(s); }
 
@@ -1312,11 +1309,10 @@ var 요금자료 = {
       h += '</div>';
     }
 
-    /* 결합구분 칸과 표 사이 — 표 안 사은품 금액이 무엇인지 알려주는 줄 (2026-09-02).
-       윗줄은 규정 때문에 기본 사은품만 적었다는 설명, 아랫줄은 그래서 손님이 더 받는다는 말이다. */
-    h += '<p class="gift-note">' +
-         '<span class="why">※ 사은품은 경품고시제 가이드상 최대 기본 사은품만 표기</span>' +
-         '<span class="more">추가 혜택은 상담 시 안내</span></p>';
+    /* 2026-09-02: 여기 있던 분홍 안내 상자(경품고시제 문구 + 추가 혜택 안내)를 뺐다 (사장님 지시).
+       같은 몫은 표 안 사은품 칸마다 붙는 '+ 추가혜택'이 대신한다.
+       ⚠ 이 상자를 지우면서 '경품고시제' 문구가 이 쪽에서 완전히 사라졌다.
+          다시 적어야 하면 표 아래 <p class="note"> 칸에 한 줄 넣는 편이 좋다. */
 
     /* 요금·사은품 표 — 업계 표준 형식(속도마다 요금·사은품을 나란히) */
     /* 폰에서만 보이는 안내 — 표 바로 위에 둔다 */
