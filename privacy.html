@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>개인정보처리방침 | 당현함</title>
+<meta name="description" content="당현함(유진텔레콤) 개인정보처리방침입니다.">
+<meta name="robots" content="index, follow">
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sun-typeface/SUIT/fonts/variable/woff2/SUIT-Variable.css">
+<!-- ===== 당현함 통합 전환추적 v1 (다섯 페이지 공통: index·internet·rental·gift·plans / 수정 시 5개 파일 모두 동일하게) ===== -->
+<script>
+/* 이 페이지를 통계에서 부를 이름 */
+var DH_PAGE = 'danghh-privacy';
+/* 네이버 전환추적 공통키(AccountId) — 2026-08-28 발급받아 채움.
+   홈페이지 소스에 그대로 드러나는 공개값이라 가려 둘 필요가 없다(구글 측정번호와 같은 성격) */
+var DH_NAVER_ID = 's_2e8bfd0103db';
+
+/* 같은 방문에서 한 번만 세도록 막는 장치 */
+function dhOnce(key){
+  try{
+    if(sessionStorage.getItem('dh_'+key)) return false;
+    sessionStorage.setItem('dh_'+key,'1'); return true;
+  }catch(e){ return true; }
+}
+
+/* 네이버 전환 한 건 보내기 (2026-08-28)
+   공통키(AccountId) s_2e8bfd0103db · 설치 가이드 https://navercts.gitbook.io/guide
+   전환 종류 - lead=신청 완료 / custom001=카카오톡 상담 / custom002=전화 걸기
+   ※ custom001·002 는 네이버 광고 화면에서 '사용자 정의' 전환으로 신청돼 있어야 집계된다 */
+function dhNaver(종류){
+  try{
+    if(!DH_NAVER_ID || !window.wcs || typeof wcs.trans !== 'function') return;
+    if(!window.wcs_add) window.wcs_add = {};
+    wcs_add['wa'] = DH_NAVER_ID;
+    var _conv = {};
+    _conv.type = 종류;
+    wcs.trans(_conv);
+  }catch(e){ /* 추적이 실패해도 신청 접수는 절대 방해하지 않음 */ }
+}
+
+/* 전환 1건을 구글·메타·네이버에 동시에 알림 (개인정보는 보내지 않음) */
+function dhTrack(action, opts){
+ try{
+  opts = opts || {};
+  if(opts.once !== false && !dhOnce(action)) return;
+
+  /* 1) 구글 애널리틱스 */
+  if(typeof gtag === 'function'){
+    gtag('event', action, { dh_page: DH_PAGE });
+  }
+  /* 2) 메타 픽셀 */
+  if(typeof fbq === 'function'){
+    var metaName = { lead_submit:'Lead', kakao_click:'Contact', phone_click:'Contact' }[action];
+    if(metaName) fbq('track', metaName, { content_name: DH_PAGE + '/' + action });
+    else fbq('trackCustom', action, { content_name: DH_PAGE });
+  }
+  /* 3) 네이버 (ID를 채운 경우에만)
+     2026-08-28 : 옛 방식 wcs.cnv 는 전환을 번호로만 구분해 신청·카톡·전화가 한 덩어리로 뭉쳤다.
+     가이드가 시키는 wcs.trans 로 바꿔 종류를 나눈다.
+     신청(lead)은 여기서 안 쏜다 — 이 자리는 '보내기 직전'이라 실패한 신청까지 세어진다.
+     진짜 접수된 뒤(성공 화면이 뜰 때) dhNaver('lead') 를 따로 부른다. */
+  var 네이버종류 = { kakao_click:'custom001', phone_click:'custom002' }[action];
+  if(네이버종류) dhNaver(네이버종류);
+ }catch(e){ /* 추적이 실패해도 신청 접수는 절대 방해하지 않음 */ }
+}
+
+/* 네이버 스크립트는 ID가 채워졌을 때만 불러옴 */
+(function(){
+  if(!DH_NAVER_ID) return;
+  var s=document.createElement('script'); s.async=true; s.src='//wcs.naver.net/wcslog.js';
+  s.onload=function(){
+    try{
+      if(!window.wcs_add) window.wcs_add={};
+      wcs_add['wa']=DH_NAVER_ID;
+      if(!window._nasa) window._nasa={};
+      if(window.wcs) wcs.inflow();
+      wcs_do();   /* 네이버가 발급한 안내문과 같은 형태로 맞춤 (2026-08-28) */
+    }catch(e){}
+  };
+  document.head.appendChild(s);
+})();
+
+/* 전화·카카오 링크 클릭 자동 감지 (버튼이 몇 개든 자동으로 잡힘) */
+document.addEventListener('click', function(e){
+  var a = e.target && e.target.closest ? e.target.closest('a') : null;
+  if(!a) return;
+  var href = a.getAttribute('href') || '';
+  if(href.indexOf('tel:') === 0) dhTrack('phone_click');
+  else if(href.indexOf('pf.kakao.com') > -1) dhTrack('kakao_click');
+}, true);
+
+/* 페이지를 절반 이상 읽었는지 */
+window.addEventListener('scroll', function(){
+  var h = document.documentElement.scrollHeight - window.innerHeight;
+  if(h > 0 && (window.scrollY / h) >= 0.5) dhTrack('scroll_50');
+}, { passive: true });
+</script>
+<script src="js/dh-inflow.js?v=3"></script>
+<style>
+@font-face { font-family:'SUIT'; font-weight:400; font-display:swap; src:url('https://cdn.jsdelivr.net/gh/sun-typeface/SUIT@2/fonts/static/woff2/SUIT-Regular.woff2') format('woff2'); }
+@font-face { font-family:'SUIT'; font-weight:500; font-display:swap; src:url('https://cdn.jsdelivr.net/gh/sun-typeface/SUIT@2/fonts/static/woff2/SUIT-Medium.woff2') format('woff2'); }
+@font-face { font-family:'SUIT'; font-weight:600; font-display:swap; src:url('https://cdn.jsdelivr.net/gh/sun-typeface/SUIT@2/fonts/static/woff2/SUIT-SemiBold.woff2') format('woff2'); }
+@font-face { font-family:'SUIT'; font-weight:700; font-display:swap; src:url('https://cdn.jsdelivr.net/gh/sun-typeface/SUIT@2/fonts/static/woff2/SUIT-Bold.woff2') format('woff2'); }
+@font-face { font-family:'SUIT'; font-weight:800; font-display:swap; src:url('https://cdn.jsdelivr.net/gh/sun-typeface/SUIT@2/fonts/static/woff2/SUIT-ExtraBold.woff2') format('woff2'); }
+@font-face { font-family:'SUIT'; font-weight:900; font-display:swap; src:url('https://cdn.jsdelivr.net/gh/sun-typeface/SUIT@2/fonts/static/woff2/SUIT-Heavy.woff2') format('woff2'); }
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --primary: #1461F0;
+  --primary-dark: #0E48CC;
+  --accent: #f59e0b;
+  --dark: #0f172a;
+  --gray: #64748b;
+  --light-gray: #f1f5f9;
+  --white: #ffffff;
+  --border: #e2e8f0;
+  --ground: #f8fafc;
+  /* 통신사 고유색 — index.html 카드 로고에 쓰는 색과 같음 */
+  --kt: #e60012;
+  --sk: #f97316;
+  --lg: #e6008c;
+}
+body { font-family: 'SUIT', 'Noto Sans KR', sans-serif; color: var(--dark); line-height: 1.6; overflow-x: hidden; background: var(--ground); }
+body.locked { overflow: hidden; }
+
+/* ===== HEADER (index.html과 동일) ===== */
+header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: white; box-shadow: 0 2px 12px rgba(15,42,90,0.09); }
+.header-inner { max-width: 1200px; margin: 0 auto; padding: 0 20px; height: 64px; display: flex; align-items: center; justify-content: space-between; }
+/* 로고를 오른쪽 전화 단추와 같은 높이로 (2026-08-25 다시 잼)
+   ★ 글자 높이는 '줄상자'가 아니라 '글자가 실제로 칠해지는 범위'로 재야 한다.
+     줄상자로 재면 글자 위아래 빈 공간까지 세어져 실제보다 크게 나온다(32px일 때 30px인데 40px로 나왔다).
+   실측: 전화 단추 40px / 43px일 때 글자가 칠해지는 높이 40px -> 딱 맞음 */
+.logo { font-size: 43px; font-weight: 900; color: var(--primary); text-decoration: none; letter-spacing: -0.5px;
+        line-height: 1; }   /* 줄간격을 1로: 안 그러면 글자 줄상자(69px)가 머리띠(64px)보다 커진다 */
+.logo span { color: var(--primary); }
+
+/* ═════ 2026-08-28 로고·머리띠 개편 ═════
+   1) 로고를 '파란 둥근 네모 + 흰 글자' 그림으로 바꾸고 이름 옆에 함께 쓴다.
+      모양은 원본 logo.png 를 소수점까지 실측해 코드로 다시 그린 것이다(어긋난 점 35/90000).
+   2) 머리띠에서 전화·카톡을 빼고, 오른쪽에 떠 있는 단추(좁을 때)와 상담 패널(넓을 때)로 옮겼다.
+      까닭: 오른쪽 색 덩어리가 왼쪽 로고의 2.2배라 서로 눈길을 나눠 가졌다.
+   3) 메뉴를 머리띠 한가운데로 옮겼다.
+   ★ 되돌리려면 이 덩어리와 아래 '상담 패널' 덩어리를 지우고,
+     머리띠·꼬리말 html 에서 <svg> 조각만 빼면 된다. */
+.logo { display: inline-flex; align-items: center; gap: 10px; }
+.logo-mark { flex: none; display: block; }
+.footer-logo { display: flex; align-items: center; gap: 8px; }
+.footer-mark { flex: none; display: block; }
+
+/* 로고 그림이 보이는 넓은 화면에서만 '당현함' 글씨를 그림과 같은 높이(30)로 맞춘다.
+   ★ 글자 높이는 줄상자가 아니라 '실제로 칠해지는 범위'로 재야 한다.
+     실측: 32px 일 때 칠해지는 높이 30px (43px 일 때는 40px). */
+@media (min-width: 931px) { .logo { font-size: 32px; } }
+/* 창이 좁으면 그림을 감추고 글자만 남긴다 -> 좁은 화면은 예전과 똑같아진다.
+   실측 근거: 머리띠 안쪽폭 = 창너비 - 40. 로고글자 111 + 메뉴 514 + (뺀)단추 자리.
+   931 에서 양옆 틈이 33px 씩 남아 넉넉하다. */
+@media (max-width: 930px) { .logo-mark { display: none !important; } }
+
+/* 머리띠에서 전화·카톡을 뺀다. 되돌리려면 이 한 줄만 지운다. */
+.header-cta { display: none !important; }
+
+/* 메뉴를 머리띠의 '진짜 가운데'에 둔다.
+   ★ 그냥 가운데 정렬하면 왼쪽 로고 때문에 오른쪽으로 밀린다.
+     그래서 흐름에서 빼내어(absolute) 가운데에 고정하고 부모에 자리표(relative)를 준다. */
+.header-inner { position: relative; }
+/* ★ width: max-content 가 없으면 좁은 화면에서 메뉴 글자가 두 줄로 접힌다 (2026-08-28 실제로 겪음).
+     까닭: 흐름에서 빼낸(absolute) 칸에 left 만 주면, 쓸 수 있는 너비가
+          '왼쪽 끝(50%)부터 오른쪽 끝까지' 즉 화면의 절반뿐이 된다.
+          메뉴가 그보다 넓어지는 순간 글자가 접힌다 (혜택안/내 처럼).
+     max-content 는 '내용 만큼'이라 자리에 상관없이 한 줄을 지킨다. */
+/* 가운데 맞춤은 자리가 넉넉한 931 이상에서만 한다.
+   실측(2026-08-28): 창 785 에서 가운데로 맞추면 로고와 메뉴 사이가 10px 까지 붙었다.
+     (메뉴 514 를 가운데 두면 양옆에 121 씩 남는데, 로고가 111 이라 10 만 남는다)
+   930 이하는 로고 그림도 감춰지는 구간이므로, 손대기 전 모습(오른쪽 정렬) 그대로 둔다. */
+@media (min-width: 931px) {
+  .header-inner nav {
+    position: absolute; left: 50%; transform: translateX(-50%);
+    /* ★ width: max-content 가 없으면 메뉴 글자가 두 줄로 접힌다 (2026-08-28 실제로 겪음).
+         까닭: 흐름에서 빼낸(absolute) 칸에 left 만 주면 쓸 수 있는 너비가
+              '왼쪽 끝(50%)부터 오른쪽 끝까지' 곧 화면의 절반뿐이 된다.
+              메뉴가 그보다 넓어지는 순간 '혜택안 / 내' 처럼 접힌다.
+         max-content 는 '내용 만큼'이라 자리에 상관없이 한 줄을 지킨다. */
+    width: max-content; max-width: none;
+  }
+}
+.header-inner nav a { white-space: nowrap; }
+nav { display: flex; gap: 4px; align-items: center; }
+nav a { font-size: 14px; font-weight: 500; color: var(--gray); text-decoration: none; padding: 6px 10px; border-radius: 6px; transition: all 0.2s; }
+nav a:hover { color: var(--primary); background: #eff6ff; }
+nav a.on { color: var(--primary); background: #eff6ff; font-weight: 700; }
+.header-phone { display: flex; align-items: center; gap: 6px; background: var(--primary); color: white; padding: 8px 16px; border-radius: 8px; font-size: 15px; font-weight: 700; text-decoration: none; transition: transform 0.12s ease, background 0.2s; }
+.header-phone:hover { background: var(--primary-dark); }
+/* ===== 머리띠 전화·카톡 단추 (2026-08-25) =====
+   카톡은 전에 화면 아래 오른쪽에 동그랗게 떠다니던 것을 여기로 올렸다.
+   전화 단추와 같은 크기·모양으로 맞춰 한 쌍처럼 보이게 한다. */
+.header-cta { display: flex; align-items: center; gap: 8px; }
+/* 좁은 컴퓨터 화면에서 전화번호가 두 줄로 접혀 단추가 64px로 부풀었다 (실측).
+   min-height: 카톡 글씨를 뺀 화면에서 그림만 남아 33px로 낮아지는 것을 40px로 맞춘다. */
+.header-cta > a { white-space: nowrap; flex: none; min-height: 40px; }
+.header-kakao {
+  display: flex; align-items: center; gap: 6px;
+  background: #fee500; color: #3a1d00; padding: 8px 16px;
+  border-radius: 8px; font-size: 15px; font-weight: 700; text-decoration: none; transition: background 0.2s;
+}
+.header-kakao:hover { background: #f7d200; }
+/* 좁은 컴퓨터 화면(태블릿 가로 등)에서는 글씨를 빼고 그림만 남긴다.
+   실측: 769px에서 글씨까지 두면 로고와 메뉴가 딱 붙어 숨이 막힌다 */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .header-kakao { padding: 8px 12px; }
+  .header-kakao .kakao-label { display: none; }
+}
+.header-phone:active { transform: translateY(1px) scale(0.985); }
+.hamburger { display: none; cursor: pointer; flex-direction: column; gap: 5px; }
+.hamburger span { display: block; width: 24px; height: 2px; background: var(--dark); border-radius: 2px; }
+.mobile-menu { display: none; position: fixed; top: 64px; left: 0; right: 0; background: white; padding: 12px 20px; box-shadow: 0 8px 20px rgba(0,0,0,0.1); z-index: 999; }
+.mobile-menu.open { display: block; }
+.mobile-menu a { display: block; padding: 13px 0; font-size: 15px; font-weight: 500; color: var(--dark); text-decoration: none; border-bottom: 1px solid var(--border); }
+.mobile-menu a:last-child { border-bottom: none; }
+
+/* 메뉴가 6개(요금·사은품 추가)가 되면서 좁은 컴퓨터 화면에서 전화번호 버튼과 거의 붙었다.
+   769~880px 구간에서만 항목 사이 여백을 살짝 줄여 숨통을 틔운다 (2026-08-20)
+   768px 이하는 어차피 햄버거 메뉴로 접히므로 영향 없음 */
+@media (min-width: 769px) and (max-width: 880px) {
+  nav a { padding: 6px 7px; }
+  .header-inner { padding: 0 14px; }
+}
+.mobile-menu a:active { background: #f1f5f9; }
+
+/* ===== 페이지 머리띠 (gift.html과 동일한 틀) ===== */
+.page-head {
+  margin-top: 64px;
+  /* 2026-08-28: 파란 그라데이션 -> 흰 바탕으로 바꿈 (사장님 지시).
+     index.html 의 '설치 후기' 칸과 같은 규칙을 따른다 —
+     흰 바탕 · 제목은 진한 남색 · 설명은 회색 · 강조할 낱말만 파랑.
+     아래 칸이 연회색(#f8fafc)이라 흰색과 맞닿으면 경계가 저절로 생긴다. */
+  background: #ffffff;
+  color: var(--dark); padding: 44px 20px 40px; text-align: center;
+  border-bottom: 1px solid var(--border);
+}
+.page-head h1 { font-size: clamp(24px, 3.5vw, 34px); font-weight: 900; letter-spacing: -1px; margin-bottom: 8px; text-wrap: balance; }
+.page-head h1 em { font-style: normal; color: var(--primary); }
+.page-head p { font-size: 16px; color: var(--gray); word-break: keep-all; }
+.page-head .badge {
+  /* 흰 바탕에서는 반투명 흰 알약이 안 보인다. 연한 파란 알약으로 바꾼다. */
+  display: inline-block; background: #eff6ff; border: 1px solid #dbeafe; color: var(--primary);
+  font-size: 13px; font-weight: 700; padding: 4px 16px; border-radius: 20px; margin-bottom: 12px;
+}
+
+/* ===== 통신사 고르는 단추 (화면 위에 붙어서 따라옴) ===== */
+.tabbar { position: sticky; top: 64px; z-index: 500; background: var(--ground); border-bottom: 1px solid var(--border); }
+.tabs {
+  max-width: 860px; margin: 0 auto; padding: 12px 20px;
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;
+}
+.tab {
+  font-family: inherit; font-size: 17px; font-weight: 900; letter-spacing: -0.3px;
+  padding: 13px 8px; border-radius: 12px; cursor: pointer;
+  background: white; border: 1.5px solid var(--border); color: var(--gray);
+  box-shadow: 0 2px 12px rgba(15,42,90,0.06);
+  transition: transform 0.12s ease, background 0.2s, border-color 0.2s, box-shadow 0.2s, color 0.2s;
+}
+.tab.kt { color: var(--kt); }
+.tab.sk { color: var(--sk); }
+.tab.lg { color: var(--lg); font-size: 15px; }
+.tab:hover { border-color: currentColor; }
+.tab:active { transform: translateY(1px) scale(0.985); }
+.tab[aria-selected="true"] { color: white; box-shadow: 0 6px 18px rgba(15,42,90,0.16); }
+.tab.kt[aria-selected="true"] { background: var(--kt); border-color: var(--kt); }
+.tab.sk[aria-selected="true"] { background: var(--sk); border-color: var(--sk); }
+.tab.lg[aria-selected="true"] { background: var(--lg); border-color: var(--lg); }
+
+/* ===== 본문 ===== */
+.wrap { max-width: 860px; margin: 0 auto; padding: 26px 20px 60px; }
+.panel[hidden] { display: none; }
+.sheet-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-bottom: 14px; }
+.sheet-name { font-size: 20px; font-weight: 800; letter-spacing: -0.5px; word-break: keep-all; }
+.sheet-name .co { font-weight: 900; }
+.sheet-name.kt .co { color: var(--kt); }
+.sheet-name.sk .co { color: var(--sk); }
+.sheet-name.lg .co { color: var(--lg); }
+.zoom-hint {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 13px; font-weight: 700; color: var(--primary);
+  background: #eff6ff; padding: 6px 13px; border-radius: 20px; white-space: nowrap;
+}
+
+.sheet {
+  display: block; width: 100%; padding: 0; cursor: zoom-in;
+  background: white; border: 1px solid var(--border); border-radius: 16px;
+  box-shadow: 0 2px 12px rgba(15,42,90,0.05); overflow: hidden;
+  transition: transform 0.15s ease, border-color 0.2s, box-shadow 0.2s;
+}
+.sheet:hover { border-color: var(--primary); box-shadow: 0 8px 24px rgba(20,97,240,0.12); }
+.sheet:active { transform: scale(0.995); }
+.sheet img { display: block; width: 100%; height: auto; }
+
+.note { margin-top: 16px; padding: 15px 18px; background: white; border: 1px solid var(--border); border-radius: 12px; font-size: 13px; color: var(--gray); line-height: 1.8; word-break: keep-all; }
+
+/* 상담 유도 (gift.html과 동일한 틀) */
+/* 2026-08-28: 맨 아래 파란 상자(.cta-box)를 뺐으므로 그 규칙들도 함께 지웠다.
+   되살리려면 보관함의 plans.backup_로고머리띠개편전_20260828.html 에서 가져오면 된다. */
+/* 신청 버튼 — index.html 아래 고정 막대(.desk-cta-bar-btn)와 똑같은 디자인.
+   파란 바탕 위에서는 파란 버튼이 묻히므로 색은 주황, 입체 효과까지 그대로 가져왔다 */
+.cta-btns { display: flex; justify-content: center; }
+.cta-apply {
+  display: inline-flex; align-items: center; justify-content: center; gap: 7px;
+  padding: 15px 34px; border-radius: 8px; line-height: 1.2;
+  font-size: 21px; font-weight: 800; color: white; text-decoration: none;
+  border: 1.5px solid transparent; white-space: nowrap;
+  /* ★ 마우스를 올리면 단추가 깜빡이던 문제 (2026-08-25 고침)
+     원인: 바탕이 '그라데이션(그림)'인데 마우스 올림 상태는 '단색'이다.
+          브라우저는 둘을 이어 그리지 못해 그라데이션을 즉시 지우는데,
+          밑에 깔린 색이 없으면 '완전 투명'에서 0.2초에 걸쳐 색이 차올라
+          그동안 단추가 사라졌다 나타났다.
+     해결: 그라데이션 밑에 위아래 색의 한가운데 색을 미리 깔아 둔다.
+     ※ background 로 모아쓰면 바탕색이 도로 지워지므로 나눠 쓸 것. */
+  background-color: #F16E12;
+  background-image: linear-gradient(180deg, #ff8124 0%, #e35a00 100%);
+  box-shadow: 0 8px 20px rgba(255,107,0,0.42);
+  transition: transform 0.08s ease, background 0.2s, box-shadow 0.2s;
+}
+.cta-apply:hover { background: #e85e00; }
+.cta-apply:active {
+  background: #d15a00;
+  transform: translateY(2px) scale(0.975);
+  box-shadow: inset 0 2px 6px rgba(0,0,0,0.20);
+}
+
+/* ===== 크게 보기 ===== */
+.zoom { position: fixed; inset: 0; z-index: 2000; background: rgba(10,20,45,0.94); display: none; overflow: auto; -webkit-overflow-scrolling: touch; }
+.zoom.open { display: block; }
+.zoom-inner { padding: 64px 0 40px; }
+.zoom-inner img { display: block; width: 800px; max-width: none; margin: 0 auto; }
+.zoom-close {
+  position: fixed; top: 14px; right: 14px; z-index: 2010;
+  width: 44px; height: 44px; border-radius: 50%; cursor: pointer;
+  background: white; border: none; color: var(--dark); font-size: 20px; font-weight: 800;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+  transition: transform 0.12s ease;
+}
+.zoom-close:active { transform: scale(0.94); }
+.zoom-tip {
+  position: fixed; top: 20px; left: 50%; transform: translateX(-50%); z-index: 2010;
+  color: rgba(255,255,255,0.85); font-size: 13px; font-weight: 600;
+  background: rgba(0,0,0,0.35); padding: 6px 14px; border-radius: 20px; white-space: nowrap;
+}
+
+/* ===== FOOTER (index.html과 동일) ===== */
+footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; font-size: 13px; line-height: 1.9; }
+.footer-inner { max-width: 1100px; margin: 0 auto; }
+.footer-top { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 20px; margin-bottom: 24px; padding-bottom: 24px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+.footer-logo { font-size: 20px; font-weight: 900; color: white; }
+.footer-links { display: flex; gap: 20px; flex-wrap: wrap; }
+.footer-links a { color: rgba(255,255,255,0.6); text-decoration: none; font-size: 13px; }
+.footer-links a:hover { color: white; }
+.footer-disclaimer { margin-top: 16px; font-size: 11px; color: rgba(255,255,255,0.3); line-height: 1.7; }
+
+/* 플로팅 */
+.floating-btns { position: fixed; right: 30px; bottom: 24px; display: flex; flex-direction: column; gap: 12px; z-index: 900; }
+/* 아래 카드가 24 여백 + 75 높이까지 차지한다. 좁은 컴퓨터 화면에서 카드 오른쪽 끝과
+   동그란 단추가 겹치므로 위로 올린다 (index.html 과 같은 규칙) */
+@media (min-width: 769px) { .floating-btns { bottom: 120px; } }
+/* 컴퓨터에서는 떠다니는 동그란 단추를 없앤다 (2026-08-25)
+   전화 단추는 삭제하고, 카톡 단추는 위 머리띠로 옮겼다. 폰에서는 그대로 둔다. */
+/* 2026-08-25 에는 컴퓨터에서 이 단추를 없애고 카톡을 머리띠로 올렸었다.
+   2026-08-28 되돌린다 — 머리띠에서 전화·카톡을 뺐으니 이 단추가 그 몫을 한다.
+   1600 이상에서만 감춘다. 그 위는 오른쪽 상담 패널이 대신 뜬다. */
+@media (min-width: 1600px) { .floating-btns { display: none; } }
+/* ═════ 넓은 화면(1600 이상) 상담 패널 — 2026-08-28 ═════
+   자리가 남는 화면에서만 펼쳐 두고, 좁아지면 위 동그란 단추가 그 몫을 한다.
+   ★ 경계 1600 의 근거 — 브라우저에서 직접 재며 두 번 고친 값이다.
+     첫 화면 오른쪽 빈자리 = (실제 폭 - 본문폭) / 2. 패널은 200 + 오른쪽여백 20 = 220 이 필요하다.
+     1540 은 빈자리가 220뿐이라 4px 겹쳤고, 1580 은 그 바로 아래에서 또 겹칠 뻔했다
+     (@media 는 스크롤막대 15px 까지 세지만 실제 자리는 그만큼 좁다).
+     1600 이면 최악의 경우에도 22px 떨어진다. */
+.consult-panel {
+  display: none;
+  /* 2026-08-28: 위쪽(120)에 붙어 있던 것을 화면 세로 한가운데로 옮겼다 (사장님 지시).
+     ★ 낮은 창에서 머리띠(64)를 파고들지 않게 하는 방법 —
+       처음엔 top 에 max(84px, 50%) 를 썼는데, 가운데맞춤(translateY -50%)이 그 뒤에
+       다시 절반만큼 끌어올려서 창 280 에서 12px 겹쳤다 (실측).
+       그래서 위치가 아니라 '키'를 묶는다: 위아래로 84 씩 비워 두면
+       한가운데에 놓아도 위쪽 끝이 84 밑으로는 못 내려온다. 168 = 84 x 2.
+       상자가 그보다 커지면 상자 안에서 굴려 볼 수 있다. */
+  /* 2026-08-28 2차: 한가운데(50%)보다 조금 위인 42% 로 올렸다 (사장님 첨부 화면의 경계선 자리).
+     ★ 낮은 창에서 머리띠(64) 밑으로 파고들지 않게 하는 방법은 '키 묶기'다.
+       키를 (창높이 x 0.84 - 168) 로 묶으면, 42% 에 가운데를 맞춰도
+       위쪽 끝이 항상 84 아래로는 못 내려온다. (실측으로 확인: 창 1000/400/280 모두 84 이상)
+       상자가 그보다 커지면 상자 안에서 굴려 볼 수 있다. */
+  position: fixed; right: 20px; top: 42%; transform: translateY(-50%); z-index: 900;
+  max-height: calc(84vh - 168px); overflow-y: auto;
+  width: 200px; padding: 16px 14px;
+  background: white; border: 1px solid #e2e8f0; border-radius: 14px;
+  box-shadow: 0 10px 30px rgba(15,23,42,0.13);
+  font-family: 'SUIT', 'Noto Sans KR', sans-serif;
+}
+@media (min-width: 1600px) { .consult-panel { display: block; } }
+/* 2026-08-28: 「상담하기」 제목 글자를 없앴다 (사장님 지시).
+   까닭: 전화·카톡 단추만으로 무슨 상자인지 이미 읽힌다. 글자가 하나 줄어 조용해진다.
+   대신 아래에 영업시간 한 줄을 두어 '언제 받을 수 있는지'를 알려 준다. */
+.consult-hours {
+  margin: 10px 0 0; padding-top: 10px; border-top: 1px solid #eef2f7;
+  font-size: 11.5px; line-height: 1.6; color: #7b8b99; letter-spacing: -0.2px;
+}
+/* 영업시간 밖 안내. 바탕색 없이 글씨만 (사장님 지시) */
+.consult-note {
+  margin: 10px 0 0; padding-top: 10px; border-top: 1px solid #eef2f7;
+  font-size: 11.5px; line-height: 1.6; color: #64748b; letter-spacing: -0.2px;
+}
+.consult-note b { font-weight: 800; color: #475569; }
+.cs-btn {
+  display: flex; align-items: center; justify-content: center; gap: 7px;
+  width: 100%; min-height: 42px; margin-bottom: 8px; padding: 0 10px;
+  border: none; border-radius: 9px; cursor: pointer;
+  font-family: 'SUIT', 'Noto Sans KR', sans-serif;
+  font-size: 15px; font-weight: 700; letter-spacing: -0.3px;
+  text-decoration: none; transition: background 0.2s;
+}
+.cs-btn:last-child { margin-bottom: 0; }
+.cs-phone { background: var(--primary); color: white; }
+.cs-phone:hover { background: var(--primary-dark); }
+.cs-kakao { background: #fee500; color: #3a1d00; }
+.cs-kakao:hover { background: #f7d200; }
+/* 2026-08-28: 패널의 '무료 상담 신청'(주황) 단추를 뺐다 (사장님 지시).
+   까닭: 아래 남색 카드(또는 gift 의 주황 따라오는 단추)와 가는 곳이 똑같아 겹쳤다.
+   이제 이 패널은 '지금 바로 연락하기'(전화·카톡) 한 가지 뜻만 갖는다.
+   되살리려면 이 자리에 아래 두 줄을 넣고 html 에 단추를 다시 넣으면 된다.
+     .cs-apply { background: #ff6b00; color: white; }
+     .cs-apply:hover { background: #e85e00; } */
+.float-btn { width: 52px; height: 52px; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; box-shadow: 0 4px 16px rgba(0,0,0,0.15); transition: transform 0.2s; font-size: 22px; }
+.float-btn:hover { transform: scale(1.1); }
+.float-btn:active { transform: scale(1.02); }
+.float-phone { background: var(--primary); color: white; border: 1px solid white; }
+.float-kakao { background: #fee500; color: #3a1d00; }
+
+
+/* ═════ 컴퓨터 화면 아래 '따라오는' 신청 카드 — 2026-08-28 ═════
+   index.html 의 .desk-cta-bar 를 그대로 옮겨 온 것이다.
+   까닭(index 에 적힌 그대로): 좌우로 꽉 찬 띠는 광고 배너와 모양이 같아서
+     손님 눈이 자동으로 건너뛴다. 그래서 좌우를 잘라내고 내용만큼만 차지하는 카드로 띄운다.
+   ★ 카드 전체가 하나의 누르는 곳이다.
+   이 페이지에는 신청폼이 없으므로 index.html 의 신청 자리로 보낸다.
+   폰(768 이하)에서는 아래 흰 띠가 그 몫을 하므로 이 카드는 뜨지 않는다. */
+.desk-cta-bar {
+  display: none;
+  position: fixed; bottom: 24px; left: 0; right: 0; z-index: 940;
+  justify-content: center;
+  opacity: 0; transform: translateY(16px);
+  transition: opacity 0.3s, transform 0.35s cubic-bezier(0.4,0,0.2,1);
+  pointer-events: none;
+}
+.desk-cta-bar.visible { opacity: 1; transform: translateY(0); }
+/* 바깥 칸은 화면을 가로지르므로 눌림을 꺼 두고, 보일 때만 카드에 눌림을 준다 */
+.desk-cta-bar.visible .desk-cta-card { pointer-events: auto; }
+.desk-cta-card {
+  pointer-events: none;
+  display: inline-flex; align-items: center; gap: 20px;
+  max-width: calc(100vw - 48px);
+  padding: 13px 16px 13px 28px;
+  background: #12336E;
+  border: 1.5px solid rgba(255,255,255,0.10); border-radius: 14px;
+  box-shadow: 0 14px 34px rgba(4,18,60,0.34), 0 2px 8px rgba(4,18,60,0.22);
+  cursor: pointer; font-family: 'SUIT', sans-serif; text-align: left;
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform 0.08s ease, background 0.2s, box-shadow 0.2s;
+}
+.desk-cta-card:hover { background: #163C80; }
+.desk-cta-top { font-size: 18px; font-weight: 700; color: white; letter-spacing: -0.3px; }
+.desk-cta-bar-btn {
+  display: inline-flex; align-items: center;
+  padding: 12px 28px; background: #ff6b00; color: white;
+  font-size: 23px; font-weight: 800; border: 1.5px solid transparent; border-radius: 8px;
+  font-family: 'SUIT', sans-serif; transition: background 0.2s;
+  white-space: nowrap; line-height: 1;
+  pointer-events: none;   /* 주황 조각은 따로 반응하지 않는다 — 카드가 하나로 움직인다 */
+}
+/* 카드를 누르면 주황 조각도 함께 반응해야 '한 덩어리'로 읽힌다 */
+.desk-cta-card:hover .desk-cta-bar-btn { background: #e85e00; }
+.desk-cta-card:active { transform: translateY(2px) scale(0.99); box-shadow: 0 6px 16px rgba(4,18,60,0.30); }
+.desk-cta-card:active .desk-cta-bar-btn { background: #d15a00; box-shadow: inset 0 2px 6px rgba(0,0,0,0.20); }
+@media (min-width: 769px) { .desk-cta-bar { display: flex; } }
+
+/* 휴대폰 아래 고정 신청 막대 — index.html의 .mobile-cta-bar와 같은 디자인.
+   이 페이지에는 신청폼이 없어 숨길 조건 없이 항상 떠 있는다 (2026-08-21) */
+.mobile-cta-bar {
+  display: none; position: fixed; bottom: 0; left: 0; right: 0; z-index: 950;
+  padding: 10px 16px; background: white; box-shadow: 0 -3px 16px rgba(0,0,0,0.12);
+}
+.mobile-cta-btn {
+  display: flex; align-items: center; justify-content: center;
+  width: 100%; height: 48px; border-radius: 12px; text-decoration: none;
+  color: white; font-size: 16px; font-weight: 800; letter-spacing: -0.3px;
+  background-color: #145AE6;   /* 위아래 파랑의 한가운데 색 — 누를 때 깜빡임 방지용 받침 */
+  background-image: linear-gradient(180deg, #1a6bff 0%, #0e48cc 100%);
+  box-shadow: 0 8px 20px rgba(20,97,240,0.45);
+  transition: transform 0.08s ease, background 0.2s, box-shadow 0.2s;
+}
+.mobile-cta-btn:active {
+  background: #0E48CC;
+  transform: translateY(2px) scale(0.96);
+  box-shadow: inset 0 2px 6px rgba(0,0,0,0.22);
+}
+
+/* 키보드로 옮겨 다닐 때 어디에 있는지 보이게 (index.html과 동일) */
+a:focus-visible, button:focus-visible {
+  outline: 3px solid var(--primary);
+  outline-offset: 2px;
+}
+/* 2026-08-28: 제목 칸이 흰 바탕이 되어 흰 테두리는 안 보인다. 목록에서 뺐다.
+   같은 날 파란 상자(.cta-box)도 없어져 꼬리말만 남았다. */
+footer :focus-visible {
+  outline-color: #ffffff;
+}
+
+@media (max-width: 768px) {
+  nav { display: none; }
+  .hamburger { display: flex; }
+  /* 폰에서는 머리띠의 전화·카톡 단추를 없앤다 (2026-08-25)
+     화면 아래 오른쪽에 떠다니는 전화·카톡 단추가 이미 그 몫을 하고 있어 겹친다 */
+  .header-cta { display: none; }
+  /* 폰에서는 전화 단추가 작아진다(높이 35px). 로고도 그에 맞춘다
+     실측: 37px일 때 글자가 칠해지는 높이 35px -> 딱 맞음 */
+  .logo { font-size: 37px; }
+  .page-head { padding: 34px 20px 30px; }
+  .page-head h1 { font-size: 24px; }
+  .page-head p { font-size: 13.5px; }
+  .tabs { padding: 10px 14px; gap: 8px; }
+  .tab { font-size: 16px; padding: 12px 4px; border-radius: 11px; }
+  .tab.lg { font-size: 13.5px; }
+  .wrap { padding: 22px 14px 50px; }
+  .sheet-name { font-size: 17px; }
+  .zoom-hint { font-size: 12px; padding: 5px 11px; }
+  .note { padding: 14px; font-size: 12.5px; }
+  .cta-apply { padding: 15px 20px; font-size: 18px; width: 100%; white-space: normal; }
+  .floating-btns { bottom: 88px; right: 16px; }   /* 고정 막대(68px) 위로 */
+  .mobile-cta-bar { display: block; }
+  body { padding-bottom: 68px; }                   /* 회사정보 끝줄이 막대에 가리지 않게 */
+  .zoom-inner { padding: 60px 0 30px; }
+}
+@media (hover: none) {
+  .tab:hover { border-color: var(--border); }
+  .tab[aria-selected="true"]:hover { border-color: currentColor; }
+  .sheet:hover { border-color: var(--border); box-shadow: 0 2px 12px rgba(15,42,90,0.05); }
+  .float-btn:hover { transform: none; }
+  /* 여기도 background 로 모아쓰면 밑에 깔아 둔 바탕색이 지워진다 → 그림만 되돌린다 */
+  .cta-apply:hover { background-image: linear-gradient(180deg, #ff8124 0%, #e35a00 100%); }
+}
+@media (prefers-reduced-motion: reduce) {
+  * { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+}
+</style>
+<style>
+/* ===== 약관·개인정보 글 페이지 (2026-09-02) ===== */
+.doc-head { background: white; border-bottom: 1px solid var(--border); padding: 96px 20px 28px; text-align: center; }
+.doc-head h1 { font-size: 26px; font-weight: 800; color: var(--dark); letter-spacing: -0.6px; }
+.doc-head p { margin-top: 8px; font-size: 14px; color: var(--gray); }
+.doc-wrap { max-width: 860px; margin: 0 auto; padding: 28px 20px 60px; }
+.doc-body { background: white; border: 1px solid var(--border); border-radius: 16px; padding: 32px; }
+.doc-body p { font-size: 15px; color: var(--dark); line-height: 1.9; margin-bottom: 12px; word-break: keep-all; }
+.doc-body h4 { font-size: 16px; font-weight: 800; color: var(--dark); margin: 28px 0 8px; }
+.doc-body h4:first-child { margin-top: 0; }
+.doc-body table { width: 100%; border-collapse: collapse; margin: 12px 0 20px; }
+.doc-body th, .doc-body td { border: 1px solid var(--border); padding: 10px 12px; font-size: 14px; text-align: left; word-break: keep-all; }
+.doc-body th { background: #E8EFFD; font-weight: 700; text-align: center; }
+.doc-back { display: inline-block; margin-top: 20px; font-size: 14px; font-weight: 700; color: var(--primary); text-decoration: none; }
+@media (max-width: 768px) {
+  .doc-head { padding: 84px 16px 24px; }
+  .doc-head h1 { font-size: 21px; }
+  .doc-body { padding: 20px; border-radius: 12px; }
+  .doc-body p { font-size: 14px; }
+  .doc-body h4 { font-size: 15px; }
+  .doc-body th, .doc-body td { padding: 8px; font-size: 13px; }
+}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs><g id="dh-logo"><path d="M42 68H268.4v29.4H65.4v103.2H272v29.8H25.6V84.4A16.4 16.4 0 0 1 42 68Z"/><g><rect x="124.17" y="118.6" width="18.47" height="8.4"/><rect x="96" y="127" width="74.84" height="12"/><path fill-rule="evenodd" d="M168.88 157.4C168.88 169.33 160.31 173.1 133.18 173.1C106.05 173.1 97.48 169.33 97.48 157.4C97.48 145.47 106.05 141.7 133.18 141.7C160.31 141.7 168.88 145.47 168.88 157.4ZM150.63 157.41C150.63 159.98 145.83 160.96 133.18 160.96C120.53 160.96 115.73 159.98 115.73 157.41C115.73 154.84 120.53 153.86 133.18 153.86C145.83 153.86 150.63 154.84 150.63 157.41Z"/></g><g transform="translate(93 0)"><rect x="124.17" y="118.6" width="18.47" height="8.4"/><rect x="96" y="127" width="74.84" height="12"/><path fill-rule="evenodd" d="M168.88 157.4C168.88 169.33 160.31 173.1 133.18 173.1C106.05 173.1 97.48 169.33 97.48 157.4C97.48 145.47 106.05 141.7 133.18 141.7C160.31 141.7 168.88 145.47 168.88 157.4ZM150.63 157.41C150.63 159.98 145.83 160.96 133.18 160.96C120.53 160.96 115.73 159.98 115.73 157.41C115.73 154.84 120.53 153.86 133.18 153.86C145.83 153.86 150.63 154.84 150.63 157.41Z"/></g></g><path id="dh-ico-phone" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/><path id="dh-ico-kakao" d="M12 3C6.477 3 2 6.477 2 10.5c0 2.667 1.556 5.011 3.9 6.4L5 21l4.1-2.7c.94.2 1.91.3 2.9.3 5.523 0 10-3.477 10-7.5S17.523 3 12 3z"/></defs></svg>
+<!-- HEADER -->
+<header>
+  <div class="header-inner">
+    <a href="index.html" class="logo"><svg class="logo-mark" width="30" height="30" viewBox="0 0 300 300" aria-hidden="true"><rect width="300" height="300" rx="56" fill="currentColor"/><use href="#dh-logo" fill="#fff"/></svg><span>당<span>현</span>함</span></a>
+    <nav>
+      <a href="index.html#compare">혜택안내</a>
+      <a href="plans.html" class="on">요금·사은품</a>
+      <a href="index.html#reviews">설치후기</a>
+      <a href="gift.html">사은품지급명단</a>
+      <a href="index.html#faq">자주묻는질문</a>
+      <a href="index.html#apply-now" style="color:var(--primary);font-weight:700;">무료상담</a>
+    </nav>
+    <!-- 전화·카톡 단추 묶음. 카톡은 화면 아래를 따라다니던 것을 여기로 옮겼다 (2026-08-25) -->
+    <div class="header-cta">
+      <a href="tel:1600-4670" class="header-phone">
+        <svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+        1600-4670
+      </a>
+      <a href="https://pf.kakao.com/_yxgTAs" class="header-kakao" title="카카오 상담">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3C6.477 3 2 6.477 2 10.5c0 2.667 1.556 5.011 3.9 6.4L5 21l4.1-2.7c.94.2 1.91.3 2.9.3 5.523 0 10-3.477 10-7.5S17.523 3 12 3z"/></svg>
+        <span class="kakao-label">카카오 상담</span>
+      </a>
+    </div>
+    <div class="hamburger" onclick="document.getElementById('mobileMenu').classList.toggle('open')">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</header>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html#compare">혜택안내</a>
+  <a href="plans.html">요금·사은품</a>
+  <a href="index.html#reviews">설치후기</a>
+  <a href="gift.html">사은품지급명단</a>
+  <a href="index.html#faq">자주묻는질문</a>
+  <a href="index.html#apply-now" style="color:var(--primary);font-weight:700;">무료상담 →</a>
+</div>
+
+
+<div class="doc-head">
+  <h1 id="dh-doc-title">개인정보처리방침</h1>
+  <p>유진텔레콤(당현함) · 시행일 2026년 1월 1일</p>
+</div>
+<div class="doc-wrap">
+  <!-- 글은 js/dh-terms.js 한 곳에서 읽어 온다. 여기에 직접 적지 말 것 -->
+  <div class="doc-body" id="dh-doc-body" data-kind="privacy">
+    <p>글을 불러오는 중입니다…</p>
+  </div>
+  <a class="doc-back" href="index.html">← 당현함 홈으로</a>
+</div>
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-logo"><svg class="footer-mark" width="21" height="14" viewBox="25.6 68 246.4 162.4" aria-hidden="true"><use href="#dh-logo" fill="currentColor"/></svg><span>당<span>현</span>함</span></div>
+      <div class="footer-links">
+        <a href="javascript:void(0)" onclick="openPrivacy()">개인정보처리방침</a>
+        <a href="javascript:void(0)" onclick="openTerms()">서비스이용약관</a>
+        <a href="tel:1600-4670">1600-4670</a>
+      </div>
+    </div>
+    <div class="footer-info" style="font-size:13px;">
+      <strong style="color:rgba(255,255,255,0.8);">유진텔레콤</strong> | 대표: 조성현 | 사업자등록번호: 291-40-00301<br>
+      주소: 경상남도 함안군 산인면 송산로 122, 2층 201호(은혜벌) | 대표번호: 1600-4670
+    </div>
+    <div class="footer-disclaimer">
+      당현함은 KT, SKT, LG U+ 공식 파트너로서 인터넷 가입 및 가전렌탈 서비스를 제공합니다.<br>
+      제시된 요금 및 지원금은 약정 조건에 따라 변경될 수 있으며, 정확한 내용은 상담을 통해 안내드립니다.<br>
+      © 2026 당현함. All rights reserved.
+    </div>
+  </div>
+</footer>
+<script src="js/dh-terms.js?v=1"></script>
+<script>
+document.addEventListener('click', function (e) {
+  if (!e.target.closest('header') && !e.target.closest('.mobile-menu'))
+    document.getElementById('mobileMenu').classList.remove('open');
+});
+</script>
+</body>
+</html>
