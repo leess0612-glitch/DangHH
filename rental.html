@@ -893,7 +893,7 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
   pointer-events: none;
 }
 .desk-cta-bar.visible { opacity: 1; transform: translateY(0); pointer-events: all; }
-.desk-cta-bar-inner { max-width: 860px; margin: 0 auto; display: flex; flex-direction: row; align-items: flex-end; justify-content: center; gap: 10px; }
+.desk-cta-bar-inner { max-width: 1040px;   /* 860 -> 1040 : 희망 제품 칸이 늘면서 넘쳤다(실측 14px) */ margin: 0 auto; display: flex; flex-direction: row; align-items: flex-end; justify-content: center; gap: 10px; }
 .desk-cta-phone-wrap { display: flex; flex-direction: column; gap: 6px; align-items: center; }
 .desk-cta-top { font-size: 21px; font-weight: 800; color: white; text-align: center; letter-spacing: -0.3px; }
 .desk-cta-bar input {
@@ -914,6 +914,21 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
 }
 .desk-cta-bar-btn:hover { background: #e85e00; }
 .desk-cta-success { font-size: 14px; font-weight: 700; color: white; text-align: center; display: none; }
+/* ===== 아래 띠 '희망 제품' 고르기 (2026-09-02) =====
+   왜 넣었나 — 시트의 '서비스종류' 칸이 이 통로로 들어온 신청에서는 계속 '미지정' 이었다.
+   큰 신청폼(#apply)은 이미 아이콘으로 고르게 돼 있어 방식을 맞췄다.
+   덕분에 시트에 들어오는 값이 '정수기' / '기타제품' 두 가지로 통일된다.
+   ★ 자리는 번호 칸 뒤 (사장님 지시) — 이름·번호를 먼저 받고 제품을 고르는 순서다.
+   ★ 필수 검사를 따로 두지 않는다. 기본값이 '정수기' 라 아무것도 안 해도 값이 채워진다. */
+.desk-pick{ display:flex; gap:6px; }
+.desk-pick-btn{
+  padding:12px 14px; border:1.5px solid rgba(255,255,255,.45); border-radius:8px;
+  background:rgba(255,255,255,.12); color:#fff;
+  font-family:'SUIT',sans-serif; font-size:15px; font-weight:700; white-space:nowrap;
+  cursor:pointer; transition:background .18s, border-color .18s;
+}
+.desk-pick-btn:hover{ background:rgba(255,255,255,.22); }
+.desk-pick-btn.on{ background:#fff; color:#1248CC; border-color:#fff; }
 
 @media (min-width: 769px) {
   .desk-cta-bar { display: block; }
@@ -3029,6 +3044,10 @@ function promiseZoom(src){ document.getElementById('promiseViewerImg').src=src; 
       <div class="desk-cta-top">내가 받을 수 있는 지원금은?</div>
       <input type="tel" id="deskPhone" placeholder="휴대폰 번호">
     </div>
+    <div class="desk-pick" role="group" aria-label="희망 제품">
+      <button type="button" class="desk-pick-btn on" id="deskPickWater" onclick="deskPick('water')">💧 정수기</button>
+      <button type="button" class="desk-pick-btn" id="deskPickEtc" onclick="deskPick('etc')">🏠 기타제품</button>
+    </div>
     <button class="desk-cta-bar-btn" onclick="submitDeskForm()">무료 확인 →</button>
     <div class="desk-cta-success" id="deskSuccess">✅ 신청 완료! 곧 연락드리겠습니다.</div>
   </div>
@@ -3454,6 +3473,16 @@ document.getElementById('deskPhone').addEventListener('input', function() {
 });
 
 // Desktop bar submit
+/* 아래 띠의 '희망 제품' 고르기. 보내는 값은 큰 신청폼(#apply)과 같은 말로 맞춘다 */
+let desk고른제품 = 'water';
+function deskPick(kind){
+  desk고른제품 = kind;
+  const w = document.getElementById('deskPickWater'), e = document.getElementById('deskPickEtc');
+  if (w) w.classList.toggle('on', kind === 'water');
+  if (e) e.classList.toggle('on', kind === 'etc');
+}
+function deskService(){ return desk고른제품 === 'water' ? '정수기' : '기타제품'; }
+
 async function submitDeskForm() {
   const name = document.getElementById('deskName').value.trim();
   const phone = document.getElementById('deskPhone').value.trim();
@@ -3464,7 +3493,7 @@ async function submitDeskForm() {
   const 본래글자 = btn ? btn.textContent : '';
   if (btn) { btn.disabled = true; btn.textContent = '신청 중...'; }
   try {
-    await dhSend(Object.assign({ name, phone, usim: '미지정', service: '미지정' }, dhInflow()),
+    await dhSend(Object.assign({ name, phone, usim: '미지정', service: deskService() }, dhInflow()),
                  (문구) => { if (btn) btn.textContent = 문구; });
     /* 하단 바에서 완료 메시지만 남기고 입력칸·버튼은 정리.
        요소가 없어도 오류 나지 않도록 있는 것만 건드림 */
