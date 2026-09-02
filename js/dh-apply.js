@@ -1,20 +1,31 @@
 /* ===========================================================
-   당현함 신청창(팝업) 공용 부품 (2026-09-02 새로 만듦)
+   당현함 신청창 + 창 다루기 공용 부품 (2026-09-02 새로 만듦)
 
-   ★ 무엇을 하나
-     요금표(plans.html)·사은품명단(gift.html)처럼 신청칸이 없던 페이지에서도
-     메인과 똑같은 신청창이 '그 자리에서' 뜨게 한다.
-     전에는 단추를 누르면 메인 주소(#apply-now)로 페이지를 통째로 갈아탔고,
-     그래서 손님 화면이 메인 맨 위로 튀었다.
+   ★ 무엇을 하나 — 두 가지다
+     ① 요금표(plans.html)·사은품명단(gift.html)처럼 신청칸이 없던 페이지에서도
+        메인과 똑같은 신청창이 '그 자리에서' 뜨게 한다.
+        전에는 단추를 누르면 메인 주소(#apply-now)로 페이지를 통째로 갈아탔고,
+        그래서 손님 화면이 메인 맨 위로 튀었다.
+     ② 그 페이지들의 '창 다루기'를 메인과 똑같이 맞춘다 (2026-09-02 2차)
+        - ESC 를 누르면 맨 위 창 하나만 닫힌다 (폰 메뉴·약관창·신청창)
+        - 뒤로가기를 누르면 페이지를 떠나지 않고 맨 위 창 하나만 닫힌다
+        ⚠ 이게 없을 때: 폰에서 메뉴나 약관을 열어 본 손님이 뒤로가기를 누르면
+          요금표가 통째로 사라지고 앞 페이지로 튕겨 나갔다 (2026-09-02 실측).
 
    ★ 쓰는 법 — 페이지에 이 한 줄만 넣으면 된다 (js/dh-terms.js 와 같은 방식)
        <script src="js/dh-apply.js?v=1"></script>
      그 뒤로 단추에 onclick="신청창열기()" 를 걸면 창이 뜬다.
+     폰 메뉴(햄버거)는 onclick="toggleMenu()" 로 걸면 위 규칙을 함께 받는다.
      (창 모양 규칙도 창 상자도 이 파일이 알아서 만들어 붙인다)
 
    ★ 메인·렌탈은 건드리지 않는다
-     페이지에 이미 id="applyOverlay" 상자가 있으면 그것을 그대로 쓰고,
-     그 페이지가 자기 함수를 나중에 정의하면 그쪽이 이긴다.
+     그 두 페이지는 이 파일을 부르지 않는다. 같은 규칙을 자기 안에 이미 갖고 있다
+     (index.html 의 창목록·맨위창닫기 — 2026-08-25부터). 여기 있는 것은 그 규칙을
+     요금표·명단으로 옮겨 온 것이다.
+
+   ★ 약관 파일(js/dh-terms.js)은 손대지 않았다
+     그 파일은 메인·렌탈도 함께 쓰기 때문이다. 대신 이 파일이 약관창을 '지켜보다가'
+     열리고 닫히는 것을 창 관리자에 알려 준다.
 
    ★ 함께 봐야 하는 것
      - js/dh-inflow.js : 유입경로(광고 갈래) — dhInflow() 로 값을 받아 함께 보낸다
@@ -27,8 +38,94 @@
   var SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxmkjm-U5m29WEkjKpAV8RovWAo9JMFJmR6t2BCgQPboPdpLSVwORTJ1_-kRXeCAeS84A/exec';
 
   var 고른서비스 = { internet: true, rental: false };
-  var 기록넣음 = false;      // 뒤로가기용 빈 칸을 우리가 넣었는지
-  var 스스로되돌림 = false;  // 우리가 직접 부른 되돌리기인지
+
+  /* ═══════════════════════════════════════════════════════════
+     0) 창 관리자 — 지금 떠 있는 창을 기억해 두고 맨 위 것 하나만 닫는다
+     index.html 이 2026-08-25부터 쓰고 있는 규칙을 그대로 옮겼다.
+
+     핵심은 '빈 칸 한 개'다. 창을 열 때 뒤로가기 기록에 빈 칸을 하나 넣어 두고,
+     뒤로가기가 오면 그 칸이 소모되면서 창만 닫힌다. X 나 ESC 로 닫았을 때는
+     우리가 넣은 빈 칸을 스스로 치운다. 그래서 열고 닫기를 아무리 반복해도
+     기록이 쌓이지 않고, 손님이 사이트 밖으로 튕겨 나가지도 않는다.
+     ═══════════════════════════════════════════════════════════ */
+  var 창목록 = [];             // 지금 떠 있는 창들 (나중에 연 것이 뒤)
+  var 뒤로가기처리중 = false;   // 뒤로가기가 부른 닫기인지 구분
+  var 되돌리기예약 = false;     // 우리가 스스로 부른 되돌리기인지 구분
+  var 뺄칸수 = 0;               // 닫혔지만 아직 안 치운 빈 칸
+  var 정리타이머 = null;
+
+  function 창열림기록(이름, 닫기함수) {
+    창목록.push({ 이름: 이름, 닫기: 닫기함수 });
+    /* 방금 닫힌 창이 쓰던 빈 칸이 아직 남아 있으면 그대로 물려받는다.
+       (폰 메뉴에서 '무료상담'을 누르면 메뉴가 닫히는 것과 신청창이 열리는 것이
+        같은 순간에 일어난다. 이때 칸을 뺐다 넣었다 하면 순서가 꼬인다) */
+    if (뺄칸수 > 0) {
+      뺄칸수--;
+      if (!뺄칸수 && 정리타이머) { clearTimeout(정리타이머); 정리타이머 = null; }
+      return;
+    }
+    try { history.pushState({ dh창: 1 }, '', location.href); } catch (e) {}
+  }
+  function 창목록에서빼기(이름) {
+    for (var i = 창목록.length - 1; i >= 0; i--) {
+      if (창목록[i].이름 === 이름) { 창목록.splice(i, 1); return; }
+    }
+  }
+  function 창닫힘기록(이름) {
+    var 자리 = -1;
+    for (var i = 창목록.length - 1; i >= 0; i--) { if (창목록[i].이름 === 이름) { 자리 = i; break; } }
+    if (자리 === -1) return;                 // 뒤로가기가 이미 처리한 창
+    창목록.splice(자리, 1);
+    if (뒤로가기처리중) return;              // 기록은 이미 스스로 물러났다
+    /* X·바깥·ESC 로 닫은 경우: 우리가 넣은 빈 칸을 스스로 치운다.
+       곧바로 다른 창이 열릴 수도 있으므로 한 박자 뒤에 정리한다. */
+    뺄칸수++;
+    if (정리타이머) clearTimeout(정리타이머);
+    정리타이머 = setTimeout(빈칸정리, 0);
+  }
+  function 빈칸정리() {
+    정리타이머 = null;
+    if (뺄칸수 <= 0) return;
+    뺄칸수 = 0;
+    /* ★ 지금 자리가 우리가 넣은 빈 칸일 때만 되돌린다.
+         아니면 손님이 사이트 밖으로 나가 버린다. 한 칸씩만 되돌려 절대 넘치지 않게 한다. */
+    if (!(history.state && history.state.dh창)) return;
+    되돌리기예약 = true;
+    try { history.back(); } catch (e) { 되돌리기예약 = false; }
+    setTimeout(function () { 되돌리기예약 = false; }, 600);   // 신호가 안 오는 경우 대비
+  }
+  function 맨위창닫기() {
+    if (!창목록.length) return;
+    창목록[창목록.length - 1].닫기();
+  }
+
+  window.addEventListener('popstate', function () {
+    /* 우리가 스스로 부른 되돌리기면 그냥 흘려보낸다.
+       (창이 두 개 겹쳐 있을 때 위 창을 닫으면서 아래 창까지 닫히던 문제를 막는다) */
+    if (되돌리기예약) { 되돌리기예약 = false; return; }
+    if (!창목록.length) return;
+    var 맨위 = 창목록[창목록.length - 1];
+    뒤로가기처리중 = true;
+    var 닫혔나;
+    try { 닫혔나 = 맨위.닫기(); } catch (e) { 닫혔나 = true; }
+    뒤로가기처리중 = false;
+    if (닫혔나 === false) {
+      /* 신청을 보내는 중이라 닫으면 안 되는 상황 — 빈 칸을 도로 넣어 제자리에 붙잡는다 */
+      try { history.pushState({ dh창: 1 }, '', location.href); } catch (e) {}
+      return;
+    }
+    var 자리 = 창목록.indexOf(맨위);
+    if (자리 > -1) 창목록.splice(자리, 1);
+  });
+
+  /* ⚠ 마지막 인자 true(먼저 듣기)가 중요하다.
+     약관 파일(js/dh-terms.js)도 ESC 를 듣는데 그 파일이 먼저 실려 있다.
+     그냥 두면 약관 창이 닫힌 '뒤에' 이 코드가 돌아, 한 번의 ESC 로
+     그 아래 신청창까지 같이 닫혔다 (2026-09-02 실측). */
+  document.addEventListener('keydown', function (e) {
+    if (e.key !== 'Escape') return;
+    맨위창닫기();
+  }, true);
 
   /* ───────────────────────────────────────────────────────────
      1) 창 모양 규칙 심기
@@ -223,10 +320,7 @@
     창.classList.add('open');
     창.setAttribute('aria-hidden', 'false');
     document.body.classList.add('apply-open');
-    /* 폰 뒤로가기로 '페이지를 떠나지 않고 창만' 닫히게 빈 칸을 하나 넣어 둔다 */
-    if (!기록넣음) {
-      try { history.pushState({ dh신청: 1 }, '', location.href); 기록넣음 = true; } catch (e) {}
-    }
+    창열림기록('apply', 신청창닫기);   /* 뒤로가기·ESC 로 이 창만 닫히게 */
     if (typeof dhTrack === 'function') dhTrack('apply_open', { once: false });
     /* 컴퓨터에서만 번호 칸에 커서를 놓는다(폰은 자판이 갑자기 올라와 놀란다) */
     if (window.innerWidth > 768) {
@@ -234,12 +328,12 @@
     }
   }
 
-  /* 되돌리기=true 로 부르면 히스토리는 건드리지 않는다 (뒤로가기가 부른 경우) */
-  function 닫기(되돌리기건드리지않기) {
+  function 닫기() {
     var 창 = document.getElementById('applyOverlay');
     if (!창 || !창.classList.contains('open')) return true;
     /* ★ 구글 시트로 신청을 보내는 중에는 닫지 않는다.
-         보내기는 최대 45초까지 걸릴 수 있고, 화면에도 '닫지 말아 주세요'가 뜬다. */
+         보내기는 최대 45초까지 걸릴 수 있고, 화면에도 '닫지 말아 주세요'가 뜬다.
+         false 를 돌려주면 창 관리자가 뒤로가기 칸을 도로 넣어 제자리에 붙잡는다. */
     var 단추 = document.getElementById('submitBtn');
     var 성공 = document.getElementById('formSuccess');
     var 보내는중 = !!(단추 && 단추.disabled && 성공 && getComputedStyle(성공).display === 'none');
@@ -248,55 +342,9 @@
     창.classList.remove('open');
     창.setAttribute('aria-hidden', 'true');
     document.body.classList.remove('apply-open');
-
-    if (되돌리기건드리지않기 !== true && 기록넣음) {
-      기록넣음 = false;
-      스스로되돌림 = true;
-      try { history.back(); } catch (e) { 스스로되돌림 = false; }
-      setTimeout(function () { 스스로되돌림 = false; }, 600);   // 신호가 안 오는 경우 대비
-    }
+    창닫힘기록('apply');
     return true;
   }
-
-  /* 신청창 '위에' 개인정보처리방침·약관 창이 겹쳐 떠 있는지 본다.
-     겹쳐 있을 때 뒤로가기·ESC 는 위에 있는 그 창만 닫아야 한다.
-     (둘 다 닫히면 손님이 방금 읽던 신청칸까지 사라진다) */
-  function 약관창열려있나() {
-    var 이름 = ['privacyOverlay', 'termsOverlay'];
-    for (var i = 0; i < 이름.length; i++) {
-      var e = document.getElementById(이름[i]);
-      if (e && e.classList.contains('open')) return 이름[i];
-    }
-    return null;
-  }
-
-  window.addEventListener('popstate', function () {
-    if (스스로되돌림) { 스스로되돌림 = false; return; }
-    var 창 = document.getElementById('applyOverlay');
-    if (!창 || !창.classList.contains('open')) return;
-    if (약관창열려있나()) {
-      /* 위에 겹친 약관 창만 닫고, 신청창은 그대로 둔다 */
-      if (약관창열려있나() === 'privacyOverlay') { if (typeof closePrivacy === 'function') closePrivacy(); }
-      else if (typeof closeTerms === 'function') closeTerms();
-      try { history.pushState({ dh신청: 1 }, '', location.href); 기록넣음 = true; } catch (e) {}
-      return;
-    }
-    기록넣음 = false;                    // 빈 칸은 이미 스스로 물러났다
-    if (닫기(true) === false) {
-      /* 신청을 보내는 중이라 닫으면 안 되는 상황 — 빈 칸을 도로 넣어 제자리에 붙잡는다 */
-      try { history.pushState({ dh신청: 1 }, '', location.href); 기록넣음 = true; } catch (e) {}
-    }
-  });
-
-  /* ⚠ 마지막 인자 true(먼저 듣기)가 중요하다.
-     약관 파일(js/dh-terms.js)도 ESC 를 듣는데, 그 파일이 먼저 실려 있어 그냥 두면
-     약관 창이 닫힌 '뒤에' 이 코드가 돌아, 한 번의 ESC 로 신청창까지 같이 닫혔다. */
-  document.addEventListener('keydown', function (e) {
-    if (e.key !== 'Escape') return;
-    if (약관창열려있나()) return;        // 위에 겹친 약관 창이 먼저 닫힌다
-    var 창 = document.getElementById('applyOverlay');
-    if (창 && 창.classList.contains('open')) 닫기();
-  }, true);
 
   /* ───────────────────────────────────────────────────────────
      4) 신청 보내기 (실패하면 다시 시도)
