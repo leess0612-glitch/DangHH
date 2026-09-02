@@ -903,7 +903,14 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
   flex-wrap: wrap;
 }
 .desk-cta-phone-wrap { display: flex; flex-direction: column; gap: 6px; align-items: center; }
-.desk-cta-top { font-size: 21px; font-weight: 800; color: white; text-align: center; letter-spacing: -0.3px; }
+/* 안내 글은 띠 한 줄을 통째로 차지해 '띠의 한가운데'에 놓인다 (2026-09-02 사장님 지시).
+   전에는 전화칸 묶음 안에 들어 있어서, 그 묶음(285px) 안에서만 가운데였다.
+   칸이 늘거나 줄면 글자가 좌우로 밀려 보였다. 이제 칸 구성과 상관없이 늘 가운데다. */
+.desk-cta-top {
+  flex: 0 0 100%;
+  font-size: 21px; font-weight: 800; color: white; text-align: center; letter-spacing: -0.3px;
+  margin-bottom: 2px;
+}
 .desk-cta-bar input {
   padding: 12px 18px; border: 1.5px solid #e2e8f0;
   border-radius: 8px; font-size: 16px; font-family: 'SUIT', sans-serif;
@@ -3040,8 +3047,8 @@ function promiseZoom(src){ document.getElementById('promiseViewerImg').src=src; 
 <div class="desk-cta-bar" id="deskCtaBar">
   <div class="desk-cta-bar-inner">
     <input type="text" id="deskName" placeholder="이름">
+    <div class="desk-cta-top">내가 받을 수 있는 지원금은?</div>
     <div class="desk-cta-phone-wrap">
-      <div class="desk-cta-top">내가 받을 수 있는 지원금은?</div>
       <input type="tel" id="deskPhone" placeholder="휴대폰 번호">
     </div>
     <input type="text" id="deskService" placeholder="희망 제품 (예: 정수기)" maxlength="30">
