@@ -119,6 +119,7 @@ window.addEventListener('scroll', function(){
    한 곳만 빠뜨리면 페이지마다 결과가 달라졌다. 이제 부품 파일 하나만 고치면 된다. */
 </script>
 <script src="js/dh-inflow.js?v=3"></script>
+<script src="js/dh-terms.js?v=1"></script>
 <script>
 /* 부품 파일을 못 받아 왔더라도 신청 접수는 막히지 않게 한다 (유입 칸만 비게 된다) */
 if (typeof dhInflow !== 'function') { window.dhInflow = function () { return {}; }; }
@@ -1064,8 +1065,8 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px 1
     <div class="footer-top">
       <div class="footer-logo"><svg class="footer-mark" width="21" height="14" viewBox="25.6 68 246.4 162.4" aria-hidden="true"><use href="#dh-logo" fill="currentColor"/></svg><span>당<span>현</span>함</span></div>
       <div class="footer-links">
-        <a href="index.html">개인정보처리방침</a>
-        <a href="index.html">서비스이용약관</a>
+        <a href="javascript:void(0)" onclick="openPrivacy()">개인정보처리방침</a>
+        <a href="javascript:void(0)" onclick="openTerms()">서비스이용약관</a>
         <a href="tel:1600-4670">1600-4670</a>
       </div>
     </div>
