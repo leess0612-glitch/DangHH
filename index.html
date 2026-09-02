@@ -2117,6 +2117,7 @@ body.apply-open{ overflow:hidden; }
 .dh-calc-break { font-size:15px; font-weight:600; color:var(--dh-body); margin-top:8px;
                  line-height:1.6; }
 .dh-calc-break b { color:var(--dh-blue); font-weight:800; }
+.dh-calc-break b.extra { color:#ff6b00; white-space:nowrap; }   /* 금액이 없는 항목 — 파란 숫자들과 구분 */
 .dh-calc-break .soft { color:var(--dh-sub); font-weight:500; white-space:nowrap; }
 /* 명세표에 있던 '추가혜택 - 상담 시 안내'를 계산기 안으로 옮긴 줄 (2026-08-28).
    원래 계산기에도 같은 말이 있었지만 13px 회색이라 사실상 안 보였다.
@@ -2478,7 +2479,12 @@ body.apply-open{ overflow:hidden; }
           <div class="dh-calc-result-label">받으실 수 있는 금액</div>
           <div class="dh-calc-result-num"><em>최대</em> <strong id="dhCalcSum">0</strong>만원 <span class="dh-calc-plus">+ 추가혜택</span></div>
           <div class="dh-calc-break" id="dhCalcBreak"></div>
+          <!-- 2026-09-02: 맨 아래 '추가혜택 …… 상담 시 안내' 줄을 뺐다 (사장님 지시).
+               같은 낱말이 한 화면에 세 번 나와 강조가 아니라 반복으로 읽혔다.
+               지금은 두 번 — 금액 옆(파랑)과 세부 내역 줄 끝(주황)이다.
+               되살리려면 아래 한 줄의 주석만 풀면 된다. 모양 규칙(.dh-calc-secret)은 그대로 남겨 두었다.
           <div class="dh-calc-secret"><span class="s-t">추가혜택</span><span class="s-d"></span><span class="s-v">상담 시 안내</span></div>
+          -->
           <div class="dh-calc-result-note">요금제에 따라 달라질 수 있습니다</div>
         </div>
 
@@ -4359,8 +4365,10 @@ function dh계산기그리기() {
                 + ' <b>' + dh기본금액(dh고른값.통신사) + '만</b>'];
     if (dh고른값.유심) 조각.push('유심 <b>' + DH유심(dh고른값.통신사) + '만</b>');
     if (dh고른값.렌탈) 조각.push('렌탈 <b>' + DH_렌탈금액 + '만</b>');
-    /* '추가혜택 (상담 시 안내)'는 아래 주황 칸(.dh-calc-secret)으로 옮겼다 (2026-08-28).
-       여기에 두면 같은 말이 두 번 적힌다. */
+    /* 2026-09-02: '추가혜택 (상담 시 안내)'를 이 줄로 되돌렸다 (사장님 지시).
+       아래에 따로 있던 주황 칸은 없앴다 — 한 화면에 같은 말이 세 번 나와 반복으로 읽혔다.
+       금액이 없는 항목이라 주황(#ff6b00)으로 다른 항목과 구분한다. */
+    조각.push('<b class="extra">추가혜택</b> <span class="soft">(상담 시 안내)</span>');
     내역칸.innerHTML = 조각.join(' + ');
   }
 }
