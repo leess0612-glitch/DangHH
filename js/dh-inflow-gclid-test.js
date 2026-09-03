@@ -196,7 +196,11 @@ function 구글광고인가() {
     var 자리 = 한칸.indexOf('=');
     if (자리 < 1) return;
     if (구글광고표시이름.indexOf(한칸.slice(0, 자리)) < 0) return;
-    if (!안채워진빈칸(한칸.slice(자리 + 1))) 찾음 = true;
+    /* 값이 변환된 채로 올 수 있으므로(%7Bgclid%7D) 되돌려서 본다.
+       그래야 안 채워진 빈칸 {gclid} 를 제대로 걸러낸다 */
+    var 값 = 한칸.slice(자리 + 1);
+    try { 값 = decodeURIComponent(값.replace(/\+/g, ' ')); } catch (e) {}
+    if (!안채워진빈칸(값)) 찾음 = true;
   });
   return 찾음;
 }
