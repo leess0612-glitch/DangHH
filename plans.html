@@ -164,7 +164,7 @@ if (typeof dhInflow !== 'function') { window.dhInflow = function () { return {};
   --sky: #0064B4;
   --hello: #B4192F;
 }
-body { font-family: 'SUIT', 'Noto Sans KR', sans-serif; color: var(--dark); line-height: 1.6; overflow-x: hidden; background: var(--ground); }
+body { font-family: 'SUIT', 'Noto Sans KR', sans-serif; color: var(--dark); line-height: 1.6; overflow-x: hidden; background: #ffffff; }
 body.locked { overflow: hidden; }
 
 /* ===== HEADER (index.html과 동일) ===== */
@@ -291,7 +291,7 @@ nav a.on { color: var(--primary); background: #eff6ff; font-weight: 700; }
 }
 
 /* ===== 통신사 고르는 단추 (화면 위에 붙어서 따라옴) ===== */
-.tabbar { position: sticky; top: 64px; z-index: 500; background: var(--ground); border-bottom: 1px solid var(--border); }
+.tabbar { position: sticky; top: 64px; z-index: 500; background: #ffffff; border-bottom: 1px solid var(--border); }
 .tabs {
   max-width: 860px; margin: 0 auto; padding: 12px 20px;
   display: flex; gap: 8px; justify-content: center;
@@ -602,7 +602,7 @@ footer :focus-visible {
 
 /* ===== 요금표 (2026-09-02: 그림 3장 → 글자 표 5개로 바꿈) ===== */
 .rate-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin: 24px 0 8px; }
-.rate-head h2 { font-size: 19px; font-weight: 800; letter-spacing: -0.4px; color: var(--dark); }
+.rate-head h2 { font-size: 24px; font-weight: 800; letter-spacing: -0.5px; color: var(--dark); }
 .scroll-hint { display: none; }   /* 컴퓨터 화면에서는 감춘다 */
 
 /* 결합 방법 안내 (표 위) */
@@ -681,7 +681,7 @@ table.rate td.gift em.plus {
 
 @media (max-width: 768px) {
   .rate-head { flex-direction: column; align-items: flex-start; gap: 4px; }
-  .rate-head h2 { font-size: 17px; }
+  .rate-head h2 { font-size: 22px; }
   .scroll-hint { display: block; font-size: 12px; font-weight: 600; color: var(--gray); margin: 0 0 8px; }
   .join-guide .row { grid-template-columns: 88px 1fr; gap: 8px; padding: 12px; }
   .join-guide .row b { font-size: 13px; padding: 8px 4px; }
@@ -729,19 +729,106 @@ table.rate th.kind .kind-sub { display: block; font-size: 12px; font-weight: 400
 
 /* 대부분 놓치고 있는 가족결합 할인 상자 */
 .bundle { margin-top: 12px; background: white; border: 1px solid var(--border); border-radius: 12px; padding: 16px; }
-.bundle h3 { font-size: 16px; font-weight: 800; color: var(--dark); margin-bottom: 12px; }
-.bundle h4 { font-size: 14px; font-weight: 700; color: var(--gray); margin: 16px 0 8px; }
+.bundle h3 { font-size: 24px; font-weight: 800; letter-spacing: -0.5px; color: var(--dark); margin-bottom: 16px; }
+.bundle h4 { font-size: 14px; font-weight: 700; color: var(--dark); margin: 40px 0 8px; }
 table.bundle-tbl { border-collapse: collapse; width: 100%; }
 table.bundle-tbl th, table.bundle-tbl td {
   border: 1px solid var(--border); padding: 10px 12px;
   font-size: 13px; font-weight: 400; color: var(--dark);
-  text-align: left; vertical-align: top; line-height: 1.6; word-break: keep-all;
+  text-align: left; vertical-align: middle; line-height: 1.6; word-break: keep-all;
 }
 table.bundle-tbl thead th { background: #E8EFFD; font-weight: 700; text-align: center; white-space: nowrap; }
 table.bundle-tbl td.b-first { font-weight: 700; background: var(--ground); white-space: nowrap; vertical-align: middle; }
 .bundle-note { margin-top: 12px; }
 .bundle-note li { list-style: none; font-size: 13px; color: var(--gray); line-height: 1.8; padding-left: 12px; position: relative; word-break: keep-all; }
 .bundle-note li::before { content: '·'; position: absolute; left: 0; }
+
+/* ===== 약정 글 (2026-09-02 신규) =====
+   글 양식은 아정당 실측을 따랐다 — 본문 16px / 400 / 줄간격 1.5 /
+   문단 아래 16px / 강조는 색 없이 굵기 700.
+   ⚠ 디자인보드의 본문(15/400·줄간격 넓게)과 다르다. 사장님 지시로 아정당 쪽을 따른 것. */
+.term { margin-top: 28px; background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 24px; }
+.gonext { margin-top: 40px; padding: 20px 16px; border: 1px solid var(--border);
+  border-radius: 8px; background: #f8fafc; text-align: center;
+  font-size: 16px; font-weight: 400; line-height: 1.5; color: var(--dark); word-break: keep-all; }
+.gonext b { font-weight: 800; color: var(--dark); }
+/* 결합 칸 맨 앞 도입 문단 — 약정 칸 본문과 같은 모양으로 */
+.bundle-intro p { font-size: 16px; font-weight: 400; line-height: 1.5; color: var(--dark);
+  margin-bottom: 64px; word-break: keep-all; }
+.bundle-intro p:last-child { margin-bottom: 32px; }
+.bundle-intro b { font-weight: 700; color: #E60012; }
+@media (max-width: 768px) { .bundle-intro p { font-size: 15px; } }
+/* 이음줄 첫 외침 — 대분류 제목과 같은 크기로 눈에 걸리게 한다 */
+.gonext strong.hook { display: block; font-size: 24px; font-weight: 800; letter-spacing: -0.5px;
+  line-height: 1.2; color: var(--dark); margin-bottom: 12px; }
+@media (max-width: 768px) { .gonext { padding: 16px 12px; font-size: 15px; }
+  .gonext strong.hook { font-size: 22px; } }
+.bignum { display: block; font-size: 22px; font-weight: 900; color: var(--dark);
+  letter-spacing: -0.5px; line-height: 1; margin-bottom: 8px; }
+.bignum .n { font-weight: 900; color: var(--dark); }
+.bignum i { font-style: normal; font-size: 14px; font-weight: 800; color: var(--gray); margin-left: 4px; }
+@media (max-width: 768px) { .bignum { font-size: 20px; } .bignum i { font-size: 13px; } }
+.term h3 { font-size: 24px; font-weight: 800; letter-spacing: -0.5px; color: var(--dark); line-height: 1.2; margin-bottom: 16px; }
+.term h4 { font-size: 20px; font-weight: 800; letter-spacing: -0.4px; color: var(--dark); line-height: 1.2; margin: 144px 0 16px; }
+.term p  { font-size: 16px; font-weight: 400; line-height: 1.5; color: var(--dark); margin-bottom: 128px; word-break: keep-all; }
+.term p:last-child { margin-bottom: 0; }
+.term b  { font-weight: 700; color: #E60012; }
+.term i.q { font-style: normal; font-weight: 700; color: var(--dark); }
+.term h4 .num { display: flex; align-items: center; justify-content: center;
+  width: 24px; height: 24px; border-radius: 4px; background: var(--dark); color: #fff;
+  font-size: 16px; font-weight: 800; line-height: 1; margin-bottom: 8px; }
+
+.term-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; margin-bottom: 64px; }
+table.term-tbl { border-collapse: collapse; width: 100%; }
+table.term-tbl th, table.term-tbl td {
+  border: 1px solid var(--border); padding: 12px 8px; font-size: 15px; text-align: center;
+  white-space: nowrap; vertical-align: middle;
+}
+table.term-tbl thead th { background: #E8EFFD; font-weight: 700; color: var(--dark); }
+table.term-tbl th.rn { background: #f8fafc; font-weight: 600; color: var(--dark); text-align: left; padding-left: 16px; }
+table.term-tbl thead th.rn { background: #E8EFFD; font-weight: 700; }
+table.term-tbl tr.pick th.rn { background: #FFF8F8; color: #E60012; font-weight: 800; }
+table.term-tbl tr.pick td { background: #FFF8F8; font-weight: 800; color: #E60012; }
+table.term-tbl tr.tot th.rn, table.term-tbl tr.tot td { background: #FFF8F8; font-weight: 800; color: var(--dark); }
+table.term-tbl tr.tot td:last-child { color: #E60012; }
+/* 가운데 축 표 — 항목 이름이 가운데 칸에 온다 */
+table.term-tbl.vs th.rn { text-align: center; padding-left: 8px; padding-right: 8px; }
+/* 표에 적힌 사은품이 끝이 아니라는 표시 (요금표의 '+ 추가혜택'과 같은 몫) */
+table.term-tbl em.plus { display: block; font-style: normal; font-size: 14px; font-weight: 800;
+  color: #E60012; margin-top: 4px; white-space: nowrap; letter-spacing: -0.3px; }
+
+.term-res { border: 1px solid #E60012; background: #FFF8F8; border-radius: 8px; padding: 16px; margin-bottom: 64px; }
+.term-res p { margin-bottom: 0; }
+.term-res p + p { margin-top: 8px; }
+.term-res p.cav { font-size: 13px; font-weight: 500; color: var(--gray); line-height: 1.8; margin-top: 12px; }
+.term-warn { border-left: 3px solid #E60012; padding-left: 12px; margin-bottom: 64px; }
+.term p.tight { margin-bottom: 64px; }
+.term p.lead { margin-bottom: 64px; }
+.term p.pre { margin-bottom: 64px; }
+.term p.lead + h4 { margin-top: 72px; }
+.term-warn p { margin-bottom: 0; color: var(--gray); }
+.term-note { margin-top: 64px; }
+.term-note li { list-style: none; font-size: 13px; font-weight: 500; color: var(--gray); line-height: 1.8; padding-left: 12px; position: relative; word-break: keep-all; }
+.term-note li::before { content: '·'; position: absolute; left: 0; }
+.term p.term-hint { display: none; font-size: 12px; color: var(--dark); margin-bottom: 8px; }
+/* ⚠ '.term p' 의 문단 여백(128px)이 더 세서, 여기서도 'p' 를 붙여야 8px 가 먹는다 */
+
+@media (max-width: 768px) {
+  .term { padding: 16px; }
+  .term h3 { font-size: 22px; }
+  .term h4 { font-size: 18px; margin-top: 112px; }
+  .term p { font-size: 15px; }
+  .term p.term-hint { display: block; }
+  table.term-tbl th, table.term-tbl td { font-size: 14px; padding: 12px 4px; }
+  table.term-tbl th.rn { padding-left: 12px; font-size: 13px; width: 116px; min-width: 116px;
+                         position: sticky; left: 0; z-index: 2; }
+  table.term-tbl.vs th.rn { position: static; width: auto; min-width: auto;
+                            padding-left: 4px; padding-right: 4px; }
+  table.term-tbl thead th:first-child { position: sticky; left: 0; z-index: 3; }
+  table.term-tbl.wide { min-width: 520px; }
+  table.term-tbl em.plus { font-size: 13px; }
+}
+
 @media (max-width: 768px) {
   .bundle { padding: 12px; }
   table.bundle-tbl th, table.bundle-tbl td { padding: 8px; font-size: 12.5px; }
@@ -820,35 +907,35 @@ table.bundle-tbl td.b-first { font-weight: 700; background: var(--ground); white
 
   <section class="panel" id="panel-kt" role="tabpanel" aria-labelledby="tab-kt">
     <div class="rate-head">
-      <h2><span class="co kt">KT</span> 인터넷TV 요금표 한눈에 보기!</h2>
+      <h2><span class="bignum">01</span><span class="co kt">KT</span> 인터넷TV 요금표 한눈에 보기!</h2>
     </div>
     <div class="rate-body"></div>
   </section>
 
   <section class="panel" id="panel-sk" role="tabpanel" aria-labelledby="tab-sk" hidden>
     <div class="rate-head">
-      <h2><span class="co sk">SK브로드밴드</span> 인터넷TV 요금표 한눈에 보기!</h2>
+      <h2><span class="bignum">01</span><span class="co sk">SK브로드밴드</span> 인터넷TV 요금표 한눈에 보기!</h2>
     </div>
     <div class="rate-body"></div>
   </section>
 
   <section class="panel" id="panel-lg" role="tabpanel" aria-labelledby="tab-lg" hidden>
     <div class="rate-head">
-      <h2><span class="co lg">LG U+</span> 인터넷TV 요금표 한눈에 보기!</h2>
+      <h2><span class="bignum">01</span><span class="co lg">LG U+</span> 인터넷TV 요금표 한눈에 보기!</h2>
     </div>
     <div class="rate-body"></div>
   </section>
 
   <section class="panel" id="panel-sky" role="tabpanel" aria-labelledby="tab-sky" hidden>
     <div class="rate-head">
-      <h2><span class="co sky">KT 스카이라이프</span> 인터넷TV 요금표 한눈에 보기!</h2>
+      <h2><span class="bignum">01</span><span class="co sky">KT 스카이라이프</span> 인터넷TV 요금표 한눈에 보기!</h2>
     </div>
     <div class="rate-body"></div>
   </section>
 
   <section class="panel" id="panel-hello" role="tabpanel" aria-labelledby="tab-hello" hidden>
     <div class="rate-head">
-      <h2><span class="co hello">LG 헬로비전</span> 인터넷TV 요금표 한눈에 보기!</h2>
+      <h2><span class="bignum">01</span><span class="co hello">LG 헬로비전</span> 인터넷TV 요금표 한눈에 보기!</h2>
     </div>
     <div class="rate-body"></div>
   </section>
@@ -1031,18 +1118,88 @@ var 요금자료 = {
             ['인터넷 + 휴대폰', '프리미엄<br>싱글결합', '고가 요금제 1회선<br>+ 500메가 이상 인터넷', '인터넷 5,500원<br>휴대폰 요금 25% 할인'],
             ['', '프리미엄<br>가족결합', '고가 요금제 2회선 이상<br>+ 인터넷', '인터넷 5,500원<br>휴대폰 요금 25% 할인'],
             ['', '총액결합할인', '요금제 상관없이<br>휴대폰 + 인터넷', '최소 1,650원 ~<br>최대 33,110원 할인'],
-            ['인터넷 + 인터넷', '패밀리 결합', '인터넷 2대 이상', '인터넷 5,500원']
+            ['인터넷 + 인터넷', '패밀리 결합', '인터넷 2대 이상', '인터넷 5,500원'],
+            ['', '따로살아도<br>가족결합', '따로 사는 가족의 인터넷·TV<br>두 번째 회선부터 (최대 5회선)', '기존 결합 할인에<br>2,200원 ~ 5,500원 추가']
           ] },
         { 제목: '총액 결합 할인표',
           머리: ['월 요금 합산', '~ 22,000원', '~ 64,900원', '~ 108,900원', '~ 141,900원', '~ 174,900원', '174,900원 초과'],
           줄들: [
             ['인터넷 할인', '2,200원', '5,500원', '5,500원', '5,500원', '5,500원', '5,500원'],
             ['휴대폰 할인', '—', '—', '5,500원', '16,610원', '22,110원', '27,610원']
+          ] },
+        { 제목: '알뜰폰도 결합됩니다',
+          머리: ['구분', '내용'],
+          줄들: [
+            ['할인', '인터넷 요금에서 3,300원 ~ 11,000원 할인'],
+            ['결합 가능한<br>알뜰폰', '고고팩토리 · 리브엠 · 스마텔 · 엠모바일 · 코드모바일 · 프리티 · 니오라콜리아 · 미니게이트(쉐이크모바일) · 스피츠모바일 · 아이즈비전 · 유니컴즈(모빙) · 더피엔엘(퍼스트모바일) · 에르엘(오파스넷) · 토스']
           ] }
       ],
       주석: ['고가 요금제란 월 77,000원 이상 요금제를 말합니다.',
              '휴대폰 2대 이상이고 각각 77,000원 이상이면 프리미엄 가족결합, 그보다 낮으면 총액결합 할인이 유리합니다.']
     },
+    약정: {
+      제목: '약정은 3년이 가장 유리합니다',
+      머리글: [
+        '3년이 길게 느껴지는 건 당연합니다.<br>' +
+        '그런데 <b>1년만 쓰고 해지하실 작정이라도 3년으로 약정하는 편이 유리합니다.</b>'
+      ],
+      요금표: {
+        제목: '같은 인터넷인데 약정만 바꿔도 이만큼 벌어집니다',
+        머리: ['약정 기간', '100메가', '500메가', '1기가'],
+        줄들: [
+          ['무약정',   '39,600원', '46,200원', '55,000원'],
+          ['1년 약정', '34,650원', '41,800원', '49,500원'],
+          ['2년 약정', '29,700원', '37,400원', '44,000원']
+        ],
+        고른줄: ['3년 약정', '22,000원', '33,000원', '38,500원']
+      },
+      계산: {
+        제목: '1년만 쓰고 해지해도 3년 약정이 유리합니다',
+        앞글: [
+          '문제는 여기부터입니다.<br>' +
+          '<i class="q">"3년은 못 채울 것 같은데요."</i><br>' +
+          '상담하면서 가장 많이 듣는 말입니다.',
+          '그래서 딱 12개월만 쓰고 해지하는 경우로 세어 봤습니다.<br>' +
+          '인터넷 500메가에 지니TV 베이직을 붙인 기준입니다.'
+        ],
+        머리: ['', '1년 약정', '3년 약정으로 걸고<br>12개월 뒤 해지'],
+        줄들: [
+          ['월 요금',       '53,130원', '42,900원'],
+          ['12개월 낸 돈',  '637,560원', '514,800원'],
+          ['위약금',        '없음',      '331,731원'],
+          ['사은품',        '',          '450,000원 받음<em class="plus">+ 추가혜택</em>']
+        ],
+        합계: ['실제로 든 돈', '637,560원', '396,531원'],
+        결론: '위약금을 물고 해지해도 <b>3년 약정이 241,029원 + 추가혜택만큼 더 유리합니다.</b>',
+        결론덧: '추가혜택은 표에 적힌 사은품 위에 당현함이 더 얹어 드리는 몫입니다.',
+        결론주의: '위약금은 통신사가 공개한 할인반환금 산정식으로 계산한 값입니다.<br>가입 시점과 상품 구성에 따라 달라질 수 있습니다.',
+        끝글: [
+          '3년을 다 채우시면 차이는 더 벌어집니다.<br>' +
+          '무약정으로 3년 쓰는 것과 대보면 <b>약 170만원 차이</b>입니다.'
+        ]
+      },
+      이사: {
+        제목: '"3년 안에 이사 가면 어떡하죠?"',
+        글: ['인터넷은 이사를 따라갑니다.<br>' +
+             '이전설치를 신청하시면 새 집에서 그대로 쓰시고 약정도 이어집니다.<br>' +
+             '집을 옮긴다고 위약금을 무는 것이 아닙니다.']
+      },
+      주석: [
+        '약정별 요금표는 KT 공식 홈페이지 공개 기준이며 부가세가 포함된 금액입니다.<br>와이파이 공유기 임대료는 빠져 있습니다.',
+        '무약정과 1년 약정 요금은 KT 가입 화면에서 인터넷 500메가와 지니TV 베이직, 기본 셋톱박스, 휴대폰 결합 없음으로 확인한 값이며, 온라인 전용 할인은 뺐습니다.<br>3년 약정 요금과 사은품은 당현함 기준입니다.',
+        '설치 후 12개월을 채우기 전에 해지하면 받으신 사은품은 전부 반납해야 합니다.'
+      ]
+    },
+    결합머리글: [
+      '먼저 알아 두실 것이 있습니다.<br>' +
+      '인터넷 요금과 요금할인은 통신사가 정합니다.<br>' +
+      '<b>어느 대리점에서 가입하셔도 똑같습니다.</b><br>' +
+      '대리점마다 달라지는 것은 <b>사은품 하나뿐</b>입니다.',
+      '그래서 통신비를 줄이는 길은 하나입니다.<br>' +
+      '받을 수 있는 할인을 빠짐없이 챙기는 것입니다.'
+    ],
+    넘김1: '<strong class="hook">잠깐!</strong>요금표만 보고 나가시면 손해입니다.<br>결합과 약정을 어떻게 거느냐에 따라 <b>3년에 170만원</b>이 갈립니다.<br>아래 두 칸을 마저 보세요.',
+    넘김2: '내게 맞는 조건은 집집마다 다릅니다.<br>전화 한 통 주시면 맞춰서 계산해 드립니다.',
     설치비: [['인터넷 단독', '36,000원'], ['인터넷 + TV', '56,200원'], ['TV 1대 추가', '+15,400원']],
     주석: [
       '요금은 와이파이 공유기가 빠진 금액입니다. 공유기를 넣으면 임대료 1,100원이 붙습니다(1기가는 무상 임대).',
@@ -1091,10 +1248,81 @@ var 요금자료 = {
              '휴대폰 결합상품,<br>휴대폰 1회선~5회선까지<br>결합 가능',
              '100메가 &nbsp;4,400원<br>500메가 &nbsp;11,000원<br>1기가 &nbsp;&nbsp;&nbsp;13,200원',
              '최소 3,500원 ~<br>최대 24,000원']
+          ] },
+        { 제목: '알뜰폰도 결합됩니다',
+          머리: ['구분', '내용'],
+          줄들: [
+            ['인터넷 할인', '100메가 &nbsp;4,400원<br>500메가 &nbsp;11,000원<br>1기가 &nbsp;&nbsp;&nbsp;13,200원'],
+            ['휴대폰 할인', '없음'],
+            ['결합 가능한<br>알뜰폰', '리브엠모바일(KB국민은행) · 큰사람커넥트(이야기모바일) · 유니컴즈(모빙) · 토스 · 아이즈비전(아이즈모바일) · 세븐모바일(SK텔링크) · 티플러스(KTC) · 스마텔(SMT)']
           ] }
       ],
       주석: ['자세한 결합 조건은 상담에서 확인해 드립니다.']
     },
+    약정: {
+      제목: '약정은 3년이 가장 유리합니다',
+      머리글: [
+        '3년이 길게 느껴지는 건 당연합니다.<br>' +
+        '그런데 <b>1년만 쓰고 해지하실 작정이라도 3년으로 약정하는 편이 유리합니다.</b>'
+      ],
+      요금표: {
+        제목: '같은 인터넷인데 약정만 바꿔도 이만큼 벌어집니다',
+        머리: ['약정 기간', '100메가', '500메가', '1기가'],
+        줄들: [
+          ['무약정',   '36,300원', '49,500원', '55,000원'],
+          ['1년 약정', '31,900원', '44,000원', '49,500원'],
+          ['2년 약정', '29,700원', '38,500원', '44,000원']
+        ],
+        고른줄: ['3년 약정', '22,000원', '33,000원', '38,500원']
+      },
+      계산: {
+        제목: '1년만 쓰고 해지해도 3년 약정이 유리합니다',
+        앞글: [
+          '문제는 여기부터입니다.<br>' +
+          '<i class="q">"3년은 못 채울 것 같은데요."</i><br>' +
+          '상담하면서 가장 많이 듣는 말입니다.',
+          '그래서 딱 12개월만 쓰고 해지하는 경우로 세어 봤습니다.<br>' +
+          '인터넷 500메가에 B tv 스탠다드를 붙인 기준입니다.'
+        ],
+        머리: ['', '1년 약정', '3년 약정으로 걸고<br>12개월 뒤 해지'],
+        줄들: [
+          ['월 요금',       '70,675원', '45,100원'],
+          ['12개월 낸 돈',  '848,100원', '541,200원'],
+          ['위약금',        '없음',      '371,916원'],
+          ['사은품',        '',          '470,000원 받음<em class="plus">+ 추가혜택</em>']
+        ],
+        합계: ['실제로 든 돈', '848,100원', '443,116원'],
+        결론: '위약금을 물고 해지해도 <b>3년 약정이 404,984원 + 추가혜택만큼 더 유리합니다.</b>',
+        결론덧: '추가혜택은 표에 적힌 사은품 위에 당현함이 더 얹어 드리는 몫입니다.',
+        결론주의: '위약금은 통신사가 공개한 할인반환금 산정식으로 계산한 값입니다.<br>가입 시점과 상품 구성에 따라 달라질 수 있습니다.',
+        끝글: [
+          '3년을 다 채우시면 차이는 더 벌어집니다.<br>' +
+          '무약정으로 3년 쓰는 것과 대보면 <b>약 177만원 차이</b>입니다.'
+        ]
+      },
+      이사: {
+        제목: '"3년 안에 이사 가면 어떡하죠?"',
+        글: ['인터넷은 이사를 따라갑니다.<br>' +
+             '이전설치를 신청하시면 새 집에서 그대로 쓰시고 약정도 이어집니다.<br>' +
+             '집을 옮긴다고 위약금을 무는 것이 아닙니다.']
+      },
+      주석: [
+        '약정별 요금표는 SK브로드밴드 공식 홈페이지 공개 기준이며 부가세가 포함된 금액입니다.',
+        '1년 약정과 무약정 총액은 SK 공식 요금표의 인터넷·B tv·셋톱박스 약정별 요금을 그대로 더한 값입니다.<br>3년 약정 총액 45,100원도 같은 방식으로 더하면 딱 맞습니다(인터넷 27,500 + B tv 13,200 + 셋톱박스 4,400).',
+        '3년 약정 요금과 사은품은 당현함 기준이며, 사은품은 3년 약정으로 가입하실 때 나옵니다.',
+        '설치 후 12개월을 채우기 전에 해지하면 받으신 사은품은 전부 반납해야 합니다.'
+      ]
+    },
+    결합머리글: [
+      '먼저 알아 두실 것이 있습니다.<br>' +
+      '인터넷 요금과 요금할인은 통신사가 정합니다.<br>' +
+      '<b>어느 대리점에서 가입하셔도 똑같습니다.</b><br>' +
+      '대리점마다 달라지는 것은 <b>사은품 하나뿐</b>입니다.',
+      '그래서 통신비를 줄이는 길은 하나입니다.<br>' +
+      '받을 수 있는 할인을 빠짐없이 챙기는 것입니다.'
+    ],
+    넘김1: '<strong class="hook">잠깐!</strong>요금표만 보고 나가시면 손해입니다.<br>결합과 약정을 어떻게 거느냐에 따라 <b>3년에 177만원</b>이 갈립니다.<br>아래 두 칸을 마저 보세요.',
+    넘김2: '내게 맞는 조건은 집집마다 다릅니다.<br>전화 한 통 주시면 맞춰서 계산해 드립니다.',
     설치비: [['인터넷 단독', '36,300원'], ['인터넷 + TV', '56,100원'], ['TV 1대 추가', '+17,600원']],
     주석: [
       '요금은 와이파이 공유기가 빠진 금액입니다. 공유기를 넣으면 임대료 1,100원이 붙습니다.',
@@ -1134,6 +1362,70 @@ var 요금자료 = {
           ['패밀리할인', ['37,400원', '42,900원', '48,400원']]
         ] }
     ],
+    약정: {
+      제목: '약정은 3년이 가장 유리합니다',
+      머리글: [
+        '3년이 길게 느껴지는 건 당연합니다.<br>' +
+        '그런데 <b>1년만 쓰고 해지하실 작정이라도 3년으로 약정하는 편이 유리합니다.</b>'
+      ],
+      요금표: {
+        제목: '같은 인터넷인데 약정만 바꿔도 이만큼 벌어집니다',
+        머리: ['약정 기간', '100메가', '500메가', '1기가'],
+        줄들: [
+          ['무약정',   '42,900원', '56,100원', '64,900원'],
+          ['1년 약정', '34,100원', '49,500원', '57,200원'],
+          ['2년 약정', '28,600원', '41,580원', '47,300원']
+        ],
+        고른줄: ['3년 약정', '22,000원', '33,000원', '38,500원']
+      },
+      계산: {
+        제목: '1년만 쓰고 해지해도 3년 약정이 유리합니다',
+        앞글: [
+          '문제는 여기부터입니다.<br>' +
+          '<i class="q">"3년은 못 채울 것 같은데요."</i><br>' +
+          '상담하면서 가장 많이 듣는 말입니다.',
+          '그래서 딱 12개월만 쓰고 해지하는 경우로 세어 봤습니다.<br>' +
+          '인터넷 500메가에 실속TV를 붙인 기준입니다.'
+        ],
+        머리: ['', '1년 약정', '3년 약정으로 걸고<br>12개월 뒤 해지'],
+        줄들: [
+          ['월 요금',       '72,875원', '45,100원'],
+          ['12개월 낸 돈',  '874,500원', '541,200원'],
+          ['위약금',        '없음',      '383,186원'],
+          ['사은품',        '',          '470,000원 받음<em class="plus">+ 추가혜택</em>']
+        ],
+        합계: ['실제로 든 돈', '874,500원', '454,386원'],
+        결론: '위약금을 물고 해지해도 <b>3년 약정이 420,114원 + 추가혜택만큼 더 유리합니다.</b>',
+        결론덧: '추가혜택은 표에 적힌 사은품 위에 당현함이 더 얹어 드리는 몫입니다.',
+        결론주의: '위약금은 통신사가 공개한 할인반환금 산정식으로 계산한 값입니다.<br>가입 시점과 상품 구성에 따라 달라질 수 있습니다.',
+        끝글: [
+          '3년을 다 채우시면 차이는 더 벌어집니다.<br>' +
+          '무약정으로 3년 쓰는 것과 대보면 <b>약 181만원 차이</b>입니다.'
+        ]
+      },
+      이사: {
+        제목: '"3년 안에 이사 가면 어떡하죠?"',
+        글: ['인터넷은 이사를 따라갑니다.<br>' +
+             '이전설치를 신청하시면 새 집에서 그대로 쓰시고 약정도 이어집니다.<br>' +
+             '집을 옮긴다고 위약금을 무는 것이 아닙니다.']
+      },
+      주석: [
+        '약정별 요금표는 LG U+ 공식 홈페이지의 와이파이기본 요금제 안내 기준이며 부가세가 포함된 금액입니다.',
+        '1년 약정과 무약정 총액은 LG 공식 안내의 인터넷 요금(U+tv 결합 기준)과 실속형 TV 요금을 더하고, 셋톱박스 임대료는 3년 약정 값으로 고정해 잡은 값입니다.<br>셋톱박스 임대료도 약정이 짧으면 오르므로 실제 차이는 이보다 커집니다.',
+        '3년 약정 요금과 사은품은 당현함 기준이며, 사은품은 3년 약정으로 가입하실 때 나옵니다.',
+        '설치 후 12개월을 채우기 전에 해지하면 받으신 사은품은 전부 반납해야 합니다.'
+      ]
+    },
+    결합머리글: [
+      '먼저 알아 두실 것이 있습니다.<br>' +
+      '인터넷 요금과 요금할인은 통신사가 정합니다.<br>' +
+      '<b>어느 대리점에서 가입하셔도 똑같습니다.</b><br>' +
+      '대리점마다 달라지는 것은 <b>사은품 하나뿐</b>입니다.',
+      '그래서 통신비를 줄이는 길은 하나입니다.<br>' +
+      '받을 수 있는 할인을 빠짐없이 챙기는 것입니다.'
+    ],
+    넘김1: '<strong class="hook">잠깐!</strong>요금표만 보고 나가시면 손해입니다.<br>결합과 약정을 어떻게 거느냐에 따라 <b>3년에 181만원</b>이 갈립니다.<br>아래 두 칸을 마저 보세요.',
+    넘김2: '내게 맞는 조건은 집집마다 다릅니다.<br>전화 한 통 주시면 맞춰서 계산해 드립니다.',
     추가TV: { 사은품: '3만원', 줄: [
       ['실속형 (100메가)', '11,000원'], ['프리미엄 (100메가)', '12,650원'],
       ['실속형 (500메가)', '9,900원'],  ['프리미엄 (500메가)', '11,550원']
@@ -1166,6 +1458,12 @@ var 요금자료 = {
           줄들: [
             ['참 쉬운 가족결합', '5,500원', '9,900원', '13,200원'],
             ['투게더 결합', '결합 불가', '11,000원', '11,000원']
+          ] },
+        { 제목: '알뜰폰도 결합됩니다',
+          머리: ['구분', '내용'],
+          줄들: [
+            ['할인', 'LG와 알뜰폰 회사가 서로 정한 후불 요금제에 한해 결합됩니다.'],
+            ['결합 가능한<br>알뜰폰', 'ACN코리아 · 머천드코리아 · 레그원 · KB국민은행 · 서경방송 · 휴엘컴퍼니 · 스마텔 · 아이즈비전 · 에넥스텔레콤 · 에스원 · 와이엘랜드 · 원텔레콤 · 유니컴즈 · 코드모바일 · KCTV제주방송 · 인스코비 · 큰사람 · 보스텔레콤 · 에르엘 · 인스코리아 · 에이프러스 · 씨케이커뮤스트리 · 한국케이블텔레콤 · KG모빌리언스 · 마블프로듀스 · 스테이지파이브 · 코나아이 · 친구아이앤씨 · 찬스모바일 · 앤알커뮤니케이션 · 영진텔레콤 · 시월텔레콤 · 미디어로그 · LG헬로비전']
           ] }
       ],
       주석: ['할인 금액은 묶는 휴대폰 요금제와 회선 수에 따라 달라집니다.']
@@ -1201,6 +1499,64 @@ var 요금자료 = {
           ['30% 할인 적용', ['25,300원', '27,500원', '—', '—'], ['문의', '문의', '—', '—']]
         ] }
     ],
+    약정: {
+      제목: '약정은 3년이 가장 유리합니다',
+      머리글: [
+        '스카이라이프는 <b>3년 약정 하나로만</b> 팝니다.<br>' +
+        '1년이나 2년은 아예 고를 수 없습니다.'
+      ],
+      요금표: {
+        제목: '약정을 걸면 요금이 이만큼 내려갑니다',
+        머리: ['구분', '100메가', '200메가', '500메가', '1기가'],
+        줄들: [
+          ['할인 전', '39,600원', '41,800원', '46,200원', '55,000원']
+        ],
+        고른줄: ['3년 약정', '23,100원', '24,200원', '33,000원', '38,500원']
+      },
+      계산: {
+        제목: '3년 쓰면 이만큼 아낍니다',
+        앞글: [
+          '인터넷 500메가에 베이직TV를 붙여 3년 쓰는 경우로 세어 봤습니다.'
+        ],
+        머리: ['', '할인 전 그대로', '3년 약정'],
+        줄들: [
+          ['월 요금',       '68,200원', '40,700원'],
+          ['36개월 낸 돈',  '2,455,200원', '1,465,200원'],
+          ['사은품',        '',          '420,000원 받음<em class="plus">+ 추가혜택</em>']
+        ],
+        합계: ['실제로 든 돈', '2,455,200원', '1,045,200원'],
+        결론: '3년 약정을 걸면 <b>1,410,000원 + 추가혜택만큼 더 유리합니다.</b>',
+        결론덧: '추가혜택은 표에 적힌 사은품 위에 당현함이 더 얹어 드리는 몫입니다.',
+        결론주의: '스카이라이프는 1년·2년 약정 요금을 공개하지 않아, 중간에 해지하는 경우는 셈에 넣지 않았습니다.',
+        끝글: [
+          '인터넷만 쓰셔도 마찬가지입니다.<br>' +
+          '500메가 단독으로 3년 쓰면 <b>약 61만원 차이</b>입니다.'
+        ]
+      },
+      이사: {
+        제목: '"3년 안에 이사 가면 어떡하죠?"',
+        글: ['인터넷은 이사를 따라갑니다.<br>' +
+             '이전설치를 신청하시면 새 집에서 그대로 쓰시고 약정도 이어집니다.<br>' +
+             '집을 옮긴다고 위약금을 무는 것이 아닙니다.']
+      },
+      주석: [
+        '할인 전 금액은 KT 스카이라이프 공식 홈페이지 공개 기준이며 부가세가 포함된 금액입니다.',
+        '3년 약정 요금은 <b>사은품형</b> 기준입니다.<br>요금을 대신 깎아 주는 요금할인형을 고르시면 요금은 더 내려가지만 사은품은 나오지 않습니다.',
+        '할인 전 총액은 인터넷 할인 전 요금에 베이직TV(18,700원)와 수신기 임대료(3,300원)를 3년 약정 값 그대로 얹어 잡은 값입니다.<br>TV의 할인 전 요금은 공개되지 않아 넣지 않았으므로, 실제 차이는 이보다 커집니다.',
+        '사은품은 당현함 기준이며, 3년 약정으로 가입하실 때 나옵니다.',
+        '설치 후 12개월을 채우기 전에 해지하면 받으신 사은품은 전부 반납해야 합니다.'
+      ]
+    },
+    결합머리글: [
+      '먼저 알아 두실 것이 있습니다.<br>' +
+      '인터넷 요금과 요금할인은 통신사가 정합니다.<br>' +
+      '<b>어느 대리점에서 가입하셔도 똑같습니다.</b><br>' +
+      '대리점마다 달라지는 것은 <b>사은품 하나뿐</b>입니다.',
+      '그래서 통신비를 줄이는 길은 하나입니다.<br>' +
+      '받을 수 있는 할인을 빠짐없이 챙기는 것입니다.'
+    ],
+    넘김1: '<strong class="hook">잠깐!</strong>요금표만 보고 나가시면 손해입니다.<br>결합과 약정을 어떻게 거느냐에 따라 <b>3년에 141만원</b>이 갈립니다.<br>아래 두 칸을 마저 보세요.',
+    넘김2: '내게 맞는 조건은 집집마다 다릅니다.<br>전화 한 통 주시면 맞춰서 계산해 드립니다.',
     추가TV: { 사은품: '', 줄: [['베이직TV', '7,700원'], ['플러스TV', '8,250원']] },
     결합할인: {
       표들: [
@@ -1224,6 +1580,70 @@ var 요금자료 = {
     탭이름: '헬로비전',
     제목: '인터넷 요금제 &amp; 사은품',
     속도: ['100메가', '160메가', '500메가', '1기가'],
+    약정: {
+      제목: '약정은 3년이 가장 유리합니다',
+      머리글: [
+        '3년이 길게 느껴지는 건 당연합니다.<br>' +
+        '그런데 <b>1년만 쓰고 해지하실 작정이라도 3년으로 약정하는 편이 유리합니다.</b>'
+      ],
+      요금표: {
+        제목: '같은 인터넷인데 약정만 바꿔도 이만큼 벌어집니다',
+        머리: ['약정 기간', '160메가', '500메가', '1기가'],
+        줄들: [
+          ['무약정',   '46,200원', '51,700원', '53,900원'],
+          ['1년 약정', '39,270원', '44,220원', '46,200원'],
+          ['2년 약정', '33,440원', '37,840원', '39,600원']
+        ],
+        고른줄: ['3년 약정', '27,610원', '31,460원', '33,000원']
+      },
+      계산: {
+        제목: '1년만 쓰고 해지해도 3년 약정이 유리합니다',
+        앞글: [
+          '문제는 여기부터입니다.<br>' +
+          '<i class="q">"3년은 못 채울 것 같은데요."</i><br>' +
+          '상담하면서 가장 많이 듣는 말입니다.',
+          '그래서 딱 12개월만 쓰고 해지하는 경우로 세어 봤습니다.<br>' +
+          '인터넷 500메가에 UHD 뉴베이직을 붙인 기준입니다.'
+        ],
+        머리: ['', '1년 약정', '3년 약정으로 걸고<br>12개월 뒤 해지'],
+        줄들: [
+          ['월 요금',       '55,550원', '42,790원'],
+          ['12개월 낸 돈',  '666,600원', '513,480원'],
+          ['위약금',        '없음',      '242,880원'],
+          ['사은품',        '',          '350,000원 받음<em class="plus">+ 추가혜택</em>']
+        ],
+        합계: ['실제로 든 돈', '666,600원', '406,360원'],
+        결론: '위약금을 물고 해지해도 <b>3년 약정이 260,240원 + 추가혜택만큼 더 유리합니다.</b>',
+        결론덧: '추가혜택은 표에 적힌 사은품 위에 당현함이 더 얹어 드리는 몫입니다.',
+        결론주의: '헬로비전은 할인반환금 산정식을 공개하지 않아, 12개월 동안 할인받은 금액을 전부 위약금으로 잡았습니다.<br>실제 위약금은 이와 다를 수 있습니다.',
+        끝글: [
+          '3년을 다 채우시면 차이는 더 벌어집니다.<br>' +
+          '무약정으로 3년 쓰는 것과 대보면 <b>약 108만원 차이</b>입니다.'
+        ]
+      },
+      이사: {
+        제목: '"3년 안에 이사 가면 어떡하죠?"',
+        글: ['인터넷은 이사를 따라갑니다.<br>' +
+             '이전설치를 신청하시면 새 집에서 그대로 쓰시고 약정도 이어집니다.<br>' +
+             '집을 옮긴다고 위약금을 무는 것이 아닙니다.']
+      },
+      주석: [
+        '약정별 요금표는 LG헬로비전 공식 홈페이지의 플래티넘기가 WiFi+ 계열 기준이며 부가세가 포함된 금액입니다.<br>100메가는 이 계열에 상품이 없어 표에서 뺐습니다.',
+        '1년 약정과 무약정 총액은 공식 표의 헬로tv 결합 시 인터넷 요금에 TV와 셋톱박스 몫을 3년 약정 값으로 고정해 더한 값입니다.<br>TV 요금도 약정이 짧으면 오르므로 실제 차이는 이보다 커집니다.',
+        '3년 약정 요금과 사은품은 당현함 기준이며, 사은품은 3년 약정으로 가입하실 때 나옵니다.',
+        '설치 후 12개월을 채우기 전에 해지하면 받으신 사은품은 전부 반납해야 합니다.'
+      ]
+    },
+    결합머리글: [
+      '먼저 알아 두실 것이 있습니다.<br>' +
+      '인터넷 요금과 요금할인은 통신사가 정합니다.<br>' +
+      '<b>어느 대리점에서 가입하셔도 똑같습니다.</b><br>' +
+      '대리점마다 달라지는 것은 <b>사은품 하나뿐</b>입니다.',
+      '그래서 통신비를 줄이는 길은 하나입니다.<br>' +
+      '받을 수 있는 할인을 빠짐없이 챙기는 것입니다.'
+    ],
+    넘김1: '<strong class="hook">잠깐!</strong>요금표만 보고 나가시면 손해입니다.<br>결합과 약정을 어떻게 거느냐에 따라 <b>3년에 108만원</b>이 갈립니다.<br>아래 두 칸을 마저 보세요.',
+    넘김2: '내게 맞는 조건은 집집마다 다릅니다.<br>전화 한 통 주시면 맞춰서 계산해 드립니다.',
     결합안내: [
       ['미결합', '휴대폰 결합없이 사용', ''],
       ['휴대폰결합', '', '100메가는 결합 요금이 따로 없음']
@@ -1390,10 +1810,27 @@ var 요금자료 = {
     (자료.주석 || []).forEach(function (t) { h += '<li>' + t + '</li>'; });
     h += '<li>주말·공휴일에 설치하면 설치비가 약 25% 올라갑니다.</li>';
     h += '</ul>';
+    if (자료.넘김1) h += '<div class="gonext">' + 자료.넘김1 + '</div>';
+
+
+    /* 대분류 번호 — 요금표가 01, 그 뒤로 하나씩 늘어난다 */
+    var 대번호 = 1;
+    var 총칸 = 1 + (자료.약정 ? 1 : 0) + (자료.결합할인 ? 1 : 0);
+    var 두자리 = function () {
+      대번호++;
+      return 자료.약정
+        ? '<span class="bignum"><span class="n">' + 대번호 + '</span><i>/' + 총칸 + '</i></span>'
+        : '<span class="bignum">' + (대번호 < 10 ? '0' : '') + 대번호 + '</span>';
+    };
 
     /* 대부분 놓치고 있는 가족결합 할인 */
     if (자료.결합할인) {
-      h += '<div class="bundle"><h3>대부분 놓치고 있는 가족결합 할인</h3>';
+      h += '<div class="bundle"><h3>' + 두자리() + '대부분 놓치고 있는 가족결합 할인</h3>';
+      if (자료.결합머리글) {
+        h += '<div class="bundle-intro">';
+        자료.결합머리글.forEach(function (t) { h += '<p>' + t + '</p>'; });
+        h += '</div>';
+      }
       자료.결합할인.표들.forEach(function (b) {
         if (b.제목) h += '<h4>' + b.제목 + '</h4>';
         h += '<div class="table-scroll"><table class="bundle-tbl"><thead><tr>';
@@ -1424,6 +1861,86 @@ var 요금자료 = {
       h += '</div>';
     }
 
+    /* 약정 글 (2026-09-02 신규) — 가족결합 다음, 페이지 마지막 묶음 */
+    if (자료.약정) {
+      var 약 = 자료.약정;
+      var 번 = 0;
+      var 소제목 = function (t) { 번++; return '<h4><span class="num">' + 번 + '</span>' + t + '</h4>'; };
+      h += '<div class="term">';
+      h += '<h3>' + 두자리() + 약.제목 + '</h3>';
+      (약.머리글 || []).forEach(function (t) { h += '<p class="lead">' + t + '</p>'; });
+
+      if (약.요금표) {
+        h += 소제목(약.요금표.제목);
+        h += '<p class="term-hint">표를 옆으로 밀어서 보세요</p>';
+        h += '<div class="term-scroll"><table class="term-tbl wide"><thead><tr>';
+        약.요금표.머리.forEach(function (m, i) {
+          h += i === 0 ? '<th class="rn">' + m + '</th>' : '<th>' + m + '</th>';
+        });
+        h += '</tr></thead><tbody>';
+        약.요금표.줄들.forEach(function (r) {
+          h += '<tr>';
+          r.forEach(function (v, i) { h += i === 0 ? '<th class="rn">' + v + '</th>' : '<td>' + v + '</td>'; });
+          h += '</tr>';
+        });
+        if (약.요금표.고른줄) {
+          h += '<tr class="pick">';
+          약.요금표.고른줄.forEach(function (v, i) { h += i === 0 ? '<th class="rn">' + v + '</th>' : '<td>' + v + '</td>'; });
+          h += '</tr>';
+        }
+        h += '</tbody></table></div>';
+        (약.요금표.아래글 || []).forEach(function (t) { h += '<p>' + t + '</p>'; });
+      }
+
+      if (약.계산) {
+        var 계 = 약.계산;
+        h += 소제목(계.제목);
+        (계.앞글 || []).forEach(function (t) { h += '<p class="pre">' + t + '</p>'; });
+        /* 견주는 두 쪽을 좌우에 놓고 항목 이름을 가운데 축으로 둔다 (2026-09-03) */
+        var 칸 = function (v) { return '<td' + (v === '없음' ? ' class="no"' : '') + '>' + v + '</td>'; };
+        h += '<div class="term-scroll"><table class="term-tbl vs"><thead><tr>';
+        h += '<th>' + 계.머리[1] + '</th><th class="rn">' + 계.머리[0] + '</th><th>' + 계.머리[2] + '</th>';
+        h += '</tr></thead><tbody>';
+        계.줄들.forEach(function (r) {
+          h += '<tr>' + 칸(r[1]) + '<th class="rn">' + r[0] + '</th>' + 칸(r[2]) + '</tr>';
+        });
+        if (계.합계) {
+          h += '<tr class="tot"><td>' + 계.합계[1] + '</td>' +
+               '<th class="rn">' + 계.합계[0] + '</th>' +
+               '<td>' + 계.합계[2] + '</td></tr>';
+        }
+        h += '</tbody></table></div>';
+        if (계.결론) {
+          h += '<div class="term-res"><p>' + 계.결론 + '</p>' +
+               (계.결론덧 ? '<p>' + 계.결론덧 + '</p>' : '') +
+               (계.결론주의 ? '<p class="cav">' + 계.결론주의 + '</p>' : '') + '</div>';
+        }
+        (계.뒷글 || []).forEach(function (t, i) {
+          var 붙임 = (i === 계.뒷글.length - 1);   /* 마지막 문단은 다음 것과 사이를 좁힌다 */
+          h += '<p' + (붙임 ? ' class="tight"' : '') + '>' + t + '</p>';
+        });
+        if (계.주의) h += '<div class="term-warn"><p>' + 계.주의 + '</p></div>';
+        (계.끝글 || []).forEach(function (t) { h += '<p>' + t + '</p>'; });
+      }
+
+      if (약.이사) {
+        h += 소제목(약.이사.제목);
+        (약.이사.글 || []).forEach(function (t, i) {
+          var 끝 = (i === 약.이사.글.length - 1);   /* 마지막 문단은 주석과 사이를 좁힌다 */
+          h += '<p' + (끝 ? ' class="tight"' : '') + '>' + t + '</p>';
+        });
+      }
+      if (약.다음) h += '<p class="tight">' + 약.다음 + '</p>';
+      if (약.주석 && 약.주석.length) {
+        h += '<ul class="term-note">';
+        약.주석.forEach(function (t) { h += '<li>' + t + '</li>'; });
+        h += '</ul>';
+      }
+      h += '</div>';
+    }
+
+    if (자료.넘김2) h += '<div class="gonext">' + 자료.넘김2 + '</div>';
+
     return h;
   }
 
@@ -1432,6 +1949,10 @@ var 요금자료 = {
     var 자료 = 요금자료[c];
     if (!자료 || !판들[c]) return;
     판들[c].querySelector('.rate-body').innerHTML = 표HTML(자료);
+    var 번호칸 = 판들[c].querySelector('.rate-head .bignum');
+    if (번호칸 && 자료.약정) {
+      번호칸.innerHTML = '<span class="n">1</span><i>/' + (1 + 1 + (자료.결합할인 ? 1 : 0)) + '</i>';
+    }
     그렸나[c] = true;
   }
 
