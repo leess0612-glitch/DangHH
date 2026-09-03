@@ -1,6 +1,6 @@
 /* ===================================================================
    당현함 유입경로 공용 부품  —  dh-inflow.js
-   (2026-08-20 신설 / 같은 날 v2 · v3 / 2026-09-03 v4 : 구글 광고 표시 gclid 안전망)
+   (2026-08-20 신설 / 같은 날 v2 · v3 / 2026-09-03 v4 : gclid 안전망 · v5 : 안 채워진 빈칸 걸러내기)
 
    ■ 무슨 일을 하나
      "이 손님이 어디서 왔는지"를 알아내 손님 브라우저에 30일 동안 기억해 두고,
@@ -20,7 +20,7 @@
      당장 안 고쳐도 자료를 잃지는 않는다.
 
    ■ 파일을 고친 뒤에는
-     html 의 <script src="js/dh-inflow.js?v=4"> 에서 v 숫자를 하나 올린다.
+     html 의 <script src="js/dh-inflow.js?v=5"> 에서 v 숫자를 하나 올린다.
      그래야 방문자 브라우저가 옛 파일을 재활용하지 않고 새로 받아 간다.
      지금 이 부품을 쓰는 라이브 화면은 여섯 개다 —
      index · gift · rental · plans · privacy · terms (시험본은 따로 세지 않는다).
@@ -276,12 +276,23 @@ function 지금판단() {
     /* 손님이 검색한 낱말 : utm_term 이 제대로 채워졌으면 그것을 쓰고,
        비었거나 {keyword} 처럼 안 채워진 빈칸이면 네이버가 붙여 준 것을 쓴다 */
     var 검색낱말 = 안채워진빈칸(꼬리표.term) ? 네이버검색어() : 꼬리표.term;
+
+    /* ★2026-09-03 : 소재·묶음도 '안 채워진 빈칸'을 걸러낸다.
+       예전에는 검색어(utm_term) 한 곳만 걸렀다. 소재·묶음에는 사람이 직접 적은 값만
+       들어온다고 봤기 때문이다. 그런데 구글 검색광고를 쓰면서 소재 자리에
+       {keyword} 를 넣게 됐다 — 구글더러 낱말을 채워 달라는 표시다.
+       구글이 못 채우면 그 글자가 그대로 넘어와 시트에 '{keyword}' 라고 적힌다.
+       실제로 그렇게 적히는 것을 확인하고 막았다. 묶음(campaign)도 광고사가 채워 주는
+       표시를 넣을 수 있어 같이 거른다. */
+    var 소재 = 안채워진빈칸(꼬리표.content)  ? '' : 꼬리표.content;
+    var 묶음 = 안채워진빈칸(꼬리표.campaign) ? '' : 꼬리표.campaign;
+
     저장하기({
-      summary : [이름만들기(꼬리표.source, 꼬리표.medium, 꼬리표.content), 꼬리표.campaign]
+      summary : [이름만들기(꼬리표.source, 꼬리표.medium, 소재), 묶음]
                   .filter(Boolean).join(' / ') + 경유말,
       source  : 꼬리표.source || '',
-      campaign: 꼬리표.campaign || '',
-      detail  : [꼬리표.content, 검색낱말].filter(Boolean).join(' / '),
+      campaign: 묶음,
+      detail  : [소재, 검색낱말].filter(Boolean).join(' / '),
       page    : location.pathname || '/'
     });
     return;
