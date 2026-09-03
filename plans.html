@@ -669,19 +669,14 @@ table.rate td.gift em.plus {
 .sub-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 12px; }
 .sub-box { background: white; border: 1px solid var(--border); border-radius: 12px; padding: 16px; }
 .sub-box h3 { font-size: 15px; font-weight: 800; color: var(--dark); margin-bottom: 4px; }
-.sub-box .sub-gift { font-size: 28px; font-weight: 700; color: #E60012; margin-bottom: 12px; line-height: 1.2; }
+.sub-box .sub-gift { font-size: 14px; font-weight: 700; color: #E60012; margin-bottom: 8px; }
 /* 2026-09-03: 금액을 위 요금표 사은품 칸과 같은 크기로 키운다 */
-.sub-box .sub-gift b { font-size: 44px; font-weight: 900; color: #E60012; letter-spacing: -1px; }
-.sub-box .sub-gift span { font-size: 26px; font-weight: 600; color: #E60012; margin-left: 2px; }
+.sub-box .sub-gift b { font-size: 22px; font-weight: 900; color: #E60012; letter-spacing: -0.5px; }
+.sub-box .sub-gift span { font-size: 13px; font-weight: 600; color: #E60012; margin-left: 1px; }
 /* 요금표 사은품 칸과 같은 '+ 추가혜택' 표시 */
-.sub-box .sub-gift em.plus { display: block; font-style: normal; font-size: 24px; font-weight: 800;
+.sub-box .sub-gift em.plus { display: block; font-style: normal; font-size: 12px; font-weight: 700;
   color: #E60012; margin-top: 4px; letter-spacing: -0.3px; }
-@media (max-width: 768px) {
-  .sub-box .sub-gift { font-size: 24px; }
-  .sub-box .sub-gift b { font-size: 38px; }
-  .sub-box .sub-gift span { font-size: 22px; }
-  .sub-box .sub-gift em.plus { font-size: 20px; }
-}
+@media (max-width: 768px) { .sub-box .sub-gift b { font-size: 19px; } }
 .sub-box dl { display: grid; grid-template-columns: 1fr auto; gap: 8px 12px; margin-top: 8px; }
 .sub-box dt { font-size: 14px; color: var(--dark); word-break: keep-all; }
 .sub-box dd { font-size: 14px; font-weight: 700; color: var(--dark); text-align: right; white-space: nowrap; }
