@@ -1837,18 +1837,16 @@ var 요금자료 = {
     }
     h += '</tbody></table></div></div>';
 
-    /* 설치비 */
-    h += '<div class="sub-grid">';
-    if (자료.설치비) {
-      h += '<div class="sub-box"><h3>설치비 (평일 기준)</h3><dl>';
-      자료.설치비.forEach(function (r) { h += '<dt>' + r[0] + '</dt><dd>' + r[1] + '</dd>'; });
-      h += '</dl></div>';
-    }
-    h += '</div>';
 
     /* 회사별 주석 + 모든 회사 공통 주석 */
     h += '<ul class="rate-note">';
     (자료.주석 || []).forEach(function (t) { h += '<li>' + t + '</li>'; });
+    /* 2026-09-03: 설치비를 따로 상자로 두지 않고 주석 한 줄로 넣는다.
+       TV 추가가 표 안으로 올라가면서 아래 상자가 하나만 남아 절반이 비었던 것을 고친 것. */
+    if (자료.설치비) {
+      h += '<li>설치비 (평일 기준) &nbsp;' +
+           자료.설치비.map(function (r) { return r[0] + ' ' + r[1]; }).join(' · ') + '</li>';
+    }
     h += '<li>주말·공휴일에 설치하면 설치비가 약 25% 올라갑니다.</li>';
     h += '</ul>';
     if (자료.넘김1) h += '<div class="gonext">' + 자료.넘김1 + '</div>';
