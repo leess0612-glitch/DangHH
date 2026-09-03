@@ -665,6 +665,22 @@ table.rate td.gift em.plus {
   color: #E60012; margin-top: 2px; white-space: nowrap; letter-spacing: -0.3px;
 }
 
+
+/* ===== TV 추가 줄을 요금표 안으로 (2026-09-03 시험본) ===== */
+table.rate tr.addtv td.addtv-list {
+  text-align: left; padding-left: 16px; font-size: 14px; color: var(--dark);
+  white-space: normal; word-break: keep-all; line-height: 1.7;
+}
+table.rate tr.addtv td.addtv-list em {
+  font-style: normal; font-weight: 700;
+}
+table.rate tr.addtv td.addtv-list i {
+  font-style: normal; color: var(--gray); margin: 0 6px;
+}
+@media (max-width: 768px) {
+  table.rate tr.addtv td.addtv-list { font-size: 13px; padding-left: 12px; }
+}
+
 /* 표 아래 작은 상자 (TV 추가·설치비) */
 .sub-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 12px; }
 .sub-box { background: white; border: 1px solid var(--border); border-radius: 12px; padding: 16px; }
@@ -1563,7 +1579,7 @@ var 요금자료 = {
     ],
     넘김1: '<strong class="hook">잠깐!</strong>요금표만 보고 나가시면 손해입니다.<br>결합과 약정을 어떻게 거느냐에 따라 <b>3년에 141만원</b>이 갈립니다.<br>아래 두 칸을 마저 보세요.',
     넘김2: '내게 맞는 조건은 집집마다 다릅니다.<br>전화 한 통 주시면 맞춰서 계산해 드립니다.',
-    추가TV: { 사은품: '', 줄: [['베이직TV', '7,700원'], ['플러스TV', '8,250원']] },
+    추가TV: { 사은품: '3만원', 줄: [['베이직TV', '7,700원'], ['플러스TV', '8,250원']] },
     결합할인: {
       표들: [
         { 머리: ['결합 종류', '결합 상품', '내용'],
@@ -1692,7 +1708,7 @@ var 요금자료 = {
           ['휴대폰결합', ['—', '34,240원', '36,490원', '34,100원']]
         ] }
     ],
-    추가TV: { 제목: '셋톱박스 월 임대료', 사은품: '', 줄: [['UHD 셋톱', '7,700원 (3·4년 약정 시 4,400원)'], ['HD 셋톱', '7,700원 (3·4년 약정 시 2,200원)']] },
+    추가TV: { 제목: '셋톱박스 월 임대료', 사은품: '3만원', 줄: [['UHD 셋톱', '7,700원 (3·4년 약정 시 4,400원)'], ['HD 셋톱', '7,700원 (3·4년 약정 시 2,200원)']] },
     결합할인: {
       표들: [
         { 머리: ['결합 종류', '결합 상품', '결합 조건'],
@@ -1793,21 +1809,36 @@ var 요금자료 = {
         h += '</tr>';
       });
     });
+    /* 'TV 추가' 를 아래 상자가 아니라 요금표 마지막 줄로 넣는다 (2026-09-03 시험본).
+       왼쪽은 상품 이름 칸, 가운데는 요금 칸들을 합쳐 TV 종류·임대료를 늘어놓고,
+       오른쪽 끝은 위 줄들과 같은 사은품 칸으로 둔다. */
+    if (자료.추가TV) {
+      var 가운데 = 자료.속도.length * 2;
+      /* 항목이 셋 이상이면 두 개씩 끊어 줄을 바꾼다 (LG 처럼 속도별로 짝지어진 경우) */
+      var 조각 = 자료.추가TV.줄.map(function (r) {
+        return '<em>' + r[0] + '</em> ' + r[1];
+      });
+      var 목록 = '';
+      if (조각.length > 2) {
+        for (var k = 0; k < 조각.length; k += 2) {
+          if (k) 목록 += '<br>';
+          목록 += 조각.slice(k, k + 2).join('<i>·</i>');
+        }
+      } else {
+        목록 = 조각.join('<i>·</i>');
+      }
+      h += '<tr class="prod-start addtv">' +
+           '<th class="prod"><span class="pname">' +
+             (자료.추가TV.제목 || 'TV 1대 추가') + '</span>' +
+             (자료.추가TV.제목 ? '' : '<span class="ch">셋톱 임대료 포함</span>') + '</th>' +
+           '<td class="addtv-list" colspan="' + 가운데 + '">' + 목록 + '</td>' +
+           '<td class="gift">' + 사은품글(자료.추가TV.사은품 || '') + '</td>' +
+           '</tr>';
+    }
     h += '</tbody></table></div></div>';
 
-    /* TV 추가·설치비 */
+    /* 설치비 */
     h += '<div class="sub-grid">';
-    if (자료.추가TV) {
-      h += '<div class="sub-box"><h3>' + (자료.추가TV.제목 || 'TV 추가 시 월 임대료') + '</h3>';
-      if (자료.추가TV.사은품) {
-        /* '3만원' 처럼 붙어 있는 값을 숫자와 단위로 갈라, 위 요금표 사은품 칸과 같은 모양으로 만든다 */
-        var 액 = String(자료.추가TV.사은품).replace(/^([\d,]+)(.*)$/, '<b>$1</b><span>$2</span>');
-        h += '<p class="sub-gift">추가 사은품 ' + 액 + '<em class="plus">+ 추가혜택</em></p>';
-      }
-      h += '<dl>';
-      자료.추가TV.줄.forEach(function (r) { h += '<dt>' + r[0] + '</dt><dd>' + r[1] + '</dd>'; });
-      h += '</dl></div>';
-    }
     if (자료.설치비) {
       h += '<div class="sub-box"><h3>설치비 (평일 기준)</h3><dl>';
       자료.설치비.forEach(function (r) { h += '<dt>' + r[0] + '</dt><dd>' + r[1] + '</dd>'; });
