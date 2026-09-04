@@ -152,8 +152,8 @@ if (typeof dhInflow !== 'function') { window.dhInflow = function () { return {};
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 :root {
-  --primary: #1461F0;
-  --primary-dark: #0E48CC;
+  --primary: #1257C9;
+  --primary-dark: #0E45A0;
   --accent: #f59e0b;
   --dark: #0f172a;
   --gray: #64748b;
@@ -345,7 +345,7 @@ nav a.on { color: var(--primary); background: #eff6ff; font-weight: 700; }
   box-shadow: 0 2px 12px rgba(15,42,90,0.05); overflow: hidden;
   transition: transform 0.15s ease, border-color 0.2s, box-shadow 0.2s;
 }
-.sheet:hover { border-color: var(--primary); box-shadow: 0 8px 24px rgba(20,97,240,0.12); }
+.sheet:hover { border-color: var(--primary); box-shadow: 0 8px 24px rgba(18,87,201,0.12); }
 .sheet:active { transform: scale(0.995); }
 .sheet img { display: block; width: 100%; height: auto; }
 
@@ -369,14 +369,14 @@ nav a.on { color: var(--primary); background: #eff6ff; font-weight: 700; }
           그동안 단추가 사라졌다 나타났다.
      해결: 그라데이션 밑에 위아래 색의 한가운데 색을 미리 깔아 둔다.
      ※ background 로 모아쓰면 바탕색이 도로 지워지므로 나눠 쓸 것. */
-  background-color: #F16E12;
-  background-image: linear-gradient(180deg, #ff8124 0%, #e35a00 100%);
+  background-color: #1257C9;
+  background-image: linear-gradient(180deg, #1257C9 0%, #e35a00 100%);
   box-shadow: 0 8px 20px rgba(255,107,0,0.42);
   transition: transform 0.08s ease, background 0.2s, box-shadow 0.2s;
 }
-.cta-apply:hover { background: #e85e00; }
+.cta-apply:hover { background: #0E45A0; }
 .cta-apply:active {
-  background: #d15a00;
+  background: #0E45A0;
   transform: translateY(2px) scale(0.975);
   box-shadow: inset 0 2px 6px rgba(0,0,0,0.20);
 }
@@ -480,8 +480,8 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
    까닭: 아래 남색 카드(또는 gift 의 주황 따라오는 단추)와 가는 곳이 똑같아 겹쳤다.
    이제 이 패널은 '지금 바로 연락하기'(전화·카톡) 한 가지 뜻만 갖는다.
    되살리려면 이 자리에 아래 두 줄을 넣고 html 에 단추를 다시 넣으면 된다.
-     .cs-apply { background: #ff6b00; color: white; }
-     .cs-apply:hover { background: #e85e00; } */
+     .cs-apply { background: #1257C9; color: white; }
+     .cs-apply:hover { background: #0E45A0; } */
 .float-btn { width: 52px; height: 52px; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; box-shadow: 0 4px 16px rgba(0,0,0,0.15); transition: transform 0.2s; font-size: 22px; }
 .float-btn:hover { transform: scale(1.1); }
 .float-btn:active { transform: scale(1.02); }
@@ -520,20 +520,20 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
   -webkit-tap-highlight-color: transparent;
   transition: transform 0.08s ease, background 0.2s, box-shadow 0.2s;
 }
-.desk-cta-card:hover { background: #163C80; }
+.desk-cta-card:hover { background: #0B2E5C; }
 .desk-cta-top { font-size: 18px; font-weight: 700; color: white; letter-spacing: -0.3px; }
 .desk-cta-bar-btn {
   display: inline-flex; align-items: center;
-  padding: 12px 28px; background: #ff6b00; color: white;
+  padding: 12px 28px; background: #1257C9; color: white;
   font-size: 23px; font-weight: 800; border: 1.5px solid transparent; border-radius: 8px;
   font-family: 'Pretendard Variable', Pretendard, sans-serif; transition: background 0.2s;
   white-space: nowrap; line-height: 1;
   pointer-events: none;   /* 주황 조각은 따로 반응하지 않는다 — 카드가 하나로 움직인다 */
 }
 /* 카드를 누르면 주황 조각도 함께 반응해야 '한 덩어리'로 읽힌다 */
-.desk-cta-card:hover .desk-cta-bar-btn { background: #e85e00; }
+.desk-cta-card:hover .desk-cta-bar-btn { background: #0E45A0; }
 .desk-cta-card:active { transform: translateY(2px) scale(0.99); box-shadow: 0 6px 16px rgba(4,18,60,0.30); }
-.desk-cta-card:active .desk-cta-bar-btn { background: #d15a00; box-shadow: inset 0 2px 6px rgba(0,0,0,0.20); }
+.desk-cta-card:active .desk-cta-bar-btn { background: #0E45A0; box-shadow: inset 0 2px 6px rgba(0,0,0,0.20); }
 @media (min-width: 769px) { .desk-cta-bar { display: flex; } }
 
 /* 휴대폰 아래 고정 신청 막대 — index.html의 .mobile-cta-bar와 같은 디자인.
@@ -546,13 +546,13 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
   display: flex; align-items: center; justify-content: center;
   width: 100%; height: 48px; border-radius: 12px; text-decoration: none;
   color: white; font-size: 16px; font-weight: 800; letter-spacing: -0.3px;
-  background-color: #145AE6;   /* 위아래 파랑의 한가운데 색 — 누를 때 깜빡임 방지용 받침 */
-  background-image: linear-gradient(180deg, #1a6bff 0%, #0e48cc 100%);
-  box-shadow: 0 8px 20px rgba(20,97,240,0.45);
+  background-color: #1257C9;   /* 위아래 파랑의 한가운데 색 — 누를 때 깜빡임 방지용 받침 */
+  background-image: linear-gradient(180deg, #1257C9 0%, #0E45A0 100%);
+  box-shadow: 0 8px 20px rgba(18,87,201,0.45);
   transition: transform 0.08s ease, background 0.2s, box-shadow 0.2s;
 }
 .mobile-cta-btn:active {
-  background: #0E48CC;
+  background: #0E45A0;
   transform: translateY(2px) scale(0.96);
   box-shadow: inset 0 2px 6px rgba(0,0,0,0.22);
 }
@@ -598,7 +598,7 @@ footer :focus-visible {
   .sheet:hover { border-color: var(--border); box-shadow: 0 2px 12px rgba(15,42,90,0.05); }
   .float-btn:hover { transform: none; }
   /* 여기도 background 로 모아쓰면 밑에 깔아 둔 바탕색이 지워진다 → 그림만 되돌린다 */
-  .cta-apply:hover { background-image: linear-gradient(180deg, #ff8124 0%, #e35a00 100%); }
+  .cta-apply:hover { background-image: linear-gradient(180deg, #1257C9 0%, #e35a00 100%); }
 }
 @media (prefers-reduced-motion: reduce) {
   * { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }

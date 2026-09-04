@@ -166,8 +166,8 @@ if (typeof dhInflow !== 'function') { window.dhInflow = function () { return {};
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
 :root {
-  --primary: #1461F0;
-  --primary-dark: #0E48CC;
+  --primary: #1257C9;
+  --primary-dark: #0E45A0;
   --cta: #6d28d9;
   --cta-hover: #5b21b6;
   --accent: #f59e0b;
@@ -293,7 +293,7 @@ nav a:hover { color: var(--primary); background: #eff6ff; }
 /* ===== HERO ===== */
 .hero {
   margin-top: 64px;
-  background: linear-gradient(135deg, #0C2880 0%, #1461F0 60%, #1A6BFF 100%);
+  background: linear-gradient(135deg, #0B2E5C 0%, #1257C9 60%, #1257C9 100%);
   padding: 100px 20px 90px; text-align: center; color: white; position: relative;
   /* clip = 넘치는 장식만 잘라냄. hidden 이면 히어로가 '속으로 스크롤되는 상자'가 되어
      자리표로 이동할 때 히어로 안쪽이 밀릴 수 있다 (인터넷 페이지에서 실제로 발생, 2026-08-13) */
@@ -314,14 +314,14 @@ nav a:hover { color: var(--primary); background: #eff6ff; }
 .mob-br { display: none; }
 .hero p { font-size: clamp(15px, 2vw, 19px); opacity: 0.9; margin-bottom: 60px; }
 .hero-cta {
-  display: inline-block; background: #ff6b00; color: white;
+  display: inline-block; background: #1257C9; color: white;
   font-size: 21px; font-weight: 900; padding: 22px 56px; border-radius: 16px;
   text-decoration: none; transition: all 0.2s;
   box-shadow: 0 8px 28px rgba(255,107,0,0.5);
   letter-spacing: -0.3px;
   border: 3px solid rgba(255,255,255,0.3);
 }
-.hero-cta:hover { background: #e85e00; transform: translateY(-3px); box-shadow: 0 14px 36px rgba(255,107,0,0.6); }
+.hero-cta:hover { background: #0E45A0; transform: translateY(-3px); box-shadow: 0 14px 36px rgba(255,107,0,0.6); }
 .hero-stats {
   display: flex; justify-content: center; gap: 0;
   margin-top: 72px; flex-wrap: wrap;
@@ -386,10 +386,10 @@ section { padding: 72px 20px; }
   border-radius: 16px; padding: 20px 32px;
   text-decoration: none; transition: border-color 0.2s, box-shadow 0.2s;
 }
-.ict-cert-wrap:hover { border-color: #1A6BFF; box-shadow: 0 4px 20px rgba(20,97,240,0.12); }
+.ict-cert-wrap:hover { border-color: #1257C9; box-shadow: 0 4px 20px rgba(18,87,201,0.12); }
 .ict-cert-icon {
   width: 56px; height: 56px; border-radius: 12px;
-  background: #1461F0; color: white;
+  background: #1257C9; color: white;
   display: flex; align-items: center; justify-content: center;
   font-size: 15px; font-weight: 900; letter-spacing: -0.5px; flex-shrink: 0; line-height: 1.2; text-align: center;
 }
@@ -466,7 +466,7 @@ section { padding: 72px 20px; }
 .compare-wrap { max-width: 780px; margin: 48px auto 0; }
 .compare-rec { text-align: right; margin-bottom: 0; }
 .compare-rec span {
-  display: inline-block; background: #ff6b00; color: white;
+  display: inline-block; background: #1257C9; color: white;
   font-size: 13px; font-weight: 800; padding: 6px 20px;
   border-radius: 12px 12px 0 0;
 }
@@ -494,9 +494,9 @@ section { padding: 72px 20px; }
 .cf-col-vs .cf-head { background: white; color: #374151; font-size: 21px; padding: 12px 9px; }
 .cf-col-vs .cf-cell { font-size: 22px; font-weight: 700; color: #1e293b; padding: 15px 9px; border-top: 1px solid #e5e9ee; background: white; }
 /* 당현함 열 — 헤더 120px(=84+36), margin-top: -36px, margin-bottom: -36px → 위아래 돌출 */
-.cf-col-us { flex: 0 0 345px; margin-top: -36px; margin-bottom: -36px; overflow: hidden; box-shadow: 0 8px 32px rgba(20,97,240,0.45); }
-.cf-col-us .cf-head { background: #1248CC; color: white; font-size: 42px; padding: 18px 9px; min-height: 120px; }
-.cf-col-us .cf-cell { padding: 10px 9px; border-top: 1px solid rgba(255,255,255,0.35); background: #1461F0; }
+.cf-col-us { flex: 0 0 345px; margin-top: -36px; margin-bottom: -36px; overflow: hidden; box-shadow: 0 8px 32px rgba(18,87,201,0.45); }
+.cf-col-us .cf-head { background: #0E45A0; color: white; font-size: 42px; padding: 18px 9px; min-height: 120px; }
+.cf-col-us .cf-cell { padding: 10px 9px; border-top: 1px solid rgba(255,255,255,0.35); background: #1257C9; }
 .cf-col-us .cf-cell:last-child { min-height: 138px; }
 /* 3줄 VS 항목 행 높이 확보 */
 .cf-col-a .cf-cell:nth-child(4),
@@ -512,7 +512,7 @@ section { padding: 72px 20px; }
   background: white; border: 1.5px solid #e5e7eb; border-radius: 16px;
   padding: 20px 22px 24px; transition: all 0.2s; box-shadow: 0 2px 12px rgba(0,0,0,0.04);
 }
-.plan-card:hover { border-color: var(--primary); box-shadow: 0 8px 24px rgba(20,97,240,0.1); }
+.plan-card:hover { border-color: var(--primary); box-shadow: 0 8px 24px rgba(18,87,201,0.1); }
 .plan-top {
   display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px;
 }
@@ -579,7 +579,7 @@ a.plan-card:active { transform: translateY(0) scale(0.99); }
 .process-steps-b::before {
   content: ''; position: absolute;
   top: 28px; left: calc(16.66% + 18px); right: calc(16.66% + 18px);
-  height: 2px; background: linear-gradient(90deg, #1A6BFF, #60a5fa);
+  height: 2px; background: linear-gradient(90deg, #1257C9, #60a5fa);
   z-index: 0;
 }
 .process-step-b {
@@ -592,7 +592,7 @@ a.plan-card:active { transform: translateY(0) scale(0.99); }
   background: var(--primary); color: white;
   font-size: 20px; font-weight: 900;
   border: 4px solid #f8fafc;
-  box-shadow: 0 4px 16px rgba(20,97,240,0.3);
+  box-shadow: 0 4px 16px rgba(18,87,201,0.3);
   margin-bottom: 20px; flex-shrink: 0;
 }
 .step-card-b {
@@ -619,7 +619,7 @@ a.plan-card:active { transform: translateY(0) scale(0.99); }
 .process-chevrons {
   display: flex; align-items: stretch;
   max-width: 780px; margin: 0 auto;
-  filter: drop-shadow(0 6px 20px rgba(20,97,240,0.20));
+  filter: drop-shadow(0 6px 20px rgba(18,87,201,0.20));
 }
 .process-chevron {
   flex: 1; color: white; text-align: center;
@@ -635,13 +635,13 @@ a.plan-card:active { transform: translateY(0) scale(0.99); }
 }
 .process-chevron:nth-child(2) { z-index: 2; }
 .process-chevron:last-child  { z-index: 1; }
-.process-chevron:nth-child(1) { background: #1A6BFF; }
-.process-chevron:nth-child(2) { background: #1d56d8; }
-.process-chevron:nth-child(3) { background: #174ac5; }
+.process-chevron:nth-child(1) { background: #1257C9; }
+.process-chevron:nth-child(2) { background: #1257C9; }
+.process-chevron:nth-child(3) { background: #1257C9; }
 .chevron-badge {
   display: inline-flex; align-items: center; justify-content: center;
   width: 36px; height: 36px; border-radius: 50%;
-  background: #ff6b00; color: white;
+  background: #1257C9; color: white;
   font-size: 13px; font-weight: 800; letter-spacing: -0.5px;
   margin-bottom: 12px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.2);
@@ -675,7 +675,7 @@ a.plan-card:active { transform: translateY(0) scale(0.99); }
 
 /* ===== FORM ===== */
 .form-section {
-  background: linear-gradient(135deg, #0C2880 0%, #1461F0 100%); color: white;
+  background: linear-gradient(135deg, #0B2E5C 0%, #1257C9 100%); color: white;
 }
 .form-section .section-tag { background: rgba(255,255,255,0.2); color: white; }
 .form-section .section-title { color: white; }
@@ -758,11 +758,11 @@ a.plan-card:active { transform: translateY(0) scale(0.99); }
 .badge.opt { background: #f1f5f9; color: var(--gray); }
 .consent-item label { font-size: 13px; color: var(--gray); cursor: pointer; }
 .form-submit {
-  width: 100%; padding: 18px; background: #1461F0; color: white;
+  width: 100%; padding: 18px; background: #1257C9; color: white;
   font-size: 17px; font-weight: 800; border: none; border-radius: 12px; cursor: pointer;
   transition: all 0.2s; letter-spacing: -0.3px; font-family: 'Pretendard Variable', Pretendard, sans-serif;
 }
-.form-submit:hover { background: #0E48CC; transform: translateY(-1px); box-shadow: 0 8px 24px rgba(20,97,240,0.4); }
+.form-submit:hover { background: #0E45A0; transform: translateY(-1px); box-shadow: 0 8px 24px rgba(18,87,201,0.4); }
 .form-submit:disabled { background: #94a3b8; transform: none; box-shadow: none; cursor: not-allowed; }
 .form-success { display: none; text-align: center; padding: 40px 20px; }
 .form-success .s-icon { font-size: 56px; margin-bottom: 16px; }
@@ -851,7 +851,7 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
   border: 1px solid white;
   border-right: none;
 }
-.sticky-form-tab:hover { background: #1a4fd8; }
+.sticky-form-tab:hover { background: #1257C9; }
 .sticky-form-tab .tab-arrow {
   width: 0; height: 0;
   border-top: 5px solid transparent;
@@ -883,11 +883,11 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
 .sticky-form input:focus { border-color: var(--primary); }
 .sticky-form input::placeholder { color: #cbd5e1; }
 .sticky-form-btn {
-  width: 100%; padding: 11px; background: #ff6b00; color: white;
+  width: 100%; padding: 11px; background: #1257C9; color: white;
   font-size: 13px; font-weight: 800; border: none; border-radius: 8px;
   cursor: pointer; font-family: 'Pretendard Variable', Pretendard, sans-serif; transition: background 0.2s;
 }
-.sticky-form-btn:hover { background: #e85e00; }
+.sticky-form-btn:hover { background: #0E45A0; }
 .sticky-form-success { text-align: center; padding: 8px 0; font-size: 13px; color: var(--primary); font-weight: 700; display: none; }
 
 /* ===== DESKTOP BOTTOM CTA BAR ===== */
@@ -895,7 +895,7 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
 .desk-cta-bar {
   display: none;
   position: fixed; bottom: 0; left: 0; right: 0; z-index: 950;
-  background: #1248CC; border-top: 1.5px solid #0E48CC;
+  background: #0E45A0; border-top: 1.5px solid #0E45A0;
   padding: 14px 24px 14px;
   box-shadow: 0 -4px 16px rgba(0,0,0,0.2);
   opacity: 0; transform: translateY(100%);
@@ -929,15 +929,15 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
 }
 .desk-cta-bar #deskName { width: 190px; }
 .desk-cta-bar #deskPhone { width: 285px; }
-.desk-cta-bar input:focus { border-color: #1A6BFF; }
+.desk-cta-bar input:focus { border-color: #1257C9; }
 .desk-cta-bar input::placeholder { color: #94a3b8; }
 .desk-cta-bar-btn {
-  padding: 12px 28px; background: #ff6b00; color: white;
+  padding: 12px 28px; background: #1257C9; color: white;
   font-size: 23px; font-weight: 800; border: 1.5px solid transparent; border-radius: 8px;
   cursor: pointer; font-family: 'Pretendard Variable', Pretendard, sans-serif; transition: background 0.2s;
   white-space: nowrap; line-height: 1;
 }
-.desk-cta-bar-btn:hover { background: #e85e00; }
+.desk-cta-bar-btn:hover { background: #0E45A0; }
 .desk-cta-success { font-size: 14px; font-weight: 700; color: white; text-align: center; display: none; }
 /* ===== 아래 띠 '희망 제품' 적는 칸 (2026-09-02) =====
    왜 넣었나 — 시트의 '서비스종류' 칸이 이 통로로 들어온 신청에서는 계속 '미지정' 이었다.
@@ -1030,8 +1030,8 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
    까닭: 아래 남색 카드(또는 gift 의 주황 따라오는 단추)와 가는 곳이 똑같아 겹쳤다.
    이제 이 패널은 '지금 바로 연락하기'(전화·카톡) 한 가지 뜻만 갖는다.
    되살리려면 이 자리에 아래 두 줄을 넣고 html 에 단추를 다시 넣으면 된다.
-     .cs-apply { background: #ff6b00; color: white; }
-     .cs-apply:hover { background: #e85e00; } */
+     .cs-apply { background: #1257C9; color: white; }
+     .cs-apply:hover { background: #0E45A0; } */
 .float-btn {
   width: 52px; height: 52px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
   text-decoration: none; box-shadow: 0 4px 16px rgba(0,0,0,0.15); transition: transform 0.2s; font-size: 22px;
@@ -1056,7 +1056,7 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
   display: flex; align-items: center;
 }
 .mobile-cta-btn {
-  width: 100%; height: 48px; background: #ff6b00; color: white;
+  width: 100%; height: 48px; background: #1257C9; color: white;
   font-size: 16px; font-weight: 800; border: none; border-radius: 12px;
   cursor: pointer; font-family: 'Pretendard Variable', Pretendard, sans-serif;
   letter-spacing: -0.3px;
@@ -1127,7 +1127,7 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
 .hero-cash-badge {
   display: flex; flex-direction: column; align-items: center; gap: 2px;
   width: fit-content; margin-left: auto; margin-right: auto;
-  background: linear-gradient(135deg, #ff6b00, #ffb300);
+  background: linear-gradient(135deg, #F26100, #ffb300);
   color: white; font-weight: 900; line-height: 1.15;
   padding: 12px 26px; border-radius: 0; margin-bottom: 20px;
   box-shadow: 0 4px 16px rgba(255,107,0,0.45);
@@ -1342,7 +1342,7 @@ nav a:active { background: #dbeafe; }
 /* (가) 손가락으로 쓰는 기기에서는 '마우스 올림' 효과를 끔 — 떼어도 남아서 눌림을 가림 */
 @media (hover: none) {
   a.plan-card:hover { transform: none; }
-  .hero-cta:hover { transform: none; box-shadow: 0 8px 28px rgba(255,107,0,0.5); background: #ff6b00; }
+  .hero-cta:hover { transform: none; box-shadow: 0 8px 28px rgba(255,107,0,0.5); background: #F26100; }
   .form-submit:hover { transform: none; box-shadow: none; }
   .benefit-card:hover, .process-step-a:hover, .step-card-b:hover,
   .trust-cert-label-item:hover, .float-btn:hover { transform: none; }
@@ -1354,7 +1354,7 @@ nav a:active { background: #dbeafe; }
 }
 .form-submit:active {
   transform: translateY(2px) scale(0.98);
-  box-shadow: 0 2px 8px rgba(20,97,240,0.30);
+  box-shadow: 0 2px 8px rgba(18,87,201,0.30);
 }
 .mobile-cta-btn:active, .desk-cta-bar-btn:active, .sticky-form-btn:active {
   transform: translateY(2px) scale(0.975);
@@ -1370,18 +1370,18 @@ nav a:active { background: #dbeafe; }
    → 색 + 안쪽 그림자(움푹 들어간 느낌)를 함께 줌 */
 /* ※ 이 페이지의 하단 고정 버튼은 주황색임 (index.html은 파란색) → 눌림 색도 진한 주황 */
 .mobile-cta-btn:active {
-  background: #d15a00;
+  background: #0E45A0;
   transform: translateY(2px) scale(0.96);
   box-shadow: inset 0 2px 6px rgba(0,0,0,0.22);
 }
-.form-submit:active { background: #0E48CC; }
-.hero-cta:active { background: #d15a00; }
+.form-submit:active { background: #0E45A0; }
+.hero-cta:active { background: #0E45A0; }
 .desk-cta-bar-btn:active, .sticky-form-btn:active {
-  background: #d15a00;
+  background: #0E45A0;
   box-shadow: inset 0 2px 6px rgba(0,0,0,0.20);
 }
-.header-phone:active { background: #0E48CC; }
-.float-phone:active { background: #0E48CC; }
+.header-phone:active { background: #0E45A0; }
+.float-phone:active { background: #0E45A0; }
 .float-kakao:active { background: #e6cf00; }
 
 /* --- 3. 폰에서 누를 때 뜨는 회색 네모 없애기 (위 2번이 대신 반응) --- */
@@ -1394,7 +1394,7 @@ a, button, .service-tab, .faq-question, .usim-check,
 a:focus-visible, button:focus-visible,
 .service-tab:focus-visible, .faq-question:focus-visible,
 [tabindex]:focus-visible {
-  outline: 3px solid #1A6BFF;
+  outline: 3px solid #1257C9;
   outline-offset: 2px;
   border-radius: 8px;
 }
@@ -1403,11 +1403,11 @@ a:focus-visible, button:focus-visible,
   outline-color: #fee500;
 }
 .form-group input:focus-visible, .sticky-form input:focus-visible {
-  outline: 3px solid rgba(20,97,240,0.30);
+  outline: 3px solid rgba(18,87,201,0.30);
   outline-offset: 1px;
 }
 input[type="checkbox"]:focus-visible {
-  outline: 2px solid #1A6BFF;
+  outline: 2px solid #1257C9;
   outline-offset: 2px;
 }
 
@@ -1459,7 +1459,7 @@ html { scroll-behavior: auto; scroll-padding-top: 78px; }
 <style>
 /* ===== 사은품 지급명단 굴림칸 — 한 칸으로 합치고 브랜드 색으로 ===== */
 .live-section-inner{ max-width:560px }
-.rolling-col-header.type-cash{ background:#1461F0; color:#fff }
+.rolling-col-header.type-cash{ background:#1257C9; color:#fff }
 .rolling-col-header .live-dot{ background:#fff }
 .ri-plan{
   min-width:0; font-size:18px; font-weight:600; color:#334155;
@@ -1480,7 +1480,7 @@ html { scroll-behavior: auto; scroll-padding-top: 78px; }
 .ri-bank{ flex:none; width:5.2em; text-align:center }
 .rolling-more{
   display:block; text-align:center; margin-top:10px;
-  font-size:13px; font-weight:700; color:#1461F0; text-decoration:none;
+  font-size:13px; font-weight:700; color:#1257C9; text-decoration:none;
 }
 .rolling-more:hover{ text-decoration:underline }
 @media (max-width:768px){
@@ -1546,7 +1546,7 @@ html { scroll-behavior: auto; scroll-padding-top: 78px; }
 }
 .hero-guarantee p{ margin:0; opacity:1; }
 .hg-badge{
-  display:inline-block; background:#FFF200; color:#0C2880;
+  display:inline-block; background:#FFF200; color:#0B2E5C;
   font-size:14px; font-weight:900; letter-spacing:-0.3px;
   padding:5px 14px; margin-bottom:12px;
 }
@@ -1567,7 +1567,7 @@ html { scroll-behavior: auto; scroll-padding-top: 78px; }
 }
 
 /* ===== 첫 화면 : 지원금 명세표 (index.html 에서 옮김) =====
-   명세표는 '흰 종이'. 강조색 주황(#ff6b00)은 위 배지와 같은 색. */
+   명세표는 '흰 종이'. 강조색 주황(#F26100)은 위 배지와 같은 색. */
 .dh-ledger{
   position:relative;
   max-width:560px; margin:24px auto 0;
@@ -1595,16 +1595,16 @@ html { scroll-behavior: auto; scroll-padding-top: 78px; }
 .dh-ledger-row .v{ font-size:22px; font-weight:700; color:#0f172a; font-variant-numeric:tabular-nums; white-space:nowrap }
 .dh-ledger-row .v.small{ font-weight:800 }
 /* 비밀지원금 줄 — 어디와도 비교할 수 없는 유일한 항목이라 맨 아래에서 강조 */
-.dh-ledger-row.hi .t{ font-size:23px; font-weight:700; color:#ff6b00 }
-.dh-ledger-row.hi .v.small{ font-size:25px; color:#ff6b00 }
+.dh-ledger-row.hi .t{ font-size:23px; font-weight:700; color:#F26100 }
+.dh-ledger-row.hi .v.small{ font-size:25px; color:#F26100 }
 .dh-ledger-row.hi .d{ border-bottom-color:rgba(255,107,0,.45) }
 .dh-ledger-sum{
   display:flex; align-items:baseline; justify-content:space-between; gap:10px;
   margin-top:9px; padding-top:10px; border-top:2px solid rgba(12,40,128,.45);
 }
 .dh-ledger-sum .t{ font-size:16px; font-weight:600; color:#64748b }
-.dh-ledger-sum .v{ font-size:32px; font-weight:900; color:#0C2880; letter-spacing:-.5px; font-variant-numeric:tabular-nums }
-.dh-ledger-sum .v em{ font-style:normal; font-size:27px; font-weight:800; color:#ff6b00 }
+.dh-ledger-sum .v{ font-size:32px; font-weight:900; color:#0B2E5C; letter-spacing:-.5px; font-variant-numeric:tabular-nums }
+.dh-ledger-sum .v em{ font-style:normal; font-size:27px; font-weight:800; color:#F26100 }
 @media (max-width:900px){
   .dh-ledger{ padding:12px 14px 10px }
   /* 떠 있는 전화·카톡 단추에 금액이 가리지 않도록 좌우를 똑같이 비운다 */
@@ -1661,7 +1661,7 @@ html { scroll-behavior: auto; scroll-padding-top: 78px; }
 }
 .tn-in{
   display:block; text-align:center;
-  font-size:100px; font-weight:900; color:#1461F0;
+  font-size:100px; font-weight:900; color:#1257C9;
   letter-spacing:-4px; line-height:1.05;
   white-space:nowrap;
   font-variant-numeric:tabular-nums;
@@ -1669,7 +1669,7 @@ html { scroll-behavior: auto; scroll-padding-top: 78px; }
 .tn-tail{ font-size:0.6em; font-weight:800; letter-spacing:-1.5px; line-height:1.15; }
 .tn-label{
   display:block; margin-top:24px;
-  background:none; color:#0C2880;
+  background:none; color:#0B2E5C;
   font-size:66px; font-weight:800; letter-spacing:-3px;
   padding:0; border-radius:0; white-space:nowrap; line-height:1.15;
 }
@@ -1708,7 +1708,7 @@ html { scroll-behavior: auto; scroll-padding-top: 78px; }
 
 /* 명단 제목 색을 진한 남색으로 (index.html 과 같은 이유) —
    바로 위 신뢰 숫자 칸이 '숫자=밝은파랑 / 항목이름=남색'을 쓰므로 위계를 맞춘다 */
-.rolling-col-header.type-cash{ background:#0C2880; color:#fff }
+.rolling-col-header.type-cash{ background:#0B2E5C; color:#fff }
 
 /* ===== 지급명단 굴림칸을 더 많이 보이게 (2026-08-31) =====
    메인(index)에는 8/25 에 들어간 규칙인데 이 페이지만 옛 높이로 남아 있었다.
@@ -1850,7 +1850,7 @@ html { scroll-behavior: auto; scroll-padding-top: 78px; }
    흰 바탕으로 오면 첫 화면 글자 16곳 중 14곳이 안 보이게 된다(실측):
      흰 글씨 12곳 -> 대비 1.0 / 노란 글씨 2곳 -> 대비 1.17~1.28
    그래서 색을 통째로 다시 잡는다. 규칙은 첫 페이지와 같다 —
-     파랑 #1668E3 = 브랜드·행동 / 주황 #C24E00 = 돈·보상 이야기 */
+     파랑 #1257C9 = 브랜드·행동 / 주황 #C24E00 = 돈·보상 이야기 */
 
 /* ① 바탕과 경계.
    히어로 바로 아래 '신뢰 숫자' 칸이 이미 흰색이라, 둘 다 흰색이 되면
@@ -1864,17 +1864,17 @@ html { scroll-behavior: auto; scroll-padding-top: 78px; }
 
 /* ② 맨 위 작은 배지 — 반투명 흰색이라 흰 바탕에서 사라진다 */
 .hero .hero-badge{
-  background:#EFF6FF; border:1px solid #D6E4FB; color:#1668E3;
+  background:#EFF6FF; border:1px solid #D6E4FB; color:#1257C9;
 }
 
 /* ③ 금액 배지 — 그라데이션을 뺀다.
-   #FF6B00 -> #FFB300 그라데이션이었는데, 그 위 흰 글씨 대비가
+   #F26100 -> #FFB300 그라데이션이었는데, 그 위 흰 글씨 대비가
    시작 2.86, 끝 1.79 로 오른쪽으로 갈수록 글씨가 사라졌다(실측).
    파란 바탕에서는 배지가 도드라져 덜 티가 났지만 흰 바탕에서는 그대로 드러난다.
-   디자인보드에도 '그라데이션 금지'가 있다. 첫 페이지와 같은 단색 #FF6B00 으로.
+   디자인보드에도 '그라데이션 금지'가 있다. 첫 페이지와 같은 단색 #F26100 으로.
    ★ 바깥으로 번지는 그림자만 뺀다. 글자 그림자는 주황 위 흰 글씨를 받쳐 주므로 남긴다. */
 .hero .hero-cash-badge{
-  background:#FF6B00;
+  background:#F26100;
   box-shadow:none;
   /* 첫 페이지 배지에는 있는데 여기엔 없던 것 — 주황 위 흰 글씨(대비 2.86)를 받쳐 준다.
      바깥 그림자와 달리 이건 글자를 읽기 쉽게 하는 것이라 흰 바탕에서도 남긴다. */
@@ -1883,7 +1883,7 @@ html { scroll-behavior: auto; scroll-padding-top: 78px; }
 
 /* ④ 큰제목과 본문 */
 .hero h1{ color:#191F28; }
-.hero h1 em{ color:#1668E3; }        /* 노랑 #FEE500 은 흰 바탕에서 대비 1.28 이라 안 보인다 */
+.hero h1 em{ color:#1257C9; }        /* 노랑 #FEE500 은 흰 바탕에서 대비 1.28 이라 안 보인다 */
 .hero .hero-desc{ color:#333D4B; }
 .hero .hero-desc strong{ color:#191F28; }
 .hero .hero-urgency{ color:#5F6672; }
@@ -1916,7 +1916,7 @@ html { scroll-behavior: auto; scroll-padding-top: 78px; }
    ★ 주황은 아래 두 줄(돈 이야기)에만 쓰고, 이 배지는 이름표이므로 파랑으로 둔다.
      Paper Blue 위 파랑은 4.68 로 통과한다. */
 .hero-guarantee .hg-badge{
-  background:#EFF6FF; color:#1668E3; border:1px solid #D6E4FB;
+  background:#EFF6FF; color:#1257C9; border:1px solid #D6E4FB;
 }
 .hero-guarantee .hg-line{ color:#333D4B; }
 .hero-guarantee .hg-line em{ color:#C24E00; }
@@ -2104,7 +2104,7 @@ html { scroll-behavior: auto; scroll-padding-top: 78px; }
   background:var(--primary); color:#fff;
   border-radius:14px; padding:14px 36px; text-align:center;
   display:flex; flex-direction:column; align-items:center; justify-content:center;
-  box-shadow:0 8px 28px rgba(20,97,240,0.28);
+  box-shadow:0 8px 28px rgba(18,87,201,0.28);
 }
 .후기띠-큰글{ display:block; margin:0; font-size:30px; white-space:nowrap;
   font-weight:900; letter-spacing:-1px; line-height:1.25; }
