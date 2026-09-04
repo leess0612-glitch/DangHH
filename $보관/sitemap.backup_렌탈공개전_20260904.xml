@@ -5,15 +5,7 @@
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
-  <!-- 렌탈 메인 (2026-09-04 추가) — 2026-08-19 에 뺐던 것을 다시 넣었다.
-       "정수기렌탈·비데·공기청정기·안마의자" 검색을 맡는다. 첫 화면(인터넷 중심)과 노리는 낱말이 다르다.
-       ※ rental-c.html(코웨이 전용)은 아직 뺀 채로 둔다 — 본문이 rental 과 70% 겹쳐
-          둘 다 열면 검색엔진이 하나만 대표로 골라버릴 수 있다. 코웨이 색을 더 넣어 손질한 뒤 열 것. -->
-  <url>
-    <loc>https://danghh.com/rental.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
+  <!-- rental.html 은 뺐음: 광고 전용 페이지라 자연 검색에 노출시키지 않기로 함 (2026-08-19) -->
   <url>
     <loc>https://danghh.com/plans.html</loc>
     <changefreq>monthly</changefreq>

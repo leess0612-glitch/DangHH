@@ -1,14 +1,19 @@
 User-agent: *
 Allow: /
 
-# 작업본·백업은 검색에 나오지 않도록
-Disallow: /_보관/
-Disallow: /font-test.html
-Disallow: /rental-v2.html
-Disallow: /*backup
-# 시험본은 검색에 나오지 않게
-Disallow: /*-test.html
-# (2026-09-02) 이름 어디에든 test 가 들어가면 검색에 안 나오게 (예: plans-test2.html)
-Disallow: /*test
+# 2026-09-04 정리 — Disallow 줄을 전부 뺐다.
+#
+# 왜 뺐나: 막으려던 대상(백업·시험본)이 애초에 인터넷에 올라가지 않는다.
+#   .gitignore 에 *backup*.html / *test*.html 이 있어서 깃에 담기지 않고,
+#   깃허브 페이지는 깃에 담긴 것만 올린다. 실제로 열어보면 404 다(2026-09-04 확인).
+#   즉 없는 파일을 막고 있었고, 적힌 경로마저 낡아 있었다($보관 폴더를 _보관 으로 적어둠).
+#
+# 그리고 Disallow 는 '숨기기' 용도로 쓰면 안 된다:
+#   여기서 막으면 검색엔진이 페이지에 들어오지 못해 페이지 안의
+#   <meta name="robots" content="noindex"> 를 읽지 못한다. 그러면 내용 없이 주소만
+#   검색에 뜨는 역효과가 난다. 2026-08-19·20 두 번 겪었다.
+#   숨길 페이지는 robots.txt 가 아니라 페이지 안의 noindex 로 처리한다.
+#
+# 앞으로 Disallow 를 추가할 일이 생기면, 그 전에 "그 파일이 정말 라이브에 있나"부터 확인할 것.
 
 Sitemap: https://danghh.com/sitemap.xml
