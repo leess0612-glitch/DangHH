@@ -147,27 +147,21 @@ if (typeof dhInflow !== 'function') { window.dhInflow = function () { return {};
 <meta property="og:image:height" content="400">
 <meta property="og:image:type" content="image/png">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 300'><rect width='300' height='300' rx='56' fill='%231461F0'/><g fill='white'><path d='M42 68H268.4v29.4H65.4v103.2H272v29.8H25.6V84.4A16.4 16.4 0 0 1 42 68Z'/><g><rect x='124.17' y='118.6' width='18.47' height='8.4'/><rect x='96' y='127' width='74.84' height='12'/><path fill-rule='evenodd' d='M168.88 157.4C168.88 169.33 160.31 173.1 133.18 173.1C106.05 173.1 97.48 169.33 97.48 157.4C97.48 145.47 106.05 141.7 133.18 141.7C160.31 141.7 168.88 145.47 168.88 157.4ZM150.63 157.41C150.63 159.98 145.83 160.96 133.18 160.96C120.53 160.96 115.73 159.98 115.73 157.41C115.73 154.84 120.53 153.86 133.18 153.86C145.83 153.86 150.63 154.84 150.63 157.41Z'/></g><g transform='translate(93 0)'><rect x='124.17' y='118.6' width='18.47' height='8.4'/><rect x='96' y='127' width='74.84' height='12'/><path fill-rule='evenodd' d='M168.88 157.4C168.88 169.33 160.31 173.1 133.18 173.1C106.05 173.1 97.48 169.33 97.48 157.4C97.48 145.47 106.05 141.7 133.18 141.7C160.31 141.7 168.88 145.47 168.88 157.4ZM150.63 157.41C150.63 159.98 145.83 160.96 133.18 160.96C120.53 160.96 115.73 159.98 115.73 157.41C115.73 154.84 120.53 153.86 133.18 153.86C145.83 153.86 150.63 154.84 150.63 157.41Z'/></g></g></svg>">
-<!-- ===== SUIT 글꼴 불러오기 (2026-08-12 교체, index.html과 동일 조치) =====
-     문제: 원래는 구글 폰트에서 SUIT를 불러오게 되어 있었는데,
-           구글 폰트 창고에는 SUIT가 없어서 400 오류가 나고 있었음
-           → 지금까지 방문자는 각자 기기의 기본 글씨체(맑은 고딕·애플고딕 등)로 보고 있었음
-     해결: SUIT 제작사 공식 주소(jsDelivr)에서 직접 불러옴. 이름도 'SUIT'로 같아서 아래 코드는 그대로 사용
-     참고: font-display:swap = 글꼴을 받는 동안 기본 글씨로 먼저 보여주고 준비되면 바꿔치기
-           (이걸 안 넣으면 글꼴 받는 최대 3초 동안 글자가 아예 안 보임)
-     원래 줄:
-     <link rel="preconnect" href="https://fonts.googleapis.com">
-     <link href="https://fonts.googleapis.com/css2?family=SUIT:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
--->
+<!-- ===== 글꼴 불러오기 (2026-09-04: SUIT -> Pretendard) =====
+     아래 <link> 한 줄이 글꼴을 가져온다. '쓰는 글자만 골라 받는' 방식이라
+     한글을 통째로 받지 않고, 화면에 실제로 나온 글자 조각만 내려받는다. -->
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.css">
 <style>
 /* 가장 얇은 300(Light)은 불러오지 않음 — FAQ 열림 표시(+) 한 곳에만 쓰이는데
    파일 하나가 165KB라 낭비. 빼면 브라우저가 400으로 대신 그리며 눈에 띄는 차이 없음 */
-@font-face { font-family:'SUIT'; font-weight:400; font-display:swap; src:url('https://cdn.jsdelivr.net/gh/sun-typeface/SUIT@2/fonts/static/woff2/SUIT-Regular.woff2') format('woff2'); }
-@font-face { font-family:'SUIT'; font-weight:500; font-display:swap; src:url('https://cdn.jsdelivr.net/gh/sun-typeface/SUIT@2/fonts/static/woff2/SUIT-Medium.woff2') format('woff2'); }
-@font-face { font-family:'SUIT'; font-weight:600; font-display:swap; src:url('https://cdn.jsdelivr.net/gh/sun-typeface/SUIT@2/fonts/static/woff2/SUIT-SemiBold.woff2') format('woff2'); }
-@font-face { font-family:'SUIT'; font-weight:700; font-display:swap; src:url('https://cdn.jsdelivr.net/gh/sun-typeface/SUIT@2/fonts/static/woff2/SUIT-Bold.woff2') format('woff2'); }
-@font-face { font-family:'SUIT'; font-weight:800; font-display:swap; src:url('https://cdn.jsdelivr.net/gh/sun-typeface/SUIT@2/fonts/static/woff2/SUIT-ExtraBold.woff2') format('woff2'); }
-@font-face { font-family:'SUIT'; font-weight:900; font-display:swap; src:url('https://cdn.jsdelivr.net/gh/sun-typeface/SUIT@2/fonts/static/woff2/SUIT-Heavy.woff2') format('woff2'); }
+/* ===== 글꼴: Pretendard (2026-09-04, SUIT 에서 갈아탐) =====
+   전에는 여기서 SUIT 6굵기를 통째로 받았다 — 약 1.0MB.
+   지금은 위 <link> 한 줄로 '쓰는 글자만 골라 받는' 방식을 쓴다.
+   화면에 실제로 나온 글자 조각만 내려받아 약 0.4MB 로 줄었다.
+   Variable 판이라 400~900 굵기가 한 가족 안에 다 들어 있다.
+   갈아탄 까닭: SUIT 는 숫자 폭 고정이 제대로 안 들어 계산기 금액이 바뀔 때
+   옆 글자가 몇 px 씩 밀렸다. Pretendard 는 어긋남이 0 이다. */
 </style>
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -184,7 +178,7 @@ if (typeof dhInflow !== 'function') { window.dhInflow = function () { return {};
   --border: #e2e8f0;
 }
 html { scroll-behavior: auto; }
-body { font-family: 'SUIT', 'Noto Sans KR', sans-serif; color: var(--dark); line-height: 1.6; overflow-x: hidden; }
+body { font-family: 'Pretendard Variable', Pretendard, 'Noto Sans KR', sans-serif; color: var(--dark); line-height: 1.6; overflow-x: hidden; }
 
 /* ===== HEADER ===== */
 header {
@@ -712,7 +706,7 @@ a.plan-card:active { transform: translateY(0) scale(0.99); }
 .form-group label { display: block; font-size: 13px; font-weight: 600; color: var(--gray); margin-bottom: 5px; }
 .form-group input {
   width: 100%; padding: 13px 16px; border: 2px solid var(--border); border-radius: 10px;
-  font-size: 15px; font-family: 'SUIT', sans-serif; transition: border-color 0.2s; outline: none;
+  font-size: 15px; font-family: 'Pretendard Variable', Pretendard, sans-serif; transition: border-color 0.2s; outline: none;
 }
 .form-group input:focus { border-color: var(--primary); }
 .form-group input::placeholder { color: #cbd5e1; }
@@ -722,7 +716,7 @@ a.plan-card:active { transform: translateY(0) scale(0.99); }
    글상자 모양은 위 이름·번호 칸과 똑같이 맞췄고, 높이만 다르게 준다. */
 .form-group textarea {
   width: 100%; padding: 13px 16px; border: 2px solid var(--border); border-radius: 10px;
-  font-size: 15px; font-family: 'SUIT', sans-serif; transition: border-color 0.2s; outline: none;
+  font-size: 15px; font-family: 'Pretendard Variable', Pretendard, sans-serif; transition: border-color 0.2s; outline: none;
   line-height: 1.6; resize: vertical; min-height: 84px; color: var(--dark);
 }
 .form-group textarea:focus { border-color: var(--primary); }
@@ -736,7 +730,7 @@ a.plan-card:active { transform: translateY(0) scale(0.99); }
   /* 손가락으로 누르기 좋게 위아래를 넓혔다 — 높이 20px → 44px (2026-08-21)
      글자가 보이는 자리는 그대로 두려고 위쪽 여백을 음수로 당겨 놨다 */
   padding: 14px 0; margin: -12px 0 0;
-  font-family: 'SUIT', sans-serif; font-size: 13px; font-weight: 600;
+  font-family: 'Pretendard Variable', Pretendard, sans-serif; font-size: 13px; font-weight: 600;
   color: var(--gray); cursor: pointer; text-decoration: underline;
   text-underline-offset: 3px; text-decoration-color: #cbd5e1;
 }
@@ -766,7 +760,7 @@ a.plan-card:active { transform: translateY(0) scale(0.99); }
 .form-submit {
   width: 100%; padding: 18px; background: #1461F0; color: white;
   font-size: 17px; font-weight: 800; border: none; border-radius: 12px; cursor: pointer;
-  transition: all 0.2s; letter-spacing: -0.3px; font-family: 'SUIT', sans-serif;
+  transition: all 0.2s; letter-spacing: -0.3px; font-family: 'Pretendard Variable', Pretendard, sans-serif;
 }
 .form-submit:hover { background: #0E48CC; transform: translateY(-1px); box-shadow: 0 8px 24px rgba(20,97,240,0.4); }
 .form-submit:disabled { background: #94a3b8; transform: none; box-shadow: none; cursor: not-allowed; }
@@ -883,7 +877,7 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
 .sticky-form-title span { color: var(--primary); }
 .sticky-form input {
   width: 100%; padding: 10px 12px; border: 1.5px solid var(--border);
-  border-radius: 8px; font-size: 13px; font-family: 'SUIT', sans-serif;
+  border-radius: 8px; font-size: 13px; font-family: 'Pretendard Variable', Pretendard, sans-serif;
   outline: none; margin-bottom: 8px; transition: border-color 0.2s;
 }
 .sticky-form input:focus { border-color: var(--primary); }
@@ -891,7 +885,7 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
 .sticky-form-btn {
   width: 100%; padding: 11px; background: #ff6b00; color: white;
   font-size: 13px; font-weight: 800; border: none; border-radius: 8px;
-  cursor: pointer; font-family: 'SUIT', sans-serif; transition: background 0.2s;
+  cursor: pointer; font-family: 'Pretendard Variable', Pretendard, sans-serif; transition: background 0.2s;
 }
 .sticky-form-btn:hover { background: #e85e00; }
 .sticky-form-success { text-align: center; padding: 8px 0; font-size: 13px; color: var(--primary); font-weight: 700; display: none; }
@@ -929,7 +923,7 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
 }
 .desk-cta-bar input {
   padding: 12px 18px; border: 1.5px solid #e2e8f0;
-  border-radius: 8px; font-size: 16px; font-family: 'SUIT', sans-serif;
+  border-radius: 8px; font-size: 16px; font-family: 'Pretendard Variable', Pretendard, sans-serif;
   outline: none; transition: border-color 0.2s;
   background: white; color: #1e293b;
 }
@@ -940,7 +934,7 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
 .desk-cta-bar-btn {
   padding: 12px 28px; background: #ff6b00; color: white;
   font-size: 23px; font-weight: 800; border: 1.5px solid transparent; border-radius: 8px;
-  cursor: pointer; font-family: 'SUIT', sans-serif; transition: background 0.2s;
+  cursor: pointer; font-family: 'Pretendard Variable', Pretendard, sans-serif; transition: background 0.2s;
   white-space: nowrap; line-height: 1;
 }
 .desk-cta-bar-btn:hover { background: #e85e00; }
@@ -996,7 +990,7 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
   width: 216px; padding: 16px 12px;
   background: white; border: 1px solid #e2e8f0; border-radius: 14px;
   box-shadow: 0 10px 30px rgba(15,23,42,0.13);
-  font-family: 'SUIT', 'Noto Sans KR', sans-serif;
+  font-family: 'Pretendard Variable', Pretendard, 'Noto Sans KR', sans-serif;
 }
 @media (min-width: 1600px) { .consult-panel { display: block; } }
 /* 2026-08-28: 「상담하기」 제목 글자를 없앴다 (사장님 지시).
@@ -1023,7 +1017,7 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
   display: flex; align-items: center; justify-content: center; gap: 7px;
   width: 100%; min-height: 42px; margin-bottom: 8px; padding: 0 10px;
   border: none; border-radius: 9px; cursor: pointer;
-  font-family: 'SUIT', 'Noto Sans KR', sans-serif;
+  font-family: 'Pretendard Variable', Pretendard, 'Noto Sans KR', sans-serif;
   font-size: 15px; font-weight: 700; letter-spacing: -0.3px;
   text-decoration: none; transition: background 0.2s;
 }
@@ -1064,7 +1058,7 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
 .mobile-cta-btn {
   width: 100%; height: 48px; background: #ff6b00; color: white;
   font-size: 16px; font-weight: 800; border: none; border-radius: 12px;
-  cursor: pointer; font-family: 'SUIT', sans-serif;
+  cursor: pointer; font-family: 'Pretendard Variable', Pretendard, sans-serif;
   letter-spacing: -0.3px;
 }
 
