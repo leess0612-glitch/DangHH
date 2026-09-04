@@ -136,6 +136,10 @@ if (typeof dhInflow !== 'function') { window.dhInflow = function () { return {};
 <!-- 2026-08-27 : 여기가 "최대 40만원"이라 화면 본문(최대 50만원)과 어긋나 있었다 -->
 <meta name="description" content="정수기·비데·공기청정기·안마의자 렌탈, 브랜드별 조건과 사은품 혜택을 비교해 안내드립니다. 타 업체가 더 주면 차액 120% 보상. 무료 비교 상담 ☎ 1600-4670">
 <!-- 광고 전용 페이지. 자연 검색에는 노출시키지 않는다. (2026-08-19) -->
+<!-- 2026-09-04 : 검색 노출을 열었다. 2026-08-19 에 "페이지가 허접하다"는 이유로 막아두었는데,
+     그 뒤 여러 번 손봤고 제목·설명도 검색용으로 갖춰졌다. 정수기렌탈 수요를 파워컨텐츠(유료)로만
+     사고 있었는데 자연검색 문을 우리가 닫아두고 있던 셈이라 열기로 함. sitemap.xml 에도 추가했다.
+     되돌리려면 아래를 noindex, follow 로 바꾸고 sitemap 에서 빼면 된다. -->
 <meta name="robots" content="noindex, follow">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://danghh.com/rental-c.html">
@@ -895,9 +899,11 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
 .desk-cta-bar {
   display: none;
   position: fixed; bottom: 0; left: 0; right: 0; z-index: 950;
-  background: #0E45A0; border-top: 1.5px solid #0E45A0;
+  /* 2026-09-04 아래 띠 색 재정립 (남색 띠 + 흰 단추)
+     전에는 진파랑 바탕(#0E45A0)에 파란 단추(#1257C9)라 1.36배밖에 차이가 안 나 단추가 묻혔다. */
+  background: #12336E; border-top: 1px solid rgba(255,255,255,0.12);
   padding: 14px 24px 14px;
-  box-shadow: 0 -4px 16px rgba(0,0,0,0.2);
+  box-shadow: 0 -2px 12px rgba(4,18,60,.28);
   opacity: 0; transform: translateY(100%);
   transition: opacity 0.3s, transform 0.35s cubic-bezier(0.4,0,0.2,1);
   pointer-events: none;
@@ -922,7 +928,7 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
   margin-bottom: 2px;
 }
 .desk-cta-bar input {
-  padding: 12px 18px; border: 1.5px solid #e2e8f0;
+  padding: 12px 18px; border: 1.5px solid #D1D5DB;
   border-radius: 8px; font-size: 16px; font-family: 'Pretendard Variable', Pretendard, sans-serif;
   outline: none; transition: border-color 0.2s;
   background: white; color: #1e293b;
@@ -932,12 +938,12 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
 .desk-cta-bar input:focus { border-color: #1257C9; }
 .desk-cta-bar input::placeholder { color: #94a3b8; }
 .desk-cta-bar-btn {
-  padding: 12px 28px; background: #1257C9; color: white;
+  padding: 12px 28px; background: #FFFFFF; color: #1257C9;
   font-size: 23px; font-weight: 800; border: 1.5px solid transparent; border-radius: 8px;
   cursor: pointer; font-family: 'Pretendard Variable', Pretendard, sans-serif; transition: background 0.2s;
   white-space: nowrap; line-height: 1;
 }
-.desk-cta-bar-btn:hover { background: #0E45A0; }
+.desk-cta-bar-btn:hover { background: #EFF6FF; }
 .desk-cta-success { font-size: 14px; font-weight: 700; color: white; text-align: center; display: none; }
 /* ===== 아래 띠 '희망 제품' 적는 칸 (2026-09-02) =====
    왜 넣었나 — 시트의 '서비스종류' 칸이 이 통로로 들어온 신청에서는 계속 '미지정' 이었다.
