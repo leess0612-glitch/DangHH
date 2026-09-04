@@ -1051,6 +1051,7 @@ table.term-tbl.txt th.rn { width: 140px; }
     <div class="jumps" id="jumpBar">
       <button type="button" class="jump" data-go="rate">요금·사은품</button>
       <button type="button" class="jump" data-go="bundle">결합할인</button>
+      <button type="button" class="jump" data-go="term">약정</button>
       <button type="button" class="jump" data-go="know">알아둘 것</button>
     </div>
   </div>
@@ -3174,7 +3175,9 @@ var 요금자료 = {
     if (무엇 === 'know') return document.getElementById('knowBox');
     var 판 = 지금판();
     if (!판) return null;
-    return (무엇 === 'rate') ? 판.querySelector('.rate-head') : 판.querySelector('.bundle');
+    if (무엇 === 'rate') return 판.querySelector('.rate-head');
+    if (무엇 === 'term') return 판.querySelector('.term');   /* 약정 칸 */
+    return 판.querySelector('.bundle');
   }
 
   /* 위에 붙어 따라오는 띠(메뉴 + 통신사 단추 + 목차)의 높이 */
