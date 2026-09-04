@@ -168,29 +168,29 @@
       /* ===== 창 안 신청칸 ===== */
       '#applyOverlay .form-headline{font-size:17px;font-weight:800;color:var(--dark,#0f172a);',
       'text-align:center;margin:0 0 24px;}',
-      '#applyOverlay .form-headline span{color:var(--primary,#1461F0);}',
+      '#applyOverlay .form-headline span{color:var(--primary,#1257C9);}',
       '#applyOverlay .service-tabs{display:flex;gap:12px;margin-bottom:0;}',
       '#applyOverlay .service-tab{flex:1;border:2px solid var(--border,#e2e8f0);border-radius:12px;',
       'padding:14px 10px;text-align:center;cursor:pointer;transition:all .2s;font-size:14px;',
       'font-weight:600;color:var(--gray,#64748b);background:#fff;user-select:none;}',
-      '#applyOverlay .service-tab.active{border-color:var(--primary,#1461F0);background:#eff6ff;color:var(--primary,#1461F0);}',
+      '#applyOverlay .service-tab.active{border-color:var(--primary,#1257C9);background:#eff6ff;color:var(--primary,#1257C9);}',
       '#applyOverlay .service-tab:active{transform:scale(0.98);}',
       '#applyOverlay .service-tab-icon{font-size:24px;margin-bottom:4px;}',
       '#applyOverlay .usim-check{display:flex;align-items:flex-start;gap:10px;padding:13px 15px;',
       'background:#fffbeb;border:1px solid #fde68a;border-radius:10px;margin-bottom:16px;cursor:pointer;}',
-      '#applyOverlay .usim-check input[type="checkbox"]{width:17px;height:17px;accent-color:var(--primary,#1461F0);',
+      '#applyOverlay .usim-check input[type="checkbox"]{width:17px;height:17px;accent-color:var(--primary,#1257C9);',
       'flex-shrink:0;margin-top:2px;cursor:pointer;}',
       '#applyOverlay .usim-check label{font-size:13px;font-weight:500;color:#92400e;cursor:pointer;line-height:1.5;}',
       '#applyOverlay .form-group{margin-bottom:14px;}',
       '#applyOverlay .form-group label{display:block;font-size:13px;font-weight:600;color:var(--gray,#64748b);margin-bottom:5px;}',
       '#applyOverlay .form-group input{width:100%;padding:13px 16px;border:2px solid var(--border,#e2e8f0);',
       'border-radius:10px;font-size:15px;font-family:\'SUIT\',sans-serif;transition:border-color .2s;outline:none;}',
-      '#applyOverlay .form-group input:focus{border-color:var(--primary,#1461F0);}',
+      '#applyOverlay .form-group input:focus{border-color:var(--primary,#1257C9);}',
       '#applyOverlay .form-group input::placeholder{color:#cbd5e1;}',
       '#applyOverlay .form-group textarea{width:100%;padding:13px 16px;border:2px solid var(--border,#e2e8f0);',
       'border-radius:10px;font-size:15px;font-family:\'SUIT\',sans-serif;transition:border-color .2s;outline:none;',
       'line-height:1.6;resize:vertical;min-height:84px;color:var(--dark,#0f172a);}',
-      '#applyOverlay .form-group textarea:focus{border-color:var(--primary,#1461F0);}',
+      '#applyOverlay .form-group textarea:focus{border-color:var(--primary,#1257C9);}',
       '#applyOverlay .form-group textarea::placeholder{color:#cbd5e1;}',
       '#applyOverlay .memo-hint{font-size:12px;color:#94a3b8;line-height:1.65;margin-bottom:7px;}',
       '#applyOverlay .memo-count{text-align:right;font-size:12px;color:#94a3b8;margin-top:5px;}',
@@ -199,16 +199,16 @@
       'padding:14px 0;margin:-12px 0 0;font-family:\'SUIT\',sans-serif;font-size:13px;font-weight:600;',
       'color:var(--gray,#64748b);cursor:pointer;text-decoration:underline;text-underline-offset:3px;',
       'text-decoration-color:#cbd5e1;}',
-      '#applyOverlay .memo-toggle:hover{color:var(--primary,#1461F0);text-decoration-color:var(--primary,#1461F0);}',
+      '#applyOverlay .memo-toggle:hover{color:var(--primary,#1257C9);text-decoration-color:var(--primary,#1257C9);}',
       '#applyOverlay .memo-toggle .plus{display:inline-flex;align-items:center;justify-content:center;',
       'width:16px;height:16px;border-radius:50%;background:var(--border,#e2e8f0);color:var(--gray,#64748b);',
       'font-size:12px;font-weight:800;line-height:1;text-decoration:none;}',
-      '#applyOverlay .memo-toggle:hover .plus{background:#dbeafe;color:var(--primary,#1461F0);}',
+      '#applyOverlay .memo-toggle:hover .plus{background:#dbeafe;color:var(--primary,#1257C9);}',
       '#applyOverlay .memo-fold{display:none;}',
       '#applyOverlay .memo-fold.open{display:block;}',
       '#applyOverlay .form-urgency{text-align:center;font-size:13px;color:#dc2626;font-weight:700;',
       'margin-bottom:12px;background:#fff5f5;border-radius:8px;padding:8px 12px;}',
-      '#applyOverlay .form-submit{width:100%;padding:18px;background:#1461F0;color:#fff;font-size:17px;',
+      '#applyOverlay .form-submit{width:100%;padding:18px;background:#1257C9;color:#fff;font-size:17px;',
       'font-weight:800;border:none;border-radius:12px;cursor:pointer;transition:all .2s;',
       'letter-spacing:-0.3px;font-family:\'SUIT\',sans-serif;}',
       '#applyOverlay .form-submit:hover{background:#0E48CC;transform:translateY(-1px);box-shadow:0 8px 24px rgba(20,97,240,0.4);}',
@@ -277,12 +277,12 @@
               '</div>' +
               '<p class="form-urgency">⏰ 오후 5:30 이전 설치 시 당일 현금 입금</p>' +
               '<button type="button" class="form-submit" id="submitBtn">놓친 지원금 무료 확인</button>' +
-              '<p style="margin-top:10px;font-size:13px;color:var(--gray,#64748b);text-align:center;">타업체가 더 준다면? <strong style="color:var(--primary,#1461F0);">차액 120% 보상</strong></p>' +
+              '<p style="margin-top:10px;font-size:13px;color:var(--gray,#64748b);text-align:center;">타업체가 더 준다면? <strong style="color:var(--primary,#1257C9);">차액 120% 보상</strong></p>' +
             '</div>' +
             '<div class="form-success" id="formSuccess">' +
               '<div class="s-icon">✅</div>' +
               '<h3>신청이 완료되었습니다!</h3>' +
-              '<p>담당 상담사가 빠른 시간 내에<br>연락드리겠습니다.<br><br>바로 문의하시려면<br><strong style="color:var(--primary,#1461F0);font-size:17px;">1600-4670</strong></p>' +
+              '<p>담당 상담사가 빠른 시간 내에<br>연락드리겠습니다.<br><br>바로 문의하시려면<br><strong style="color:var(--primary,#1257C9);font-size:17px;">1600-4670</strong></p>' +
               '<button type="button" id="resetBtn" style="margin-top:16px;background:none;border:1px solid #d1d5db;border-radius:8px;padding:10px 20px;font-size:14px;color:var(--gray,#64748b);cursor:pointer;font-family:\'SUIT\',sans-serif;">다른 번호로 추가 신청</button>' +
             '</div>' +
           '</div>' +
