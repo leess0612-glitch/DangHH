@@ -136,7 +136,11 @@ if (typeof dhInflow !== 'function') { window.dhInflow = function () { return {};
 <!-- 2026-08-27 : 여기가 "최대 40만원"이라 화면 본문(최대 50만원)과 어긋나 있었다 -->
 <meta name="description" content="정수기·가전렌탈 가입 시 최대 50만원 현금 지원금 당일 지급. 타 업체가 더 주면 차액 120% 보상. 무료 비교 상담 신청하세요. ☎ 1600-4670">
 <!-- 광고 전용 페이지. 자연 검색에는 노출시키지 않는다. (2026-08-19) -->
-<meta name="robots" content="noindex, follow">
+<!-- 2026-09-04 : 검색 노출을 열었다. 2026-08-19 에 "페이지가 허접하다"는 이유로 막아두었는데,
+     그 뒤 여러 번 손봤고 제목·설명도 검색용으로 갖춰졌다. 정수기렌탈 수요를 파워컨텐츠(유료)로만
+     사고 있었는데 자연검색 문을 우리가 닫아두고 있던 셈이라 열기로 함. sitemap.xml 에도 추가했다.
+     되돌리려면 아래를 noindex, follow 로 바꾸고 sitemap 에서 빼면 된다. -->
+<meta name="robots" content="index, follow">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://danghh.com/rental.html">
 <meta property="og:title" content="당현함 | 렌탈 지원금 당일지급">
