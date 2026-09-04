@@ -7,12 +7,20 @@
   </url>
   <!-- 렌탈 메인 (2026-09-04 추가) — 2026-08-19 에 뺐던 것을 다시 넣었다.
        "정수기렌탈·비데·공기청정기·안마의자" 검색을 맡는다. 첫 화면(인터넷 중심)과 노리는 낱말이 다르다.
-       ※ rental-c.html(코웨이 전용)은 아직 뺀 채로 둔다 — 본문이 rental 과 70% 겹쳐
-          둘 다 열면 검색엔진이 하나만 대표로 골라버릴 수 있다. 코웨이 색을 더 넣어 손질한 뒤 열 것. -->
+       코웨이 전용판(rental-c.html)도 2026-09-04 함께 열었다(다른 세션에서 noindex 해제).
+       본문이 서로 약 70% 겹치지만, 검색엔진이 하나만 고르더라도 결과는 숨겨둔 때와 같을 뿐이라
+       열어서 잃을 것이 없다. 잘 잡히게 하려면 코웨이 제품명·후기를 늘려 겹침을 줄일 것. -->
   <url>
     <loc>https://danghh.com/rental.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+  </url>
+  <!-- 코웨이 전용 렌탈 (2026-09-04) — "코웨이 정수기렌탈" 검색을 맡는다.
+       코웨이는 현금 표현을 못 쓰므로 그 낱말을 뺀 판이다(현금 0번·코웨이 14번). -->
+  <url>
+    <loc>https://danghh.com/rental-c.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://danghh.com/plans.html</loc>
