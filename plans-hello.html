@@ -27,7 +27,7 @@
 <!-- ===== 당현함 통합 전환추적 v1 (다섯 페이지 공통: index·internet·rental·gift·plans / 수정 시 5개 파일 모두 동일하게) ===== -->
 <script>
 /* 이 페이지를 통계에서 부를 이름 */
-var DH_PAGE = 'danghh-plans';
+var DH_PAGE = 'danghh-plans-hello';
 /* 네이버 전환추적 공통키(AccountId) — 2026-08-28 발급받아 채움.
    홈페이지 소스에 그대로 드러나는 공개값이라 가려 둘 필요가 없다(구글 측정번호와 같은 성격) */
 var DH_NAVER_ID = 's_2e8bfd0103db';
@@ -123,14 +123,14 @@ if (typeof dhInflow !== 'function') { window.dhInflow = function () { return {};
 <!-- ===== 전환추적 끝 ===== -->
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>인터넷 요금표 비교 총정리 | KT SK LG 스카이라이프 헬로비전 인터넷TV 요금제 한눈에 보기</title>
-<meta name="description" content="인터넷요금비교 — KT, SK브로드밴드, LG유플러스, KT스카이라이프, LG헬로비전 다섯 통신사 인터넷TV 요금표를 한 화면에서 견주어 보세요. 통신사별 요금제와 속도별 월 요금, 결합할인과 약정할인을 나란히 놓고 고르실 수 있습니다.">
-<link rel="canonical" href="https://danghh.com/plans.html">
+<title>LG 헬로비전 인터넷 요금표 요금제 가입 신청 | hellovision 헬로비전 케이블 인터넷TV 결합할인 약정할인</title>
+<meta name="description" content="LG헬로비전 인터넷TV 요금표를 한자리에서 보세요. hellovision 헬로비전 인터넷 요금제와 속도별 월 요금, UHD·HD 셋톱박스 차이와 와이파이 공유기, 케이블 결합할인과 약정할인 금액까지 확인하실 수 있습니다. 현금 사은품은 개통 당일 지급합니다.">
+<link rel="canonical" href="https://danghh.com/plans-hello.html">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="당현함">
-<meta property="og:title" content="통신사별 실제 요금표 | 당현함">
-<meta property="og:description" content="KT·SK·LG U+ 인터넷 요금과 현금 사은품을 통신사별 요금표로 확인하세요.">
-<meta property="og:url" content="https://danghh.com/plans.html">
+<meta property="og:title" content="LG 헬로비전 인터넷 실제 요금표">
+<meta property="og:description" content="LG헬로비전 인터넷 요금과 현금 사은품을 요금표로 확인하세요.">
+<meta property="og:url" content="https://danghh.com/plans-hello.html">
 <meta property="og:image" content="https://danghh.com/images/share-card.png">
 <meta property="og:image:width" content="800">
 <meta property="og:image:height" content="400">
@@ -1024,7 +1024,7 @@ table.term-tbl.txt th.rn { width: 140px; }
 
 <!-- 페이지 머리띠 -->
 <div class="page-head">
-  <h1>통신사별 <em>요금표</em></h1>
+  <h1>LG 헬로비전 인터넷 <em>요금표</em></h1>
   <!-- 2026-09-02: 여기 있던 '사은품은 경품고시제 가이드상 최대 기본 사은품만 표기' 한 줄을
        뺐다 (사장님 지시). 표 안 사은품 칸마다 붙는 '+ 추가혜택'이 같은 몫을 한다. -->
 </div>
@@ -1038,13 +1038,13 @@ table.term-tbl.txt th.rn { width: 140px; }
   <button type="button" class="tabnav tabnav-r" id="tabnavR" aria-label="다음 통신사 보기">
     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
   </button>
-  <div class="tabs" role="tablist" aria-label="통신사 선택">
-    <button type="button" class="tab kt" role="tab" id="tab-kt" aria-controls="panel-kt" aria-selected="true" data-co="kt">KT</button>
-    <button type="button" class="tab sk" role="tab" id="tab-sk" aria-controls="panel-sk" aria-selected="false" tabindex="-1" data-co="sk">SK</button>
-    <button type="button" class="tab lg" role="tab" id="tab-lg" aria-controls="panel-lg" aria-selected="false" tabindex="-1" data-co="lg">LG U+</button>
+  <div class="tabs" role="navigation" aria-label="통신사 고르기">
+    <a class="tab kt" href="plans-kt.html">KT</a>
+    <a class="tab sk" href="plans-sk.html">SK</a>
+    <a class="tab lg" href="plans-lg.html">LG U+</a>
     <span class="tab-break" role="presentation" aria-hidden="true"></span>
-    <button type="button" class="tab sky" role="tab" id="tab-sky" aria-controls="panel-sky" aria-selected="false" tabindex="-1" data-co="sky">스카이라이프</button>
-    <button type="button" class="tab hello" role="tab" id="tab-hello" aria-controls="panel-hello" aria-selected="false" tabindex="-1" data-co="hello">헬로비전</button>
+    <a class="tab sky" href="plans-sky.html">스카이라이프</a>
+    <button type="button" class="tab hello" id="tab-hello" aria-selected="true" data-co="hello">헬로비전</button>
   </div>
   </div>
   <!-- 고른 통신사 안의 소제목으로 바로 가는 줄 (2026-09-04 시험) -->
@@ -1059,35 +1059,11 @@ table.term-tbl.txt th.rn { width: 140px; }
 
 <div class="wrap">
 
-  <section class="panel" id="panel-kt" role="tabpanel" aria-labelledby="tab-kt">
-    <div class="rate-head">
-      <h2><span class="bignum">01</span><span class="co kt">KT</span> 인터넷TV 요금표 한눈에 보기!</h2>
-    </div>
-    <div class="rate-body"></div>
-  </section>
 
-  <section class="panel" id="panel-sk" role="tabpanel" aria-labelledby="tab-sk" hidden>
-    <div class="rate-head">
-      <h2><span class="bignum">01</span><span class="co sk">SK브로드밴드</span> 인터넷TV 요금표 한눈에 보기!</h2>
-    </div>
-    <div class="rate-body"></div>
-  </section>
 
-  <section class="panel" id="panel-lg" role="tabpanel" aria-labelledby="tab-lg" hidden>
-    <div class="rate-head">
-      <h2><span class="bignum">01</span><span class="co lg">LG U+</span> 인터넷TV 요금표 한눈에 보기!</h2>
-    </div>
-    <div class="rate-body"></div>
-  </section>
 
-  <section class="panel" id="panel-sky" role="tabpanel" aria-labelledby="tab-sky" hidden>
-    <div class="rate-head">
-      <h2><span class="bignum">01</span><span class="co sky">KT 스카이라이프</span> 인터넷TV 요금표 한눈에 보기!</h2>
-    </div>
-    <div class="rate-body"></div>
-  </section>
 
-  <section class="panel" id="panel-hello" role="tabpanel" aria-labelledby="tab-hello" hidden>
+  <section class="panel" id="panel-hello" hidden>
     <div class="rate-head">
       <h2><span class="bignum">01</span><span class="co hello">LG 헬로비전</span> 인터넷TV 요금표 한눈에 보기!</h2>
     </div>
@@ -1872,7 +1848,7 @@ var 요금자료 = {
 };
 
 (function () {
-  var 통신사들 = ['kt', 'sk', 'lg', 'sky', 'hello'];
+  var 통신사들 = ['hello'];   /* 이 페이지는 LG 헬로비전 한 곳만 그린다 */
   var 탭들 = {}, 판들 = {}, 그렸나 = {};
   통신사들.forEach(function (c) {
     탭들[c] = document.getElementById('tab-' + c);
@@ -3114,7 +3090,7 @@ var 요금자료 = {
   }
 
   function 고르기(c, 주소도바꿀까) {
-    if (통신사들.indexOf(c) === -1) c = 'kt';
+    if (통신사들.indexOf(c) === -1) c = 'hello';
     통신사들.forEach(function (x) {
       var 켬 = (x === c);
       탭들[x].setAttribute('aria-selected', 켬 ? 'true' : 'false');
