@@ -11,6 +11,34 @@
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+  <!-- 통신사별 요금표 다섯 장 (2026-09-04)
+       'kt 인터넷 요금' 같은 검색을 각각 맡는 페이지들이다.
+       모아보기(plans.html)와 역할이 갈리므로 우선순위를 같은 0.8 로 둔다. -->
+  <url>
+    <loc>https://danghh.com/plans-kt.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://danghh.com/plans-sk.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://danghh.com/plans-lg.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://danghh.com/plans-sky.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://danghh.com/plans-hello.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
   <url>
     <loc>https://danghh.com/gift.html</loc>
     <changefreq>daily</changefreq>
