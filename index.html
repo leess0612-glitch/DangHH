@@ -3536,7 +3536,11 @@ function promiseZoom(src){ document.getElementById('promiseViewerImg').src=src; 
           <div class="s-icon">✅</div>
           <h3>신청이 완료되었습니다!</h3>
           <p>담당 상담사가 빠른 시간 내에<br>연락드리겠습니다.<br><br>바로 문의하시려면<br><strong style="color:var(--primary);font-size:17px;">1600-4670</strong></p>
-          <button onclick="resetForm()" style="margin-top:16px;background:none;border:1px solid #d1d5db;border-radius:8px;padding:10px 20px;font-size:14px;color:var(--gray);cursor:pointer;">다른 번호로 추가 신청</button>
+          <!-- '다른 번호로 추가 신청' 단추는 뺐다 (2026-09-04 사장님 판단).
+               왜: 한 사람이 두 번호로 넣는 일은 거의 없는데, 회색 단추가 전화번호보다 아래에 있어
+                   시선을 끌고 마무리를 흐렸다. 실수로 누르면 입력칸이 도로 나와 접수됐는지 헷갈렸다.
+                   렌탈 페이지 완료창에는 원래 없던 것이라 첫 화면만 옛 모습으로 남아 있었다.
+               한 번 더 신청하려는 손님은 창을 닫고 신청 단추를 다시 누르면 된다(아래 신청창열기 참고). -->
         </div>
       </div>
     </div>
@@ -4156,6 +4160,11 @@ window.addEventListener('popstate', function () {
 function 신청창열기() {
   var 창 = document.getElementById('applyOverlay');
   if (!창 || 창.classList.contains('open')) return;
+  /* 지난번에 신청을 마친 뒤 창을 닫았다면, 다시 열 때 '완료' 화면이 그대로 남아 있다.
+     그러면 손님이 새로 신청할 길이 없어진다(2026-09-04 '다른 번호로 추가 신청' 단추를 빼면서 드러난 문제).
+     완료 화면이 떠 있을 때만 입력칸을 새것으로 되돌린다. 입력하다 닫은 경우는 건드리지 않는다. */
+  var 성공화면 = document.getElementById('formSuccess');
+  if (성공화면 && getComputedStyle(성공화면).display !== 'none') resetForm();
   창.classList.add('open');
   창.setAttribute('aria-hidden', 'false');
   document.body.classList.add('apply-open');
