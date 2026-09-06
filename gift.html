@@ -1363,5 +1363,19 @@ document.addEventListener('click', function (e) {
     .catch(function () { /* 못 읽으면 요일·시간만으로 계속 간다 */ });
 })();
 </script>
+
+<!-- 네이버 애널리틱스 (2026-09-04 발급 · 발급ID 1acd2d92ff9ef60)
+     광고 전환추적(s_2e8bfd0103db)과는 별개다. 네이버 공식 안내대로 둘 다 심는 것이 정상이며,
+     페이지뷰 기록이 두 번(각 번호마다 한 번씩) 나가는 것이 정상이다.
+     목적: 네이버 유입 검색어 보기. 서치어드바이저는 검색어를 주지 않는다. -->
+<script type="text/javascript" src="//wcs.pstatic.net/wcslog.js"></script>
+<script type="text/javascript">
+if(!wcs_add) var wcs_add = {};
+wcs_add["wa"] = "1acd2d92ff9ef60";
+if(window.wcs) {
+  wcs_do();
+}
+</script>
+
 </body>
 </html>
