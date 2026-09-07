@@ -22,8 +22,12 @@
    ■ 파일을 고친 뒤에는
      html 의 <script src="js/dh-inflow.js?v=5"> 에서 v 숫자를 하나 올린다.
      그래야 방문자 브라우저가 옛 파일을 재활용하지 않고 새로 받아 간다.
-     지금 이 부품을 쓰는 라이브 화면은 여섯 개다 —
-     index · gift · rental · plans · privacy · terms (시험본은 따로 세지 않는다).
+     ⚠개수를 여기 적힌 숫자로 믿지 말고 셀 때마다 직접 셀 것 —
+       DangHH 폴더에서  grep -l "dh-inflow.js" *.html
+     2026-09-07 기준 15개다. 라이브 12개(index · gift · rental · rental-c · plans ·
+     plans-kt · plans-sk · plans-lg · plans-sky · plans-hello · privacy · terms)
+     + 시험본 3개. 예전에 '여섯 개'라고 적혀 있었는데 그 사이 아홉 개가 늘었다.
+     그 숫자를 믿고 여섯 개만 고치면 나머지는 옛 부품을 계속 쓰게 된다.
 =================================================================== */
 (function (global) {
 'use strict';
