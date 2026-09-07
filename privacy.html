@@ -204,7 +204,10 @@ nav a.on { color: var(--primary); background: #eff6ff; font-weight: 700; }
   background: #fee500; color: #3a1d00; padding: 8px 16px;
   border-radius: 8px; font-size: 15px; font-weight: 700; text-decoration: none; transition: background 0.2s;
 }
-.header-kakao:hover { background: #f7d200; }
+/* 2026-09-07 카톡 단추: 남의 브랜드색(#FEE500)은 어둡게 만들지 않는다. 눌림은 움직임으로. */
+.header-kakao{ transition:transform .08s ease, box-shadow .08s ease }
+.header-kakao:hover { box-shadow:0 2px 6px rgba(0,0,0,.16); }
+.header-kakao:active { transform:translateY(1px) scale(.985); box-shadow:none; }
 /* 좁은 컴퓨터 화면(태블릿 가로 등)에서는 글씨를 빼고 그림만 남긴다.
    실측: 769px에서 글씨까지 두면 로고와 메뉴가 딱 붙어 숨이 막힌다 */
 @media (min-width: 769px) and (max-width: 1024px) {
@@ -422,7 +425,9 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
 .cs-phone { background: var(--primary); color: white; }
 .cs-phone:hover { background: var(--primary-dark); }
 .cs-kakao { background: #fee500; color: #3a1d00; }
-.cs-kakao:hover { background: #f7d200; }
+.cs-kakao{ transition:transform .08s ease, box-shadow .08s ease }
+.cs-kakao:hover { box-shadow:0 2px 6px rgba(0,0,0,.16); }
+.cs-kakao:active { transform:translateY(1px) scale(.985); box-shadow:none; }
 /* 2026-08-28: 패널의 '무료 상담 신청'(주황) 단추를 뺐다 (사장님 지시).
    까닭: 아래 남색 카드(또는 gift 의 주황 따라오는 단추)와 가는 곳이 똑같아 겹쳤다.
    이제 이 패널은 '지금 바로 연락하기'(전화·카톡) 한 가지 뜻만 갖는다.
