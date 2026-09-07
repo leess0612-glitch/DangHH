@@ -276,7 +276,10 @@ nav a:hover { color: var(--primary); background: #eff6ff; }
   background: #fee500; color: #3a1d00; padding: 0; width: 36px;
   border-radius: 8px; font-size: 15px; font-weight: 700; text-decoration: none; transition: background 0.2s;
 }
-.header-kakao:hover { background: #f7d200; }
+/* 2026-09-07 카톡 단추: 남의 브랜드색(#FEE500)은 어둡게 만들지 않는다. 눌림은 움직임으로. */
+.header-kakao{ transition:transform .08s ease, box-shadow .08s ease }
+.header-kakao:hover { box-shadow:0 2px 6px rgba(0,0,0,.16); }
+.header-kakao:active { transform:translateY(1px) scale(.985); box-shadow:none; }
 .header-kakao .kakao-label { display: none; }
 .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 5px; }
 .hamburger span { display: block; width: 24px; height: 2px; background: var(--dark); border-radius: 2px; }
@@ -837,7 +840,9 @@ a.plan-card:active { transform: translateY(0) scale(0.99); }
   font-size: 15px; font-weight: 800; border-radius: 12px;
   letter-spacing: -0.3px; font-family: 'Pretendard Variable', Pretendard, sans-serif; transition: background 0.2s;
 }
-.kakao-check-btn:hover, .kakao-check-btn:active { background: #F2D900; }
+.kakao-check-btn{ transition:transform .08s ease, box-shadow .08s ease }
+.kakao-check-btn:hover { box-shadow:0 2px 6px rgba(0,0,0,.16); }
+.kakao-check-btn:active { transform:translateY(1px) scale(.985); box-shadow:none; }
 .form-or {
   display: flex; align-items: center; gap: 10px; margin-bottom: 16px;
   color: #94a3b8; font-size: 12px; font-weight: 500;
@@ -1088,7 +1093,9 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
 .cs-phone { background: var(--primary); color: white; }
 .cs-phone:hover { background: var(--primary-dark); }
 .cs-kakao { background: #fee500; color: #3a1d00; }
-.cs-kakao:hover { background: #f7d200; }
+.cs-kakao{ transition:transform .08s ease, box-shadow .08s ease }
+.cs-kakao:hover { box-shadow:0 2px 6px rgba(0,0,0,.16); }
+.cs-kakao:active { transform:translateY(1px) scale(.985); box-shadow:none; }
 /* 2026-08-28: 패널의 '무료 상담 신청'(주황) 단추를 뺐다 (사장님 지시).
    까닭: 아래 남색 카드(또는 gift 의 주황 따라오는 단추)와 가는 곳이 똑같아 겹쳤다.
    이제 이 패널은 '지금 바로 연락하기'(전화·카톡) 한 가지 뜻만 갖는다.
@@ -1447,7 +1454,9 @@ nav a:active { background: #dbeafe; }
 }
 .header-phone:active { background: #0E45A0; }
 .float-phone:active { background: #0E45A0; }
-.float-kakao:active { background: #e6cf00; }
+.float-kakao{ transition:transform .08s ease, box-shadow .08s ease }
+.float-kakao:hover { box-shadow:0 2px 6px rgba(0,0,0,.16); }
+.float-kakao:active { transform:translateY(1px) scale(.985); box-shadow:none; }
 
 /* --- 3. 폰에서 누를 때 뜨는 회색 네모 없애기 (위 2번이 대신 반응) --- */
 a, button, .service-tab, .faq-question, .usim-check,
