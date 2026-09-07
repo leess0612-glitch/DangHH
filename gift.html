@@ -333,34 +333,42 @@ table.gift tbody tr:last-child td { border-bottom: none; }
   transition: opacity 0.3s, transform 0.35s cubic-bezier(0.4,0,0.2,1);
 }
 .follow-cta-wrap.visible { opacity: 1; transform: translateY(0); }
-/* 첫 페이지의 주황 버튼과 같은 규칙 — 위아래 그라데이션, 떠 있는 그림자, 둥근 모서리 */
+/* 첫 페이지 아래 고정 막대(.mobile-cta-btn)와 같은 규칙 — 파랑 단색, 떠 있는 그림자, 둥근 모서리 */
 .follow-cta {
   pointer-events: auto;
   display: inline-flex; align-items: center; justify-content: center;
   max-width: calc(100% - 32px);
-  padding: 15px 30px;
-  /* ★ 마우스를 올리면 단추가 깜빡이던 문제 (2026-08-25 고침)
-     원인: 바탕이 '그라데이션(그림)'인데 마우스 올림 상태는 '단색'이다.
-          브라우저는 둘을 이어 그리지 못해 그라데이션을 즉시 지우는데,
-          밑에 깔린 색이 없으면 '완전 투명'에서 0.2초에 걸쳐 색이 차올라
-          그동안 단추가 사라졌다 나타났다.
-     해결: 그라데이션 밑에 위아래 색의 한가운데 색을 미리 깔아 둔다.
+  /* 크기 (2026-09-07) — index.html 아래 고정 띠(.desk-cta-card)와 같은 덩치로 맞췄다.
+     그 띠는 남색 카드 안에 파란 단추가 든 구조인데, 여기는 단추 하나뿐이라
+     '카드 전체'의 덩치에 맞춘다.
+     계산: 위여백 26.5 + 글씨 23 + 아래여백 26.5 + 테두리 = 78 (실측)
+     ※ 테두리 1.5px 은 브라우저가 1px 로 반올림한다. 그 띠도 같은 반올림을 겪어
+        77 로 그려지므로, 둘의 차이는 1px 뿐이다 — 눈으로는 구분되지 않는다.
+     폰(768px 이하)에서는 이 단추가 아예 안 뜨므로(아래 .mobile-cta-bar 로 대체)
+     좁은 화면에서 넘칠 걱정은 없다. */
+  padding: 26.5px 44px;
+  /* 색 (2026-09-07 고침) — 디자인보드: 색이 든 단추는 파랑 하나뿐, 그라데이션 금지.
+     전에는 위 파랑 → 아래 주황으로 번지는 그림이었다. 옛 주황 단추를 파랑으로 바꿀 때
+     위쪽 색만 갈아끼우고 아래쪽 주황과 바깥 번짐(그림자)을 그대로 두어 생긴 것이다.
+     그림을 아예 없앴으므로, 예전에 겪던 '마우스 올리면 깜빡임'(그림↔단색을 브라우저가
+     못 이어 그리던 문제)도 함께 사라진다.
      ※ background 로 모아쓰면 바탕색이 도로 지워지므로 나눠 쓸 것. */
   background-color: #1257C9;
-  background-image: linear-gradient(180deg, #1257C9 0%, #e35a00 100%);
+  background-image: none;
   color: #fff; font-family: 'Pretendard Variable', Pretendard, sans-serif;
-  font-size: 16px; font-weight: 800; letter-spacing: -0.3px; line-height: 1;
-  border: 1.5px solid transparent; border-radius: 12px;
+  font-size: 23px; font-weight: 800; letter-spacing: -0.3px; line-height: 1;
+  border: 1.5px solid transparent; border-radius: 14px;   /* 모서리도 그 띠(카드)와 같은 14 */
   text-decoration: none; white-space: nowrap; cursor: pointer;
-  box-shadow: 0 8px 20px rgba(255,107,0,0.42);
+  /* 번짐도 함께 키운다 — 단추만 커지고 그림자가 그대로면 바닥에 붙어 보인다 */
+  box-shadow: 0 14px 34px rgba(18,87,201,0.45);
   -webkit-tap-highlight-color: transparent;
   transition: transform 0.08s ease, background 0.2s, border-color 0.2s, box-shadow 0.2s;
 }
 .follow-cta:hover { background: #0E45A0; }
 /* 손가락으로 쓰는 기기에서는 마우스 올림 효과를 끈다 — 떼어도 남아서 눌림을 가린다 */
 @media (hover: none) {
-  /* 여기도 background 로 모아쓰면 밑에 깔아 둔 바탕색이 지워진다 → 그림만 되돌린다 */
-  .follow-cta:hover { background-image: linear-gradient(180deg, #1257C9 0%, #e35a00 100%); }
+  /* 그냥 지우면 폰에서 한 번 누른 뒤 짙은 파랑(#0E45A0)이 그대로 남는다 → 본래 파랑으로 되돌린다 */
+  .follow-cta:hover { background-color: #1257C9; }
 }
 /* 누를 때: 살짝 내려앉고 색이 진해지며 그림자가 안쪽으로 들어간다.
    ★ 이 줄은 반드시 위 (hover: none) 보다 아래에 있어야 한다.
