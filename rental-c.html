@@ -324,11 +324,11 @@ nav a:hover { color: var(--primary); background: #eff6ff; }
   display: inline-block; background: #1257C9; color: white;
   font-size: 21px; font-weight: 900; padding: 22px 56px; border-radius: 16px;
   text-decoration: none; transition: all 0.2s;
-  box-shadow: 0 8px 28px rgba(255,107,0,0.5);
+  box-shadow: 0 8px 28px rgba(18,87,201,0.5);
   letter-spacing: -0.3px;
   border: 3px solid rgba(255,255,255,0.3);
 }
-.hero-cta:hover { background: #0E45A0; transform: translateY(-3px); box-shadow: 0 14px 36px rgba(255,107,0,0.6); }
+.hero-cta:hover { background: #0E45A0; transform: translateY(-3px); box-shadow: 0 14px 36px rgba(18,87,201,0.6); }
 .hero-stats {
   display: flex; justify-content: center; gap: 0;
   margin-top: 72px; flex-wrap: wrap;
@@ -1353,7 +1353,7 @@ nav a:active { background: #dbeafe; }
 /* (가) 손가락으로 쓰는 기기에서는 '마우스 올림' 효과를 끔 — 떼어도 남아서 눌림을 가림 */
 @media (hover: none) {
   a.plan-card:hover { transform: none; }
-  .hero-cta:hover { transform: none; box-shadow: 0 8px 28px rgba(255,107,0,0.5); background: #F26100; }
+  .hero-cta:hover { transform: none; box-shadow: 0 8px 28px rgba(18,87,201,0.5); background: #1257C9; }
   .form-submit:hover { transform: none; box-shadow: none; }
   .benefit-card:hover, .process-step-a:hover, .step-card-b:hover,
   .trust-cert-label-item:hover, .float-btn:hover { transform: none; }
@@ -1361,7 +1361,7 @@ nav a:active { background: #dbeafe; }
 /* (나) 큰 버튼은 더 확실히 눌리게 + 그림자도 낮춰 '내려앉는' 느낌 */
 .hero-cta:active {
   transform: translateY(2px) scale(0.965);
-  box-shadow: 0 3px 10px rgba(255,107,0,0.45);
+  box-shadow: 0 3px 10px rgba(18,87,201,0.45);
 }
 .form-submit:active {
   transform: translateY(2px) scale(0.98);
