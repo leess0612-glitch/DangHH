@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>카카오톡 상담 | 당현함</title>
+
+<!--
+  카카오톡 상담 경유 화면  (꼬리표 방식 · 파일 하나로 모든 자리를 담당)
+
+  쓰는 법
+    https://danghh.com/카톡?출처=파워컨텐츠-인터넷
+    https://danghh.com/카톡?출처=파워컨텐츠-정수기
+    https://danghh.com/카톡?출처=파워컨텐츠-코웨이
+
+  왜 있나
+    네이버 카페 글에는 우리 코드를 한 줄도 못 넣는다(네이버 땅이다).
+    그래서 카톡 버튼이 몇 번 눌리는지 볼 방법이 없다.
+    이 화면을 0.5초 거치게 해서 '눌렸다'만 기록하고 카카오톡으로 넘긴다.
+    ※ 우리 홈페이지 안의 카톡 버튼은 이 화면이 필요 없다.
+      거기는 클릭을 지켜보는 코드가 이미 심어져 있다(index.html 의 dhTrack).
+
+  ⚠ '방문'으로는 세지 않는다(send_page_view:false).
+     세면 홈페이지 참여율·평균시간 지표가 통째로 망가진다.
+
+  ⚠ 새 자리가 생기면 아래 '출처표'에 한 줄만 더한다. 파일을 새로 만들지 않는다.
+     표에 없는 꼬리표로 들어와도 이동은 정상이고, cafe_kakao_other 로 기록된다.
+
+  색·글씨 값의 원본: 안티그라비티\당현함 디자인보드\dh-tokens.css
+  (그 파일은 아직 danghh.com 에 올라가 있지 않아, 쓰는 값만 아래에 옮겨 적었다)
+-->
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NBGKQ2Y301"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-NBGKQ2Y301', { send_page_view: false });
+</script>
+
+<style>
+  :root{
+    color-scheme: light;                 /* 손님 기기가 어둠모드여도 이 화면은 밝게 */
+    --c-page:#F5F6F8;  --c-card:#FFFFFF; --c-line:#EEEFF3;
+    --c-title:#191F28; --c-body:#333D4B; --c-sub:#5F6672;
+    --c-kakao:#FEE500; --c-kakao-press:#EFD800;
+    --font:'Pretendard Variable',Pretendard,-apple-system,BlinkMacSystemFont,
+           system-ui,'Apple SD Gothic Neo','Malgun Gothic',sans-serif;
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0; font-family:var(--font); color:var(--c-body);
+    background:var(--c-page); letter-spacing:-.01em; word-break:keep-all;
+    display:flex; align-items:center; justify-content:center; padding:16px;
+  }
+  .card{
+    width:100%; max-width:340px; background:var(--c-card);
+    border:1px solid var(--c-line); border-radius:12px;
+    padding:28px 20px 20px; text-align:center;
+    display:flex; flex-direction:column; gap:8px;
+  }
+  h1{
+    margin:0; font-size:19px; line-height:26px; font-weight:800;
+    color:var(--c-title); text-wrap:balance;
+  }
+  p{margin:0; font-size:13px; line-height:18px; font-weight:500; color:var(--c-sub)}
+  .btn{
+    margin-top:12px; display:flex; align-items:center; justify-content:center;
+    min-height:48px; border-radius:8px; text-decoration:none;
+    background:var(--c-kakao); color:#191F28;
+    font-size:16px; line-height:22px; font-weight:700;
+  }
+  .btn:active{background:var(--c-kakao-press)}
+  .btn:focus-visible{outline:3px solid #1257C9; outline-offset:2px}
+  .dots{display:flex; gap:6px; justify-content:center; margin-top:4px; height:8px}
+  .dots i{
+    width:6px; height:6px; border-radius:999px; background:#8A9099;
+    animation:blink 1.2s infinite ease-in-out;
+  }
+  .dots i:nth-child(2){animation-delay:.2s}
+  .dots i:nth-child(3){animation-delay:.4s}
+  @keyframes blink{0%,60%,100%{opacity:.25}30%{opacity:1}}
+  @media (prefers-reduced-motion:reduce){ .dots i{animation:none; opacity:.5} }
+</style>
+</head>
+<body>
+
+<main class="card">
+  <h1>카카오톡으로 이동합니다</h1>
+  <p>잠시만 기다려 주세요</p>
+  <div class="dots" aria-hidden="true"><i></i><i></i><i></i></div>
+  <a class="btn" href="https://pf.kakao.com/_yxgTAs/chat">카카오톡 열기</a>
+  <p>화면이 그대로면 위 단추를 눌러 주세요</p>
+</main>
+
+<script>
+(function(){
+  var 도착 = 'https://pf.kakao.com/_yxgTAs/chat';
+
+  /* ── 출처표 ────────────────────────────────────────────────
+     왼쪽 = 주소에 적는 꼬리표 / 오른쪽 = 구글 애널리틱스에 찍힐 이름
+     새 자리가 생기면 여기에 한 줄만 더하면 된다 */
+  var 출처표 = {
+    '파워컨텐츠-인터넷': 'cafe_kakao_internet',
+    '파워컨텐츠-정수기': 'cafe_kakao_water',
+    '파워컨텐츠-코웨이': 'cafe_kakao_coway',
+    '카페-요금표':       'cafe_kakao_plans',
+    '카페-대문':         'cafe_kakao_cafehome'
+  };
+
+  var 꼬리표 = '';
+  try{ 꼬리표 = new URLSearchParams(location.search).get('출처') || ''; }catch(e){}
+  var 이벤트이름 = 출처표[꼬리표] || 'cafe_kakao_other';
+
+  var 갔나 = false;
+  function 가기(){
+    if (갔나) return;
+    /* 점검용: 주소 끝에 #멈춤 을 붙이면 기록만 하고 넘어가지 않는다.
+       손님은 이 주소를 쓸 일이 없다. 우리가 확인할 때만 쓴다 */
+    var 표시 = '';
+    try{ 표시 = decodeURIComponent(location.hash || ''); }catch(e){ 표시 = location.hash || ''; }
+    if (표시 === '#멈춤') return;   /* 크롬은 한글을 암호처럼 바꿔 두므로 되돌려서 비교한다 */
+    갔나 = true;
+    /* replace 를 쓴다 — 뒤로가기를 눌렀을 때 이 화면이 다시 뜨지 않도록 */
+    location.replace(도착);
+  }
+
+  try{
+    gtag('event', 이벤트이름, {
+      dh_from: 꼬리표 || '(없음)',
+      event_callback: 가기,
+      event_timeout: 700
+    });
+  }catch(e){ /* 기록이 실패해도 이동은 절대 막지 않는다 */ }
+
+  /* 기록이 늦거나 막혀도 0.8초 뒤에는 무조건 넘어간다 */
+  setTimeout(가기, 800);
+})();
+</script>
+</body>
+</html>

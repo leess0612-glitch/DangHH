@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>전화 상담 | 당현함</title>
+
+<!--
+  전화 상담 경유 화면  (꼬리표 방식 · 파일 하나로 모든 자리를 담당)
+
+  쓰는 법
+    https://danghh.com/전화?출처=파워컨텐츠-인터넷
+
+  왜 있나
+    네이버 카페 글에는 우리 코드를 못 넣어서, 전화 버튼이 몇 번 눌리는지 모른다.
+    이 화면을 거치면 '눌렸다'가 기록된다.
+    폰에서는 곧바로 전화 앱이 열리고, 컴퓨터에서는 번호를 크게 보여 준다.
+
+  ⚠ 이건 '눌렀다'까지만 센다. 실제로 통화가 됐는지는 알 수 없다.
+     통화까지 세려면 그 자리 전용 전화번호를 따로 받아야 한다.
+  ⚠ '방문'으로는 세지 않는다(send_page_view:false).
+  ⚠ 카페 글의 전화 버튼은 2026-09-04 현재 tel:16004670 으로 고쳐 둔 상태다.
+     이 화면으로 바꾸면 '몇 명이 눌렀나'까지 알게 된다. 바꿀지는 사장님 결정.
+
+  색·글씨 값의 원본: 안티그라비티\당현함 디자인보드\dh-tokens.css
+-->
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NBGKQ2Y301"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-NBGKQ2Y301', { send_page_view: false });
+</script>
+
+<style>
+  :root{
+    color-scheme: light;
+    --c-page:#F5F6F8;  --c-card:#FFFFFF; --c-line:#EEEFF3;
+    --c-title:#191F28; --c-body:#333D4B; --c-sub:#5F6672;
+    --c-strong:#1257C9; --c-strong-press:#0E45A0;
+    --font:'Pretendard Variable',Pretendard,-apple-system,BlinkMacSystemFont,
+           system-ui,'Apple SD Gothic Neo','Malgun Gothic',sans-serif;
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0; font-family:var(--font); color:var(--c-body);
+    background:var(--c-page); letter-spacing:-.01em; word-break:keep-all;
+    display:flex; align-items:center; justify-content:center; padding:16px;
+  }
+  .card{
+    width:100%; max-width:340px; background:var(--c-card);
+    border:1px solid var(--c-line); border-radius:12px;
+    padding:28px 20px 20px; text-align:center;
+    display:flex; flex-direction:column; gap:8px;
+  }
+  h1{margin:0; font-size:19px; line-height:26px; font-weight:800; color:var(--c-title)}
+  .num{
+    margin:4px 0 0; font-size:34px; line-height:40px; font-weight:900;
+    color:var(--c-title); font-variant-numeric:tabular-nums;
+  }
+  p{margin:0; font-size:13px; line-height:18px; font-weight:500; color:var(--c-sub)}
+  .btn{
+    margin-top:12px; display:flex; align-items:center; justify-content:center;
+    min-height:48px; border-radius:8px; text-decoration:none;
+    background:var(--c-strong); color:#FFFFFF;
+    font-size:16px; line-height:22px; font-weight:700;
+  }
+  .btn:active{background:var(--c-strong-press)}
+  .btn:focus-visible{outline:3px solid #0E45A0; outline-offset:2px}
+</style>
+</head>
+<body>
+
+<main class="card">
+  <h1>전화 상담</h1>
+  <p class="num">1600-4670</p>
+  <p>평일 09:00 ~ 18:30</p>
+  <a class="btn" href="tel:16004670">전화 걸기</a>
+  <p>컴퓨터에서는 위 번호로 직접 걸어 주세요</p>
+</main>
+
+<script>
+(function(){
+  var 번호 = 'tel:16004670';
+
+  /* 출처표 — 새 자리가 생기면 여기에 한 줄만 더한다 */
+  var 출처표 = {
+    '파워컨텐츠-인터넷': 'cafe_phone_internet',
+    '파워컨텐츠-정수기': 'cafe_phone_water',
+    '파워컨텐츠-코웨이': 'cafe_phone_coway',
+    '카페-요금표':       'cafe_phone_plans',
+    '카페-대문':         'cafe_phone_cafehome'
+  };
+
+  var 꼬리표 = '';
+  try{ 꼬리표 = new URLSearchParams(location.search).get('출처') || ''; }catch(e){}
+  var 이벤트이름 = 출처표[꼬리표] || 'cafe_phone_other';
+
+  try{
+    gtag('event', 이벤트이름, { dh_from: 꼬리표 || '(없음)' });
+  }catch(e){ /* 기록이 실패해도 전화는 걸려야 한다 */ }
+
+  /* 점검용 멈춤 장치 */
+  var 표시 = '';
+  try{ 표시 = decodeURIComponent(location.hash || ''); }catch(e){ 표시 = location.hash || ''; }
+  if (표시 === '#멈춤') return;
+
+  /* 손가락으로 누르는 기기(폰·태블릿)에서만 전화 앱을 자동으로 연다.
+     컴퓨터에서 이걸 하면 엉뚱한 프로그램이 뜨거나 아무 일도 안 일어난다 */
+  var 폰인가 = window.matchMedia && window.matchMedia('(hover: none) and (pointer: coarse)').matches;
+  if (폰인가) {
+    setTimeout(function(){ location.href = 번호; }, 400);
+  }
+})();
+</script>
+</body>
+</html>
