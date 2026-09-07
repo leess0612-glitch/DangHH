@@ -413,10 +413,10 @@ section { padding: 72px 20px; }
 }
 .ict-cert-wrap:hover { border-color: #1257C9; box-shadow: 0 4px 20px rgba(18,87,201,0.12); }
 .ict-cert-icon {
-  width: 36px; height: 36px; border-radius: 8px;
+  width: 44px; height: 44px; border-radius: 8px;
   background: #1257C9; color: white;
   display: flex; align-items: center; justify-content: center;
-  font-size: 9px; font-weight: 900; letter-spacing: -0.5px; flex-shrink: 0; line-height: 1.2; text-align: center;
+  font-size: 12px; font-weight: 900; letter-spacing: -0.5px; flex-shrink: 0; line-height: 1.2; text-align: center;
 }
 .ict-cert-text { text-align: left; }
 .ict-cert-title { font-size: 14px; font-weight: 700; color: #111827; line-height: 1.3; }
@@ -896,7 +896,7 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
 .footer-links { display: flex; gap: 20px; flex-wrap: wrap; }
 .footer-links a { color: rgba(255,255,255,0.6); text-decoration: none; font-size: 13px; }
 .footer-links a:hover { color: white; }
-.footer-disclaimer { margin-top: 16px; font-size: 11px; color: rgba(255,255,255,0.3); line-height: 1.7; }
+.footer-disclaimer { margin-top: 16px; font-size: 12px; color: rgba(255,255,255,0.3); line-height: 1.7; }
 
 /* ===== STICKY MINI FORM ===== */
 .sticky-form {
@@ -1182,7 +1182,7 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
   .cf-col-a .cf-cell { font-size: 11px; }
   .cf-col-vs .cf-cell { font-size: 11px; padding: 6px 6px; }
   .ok-label { font-size: 16px; }
-  .ok-sub { font-size: 9px; }
+  /* 2026-09-07 12px 미만 글씨 정리 */ .ok-sub { font-size: 12px; }
   .plans-grid { grid-template-columns: 1fr; }
   .process-chevrons { flex-direction: column; gap: 12px; filter: none; }
   .process-chevron { margin-left: 0 !important; margin-top: 0; clip-path: none !important; border-radius: 14px !important; padding: 22px 24px; display: flex; align-items: center; gap: 16px; text-align: left; }
@@ -1313,7 +1313,7 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
   .ict-cert-wrap { padding: 10px 16px; gap: 8px; margin-top: 40px; border-radius: 10px; }
   .ict-cert-sub { display: none; }
   .ict-cert-title { font-size: 13px; }
-  .ict-cert-icon { width: 28px; height: 28px; font-size: 8px; border-radius: 6px; }
+  .ict-cert-icon { width: 40px; height: 40px; font-size: 12px; border-radius: 8px; }
 }
 
 /* ===== 초소형 화면 대응 ===== */
@@ -1710,8 +1710,8 @@ html { scroll-behavior: auto; scroll-padding-top: 78px; }
 }
 .rolling-more:hover{ text-decoration:underline }
 @media (max-width:768px){
-  .ri-plan{ font-size:11px }
-  .ri-date{ font-size:10px }
+  .ri-plan{ font-size:12px }
+  .ri-date{ font-size:12px }
   /* ===== 폰은 원래 크기 한 줄로 (2026-08-25) =====
      왜: 폰 가로는 317px뿐이라 1.5배 글자로는 네 칸이 한 줄에 안 들어간다(417px 필요).
          두 줄로 나눠 봤더니 날짜·이름·은행이 위, 상품명이 아래로 흩어져 읽기 나빴다.
@@ -1719,8 +1719,8 @@ html { scroll-behavior: auto; scroll-padding-top: 78px; }
          칸 맞춤과 가운데 정렬만 살린다 — 읽기 편해진 진짜 이유가 그것이다.
      ★ 줄 높이를 바꾸면 아래 스크립트의 '한줄' 값도 같이 바꿔야 한다. */
   .rolling-item{ height:44px; flex-wrap:nowrap }
-  .ri-name{ font-size:13px }
-  .ri-bank{ font-size:11px }
+  .ri-name{ font-size:14px }
+  .ri-bank{ font-size:12px }
   .rolling-note{ font-size:11px; margin-top:3px }
   /* 폰에서도 세 줄이 보이게 (44px x 3줄 + 상자 아래 테두리 1px) */
   .rolling-wrap{ height:133px }
@@ -1827,7 +1827,7 @@ html { scroll-behavior: auto; scroll-padding-top: 78px; }
   .promise-list strong { font-size:16px; }
   .promise-oath p { margin-bottom:12px; }
   .promise-sign { gap:8px; padding-right:48px; }
-  .promise-sign span { font-size:10.5px; }
+  /* 2026-09-07 12px 미만 글씨 정리 */ .promise-sign span { font-size:12px; }
   .promise-sign img { width:80px; }
   .promise-docs-row { gap:12px; }
   .promise-doc { width:calc(50% - 6px); }
@@ -1836,7 +1836,7 @@ html { scroll-behavior: auto; scroll-padding-top: 78px; }
 /* 아주 좁은 폰(320칸 안팎)에서도 날짜·서명이 한 줄에 들어가도록 */
 @media (max-width: 380px) {
   .promise-sign { padding-right:48px; gap:6px; }
-  .promise-sign span { font-size:10px; }
+  .promise-sign span { font-size:12px; }
   .promise-sign img, .sign-img { width:74px; }
 }
 </style>
@@ -3142,7 +3142,7 @@ function promiseZoom(src){ document.getElementById('promiseViewerImg').src=src; 
         <!-- 당현함 -->
         <div class="cf-col cf-col-us">
           <div class="cf-head">당현함</div>
-          <div class="cf-cell"><span class="ok-label">당일 지급</span><span class="ok-sub">오후 5시 30분 이전 설치건</span></div>
+          <div class="cf-cell"><span class="ok-label">당일 지급</span><span class="ok-sub">오후 5시 30분<br>이전 설치건</span></div>
           <div class="cf-cell"><span class="ok-label">가능</span></div>
           <div class="cf-cell"><span class="ok-label">가능</span><span class="ok-sub">SKB (휴대폰결합기준)</span></div>
           <div class="cf-cell"><span class="ok-label">가능</span><span class="ok-sub">교원웰스</span></div>
@@ -3517,11 +3517,11 @@ function promiseZoom(src){ document.getElementById('promiseViewerImg').src=src; 
             <label for="usimCheck">휴대폰 기종 변경 없이<br class="fold-br"> 통신사만 바꾸고 추가 현금 받기 <span style="white-space:nowrap;">(유심 번호이동)</span></label>
           </div>
           <div class="form-group">
-            <label for="inputName">이름 <span style="font-size:11px;color:#94a3b8;font-weight:500;">(선택)</span></label>
+            <label for="inputName">이름 <span style="font-size:12px;color:#94a3b8;font-weight:500;">(선택)</span></label>
             <input type="text" id="inputName" placeholder="이름을 입력해주세요" maxlength="20">
           </div>
           <div class="form-group">
-            <label for="inputPhone">휴대폰 번호 <span style="font-size:11px;color:#b0b8c1;font-weight:500;">(필수)</span></label>
+            <label for="inputPhone">휴대폰 번호 <span style="font-size:12px;color:#b0b8c1;font-weight:500;">(필수)</span></label>
             <input type="tel" id="inputPhone" placeholder="휴대폰번호를 입력해주세요" maxlength="13">
           </div>
           <!-- 요청사항 메모칸 — 평소엔 접혀 있다 (2026-08-21) -->
@@ -3535,7 +3535,7 @@ function promiseZoom(src){ document.getElementById('promiseViewerImg').src=src; 
           </div>
           <div style="display:flex;align-items:flex-start;gap:8px;margin-bottom:18px;">
             <input type="checkbox" id="c1" checked style="width:12px;height:12px;accent-color:#9ca3af;flex-shrink:0;margin-top:3px;cursor:pointer;opacity:0.7;">
-            <label for="c1" style="font-size:13px;color:var(--gray);cursor:pointer;line-height:1.5;">개인정보 수집 및 활용동의 <a href="javascript:void(0)" onclick="openPrivacy()" style="color:var(--gray);font-weight:600;font-size:12px;text-decoration:none;">›</a> <span style="color:#b0b8c1;font-weight:500;font-size:11px;">(필수)</span></label>
+            <label for="c1" style="font-size:13px;color:var(--gray);cursor:pointer;line-height:1.5;">개인정보 수집 및 활용동의 <a href="javascript:void(0)" onclick="openPrivacy()" style="color:var(--gray);font-weight:600;font-size:12px;text-decoration:none;">›</a> <span style="color:#b0b8c1;font-weight:500;font-size:12px;">(필수)</span></label>
           </div>
           <p class="form-urgency">⏰ 오후 5:30 이전 설치 시 당일 현금 입금</p>
           <button class="form-submit" id="submitBtn" onclick="submitForm()">놓친 지원금 무료 확인</button>
