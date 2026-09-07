@@ -374,8 +374,8 @@ nav a.on { color: var(--primary); background: #eff6ff; font-weight: 700; }
      해결: 그라데이션 밑에 위아래 색의 한가운데 색을 미리 깔아 둔다.
      ※ background 로 모아쓰면 바탕색이 도로 지워지므로 나눠 쓸 것. */
   background-color: #1257C9;
-  background-image: linear-gradient(180deg, #1257C9 0%, #e35a00 100%);
-  box-shadow: 0 8px 20px rgba(255,107,0,0.42);
+  background-image: none;                              /* 2026-09-07: 파랑→주황 그라데이션 제거 (디자인보드) */
+  box-shadow: 0 8px 20px rgba(18,87,201,0.42);
   transition: transform 0.08s ease, background 0.2s, box-shadow 0.2s;
 }
 .cta-apply:hover { background: #0E45A0; }
@@ -604,7 +604,7 @@ footer :focus-visible {
   .sheet:hover { border-color: var(--border); box-shadow: 0 2px 12px rgba(15,42,90,0.05); }
   .float-btn:hover { transform: none; }
   /* 여기도 background 로 모아쓰면 밑에 깔아 둔 바탕색이 지워진다 → 그림만 되돌린다 */
-  .cta-apply:hover { background-image: linear-gradient(180deg, #1257C9 0%, #e35a00 100%); }
+  .cta-apply:hover { background-image: none;                              /* 2026-09-07: 파랑→주황 그라데이션 제거 (디자인보드) */ }
 }
 @media (prefers-reduced-motion: reduce) {
   * { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
