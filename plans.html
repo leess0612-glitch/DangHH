@@ -164,8 +164,8 @@ if (typeof dhInflow !== 'function') { window.dhInflow = function () { return {};
   --ground: #F5F6F8;
   /* 통신사 고유색 — index.html 카드 로고에 쓰는 색과 같음 */
   --kt: #e60012;
-  --sk: #f97316;
-  --lg: #e6008c;
+  --sk: #E7630F;
+  --lg: #DE0087;
   --sky: #0064B4;
   --hello: #B4192F;
 }
@@ -1001,11 +1001,13 @@ table.term-tbl.txt th.rn { width: 140px; }
 :root { --head-bg: #0B2E5C; }        /* 스크립트가 못 돌아도 글씨는 읽히게 하는 받침값 */
 /* 칸마다 제 통신사 색을 미리 박아 둔다 — 잔손질 스크립트가 안 돌아도 표는 제 색으로 나온다.
    칸 밖에 있는 '가입 전에 알아 두면 좋은 것'만 스크립트가 칠한다. */
-#panel-kt    { --head-bg: #e60012; }
-#panel-sk    { --head-bg: #C2410C; }
-#panel-lg    { --head-bg: #D1007F; }
-#panel-sky   { --head-bg: #0064B4; }
-#panel-hello { --head-bg: #B4192F; }
+/* 2026-09-08 2차: 통신사 색을 한 벌로 통일했다. 로고·탭·머리줄이 모두 같은 값을 쓴다.
+   그래서 여기서 색을 다시 적지 않고 :root 의 통신사 색을 그대로 가져다 쓴다. */
+#panel-kt    { --head-bg: var(--kt); }
+#panel-sk    { --head-bg: var(--sk); }
+#panel-lg    { --head-bg: var(--lg); }
+#panel-sky   { --head-bg: var(--sky); }
+#panel-hello { --head-bg: var(--hello); }
 
 /* ① 모서리 — 눈금 밖 값(6·9·14·50%)을 눈금 위로 올린다 */
 nav a            { border-radius: 8px; }
@@ -1420,8 +1422,11 @@ if(window.wcs) {
    요금표는 js/dh-plans.js 가 그린다. 그 파일은 여섯 장이 함께 쓰므로 건드리지 않고,
    다 그려진 뒤에 여기서 표시만 붙인다. */
 (function () {
-  /* SK·LG 는 흰 글씨가 안 읽혀(2.80·4.43) 색조는 그대로 두고 한 계단 진한 판을 쓴다 */
-  var 머리색 = { kt: '#e60012', sk: '#C2410C', lg: '#D1007F', sky: '#0064B4', hello: '#B4192F' };
+  /* 통신사 색은 :root 한 곳에만 적혀 있다. 여기서 다시 적지 않고 그것을 읽어 쓴다.
+     (2026-09-08 2차: 로고용·머리줄용 두 벌을 한 벌로 합쳤다) */
+  function 통신사색(c) {
+    return getComputedStyle(document.documentElement).getPropertyValue('--' + c).trim();
+  }
   var 숫자있나 = /[0-9]/;
 
   function 고른통신사() {
@@ -1430,7 +1435,7 @@ if(window.wcs) {
     return (typeof DH_통신사 === 'string') ? DH_통신사 : '';
   }
   function 칠하자() {
-    var c = 머리색[고른통신사()];
+    var c = 통신사색(고른통신사());
     if (c) document.documentElement.style.setProperty('--head-bg', c);
   }
   function 숫자표시() {
