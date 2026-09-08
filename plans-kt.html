@@ -1026,8 +1026,10 @@ header        { box-shadow: none; border-bottom: 1px solid var(--border); }
 .cta-apply:active { box-shadow: none; }
 .mobile-cta-btn   { box-shadow: none; }
 .mobile-cta-btn:active { box-shadow: none; }
-.float-btn    { box-shadow: none; }
-.header-kakao:hover, .cs-kakao:hover { box-shadow: none; }
+/* ⚠ 카톡 단추는 그림자를 없애면 안 된다 — 보드가 정한 '남의 브랜드색' 규칙이다.
+   노랑을 어둡게 만들지 않는 대신 손 얹었을 때 그림자로 알린다. 그래서 여기서 건드리지 않는다. */
+/* 떠 있는 동그란 단추는 팝업과 같은 '진짜 떠 있는 것'이라 보드의 팝업 그림자를 쓴다 */
+.float-btn    { box-shadow: 0 8px 32px rgba(11,46,92,.16); }
 /* 예외 ㉠ 화면 아래에 고정돼 떠 있는 것 */
 .mobile-cta-bar { box-shadow: 0 -2px 12px rgba(11,46,92,.08); }
 .desk-cta-card  { box-shadow: 0 -2px 12px rgba(11,46,92,.08); }
