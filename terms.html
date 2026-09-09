@@ -568,7 +568,9 @@ footer :focus-visible {
 .doc-body h4:first-child { margin-top: 0; }
 .doc-body table { width: 100%; border-collapse: collapse; margin: 12px 0 20px; }
 .doc-body th, .doc-body td { border: 1px solid var(--border); padding: 10px 12px; font-size: 14px; text-align: left; word-break: keep-all; }
-.doc-body th { background: #E8EFFD; font-weight: 700; text-align: center; }
+/* 2026-09-09: 여기 있던 .doc-body th 규칙(연파랑 #E8EFFD 머리줄)을 지웠다.
+   이 화면에는 표가 한 개도 없어 한 번도 그려지지 않는 죽은 규칙이었다.
+   표를 넣게 되면 '읽는 문서 안의 표' 규칙(보드 2장)을 따른다 — 연회색 머리줄 + 진한 글씨. */
 .doc-back { display: inline-block; margin-top: 20px; font-size: 14px; font-weight: 700; color: var(--primary); text-decoration: none; }
 @media (max-width: 768px) {
   .doc-head { padding: 84px 16px 24px; }
