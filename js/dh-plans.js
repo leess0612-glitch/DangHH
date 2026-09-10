@@ -2027,6 +2027,19 @@ var 요금자료 = {
       b.hidden = !자리찾기(b.getAttribute('data-go'));
     });
     지금자리();
+    목차그늘();
+  }
+
+  /* 옆으로 밀어 보는 줄임을 알리려고, 잘리는 쪽 끝을 옅게 지운다 (2026-09-10).
+     지우는 모양은 각 페이지 css 의 .jumps.can-l / .can-r 이 갖고 있고,
+     여기서는 지금 어느 쪽이 잘렸는지만 알려 준다.
+     2는 브라우저마다 소수점이 다르게 남아 늘 켜져 있는 것을 막는 여유값이다. */
+  function 목차그늘() {
+    if (!목차) return;
+    var 더왼쪽 = 목차.scrollLeft > 2;
+    var 더오른쪽 = 목차.scrollLeft + 목차.clientWidth < 목차.scrollWidth - 2;
+    목차.classList.toggle('can-l', 더왼쪽);
+    목차.classList.toggle('can-r', 더오른쪽);
   }
 
   /* 지금 보고 있는 자리를 진하게 */
@@ -2082,7 +2095,10 @@ var 요금자료 = {
   });
   window.addEventListener('hashchange', function () { setTimeout(목차정리, 0); });
   window.addEventListener('scroll', 지금자리, { passive: true });
-  window.addEventListener('resize', function () { 화살표맞추기(); 지금자리(); });
+  if (목차) 목차.addEventListener('scroll', 목차그늘, { passive: true });
+  /* 글씨체가 늦게 내려오면 단추 폭이 달라진다 — 다 불러온 뒤 한 번 더 잰다 */
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(목차그늘);
+  window.addEventListener('resize', function () { 화살표맞추기(); 지금자리(); 목차그늘(); });
   window.addEventListener('load', function () { 화살표맞추기(); 목차정리(); });
   목차정리();
   화살표맞추기();
