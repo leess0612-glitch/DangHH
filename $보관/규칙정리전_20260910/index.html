@@ -2,7 +2,6 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-NBGKQ2Y301"></script>
 <script>
@@ -28,7 +27,7 @@
 <!-- ===== 당현함 통합 전환추적 v1 (네 페이지 공통: index·rental·check·gift / 수정 시 4개 파일 모두 동일하게) ===== -->
 <script>
 /* 이 페이지를 통계에서 부를 이름 */
-var DH_PAGE = 'danghh-rental-coway';
+var DH_PAGE = 'danghh-internet';
 /* 네이버 전환추적 공통키(AccountId) — 2026-08-28 발급받아 채움.
    홈페이지 소스에 그대로 드러나는 공개값이라 가려 둘 필요가 없다(구글 측정번호와 같은 성격) */
 var DH_NAVER_ID = 's_2e8bfd0103db';
@@ -128,25 +127,23 @@ if (typeof dhInflow !== 'function') { window.dhInflow = function () { return {};
 <!-- ===== 전환추적 끝 ===== -->
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!-- ⚠ 이 제목(검색용)과 아래 og:title(공유 카드용)은 일부러 다르게 둔다. 같게 맞추지 말 것.
-     - 제목 태그 : 검색 결과에 뜨는 제목. 찾는 낱말이 많이 들어가야 걸린다
-     - og:title : 카톡·카페에 링크를 붙였을 때 나오는 카드 제목. 짧아야 한 줄에 들어간다
-     (index.html 과 같은 규칙, 2026-08-27) -->
-<title>당현함 | 코웨이 정수기렌탈 냉온얼음 비데 공기청정기 안마의자 요금 비교·추천, 사은품 많이 주는 곳 | 쿠쿠 청호 SK매직 웰스 LG</title>
-<!-- 2026-08-27 : 여기가 "최대 40만원"이라 화면 본문(최대 50만원)과 어긋나 있었다 -->
-<meta name="description" content="정수기·비데·공기청정기·안마의자 렌탈, 브랜드별 조건과 사은품 혜택을 비교해 안내드립니다. 타 업체가 더 주면 차액 120% 보상. 무료 비교 상담 ☎ 1600-4670">
-<!-- 광고 전용 페이지. 자연 검색에는 노출시키지 않는다. (2026-08-19) -->
-<!-- 2026-09-04 : 검색 노출을 열었다. 2026-08-19 에 "페이지가 허접하다"는 이유로 막아두었는데,
-     그 뒤 여러 번 손봤고 제목·설명도 검색용으로 갖춰졌다. 정수기렌탈 수요를 파워컨텐츠(유료)로만
-     사고 있었는데 자연검색 문을 우리가 닫아두고 있던 셈이라 열기로 함. sitemap.xml 에도 추가했다.
-     되돌리려면 아래를 noindex, follow 로 바꾸고 sitemap 에서 빼면 된다. -->
-<meta name="robots" content="index, follow">
+<!-- ⚠ 이 제목(검색용)과 아래 og:title(공유 카드용)은 일부러 다르게 둔다. 같게 맞추지 말 것. (2026-08-20)
+     - 바로 아래 제목 태그 : 네이버·구글 검색 결과에 뜨는 제목. 찾는 낱말이 많이 들어가야 걸린다
+       (여기에 제목 태그를 글자 그대로 적지 말 것. 미리보기를 읽는 프로그램이 진짜 태그로 착각한다)
+     - 조금 아래 og:title : 카톡·블로그·카페에 링크를 붙였을 때 나오는 카드 제목.
+                       짧아야 한 줄에 들어가고 눈에 꽂힌다(18자면 좁은 카드에서도 한 줄)
+     낱말 순서 주의 : '티비'는 반드시 '인터넷' 쪽에 붙인다. '티비 정수기렌탈' 처럼 이어 놓으면
+     티비를 렌탈하는 것으로 읽힌다(사장님 지적). 정수기렌탈은 맨 끝에 세로줄로 떼어 둔다. -->
+<title>당현함 | 인터넷 가입 사은품 많이 주는 곳 비교사이트, 현금지원금 당일입금 | 인터넷·티비 설치 신청 변경 SKT SK KT LG U플러스 | 정수기렌탈</title>
+<meta name="description" content="약정 끝난 인터넷·TV·정수기 그대로 두면 최대 132만원을 버리는 겁니다. 전체 통신사 비교로 내 지원금을 무료로 확인하세요. ☎ 1600-4670">
+<!-- 검색 허용. (2026-08-19) 이 파일은 원래 광고 전용 check.html 이라 noindex 로 검색을 막아뒀었는데,
+     메인으로 올라오면서 차단까지 따라와 danghh.com 전체가 검색에서 빠질 뻔했다. 그래서 걷어냄. -->
+<link rel="canonical" href="https://danghh.com/">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://danghh.com/rental-c.html">
-<meta property="og:title" content="당현함 | 렌탈 최대 혜택 비교">
-<meta property="og:description" content="정수기·비데·공기청정기·안마의자 렌탈, 브랜드별 조건과 사은품 혜택을 비교해 안내드립니다. 타 업체가 더 주면 차액 120% 보상. 무료 상담 ☎ 1600-4670">
-<!-- 2026-08-27 : 정사각 로고(300x300)라 카톡 카드가 작게 나왔다. index 와 같은 가로형 카드로 교체 -->
-<meta property="og:image" content="https://danghh.com/images/share-card-c.png">
+<meta property="og:url" content="https://danghh.com">
+<meta property="og:title" content="당현함 | 놓친 지원금 3분 확인">
+<meta property="og:description" content="약정 끝난 인터넷·TV·정수기 그대로 두면 최대 132만원을 버리는 겁니다. 전체 통신사 비교로 내 지원금을 무료로 확인하세요.">
+<meta property="og:image" content="https://danghh.com/images/share-card.png">
 <meta property="og:image:width" content="800">
 <meta property="og:image:height" content="400">
 <meta property="og:image:type" content="image/png">
@@ -297,13 +294,21 @@ nav a:hover { color: var(--primary); background: #eff6ff; }
 }
 .mobile-menu a:last-child { border-bottom: none; }
 
+/* 메뉴가 6개(요금·사은품 추가)가 되면서 좁은 컴퓨터 화면에서 전화번호 버튼과 거의 붙었다.
+   769~880px 구간에서만 항목 사이 여백을 살짝 줄여 숨통을 틔운다 (2026-08-20)
+   768px 이하는 어차피 햄버거 메뉴로 접히므로 영향 없음 */
+@media (min-width: 769px) and (max-width: 880px) {
+  nav a { padding: 6px 7px; }
+  .header-inner { padding: 0 14px; }
+}
+
 /* ===== HERO ===== */
 .hero {
   margin-top: 64px;
   background: linear-gradient(135deg, #0B2E5C 0%, #1257C9 60%, #1257C9 100%);
-  padding: 100px 20px 90px; text-align: center; color: white; position: relative;
+  padding: 72px 20px; color: white; position: relative;
   /* clip = 넘치는 장식만 잘라냄. hidden 이면 히어로가 '속으로 스크롤되는 상자'가 되어
-     자리표로 이동할 때 히어로 안쪽이 밀릴 수 있다 (인터넷 페이지에서 실제로 발생, 2026-08-13) */
+     하단 버튼으로 신청폼(#applyForm)에 갈 때 히어로 안쪽이 밀려 윗 내용이 사라졌다 (2026-08-13) */
   overflow: hidden; overflow: clip;
 }
 .hero::before {
@@ -311,28 +316,79 @@ nav a:hover { color: var(--primary); background: #eff6ff; }
   background: radial-gradient(circle at 30% 50%, rgba(255,255,255,0.05) 0%, transparent 50%);
   pointer-events: none;
 }
-.hero-badge {
-  display: block; background: rgba(255,255,255,0.18); border: 1px solid rgba(255,255,255,0.3);
-  color: white; font-size: 13px; font-weight: 600; padding: 4px 16px; border-radius: 0; margin-bottom: 10px;
-  width: fit-content; margin-left: auto; margin-right: auto;
+.hero-inner {
+  max-width: 1100px; margin: 0 auto;
+  display: flex; align-items: center; gap: 32px; position: relative; z-index: 1;
 }
-.hero h1 { font-size: clamp(36px, 7.5vw, 80px); font-weight: 900; line-height: 1.2; margin-bottom: 36px; letter-spacing: -2px; }
-.hero h1 em { font-style: normal; color: #fee500; }
+.hero-content { flex: 1; min-width: 0; }
+.hero-form-wrap { flex: 0 0 380px; }
+.hero-form-wrap .form-card { max-width: 100%; margin: 0; }
+.hero-badge {
+  display: inline-block; background: rgba(255,255,255,0.18); border: 1px solid rgba(255,255,255,0.3);
+  color: white; font-size: 13px; font-weight: 600; padding: 4px 16px; border-radius: 0; margin-bottom: 10px;
+}
+.hero h1 { font-size: clamp(32px, 4.6vw, 64px); font-weight: 900; line-height: 1.2; margin-bottom: 20px; letter-spacing: -1.5px; }
+.hero h1 em { font-style: normal; color: #FEE500; }   /* 노랑은 카카오 노랑 한 가지로 통일 (2026-08-27 안2) */
 .mob-br { display: none; }
-.hero p { font-size: clamp(15px, 2vw, 19px); opacity: 0.9; margin-bottom: 60px; }
-.hero-stat .num { font-size: 28px; font-weight: 900; color: white; }
-/* 넓은 화면: 세 칸의 폭을 똑같이 맞춰 구분선이 고르게 놓이도록 (2026-08-13)
-   폰에서는 아래쪽 규칙이 위아래로 쌓으므로 여기 규칙을 적용하지 않는다 */
-@media (min-width: 769px) {
-  .hero-stat .num { white-space: nowrap; }
+.hero-desc { font-size: clamp(15px, 1.7vw, 19px); margin-bottom: 14px; line-height: 1.7; }
+.hero-sub-assurance { font-size: 16px; color:#fff; margin-bottom: 8px; }
+.hero-stats {
+  display: flex; gap: 0; margin-top: 40px; flex-wrap: wrap;
+  max-width: 520px;
+}
+.hero-stat {
+  display: flex; flex-direction: column; align-items: center; text-align: center;
+  flex: 1 1 0; min-width: fit-content;
+  padding: 0 24px;
+  border-right: 1px solid rgba(255,255,255,0.2);
+}
+.hero-stat:last-child { border-right: none; }
+.hero-stat .num { white-space: nowrap; }
+.since-badge {
+  display: inline-block;
+  background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.25);
+  color: white; font-size: 15px; font-weight: 700;
+  padding: 6px 18px; border-radius: 20px; margin-bottom: 10px;
+}
+.hero-stat .num { font-size: 36px; font-weight: 900; color: white; }
+.hero-stat .label { font-size: 15px; opacity: 0.8; margin-top: 4px; }
+/* 반쪽 창(910~1023): 나란히 놔도 숫자가 안 넘치는 폭이라 옆으로 붙인다.
+   좌우 여백만 24 -> 12로 줄여 '339,000건'이 들어갈 자리를 넉넉히 확보 (2026-08-21) */
+@media (min-width: 910px) and (max-width: 1023px) {
+  .hero-stats { flex-direction: row; max-width: none; }
+  .hero-stat { padding: 0 12px; }
+}
+/* 태블릿·좁은 노트북(909 이하): 왼쪽 칸이 좁아 숫자가 넘치므로 위아래로 쌓고 구분선을 가로선으로 */
+@media (min-width: 769px) and (max-width: 909px) {
+  .hero-stats { flex-direction: column; max-width: 320px; }
+  .hero-stat {
+    width: 100%; padding: 16px 24px;
+    border-right: none; border-bottom: 1px solid rgba(255,255,255,0.2);
+  }
+  .hero-stat:last-child { border-bottom: none; }
 }
 
 /* ===== CARRIERS ===== */
-.carriers { background: white; padding: 28px 20px; border-bottom: 1px solid var(--border); }
+/* 통신사 배지 줄은 내용이 비어 있어 흰 띠(57px)만 남아 있었다 → 감춤 (2026-08-13)
+   아래 HTML(<div class="carriers">)은 그대로 두었으니 되살리려면 이 줄만 지우면 된다 */
+.carriers { display: none; }
+.carriers-old { background: white; padding: 28px 20px; border-bottom: 1px solid var(--border); }
 .carriers-inner {
   max-width: 900px; margin: 0 auto;
   display: flex; align-items: center; justify-content: center; gap: 10px; flex-wrap: wrap;
 }
+.carriers-label { font-size: 13px; color: var(--gray); font-weight: 500; margin-right: 4px; }
+.carrier-badge { padding: 7px 18px; border-radius: 8px; font-size: 14px; font-weight: 700; border: 2px solid var(--border); color: var(--dark); }
+.cert-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 7px 14px; border-radius: 8px; font-size: 13px; font-weight: 700;
+  border: 2px solid #16a34a; color: #16a34a;
+  text-decoration: none; transition: background 0.2s;
+}
+.cert-badge:hover { background: #f0fdf4; }
+.carrier-kt { border-color: #e50012; color: #e50012; }
+.carrier-skt { border-color: #e0002a; color: #e0002a; }
+.carrier-lgu { border-color: #e6007e; color: #e6007e; }
 
 /* ===== COMMON SECTION ===== */
 section { padding: 72px 20px; }
@@ -343,30 +399,76 @@ section { padding: 72px 20px; }
 }
 .section-title { font-size: clamp(22px, 3.5vw, 36px); font-weight: 900; letter-spacing: -0.5px; margin-bottom: 8px; line-height: 1.3; }
 .section-title em { font-style: normal; color: var(--primary); }
+.trust-worry-title { font-size: clamp(44px, 7vw, 72px); }
+.trust-worry-title em { color: #fc5331; }
 .section-sub { font-size: 16px; color: var(--gray); margin-bottom: 48px; }
 
 /* ===== CARRIERS ===== */
 .ict-cert-wrap {
-  display: inline-flex; align-items: center; gap: 18px;
-  background: white; border: 2px solid #d1d5db;
-  border-radius: 16px; padding: 20px 32px;
+  display: inline-flex; align-items: center; gap: 12px;
+  background: white; border: 1px solid #d1d5db;
+  border-radius: 12px; padding: 14px 24px;
+  margin-top: 72px;
   text-decoration: none; transition: border-color 0.2s, box-shadow 0.2s;
 }
 .ict-cert-wrap:hover { border-color: #1257C9; box-shadow: 0 4px 20px rgba(18,87,201,0.12); }
 .ict-cert-icon {
-  width: 56px; height: 56px; border-radius: 12px;
+  width: 44px; height: 44px; border-radius: 8px;
   background: #1257C9; color: white;
   display: flex; align-items: center; justify-content: center;
-  font-size: 15px; font-weight: 900; letter-spacing: -0.5px; flex-shrink: 0; line-height: 1.2; text-align: center;
+  font-size: 12px; font-weight: 900; letter-spacing: -0.5px; flex-shrink: 0; line-height: 1.2; text-align: center;
 }
 .ict-cert-text { text-align: left; }
-.ict-cert-title { font-size: 18px; font-weight: 800; color: #111827; line-height: 1.3; }
-.ict-cert-sub { font-size: 14px; color: #6b7280; margin-top: 4px; line-height: 1.6; }
+.ict-cert-title { font-size: 14px; font-weight: 700; color: #111827; line-height: 1.3; }
+.ict-cert-sub { font-size: 12px; color: #6b7280; margin-top: 2px; line-height: 1.5; }
+
+/* ===== TRUST SECTION ===== */
+.trust-section { background: #ffffff; }
+.trust-worry { text-align: center; margin-bottom: 20px; }
+.trust-news-img { width: 100%; max-width: 720px; aspect-ratio: 28/11; border-radius: 16px; box-shadow: 0 4px 24px rgba(0,0,0,0.10); margin-top: 24px; display: block; margin-left: auto; margin-right: auto; }
+.trust-solution { margin: 32px 0 96px; }
+
+/* ⚠ 아래 다섯 덩어리(.trust-solution-inner / .trust-sol-badge / -title / -desc / -notice)는
+   지금 어느 페이지에서도 쓰이지 않는다. 화면에 영향이 없다.
+   원래 이 칸은 '딱지 + 제목 + 설명글 + 안내글'로 짜인 파란 글씨 패널이었는데,
+   2026-04-15 에 그림 한 장(images/당일지급 크롭버전1.PNG)으로 통째로 교체됐다(커밋 cf13d45).
+   그래서 글씨용 설정만 주인 없이 남았다.
+   지우지 않고 두는 이유: 나중에 그림 대신 다시 글로 되돌릴 때 쓰던 크기·색·간격이
+   그대로 적힌 설계도이기 때문. 용량은 500바이트뿐이라 남겨 두는 편이 이득이다.
+   (렌탈 페이지는 이미 이 다섯 덩어리가 정리돼 없다 / 확인·기록 2026-08-27) */
+.trust-solution-inner {
+  background: linear-gradient(135deg, #0B2E5C 0%, #1257C9 100%);
+  border-radius: 20px; padding: 40px 48px; text-align: center; color: white;
+  max-width: 720px; margin: 0 auto;
+}
+.trust-sol-badge {
+  display: inline-block; background: rgba(255,255,255,0.18); border: 1px solid rgba(255,255,255,0.3);
+  color: white; font-size: 13px; font-weight: 700; padding: 4px 16px; border-radius: 20px; margin-bottom: 16px;
+}
+.trust-sol-title { font-size: clamp(18px, 2.5vw, 26px); font-weight: 800; color: white; margin-bottom: 16px; letter-spacing: -0.5px; }
+.trust-sol-desc { font-size: clamp(15px, 1.8vw, 18px); color: rgba(255,255,255,0.9); line-height: 1.8; margin-bottom: 16px; }
+.trust-sol-desc strong { color: #fee500; }
+.trust-sol-notice { font-size: 15px; color: rgba(255,255,255,0.75); }
+.trust-sol-notice strong { color: white; font-weight: 800; }
+.trust-solution-img { width: 100%; max-width: 480px; aspect-ratio: 811/787; display: block; margin: 0 auto; }
+.trust-cert { text-align: center; margin-top: 60px; }
+.trust-cert-labels {
+  display: flex; gap: 24px; justify-content: center; margin: 28px auto 20px;
+  max-width: 720px;
+}
+.trust-cert-label-item {
+  flex: 1; background: white; border-radius: 14px; padding: 20px 24px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.07); text-align: center;
+}
+.trust-cert-label-item strong { font-size: 17px; font-weight: 800; color: var(--dark); display: block; margin-bottom: 8px; }
+.trust-cert-label-item p { font-size: 14px; color: var(--gray); line-height: 1.7; }
+.trust-cert-img { width: 100%; max-width: 720px; aspect-ratio: 1060/822; border-radius: 16px; box-shadow: 0 4px 24px rgba(0,0,0,0.10); display: block; margin: 0 auto; }
+@media (max-width: 768px) {
+  .trust-solution-inner { padding: 28px 24px; }
+  .trust-cert-labels { flex-direction: column; gap: 12px; max-width: 100%; }
+}
 
 /* ===== BENEFITS ===== */
-/* 2026-08-28 : index.html 과 같은 연회색으로 되돌렸다(흰 카드가 또렷하게 떠 보이도록).
-   이 페이지는 요금제 비교 칸이 숨겨져 있어(display:none) 이 칸과 '가입 프로세스'가 바로 맞붙는다.
-   둘 다 회색이면 경계가 사라지므로(2026-08-19 에 겪음) 아래에서 가입 프로세스를 흰색으로 바꾼다. */
 .benefits { background: #f8fafc; }
 .benefits-grid {
   display: grid;
@@ -381,7 +483,7 @@ section { padding: 72px 20px; }
 .benefit-amount-highlight {
   margin: 14px 0;
   padding: 14px 16px;
-  /* 카드가 흰색이 되면서 밝은 바탕용으로 바꿨다(2026-08-28).
+  /* 카드가 흰색이 되면서 밝은 바탕용으로 바꿨다(2026-08-27).
      사이트가 이미 쓰는 '고른 칸' 모양 — 연한 파랑 바탕 + 파랑 테두리 + 파랑 글씨. */
   background: #EFF6FF;
   border: 1.5px solid var(--primary);
@@ -396,7 +498,7 @@ section { padding: 72px 20px; }
   font-size: 12px; color: #475569; font-weight: 600;
 }
 .benefit-card:hover { transform: translateY(-4px); }
-/* 2026-08-28: 파랑 바탕을 걷어내고 옆 카드들과 같은 흰 카드로 맞췄다(index.html 과 동일).
+/* 2026-08-27: 파랑 바탕을 걷어내고 옆 카드들과 같은 흰 카드로 맞췄다.
    바탕이 밝아졌으므로 안쪽 글씨는 모두 파랑·본문색으로 함께 뒤집는다
    (흰 글씨·노란 글씨를 그대로 두면 흰 바탕에서 아예 안 보인다). */
 .benefit-card.main {
@@ -415,7 +517,7 @@ section { padding: 72px 20px; }
 .benefit-card p { font-size: 14px; color: var(--gray); line-height: 1.75; }
 .benefit-guarantee {
   margin-top: 16px; padding: 10px 14px;
-  /* 위 금액칸과 같은 '고른 칸' 모양으로 맞춘다(2026-08-28) */
+  /* 위 금액칸과 같은 '고른 칸' 모양으로 맞춘다(2026-08-27) */
   background: #EFF6FF;
   border: 1.5px solid var(--primary);
   border-radius: 10px;
@@ -430,6 +532,12 @@ section { padding: 72px 20px; }
 .compare .section-title { color: white; }
 .compare .section-title em { color: #fcd34d; }
 .compare-wrap { max-width: 780px; margin: 48px auto 0; }
+.compare-rec { text-align: right; margin-bottom: 0; }
+.compare-rec span {
+  display: inline-block; background: #F26100; color: white;
+  font-size: 13px; font-weight: 800; padding: 6px 20px;
+  border-radius: 12px 12px 0 0;
+}
 /* ===== COMPARE FLEX ===== */
 .compare-flex { display: flex; align-items: flex-end; gap: 0; width: fit-content; margin: 0 auto; }
 .cf-col { display: flex; flex-direction: column; }
@@ -459,9 +567,9 @@ section { padding: 72px 20px; }
 .cf-col-us .cf-cell { padding: 10px 9px; border-top: 1px solid rgba(255,255,255,0.35); background: #1257C9; }
 .cf-col-us .cf-cell:last-child { min-height: 138px; }
 /* 3줄 VS 항목 행 높이 확보 */
-.cf-col-a .cf-cell:nth-child(4),
-.cf-col-vs .cf-cell:nth-child(4),
-.cf-col-us .cf-cell:nth-child(4) { min-height: 130px; }
+.cf-col-a .cf-cell:nth-child(6),
+.cf-col-vs .cf-cell:nth-child(6),
+.cf-col-us .cf-cell:nth-child(6) { min-height: 130px; }
 .ok-label { color: #fff; font-size: 42px; font-weight: 800; line-height: 1.1; }
 .ok-sub { color: rgba(255,255,255,0.85); font-size: 18px; font-weight: 500; line-height: 1.3; margin-top: 2px; }
 
@@ -478,8 +586,8 @@ section { padding: 72px 20px; }
 }
 .plan-logo { font-weight: 900; line-height: 1; }
 .plan-logo.kt  { font-size: 22px; color: #e60012; font-style: normal; }
-.plan-logo.skt { font-size: 22px; color: #fee500; }
-.plan-logo.lgu { font-size: 22px; color: #DE0087; }
+.plan-logo.skt { font-size: 22px; color: #E7630F; }
+.plan-logo.lgu { font-size: 19px; color: #DE0087; }
 .plan-link { font-size: 12px; color: #64748b; font-weight: 600; text-decoration: none; white-space: nowrap; }
 .plan-link:hover { color: var(--primary); }
 /* 카드 전체가 요금표 페이지(plans.html)로 가는 링크 (2026-08-20) */
@@ -494,9 +602,18 @@ a.plan-card:active { transform: translateY(0) scale(0.99); }
 .plan-price-unit { font-size: 14px; color: var(--gray); }
 
 /* ===== PROCESS ===== */
-/* 2026-08-28 : 바로 위 '왜 당현함인가요?' 칸이 회색이 되어, 여기는 흰색으로 둔다.
-   (index.html 은 사이에 요금제 칸이 있어 회색 그대로다) */
-.process { background: #ffffff; }
+.process { background: #f8fafc; }
+.compare-version-label {
+  display: inline-block; padding: 4px 14px; border-radius: 20px;
+  font-size: 11px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase;
+  margin-bottom: 24px;
+}
+.compare-version-label.ver-a { background: #e2e8f0; color: #475569; }
+.compare-version-label.ver-b { background: #fff3e8; color: #c2410c; }
+.process-divider {
+  border: none; border-top: 2px dashed #e2e8f0;
+  margin: 52px auto; max-width: 480px;
+}
 
 /* --- A안: 원래 카드 스타일 --- */
 .process-steps-a {
@@ -519,18 +636,99 @@ a.plan-card:active { transform: translateY(0) scale(0.99); }
 .step-icon-a { font-size: 52px; margin-bottom: 14px; line-height: 1; }
 .step-title-a { font-size: 18px; font-weight: 800; color: var(--dark); margin-bottom: 10px; }
 .step-desc-a { font-size: 14px; color: var(--gray); line-height: 1.7; }
+
+/* --- 개선안: 번호+연결선 카드 스타일 --- */
+.process-steps-b {
+  display: flex; align-items: flex-start; justify-content: center;
+  max-width: 860px; margin: 0 auto; position: relative;
+}
 .process-steps-b::before {
   content: ''; position: absolute;
   top: 28px; left: calc(16.66% + 18px); right: calc(16.66% + 18px);
   height: 2px; background: linear-gradient(90deg, #1257C9, #60a5fa);
   z-index: 0;
 }
+.process-step-b {
+  display: flex; flex-direction: column; align-items: center; text-align: center;
+  flex: 1; padding: 0 16px; position: relative; z-index: 1;
+}
+.step-num-b {
+  display: flex; align-items: center; justify-content: center;
+  width: 56px; height: 56px; border-radius: 50%;
+  background: var(--primary); color: white;
+  font-size: 20px; font-weight: 900;
+  border: 4px solid #f8fafc;
+  box-shadow: 0 4px 16px rgba(18,87,201,0.3);
+  margin-bottom: 20px; flex-shrink: 0;
+}
+.step-card-b {
+  background: white; border-radius: 14px; padding: 20px 18px;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+  border-top: 3px solid var(--primary);
+  width: 100%; transition: transform 0.2s;
+}
+.step-card-b:hover { transform: translateY(-4px); }
+.step-icon-b { font-size: 36px; margin-bottom: 10px; line-height: 1; }
+.step-title-b { font-size: 17px; font-weight: 800; color: var(--dark); margin-bottom: 8px; }
+.step-desc-b { font-size: 13px; color: var(--gray); line-height: 1.7; }
+
+.process-label {
+  display: inline-block; font-size: 15px; font-weight: 600; color: #64748b;
+  transform: rotate(-3deg); transform-origin: left center;
+  margin-bottom: 10px; letter-spacing: -0.3px;
+}
+.process-label em { color: var(--primary); font-style: normal; text-decoration: underline; text-underline-offset: 3px; }
+.process-title-big {
+  font-size: clamp(26px, 4vw, 42px); font-weight: 900; color: var(--dark);
+  line-height: 1.25; margin-bottom: 48px; letter-spacing: -1px;
+}
+.process-chevrons {
+  display: flex; align-items: stretch;
+  max-width: 780px; margin: 0 auto;
+  filter: drop-shadow(0 6px 20px rgba(18,87,201,0.20));
+}
+.process-chevron {
+  flex: 1; color: white; text-align: center;
+  padding: 30px 16px 26px;
+  position: relative;
+  clip-path: polygon(0 0, calc(100% - 30px) 0, 100% 50%, calc(100% - 30px) 100%, 0 100%, 30px 50%);
+  margin-left: -22px;
+}
+.process-chevron:first-child {
+  clip-path: polygon(0 0, calc(100% - 30px) 0, 100% 50%, calc(100% - 30px) 100%, 0 100%);
+  border-radius: 10px 0 0 10px;
+  margin-left: 0; z-index: 3;
+}
+.process-chevron:nth-child(2) { z-index: 2; }
+.process-chevron:last-child  { z-index: 1; }
+.process-chevron:nth-child(1) { background: #1257C9; }
+.process-chevron:nth-child(2) { background: #1257C9; }
+.process-chevron:nth-child(3) { background: #1257C9; }
+.chevron-badge {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 36px; height: 36px; border-radius: 50%;
+  background: #F26100; color: white;
+  font-size: 13px; font-weight: 800; letter-spacing: -0.5px;
+  margin-bottom: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+.chevron-title {
+  font-size: clamp(17px, 2.2vw, 24px); font-weight: 900;
+  margin-bottom: 6px; line-height: 1.1;
+}
+.chevron-desc {
+  font-size: 12px; font-weight: 500;
+  opacity: 0.85; line-height: 1.5;
+}
 
 /* ===== REVIEWS ===== */
 .reviews { background: white; overflow: hidden; }
 
 /* ===== FAQ ===== */
-.faq { background: #f8fafc; }
+/* 2026-08-28 : 후기칸이 위(명단 아래)로 옮겨가면서, 사이에 있던 흰 칸이 사라져
+   '가입 프로세스'와 이 칸이 둘 다 회색으로 맞붙어 경계가 없어졌다. 여기를 흰색으로 바꿔 갈라놓는다.
+   (아래 바닥줄은 진한 남색이라 흰색과 붙어도 경계가 뚜렷하다) */
+.faq { background: #ffffff; }
 .faq-list { max-width: 760px; margin: 0 auto; }
 .faq-item { background: white; border-radius: 12px; margin-bottom: 12px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
 .faq-question {
@@ -558,7 +756,7 @@ a.plan-card:active { transform: translateY(0) scale(0.99); }
 }
 .form-headline { font-size: 17px; font-weight: 800; color: var(--dark); text-align: center; margin-bottom: 24px; }
 .form-headline span { color: var(--primary); }
-.service-tabs { display: flex; gap: 12px; margin-bottom: 16px; }
+.service-tabs { display: flex; gap: 12px; margin-bottom: 0; }
 .service-tab {
   flex: 1; border: 2px solid var(--border); border-radius: 12px; padding: 14px 10px;
   text-align: center; cursor: pointer; transition: all 0.2s; font-size: 14px; font-weight: 600;
@@ -614,6 +812,20 @@ a.plan-card:active { transform: translateY(0) scale(0.99); }
 .memo-toggle:hover .plus { background: #dbeafe; color: var(--primary); }
 .memo-fold { display: none; }
 .memo-fold.open { display: block; }
+.consent-box { border: 1px solid var(--border); border-radius: 12px; padding: 14px 16px; margin-bottom: 18px; }
+.consent-all {
+  display: flex; align-items: center; gap: 8px; padding-bottom: 10px;
+  margin-bottom: 10px; border-bottom: 1px solid var(--border); cursor: pointer;
+}
+.consent-all label { font-size: 14px; font-weight: 700; cursor: pointer; }
+.consent-item { display: flex; align-items: center; justify-content: space-between; padding: 5px 0; }
+.consent-left { display: flex; align-items: center; gap: 7px; }
+.consent-item input[type="checkbox"],
+.consent-all input[type="checkbox"] { width: 16px; height: 16px; accent-color: var(--primary); cursor: pointer; flex-shrink: 0; }
+.badge { font-size: 11px; padding: 2px 6px; border-radius: 4px; font-weight: 600; }
+.badge.req { background: #fee2e2; color: #dc2626; }
+.badge.opt { background: #f1f5f9; color: var(--gray); }
+.consent-item label { font-size: 13px; color: var(--gray); cursor: pointer; }
 .form-submit {
   width: 100%; padding: 18px; background: #1257C9; color: white;
   font-size: 17px; font-weight: 800; border: none; border-radius: 12px; cursor: pointer;
@@ -621,6 +833,21 @@ a.plan-card:active { transform: translateY(0) scale(0.99); }
 }
 .form-submit:hover { background: #0E45A0; transform: translateY(-1px); box-shadow: 0 8px 24px rgba(18,87,201,0.4); }
 .form-submit:disabled { background: #94a3b8; transform: none; box-shadow: none; cursor: not-allowed; }
+/* 카톡 즉시확인 단추 (check.html 전용) — 떠 있는 카톡 단추와 같은 노랑 */
+.kakao-check-btn {
+  display: block; width: 100%; padding: 15px; margin-bottom: 16px;
+  background: #FEE500; color: #191919; text-align: center; text-decoration: none;
+  font-size: 15px; font-weight: 800; border-radius: 12px;
+  letter-spacing: -0.3px; font-family: 'Pretendard Variable', Pretendard, sans-serif; transition: background 0.2s;
+}
+.kakao-check-btn{ transition:transform .08s ease, box-shadow .08s ease }
+.kakao-check-btn:hover { box-shadow:0 2px 6px rgba(0,0,0,.16); }
+.kakao-check-btn:active { transform:translateY(1px) scale(.985); box-shadow:none; }
+.form-or {
+  display: flex; align-items: center; gap: 10px; margin-bottom: 16px;
+  color: #94a3b8; font-size: 12px; font-weight: 500;
+}
+.form-or::before, .form-or::after { content: ''; flex: 1; height: 1px; background: var(--border); }
 .form-success { display: none; text-align: center; padding: 40px 20px; }
 .form-success .s-icon { font-size: 56px; margin-bottom: 16px; }
 .form-success h3 { font-size: 22px; font-weight: 800; margin-bottom: 8px; }
@@ -672,21 +899,6 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
 .footer-disclaimer { margin-top: 16px; font-size: 12px; color: rgba(255,255,255,0.3); line-height: 1.7; }
 
 /* ===== STICKY MINI FORM ===== */
-/* ⚠ 지금은 어느 화면에서도 안 뜨는 폼입니다 (2026-09-02 확인) ⚠
-   ── 왜 안 뜨나 ──
-   ① 컴퓨터(769 이상) : 아래 `@media (min-width: 769px)` 에서 display:none !important 로 막혀 있다
-   ② 폰(768 이하)     : updateScrollForms() 가 `if (isMobile)` 갈래에서
-                        stickyForm.classList.remove('visible') 로 항상 끈다
-   즉 CSS 와 자바스크립트 양쪽에서 막혀 있어, 켜려면 두 곳을 함께 풀어야 한다.
-
-   ── 지금 실제로 쓰는 신청 통로 ──
-   · 컴퓨터 : 아래 고정 띠(.desk-cta-bar) — 이름·번호·희망 제품
-   · 폰     : 아래 고정 띠(.mobile-cta-bar) 는 단추 하나. 누르면 큰 신청폼(#apply)으로 간다
-   · 큰 신청폼(#apply) : 제품 아이콘·이름·번호·요청사항
-
-   ── 그래서 ──
-   이 폼(모양·markup·submitStickyForm)을 고쳐도 손님 화면에는 아무 변화가 없다.
-   지우지 않고 남겨 둔 것은 되살릴 수 있게 하기 위함이다. 손대기 전에 위 ①②를 먼저 풀 것. */
 .sticky-form {
   position: fixed; top: 120px; right: 0; z-index: 800;
   display: flex; align-items: flex-start;
@@ -740,74 +952,71 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
 .sticky-form input:focus { border-color: var(--primary); }
 .sticky-form input::placeholder { color: #cbd5e1; }
 .sticky-form-btn {
-  width: 100%; padding: 11px; background: #1257C9; color: white;
+  width: 100%; padding: 11px; background: #F26100; color: white;
   font-size: 13px; font-weight: 800; border: none; border-radius: 8px;
   cursor: pointer; font-family: 'Pretendard Variable', Pretendard, sans-serif; transition: background 0.2s;
 }
 .sticky-form-btn:hover { background: #0E45A0; }
 .sticky-form-success { text-align: center; padding: 8px 0; font-size: 13px; color: var(--primary); font-weight: 700; display: none; }
 
-/* ===== DESKTOP BOTTOM CTA BAR ===== */
-/* B-OPTION: 원복 시 아래 두 블록(.desk-cta-bar, @media min-width 769 sticky) 삭제 */
+/* ===== 컴퓨터 화면 아래 상담 유도 — 떠 있는 카드 (2026-08-25) =====
+   전에는 화면 끝에서 끝까지 이어지는 파란 띠였다. 1440px 화면에서 재보니
+   알맹이는 가운데 860px뿐이고 좌우 581px(가로의 40%)이 내용 없는 파란 면적이었다.
+   그 모양은 광고 배너와 같아서 손님 눈이 자동으로 건너뛴다.
+   그래서 좌우를 잘라내고 내용만큼만 차지하는 카드로 띄운다.
+   ★ 카드 전체가 하나의 누르는 곳이다.
+     전에는 눌리는 곳이 주황 단추 212px뿐이었는데 이제 카드 617px 전체가 눌린다.
+     '크게 보이는 것'과 '크게 누를 수 있는 것'이 처음으로 일치한다. */
 .desk-cta-bar {
   display: none;
-  position: fixed; bottom: 0; left: 0; right: 0; z-index: 950;
-  /* 2026-09-04 아래 띠 색 재정립 (남색 띠 + 흰 단추)
-     전에는 진파랑 바탕(#0E45A0)에 파란 단추(#1257C9)라 1.36배밖에 차이가 안 나 단추가 묻혔다. */
-  background: #12336E; border-top: 1px solid rgba(255,255,255,0.12);
-  padding: 14px 24px 14px;
-  box-shadow: 0 -2px 12px rgba(4,18,60,.28);
-  opacity: 0; transform: translateY(100%);
+  position: fixed; bottom: 24px; left: 0; right: 0; z-index: 950;
+  justify-content: center;
+  opacity: 0; transform: translateY(16px);
   transition: opacity 0.3s, transform 0.35s cubic-bezier(0.4,0,0.2,1);
   pointer-events: none;
 }
-.desk-cta-bar.visible { opacity: 1; transform: translateY(0); pointer-events: all; }
-.desk-cta-bar-inner {
-  max-width: 1040px;   /* 860 -> 1040 : 희망 제품 칸이 늘면서 넘쳤다(실측 14px) */
-  margin: 0 auto; display: flex; flex-direction: row; align-items: flex-end;
-  justify-content: center; gap: 10px;
-  /* 좁은 컴퓨터 화면(785 실측)에서는 네 칸이 한 줄에 안 들어간다 —
-     필요한 폭 874, 쓸 수 있는 폭 737. 그때만 두 줄로 접히게 한다.
-     넓은 화면에서는 그대로 한 줄이다. */
-  flex-wrap: wrap;
+.desk-cta-bar.visible { opacity: 1; transform: translateY(0); }
+/* 바깥 칸은 화면을 가로지르므로 눌림을 꺼 두고, 보일 때만 카드에 눌림을 준다.
+   (꺼 두지 않으면 안 보이는 동안에도 눌려서 뒤 내용을 못 누른다) */
+.desk-cta-bar.visible .desk-cta-card { pointer-events: auto; }
+.desk-cta-card {
+  pointer-events: none;
+  display: inline-flex; align-items: center; gap: 20px;
+  max-width: calc(100vw - 48px);
+  padding: 13px 16px 13px 28px;
+  background: #12336E;
+  border: 1.5px solid rgba(255,255,255,0.10); border-radius: 14px;
+  box-shadow: 0 14px 34px rgba(4,18,60,0.34), 0 2px 8px rgba(4,18,60,0.22);
+  cursor: pointer; font-family: 'Pretendard Variable', Pretendard, sans-serif; text-align: left;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform 0.08s ease, background 0.2s, box-shadow 0.2s;
 }
-.desk-cta-phone-wrap { display: flex; flex-direction: column; gap: 6px; align-items: center; }
-/* 안내 글은 띠 한 줄을 통째로 차지해 '띠의 한가운데'에 놓인다 (2026-09-02 사장님 지시).
-   전에는 전화칸 묶음 안에 들어 있어서, 그 묶음(285px) 안에서만 가운데였다.
-   칸이 늘거나 줄면 글자가 좌우로 밀려 보였다. 이제 칸 구성과 상관없이 늘 가운데다. */
-.desk-cta-top {
-  flex: 0 0 100%;
-  font-size: 21px; font-weight: 800; color: white; text-align: center; letter-spacing: -0.3px;
-  margin-bottom: 2px;
-}
-.desk-cta-bar input {
-  padding: 12px 18px; border: 1.5px solid #D1D5DB;
-  border-radius: 8px; font-size: 16px; font-family: 'Pretendard Variable', Pretendard, sans-serif;
-  outline: none; transition: border-color 0.2s;
-  background: white; color: #1e293b;
-}
-.desk-cta-bar #deskName { width: 190px; }
-.desk-cta-bar #deskPhone { width: 285px; }
-.desk-cta-bar input:focus { border-color: #1257C9; }
-.desk-cta-bar input::placeholder { color: #94a3b8; }
+.desk-cta-card:hover { background: #0B2E5C; }
+.desk-cta-top { font-size: 18px; font-weight: 700; color: white; letter-spacing: -0.3px; }
 .desk-cta-bar-btn {
-  padding: 12px 28px; background: #FFFFFF; color: #1257C9;
+  display: inline-flex; align-items: center;
+  padding: 12px 28px; background: #1257C9; color: white;
   font-size: 23px; font-weight: 800; border: 1.5px solid transparent; border-radius: 8px;
-  cursor: pointer; font-family: 'Pretendard Variable', Pretendard, sans-serif; transition: background 0.2s;
+  font-family: 'Pretendard Variable', Pretendard, sans-serif; transition: background 0.2s;
   white-space: nowrap; line-height: 1;
+  pointer-events: none;   /* 주황 조각은 따로 반응하지 않는다 — 카드가 하나로 움직인다 */
 }
-.desk-cta-bar-btn:hover { background: #EFF6FF; }
+/* 카드를 누르면 주황 조각도 함께 반응해야 '한 덩어리'로 읽힌다.
+   주황 조각은 카드의 자식이라 :hover / :active 가 스스로 걸리지 않으므로
+   반드시 카드 쪽에서 함께 지정해야 한다. */
+.desk-cta-card:hover .desk-cta-bar-btn { background: #0E45A0; }
+.desk-cta-card:active {
+  transform: translateY(2px) scale(0.99);
+  box-shadow: 0 6px 16px rgba(4,18,60,0.30);
+}
+.desk-cta-card:active .desk-cta-bar-btn {
+  background: #0E45A0;
+  box-shadow: inset 0 2px 6px rgba(0,0,0,0.20);
+}
 .desk-cta-success { font-size: 14px; font-weight: 700; color: white; text-align: center; display: none; }
-/* ===== 아래 띠 '희망 제품' 적는 칸 (2026-09-02) =====
-   왜 넣었나 — 시트의 '서비스종류' 칸이 이 통로로 들어온 신청에서는 계속 '미지정' 이었다.
-   ★ 자리는 번호 칸 뒤 (사장님 지시) — 이름·번호를 먼저 받고 제품을 적는 순서다.
-   ★ 필수다. 비워 두면 못 넘어간다.
-   ★ 손님이 제각각 적을 수 있다(정수기요 / 물정수기 / 정수기 렌탈).
-     시트에서 세거나 거를 때는 그 점을 감안할 것. */
-.desk-cta-bar #deskService{ width:210px; }
 
 @media (min-width: 769px) {
-  .desk-cta-bar { display: block; }
+  .desk-cta-bar { display: flex; }
   .sticky-form { display: none !important; } /* B-OPTION: 원복 시 이 줄 삭제 */
 }
 
@@ -891,7 +1100,7 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
    까닭: 아래 남색 카드(또는 gift 의 주황 따라오는 단추)와 가는 곳이 똑같아 겹쳤다.
    이제 이 패널은 '지금 바로 연락하기'(전화·카톡) 한 가지 뜻만 갖는다.
    되살리려면 이 자리에 아래 두 줄을 넣고 html 에 단추를 다시 넣으면 된다.
-     .cs-apply { background: #1257C9; color: white; }
+     .cs-apply { background: #F26100; color: white; }
      .cs-apply:hover { background: #0E45A0; } */
 .float-btn {
   width: 52px; height: 52px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
@@ -917,8 +1126,8 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
   display: flex; align-items: center;
 }
 .mobile-cta-btn {
-  width: 100%; height: 48px; background: #1257C9; color: white;
-  font-size: 16px; font-weight: 800; border: none; border-radius: 12px;
+  width: 100%; height: 48px; background: var(--primary); color: white;
+  font-size: 16px; font-weight: 800; border: none; border-radius: 8px;
   cursor: pointer; font-family: 'Pretendard Variable', Pretendard, sans-serif;
   letter-spacing: -0.3px;
 }
@@ -944,7 +1153,9 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
   .mobile-cta-bar.visible ~ .floating-btns { display: none; }
 }
 @media (min-width: 769px) {
-  .floating-btns { bottom: 170px; }
+  /* 카드가 아래에서 99px(24 여백 + 75 높이)까지 차지한다.
+     769px처럼 좁은 컴퓨터 화면에서는 카드 오른쪽 끝과 동그란 단추가 겹쳐서 위로 올린다. */
+  .floating-btns { bottom: 120px; }
 }
 
 /* ===== ANIMATION ===== */
@@ -962,7 +1173,16 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
      실측: 37px일 때 글자가 칠해지는 높이 35px -> 딱 맞음 */
   .logo { font-size: 37px; }
   .hero { padding: 48px 20px 56px; }
-  .hero-stat .num { font-size: 22px; }
+  .hero-inner { flex-direction: column; gap: 32px; }
+  .hero-content { text-align: center; }
+  .hero-badge { display: block; width: fit-content; margin-left: auto; margin-right: auto; }
+  .hero-cash-badge { margin-left: auto; margin-right: auto; font-size: 22px; padding: 14px 40px; text-align: center; }
+  .hero-form-wrap { width: 100%; flex: none; }
+  .hero-form-wrap .form-card { max-width: 100%; }
+  .hero-stats { justify-content: center; margin-top: 28px; max-width: 100%; margin-left: auto; margin-right: auto; }
+  .hero-stat { padding: 0 16px; }
+  .hero-stat .num { font-size: 18px; }
+  .since-badge { font-size: 10px; padding: 3px 8px; margin-bottom: 4px; }
   .mob-br { display: block; }
   .benefits-grid { grid-template-columns: 1fr; gap: 16px; }
   .benefit-card.main { grid-row: auto; }
@@ -970,7 +1190,7 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
   .cf-col-vs { flex: 0 0 140px; }
   .cf-col-us { flex: 0 0 150px; margin-top: -16px; margin-bottom: 0; }
   .cf-col-us .cf-cell:last-child { min-height: 52px; }
-  .cf-col-a .cf-cell:nth-child(5), .cf-col-vs .cf-cell:nth-child(5), .cf-col-us .cf-cell:nth-child(5) { min-height: 52px; }
+  .cf-col-a .cf-cell:nth-child(6), .cf-col-vs .cf-cell:nth-child(6), .cf-col-us .cf-cell:nth-child(6) { min-height: 52px; }
   .cf-col-us .cf-head { font-size: 15px; min-height: 64px; padding: 8px 4px; }
   .cf-head { min-height: 48px; font-size: 11px; padding: 6px 4px; }
   .cf-col-a .cf-head { font-size: 11px; padding: 6px 4px; min-height: 48px; }
@@ -980,35 +1200,33 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
   .ok-label { font-size: 16px; }
   /* 2026-09-07 12px 미만 글씨 정리 */ .ok-sub { font-size: 12px; }
   .plans-grid { grid-template-columns: 1fr; }
+  .process-chevrons { flex-direction: column; gap: 12px; filter: none; }
+  .process-chevron { margin-left: 0 !important; margin-top: 0; clip-path: none !important; border-radius: 14px !important; padding: 22px 24px; display: flex; align-items: center; gap: 16px; text-align: left; }
+  .chevron-badge { margin-bottom: 0; flex-shrink: 0; }
+  .chevron-title { margin-bottom: 2px; font-size: 18px; }
   .process-steps-a { flex-direction: column; align-items: center; gap: 12px; }
   .process-arrow-a { transform: rotate(90deg); }
+  .process-steps-b { flex-direction: column; align-items: center; gap: 16px; }
   .process-steps-b::before { display: none; }
+  .process-step-b { flex-direction: row; text-align: left; gap: 16px; width: 100%; max-width: 340px; }
+  .step-num-b { margin-bottom: 0; flex-shrink: 0; }
+  .step-card-b { border-top: none; border-left: 3px solid var(--primary); border-radius: 10px; }
+  .chevron-desc { font-size: 13px; }
   .form-card { padding: 24px 18px; }
   section { padding: 52px 20px; }
 }
 
 /* ===== HERO CASH BADGE ===== */
 .hero-cash-badge {
-  display: flex; flex-direction: column; align-items: center; gap: 2px;
-  width: fit-content; margin-left: auto; margin-right: auto;
-  background: linear-gradient(135deg, #F26100, #ffb300);
-  color: white; font-weight: 900; line-height: 1.15;
-  padding: 12px 26px; border-radius: 0; margin-bottom: 20px;
-  box-shadow: 0 4px 16px rgba(255,107,0,0.45);
+  display: block; width: fit-content;
+  background: #F26100; text-align: center;
+  /* 28 -> 34 (2026-08-31). 회사이름(로고 32)이 금액보다 커 보이던 것을 뒤집고,
+     디자인보드의 '금액 34' 단계에 맞춘다. 줄바꿈은 아래 keep-all/balance 무리에 넣어 해결. */
+  color: white; font-size: 34px; font-weight: 900;
+  padding: 15px 39px; border-radius: 0; margin-bottom: 20px;
+  box-shadow: 0 6px 20px rgba(242,97,0,0.55);
   letter-spacing: -0.3px;
-}
-/* 금액은 크게, 조건은 작게 — 첫 화면에서 숫자가 먼저 보이도록 */
-.hero-cash-badge .cash-amount { font-size: 32px; display: block; }
-.hero-cash-badge .cash-cond   { font-size: 14px; font-weight: 800; opacity: .95; display: block; }
-
-/* PC에서는 폭이 넉넉하므로 한 줄로 펴고, 제목(clamp 36~80px)에 맞춰 함께 커지게 */
-@media (min-width: 769px) {
-  .hero-cash-badge {
-    flex-direction: row; align-items: baseline; gap: 10px;
-    padding: 12px clamp(26px, 2.4vw, 34px); margin-bottom: 24px;
-  }
-  .hero-cash-badge .cash-amount { font-size: clamp(32px, 3.8vw, 42px); }
-  .hero-cash-badge .cash-cond   { font-size: clamp(16px, 1.9vw, 21px); }
+  text-shadow: 0 1px 3px rgba(0,0,0,0.25);
 }
 
 /* ===== URGENCY ===== */
@@ -1022,20 +1240,71 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
   font-weight: 700; margin-bottom: 12px;
   background: #fff5f5; border-radius: 8px; padding: 8px 12px;
 }
-/* 폰에서는 두 배가 너무 크게 보여 1.5배로 낮춘다 */
+
+/* ===== LIVE ROLLING SECTION ===== */
+.live-section {
+  /* 위아래 여백 (2026-08-25): 28 -> 84px. 표가 파란 칸에 꽉 끼어 답답했다 */
+  background: #f0f6ff; padding: 84px 20px;
+  border-top: 1px solid #dbeafe; margin-bottom: 72px;
+}
+.live-section-inner {
+  max-width: 780px; margin: 0 auto;
+  display: flex; gap: 16px; align-items: flex-start;
+}
+.rolling-col { flex: 1; }
+/* 제목 띠를 두 배로 (글자 13->26, 위아래 여백 8->16) */
+.rolling-col-header {
+  text-align: center; font-size: 26px; font-weight: 700;
+  padding: 16px 0; border-radius: 10px 10px 0 0;
+}
+/* 폰에서는 두 배가 너무 크게 보여 1.5배로 낮춘다. 화면이 좁아 같은 크기라도 크게 느껴진다 */
 @media (max-width: 768px) {
+  .rolling-col-header { font-size: 19.5px; padding: 12px 0; }
+}
+/* 제목 띠 안, 제목 글자 바로 아래 안내 한 줄 (2026-08-25)
+   왜: 명단은 영업일 저녁에 그날치가 올라가고 주말·공휴일은 쉰다.
+       그래서 오늘 낮에 보면 어제(또는 지난 영업일) 날짜가 보인다.
+       날짜를 읽기 '전에' 이 줄을 먼저 보게 해서 오해를 미리 푼다.
+   남색 바탕 위 흰 글씨라, 제목보다 흐리게 두어 제목을 가리지 않게 한다. */
+.rolling-note{
+  display:block; margin:5px 0 0;
+  font-size:13px; font-weight:600;
+  color:rgba(255,255,255,0.72);
+  letter-spacing:-0.2px; line-height:1.4;
+}
+.rolling-col-header.type-complete { background: #dcfce7; color: #15803d; }
+.rolling-col-header.type-cash { background: #fef9c3; color: #92400e; }
+.live-dot {
+  display: inline-block; width: 7px; height: 7px;
+  background: #22c55e; border-radius: 50%;
+  animation: livePulse 1.4s ease-in-out infinite;
+  margin-right: 4px; vertical-align: middle;
 }
 @keyframes livePulse {
   0%, 100% { opacity: 1; } 50% { opacity: 0.35; }
 }
-/* 컴퓨터에서 명단 줄을 1.5배로 (높이 44->66). 폰은 아래에서 원래 크기로 되돌린다.
-   ★ 줄 높이를 바꾸면 아래 스크립트의 '한줄' 값도 반드시 같이 바꿔야 한다. */
+.rolling-wrap {
+  overflow: hidden; height: 220px;
+  background: white; border: 1px solid #dbeafe;
+  border-top: none; border-radius: 0 0 10px 10px; padding: 0 12px;
+}
+.rolling-track-complete { animation: rollUpComplete 48s linear infinite; }
+.rolling-track-cash     { animation: rollUpCash 48s linear infinite; }
+/* 컴퓨터에서 명단 줄을 1.5배로 (높이 44->66, 글자도 모두 1.5배). 폰은 아래에서 원래 크기로 되돌린다.
+   ★ 줄 높이를 바꾸면 아래 스크립트의 '한줄' 값도 반드시 같이 바꿔야 한다.
+     그 값으로 굴러가는 거리를 재기 때문에, 안 맞추면 명단이 어긋나게 흐른다. */
 .rolling-item {
   height: 66px; display: flex; align-items: center;
   gap: 6px; border-bottom: 1px solid #f1f5f9; overflow: hidden;
 }
 .ri-date { color: #94a3b8; font-size: 16.5px; flex-shrink: 0; white-space: nowrap; }
 .ri-name { color: #1e293b; font-weight: 700; font-size: 19.5px; flex-shrink: 0; }
+.ri-service {
+  font-size: 16.5px; font-weight: 700;
+  padding: 3px 10.5px; border-radius: 999px; white-space: nowrap;
+}
+.ri-complete { background: #dcfce7; color: #15803d; }
+.ri-cash { background: #fef9c3; color: #92400e; }
 @keyframes rollUpComplete {
   0% { transform: translateY(0); }
   100% { transform: translateY(var(--roll-c-dist, -1056px)); }
@@ -1045,7 +1314,22 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
   100% { transform: translateY(var(--roll-m-dist, -1056px)); }
 }
 @media (max-width: 768px) {
+  .live-section { padding: 60px 16px; }   /* 폰 위아래 여백 (20 -> 60px) */
+  .live-section-inner { flex-direction: column; gap: 12px; }
+  .rolling-col { width: 100%; }
+  /* 폰에서는 한 줄만 보이고 일정 시간마다 다음 줄로 바뀐다 (2026-08-13)
+     45px = 줄 높이 44px + 상자 아래 테두리 1px */
+  .rolling-wrap { height: 45px; }
   .rolling-item { border-bottom: none; }
+  /* 아래 흰 여백이 너무 넓어 줄임. 다음 칸이 자체 위 여백 52px 을 갖고 있다 (2026-08-13) */
+  .live-section { margin-bottom: 0; }
+}
+
+@media (max-width: 768px) {
+  .ict-cert-wrap { padding: 10px 16px; gap: 8px; margin-top: 40px; border-radius: 10px; }
+  .ict-cert-sub { display: none; }
+  .ict-cert-title { font-size: 13px; }
+  .ict-cert-icon { width: 40px; height: 40px; font-size: 12px; border-radius: 8px; }
 }
 
 /* ===== 초소형 화면 대응 ===== */
@@ -1071,13 +1355,12 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
   .cf-col-us { flex: 0 0 110px; }
 }
 
-/* ===== 769~920px 구간 비교표 대응 (2026-08-12 추가, index.html과 동일 조치) =====
+/* ===== 769~920px 구간 비교표 대응 (2026-08-12 추가) =====
    문제: 비교표 세 열이 165+315+345 = 825px 고정인데,
          좁은 화면용 규칙(@media max-width:768px)은 768px 이하에서만 작동해서
          769~920px 사이에서는 표가 화면보다 넓어져 페이지 전체에 가로 스크롤이 생겼음
-         (실측: 800px 화면에서 60px 넘침. PC에서 창을 좁게 줄였을 때 발생)
+         (PC에서 창을 좁게 줄였을 때 발생. 폰·태블릿 세로는 해당 없음)
    해결: 이 구간 전용으로 열 폭과 글자 크기를 같은 비율(0.78배)로 함께 축소 → 825px → 641px
-   ※ 3줄짜리 항목이 index.html은 6번째 칸, 이 페이지는 4번째 칸이라 그에 맞춤
    ※ 끝 경계가 920px인 이유: 화면 폭에는 세로 스크롤바(약 17px)도 포함되므로
      실제 쓸 수 있는 폭은 그만큼 좁음. 864px로 잡으면 865px에서 다시 넘침 */
 @media (min-width: 769px) and (max-width: 920px) {
@@ -1091,9 +1374,9 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
   .cf-head { min-height: 66px; }
   .cf-cell { min-height: 80px; }
   .cf-col-us .cf-cell:last-child { min-height: 106px; }
-  .cf-col-a .cf-cell:nth-child(4),
-  .cf-col-vs .cf-cell:nth-child(4),
-  .cf-col-us .cf-cell:nth-child(4) { min-height: 102px; }
+  .cf-col-a .cf-cell:nth-child(6),
+  .cf-col-vs .cf-cell:nth-child(6),
+  .cf-col-us .cf-cell:nth-child(6) { min-height: 102px; }
   .ok-label { font-size: 32px; }
   .ok-sub { font-size: 14px; }
 }
@@ -1105,7 +1388,7 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
 /* =====================================================================
    ===== 마무리 손질 9가지 (2026-08-12 추가) =====
    글자 크기·색·배치는 하나도 바꾸지 않고, 읽기 편함과 조작감만 손봄.
-   되돌리려면 이 블록만 통째로 지우면 됨. index.html에도 같은 블록이 들어감.
+   되돌리려면 이 블록만 통째로 지우면 됨. rental.html에도 같은 블록이 들어감.
    (일부 선택자는 이 페이지에 없는 요소용 — 두 페이지가 같은 블록을 쓰도록 일부러 남겨둠)
    ===================================================================== */
 
@@ -1117,23 +1400,25 @@ h1, h2, h3,
 .plan-title, .chevron-title, .chevron-desc,
 .step-title-a, .step-desc-a, .step-title-b, .step-desc-b,
 .faq-question, .faq-answer-inner,
-.form-headline, .sticky-form-title, .desk-cta-top {
+.form-headline, .sticky-form-title, .desk-cta-top,
+.hero-cash-badge {                 /* 34px 로 키우니 절반 화면에서 '가만두면 손 / 해!' 로 낱말이 끊겼다 */
   word-break: keep-all;
   overflow-wrap: break-word;
 }
 /* 제목 줄 길이를 고르게 나눠 마지막 줄에 한 낱말만 남는 것 방지 */
-h1, h2, .section-title, .trust-sol-title, .process-title-big {
+h1, h2, .section-title, .trust-sol-title, .process-title-big,
+.hero-cash-badge {   /* keep-all 만으로는 '…가만두면 / 손해!' 로 끝줄이 외톨이가 된다(347/72 실측) */
   text-wrap: balance;
 }
 
 /* --- 2. 버튼을 누를 때 눌리는 느낌 (원래는 한 곳도 없었음) --- */
 .form-submit, .sticky-form-btn, .desk-cta-bar-btn, .mobile-cta-btn,
-.header-phone, .service-tab, .privacy-close, .cert-badge, .ict-cert-wrap, .hero-cta {
+.header-phone, .service-tab, .privacy-close, .cert-badge, .ict-cert-wrap {
   transition: transform 0.12s ease, background 0.2s, border-color 0.2s, box-shadow 0.2s;
 }
 .form-submit:active, .sticky-form-btn:active, .desk-cta-bar-btn:active,
 .mobile-cta-btn:active, .header-phone:active, .privacy-close:active,
-.cert-badge:active, .ict-cert-wrap:active, .plan-link:active, .hero-cta:active {
+.cert-badge:active, .ict-cert-wrap:active, .plan-link:active {
   transform: translateY(1px) scale(0.985);
 }
 .service-tab:active { transform: scale(0.98); }
@@ -1144,9 +1429,9 @@ nav a:active { background: #dbeafe; }
 
 /* --- 2-보강. 큰 버튼에서 눌림이 안 느껴지던 문제 (2026-08-12) ---
    원인 세 가지가 겹쳐 있었음:
-   (1) 큰 버튼(예: 첫 화면 상담 버튼 337x84)은 1.5% 줄여도 양옆 2.5px뿐이라 눈에 안 띔
+   (1) 큰 버튼은 1.5% 줄여도 양옆 2~3px뿐이라 눈에 안 띔
    (2) 폰에서 손가락을 대면 '마우스 올림' 상태도 함께 걸림 → 그림자가 오히려 커져서 눌림을 상쇄
-   (3) 링크 버튼이라 누르는 즉시 화면이 이동해 볼 새가 없음
+   (3) 링크 버튼은 누르는 즉시 화면이 이동해 볼 새가 없음
    해결: 터치 기기에서는 마우스 올림 효과를 끄고, 큰 버튼은 더 확실히 줄이며 그림자도 함께 낮춤 */
 
 /* (가) 손가락으로 쓰는 기기에서는 '마우스 올림' 효과를 끔 — 떼어도 남아서 눌림을 가림 */
@@ -1156,6 +1441,7 @@ nav a:active { background: #dbeafe; }
   .benefit-card:hover, .process-step-a:hover, .step-card-b:hover,
   .trust-cert-label-item:hover, .float-btn:hover { transform: none; }
 }
+/* (나) 큰 버튼은 더 확실히 눌리게 + 그림자도 낮춰 '내려앉는' 느낌 */
 .form-submit:active {
   transform: translateY(2px) scale(0.98);
   box-shadow: 0 2px 8px rgba(18,87,201,0.30);
@@ -1164,7 +1450,7 @@ nav a:active { background: #dbeafe; }
   transform: translateY(2px) scale(0.975);
 }
 /* (다) 누르는 순간 바로 반응하도록 조금 더 빠르게 */
-.hero-cta, .form-submit, .mobile-cta-btn, .desk-cta-bar-btn, .sticky-form-btn {
+.form-submit, .mobile-cta-btn, .desk-cta-bar-btn, .sticky-form-btn {
   transition-duration: 0.08s, 0.2s, 0.2s, 0.2s;
 }
 /* (라) 누를 때 색이 진해지도록 (2026-08-12 보강)
@@ -1172,7 +1458,6 @@ nav a:active { background: #dbeafe; }
    → 껐더니 누를 때 색이 그대로여서 눌린 티가 안 났음. 눌림 쪽에 색을 따로 지정해 해결.
    특히 화면 하단 고정 버튼은 그림자가 없어 크기 변화만으로는 표시가 안 남
    → 색 + 안쪽 그림자(움푹 들어간 느낌)를 함께 줌 */
-/* ※ 이 페이지의 하단 고정 버튼은 주황색임 (index.html은 파란색) → 눌림 색도 진한 주황 */
 .mobile-cta-btn:active {
   background: #0E45A0;
   transform: translateY(2px) scale(0.96);
@@ -1234,6 +1519,8 @@ header { box-shadow: 0 2px 12px rgba(15,42,90,0.09); }
 }
 .benefit-card:hover { box-shadow: 0 14px 34px rgba(15,42,90,0.15); }
 .process-step-a:hover, .step-card-b:hover { box-shadow: 0 14px 32px rgba(15,42,90,0.16); }
+.trust-cert-label-item { transition: transform 0.22s cubic-bezier(0.22,1,0.36,1), box-shadow 0.22s ease; }
+.trust-cert-label-item:hover { transform: translateY(-3px); box-shadow: 0 12px 28px rgba(15,42,90,0.14); }
 
 /* --- 7. 메뉴 눌러 이동할 때 바로 이동 + 고정 머리띠(64px)에 제목이 안 가리게 --- */
 /* 2026-09-02: smooth -> auto (사장님 지시). 위쪽 187번째 줄 근처에도 auto 가 있었지만
@@ -1258,121 +1545,45 @@ html { scroll-behavior: auto; scroll-padding-top: 78px; }
   }
   .fade-up { opacity: 1 !important; transform: none !important; }
 }
+
+/* ===== 히어로 배지 왼쪽 정렬 맞추기 (2026-08-19) =====
+   PC는 히어로가 왼쪽 정렬이라, 배지 안쪽 왼쪽 여백 때문에 글자가 제목보다 안쪽에서 시작해 어긋나 보였다.
+   그래서 PC에서만 왼쪽 여백을 0으로 없애 배지 글자와 제목의 시작선을 일치시킨다.
+   폰은 배지가 가운데 정렬이라 이 처리를 하면 오히려 좌우가 비뚤어지므로 적용하지 않는다.
+   (모서리를 각지게 하는 것은 PC·폰 공통이라 각 배지 기본 설정에 넣어 두었다) */
+@media (min-width: 769px) {
+  /* 왼쪽 화면 밖에서 띠가 뻗어 들어오는 모양.
+     -1000px 만큼 왼쪽으로 빼고 같은 값을 안쪽 여백으로 되돌려주면,
+     상자는 화면 밖에서 시작하지만 글자는 제목과 똑같은 자리에 선다.
+     밖으로 나간 부분은 .hero 의 overflow:clip 이 잘라낸다. */
+  .hero-badge {
+    display: block; width: fit-content;
+    margin-left: -1000px; padding-left: 1000px;
+    border-left: none; border-radius: 0 20px 20px 0;
+  }
+  .hero-cash-badge {
+    margin-left: -1000px; padding-left: 1000px;
+    border-radius: 0 999px 999px 0;
+  }
+}
 </style>
 <style>
-/* ===== 사은품 지급명단 굴림칸 — 한 칸으로 합치고 브랜드 색으로 ===== */
-.live-section-inner{ max-width:560px }
-.rolling-col-header.type-cash{ background:#1257C9; color:#fff }
-.ri-plan{
-  min-width:0; font-size:18px; font-weight:600; color:#334155;
-  white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
-}
-/* 은행은 배지(알약) 대신 그냥 글씨로 — 알약이 줄 끝에서 눈을 끌어 이름·상품보다 먼저 읽혔다 */
-.ri-bank{
-  font-size:16.5px; font-weight:600;
-  color:#64748b; white-space:nowrap;
-}
-/* ===== 안 보이는 칸으로 줄 맞추기 (2026-08-25) =====
-   칸마다 자리를 미리 정해 둔다. 선도 배경도 안 그리니 눈에는 안 보이지만
-   내용이 짧든 길든 같은 세로선 위에 온다. 폭은 글자 크기에 비례하는 단위(em)로 잡았다. */
-.rolling-item{ gap:8px; justify-content:center }
-.ri-date{ flex:none; width:4em;   text-align:center }
-.ri-name{ flex:none; width:4.4em; text-align:center }
-.ri-plan{ flex:none; width:10em;  text-align:center }
-.ri-bank{ flex:none; width:5.2em; text-align:center }
-@media (max-width:768px){
-  .ri-plan{ font-size:12px }
-  .ri-date{ font-size:12px }
-  /* ===== 폰은 원래 크기 한 줄로 (2026-08-25) =====
-     폰 가로는 317px뿐이라 1.5배 글자로는 네 칸이 한 줄에 안 들어간다.
-     읽기 편한 쪽이 먼저이므로 폰은 원래 크기로 두고 칸 맞춤만 살린다.
-     ★ 줄 높이를 바꾸면 아래 스크립트의 '한줄' 값도 같이 바꿔야 한다. */
-  .rolling-item{ height:44px; flex-wrap:nowrap }
-  .ri-name{ font-size:14px }
-  .ri-bank{ font-size:12px }
-  .rolling-note{ font-size:11px; margin-top:3px }
-  /* 폰에서도 세 줄이 보이게 (44px x 3줄 + 상자 아래 테두리 1px) */
-  .rolling-wrap{ height:133px }
-  .rolling-item{ border-bottom:1px solid #f1f5f9 }
-}
+/* ============================================================
+   첫 화면 지원금 명세 (추가분)
+   - 명세표는 '흰 종이', 신청폼은 '둥근 카드' — 재질을 다르게 해서
+     같은 흰색이라도 다른 물건으로 읽히게 한다
+   - 강조색: 주황(#F26100) = 위 배지와 같은 색
+   ============================================================ */
 
-/* ===== 좁은 폰 대비 (2026-08-25 실측) ===== */
-@media (max-width: 380px) {
-  /* 틈과 칸을 조금씩 줄여 넉넉하게. 글자 크기는 그대로 */
-  .rolling-item{ gap:6px }
-  .ri-date{ width:3.9em }
-  .ri-name{ width:4.3em }
-  .ri-bank{ width:5em }
-}
-@media (max-width: 340px) {
-  /* 아무리 줄여도 한 줄에는 못 담는다. 이때만 두 줄로 나눈다.
-     윗줄 날짜·이름·은행 / 아랫줄 상품명. 칸 폭은 그대로라 세로줄은 계속 맞는다 */
-  .rolling-item{ flex-wrap:wrap; align-content:center; row-gap:1px }
-  .ri-date{ order:1 }
-  .ri-name{ order:2 }
-  .ri-bank{ order:3 }
-  .ri-plan{ order:4; width:100% }
-}
-
-/* ===== 아래 고정 띠가 푸터 글씨를 가리지 않게 (2026-08-24) =====
-   띠는 화면에 붙어 다니는데 페이지는 푸터에서 딱 끝나 버려, 맨 아래로 내려가면
-   띠가 푸터 마지막 글줄을 덮었다(컴퓨터 38px, 폰 28px 가려짐 — 실측).
-   푸터 안쪽 아래에 띠 높이만큼 빈 자리를 만들어 스크롤이 그만큼 더 내려가게 한다.
-   빈 자리는 푸터와 같은 남색이라 안 보이고, 띠는 글자가 없는 그 자리 위에 얹히므로
-   띠 안의 단추를 누르는 데도 아무 영향이 없다.
-   ※ 이 규칙은 파일 맨 끝에 있어야 앞의 footer 설정(padding: 40px 20px)을 이긴다 */
-@media (max-width: 768px) { footer { padding-bottom: 108px; } }  /* 폰 띠 68 + 여백 40 */
-@media (min-width: 769px) { footer { padding-bottom: 156px; } }  /* PC 띠 116 + 여백 40 — 이 페이지 띠에는 이름·번호 입력칸이 들어 있어 다른 페이지(78)보다 높다 */
-</style>
-
-<style>
-/* ==========================================================
-   2026-08-27 : danghh.com(index.html)에서 옮겨온 칸들의 모양
-   ========================================================== */
-
-/* ===== 첫 화면 : 차액 보상 강조 (새로 만듦) =====
-   첫 화면의 누름단추를 뺀 자리에, 손님이 가장 크게 걱정하는
-   '여기가 제일 많이 주는 게 맞나'에 정면으로 답하는 칸을 둔다. */
-.hero-guarantee{
-  width:fit-content; max-width:100%;
-  margin:20px auto 0;
-  background:rgba(255,255,255,0.10);
-  border:2px solid rgba(255,242,0,0.55);
-  padding:18px 30px 20px;
-  text-align:center;
-}
-.hero-guarantee p{ margin:0; opacity:1; }
-.hg-badge{
-  display:inline-block; background:#FFF200; color:#0B2E5C;
-  font-size:14px; font-weight:900; letter-spacing:-0.3px;
-  padding:5px 14px; margin-bottom:12px;
-}
-.hg-line{
-  font-size:clamp(16px,2.1vw,21px); font-weight:700;
-  color:rgba(255,255,255,0.92); line-height:1.4; margin-bottom:5px !important;
-}
-.hg-line em{ font-style:normal; color:#FFF200; font-weight:900; }
-.hg-main{
-  font-size:clamp(23px,3.5vw,37px); font-weight:900; color:#fff;
-  letter-spacing:-1.2px; line-height:1.25;
-}
-.hg-main strong{ color:#FFF200; font-weight:900; }
-@media (max-width:768px){
-  .hero-guarantee{ margin-top:20px; padding:16px 18px 18px; }
-  .hg-badge{ font-size:13px; margin-bottom:10px; }
-}
-
-/* ===== 첫 화면 : 혜택 명세표 (index.html 에서 옮김) =====
-   명세표는 '흰 종이'. 강조색 주황(#F26100)은 위 배지와 같은 색. */
+/* ── 명세표 ── */
 .dh-ledger{
   position:relative;
-  max-width:560px; margin:24px auto 0;
+  max-width:560px; margin:0 0 20px;
   background:#ffffff;
   border:1px solid rgba(12,40,128,.10);
-  border-radius:4px;
+  border-radius:4px;                 /* 카드처럼 둥글지 않게 */
   padding:16px 20px 14px;
-  box-shadow:0 6px 18px rgba(4,18,60,.22);
-  text-align:left;
+  box-shadow:0 6px 18px rgba(4,18,60,.22);   /* 신청폼보다 얕게 = 뒤에 눕는다 */
 }
 .dh-ledger::after{                   /* 영수증처럼 뜯긴 아래쪽 */
   content:"";
@@ -1390,19 +1601,33 @@ html { scroll-behavior: auto; scroll-padding-top: 78px; }
 .dh-ledger-row .d{ flex:1; border-bottom:1px dotted rgba(12,40,128,.22); transform:translateY(-4px) }
 .dh-ledger-row .v{ font-size:22px; font-weight:700; color:#0f172a; font-variant-numeric:tabular-nums; white-space:nowrap }
 .dh-ledger-row .v.small{ font-weight:800 }
-/* 비밀혜택 줄 — 어디와도 비교할 수 없는 유일한 항목이라 맨 아래에서 강조 */
+
+/* 추가혜택 줄 — 어디와도 비교할 수 없는 유일한 항목이라 맨 아래에서 강조
+   (2026-08-28: 이름을 비밀지원금 -> 추가혜택으로 바꿨다. 계산기 내역 줄의 용어와 같아졌다) */
 .dh-ledger-row.hi .t{ font-size:23px; font-weight:700; color:#F26100 }
 .dh-ledger-row.hi .v.small{ font-size:25px; color:#F26100 }
 .dh-ledger-row.hi .d{ border-bottom-color:rgba(255,107,0,.45) }
+
+/* 합계 */
+.dh-ledger-sum{
+  display:flex; align-items:baseline; justify-content:space-between; gap:10px;
+  margin-top:9px; padding-top:10px; border-top:2px solid rgba(12,40,128,.45);
+}
 .dh-ledger-sum .t{ font-size:16px; font-weight:600; color:#64748b }
 .dh-ledger-sum .v{ font-size:32px; font-weight:900; color:#0B2E5C; letter-spacing:-.5px; font-variant-numeric:tabular-nums }
 .dh-ledger-sum .v em{ font-style:normal; font-size:27px; font-weight:800; color:#F26100 }
+
+/* ── 휴대폰 ── */
 @media (max-width:900px){
-  .dh-ledger{ padding:12px 14px 10px }
-  /* 떠 있는 전화·카톡 단추에 금액이 가리지 않도록 좌우를 똑같이 비운다 */
+  .dh-ledger{ margin-left:auto; margin-right:auto; padding:12px 14px 10px }
+
+  /* 떠 있는 전화·카톡 단추를 줄이고, 명세 내용을 상자 가운데로 모아
+     금액이 단추에 가리지 않게 한다 (좌우 여백을 똑같이 줘서 한쪽만 비지 않게) */
   .floating-btns{ right:14px }
   .float-btn{ width:46px; height:46px; font-size:20px }
   .dh-ledger-row{ padding:6px 36px }
+  .dh-ledger-sum{ padding-left:36px; padding-right:36px }
+
   .dh-ledger-row .t{ font-size:16px }
   .dh-ledger-row .v{ font-size:18px }
   .dh-ledger-row.hi .t{ font-size:18px }
@@ -1412,27 +1637,309 @@ html { scroll-behavior: auto; scroll-padding-top: 78px; }
   .dh-ledger-sum .v em{ font-size:23px }
 }
 
-/* ===== 첫 화면 : 단추를 뺀 만큼 위아래 여백을 당긴다 =====
-   위 여백을 40px 로 줄인 이유: 이 자리가 20px 만 넉넉해도 차액 보상 칸의
-   아래쪽이 컴퓨터 화면(높이 860 기준)에서 고정 띠에 6px 잘렸다(실측) */
-.hero{ padding-top:40px; padding-bottom:64px; }
-.hero h1{ margin-bottom:14px; }
-.hero .hero-desc{ font-size:clamp(15px,2vw,19px); margin-bottom:22px !important; line-height:1.5; }
-/* 마지막 줄이라 아래 여백을 없앤다.
-   (원래 .hero p 규칙이 아래 60px 을 주는데, 뒤에 통계 3칸이 있을 때 이야기였다) */
-.hero .hero-urgency{ margin-bottom:0; }
-@media (max-width:768px){
-  .hero{ padding-top:40px; padding-bottom:48px; }
-  .hero .hero-desc{ margin-bottom:18px !important; }
+/* ── 첫 화면 높이 조정: 명세표가 들어간 만큼 위아래를 당겨 아래가 안 잘리게 ── */
+.hero{ padding-top:28px }              /* 원래 72px */
+.hero-badge{ margin-bottom:6px }       /* 원래 10px */
+.hero-cash-badge{ margin-bottom:10px } /* 원래 20px */
+.hero h1{ margin-bottom:8px }          /* 원래 20px */
+.hero-stats{ margin-top:32px }         /* 원래 40px -> 10px으로 줄였다가, 카드가 옆으로 붙어 높이가 남아 32px로 복구 (2026-08-21) */
+.since-badge{ margin-bottom:6px }      /* 원래 10px */
+@media (max-width:900px){
+  .hero{ padding-top:40px }
+  .hero-cash-badge{ margin-bottom:12px }
+  .hero h1{ margin-bottom:10px }
+  .hero-stats{ margin-top:16px }
 }
 
-/* ===== 신뢰 숫자 칸 (index.html 에서 옮김) =====
-   ★ 바탕은 흰색. 파란 숫자는 흰 바탕에서 가장 또렷하다.
+/* ── 명세표 아래 두 문장: 크기·밝기를 맞추고 한 덩어리로 묶는다 ── */
+.hero-desc{ margin-bottom:3px; line-height:1.4 }          /* 원래 14px / 1.7 */
+.hero-sub-assurance{
+  font-size:clamp(15px,1.7vw,19px);                       /* 원래 16px 고정 */
+  color:#fff;                                             /* 원래 75% → 88% → 흰색(2026-08-27)
+     ⚠ 파랑 배경이 그라데이션이라 밝은 오른쪽에서 88%는 대비 3.89로 미달이었다.
+     흰색이면 4.57로 통과한다. 서열은 밝기가 아니라 크기·굵기가 만든다. */
+  line-height:1.4; margin-bottom:8px;
+}
+@media (max-width:900px){
+  /* 폰에서는 문장이 두 줄로 접히므로 문장 안쪽 줄간격을 조금 더 준다 */
+  .hero-desc{ line-height:1.5; margin-bottom:5px }
+  .hero-sub-assurance{ line-height:1.5 }
+}
+
+/* ── 앞뒤 서열: 신청폼이 앞, 명세표가 뒤, 누를 곳이 가장 진한 파랑 ── */
+.hero-form-wrap .form-card{ box-shadow:0 30px 70px rgba(4,18,60,.45), 0 6px 16px rgba(4,18,60,.28) }
+/* ★ 마우스를 올리면 단추가 깜빡이던 문제 (2026-08-25 고침)
+   원인: 바탕이 '위아래 그라데이션(그림)'인데 마우스 올림 상태는 '단색'이다.
+        브라우저는 그림과 단색을 부드럽게 이어 그리지 못해 그라데이션을 즉시 지우는데,
+        밑에 깔린 색이 없으면 '완전 투명'에서 시작해 0.2초에 걸쳐 색이 차오른다.
+        그 0.2초 동안 단추가 사라졌다 나타나는 것이 깜빡임이었다.
+   해결: 그라데이션 밑에 같은 색(위아래 색의 한가운데)을 미리 깔아 둔다.
+        그러면 투명해지는 구간 자체가 없어지고, 색은 지금처럼 0.2초 부드럽게 변한다.
+   ※ background 로 모아쓰면 바탕색이 도로 지워진다.
+      반드시 background-color / background-image 로 나눠 쓸 것. */
+.form-submit,
+.mobile-cta-btn{                       /* 휴대폰 아래 고정 막대 — 같은 파랑 계열 */
+  background-color:#1257C9;            /* 위아래 파랑의 한가운데 색 — 깜빡임 방지용 받침 */
+  background-image:none;
+  box-shadow:0 8px 20px rgba(18,87,201,.45);
+}
+/* PC 아래 고정 막대와 옆 신청칸은 파란 바탕 위에 있어 파란 버튼이 묻힌다.
+   그래서 색은 주황 그대로 두고, 입체 효과만 똑같이 준다 */
+.desk-cta-bar-btn, .sticky-form-btn{
+  background-color:#1257C9;            /* 파랑 단색 — 그라데이션 없앰 (디자인보드) */
+  background-image:none;
+  box-shadow:0 8px 20px rgba(18,87,201,.42);
+}
+</style>
+
+<style>
+/* ===== 사은품 지급명단 굴림칸 — 한 칸으로 합치고 브랜드 색으로 ===== */
+.live-section-inner{ max-width:560px }
+.rolling-col-header.type-cash{ background:#1257C9; color:#fff }
+.rolling-col-header .live-dot{ background:#fff }
+.ri-plan{
+  min-width:0; font-size:18px; font-weight:600; color:#334155;
+  white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+}
+/* 은행은 배지(알약) 대신 그냥 글씨로 (2026-08-25)
+   왜: 알약이 줄 끝에서 눈을 끌어, 정작 봐야 할 이름과 상품보다 먼저 읽혔다.
+       배지 여백이 빠지면서 칸도 좁아져 좁은 폰에서 자리 여유가 생긴다. */
+.ri-bank{
+  font-size:16.5px; font-weight:600;
+  color:#64748b; white-space:nowrap;
+}
+/* ===== 안 보이는 칸으로 줄 맞추기 (2026-08-25) =====
+   왜: 전에는 글자를 그냥 이어 붙여서, 이름이 세 글자냐 네 글자냐에 따라
+       뒤 내용이 통째로 밀렸다. 그래서 줄마다 시작점이 달라 들쭉날쭉했다.
+   방법: 칸마다 자리를 미리 정해 둔다. 선도 배경도 안 그리니 눈에는 안 보이지만
+       내용이 짧든 길든 같은 세로선 위에 온다. 표에서 칸을 나누는 것과 같은 원리다.
+   폭은 글자 크기에 비례하는 단위(em)로 잡아, 컴퓨터든 폰이든 규칙 하나로 맞게 했다.
+   실측 최댓값: 날짜 '8월 20일' / 이름 '에###설' / 상품 'SKY LIFE 인터넷 + TV' / 은행 '카카오뱅크' */
+.rolling-item{ gap:8px; justify-content:center }
+.ri-date{ flex:none; width:4em;   text-align:center }
+.ri-name{ flex:none; width:4.4em; text-align:center }
+.ri-plan{ flex:none; width:10em;  text-align:center }
+.ri-bank{ flex:none; width:5.2em; text-align:center }
+.rolling-more{
+  display:block; text-align:center; margin-top:10px;
+  font-size:13px; font-weight:700; color:#1257C9; text-decoration:none;
+}
+.rolling-more:hover{ text-decoration:underline }
+@media (max-width:768px){
+  .ri-plan{ font-size:12px }
+  .ri-date{ font-size:12px }
+  /* ===== 폰은 원래 크기 한 줄로 (2026-08-25) =====
+     왜: 폰 가로는 317px뿐이라 1.5배 글자로는 네 칸이 한 줄에 안 들어간다(417px 필요).
+         두 줄로 나눠 봤더니 날짜·이름·은행이 위, 상품명이 아래로 흩어져 읽기 나빴다.
+         읽기 편한 쪽이 먼저이므로 폰은 원래 크기로 되돌리고,
+         칸 맞춤과 가운데 정렬만 살린다 — 읽기 편해진 진짜 이유가 그것이다.
+     ★ 줄 높이를 바꾸면 아래 스크립트의 '한줄' 값도 같이 바꿔야 한다. */
+  .rolling-item{ height:44px; flex-wrap:nowrap }
+  .ri-name{ font-size:14px }
+  .ri-bank{ font-size:12px }
+  .rolling-note{ font-size:11px; margin-top:3px }
+  /* 폰에서도 세 줄이 보이게 (44px x 3줄 + 상자 아래 테두리 1px) */
+  .rolling-wrap{ height:133px }
+  .rolling-item{ border-bottom:1px solid #f1f5f9 }
+}
+
+/* ===== 좁은 폰 대비 (2026-08-25 실측) =====
+   화면 폭별로 재보니:
+     375px -> 자리 317, 필요 278 (여유 20)
+     360px -> 자리 302, 필요 278 (여유 12)
+     320px -> 자리 262, 한 줄에는 못 담음 — 은행이 화면 밖으로 잘림
+   그래서 두 단계로 나눠 받는다. */
+@media (max-width: 380px) {
+  /* (1) 틈과 칸을 조금씩 줄여 넉넉하게 만든다. 글자 크기는 그대로 */
+  .rolling-item{ gap:6px }
+  .ri-date{ width:3.9em }
+  .ri-name{ width:4.3em }
+  .ri-bank{ width:5em }
+}
+@media (max-width: 340px) {
+  /* (2) 아무리 줄여도 한 줄에는 못 담는다. 이때만 두 줄로 나눈다.
+         윗줄 날짜·이름·은행 / 아랫줄 상품명. 칸 폭은 그대로라 세로줄은 계속 맞는다 */
+  .rolling-item{ flex-wrap:wrap; align-content:center; row-gap:1px }
+  .ri-date{ order:1 }
+  .ri-name{ order:2 }
+  .ri-bank{ order:3 }
+  .ri-plan{ order:4; width:100% }
+}
+
+/* ===== 폰에서 명단이 히어로 안(신청폼 바로 앞)으로 들어갔을 때의 모습 (2026-08-21) =====
+   자리를 옮기는 일은 맨 아래 스크립트가 하고, 여기서는 옮겨간 자리에 맞게 옷만 갈아입힌다.
+   .hero-inner 의 자식일 때만 걸리는 규칙이라 컴퓨터 화면(원래 자리)에는 영향이 없다. */
+@media (max-width:768px){
+  .hero-inner > .live-section{
+    background:transparent; border-top:none;
+    padding:0; margin:0; width:100%;
+  }
+  /* 신청 직전에 다른 페이지로 빠져나가는 문을 없앤다 (명단은 위쪽 메뉴에도 있다) */
+  .hero-inner > .live-section .rolling-more{ display:none }
+  /* 히어로 배경색과 머리띠 색이 거의 같아 묻히므로, 짙은 남색으로 바꾸고 카드처럼 띄운다 */
+  .hero-inner > .live-section .rolling-col{
+    border-radius:10px; box-shadow:0 12px 28px rgba(4,18,60,.35);
+  }
+  .hero-inner > .live-section .rolling-col-header.type-cash{ background:#0B2E5C }
+  .hero-inner > .live-section .rolling-wrap{ border-color:#c7dcff }
+}
+/* 안전장치: 폭이 바뀌는 신호를 브라우저가 빠뜨려 명단이 히어로 안에 남더라도
+   컴퓨터 화면이 세 칸으로 깨지지 않게 막는다. 신호가 오면 곧바로 원래 자리로 돌아간다. */
+@media (min-width:769px){
+  .hero-inner > .live-section{ display:none !important }
+}
+
+/* ===== 아래 고정 띠가 푸터 글씨를 가리지 않게 (2026-08-24) =====
+   띠는 화면에 붙어 다니는데 페이지는 푸터에서 딱 끝나 버려, 맨 아래로 내려가면
+   띠가 푸터 마지막 글줄을 덮었다(컴퓨터 38px, 폰 28px 가려짐 — 실측).
+   푸터 안쪽 아래에 띠 높이만큼 빈 자리를 만들어 스크롤이 그만큼 더 내려가게 한다.
+   빈 자리는 푸터와 같은 남색이라 안 보이고, 띠는 글자가 없는 그 자리 위에 얹히므로
+   띠 안의 단추를 누르는 데도 아무 영향이 없다.
+   ※ 이 규칙은 파일 맨 끝에 있어야 앞의 footer 설정(padding: 40px 20px)을 이긴다 */
+@media (max-width: 768px) { footer { padding-bottom: 108px; } }  /* 폰 띠 68 + 여백 40 */
+@media (min-width: 769px) { footer { padding-bottom: 139px; } }  /* PC 카드 99(여백24+높이75) + 여백 40 */
+/* ===== 대표 약속 카드 (2026-08-21 추가) ===== */
+.promise { background:#ffffff; padding:34px 0 64px; text-align:center; }
+/* 2026-08-31 대표 사진(얼굴) 제거.
+   왼쪽 사진칸이 없어져 글씨 한 칸만 남는다. 1100px 를 다 쓰면 한 줄이 너무 길어
+   읽기 나쁘므로, 카드 폭을 760px 로 줄여 가운데에 놓는다. */
+.promise-card {
+  margin:30px auto 0; display:block; max-width:760px;
+  background:#fff; border:1px solid var(--border); border-radius:20px; overflow:hidden;
+  box-shadow:0 4px 24px rgba(15,42,90,0.10); text-align:left;
+}
+.promise-body { padding:36px 40px 32px; }
+.promise-head { font-size:22px; font-weight:900; letter-spacing:-0.5px; line-height:1.4; margin-bottom:22px; }
+.promise-head em { font-style:normal; color:var(--primary); }
+.promise-list { list-style:none; display:flex; flex-direction:column; gap:18px; }
+.promise-list li { display:flex; gap:14px; }
+.promise-num { flex:0 0 30px; height:30px; border-radius:9px; background:var(--primary); color:#fff;
+  font-size:15px; font-weight:900; display:flex; align-items:center; justify-content:center; margin-top:2px; }
+.promise-list strong { display:block; font-size:17px; font-weight:800; letter-spacing:-0.3px; margin-bottom:3px; }
+.promise-list p { font-size:14px; color:var(--gray); line-height:1.65; }
+.promise-oath { margin-top:26px; padding-top:20px; border-top:1px dashed var(--border);
+  display:block; }
+.promise-oath p { font-size:13.5px; color:#475569; line-height:1.6; margin-bottom:14px; }
+.promise-oath p b { color:var(--dark); font-weight:800; }
+.promise-sign { display:flex; align-items:center; justify-content:flex-end; gap:12px; padding-right:44px; }
+.promise-sign span { font-size:12px; color:var(--gray); white-space:nowrap; }
+.promise-sign img { width:126px; display:block; margin:0; }
+.promise-docs { margin-top:24px; }
+.promise-docs .lbl { font-size:14px; color:var(--gray); margin-bottom:12px; }
+.promise-docs-row { display:flex; gap:20px; justify-content:center; }
+.promise-doc { width:240px; border:1px solid var(--border); border-radius:12px; background:#fff; padding:10px 10px 12px;
+  cursor:zoom-in; transition:transform .2s, box-shadow .2s; box-shadow:0 2px 10px rgba(15,42,90,0.07); }
+.promise-doc:hover { transform:translateY(-3px); box-shadow:0 10px 24px rgba(15,42,90,0.14); }
+.promise-doc img { width:100%; aspect-ratio:1024/1448; object-fit:cover; object-position:top; border-radius:7px; display:block; background:#f8fafc; }
+.promise-doc span { display:block; margin-top:9px; font-size:12.5px; font-weight:700; color:#334155; text-align:center; }
+.promise-viewer { position:fixed; inset:0; background:rgba(15,23,42,0.88); display:none; align-items:center; justify-content:center; padding:30px; z-index:9999; cursor:zoom-out; }
+.promise-viewer.on { display:flex; }
+.promise-viewer img { max-width:100%; max-height:100%; border-radius:8px; }
+@media (max-width: 768px) {
+  .promise { padding:24px 0 44px; }
+
+  .promise-body { padding:24px 20px 26px; }
+  .promise-head { font-size:19px; margin-bottom:18px; }
+  .promise-list strong { font-size:16px; }
+  .promise-oath p { margin-bottom:12px; }
+  .promise-sign { gap:8px; padding-right:48px; }
+  /* 2026-09-07 12px 미만 글씨 정리 */ .promise-sign span { font-size:12px; }
+  .promise-sign img { width:80px; }
+  .promise-docs-row { gap:12px; }
+  .promise-doc { width:calc(50% - 6px); }
+}
+
+/* 아주 좁은 폰(320칸 안팎)에서도 날짜·서명이 한 줄에 들어가도록 */
+@media (max-width: 380px) {
+  .promise-sign { padding-right:48px; gap:6px; }
+  .promise-sign span { font-size:12px; }
+  .promise-sign img, .sign-img { width:74px; }
+}
+</style>
+
+<style>
+/* ===== 신청 별도창(모달) — 2026-08-25 =====
+   첫 화면에서 번호부터 묻지 않고, 아래 고정 띠의 단추를 눌렀을 때만 부드럽게 나타난다. */
+.apply-overlay{
+  position:fixed; inset:0; z-index:2100;
+  background:rgba(6,18,54,.62);
+  display:flex; align-items:flex-start; justify-content:center;
+  padding:62px 16px 28px;
+  overflow-y:auto; -webkit-overflow-scrolling:touch;
+  opacity:0; visibility:hidden;
+  transition:opacity .30s ease, visibility 0s linear .30s;
+}
+.apply-overlay.open{ opacity:1; visibility:visible; transition:opacity .30s ease, visibility 0s linear 0s; }
+.apply-modal{
+  position:relative; width:100%; max-width:420px; margin:auto;
+  transform:translateY(18px) scale(.985);
+  transition:transform .34s cubic-bezier(.22,.72,.28,1);
+}
+.apply-overlay.open .apply-modal{ transform:none; }
+/* 히어로 안에 있을 때 쓰던 폭 규칙을 창 안에서는 풀어준다 */
+.apply-modal .hero-form-wrap{ flex:none; width:100%; }
+.apply-modal .form-card{ max-width:100%; margin:0; box-shadow:0 30px 80px rgba(2,10,40,.55); }
+/* 화면이 낮거나 요청사항을 펴서 내용이 길어지면 '창 안쪽'만 굴러가게 한다.
+   창 전체가 굴러가면 위에 달린 닫기(X) 단추가 화면 밖으로 밀려 안 보였다. */
+.apply-modal{ max-height: calc(100vh - 96px); max-height: calc(100dvh - 96px); }
+.apply-modal .form-card{
+  max-height: calc(100vh - 96px); max-height: calc(100dvh - 96px);
+  overflow-y:auto; -webkit-overflow-scrolling:touch; overscroll-behavior:contain;
+}
+.apply-close{
+  position:absolute; top:-44px; right:0;
+  width:36px; height:36px; padding:0; border:none; border-radius:50%;
+  background:rgba(255,255,255,.92); color:#0f172a;
+  font-size:15px; line-height:1; cursor:pointer;
+  display:flex; align-items:center; justify-content:center;
+  box-shadow:0 4px 14px rgba(0,0,0,.28);
+  font-family:'Pretendard Variable', Pretendard, sans-serif;
+}
+.apply-close:hover{ background:#fff; }
+/* 창이 떠 있는 동안 뒷 페이지가 같이 밀리지 않게 */
+body.apply-open{ overflow:hidden; }
+
+/* 개인정보처리방침·약관 창은 신청창(2100) '안에서' 열리므로 그보다 위여야 한다.
+   원래 2000이라 신청창 뒤에 가려져 아예 안 보였다 (2026-08-25 실측) */
+.privacy-overlay{ z-index:2300; }
+
+/* ===== 폼이 빠진 첫 화면 — 컴퓨터에서도 가운데로 모은다 (2026-08-25) =====
+   오른쪽 신청칸이 사라져 왼쪽으로 치우쳐 보이므로, 폰 화면과 같은 가운데 정렬로 맞춘다.
+   컴퓨터에서 배지 두 개가 '화면 왼쪽 밖에서 뻗어 들어오는 띠' 모양이었는데,
+   가운데 정렬과는 맞지 않으므로 그 설정을 풀고 폰과 똑같이 가운데 놓인 각진 배지로 바꾼다.
+   (렌탈 페이지가 이미 같은 방식이다) */
+@media (min-width:769px){
+  .hero-content{ max-width:820px; margin-left:auto; margin-right:auto; text-align:center; }
+  .hero-badge{
+    display:block; width:fit-content;
+    margin-left:auto; margin-right:auto;
+    padding-left:16px; padding-right:16px;
+    border-left:1px solid rgba(255,255,255,0.3);
+    border-radius:0;
+  }
+  .hero-cash-badge{
+    margin-left:auto; margin-right:auto;
+    padding-left:39px; padding-right:39px;
+    border-radius:0;
+  }
+  .dh-ledger{ margin-left:auto; margin-right:auto; }
+  .hero-stats{ margin-left:auto; margin-right:auto; justify-content:center; }
+}
+
+</style>
+
+<style>
+/* ===== 신뢰 숫자 칸 (2026-08-25) =====
+   ★ 바탕은 흰색. 파란 숫자는 연한 파랑 위에서 묻히고 흰 바탕에서 가장 또렷하다.
    ★ 위아래 여백은 --배수 로 조절한다.
-   ★ 세 칸이 모두 한 줄이라 글씨 크기를 똑같이 둔다. */
+   ★ 세 칸이 모두 한 줄이라 글씨 크기를 똑같이 둔다(13년간 / 10만+ / 2만+).
+     업력을 뒷받침하는 '2012년부터'는 아래 작은 줄로 따로 살린다.
+   ★ 항목 이름은 알약을 없애고 글씨만 크게 남긴다. 알약 안에 있을 때보다 훨씬 잘 보인다. */
 .trust-nums{
   --배수:4;
   background:#ffffff;
+  /* 위는 --배수 그대로, 아래는 그 절반(배수 4 -> 기본의 2배)만 준다.
+     아래를 좁혀야 사은품 지급명단이 숫자 바로 밑에 가깝게 붙는다 */
   padding: calc(84px * var(--배수)) 20px calc(76px * var(--배수) / 2);
 }
 .trust-nums-inner{
@@ -1454,30 +1961,40 @@ html { scroll-behavior: auto; scroll-padding-top: 78px; }
   display:block; text-align:center;
   font-size:100px; font-weight:900; color:#1257C9;
   letter-spacing:-4px; line-height:1.05;
-  white-space:nowrap;
+  white-space:nowrap;   /* 폭이 빠듯할 때 '13년간'이 두 줄로 접히던 것을 막는다 */
   font-variant-numeric:tabular-nums;
 }
 .tn-tail{ font-size:0.6em; font-weight:800; letter-spacing:-1.5px; line-height:1.15; }
+/* '100,000+' 는 여덟 자리라 그대로면 칸을 넘는다 */
+.trust-nums.표기-전체 .tn-in{ font-size:62px; letter-spacing:-2.5px; }
+/* 항목 이름 : 알약 없이 큰 글씨로 */
 .tn-label{
   display:block; margin-top:24px;
   background:none; color:#0B2E5C;
   font-size:66px; font-weight:800; letter-spacing:-3px;
   padding:0; border-radius:0; white-space:nowrap; line-height:1.15;
 }
+
+/* 지급명단 아래를 원래(72px)의 2배로 넓혀 '대표 약속' 칸을 아래로 민다 */
+.live-section{ margin-bottom:144px; }
+
 /* 업력을 뒷받침하는 작은 줄 — 숫자들과 부딪히지 않게 아래에 조용히 둔다 */
 .tn-since{
   margin:44px 0 0; text-align:center;
   font-size:19px; font-weight:600; color:#64748b; letter-spacing:-0.4px;
 }
-/* 지급명단 아래를 넓혀 '대표 약속' 칸을 아래로 민다 */
-.live-section{ margin-bottom:144px; }
+
 @media (max-width:768px){
-  .trust-nums{ padding: calc(35px * var(--배수)) 10px calc(32px * var(--배수) / 2); }
+  .trust-nums{
+    /* 폰은 화면이 좁아 컴퓨터와 같은 여백을 쓰면 빈 곳만 보인다 -> 기준값을 낮춘다
+       (컴퓨터 84/76 -> 폰 35/32) */
+    padding: calc(35px * var(--배수)) 10px calc(32px * var(--배수) / 2);
+  }
   .tn-item{ padding:0 3px; }
   .tn-in{ font-size:50px; letter-spacing:-2px; }
+  .trust-nums.표기-전체 .tn-in{ font-size:27px; letter-spacing:-1px; }
   .tn-label{ font-size:28px; letter-spacing:-2px; margin-top:12px; }
   .tn-since{ font-size:13px; margin-top:24px; }
-  .live-section{ margin-bottom:88px; }
 }
 
 /* ===== 숫자 칸 등장 효과 — 늦게 시작해서 천천히 (2026-08-27) =====
@@ -1497,222 +2014,371 @@ html { scroll-behavior: auto; scroll-padding-top: 78px; }
   .늦게떠오름{ opacity:1 !important; transform:none !important; transition:none !important; }
 }
 
-/* 명단 제목 색을 진한 남색으로 (index.html 과 같은 이유) —
-   바로 위 신뢰 숫자 칸이 '숫자=밝은파랑 / 항목이름=남색'을 쓰므로 위계를 맞춘다 */
-.rolling-col-header.type-cash{ background:#0B2E5C; color:#fff }
+/* ===== 첫 화면 설명 글씨 키우기 (2026-08-25) =====
+   통계 두 칸이 히어로에서 빠지면서 세로 자리가 생겼다. 그만큼 설명 문구를 키운다.
+   핵심 낱말(당일 현금 지급 / 차액을 보상해드립니다)은 한 단계 더 크게 해 눈이 먼저 걸리게 한다. */
+.hero-desc{ font-size:26px; line-height:1.45; margin-bottom:6px; }
+.hero-sub-assurance{ font-size:26px; line-height:1.45; }
+.hero-desc strong, .hero-sub-assurance strong{ font-size:1.22em; font-weight:900; }
+/* 글씨를 키운 만큼 명세표 아래 여백을 당겨 와 마지막 줄이 화면 밖으로 밀리지 않게 한다 */
+.dh-ledger{ margin-bottom:8px; }
+@media (max-width:768px){
+  .hero-desc{ font-size:18px; line-height:1.5; margin-bottom:6px; }
+  .hero-sub-assurance{ font-size:18px; line-height:1.5; }
+  .hero-desc strong, .hero-sub-assurance strong{ font-size:1.18em; }
+  /* 글씨를 키운 만큼 위쪽 여백을 당겨 온다.
+     안 그러면 마지막 줄('차액을 보상해드립니다')이 아래 흰 띠에 가린다 */
+  .hero{ padding-top:28px; }
+  .dh-ledger{ margin-bottom:8px; }
+}
 
-/* ===== 지급명단 굴림칸을 더 많이 보이게 (2026-08-31) =====
-   메인(index)에는 8/25 에 들어간 규칙인데 이 페이지만 옛 높이로 남아 있었다.
-   컴퓨터는 5줄, 폰은 아예 한 줄만 보여서 '몇 명 안 되는구나' 로 읽혔다.
-   보이는 양을 늘리면 속도를 올리지 않아도 '많다' 가 전달된다.
-   높이 = 한 줄 66px x 줄 수 + 상자 아래 테두리 1px */
-.rolling-wrap{ height:536px; }        /* 컴퓨터 8줄 (66x8+1, 줄이 1.5배라 353 -> 536) */
+/* ===== 지급명단 굴림칸을 더 많이 보이게 (2026-08-25) =====
+   한 번에 5줄(컴퓨터)·3줄(폰)만 보여서 '몇 명 안 되는구나'로 읽혔다.
+   보이는 양을 늘리면 속도를 올리지 않아도 '많다'가 전달된다.
+   높이 = 한 줄 44px x 줄 수 + 상자 아래 테두리 1px */
+.rolling-wrap{ height:536px; }        /* 컴퓨터 8줄 (66x8+1, 줄이 1.5배가 되어 353 -> 536) */
+
+/* 명단 제목 색을 진한 남색으로 통일 (2026-08-25).
+   전에는 컴퓨터 밝은파랑 / 폰 남색으로 갈려 있었다.
+   남색이 흰 글자 대비가 2.4배 높고(12.9:1 vs 5.3:1),
+   바로 위 신뢰 숫자 칸에서 '숫자=밝은파랑 / 항목이름=남색'을 이미 쓰고 있어 위계도 맞다. */
+.rolling-col-header.type-cash{ background:#0B2E5C; color:#fff; }
 @media (max-width:768px){
   .rolling-wrap{ height:221px; }      /* 폰 5줄 */
+  /* 명단이 이제 폰에서도 이 자리에 있으므로, 대표 약속을 미는 여백을 여기에 준다
+     (컴퓨터 144px 의 폰 몫) */
+  .live-section{ margin-bottom:88px; }
 }
 
-/* ===== 대표 약속 카드 (index.html 에서 옮김) ===== */
-.promise { background:#ffffff; padding:34px 0 64px; text-align:center; }
-/* 2026-08-31 대표 사진(얼굴) 제거.
-   왼쪽 사진칸이 없어져 글씨 한 칸만 남는다. 1100px 를 다 쓰면 한 줄이 너무 길어
-   읽기 나쁘므로, 카드 폭을 760px 로 줄여 가운데에 놓는다. */
-.promise-card {
-  margin:30px auto 0; display:block; max-width:760px;
-  background:#fff; border:1px solid var(--border); border-radius:20px; overflow:hidden;
-  box-shadow:0 4px 24px rgba(15,42,90,0.10); text-align:left;
+/* ===== 나머지 칸들의 위아래 여백 (2026-08-25) =====
+   기준은 원래 값(컴퓨터 72px / 폰 52px).
+   좌우 여백은 건드리지 않는다(.promise 는 좌우가 0 이라 통째로 바꾸면 깨진다). */
+:root{ --칸배수:2.5; --칸배수폰:1.75; }
+.promise,
+.trust-section,
+.compare,
+.benefits,
+.plans,
+.process,
+.reviews,
+.faq{
+  padding-top: calc(72px * var(--칸배수));
+  padding-bottom: calc(72px * var(--칸배수));
 }
-.promise-body { padding:36px 40px 32px; }
-.promise-head { font-size:22px; font-weight:900; letter-spacing:-0.5px; line-height:1.4; margin-bottom:22px; }
-.promise-head em { font-style:normal; color:var(--primary); }
-.promise-list { list-style:none; display:flex; flex-direction:column; gap:18px; }
-.promise-list li { display:flex; gap:14px; }
-.promise-num { flex:0 0 30px; height:30px; border-radius:9px; background:var(--primary); color:#fff;
-  font-size:15px; font-weight:900; display:flex; align-items:center; justify-content:center; margin-top:2px; }
-.promise-list strong { display:block; font-size:17px; font-weight:800; letter-spacing:-0.3px; margin-bottom:3px; }
-.promise-list p { font-size:14px; color:var(--gray); line-height:1.65; }
-.promise-oath { margin-top:26px; padding-top:20px; border-top:1px dashed var(--border); display:block; }
-.promise-oath p { font-size:13.5px; color:#475569; line-height:1.6; margin-bottom:14px; }
-.promise-oath p b { color:var(--dark); font-weight:800; }
-.promise-sign { display:flex; align-items:center; justify-content:flex-end; gap:12px; padding-right:44px; }
-.promise-sign span { font-size:12px; color:var(--gray); white-space:nowrap; }
-.promise-sign img { width:126px; display:block; margin:0; }
-.promise-docs { margin-top:24px; }
-.promise-docs .lbl { font-size:14px; color:var(--gray); margin-bottom:12px; }
-.promise-docs-row { display:flex; gap:20px; justify-content:center; }
-.promise-doc { width:240px; border:1px solid var(--border); border-radius:12px; background:#fff; padding:10px 10px 12px;
-  cursor:zoom-in; transition:transform .2s, box-shadow .2s; box-shadow:0 2px 10px rgba(15,42,90,0.07); }
-.promise-doc:hover { transform:translateY(-3px); box-shadow:0 10px 24px rgba(15,42,90,0.14); }
-.promise-doc img { width:100%; aspect-ratio:1024/1448; object-fit:cover; object-position:top; border-radius:7px; display:block; background:#f8fafc; }
-.promise-doc span { display:block; margin-top:9px; font-size:12.5px; font-weight:700; color:#334155; text-align:center; }
-.promise-viewer { position:fixed; inset:0; background:rgba(15,23,42,0.88); display:none; align-items:center; justify-content:center; padding:30px; z-index:9999; cursor:zoom-out; }
-.promise-viewer.on { display:flex; }
-.promise-viewer img { max-width:100%; max-height:100%; border-radius:8px; }
-@media (max-width: 768px) {
-  .promise { padding:24px 0 44px; }
-  .promise-body { padding:24px 20px 26px; }
-  .promise-head { font-size:19px; margin-bottom:18px; }
-  .promise-list strong { font-size:16px; }
-  .promise-oath p { margin-bottom:12px; }
-  .promise-sign { gap:8px; padding-right:48px; }
-  /* 2026-09-07 12px 미만 글씨 정리 */ .promise-sign span { font-size:12px; }
-  .promise-sign img { width:80px; }
-  .promise-docs-row { gap:12px; }
-  .promise-doc { width:calc(50% - 6px); }
-}
-/* 아주 좁은 폰(320칸 안팎)에서도 날짜·서명이 한 줄에 들어가도록 */
-@media (max-width: 380px) {
-  .promise-sign { padding-right:48px; gap:6px; }
-  .promise-sign span { font-size:12px; }
-  .promise-sign img, .sign-img { width:74px; }
+@media (max-width:768px){
+  .promise,
+  .trust-section,
+  .compare,
+  .benefits,
+  .plans,
+  .process,
+  .reviews,
+  .faq{
+    /* 폰은 화면이 좁아 같은 배율을 그대로 쓰면 빈 곳만 길어진다.
+       단추를 올릴 때 폰은 늘어나는 폭의 절반만 따라 올라간다(--칸배수폰). */
+    padding-top: calc(52px * var(--칸배수폰));
+    padding-bottom: calc(52px * var(--칸배수폰));
+  }
 }
 
-/* ===== 당일지급·공식 인증 그림 칸 (index.html 에서 옮김) ===== */
-.trust-section { background:#ffffff; }
-.trust-solution { margin:32px 0 96px; }
-.trust-solution-img { width:100%; max-width:480px; aspect-ratio:811/787; display:block; margin:0 auto; }
-.trust-cert { text-align:center; margin-top:60px; }
-.trust-cert-img { width:100%; max-width:720px; aspect-ratio:1060/822; border-radius:16px; box-shadow:0 4px 24px rgba(15,42,90,0.10); display:block; margin:0 auto 28px; }
-
-/* ===== 간이 신청칸의 개인정보 안내 (2026-08-27 새로 넣음) =====
-   옆칸·아래 띠에서 번호를 받으면서 동의 표시가 없던 것을 메운다 */
-.mini-consent{
-  margin:8px 0 0; font-size:12px; line-height:1.45; text-align:center;
-  color:#94a3b8;
+/* ==========================================================
+   v2 계산기 (2026-08-25)
+   디자인보드(안티그라비티\당현함 디자인보드\)를 따른다.
+   ⚠ 이 파일 맨 마지막 스타일 닫는 곳 바로 앞에 있어야 한다.
+     폰용 규칙이 기본 정의보다 앞에 오는 곳이 있어, 위쪽에 적으면 덮인다.
+     (주석 안에도 스타일 끝 태그를 글자로 적지 말 것 — 거기서 스타일이 닫혀버린다)
+   ========================================================== */
+.dh-calc {
+  --dh-blue:#1257C9; --dh-navy:#0B2E5C; --dh-paper:#EFF6FF;
+  --dh-text:#191F28; --dh-body:#333D4B; --dh-sub:#5F6672; --dh-dim:#8A9099; --dh-line:#EEEFF3;
+  background:#fff; border:1px solid var(--dh-line); border-radius:12px;
+  padding:20px; color:var(--dh-body); text-align:left;
 }
-.mini-consent a{ color:#94a3b8; text-decoration:underline; }
-.mini-consent.desk{
-  margin:6px auto 0; max-width:860px;
-  color:rgba(255,255,255,0.72); font-size:12px;
+.dh-calc-title {
+  font-size:19px; font-weight:800; color:var(--dh-text);
+  margin:0 0 16px; letter-spacing:-0.3px;
 }
-.mini-consent.desk a{ color:rgba(255,255,255,0.85); }
+.dh-calc-q { margin-bottom:16px; }
+.dh-calc-label { display:block; font-size:13px; font-weight:500; color:var(--dh-sub); margin-bottom:8px; }
+/* "함께 하면 +50만" — 끄는 것을 '깎임'이 아니라 '해당 없음'으로 읽게 하는 표시.
+   색을 늘리지 않으려고 보조색 그대로 두고 굵기만 올린다. */
+.dh-plus { font-style:normal; font-size:12px; font-weight:800; color:var(--dh-sub); margin-left:4px; }
+.dh-plus b { font-weight:800; }   /* 통신사에 따라 바뀌는 유심 금액 — 굵기는 옆 글씨와 같게 */
 
-/* 아래 고정 띠에 안내 한 줄이 더 붙어 띠가 높아졌다(116 -> 약 137).
-   푸터 마지막 글줄이 띠에 가리지 않도록 그만큼 빈 자리를 더 준다. */
-@media (min-width: 769px) { footer { padding-bottom: 180px; } }
-</style>
-<style>
-/* ══════════════ 첫 화면 문단 글자 크기 바로잡기 (2026-08-31) ══════════════
-   ★ 무엇이 잘못돼 있었나 —
-     320번 줄에 `.hero p { font-size: clamp(15px, 2vw, 19px) }` 가 있다.
-     첫 화면 안의 '모든 문단'에 걸리는 규칙인데, 차액보상 박스의 줄들과
-     ⏰ 줄이 전부 문단(<p>)이라 여기에 걸린다.
-     그리고 `.hero p`(클래스1+요소1)가 `.hg-main`(클래스1)보다 우선순위가 높다.
-     그래서 설계한 크기가 하나도 안 나오고 전부 한 가지로 뭉개져 있었다(실측 1425 화면):
+/* 고른 칸 / 안 고른 칸
+   ⚠ 안 고른 칸 글씨에 흐림색(#8A9099)을 쓰면 칙칙하다. 본문색을 쓴다.
+   ⚠ transition 에 background(단축)를 쓰면 클래스가 바뀌어도 배경이 다시 안 칠해진다.
+     반드시 background-color 로 적을 것. */
+.dh-calc-carriers, .dh-calc-opts { display:flex; gap:8px; }
+.dh-carrier, .dh-opt {
+  flex:1; min-height:48px; border:1.5px solid var(--dh-line); background:#fff;
+  border-radius:8px; padding:12px 4px; cursor:pointer; text-align:center;
+  font-family:inherit; font-size:15px; font-weight:600; color:var(--dh-body);
+  transition:border-color .18s, background-color .18s, color .18s;
+}
+.dh-carrier { font-size:16px; font-weight:800; }
+.dh-opt { font-size:13px; }
+.dh-carrier:hover, .dh-opt:hover { border-color:#CFD8E3; }
+.dh-carrier.on, .dh-opt.on {
+  border-color:var(--dh-blue); background:var(--dh-paper);
+  color:var(--dh-blue); font-weight:800;   /* 테두리와 같은 색 — 칸이 한 덩어리로 읽힌다 */
+}
 
-        차액 120% 보상 약속   설계 14  ->  실제 19
-        다른 곳이 ... 더 준다면 설계 21  ->  실제 19
-        그 차액의 120%를 ...   설계 37  ->  실제 19   ← 가장 중요한 줄이 절반 크기로
-        비교하신 조건을 ...    설계 13  ->  실제 19
-        ⏰ 오늘 오후 5:30 ...  설계 13  ->  실제 19
+.dh-calc-result { margin-top:16px; padding-top:16px; border-top:1px solid var(--dh-line);
+                  text-align:center; }
+.dh-calc-result-label { font-size:13px; color:var(--dh-sub); }
+/* 2026-09-04: 줄 전체를 900 -> 800 으로 한 단계 낮췄다 (사장님 지시).
+   한글은 900 에서 획 사이가 메워져 덩어리로 보인다. 크기는 34px 그대로다.
+   '+ 추가혜택'은 inherit 이라 이 줄을 따라 함께 800 이 된다. */
+.dh-calc-result-num { font-size:34px; font-weight:800; color:var(--dh-blue);
+                      line-height:1.15; letter-spacing:-1.2px; font-variant-numeric:tabular-nums; }
+.dh-calc-result-num em { font-style:normal; font-size:16px; font-weight:800;
+                         color:var(--dh-sub); letter-spacing:0; }
+/* 금액 옆 "+ 추가혜택" — 132만원이 끝이 아니라는 표시. 조건을 다 꺼도 늘 남는다.
+   2026-09-04: 크기를 16px -> 옆의 '만원'과 같게 키웠다 (사장님 지시).
+   inherit 로 둔 까닭: 나중에 금액 글씨 크기를 바꿔도 이 글자가 저절로 따라간다. */
+.dh-calc-plus { font-size:inherit; font-weight:inherit; color:var(--dh-blue);
+                letter-spacing:0; white-space:nowrap; }
+/* 무엇을 더해 그 금액이 되는지 — 손님이 "더 받는다"를 눈으로 확인하는 줄 */
+.dh-calc-break { font-size:15px; font-weight:600; color:var(--dh-body); margin-top:8px;
+                 line-height:1.6; }
+.dh-calc-break b { color:var(--dh-blue); font-weight:800; }
+.dh-calc-break b.extra { color:#F26100; white-space:nowrap; }   /* 금액이 없는 항목 — 파란 숫자들과 구분 */
+.dh-calc-break .soft { color:var(--dh-sub); font-weight:500; white-space:nowrap; }
+/* 명세표에 있던 '추가혜택 - 상담 시 안내'를 계산기 안으로 옮긴 줄 (2026-08-28).
+   원래 계산기에도 같은 말이 있었지만 13px 회색이라 사실상 안 보였다.
+   명세표에서 쓰던 주황(#F26100)으로 되살려, 금액을 다 알려주지 않는다는 것을 눈에 띄게 한다. */
+.dh-calc-secret { display:flex; align-items:baseline; gap:8px; margin-top:12px;
+                  padding-top:12px; border-top:1px dotted rgba(255,107,0,.45); }
+.dh-calc-secret .s-t { font-size:16px; font-weight:800; color:#F26100 }
+.dh-calc-secret .s-d { flex:1; border-bottom:1px dotted rgba(255,107,0,.45); transform:translateY(-4px) }
+.dh-calc-secret .s-v { font-size:19px; font-weight:800; color:#F26100; white-space:nowrap }
+.dh-calc-result-note { font-size:12px; color:var(--dh-dim); margin-top:8px; line-height:1.5; }
 
-     박스가 밋밋해 보이던 까닭이 디자인이 아니라 이것이었다.
-
-   ★ 이 함정은 전에도 걸렸던 자리다 —
-     `.hg-line` 의 margin-bottom 과 `.hero-guarantee p` 의 opacity 에는 이미
-     덧대어 고친 흔적이 있다. 여백과 투명도는 고쳤는데 글자 크기만 놓쳤다.
-     `.hero-desc` 는 1594번 줄에서 `.hero .hero-desc` 로 제대로 고쳐 두었다.
-
-   ★ 고치는 방법 — 선택자를 한 단계 올려 `.hero p` 를 이기게 한다.
-     `.hero-guarantee .hg-main` 은 클래스가 둘이라 `.hero p` 를 이긴다.
-     원래 값을 바꾸는 게 아니라, 원래 값이 나오게 하는 것이다.
-
-   ★ 새 규칙을 이 파일에 더 넣을 때 —
-     첫 화면 안의 문단에 크기를 주려면 반드시 `.hero` 나 `.hero-guarantee` 를
-     앞에 붙일 것. 클래스 하나짜리 선택자는 `.hero p` 에 진다. */
-.hero-guarantee .hg-badge{ font-size:14px; }
-.hero-guarantee .hg-line { font-size:clamp(16px, 2.1vw, 21px); }
-.hero-guarantee .hg-main { font-size:clamp(23px, 3.5vw, 37px); }
-.hero-guarantee .hg-note { font-size:13px; }
-.hero .hero-urgency{ font-size:13px; }
+/* 주 버튼 — 그라데이션 없음, 높이 48px */
+.dh-calc-cta { display:block; width:100%; height:48px; margin-top:16px; padding:0; border:none;
+               border-radius:8px; background:var(--dh-blue); color:#fff; font-size:16px;
+               font-weight:800; cursor:pointer; font-family:inherit; transition:background-color .18s; }
+.dh-calc-cta:hover { background:#1257C9; }
+.dh-calc-cta:focus-visible, .dh-carrier:focus-visible, .dh-opt:focus-visible {
+  outline:2px solid var(--dh-navy); outline-offset:2px; }
 
 @media (max-width:768px){
-  .hero-guarantee .hg-badge{ font-size:13px; }
+  .dh-calc { padding:16px; }
+  .dh-calc-q { margin-bottom:12px; }
+  .dh-calc-title { font-size:16px; margin-bottom:12px; }
+  .dh-opt { font-size:12px; padding:12px 4px; }
 }
 
-/* 폴드5 전면(344)에서 낱말 가운데가 끊겼다(실측). 낱말 단위로만 끊고,
-   끝줄에 한 낱말만 남지 않도록 줄을 고르게 나눈다(첫 페이지 질문줄과 같은 방법). */
-.hero-guarantee p{ word-break:keep-all; text-wrap:balance; }
 
+/* 인터넷 속도 칸 — 속도값과 함께 '누가 쓰는지' 안내를 붙인다 (2026-08-26)
+   전에는 '혼자 조용히 / 가족이 여럿'처럼 쓰는 모습만 물었는데,
+   손님이 이미 아는 말(100M·500M·1G)을 먼저 보여주고 안내를 곁들이는 쪽으로 바꿬다. */
+/* ===== 세 칸의 줄맞춤 (2026-08-31) =====
+   전에는 칸 안쪽이 세로 가운데 정렬이라, 칸마다 줄 수가 다르면 글자가 전부 어긋났다.
+     · 100 칸   = 숫자 1줄 + 안내 1줄 = 2줄
+     · 500 칸   = '추천' 배지가 숫자줄 안에서 아래로 꺾여 3줄
+     · 1Gbps 칸 = 안내문이 길어 2줄로 꺾여 3줄
+   칸 높이(테두리)는 원래도 셋이 같았다. 어긋난 것은 안쪽 글자였다.
+   고친 방법 세 가지:
+     1) 가운데 정렬 -> 위 정렬. 위에서부터 쌓이니 첫 줄 높이가 저절로 같아진다.
+     2) '추천' 배지를 숫자줄에서 안내줄로 옮겼다(글자는 그대로).
+        칸 오른쪽 위 모서리로 빼는 방법도 있었지만, 폰처럼 칸이 좁아지면
+        '500 Mbps' 와 배지가 겹친다(데스크탑에서도 여유가 4px뿐이었다).
+        안내줄로 옮기면 어느 폭에서도 겹치지 않는다.
+     3) 안내문 자리를 항상 두 줄(30px)로 비워 뒀다. 1Gbps 안내만 두 줄이라
+        나머지 칸에도 같은 자리를 마련해야 첫 줄이 같은 높이에서 시작한다. */
+.dh-speed {
+  display:flex; flex-direction:column; align-items:center; justify-content:flex-start;
+  gap:4px; padding:12px 4px; line-height:1.25;
+}
+.dh-speed-num {
+  display:flex; flex-wrap:nowrap; align-items:baseline; justify-content:center; gap:4px;
+  min-height:20px;               /* 16px x 1.25 = 한 줄. 셋 다 이 높이로 고정된다 */
+  font-size:16px; font-weight:800; color:var(--dh-text); letter-spacing:-0.3px;
+}
+.dh-speed-num em { font-style:normal; font-size:12px; font-weight:600; color:var(--dh-sub); }
+.dh-speed-guide {
+  display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:4px;
+  min-height:30px;               /* 12px x 1.25 x 두 줄 = 30. 안내문 자리를 항상 확보 */
+  font-size:12px; font-weight:500; color:var(--dh-sub);
+  letter-spacing:-0.2px; word-break:keep-all;
+}
+.dh-speed-badge {
+  font-style:normal; font-size:12px; font-weight:800;
+  color:var(--dh-blue); background:var(--dh-paper);
+  border-radius:999px; padding:2px 8px;   /* 안내줄에 들어가므로 위아래 여백을 4 -> 2 로 줄였다 */
+}
+/* 고른 칸에서는 숫자·단위·안내가 모두 같은 파랑으로 함께 움직인다 */
+.dh-speed.on .dh-speed-num,
+.dh-speed.on .dh-speed-num em,
+.dh-speed.on .dh-speed-guide { color:var(--dh-blue); }
+.dh-speed.on .dh-speed-badge { background:#fff; }
+</style>
+<style>
 /* ══════════════ 첫 화면 흰 바탕 (2026-08-31) ══════════════
-   첫 페이지(index)를 흰 바탕으로 바꾼 것과 짝을 맞춘다.
-   ★ 되돌리려면 이 묶음만 지우면 파란 첫 화면으로 정확히 돌아온다.
-   첫 페이지(index.html)에도 같은 성격의 묶음이 있다. 두 곳을 함께 보고 고칠 것.
+   경쟁사 실측: 펭귄통신·아정당·미소 모두 첫 화면이 흰 바탕이다.
+   ★ 왜 '덮어쓰는 묶음'으로 두는가 —
+     첫 화면 색을 정하는 규칙이 파일 곳곳(히어로·폰용·큰화면용)에 흩어져 있다.
+     그걸 하나하나 고치면 놓치는 데가 생긴다. 맨 뒤에서 한 번에 덮는 편이 안전하고,
+     되돌릴 때도 이 묶음만 지우면 파란 첫 화면으로 정확히 돌아온다.
+   ──────────────────────────────────────────────────────
+   흰 바탕으로 오면 색 세 가지를 못 쓰게 되어 함께 손봐야 한다:
+   ① 반투명 흰색 배지  ② 노란 강조 글씨  ③ 흰 배경 위의 흰 계산기 카드
+   ══════════════════════════════════════════════════════ */
 
-   흰 바탕으로 오면 첫 화면 글자 16곳 중 14곳이 안 보이게 된다(실측):
-     흰 글씨 12곳 -> 대비 1.0 / 노란 글씨 2곳 -> 대비 1.17~1.28
-   그래서 색을 통째로 다시 잡는다. 규칙은 첫 페이지와 같다 —
-     파랑 #1257C9 = 브랜드·행동 / 주황 #C24E00 = 돈·보상 이야기 */
-
-/* ① 바탕과 경계.
-   히어로 바로 아래 '신뢰 숫자' 칸이 이미 흰색이라, 둘 다 흰색이 되면
-   머리띠·첫 화면·신뢰 숫자 세 칸이 한 덩어리로 보인다. 옅은 선으로 나눈다. */
 .hero{
   background:#FFFFFF;
   color:#191F28;
-  border-top:1px solid #EEEFF3;
-  border-bottom:1px solid #EEEFF3;
+  border-top:1px solid #EEEFF3;   /* 머리띠도 흰색이라 경계를 옅은 선으로 남긴다 */
 }
 
-/* ② 맨 위 작은 배지 — 반투명 흰색이라 흰 바탕에서 사라진다 */
-.hero .hero-badge{
+/* ① 맨 위 작은 배지 — 반투명 흰색이라 흰 바탕에서 사라진다. 디자인보드 Paper Blue 로 */
+.hero-badge{
   background:#EFF6FF; border:1px solid #D6E4FB; color:#1257C9;
 }
 
-/* ③ 금액 배지 — 그라데이션을 뺀다.
-   #F26100 -> #FFB300 그라데이션이었는데, 그 위 흰 글씨 대비가
-   시작 2.86, 끝 1.79 로 오른쪽으로 갈수록 글씨가 사라졌다(실측).
-   파란 바탕에서는 배지가 도드라져 덜 티가 났지만 흰 바탕에서는 그대로 드러난다.
-   디자인보드에도 '그라데이션 금지'가 있다. 첫 페이지와 같은 단색 #F26100 으로.
-   ★ 바깥으로 번지는 그림자만 뺀다. 글자 그림자는 주황 위 흰 글씨를 받쳐 주므로 남긴다. */
-.hero .hero-cash-badge{
-  background:#F26100;
+/* ② 주황 금액 배지 — 바깥으로 번지는 그림자만 뺀다.
+   파란 바탕에서는 그 번짐이 배지를 띄워 줬지만, 흰 바탕에서는 지저분해 보인다.
+   ★ 글자 그림자(text-shadow)는 남긴다. 그건 바깥 배경과 상관없이 주황 위의 흰 글씨를
+     받쳐 주는 것이라, 빼면 오히려 읽기 어려워진다. */
+.hero-cash-badge{
   box-shadow:none;
-  /* 첫 페이지 배지에는 있는데 여기엔 없던 것 — 주황 위 흰 글씨(대비 2.86)를 받쳐 준다.
-     바깥 그림자와 달리 이건 글자를 읽기 쉽게 하는 것이라 흰 바탕에서도 남긴다. */
-  text-shadow:0 1px 3px rgba(0,0,0,0.25);
 }
 
-/* ④ 큰제목과 본문 */
+/* ③ 큰제목 — 노랑(#FEE500)은 흰 바탕에서 대비 1.1:1 이라 사실상 안 보인다.
+   Signal Blue(#1257C9, 대비 5.09)로 바꾼다. */
 .hero h1{ color:#191F28; }
-.hero h1 em{ color:#1257C9; }        /* 노랑 #FEE500 은 흰 바탕에서 대비 1.28 이라 안 보인다 */
-.hero .hero-desc{ color:#333D4B; }
-.hero .hero-desc strong{ color:#191F28; }
-.hero .hero-urgency{ color:#5F6672; }
+.hero h1 em{ color:#1257C9; }
 
-/* ⑤ 차액보상 박스 — 반투명 흰 바탕(10%)과 반투명 노란 테두리라 둘 다 흰 바탕에서 사라진다.
-   흰 카드에 옅은 테두리와 아주 옅은 그림자를 줘서 박스 모양을 되살린다.
-   ★ 처음엔 Paper Blue 를 깔았는데, 폰에서 '단 1원이라도' 가 16px 로 작아지면서
-     Paper Blue 위 주황 글씨 대비가 4.40 이 되어 작은 글씨 기준(4.5)에 못 미쳤다(실측 390).
-     흰 바탕이면 4.79 로 통과한다. 첫 페이지 계산기 카드와도 같은 결이 된다. */
-.hero .hero-guarantee{
-  background:#FFFFFF;
-  border:1px solid #E2E8F0;
+/* ④ 본문 두 줄. 색을 두 갈래로 나눈다 —
+   주황 계열 = 돈·보상 이야기 / 파랑 = 브랜드·행동.
+   '당일 현금 지급'은 색 없이 크기·굵기로만 세운다(강조색을 늘리지 않으려고). */
+.hero-desc{ color:#333D4B; }
+.hero-desc strong{ color:#191F28; }
+.hero-sub-assurance{ color:#333D4B; }
+/* 인라인으로 박힌 노랑(style="color:#FEE500")을 이기려면 !important 가 필요하다.
+   ★ 주황이 두 가지인 이유 (2026-08-31 사장님 선택) —
+     · 이 줄(차액 120% 보상)은 흰 바탕 위 글씨라 진한 #C24E00 (대비 4.79).
+       밝은 #F26100 은 흰 바탕에서 3.24 라 흐리다.
+     · 계산기 안 '추가혜택 / 상담 시 안내'는 밝은 #F26100 그대로 둔다.
+       바로 위 132만원 배지와 같은 색으로 묶어, 계산기 안에서 한 덩어리로 읽히게 하는 쪽을 골랐다.
+     두 색을 하나로 모은 판(둘 다 #C24E00)도 만들어 견주었고, 이쪽을 택했다. */
+.hero-sub-assurance strong{ color:#C24E00 !important; }
+
+/* ⑤ 계산기 카드 — 흰 바탕 위의 흰 카드라 경계가 사라진다. 테두리를 조금 진하게 하고
+   아주 옅은 그림자로 띄운다. 파란 바탕에서 쓰던 짙은 그림자는 흰 바탕에서 때가 탄 것처럼 보인다. */
+.hero-form-wrap .dh-calc{
+  border-color:#E2E8F0;
   box-shadow:0 4px 20px rgba(15,23,42,0.06);
-  /* 흰 바탕이 되면서 첫 화면 아래가 183px 비었다(실측 1425x900).
-     카드가 330x155 로 화면에 비해 작아 허전해 보여 키운다. */
-  padding:32px 56px 34px;
 }
-.hero-guarantee .hg-badge{ font-size:15px; margin-bottom:16px; }
-.hero-guarantee .hg-line{ font-size:clamp(18px, 2.6vw, 26px); }
-.hero-guarantee .hg-main{ font-size:clamp(26px, 4.4vw, 48px); }
+.hero-form-wrap .form-card{
+  box-shadow:0 4px 20px rgba(15,23,42,0.06);
+}
 
-/* 폰에서는 좌우 여백을 줄인다 — 56px 씩 두면 폴드5(344)에서 글자 자리가 192px 밖에
-   안 남아 '타업체가 단 / 1원이라도' 로 꺾였다(실측). */
-@media (max-width:768px){
-  .hero .hero-guarantee{ padding:22px 20px 24px; }
+/* ══════════════ 첫 화면 숨통 트기 (2026-08-31) ══════════════
+   왜 좁았나 — 예전에 명세표(높이 257px)를 넣으면서 '아래가 잘리지 않게'
+   위 여백과 덩어리 사이 여백을 모두 절반 이하로 줄여 놓았다.
+   그런데 명세표를 뺐다. 좁혀야 했던 이유가 사라졌는데 좁힌 값만 남아 있었다.
+   실측: 덩어리 사이 틈이 6·10·8·6px 뿐이라 다섯 덩어리가 한 덩어리처럼 보였다.
+   ★ 폰은 손대지 않는다 — 폰은 계산기가 첫 화면 안에 겨우 들어와 있어서
+     여백을 늘리면 다시 밀린다. 그래서 931px 이상에서만 넉넉하게 한다. */
+@media (min-width: 931px){
+  .hero{ padding-top:56px; }              /* 28 -> 56 (원래 72) */
+  .hero-badge{ margin-bottom:12px; }      /* 6  -> 12 */
+  .hero-cash-badge{ margin-bottom:20px; } /* 10 -> 20 */
+  .hero-desc{ margin-bottom:20px; }       /* 6  -> 20 */
+
+  /* 왼쪽 글이 계산기 쪽으로 너무 뻗지 않게 폭을 묶는다.
+     실측: 본문 한 줄만 616px 로 유난히 길어(다른 줄은 200~430) 그 줄에서만
+     계산기와 68px 까지 붙어 보였다. 폭을 묶으면 그 줄이 두 줄로 나뉜다.
+     ★ 931px 이상에서만 — 그 아래에서는 주황 배지가 화면 왼쪽 밖으로
+       흘러나가는 처리(margin-left:-1000px)를 쓰고 있어 가운데맞춤과 부딪힌다. */
+  .hero-content > *{ max-width:560px; margin-left:auto; margin-right:auto; }
+
+  /* 큰제목 64 -> 88. 첫 화면에서 눈이 가장 먼저 닿아야 할 곳이다.
+     ★ 88 이 한계다. 폭 제한이 560px 인데 긴 줄('3분이면 확인 끝')이
+       64px 일 때 391, 88px 일 때 542 를 쓴다. 96px 이면 560 을 넘어 세 줄로 꺾인다(실측). */
+  .hero h1{ font-size:clamp(32px, 6.2vw, 88px); }
+
+  /* 세 덩어리를 고르게 벌린다 —
+     · 배지 + 주황배지 (금액)
+     · 큰제목
+     · 본문 + 차액보상 (믿을 이유)
+     계산기 높이만큼 늘려 위아래로 붙이는 방법도 해 봤는데, 사이가 182·162 로 벌어져
+     세 덩어리가 남처럼 읽혔다. 90 으로 좁히니 한 이야기로 이어진다(사장님 선택). */
+  .hero-content{
+    display:flex; flex-direction:column; align-items:center;
+    align-self:center;
+  }
+  /* 주황배지가 제 여백 20px 을 이미 갖고 있어(플렉스에서는 여백이 합쳐지지 않는다)
+     위는 70 으로 둬야 실제 틈이 90 이 된다. */
+  .hero h1{ margin-top:70px; margin-bottom:90px; }
+  .hero-content > :last-child{ margin-bottom:0; }
 }
-/* '단 1원이라도' 는 한 덩어리다. 낱말 사이에서 끊기지 않게 묶는다 */
-.hero-guarantee .hg-line em{ white-space:nowrap; }
-/* '당현함 약속' 배지 — 형광 노랑(#FFF200)은 흰 바탕에서 화면에서 가장 튀는 덩어리가 된다.
-   ★ 주황은 아래 두 줄(돈 이야기)에만 쓰고, 이 배지는 이름표이므로 파랑으로 둔다.
-     Paper Blue 위 파랑은 4.68 로 통과한다. */
-.hero-guarantee .hg-badge{
-  background:#EFF6FF; color:#1257C9; border:1px solid #D6E4FB;
+
+/* ── 세로가 넉넉하지 않은 화면에서는 위 여백을 줄인다 ──
+   25인치 1920x1080 모니터에서 브라우저 창 안쪽은 보통 세로 930 안팎이다
+   (북마크 줄·작업표시줄을 빼고 남는 높이). 그때 계산기 아랫줄과 '차액 120% 보상' 이
+   23px 잘렸고, 계산기 맨 아래 단추까지 걸렸다(실측 1905x930).
+   머리띠 64 + 위 여백 + 계산기 832 가 화면 높이 안에 들어와야 하므로,
+   세로 1000 이하에서는 위 여백을 56 -> 28 로 줄인다. 930 에서 5px 남는다.
+   ★ 세로가 924 보다 낮은 화면은 위 여백을 0 으로 해도 안 들어간다(계산기가 832 이므로).
+     그건 이 화면의 한계이고, 그때는 조금 굴려 보게 된다. */
+@media (min-width: 931px) and (max-height: 1000px){
+  .hero{ padding-top:28px; }
 }
-.hero-guarantee .hg-line{ color:#333D4B; }
-.hero-guarantee .hg-line em{ color:#C24E00; }
-.hero-guarantee .hg-main{ color:#191F28; }
-.hero-guarantee .hg-main strong{ color:#C24E00; }
+
+/* ══════════════ 속도 칸 '추천' 배지를 왼쪽 위 모서리로 ══════════════
+   전에는 배지가 안내줄에 있어 '추천 3-4인 가구' 가 한 줄이 되는 바람에
+   '3-4인 가구에게 추천' 으로 읽혔다. 상품 추천이 아니라 가구 수 추천처럼.
+
+   ★ 왜 '걸치는' 방식인가 — 배지에 따로 줄을 내주면 칸이 23px 길어지고
+     계산기 전체가 그만큼 늘어난다. 테두리에 걸치면 높이를 하나도 안 쓴다.
+   ★ 왜 가운데가 아니라 왼쪽인가 — 숫자('500 Mbps')가 칸 가운데에 있어서다.
+   ★ 왜 사선(리본)이 아닌가 — 폰에서 칸이 가로 100px 이라, 모서리 대각선으로
+     '추천' 두 글자(21px)와 여백을 담으려면 가로·세로 21px 씩 들어와야 하는데
+     '500' 글자가 왼쪽 18px·위 13px 자리에서 시작해 그 안에 들어온다. 즉 가려진다(실측).
+   ★ 세로로는 안 겹친다 — 배지는 칸 위에서 +7px 까지, 숫자는 12px 부터 시작한다.
+     칸 위쪽 12px 이 안쪽 여백이라 그 자리가 원래 비어 있다. */
+.dh-speed{ position:relative; }
+.dh-speed-top{
+  position:absolute; top:-12px; left:6px;
+  /* 실측으로 맞춘 값. -9 로 두면 배지 아래와 '500' 글자 사이가 2px 뿐이라 붙어 보인다.
+     -12 면 아래로 5px, 위(라벨까지)로 8px 이 남아 양쪽이 고르다.
+     배지와 숫자는 가로로 겹치므로(배지 7~44, 숫자 22~85) 세로 간격이 전부다. */
+  display:flex; align-items:center;
+}
+
+/* 배지가 위로 12px 나가는데 '인터넷 속도' 글씨까지 11px 뿐이라 자리가 모자란다.
+   이 칸의 라벨 여백만 8 -> 16 으로 늘려 여유를 8px 로 만든다.
+   (다른 질문칸 라벨은 그대로 둔다. 다 늘리면 계산기가 40px 길어진다) */
+.dh-q-speed .dh-calc-label{ margin-bottom:16px; }
+
+/* 라벨 여백에 쓴 8px 은 안내줄에서 되돌려받는다(고르는 단추는 48px 그대로).
+   ★ 안내문 자리를 두 줄(30px)에서 한 줄(15px)로 줄일 수 있게 됐다 —
+     1Gbps 안내가 '영상 업로드·고화질 스트리밍'(한 줄에 134px 필요) 이라 두 줄로 꺾였고,
+     그래서 세 칸 모두 두 줄 자리를 비워 두고 있었다. 100M·500M 칸에는 늘 빈 줄이 하나 있었다.
+     '업무·스트리밍' 으로 줄이면 가장 좁은 폰(360, 칸 안쪽 80px)에서도 한 줄로 들어간다. */
+.dh-speed-guide{ min-height:15px; }   /* 12px x 1.25 = 한 줄 */
+.dh-speed{ min-height:0; }            /* 속도 칸은 안쪽 내용으로 높이가 정해진다 */
+
+/* ══════════════ 질문 글줄이 낱말 가운데서 끊기지 않게 ══════════════
+   폴드5 전면(가로 344)에서 이렇게 끊겼다 (실측 2026-08-31):
+     '휴대폰은 ... 바꾸실래요? 함께 하 / 면 +30만'
+     '정수기·가전렌탈은 어떠세요? +50만 · 따로 신청 가 / 능'
+   한글은 브라우저 기본값이 아무 자리에서나 끊는다. 낱말 단위로만 끊게 한다.
+   ★ 이 규칙은 좁은 화면에서만 티가 나지만, 폭을 가리지 않고 늘 켜 둔다 —
+     화면 크기를 하나 정해 두면 그 사이 크기에서 또 끊긴다. */
+.dh-calc-label{
+  word-break:keep-all;
+  /* keep-all 만으로는 '함께 / 하면 +30만' 처럼 끝줄에 한 낱말만 남는다.
+     balance 를 더하면 줄들이 고르게 나뉜다. 실측(폴드5 344):
+       · 휴대폰 줄 : '함께 / 하면 +30만'  ->  '통신사만 / 바꾸실래요? / 함께 하면 +30만'
+       · 정수기 줄 : 세 줄  ->  '정수기·가전렌탈은 어떠세요? / +50만 · 따로 신청 가능' 두 줄
+     옛 브라우저는 이 값을 무시하므로, 그때도 keep-all 은 살아 있다. */
+  text-wrap:balance;
+}
 </style>
 </head>
 <body>
@@ -1726,10 +2392,11 @@ html { scroll-behavior: auto; scroll-padding-top: 78px; }
     <a href="#" class="logo"><svg class="logo-mark" width="46" height="30" viewBox="25.6 68 246.4 162.4" aria-hidden="true"><use href="#dh-logo" fill="currentColor"/></svg><span>당<span>현</span>함</span></a>
     <nav>
       <a href="#compare">혜택안내</a>
+      <a href="plans.html">요금·사은품</a>
       <a href="#reviews">설치후기</a>
-      
+      <a href="gift.html">사은품지급명단</a>
       <a href="#faq">자주묻는질문</a>
-      <a href="#apply" style="color:var(--primary);font-weight:700;">무료상담</a>
+      <a href="javascript:void(0)" onclick="신청창열기()" style="color:var(--primary);font-weight:700;">무료상담</a>
     </nav>
     <!-- 전화·카톡 단추 묶음. 카톡은 화면 아래를 따라다니던 것을 여기로 옮겼다 (2026-08-25) -->
     <div class="header-cta">
@@ -1749,81 +2416,167 @@ html { scroll-behavior: auto; scroll-padding-top: 78px; }
 </header>
 <div class="mobile-menu" id="mobileMenu">
   <a href="#compare" onclick="closeMobileMenu(true)">혜택안내</a>
+  <a href="plans.html" onclick="closeMobileMenu(true)">요금·사은품</a>
   <a href="#reviews" onclick="closeMobileMenu(true)">설치후기</a>
-  
+  <a href="gift.html" onclick="closeMobileMenu(true)">사은품지급명단</a>
   <a href="#faq" onclick="closeMobileMenu(true)">자주묻는질문</a>
-  <a href="#apply" onclick="closeMobileMenu(true)" style="color:var(--primary);font-weight:700;">무료상담 →</a>
+  <a href="javascript:void(0)" onclick="closeMobileMenu(); 신청창열기();" style="color:var(--primary);font-weight:700;">무료상담 →</a>
 </div>
 
 <!-- HERO -->
-<section class="hero">
-  <div class="hero-badge">정수기 · 가전렌탈 전문</div>
-  <div class="hero-cash-badge"><span class="cash-amount">🎁 최대 50만원</span><span class="cash-cond">사은품 제공</span></div>
-  <h1>놓치고 있던<br class="mob-br"> <em>내 최대 혜택</em><br>당현함이<br class="fold-br"> 알려드릴게요!</h1>
-  <p class="hero-desc">정수기·가전렌탈 시 최대 사은품 혜택, <strong>설치 당일 지급</strong><br>모든 상품 비교 후 가장 유리한 조건으로 안내해드립니다</p>
+<section class="hero" id="apply">
+  <div class="hero-inner">
+    <div class="hero-content">
+      <div class="hero-badge">인터넷 · 정수기 · 가전렌탈 전문</div>
+      <div class="hero-cash-badge">지원금 132만원,<br class="mob-br"> 가만두면 손해!</div>
+      <h1>놓친 지원금<br> <em>3분이면 확인 끝</em></h1>
+      <!-- ===== 지원금 명세표를 뺐다 (2026-08-28) =====
+           오른쪽 계산기가 같은 일을 더 크게 하고 있었다. 실측 근거:
+           · 132만원이 한 화면에 4번 나왔다(배지·합계·계산기·계산기 아래줄). 반복이 강조를 깎는다 → 2번으로.
+           · 첫 화면 글자 크기가 17가지였다. 명세표가 혼자 쓰던 32·27·25·22·20이 빠진다.
+           · 폰에서 계산기 시작 위치가 776 → 511 로 265px 올라와 첫 화면 안에 들어온다.
+           ★ 명세표에 있던 '추가혜택 - 상담 시 안내'만 아래 계산기 안으로 옮겼다.
+             계산기 잔글씨(13px 회색)로는 궁금증을 못 만들기 때문이다.
+           스타일(.dh-ledger…)은 지우지 않고 남겨 뒀다. 되살릴 때 이 자리에 markup만 넣으면 된다. -->
+      <p class="hero-desc">전체 통신사 비교 후 <strong>당일 현금 지급</strong>,<br class="mob-br"> 가장 유리한 조건으로 안내해드립니다</p>
+      <p class="hero-sub-assurance">타업체가 더 준다면?<br class="mob-br"> <strong style="color:#FEE500;">차액 120% 보상</strong></p>
+    </div>
 
-  <!-- ===== 차액 보상 강조 (2026-08-27) =====
-       첫 화면의 누름단추를 뺀 자리에, 손님이 가장 크게 걱정하는
-       '여기가 정말 제일 많이 주는 곳인가'에 정면으로 답한다.
-       누를 곳은 화면 아래 고정 띠(폰)·옆 신청칸(컴퓨터)이 대신한다.
-       ★ 순서 주의 : 명세표(아래)보다 반드시 위에 둔다.
-         명세표가 높이 257px 이라, 아래에 두면 폰 첫 화면에서 이 칸이 잘린다(실측). -->
-  <div class="hero-guarantee">
-    <p class="hg-badge">당현함 약속</p>
-    <p class="hg-line">타업체가 <em>단 1원이라도</em> 더 준다면</p>
-    <p class="hg-main"><strong>차액 120% 보상</strong></p>
+    <!-- ===== v2 계산기 (2026-08-25) — 옛 신청폼이 있던 오른쪽 자리 =====
+         번호를 남기기 전에 화면에서 먼저 자기 금액을 보게 한다.
+         들어오자마자 전부 켠 상태(SK 132만원)가 떠 있고, 자기와 다른 것만 고치면 된다. -->
+    <div class="hero-form-wrap">
+      <div class="dh-calc" id="dhCalc">
+        <p class="dh-calc-title">우리 집은 얼마 받을까요?</p>
+
+        <div class="dh-calc-q">
+          <span class="dh-calc-label">어느 통신사로 하실까요?</span>
+          <div class="dh-calc-carriers">
+            <button type="button" class="dh-carrier on" data-carrier="sk" onclick="dh통신사고르기('sk')">SK</button>
+            <button type="button" class="dh-carrier" data-carrier="kt" onclick="dh통신사고르기('kt')">KT</button>
+            <button type="button" class="dh-carrier" data-carrier="lg" onclick="dh통신사고르기('lg')">LG</button>
+          </div>
+        </div>
+
+        <div class="dh-calc-q">
+          <span class="dh-calc-label">TV도 같이 보실까요?</span>
+          <div class="dh-calc-opts">
+            <button type="button" class="dh-opt" data-prod="net" onclick="dh상품고르기('net')">인터넷만</button>
+            <button type="button" class="dh-opt on" data-prod="net_tv" onclick="dh상품고르기('net_tv')">인터넷+TV</button>
+          </div>
+        </div>
+
+        <div class="dh-calc-q dh-q-speed">
+          <span class="dh-calc-label">인터넷 속도</span>
+          <div class="dh-calc-opts">
+            <button type="button" class="dh-opt dh-speed" data-speed="100M" onclick="dh속도고르기('100M')">
+              <span class="dh-speed-num">100<em>메가</em></span>
+              <span class="dh-speed-guide">1-2인 가구</span>
+            </button>
+            <button type="button" class="dh-opt dh-speed" data-speed="500M" onclick="dh속도고르기('500M')">
+              <span class="dh-speed-top"><i class="dh-speed-badge">추천</i></span>
+              <span class="dh-speed-num">500<em>메가</em></span>
+              <span class="dh-speed-guide">3-4인/게임</span>
+            </button>
+            <button type="button" class="dh-opt dh-speed on" data-speed="1G" onclick="dh속도고르기('1G')">
+              <span class="dh-speed-num">1<em>기가</em></span>
+              <span class="dh-speed-guide">업무·스트리밍</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="dh-calc-q">
+          <span class="dh-calc-label">휴대폰은 그대로 두고 통신사만 바꾸실래요? <em class="dh-plus">함께 하면 +<b id="dh유심안내">30</b>만</em></span>
+          <div class="dh-calc-opts">
+            <button type="button" class="dh-opt" data-usim="0" onclick="dh유심고르기(false)">아니요</button>
+            <button type="button" class="dh-opt on" data-usim="1" onclick="dh유심고르기(true)">네 (유심 번호이동)</button>
+          </div>
+        </div>
+
+        <div class="dh-calc-q">
+          <span class="dh-calc-label">정수기·가전렌탈은 어떠세요? <em class="dh-plus">+50만 · 따로 신청 가능</em></span>
+          <div class="dh-calc-opts">
+            <button type="button" class="dh-opt" data-rental="0" onclick="dh렌탈고르기(false)">지금은 괜찮아요</button>
+            <button type="button" class="dh-opt on" data-rental="1" onclick="dh렌탈고르기(true)">관심 있어요</button>
+          </div>
+        </div>
+
+        <div class="dh-calc-result">
+          <div class="dh-calc-result-label">받으실 수 있는 금액</div>
+          <div class="dh-calc-result-num"><em>최대</em> <strong id="dhCalcSum">0</strong>만원 <span class="dh-calc-plus">+ 추가혜택</span></div>
+          <div class="dh-calc-break" id="dhCalcBreak"></div>
+          <!-- 2026-09-02: 맨 아래 '추가혜택 …… 상담 시 안내' 줄을 뺐다 (사장님 지시).
+               같은 낱말이 한 화면에 세 번 나와 강조가 아니라 반복으로 읽혔다.
+               지금은 두 번 — 금액 옆(파랑)과 세부 내역 줄 끝(주황)이다.
+               되살리려면 아래 한 줄의 주석만 풀면 된다. 모양 규칙(.dh-calc-secret)은 그대로 남겨 두었다.
+          <div class="dh-calc-secret"><span class="s-t">추가혜택</span><span class="s-d"></span><span class="s-v">상담 시 안내</span></div>
+          -->
+          <div class="dh-calc-result-note">요금제에 따라 달라질 수 있습니다</div>
+        </div>
+
+        <button type="button" class="dh-calc-cta" onclick="dh계산기신청()">
+          우리 집 기준으로 정확히 확인받기 →
+        </button>
+      </div>
+    </div>
   </div>
-
-  <!-- ===== 혜택 명세표 — 지금은 잠시 꺼 둠 (2026-08-27) =====
-       상품별 실제 혜택을 아직 못 받아 금액 자리가 비어 있습니다.
-       숫자 세 개를 받으면 아래 대괄호 자리를 채우고, 이 주석의 시작·끝만 걷어내면 켜집니다.
-       (모양을 만드는 스타일은 이미 이 파일 안에 들어 있어 따로 손댈 것이 없습니다)
-
-  <div class="dh-ledger">
-    <div class="dh-ledger-row"><span class="t">정수기 렌탈</span><span class="d"></span><span class="v">[금액]만원</span></div>
-    <div class="dh-ledger-row"><span class="t">비데·공기청정기 등</span><span class="d"></span><span class="v">[금액]만원</span></div>
-    <div class="dh-ledger-row"><span class="t">2종 이상 동시 신청</span><span class="d"></span><span class="v">[금액]만원</span></div>
-  </div>
-  -->
-
-  <p class="hero-urgency">⏰ 오늘 오후 5:30 이전 설치 시 당일 지급</p>
 </section>
 
-<!-- ===== 신뢰 숫자 칸 (2026-08-27, index.html 에서 옮김) =====
-     첫 화면에 넣으면 이미 꽉 차서 안 보이고, 굴러가는 효과도 손님이 보기 전에 끝난다.
-     그래서 스크롤해서 들어올 때 비로소 보이도록 별도 칸으로 뺐다.
-     바로 아래 '사은품 지급명단'과 같은 흰 바탕이라 한 덩어리로 읽힌다. -->
-<section class="trust-nums" id="trustNums">
+<!-- TRUST NUMBERS : 13년 · 누적 가입 · 고객 후기 (2026-08-25)
+     첫 화면에 넣으면 이미 꽉 차서 안 보이고, 굴러가는 효과도 손님이 보기 전에 끝나 버린다.
+     그래서 스크롤해서 들어올 때 비로소 굴러 올라가도록 별도 칸으로 뺐다.
+     바로 아래 '사은품 지급명단'과 같은 바탕색이라 한 덩어리로 읽힌다
+     (누적 규모 -> 오늘도 지급 중, 순서로 이어짐). -->
+<section class="trust-nums 표기-만" id="trustNums">
   <div class="trust-nums-inner 늦게떠오름">
-    <div class="tn-item">
+    <div class="tn-item 한줄">
       <div class="tn-num"><span class="tn-in">13<span class="tn-tail">년간</span></span></div>
       <div class="tn-label">당일지급</div>
     </div>
-    <div class="tn-item">
+    <div class="tn-item 한줄">
       <div class="tn-num"><span class="tn-in">10<span class="tn-tail">만+</span></span></div>
       <div class="tn-label">누적 가입</div>
     </div>
-    <div class="tn-item">
+    <div class="tn-item 한줄">
       <div class="tn-num"><span class="tn-in">2<span class="tn-tail">만+</span></span></div>
       <div class="tn-label">고객 후기</div>
     </div>
   </div>
-  <p class="tn-since 늦게떠오름">(2012~2026년 8월 기준)</p>
+  <p class="tn-since 늦게떠오름" id="밑줄">(2012~2026년 8월 기준)</p>
 </section>
 
 <!-- LIVE ROLLING : 진짜 사은품 지급명단(gift-data)을 읽어서 굴린다 -->
 <!-- 2026-08-27 : 예전에는 display:none 이라 자료를 읽어온 뒤에야 자리가 생겼다.
-     그 순간 아래 내용이 통째로 776px 밀려서, 메뉴에서 "설치후기"를 누르면
-     엉뚱하게 "가입 프로세스"에 서 버렸다(실측).
+     그 순간 아래 내용이 통째로 밀려서(컴퓨터 976px · 폰 535px 실측),
+     메뉴에서 "설치후기"를 누르면 엉뚱하게 "가입 프로세스"에 서 버렸다.
      -> visibility 로 바꿔 처음부터 자리를 잡아 둔다. 자료가 오면 보이기만 하므로 밀림이 없다.
-     칸 높이는 글 개수와 무관하게 CSS 로 정해져 있어(컴퓨터 335 / 폰 133) 자리가 정확히 맞는다. -->
-<!-- 코웨이 판: 사은품지급명단 굴림칸을 통째로 뺐습니다 -->
+     칸 높이는 명단이 몇 줄이든 상관없이 CSS 로 정해져 있어 자리가 정확히 맞는다. -->
+<div class="live-section" id="liveSection" style="visibility:hidden;">
+  <div class="live-section-inner">
+    <div class="rolling-col">
+      <div class="rolling-col-header type-cash">
+        <span id="rollingTitle">사은품지급명단</span>
+        <!-- 날짜를 보기 '전에' 읽게 해서 '왜 어제 날짜지?' 하는 오해를 미리 푼다 -->
+        <span class="rolling-note">최근 영업일 기준 · 매일 저녁 갱신</span>
+      </div>
+      <div class="rolling-wrap">
+        <div class="rolling-track-cash" id="rollingTrackCash"></div>
+      </div>
+      <a class="rolling-more" href="gift.html">전체 지급명단 보기 →</a>
+    </div>
+  </div>
+</div>
 
-<!-- ===== 후기칸 (2026-08-27 개편, index.html 과 같은 모양) =====
+<!-- ===== 후기칸 (2026-08-27 개편) =====
      옛 모습: 사진만 옆으로 자동으로 넘어가는 슬라이드. 글도 별점도 이름도 없었다.
-     새 모습: 사진 + 이름 + 상품 + 별5개 + 후기 글. 한 줄에 한 장씩 네 개(정수기 렌탈).
+     새 모습: 사진 + 이름 + 상품 + 별5개 + 후기 글. 한 줄에 한 장씩 여섯 개.
      ㆍ자리: 사은품지급명단 바로 아래. 명단(사실) 다음에 후기(사람 목소리)가 오도록 했다.
+       후기는 그 자체로는 증거가 약하다 — 앞에 검증되는 기록이 서 있어야 '그 기록의 사례'로 읽힌다.
+     ㆍ한 줄에 두 장씩도 해 봤으나 글에 남는 폭이 450px 뿐이라 본문이 자주 잘렸다.
+       한 장씩 놓으니 글이 674px 를 쓰게 되어 여섯 개 모두 접히지 않고 다 보이고, 칸 길이도 오히려 짧아졌다.
      ㆍ폰에서는 본문을 감추고 굵은 한 줄 요약까지만 보인다('더 읽기'를 누르면 전문).
+       폰은 글에 남는 폭이 197px 라 본문 세 줄이 아홉 줄처럼 잘게 쪼개져 오히려 안 읽힌다.
+     ㆍ움직임: 실적 숫자칸과 같은 '늦게떠오름'(1.4초, 제대로 올라온 뒤 시작).
      ㆍ글: 당현함 랜딩페이지1\후기 폴더의 txt 원문 그대로. -->
 <style>
 .후기칸{ background:var(--white); }
@@ -1910,61 +2663,6 @@ html { scroll-behavior: auto; scroll-padding-top: 78px; }
   padding:20px; box-shadow:0 2px 10px rgba(15,23,42,0.05);
 }
 /* ⚠ 사진에 height:100% 만 주면 안 된다 — 사진이 다 불러와진 순간 자기 원래 비율대로
-   높이를 밀어 올려 카드가 통째로 길어진다. '틀 안에 깔아 두는' 방식이라야 안전하다. */
-.후기사진{
-  flex:0 0 260px; margin:0; position:relative; overflow:hidden;
-  min-height:195px; border-radius:12px; background:var(--light-gray);
-}
-.후기사진 img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block; }
-.후기글{ flex:1 1 auto; min-width:0; display:flex; flex-direction:column; justify-content:center; }
-.후기머리{ display:flex; align-items:baseline; gap:10px; flex-wrap:wrap; }
-.후기이름{ font-size:17px; font-weight:900; color:var(--dark); letter-spacing:-0.3px; }
-.후기상품{ font-size:14px; font-weight:700; color:var(--primary); }
-.후기별{ font-size:15px; letter-spacing:1px; margin-top:6px; line-height:1; }
-.후기제목{ font-size:16px; font-weight:800; color:var(--dark); line-height:1.45; margin:12px 0 6px; letter-spacing:-0.3px; }
-/* 본문은 네 줄까지만 — 글자 수가 아니라 줄 수로 잘라야 카드 높이가 저절로 맞는다 */
-.후기본문{
-  font-size:15px; line-height:1.75; color:var(--gray); margin:6px 0 0;
-  display:-webkit-box; -webkit-line-clamp:4; -webkit-box-orient:vertical; overflow:hidden;
-}
-.더읽기{
-  align-self:flex-start; margin-top:10px; padding:0;
-  background:none; border:0; color:var(--gray);
-  font-size:13px; font-weight:700; cursor:pointer;
-  text-decoration:underline; text-underline-offset:2px; opacity:0.85;
-  transition:opacity 0.2s, color 0.2s;
-}
-.더읽기:hover{ color:var(--dark); opacity:1; }
-.더읽기.숨김{ display:none; }
-.후기링크들{ display:flex; justify-content:center; gap:12px; flex-wrap:wrap; margin-top:32px; }
-.후기링크{
-  display:inline-flex; align-items:center; gap:7px; padding:13px 24px;
-  border:2px solid var(--primary); border-radius:10px; font-size:14px; font-weight:700;
-  color:var(--primary); text-decoration:none; background:var(--white); transition:background-color 0.2s;
-}
-.후기링크:hover{ background:#eff6ff; }
-@media (max-width:768px){
-  /* 폰도 세 줄로 (2026-08-31). 늘어난 높이는 위쪽 빈 여백에서 가져온다.
-     제목이 상자 안으로 들어가면서 띠 위 72px 이 통째로 비어 있었다.
-     그 자리를 셋째 줄이 대신 채우니 화면 길이는 오히려 줄어든다.
-     94(사진) x 3 + 4(줄 사이) x 2 + 8(위아래) = 300 */
-  .후기칸{ padding-top:28px; }
-  .후기띠{ height:300px; margin-bottom:28px; }
-  .후기띠-줄 img{ width:130px; height:94px; margin-right:4px; }
-  /* 폰에서는 최소 폭·높이를 풀어 글자에 딱 맞춘다.
-     컴퓨터 화면은 제목보다 넓게 보이려고 480px 를 잡았지만,
-     폰은 화면이 좁아 그 크기가 그대로 오면 상자만 커다랗게 남는다. */
-  .후기띠-상자{ padding:10px 20px; border-radius:10px; }
-  .후기띠-큰글{ font-size:22px; }
-  .후기띠-작은글{ font-size:13px; margin-top:4px; }
-}
-.후기목록{ max-width:1000px; margin:0 auto; display:flex; flex-direction:column; gap:20px; }
-.후기카드{
-  display:flex; gap:24px; align-items:stretch;
-  background:var(--white); border:1px solid var(--border); border-radius:16px;
-  padding:20px; box-shadow:0 2px 10px rgba(15,23,42,0.05);
-}
-/* ⚠ 사진에 height:100% 만 주면 안 된다 — 사진이 다 불러와진 순간 자기 원래 비율대로
    높이를 밀어 올려 카드가 통째로 길어진다(2026-08-27 실제로 물림).
    '틀 안에 깔아 두는' 방식이라야 사진이 높이에 관여하지 못한다. */
 .후기사진{
@@ -1983,6 +2681,7 @@ html { scroll-behavior: auto; scroll-padding-top: 78px; }
   font-size:15px; line-height:1.75; color:var(--gray); margin:6px 0 0;
   display:-webkit-box; -webkit-line-clamp:4; -webkit-box-orient:vertical; overflow:hidden;
 }
+.후기카드.펼침 .후기본문{ display:block; overflow:visible; }
 /* 본문을 펼치는 단추 — 주인공은 후기 내용이므로 강조색을 쓰지 않고 본문과 같은 회색 계통으로 둔다 */
 .더읽기{
   align-self:flex-start; margin-top:10px; padding:0;
@@ -2040,6 +2739,7 @@ html { scroll-behavior: auto; scroll-padding-top: 78px; }
   font-size:15px; line-height:1.75; color:var(--gray); margin:6px 0 0;
   display:-webkit-box; -webkit-line-clamp:4; -webkit-box-orient:vertical; overflow:hidden;
 }
+.후기카드.펼침 .후기본문{ display:block; overflow:visible; }
 /* 본문을 펼치는 단추 — 주인공은 후기 내용이므로 강조색을 쓰지 않고 본문과 같은 회색 계통으로 둔다 */
 .더읽기{
   align-self:flex-start; margin-top:10px; padding:0;
@@ -2075,108 +2775,109 @@ html { scroll-behavior: auto; scroll-padding-top: 78px; }
 
 <section id="reviews" class="reviews 후기칸">
   <div class="section-inner">
-    <!-- 사진 띠 : images/reviews-band-coway/ 의 15장 (coway-01 ~ 15). 전부 코웨이 정수기 설치 사진이다.
-         이 페이지는 코웨이 전용판이라 다른 브랜드 사진은 한 장도 쓰지 않는다.
-         15장뿐이라 줄마다 시작점을 5장씩 밀어(줄1=01부터, 줄2=06부터, 줄3=11부터)
-         세로로 같은 사진이 나란히 겹쳐 보이지 않게 했다.
+    <!-- 사진 띠 : images/reviews-band/ 의 45장 (band-01 ~ 45).
+         TV 설치 13 · 셋톱박스 10 · 정수기 22 를 줄마다 섞어 깔았다.
+         한 종류가 한 줄에 몰리면 그 줄만 어둡거나 하얗게 보이기 때문이다.
          줄당 15장 = 2610px 라 와이드 모니터(2560)까지 이음매가 안 보인다.
+         코웨이 제품은 뺐다 — 코웨이 전용 페이지(rental-c)용으로
+         images/reviews-band-coway/ 에 15장 따로 두었다.
          alt 를 비운 것은 장식용 사진이라 읽어줄 내용이 없기 때문이다(화면 읽어주는 기계 대비). -->
     <div class="후기띠">
       <div class="후기띠-줄 흐름1">
-        <img data-src="images/reviews-band-coway/coway-01.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-02.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-03.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-04.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-05.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-06.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-07.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-08.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-09.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-10.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-11.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-12.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-13.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-14.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-15.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-01.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-02.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-03.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-04.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-05.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-06.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-07.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-08.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-09.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-10.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-11.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-12.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-13.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-14.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-15.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band/band-01.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band/band-02.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band/band-03.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band/band-04.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band/band-05.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band/band-06.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band/band-07.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band/band-08.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band/band-09.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band/band-10.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band/band-11.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band/band-12.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band/band-13.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band/band-14.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band/band-15.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band/band-01.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band/band-02.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band/band-03.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band/band-04.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band/band-05.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band/band-06.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band/band-07.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band/band-08.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band/band-09.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band/band-10.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band/band-11.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band/band-12.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band/band-13.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band/band-14.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band/band-15.jpg" alt="" decoding="async">
       </div>
       <div class="후기띠-줄 흐름2">
-        <img data-src="images/reviews-band-coway/coway-06.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-07.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-08.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-09.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-10.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-11.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-12.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-13.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-14.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-15.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-01.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-02.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-03.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-04.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-05.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-06.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-07.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-08.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-09.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-10.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-11.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-12.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-13.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-14.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-15.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-01.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-02.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-03.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-04.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-05.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band/band-16.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band/band-17.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band/band-18.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band/band-19.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band/band-20.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band/band-21.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band/band-22.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band/band-23.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band/band-24.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band/band-25.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band/band-26.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band/band-27.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band/band-28.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band/band-29.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band/band-30.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band/band-16.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band/band-17.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band/band-18.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band/band-19.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band/band-20.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band/band-21.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band/band-22.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band/band-23.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band/band-24.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band/band-25.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band/band-26.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band/band-27.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band/band-28.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band/band-29.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band/band-30.jpg" alt="" decoding="async">
       </div>
       <div class="후기띠-줄 흐름3">
-        <img data-src="images/reviews-band-coway/coway-11.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-12.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-13.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-14.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-15.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-01.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-02.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-03.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-04.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-05.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-06.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-07.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-08.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-09.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-10.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-11.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-12.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-13.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-14.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-15.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-01.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-02.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-03.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-04.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-05.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-06.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-07.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-08.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-09.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-10.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band/band-31.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band/band-32.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band/band-33.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band/band-34.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band/band-35.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band/band-36.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band/band-37.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band/band-38.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band/band-39.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band/band-40.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band/band-41.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band/band-42.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band/band-43.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band/band-44.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band/band-45.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band/band-31.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band/band-32.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band/band-33.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band/band-34.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band/band-35.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band/band-36.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band/band-37.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band/band-38.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band/band-39.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band/band-40.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band/band-41.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band/band-42.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band/band-43.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band/band-44.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band/band-45.jpg" alt="" decoding="async">
       </div>
       <div class="후기띠-상자">
         <h2 class="후기띠-큰글">실제 고객 설치 후기</h2>
@@ -2185,55 +2886,83 @@ html { scroll-behavior: auto; scroll-padding-top: 78px; }
     </div>
     <!-- '제목만'은 폰 폭에서만 작동한다. 컴퓨터에는 아무 영향이 없다. -->
     <div class="후기목록 제목만" id="후기목록">
-      <!-- 후기 6개 : 코웨이 4 + 쿠쿠 1 + SK매직 1 (브랜드가 몰리지 않게 섞어 놓았다).
-           쿠쿠·SK매직 건은 원래 렌탈 페이지에 있던 실제 후기 그대로다.
-           ⚠ 코웨이 4건은 사진만 진짜고 글은 화면 확인용 임시 글이다.
-           라이브에 올리기 전에 반드시 실제 고객 후기로 바꿀 것 (2026-09-04) -->
       <article class="후기카드 늦게떠오름">
         <figure class="후기사진">
-          <img src="images/reviews-story/story-cw1.jpg" loading="eager" decoding="async"
-               alt="정*미님의 코웨이 엘리트 정수기 렌탈 설치 후기 사진">
+          <img src="images/reviews-story/story-08.jpg" loading="eager" decoding="async"
+               alt="이*준님의 SK 인터넷 가입 설치 후기 사진">
         </figure>
         <div class="후기글">
           <div class="후기머리">
-            <span class="후기이름">정*미</span>
-            <span class="후기상품">코웨이 엘리트 정수기 렌탈</span>
+            <span class="후기이름">이*준</span>
+            <span class="후기상품">SK 인터넷 가입</span>
           </div>
           <div class="후기별" aria-label="별점 5점 만점에 5점">⭐⭐⭐⭐⭐</div>
-          <p class="후기제목">상담 한 번에 정리가 끝나서 고민이 짧아졌어요!</p>
-          <p class="후기본문">업체마다 말이 달라서 헷갈렸는데 당현함에서 조건을 한 번에 정리해주셔서 바로 결정했어요. 설치 날짜도 원하는 날로 잡아주셨고, 기사님이 사용법까지 차근차근 알려주셔서 좋았습니다. 주방에 두니 깔끔해서 만족하고 있어요!</p>
+          <p class="후기제목">사은품에 친절한 상담까지, 이사 후 인터넷 설치 당현함으로 딱이었어요!</p>
+          <p class="후기본문">이사 후 인터넷 설치 알아보다가 사은품과 친절한 설명에 당현함 선택했어요. 설치 전 상담원이 미리 연락주고 날짜 조율해주셨고, 기사님도 오시기 전에 연락 주시며 친절하게 설치해주셨습니다. 2~3일 내로 깔끔하게 완료됐고 인터넷 속도도 만족스러워요. 사은품도 약속대로 잘 챙겨주셔서 전체적으로 대만족입니다!</p>
           <button type="button" class="더읽기">더 읽기</button>
         </div>
       </article>
       <article class="후기카드 늦게떠오름">
         <figure class="후기사진">
-          <img src="images/reviews-story/story-01.jpg" loading="eager" decoding="async"
-               alt="김*영님의 SK매직 정수기 렌탈 설치 후기 사진">
+          <img src="images/reviews-story/story-06.jpg" loading="eager" decoding="async"
+               alt="박*선님의 KT 인터넷TV 가입 설치 후기 사진">
         </figure>
         <div class="후기글">
           <div class="후기머리">
-            <span class="후기이름">김*영</span>
-            <span class="후기상품">SK매직 정수기 렌탈</span>
+            <span class="후기이름">박*선</span>
+            <span class="후기상품">KT 인터넷TV 가입</span>
           </div>
           <div class="후기별" aria-label="별점 5점 만점에 5점">⭐⭐⭐⭐⭐</div>
-          <p class="후기제목">상담부터 설치까지 약속한 내용 그대로 진행됐어요!</p>
-          <p class="후기본문">여러 업체를 비교해봤는데 당현함이 조건이 가장 좋아서 선택했어요. 상담부터 설치까지 약속한 내용 그대로 진행되어 믿음이 갔고, 사은품 혜택도 생각보다 훨씬 푸짐해서 만족도가 높았습니다. SK매직 정수기 설치 후에도 불편함 없이 잘 쓰고 있어요. 주변에도 적극 추천 중입니다! 😊</p>
+          <p class="후기제목">화질, 속도, 디자인까지 전부 만족! 다음 가입도 당현함이에요!</p>
+          <p class="후기본문">기존 TV 대비 화질과 속도 모두 완전 만족입니다. 셋탑박스도 작고 디자인 예쁘고, 리모컨 반응속도도 빠르고 편리해요. 설치기사님도 친절하게 설명해주시고 마무리까지 깔끔하게 해주셨습니다. 몇 년 동안 잘 쓸 것 같고, 다음 가입도 당현함으로 할 예정이에요!</p>
           <button type="button" class="더읽기">더 읽기</button>
         </div>
       </article>
       <article class="후기카드 늦게떠오름">
         <figure class="후기사진">
-          <img src="images/reviews-story/story-cw2.jpg" loading="lazy" decoding="async"
-               alt="한*주님의 코웨이 아이콘 얼음정수기 렌탈 설치 후기 사진">
+          <img src="images/reviews-story/story-03.jpg" loading="lazy" decoding="async"
+               alt="박*찬님의 LG 정수기 렌탈 설치 후기 사진">
         </figure>
         <div class="후기글">
           <div class="후기머리">
-            <span class="후기이름">한*주</span>
-            <span class="후기상품">코웨이 아이콘 얼음정수기 렌탈</span>
+            <span class="후기이름">박*찬</span>
+            <span class="후기상품">LG 정수기 렌탈</span>
           </div>
           <div class="후기별" aria-label="별점 5점 만점에 5점">⭐⭐⭐⭐⭐</div>
-          <p class="후기제목">얼음까지 나오니 여름 내내 정말 잘 썼어요!</p>
-          <p class="후기본문">얼음정수기로 바꿀까 고민만 하다가 상담받고 바로 진행했어요. 꼭 필요한 기능만 짚어주셔서 과하지 않게 고를 수 있었고, 설치도 약속한 날짜에 정확히 와주셨습니다. 얼음이 금방 만들어져서 물 마시는 양이 늘었어요.</p>
+          <p class="후기제목">사은품 혜택에 반해서 선택했는데, 설치기사님까지 너무 친절해요!</p>
+          <p class="후기본문">이사 후 정수기 알아보다가 사은품 혜택이 좋아서 당현함 선택했어요. 카톡 상담도 빠르고 친절하게 진행됐고, 설치기사님도 꼼꼼하게 설명해주셔서 만족스러웠습니다. 정수기가 생각보다 더 예쁘고 기능도 좋아서 예쁘게 잘 쓸게요!</p>
+          <button type="button" class="더읽기">더 읽기</button>
+        </div>
+      </article>
+      <article class="후기카드 늦게떠오름">
+        <figure class="후기사진">
+          <img src="images/reviews-story/story-09.jpg" loading="lazy" decoding="async"
+               alt="김*철님의 LG 인터넷TV 가입 설치 후기 사진">
+        </figure>
+        <div class="후기글">
+          <div class="후기머리">
+            <span class="후기이름">김*철</span>
+            <span class="후기상품">LG 인터넷TV 가입</span>
+          </div>
+          <div class="후기별" aria-label="별점 5점 만점에 5점">⭐⭐⭐⭐⭐</div>
+          <p class="후기제목">SK 15년 쓰다가 갈아탔는데, 이동하길 정말 잘했어요!</p>
+          <p class="후기본문">약정 만료로 통신사 이동을 고민했는데 당현함 상담 받고 나서 바로 결정했어요. 15년 넘게 SK만 써서 걱정도 됐지만 큰 사은품에 빠른 상담·설치까지, 이동하길 정말 잘했다는 생각이 들었습니다. 당현함 최고예요!</p>
+          <button type="button" class="더읽기">더 읽기</button>
+        </div>
+      </article>
+      <article class="후기카드 늦게떠오름">
+        <figure class="후기사진">
+          <img src="images/reviews-story/story-10.jpg" loading="lazy" decoding="async"
+               alt="최*연님의 KT 인터넷TV 가입 설치 후기 사진">
+        </figure>
+        <div class="후기글">
+          <div class="후기머리">
+            <span class="후기이름">최*연</span>
+            <span class="후기상품">KT 인터넷TV 가입</span>
+          </div>
+          <div class="후기별" aria-label="별점 5점 만점에 5점">⭐⭐⭐⭐⭐</div>
+          <p class="후기제목">한 달 고민 끝에 선택했는데, 모든 게 만족스러워요!</p>
+          <p class="후기본문">믿을 만한 업체 찾는 데만 한 달, 고민 끝에 상담했는데 변경사항·질문 많아도 끝까지 친절하게 응대해주셔서 마음에 드는 상품으로 가입할 수 있었어요. LG 7년 쓰다가 KT로 갈아탔는데 리모컨·디자인 모두 확실히 업그레이드된 느낌이에요. 지니가 OTT도 다 틀어주고 인터넷 속도도 방 구석구석 짱짱해서 전체적으로 대만족입니다!</p>
           <button type="button" class="더읽기">더 읽기</button>
         </div>
       </article>
@@ -2253,40 +2982,9 @@ html { scroll-behavior: auto; scroll-padding-top: 78px; }
           <button type="button" class="더읽기">더 읽기</button>
         </div>
       </article>
-      <article class="후기카드 늦게떠오름">
-        <figure class="후기사진">
-          <img src="images/reviews-story/story-cw4.jpg" loading="lazy" decoding="async"
-               alt="신*호님의 코웨이 아이콘 얼음 맥스 렌탈 설치 후기 사진">
-        </figure>
-        <div class="후기글">
-          <div class="후기머리">
-            <span class="후기이름">신*호</span>
-            <span class="후기상품">코웨이 아이콘 얼음 맥스 렌탈</span>
-          </div>
-          <div class="후기별" aria-label="별점 5점 만점에 5점">⭐⭐⭐⭐⭐</div>
-          <p class="후기제목">용량 걱정 없이 넉넉하게 쓰고 있어요!</p>
-          <p class="후기본문">식구가 많아 물 쓰는 양이 걱정이었는데 사용량을 물어보시고 딱 맞는 걸로 추천해주셨어요. 설치 기사님도 시간 약속을 정확히 지켜주셔서 기다릴 일이 없었습니다. 얼음도 넉넉하게 나와서 여름에 특히 잘 썼어요.</p>
-          <button type="button" class="더읽기">더 읽기</button>
-        </div>
-      </article>
-      <article class="후기카드 늦게떠오름">
-        <figure class="후기사진">
-          <img src="images/reviews-story/story-cw6.jpg" loading="lazy" decoding="async"
-               alt="윤*하님의 코웨이 아이콘 얼음정수기 렌탈 설치 후기 사진">
-        </figure>
-        <div class="후기글">
-          <div class="후기머리">
-            <span class="후기이름">윤*하</span>
-            <span class="후기상품">코웨이 아이콘 얼음정수기 렌탈</span>
-          </div>
-          <div class="후기별" aria-label="별점 5점 만점에 5점">⭐⭐⭐⭐⭐</div>
-          <p class="후기제목">비교표를 보여주셔서 결정이 쉬웠어요!</p>
-          <p class="후기본문">여러 곳에 문의해봤는데 당현함만 조건을 표로 정리해서 보여주셔서 비교가 편했어요. 설치도 신청한 주에 바로 잡혔고, 기사님이 필터 교체 주기까지 메모해주고 가셨습니다. 디자인이 깔끔해서 주방이 정돈된 느낌이에요.</p>
-          <button type="button" class="더읽기">더 읽기</button>
-        </div>
-      </article>
     </div>
     <div class="후기링크들">
+      <a class="후기링크" href="javascript:void(0)" onclick="openCafe('https://cafe.naver.com/f-e/cafes/24827819/menus/324?viewType=I','https://m.cafe.naver.com/ca-fe/web/cafes/24827819/menus/324')">📡 인터넷 가입 후기 더보기 ›</a>
       <a class="후기링크" href="javascript:void(0)" onclick="openCafe('https://cafe.naver.com/f-e/cafes/24827819/menus/398?viewType=I','https://m.cafe.naver.com/ca-fe/web/cafes/24827819/menus/398')">🏠 렌탈 후기 더보기 ›</a>
     </div>
   </div>
@@ -2295,8 +2993,9 @@ html { scroll-behavior: auto; scroll-padding-top: 78px; }
 <script>
 (function(){
   // --- 본문 '더 읽기' ---
-  // ⚠ 접힌 글의 '진짜 길이'는 scrollHeight 로 알 수 없다(네 줄로 접는 방식의 함정).
-  //   그래서 아주 잠깐 펼쳐서 재고 곧바로 되돌린다. 눈에는 보이지 않는다.
+  // 접힌 글이 아예 없는 짧은 후기에는 단추를 감춘다(눌러도 아무 일이 없으면 손님이 헷갈린다).
+  // ⚠ 접힌 글의 '진짜 길이'는 scrollHeight 로 알 수 없다 — 네 줄로 접는 방식에서는
+  //   브라우저가 접힌 높이를 그대로 돌려주는 경우가 있다. 그래서 아주 잠깐 펼쳐서 재고 되돌린다.
   function 단추정리(){
     document.querySelectorAll('.후기카드').forEach(function(카드){
       var 본문 = 카드.querySelector('.후기본문');
@@ -2316,12 +3015,15 @@ html { scroll-behavior: auto; scroll-padding-top: 78px; }
       단추.textContent = 펼침 ? '접기' : '더 읽기';
     });
   });
+  // 글꼴이 늦게 도착하면 줄 수가 달라진다 — 글꼴을 기다렸다가 한 번 더 센다.
   단추정리();
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(단추정리);
   window.addEventListener('load', 단추정리);
   window.addEventListener('resize', 단추정리);
 
-  // --- 떠오르기 ---
+  // --- 떠오르기: 이 칸 전용 관찰기 ---
+  // 페이지 끝의 '늦은관찰기'도 이 카드들을 보지만 그 하나만 믿지 않는다.
+  // 같은 표시를 두 번 붙여도 아무 일이 없으므로 겹쳐도 안전하다.
   var 카드들 = document.querySelectorAll('.후기카드.늦게떠오름');
   function 보이기(카드){ 카드.classList.add('보임'); }
   if (window.IntersectionObserver) {
@@ -2342,17 +3044,14 @@ html { scroll-behavior: auto; scroll-padding-top: 78px; }
 
 
 <!-- CARRIERS -->
-<!-- 2026-08-27 : ICT 인증 링크는 아래 '공식 인증' 칸 안으로 옮겼다 (index.html 과 같은 자리).
-     같은 링크가 두 번 나오면 인증이 흔한 것처럼 보여 오히려 약해진다. -->
 <div class="carriers">
   <div class="carriers-inner">
   </div>
 </div>
 
-<!-- PROMISE (대표 약속) — 2026-08-27, index.html 에서 옮김 -->
+<!-- PROMISE (대표 약속) -->
 <!-- 그림 이름표: image2=서명 / image3=인터넷 서약서(_s는 표지) / image4=렌탈 서약서(_s는 표지)
-     (image1=대표 얼굴 사진은 2026-08-31 제거하고 당현함_보관 폴더로 옮겼다)
-     ※ 렌탈 페이지이므로 렌탈 서약서를 앞에 둔다 -->
+     (image1=대표 얼굴 사진은 2026-08-31 제거하고 당현함_보관 폴더로 옮겼다) -->
 <section class="promise">
   <div class="section-inner">
     <h2 class="section-title">대표가 <em>직접</em> 약속드립니다</h2>
@@ -2363,10 +3062,10 @@ html { scroll-behavior: auto; scroll-padding-top: 78px; }
         <ul class="promise-list">
           <li><span class="promise-num">1</span><div>
             <strong>사은품 당일 100% 지급</strong>
-            <p>약속한 사은품은 설치 당일 지급하며, 1원이라도 미지급 시 약속 금액을 즉시 보상합니다.</p></div></li>
+            <p>약속한 사은품은 개통 당일 지급하며, 1원이라도 미지급 시 약속 금액을 즉시 보상합니다.</p></div></li>
           <li><span class="promise-num">2</span><div>
-            <strong>렌탈 계약 내역 및 필수 안내사항 고지</strong>
-            <p>월 요금, 약정 기간, 의무 사용 조건 등 꼭 아셔야 할 내용을 미리 말씀드리고, 언제든 다시 확인해 드립니다.</p></div></li>
+            <strong>가입 내역서 및 필수 안내사항 고지</strong>
+            <p>월 요금, 약정 조건 등 꼭 아셔야 할 내용을 미리 말씀드리고, 언제든 다시 확인해 드립니다.</p></div></li>
           <li><span class="promise-num">3</span><div>
             <strong>개인정보 안전 관리 및 목적 외 사용 금지</strong>
             <p>개인정보 보호법에 따라 관련 법규를 엄격히 지키며, 가입 목적 외에는 사용하지 않습니다.</p></div></li>
@@ -2381,16 +3080,17 @@ html { scroll-behavior: auto; scroll-padding-top: 78px; }
       </div>
     </div>
 
+
     <div class="promise-docs">
       <p class="lbl">실제 서약서 원본입니다. 눌러서 확인해 보세요.</p>
       <div class="promise-docs-row">
-        <div class="promise-doc" onclick="promiseZoom('images/promise/image4.jpg')">
-          <img src="images/promise/image4_s.jpg" alt="렌탈 안심보장 서약서" loading="lazy" decoding="async">
-          <span>렌탈 서약서</span>
-        </div>
         <div class="promise-doc" onclick="promiseZoom('images/promise/image3.jpg')">
           <img src="images/promise/image3_s.jpg" alt="인터넷가입 안심보장 서약서" loading="lazy" decoding="async">
           <span>인터넷가입 서약서</span>
+        </div>
+        <div class="promise-doc" onclick="promiseZoom('images/promise/image4.jpg')">
+          <img src="images/promise/image4_s.jpg" alt="렌탈 안심보장 서약서" loading="lazy" decoding="async">
+          <span>렌탈 서약서</span>
         </div>
       </div>
     </div>
@@ -2399,19 +3099,19 @@ html { scroll-behavior: auto; scroll-padding-top: 78px; }
 <div class="promise-viewer" id="promiseViewer" onclick="서약서닫기()"><img id="promiseViewerImg" src="" alt=""></div>
 <script>
 function promiseZoom(src){ document.getElementById('promiseViewerImg').src=src; document.getElementById('promiseViewer').classList.add('on'); }
-/* 서약서 확대보기의 ESC·뒤로가기 닫기는 파일 아래쪽 '창 관리'가 대신 처리한다 */
+/* 서약서 확대보기의 ESC 닫기는 아래 '맨위창닫기'가 대신 처리한다 (2026-08-25) */
 </script>
 
-<!-- TRUST SECTION — 2026-08-27, index.html 에서 옮김 -->
+<!-- TRUST SECTION -->
 <section class="trust-section">
   <div class="section-inner">
 
-    <!-- 당현함 당일지급 -->
+    <!-- Part 2: 당현함 당일지급 -->
     <div class="trust-solution fade-up">
       <img src="images/당일지급 크롭버전1.PNG" alt="당현함 당일지급" class="trust-solution-img" loading="lazy" decoding="async">
     </div>
 
-    <!-- 공식 인증 -->
+    <!-- Part 3: 공식 인증 -->
     <div class="trust-cert fade-up">
       <span class="section-tag">공식 인증</span>
       <h2 class="section-title">당현함은 <em>정식으로 인정받은</em><br>접수센터입니다</h2>
@@ -2442,19 +3142,25 @@ function promiseZoom(src){ document.getElementById('promiseViewerImg').src=src; 
           <div class="cf-cell">✕</div>
           <div class="cf-cell">✕</div>
           <div class="cf-cell">✕</div>
+          <div class="cf-cell">✕</div>
+          <div class="cf-cell">✕</div>
         </div>
         <!-- VS 항목 -->
         <div class="cf-col cf-col-vs">
           <div class="cf-head">VS</div>
-          <div class="cf-cell">사은품 혜택 제공</div>
+          <div class="cf-cell">현금 사은품 입금</div>
+          <div class="cf-cell">상품권 → 현금 교환</div>
+          <div class="cf-cell">월 16,500원<br>저렴한 인터넷</div>
           <div class="cf-cell">월 18,900원<br>저렴한 직수 정수기</div>
-          <div class="cf-cell">렌탈 브랜드<br>전체 비교</div>
-          <div class="cf-cell">렌탈 2종 이상<br>동시 신청 혜택</div>
+          <div class="cf-cell">모든<br>통신사&amp;렌탈<br>통합 비교</div>
+          <div class="cf-cell">인터넷 + 유심<br>동시 변경 혜택</div>
         </div>
         <!-- 당현함 -->
         <div class="cf-col cf-col-us">
           <div class="cf-head">당현함</div>
           <div class="cf-cell"><span class="ok-label">당일 지급</span><span class="ok-sub">오후 5시 30분<br>이전 설치건</span></div>
+          <div class="cf-cell"><span class="ok-label">가능</span></div>
+          <div class="cf-cell"><span class="ok-label">가능</span><span class="ok-sub">SKB (휴대폰결합기준)</span></div>
           <div class="cf-cell"><span class="ok-label">가능</span><span class="ok-sub">교원웰스</span></div>
           <div class="cf-cell"><span class="ok-label">가능</span></div>
           <div class="cf-cell"><span class="ok-label">가능</span></div>
@@ -2468,20 +3174,20 @@ function promiseZoom(src){ document.getElementById('promiseViewerImg').src=src; 
 <section id="benefits" class="benefits">
   <div class="section-inner" style="text-align:center;">
     <span class="section-tag">왜 당현함인가요?</span>
-    <p style="font-size:17px;font-weight:500;color:#93afd4;letter-spacing:0.15em;margin:10px 0 28px;"><strong style="color:var(--primary);font-weight:900;font-size:20px;">당</strong>신께 <strong style="color:var(--primary);font-weight:900;font-size:20px;">현</strong>명한 선택 <strong style="color:var(--primary);font-weight:900;font-size:20px;">함</strong>께</p>
+    <p style="font-size:17px;font-weight:500;color:#93afd4;letter-spacing:0.15em;margin:10px 0 28px;"><strong style="color:var(--primary);font-weight:900;font-size:20px;">당</strong>일 <strong style="color:var(--primary);font-weight:900;font-size:20px;">현</strong>금지급 <strong style="color:var(--primary);font-weight:900;font-size:20px;">함</strong></p>
     <h2 class="section-title">당현함에서는<br><em>모든 혜택을 받을 수 있어요</em></h2>
     <div class="benefits-grid fade-up">
       <div class="benefit-card main">
         <div class="benefit-top">
           <span class="benefit-icon-lg">🎁</span>
-          <span class="benefit-tag">🎁 사은품 혜택 최고</span>
+          <span class="benefit-tag">💰 현금 지원 최고</span>
         </div>
-        <h3>사은품 혜택 업계 최고<br>설치 당일 바로 지급</h3>
+        <h3>현금 지원 업계 최고<br>당일 바로 입금</h3>
         <div class="benefit-amount-highlight">
-          <span class="amount-main">사은품 혜택 최대 50만원<br class="mob-br"> 렌탈 전문</span>
-          <span class="amount-sub">렌탈 제품 선택에 따라 최대 50만원 사은품 제공</span>
+          <span class="amount-main">현금 지원 최대 132만원+α<br class="mob-br"> 업계 1등</span>
+          <span class="amount-sub">인터넷 52만원 + 유심 30만원 + 렌탈 50만원 + 추가혜택</span>
         </div>
-        <p>렌탈 본사 요금 그대로,<br>사은품 혜택은 업계 최고 수준으로 드립니다.<br>타 업체가 더 준다면<br>차액의 120%를 보상해드려요.</p>
+        <p>요금은 통신사 본사 그대로,<br>현금은 업계 최고 수준으로 드립니다.<br>타 업체가 더 준다면<br>차액의 120%를 보상해드려요.</p>
         <div class="benefit-guarantee">타 업체가 더 준다면<br class="mob-br"> 차액 120% 보상</div>
       </div>
       <div class="benefit-card">
@@ -2490,7 +3196,7 @@ function promiseZoom(src){ document.getElementById('promiseViewerImg').src=src; 
           <span class="benefit-tag">📊 맞춤 추천</span>
         </div>
         <h3>고민할 필요 없이<br>맞춤으로 추천해드려요</h3>
-        <p>불필요한 부가서비스 강요 없이<br>전문 상담사가 1:1 맞춤으로<br>정수기·가전렌탈 전부 비교해드립니다</p>
+        <p>불필요한 부가서비스 강요 없이<br>전문 상담사가 1:1 맞춤으로<br>인터넷·정수기·가전렌탈 전부 비교해드립니다</p>
       </div>
       <div class="benefit-card">
         <div class="benefit-top">
@@ -2505,12 +3211,12 @@ function promiseZoom(src){ document.getElementById('promiseViewerImg').src=src; 
 </section>
 
 <!-- PLANS -->
-<section id="plans" class="plans" style="display:none">
+<section id="plans" class="plans">
   <div class="section-inner">
     <div style="text-align:center;">
       <span class="section-tag">요금제 비교</span>
       <h2 class="section-title">통신사별 <em>대표 요금제</em></h2>
-      <p class="section-sub">모든 요금제 가입 시 사은품 별도 제공</p>
+      <p class="section-sub">모든 요금제 가입 시 현금 지원금 별도 지급</p>
     </div>
     <div class="plans-grid fade-up">
       <a href="plans-kt.html" class="plan-card">
@@ -2518,7 +3224,7 @@ function promiseZoom(src){ document.getElementById('promiseViewerImg').src=src; 
           <span class="plan-logo kt">kt</span>
           <span class="plan-link">요금표 보기 ›</span>
         </div>
-        <div class="plan-title">인터넷 베이직 500MB +<br>TV 베이직</div>
+        <div class="plan-title">인터넷 베이직<br>500MB + TV 베이직</div>
         <div class="plan-price-row">
           <span class="plan-price-old">44,000원</span>
           <span class="plan-price-new">38,500</span><span class="plan-price-unit">원/월</span>
@@ -2540,7 +3246,7 @@ function promiseZoom(src){ document.getElementById('promiseViewerImg').src=src; 
           <span class="plan-logo lgu">LG U+</span>
           <span class="plan-link">요금표 보기 ›</span>
         </div>
-        <div class="plan-title">와이파이 기본 500MB +<br>TV 실속형</div>
+        <div class="plan-title">와이파이 기본<br>500MB + TV 실속형</div>
         <div class="plan-price-row">
           <span class="plan-price-old">45,100원</span>
           <span class="plan-price-new">35,200</span><span class="plan-price-unit">원/월</span>
@@ -2561,7 +3267,7 @@ function promiseZoom(src){ document.getElementById('promiseViewerImg').src=src; 
       <div class="process-step-a">
         <div class="step-icon-a">📞</div>
         <div class="step-title-a">가입 상담</div>
-        <div class="step-desc-a">친절한 무료 상담으로<br>정수기·렌탈 상품<br>혜택을 전부 비교해드려요</div>
+        <div class="step-desc-a">친절한 무료 상담으로<br>인터넷·정수기·렌탈 상품<br>혜택을 전부 비교해드려요</div>
       </div>
       <div class="process-arrow-a">›</div>
       <div class="process-step-a">
@@ -2571,9 +3277,9 @@ function promiseZoom(src){ document.getElementById('promiseViewerImg').src=src; 
       </div>
       <div class="process-arrow-a">›</div>
       <div class="process-step-a">
-        <div class="step-icon-a">🎁</div>
-        <div class="step-title-a">사은품 지급</div>
-        <div class="step-desc-a">설치 당일 지급을<br>원칙으로 하고 있습니다</div>
+        <div class="step-icon-a">💵</div>
+        <div class="step-title-a">현금 입금</div>
+        <div class="step-desc-a">설치 당일 현금 입금을<br>원칙으로 하고 있습니다</div>
       </div>
     </div>
   </div>
@@ -2591,51 +3297,80 @@ function promiseZoom(src){ document.getElementById('promiseViewerImg').src=src; 
     </div>
     <div class="faq-list">
       <div class="faq-item">
-        <div class="faq-question" onclick="toggleFaq(this)">사은품은 언제 받을 수 있나요? <span class="faq-icon">+</span></div>
+        <div class="faq-question" onclick="toggleFaq(this)">정말 당일에 현금으로 지급받을 수 있나요? <span class="faq-icon">+</span></div>
         <div class="faq-answer"><div class="faq-answer-inner">
-          네, 개통이 완료되면 설치 당일 지급해드립니다.<br>
-          설치가 끝나고 <strong>오후 5시 30분 이전</strong>에 연락 주시면 그날 안에 지급해드리고, 그 시각을 넘기면 다음 날 지급됩니다.
+          네, 개통이 완료되면 당일 현금(계좌이체)으로 지급해드립니다.<br>
+          설치가 끝나고 <strong>오후 5시 30분 이전</strong>에 연락 주시면 그날 안에 입금해드리고, 그 시각을 넘기면 다음 날 입금됩니다.
         </div></div>
       </div>
-      <!-- ===== 번호를 남기기 직전에 걸리는 의심을 푸는 자리 (2026-08-31 추가) =====
-           인터넷 페이지(index)에 넣은 것 중 렌탈에도 통하는 것만 옮겼다.
-           '인터넷 품질'은 통신망 이야기라 뺐고, '요금이 비싸지나'와 '고르는 법'은
-           낱말만 렌탈 말로 바꿨다(대리점->판매점, 요금제->필요 없는 제품). -->
+      <!-- ===== 아래 세 항목은 번호를 남기기 직전에 걸리는 의심을 푸는 자리다 (2026-08-31 추가) =====
+           경쟁사(펭귄통신 pgts.kr) 질문칸을 훑어보니 우리 질문 6개에는
+           '망이 느려지나 / 요금이 비싸지나 / 이 회사 믿을 만한가' 세 가지가 통째로 빠져 있었다.
+           순서는 걱정이 큰 차례 — 망(품질) -> 돈(요금) -> 회사(신뢰). -->
       <div class="faq-item">
-        <div class="faq-question" onclick="toggleFaq(this)">사은품 혜택을 받으면 월 요금이 더 비싸지나요? <span class="faq-icon">+</span></div>
+        <div class="faq-question" onclick="toggleFaq(this)">인터넷 품질이 본사보다 떨어지지 않나요? <span class="faq-icon">+</span></div>
         <div class="faq-answer"><div class="faq-answer-inner">
-          아닙니다. 월 요금과 할인 조건은 어디서 신청하셔도 본사와 똑같습니다.<br>
-          그래서 월 요금은 그대로인데 사은품 혜택만 더 받으시게 됩니다.
+          통신망은 SK·KT·LG 본사에서 쓰는 것과 똑같습니다.<br>
+          달라지는 것은 가입하실 때 받으시는 혜택뿐입니다.
         </div></div>
       </div>
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">현금 사은품을 받으면 요금이 더 비싸지나요? <span class="faq-icon">+</span></div>
+        <div class="faq-answer"><div class="faq-answer-inner">
+          아닙니다. 요금과 할인 정책은 어느 대리점에서 가입하셔도 본사와 똑같습니다.<br>
+          사은품은 요금에 얹혀 나오는 돈이 아니라, 대리점이 본사에서 받는 몫에서 고객님께 돌려드리는 것입니다.<br>
+          그래서 요금은 그대로인데 현금만 더 받으시게 됩니다.
+        </div></div>
+      </div>
+      <!-- '고르는 법'을 '믿을 만한 업체인가요' 바로 위에 둔다.
+           고르는 기준 세 가지를 먼저 읽은 손님이, 곧바로 아래에서
+           당현함이 그 기준을 어떻게 만족하는지 확인하는 차례가 된다. -->
       <div class="faq-item">
         <div class="faq-question" onclick="toggleFaq(this)">사은품 많이 준다는 곳, 어떻게 고르나요? <span class="faq-icon">+</span></div>
         <div class="faq-answer"><div class="faq-answer-inner">
           세 가지만 보시면 됩니다.<br>
-          &middot; <strong>설치 당일에 사은품을 주는가</strong> &mdash; 며칠 뒤로 미루는 곳은 조건이 바뀌기도 합니다<br>
-          &middot; <strong>필요 없는 제품까지 권하지 않는가</strong> &mdash; 사은품을 많이 주는 대신 안 쓸 제품까지 얹으면 결국 손해입니다<br>
-          &middot; <strong>지급받은 사람 명단을 공개하는가</strong> &mdash; 실제로 주고 있는지는 명단이 있어야 확인됩니다
+          · <strong>설치 당일에 현금을 주는가</strong> — 며칠 뒤로 미루는 곳은 조건이 바뀌기도 합니다<br>
+          · <strong>비싼 요금제를 강요하지 않는가</strong> — 사은품을 많이 주는 대신 고가 요금제를 권하면 결국 손해입니다<br>
+          · <strong>지급받은 사람 명단을 공개하는가</strong> — 실제로 주고 있는지는 명단이 있어야 확인됩니다
         </div></div>
       </div>
       <div class="faq-item">
         <div class="faq-question" onclick="toggleFaq(this)">믿을 만한 업체인가요? <span class="faq-icon">+</span></div>
         <div class="faq-answer"><div class="faq-answer-inner">
           말로만 드리지 않고, 직접 확인하실 수 있는 것만 말씀드립니다.<br>
-          &middot; <strong>KAIT 사전승낙서와 사업자등록증</strong> &mdash; 통신 3사 정식 판매점 인증입니다<br>
-          &middot; <strong>대표 서약서 원본</strong> &mdash; 대표가 직접 서명한 약속입니다<br>
-          &middot; <strong>사은품 지급 명단</strong> &mdash; 실제 지급 내역이 매일 새로 올라갑니다<br>
-          &middot; <strong>13년 업력과 누적 가입 10만 건</strong> &mdash; 오래 믿고 맡겨주신 분들이 만든 숫자입니다
+          · <strong>KAIT 사전승낙서와 사업자등록증</strong> — 통신 3사 정식 판매점 인증입니다<br>
+          · <strong>대표 서약서 원본</strong> — 대표가 직접 서명한 약속입니다<br>
+          · <strong>사은품 지급 명단</strong> — 실제 지급 내역이 매일 새로 올라갑니다<br>
+          · <strong>13년 업력과 누적 가입 10만 건</strong> — 오래 믿고 맡겨주신 분들이 만든 숫자입니다
         </div></div>
       </div>
       <div class="faq-item">
-        <div class="faq-question" onclick="toggleFaq(this)">렌탈 약정 기간 중 이사를 가면 어떻게 되나요? <span class="faq-icon">+</span></div>
+        <div class="faq-question" onclick="toggleFaq(this)">인터넷 100메가 500메가 차이가 뭔가요? <span class="faq-icon">+</span></div>
         <div class="faq-answer"><div class="faq-answer-inner">
-          이사 시 렌탈 제품은 이전 설치 서비스를 받으시면 됩니다. 이전 설치 비용은 제품 및 업체에 따라 다르며, 상담 시 정확한 안내를 드립니다. 약정이 자동으로 해지되지 않으니 걱정하지 않으셔도 됩니다.
+          인터넷 100메가 500메가 차이는 다운로드 속도입니다.<br>
+          10GB 영상 다운로드 시 100메가 17분 소요 / 500메가 9분 소요.<br>
+          웹서핑, 영상 시청, 쇼핑 등은 단 1초 차이밖에 나지 않습니다.
+          <table style="width:100%;margin-top:14px;border-collapse:collapse;font-size:14px;">
+            <thead>
+              <tr>
+                <th style="border:1px solid #e2e8f0;padding:8px 12px;background:#f8fafc;"></th>
+                <th style="border:1px solid #e2e8f0;padding:8px 12px;background:#f8fafc;text-align:center;">100메가</th>
+                <th style="border:1px solid #e2e8f0;padding:8px 12px;background:#f8fafc;text-align:center;">500메가</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="border:1px solid #e2e8f0;padding:8px 12px;font-weight:600;background:#f8fafc;white-space:nowrap;">추천 환경</td>
+                <td style="border:1px solid #e2e8f0;padding:8px 12px;">· 1-2인 가구<br>· 유튜브, 넷플릭스 등 영상시청</td>
+                <td style="border:1px solid #e2e8f0;padding:8px 12px;">· 3-4인 가구<br>· 온라인게임<br>· 파일 다운로드</td>
+              </tr>
+            </tbody>
+          </table>
         </div></div>
       </div>
       <div class="faq-item">
-        <div class="faq-question" onclick="toggleFaq(this)">렌탈 약정 기간은 얼마나 되나요? <span class="faq-icon">+</span></div>
-        <div class="faq-answer"><div class="faq-answer-inner">제품 및 업체마다 다르며, 보통 3년(36개월) ~ 5년(60개월) 약정입니다. 약정 기간과 월 요금, 혜택 조건은 상담 시 정확히 안내드립니다.</div></div>
+        <div class="faq-question" onclick="toggleFaq(this)">약정 기간은 얼마나 되나요? <span class="faq-icon">+</span></div>
+        <div class="faq-answer"><div class="faq-answer-inner">인터넷은 3년 약정입니다. 약정 기간 중 이사를 가시더라도 이전설치 서비스를 받으시면 되니 걱정하지 않으셔도 됩니다.<br>렌탈은 3년 또는 5년을 많이 합니다. 다음에도 같은 브랜드로 희망하시면 5년 약정을 선택하세요.</div></div>
       </div>
       <div class="faq-item">
         <div class="faq-question" onclick="toggleFaq(this)">설치는 얼마나 걸리나요? <span class="faq-icon">+</span></div>
@@ -2649,58 +3384,6 @@ function promiseZoom(src){ document.getElementById('promiseViewerImg').src=src; 
   </div>
 </section>
 
-<!-- FORM -->
-<section id="apply" class="form-section">
-  <div class="section-inner" style="text-align:center;">
-    <span class="section-tag">무료 상담</span>
-    <h2 class="section-title" style="font-size:clamp(30px,5vw,52px);"><em>30초</em> 신청으로<br><em>내 최대 혜택</em> 확인</h2>
-    <p class="section-sub" style="margin-bottom:36px;">상담은 무료, 부담 없이 신청하세요</p>
-    <div class="form-card">
-      <div id="formContent">
-        <p class="form-headline"><span>어떤 렌탈 제품</span>이 필요하신가요?</p>
-        <div class="service-tabs">
-          <div class="service-tab active" id="tab-water" onclick="toggleService('water')">
-            <div class="service-tab-icon">💧</div>정수기
-          </div>
-          <div class="service-tab" id="tab-rental" onclick="toggleService('rental')">
-            <div class="service-tab-icon">🏠</div>기타제품
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="inputName">이름 <span style="font-size:12px;color:#94a3b8;font-weight:500;">(선택)</span></label>
-          <input type="text" id="inputName" placeholder="이름을 입력해주세요" maxlength="20">
-        </div>
-        <div class="form-group">
-          <label for="inputPhone">휴대폰 번호 <span style="font-size:12px;color:#dc2626;font-weight:600;">(필수)</span></label>
-          <input type="tel" id="inputPhone" placeholder="휴대폰번호를 입력해주세요" maxlength="13">
-        </div>
-        <!-- 요청사항 메모칸 — 평소엔 접혀 있다 (2026-08-21) -->
-        <button type="button" class="memo-toggle" id="memoToggle" onclick="요청사항펴기()">
-          <span class="plus">+</span> 요청사항 남기기
-        </button>
-        <div class="form-group memo-fold" id="memoFold">
-          <p class="memo-hint">예) 통화는 오후 2시 이후에 부탁드려요 · 지금 SK 쓰는데 KT로 바꾸면 얼마 받나요?</p>
-          <textarea id="inputMemo" maxlength="200" placeholder="남기실 말씀을 적어주세요"></textarea>
-          <div class="memo-count"><span id="memoCount">0</span> / 200자</div>
-        </div>
-        <!-- 2026-08-27 : index.html 과 같은 방식으로 맞춤 — 미리 체크된 상태로 두고 작고 흐리게.
-             손 대는 단계가 하나 줄어든다. 끄고 싶으면 checked 를 지우면 된다. -->
-        <div style="display:flex;align-items:flex-start;gap:8px;margin-bottom:18px;">
-          <input type="checkbox" id="c1" checked style="width:12px;height:12px;accent-color:#9ca3af;flex-shrink:0;margin-top:3px;cursor:pointer;opacity:0.7;">
-          <label for="c1" style="font-size:13px;color:var(--gray);cursor:pointer;line-height:1.5;">개인정보 수집 및 활용동의 <a href="javascript:void(0)" onclick="openPrivacy()" style="color:var(--gray);font-weight:600;font-size:12px;text-decoration:none;">›</a> <span style="color:#b0b8c1;font-weight:500;font-size:12px;">(필수)</span></label>
-        </div>
-        <p class="form-urgency">⏰ 오늘 오후 5:30 이전 설치 시 당일 지급</p>
-        <button class="form-submit" id="submitBtn" onclick="submitForm()">내 최대 혜택 무료 확인</button>
-        <p style="margin-top:10px;font-size:13px;color:var(--gray);text-align:center;">타업체가 더 준다면? <strong style="color:var(--primary);">차액 120% 보상</strong></p>
-      </div>
-      <div class="form-success" id="formSuccess">
-        <div class="s-icon">✅</div>
-        <h3>신청이 완료되었습니다!</h3>
-        <p>담당 상담사가 빠른 시간 내에<br>연락드리겠습니다.<br><br>바로 문의하시려면<br><strong style="color:var(--primary);font-size:17px;">1600-4670</strong></p>
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- TERMS MODAL -->
 <div class="privacy-overlay" id="termsOverlay" onclick="closeTermsOutside(event)">
@@ -2720,7 +3403,7 @@ function promiseZoom(src){ document.getElementById('promiseViewerImg').src=src; 
       <p>① 인터넷 가입 상담 및 통신사 비교 안내 (KT·SKT·LG U+ 등)<br>
       ② 정수기·가전렌탈 상담 및 업체 비교 안내<br>
       ③ 가입 신청 접수 및 설치 일정 조율 대행<br>
-      ④ 사은품 지급 안내</p>
+      ④ 현금 사은품 지급 안내</p>
       <p>본 서비스는 이용자에게 별도의 이용 요금을 부과하지 않습니다. 회사는 통신사·렌탈사로부터 가입 유치 수수료를 받는 구조로 운영됩니다.</p>
 
       <h4>제3조 (서비스 이용 방법)</h4>
@@ -2728,8 +3411,8 @@ function promiseZoom(src){ document.getElementById('promiseViewerImg').src=src; 
       ② 신청 접수 후 회사 담당자가 이용자에게 직접 연락하여 상담을 진행합니다.<br>
       ③ 최종 가입 계약은 이용자와 해당 통신사·렌탈사 간에 체결되며, 회사는 중개 역할을 수행합니다.</p>
 
-      <h4>제4조 (사은품 지급)</h4>
-      <p>① 사은품은 설치 완료 후 지급을 원칙으로 합니다.<br>
+      <h4>제4조 (현금 사은품 지급)</h4>
+      <p>① 현금 사은품은 설치 완료 후 지급을 원칙으로 합니다.<br>
       ② 지급 금액 및 조건은 통신사·상품·약정 조건에 따라 달라질 수 있으며, 상담 시 정확한 금액을 안내드립니다.<br>
       ③ 타 업체 대비 혜택 부족 시 차액 보상은 동일 조건 비교를 기준으로 하며, 상담을 통해 확인 후 적용됩니다.</p>
 
@@ -2819,58 +3502,93 @@ function promiseZoom(src){ document.getElementById('promiseViewerImg').src=src; 
       주소: 경상남도 함안군 산인면 송산로 122, 2층 201호(은혜벌) | 대표번호: 1600-4670
     </div>
     <div class="footer-disclaimer">
-      당현함은 정수기·가전렌탈 상품을 비교·중개하는 전문 상담 서비스입니다.<br>
-      제시된 혜택은 상품 및 약정 조건에 따라 변경될 수 있으며, 정확한 내용은 상담을 통해 안내드립니다.<br>
+      당현함은 KT, SKT, LG U+ 공식 파트너로서 인터넷 가입 및 가전렌탈 서비스를 제공합니다.<br>
+      제시된 요금 및 지원금은 약정 조건에 따라 변경될 수 있으며, 정확한 내용은 상담을 통해 안내드립니다.<br>
       © 2026 당현함. All rights reserved.
     </div>
   </div>
 </footer>
 
+<!-- APPLY MODAL : 신청 별도창 (2026-08-25) -->
+<div class="apply-overlay" id="applyOverlay" onclick="신청창바깥닫기(event)" aria-hidden="true">
+  <div class="apply-modal" role="dialog" aria-modal="true" aria-label="놓친 지원금 무료 확인 신청">
+    <button type="button" class="apply-close" onclick="신청창닫기()" aria-label="닫기">&#10005;</button>
+    <div class="hero-form-wrap" id="applyForm">
+      <div class="form-card">
+        <div id="formContent">
+          <p class="form-headline"><span>내 지원금</span>이 얼마인지 확인해보세요</p>
+          <div class="service-tabs">
+            <div class="service-tab active" id="tab-internet" onclick="toggleService('internet')">
+              <div class="service-tab-icon">📡</div>인터넷
+            </div>
+            <div class="service-tab" id="tab-rental" onclick="toggleService('rental')">
+              <div class="service-tab-icon">🏠</div>렌탈
+            </div>
+          </div>
+          <p style="font-size:12px;color:var(--gray);margin-top:0;margin-bottom:14px;text-align:center;">(둘 다 선택 가능)</p>
+          <div class="usim-check">
+            <input type="checkbox" id="usimCheck">
+            <!-- 괄호 부분은 통째로 묶어 둔다 — 좁은 화면에서 '(유심 번호이 / 동)' 처럼
+                 글자 가운데가 끊기지 않고, 자리가 모자라면 통째로 아랫줄로 내려간다 -->
+            <label for="usimCheck">휴대폰 기종 변경 없이<br class="fold-br"> 통신사만 바꾸고 추가 현금 받기 <span style="white-space:nowrap;">(유심 번호이동)</span></label>
+          </div>
+          <div class="form-group">
+            <label for="inputName">이름 <span style="font-size:12px;color:#94a3b8;font-weight:500;">(선택)</span></label>
+            <input type="text" id="inputName" placeholder="이름을 입력해주세요" maxlength="20">
+          </div>
+          <div class="form-group">
+            <label for="inputPhone">휴대폰 번호 <span style="font-size:12px;color:#b0b8c1;font-weight:500;">(필수)</span></label>
+            <input type="tel" id="inputPhone" placeholder="휴대폰번호를 입력해주세요" maxlength="13">
+          </div>
+          <!-- 요청사항 메모칸 — 평소엔 접혀 있다 (2026-08-21) -->
+          <button type="button" class="memo-toggle" id="memoToggle" onclick="요청사항펴기()">
+            <span class="plus">+</span> 요청사항 남기기
+          </button>
+          <div class="form-group memo-fold" id="memoFold">
+            <p class="memo-hint">예) 통화는 오후 2시 이후에 부탁드려요 · 지금 SK 쓰는데 KT로 바꾸면 얼마 받나요?</p>
+            <textarea id="inputMemo" maxlength="200" placeholder="남기실 말씀을 적어주세요"></textarea>
+            <div class="memo-count"><span id="memoCount">0</span> / 200자</div>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:8px;margin-bottom:18px;">
+            <input type="checkbox" id="c1" checked style="width:12px;height:12px;accent-color:#9ca3af;flex-shrink:0;margin-top:3px;cursor:pointer;opacity:0.7;">
+            <label for="c1" style="font-size:13px;color:var(--gray);cursor:pointer;line-height:1.5;">개인정보 수집 및 활용동의 <a href="javascript:void(0)" onclick="openPrivacy()" style="color:var(--gray);font-weight:600;font-size:12px;text-decoration:none;">›</a> <span style="color:#b0b8c1;font-weight:500;font-size:12px;">(필수)</span></label>
+          </div>
+          <p class="form-urgency">⏰ 오후 5:30 이전 설치 시 당일 현금 입금</p>
+          <button class="form-submit" id="submitBtn" onclick="submitForm()">놓친 지원금 무료 확인</button>
+          <p style="margin-top:10px;font-size:13px;color:var(--gray);text-align:center;">타업체가 더 준다면? <strong style="color:var(--primary);">차액 120% 보상</strong></p>
+        </div>
+        <div class="form-success" id="formSuccess">
+          <div class="s-icon">✅</div>
+          <h3>신청이 완료되었습니다!</h3>
+          <p>담당 상담사가 빠른 시간 내에<br>연락드리겠습니다.<br><br>바로 문의하시려면<br><strong style="color:var(--primary);font-size:17px;">1600-4670</strong></p>
+          <!-- '다른 번호로 추가 신청' 단추는 뺐다 (2026-09-04 사장님 판단).
+               왜: 한 사람이 두 번호로 넣는 일은 거의 없는데, 회색 단추가 전화번호보다 아래에 있어
+                   시선을 끌고 마무리를 흐렸다. 실수로 누르면 입력칸이 도로 나와 접수됐는지 헷갈렸다.
+                   렌탈 페이지 완료창에는 원래 없던 것이라 첫 화면만 옛 모습으로 남아 있었다.
+               한 번 더 신청하려는 손님은 창을 닫고 신청 단추를 다시 누르면 된다(아래 신청창열기 참고). -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- MOBILE BOTTOM CTA -->
 <div class="mobile-cta-bar" id="mobileCta">
   <div class="mobile-cta-bar-inner">
     <a class="bar-side bar-phone" href="tel:1600-4670" aria-label="전화 상담"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21 16.42V19.9561C21 20.4811 20.5941 20.9167 20.0705 20.9537C19.6331 20.9846 19.2763 21 19 21C10.1634 21 3 13.8366 3 5C3 4.72371 3.01545 4.36687 3.04635 3.9295C3.08337 3.40588 3.51894 3 4.04386 3H7.5801C7.83678 3 8.05176 3.19442 8.07753 3.4498C8.10067 3.67907 8.12218 3.86314 8.14207 4.00202C8.34435 5.41472 8.75753 6.75936 9.3487 8.00303C9.44359 8.20265 9.38171 8.44159 9.20185 8.57006L7.04355 10.1118C8.35752 13.1811 10.8189 15.6425 13.8882 16.9565L15.4271 14.8019C15.5572 14.6199 15.799 14.5573 16.001 14.6532C17.2446 15.2439 18.5891 15.6566 20.0016 15.8584C20.1396 15.8782 20.3225 15.8995 20.5502 15.9225C20.8056 15.9483 21 16.1633 21 16.42Z"/></svg></a>
-    <button class="mobile-cta-btn" onclick="바로이동('apply')">놓친 내 혜택 무료 확인 →</button>
+    <button class="mobile-cta-btn" onclick="신청창열기()">놓친 내 지원금 무료 확인 →</button>
     <a class="bar-side bar-kakao" href="https://pf.kakao.com/_yxgTAs" aria-label="카카오 상담"><svg width="23" height="23" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 3C6.477 3 2 6.477 2 10.5c0 2.667 1.556 5.011 3.9 6.4L5 21l4.1-2.7c.94.2 1.91.3 2.9.3 5.523 0 10-3.477 10-7.5S17.523 3 12 3z"/></svg></a>
   </div>
 </div>
 
-<!-- DESKTOP BOTTOM CTA BAR -->
+<!-- 컴퓨터 화면 아래 상담 유도 — 카드 전체가 하나의 누르는 곳이다 -->
 <div class="desk-cta-bar" id="deskCtaBar">
-  <div class="desk-cta-bar-inner">
-    <div class="desk-cta-top">내가 받을 수 있는 혜택은?</div>
-    <input type="text" id="deskName" placeholder="이름">
-    <div class="desk-cta-phone-wrap">
-      <input type="tel" id="deskPhone" placeholder="휴대폰 번호">
-    </div>
-    <input type="text" id="deskService" placeholder="희망 제품 (예: 정수기)" maxlength="30">
-    <button class="desk-cta-bar-btn" onclick="submitDeskForm()">무료 확인 →</button>
-    <div class="desk-cta-success" id="deskSuccess">✅ 신청 완료! 곧 연락드리겠습니다.</div>
-  </div>
-  <!-- 2026-08-27 : 여기서도 번호를 받는데 동의 표시가 없었다 -->
-  <p class="mini-consent desk" id="deskConsent">무료 확인을 누르시면 <a href="javascript:void(0)" onclick="openPrivacy()">개인정보 수집·이용</a>에 동의하신 것으로 봅니다</p>
+  <button class="desk-cta-card" onclick="신청창열기()" aria-label="놓치고 있던 내 최대 지원금 무료로 확인하기">
+    <span class="desk-cta-top">놓치고 있던 내 최대 지원금, 지금 바로 확인하세요</span>
+    <span class="desk-cta-bar-btn">무료 확인하기 →</span>
+  </button>
 </div>
 
-<!-- STICKY MINI FORM -->
-<!-- ⚠ 지금은 어느 화면에서도 안 뜹니다 — 자세한 까닭은 위 스타일의 `.sticky-form` 앞 메모 참고 (2026-09-02) -->
-<div class="sticky-form" id="stickyForm">
-  <div class="sticky-form-tab" onclick="toggleStickyForm()">
-    <span class="tab-arrow"></span>
-  </div>
-  <div class="sticky-form-inner">
-    <div class="sticky-form-body" id="stickyFormBody">
-      <div id="stickyFormContent">
-        <p class="sticky-form-title"><span>내가 받을 수 있는</span><br>혜택은 얼마나 될까요?</p>
-        <input type="text" id="stickyName" placeholder="이름 (선택)">
-        <input type="tel" id="stickyPhone" placeholder="휴대폰 번호 (필수)">
-        <button class="sticky-form-btn" onclick="submitStickyForm()">무료 확인 →</button>
-        <!-- 2026-08-27 : 여기서도 번호를 받는데 동의 표시가 없었다 -->
-        <p class="mini-consent">무료 확인을 누르시면 <a href="javascript:void(0)" onclick="openPrivacy()">개인정보 수집·이용</a>에 동의하신 것으로 봅니다</p>
-      </div>
-      <div class="sticky-form-success" id="stickySuccess">✅ 신청 완료!<br>곧 연락드리겠습니다.</div>
-    </div>
-  </div>
-</div>
 
 <!-- FLOATING BUTTONS -->
 <!-- 넓은 화면(1600 이상) 상담 패널 — 2026-08-28 -->
@@ -2898,12 +3616,46 @@ function promiseZoom(src){ document.getElementById('promiseViewerImg').src=src; 
 </div>
 
 <script>
-const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby6NFsBfLjk1XCGuuzLF5DHbwxAXPyz9HNQKJGkdh5BxFqQZ9EPg3Bl4XasN6ojTxdOGA/exec';
+/* ===================================================================
+   지급표 — 금액이 바뀌면 여기만 고친다 (2026-08-25)
+   출처: danghh.com/plans.html 의 요금표 그림 3장 (images/plans/*.jpg)
+
+   ★ 표를 읽고 안 것 3가지
+     ① 사은품은 결합 여부(미결합·휴대폰결합·패밀리)와 상관없다.
+        결합은 '내는 돈'(월 요금)만 가른다. 그래서 손님에게 결합을 안 묻는다.
+     ② TV 종류(이코노미/스탠다드, 베이직/에센스, 실속/프리미엄)가 달라도
+        사은품은 같다. 그래서 '인터넷+TV' 하나로 묶어도 금액이 정확하다.
+     ③ 500메가와 1기가는 여섯 칸 중 다섯이 같다. 진짜 차이는 100메가냐 아니냐다.
+   =================================================================== */
+var DH_지급표 = {
+  sk: { net:    { '100M': 11, '500M': 17, '1G': 17 },
+        net_tv: { '100M': 43, '500M': 47, '1G': 52 } },   /* 1기가 49 -> 52 (2026-08-28 가이드 확인) */
+  kt: { net:    { '100M':  9, '500M': 14, '1G': 14 },
+        net_tv: { '100M': 37, '500M': 45, '1G': 45 } },
+  lg: { net:    { '100M': 20, '500M': 23, '1G': 23 },
+        net_tv: { '100M': 33, '500M': 47, '1G': 47 } }
+};
+var DH_렌탈금액 = 50;   /* 정수기·가전렌탈 함께 하면 더해짐 */
+/* 유심 번호이동 — 통신사마다 다르다 (2026-08-28)
+   전에는 어디나 20만원 하나로 계산했다. 실제로는 KT가 가장 많이 준다.
+   ★ 이 값이 바뀌면 통신사별 총액 순서(버튼 차례)도 다시 봐야 한다.
+     SK 52+30+50=132 · KT 45+35+50=130 · LG 47+30+50=127 */
+var DH_유심표 = { sk: 30, kt: 35, lg: 30 };
+function DH유심(통신사){ return DH_유심표[통신사] || 0; }
+
+/* 처음에 미리 눌러둘 조합 — 전부 켠 상태 = 132만원
+   화면 명세표(인터넷 52 + 유심 30 + 렌탈 50 = 132만원)와 숫자가 이어져야 하기 때문.
+   2026-08-27: 명세표가 48/합계118 이던 것을 계산기 최대치에 맞춰 49/119로 고쳤다.
+   2026-08-28: 유심이 통신사별로 갈리고(SK30·KT35·LG30) SK 1기가가 52로 오르면서
+               실제 받을 수 있는 최대는 SK 132만원이 되었다. 버튼 차례도 총액이 큰 순
+               (SK 132 · KT 130 · LG 127)이라 지금 차례 그대로가 맞다. */
+var DH_기본값 = { 통신사:'sk', 상품:'net_tv', 속도:'1G', 렌탈:true, 유심:true };
+
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxmkjm-U5m29WEkjKpAV8RovWAo9JMFJmR6t2BCgQPboPdpLSVwORTJ1_-kRXeCAeS84A/exec';
 
 /* ===== 신청 보내기 (실패하면 다시 시도) =====
    구글이 잠깐 흔들리면 신청이 그대로 사라지던 문제를 막는다.
    8초 안에 대답이 없거나 연결이 안 되면 잠깐 쉬었다 다시 보낸다(최대 3번).
-   이 쪽(렌탈)은 원래 시간 제한조차 없어서 "신청 중..."에서 멈추기도 했다.
    ⚠ 다시 보내도 시트에 두 줄이 되지 않는 이유: 구글 쪽 당현함_신청폼.gs 가
       "같은 번호가 2분 안에 또 오면 무시" 규칙을 갖고 있다. 둘은 한 쌍이므로
       한쪽만 되돌리면 중복이 생긴다. (2026-08-07) */
@@ -2966,23 +3718,27 @@ function openCafe(pcUrl, mobileUrl) {
 // 그 날짜 파일들을 읽어 한 줄씩 굴린다. 못 읽으면 이 칸은 통째로 감춘다.
 (function() {
   /* 명단을 몇 줄쯤 채울지. '며칠치'가 아니라 '몇 줄'로 잡는다 (2026-08-25)
-     3일치로 못박으면 주말·개통 없는 날이 겹칠 때 엿새 전 날짜까지 떠서
-     '실시간 지급' 느낌이 사라진다. */
+     왜: 3일치로 못박아 두었더니, 주말 이틀과 개통 없는 하루가 겹치면
+         6일 전 날짜까지 화면에 떠서 '실시간 지급' 느낌이 사라졌다.
+     실제 하루 건수: 8/24=31 · 8/21=32 · 8/20=30 · 8/19=27 -> 20이면 웬만한 날은 하루치로 끝난다 */
   var 최소줄수 = 20;      /* 이만큼 차면 더 거슬러 올라가지 않는다 */
   var 최대날짜 = 7;       /* 한산한 때라도 이 이상은 거슬러 올라가지 않는다 */
-  var 넉넉히 = 3;         /* 옛 자료라 건수가 안 적혀 있을 때 쓰던 예전 방식 */
+  var 넉넉히 = 3;         /* 옛 자료라 건수가 안 적혀 있을 때 쓰던 예전 방식(최근 3일) */
   var ITEM_H = 66;        /* 컴퓨터 줄 높이 — 위 .rolling-item 의 height 와 반드시 같아야 한다 */
   var 섹션 = document.getElementById('liveSection');
   var 트랙 = document.getElementById('rollingTrackCash');
   var 제목 = document.getElementById('rollingTitle');
   if (!섹션 || !트랙) return;
 
-  /* ===== 자리표 되잡기 (2026-08-27, index.html 에서 옮김) =====
-     문제: rental.html#reviews 처럼 자리표를 달고 들어오면 엉뚱한 곳에 선다.
-     원인: 이 명단칸은 자료를 읽어온 뒤에야 나타나는데 높이가 커서,
-           나타나는 순간 아래 내용이 통째로 그만큼 밀린다.
-     해결: 명단칸을 내놓은 직후에 자리표로 한 번 더, 즉시 내려준다.
-     주의: 손님이 이미 스스로 화면을 움직이고 있으면 건드리지 않는다. */
+  /* ===== 자리표 되잡기 (2026-08-26) =====
+     문제: danghh.com/index.html#reviews 처럼 자리표를 달고 들어오면 엉뚱한 곳(가입 프로세스)에 섰다.
+     원인 둘이 겹쳐 있었다.
+       (1) 이 명단칸은 자료를 읽어온 뒤에야 나타나는데 높이가 833px 이나 되고,
+           위치가 후기보다 위라서 나타나는 순간 아래 내용이 통째로 그만큼 밀린다.
+       (2) 이 페이지는 자리표 이동이 'smooth' 라, 밀리기 전에 계산한 옛 위치로 천천히 내려간다.
+           게다가 새 탭으로 열면 smooth 이동이 아예 안 돌아서 맨 위에 서 버린다.
+     해결: 명단칸을 내놓은 직후에 자리표로 한 번 더, 부드럽게가 아니라 즉시 내려준다.
+     주의: 손님이 이미 스스로 화면을 움직이고 있으면 건드리지 않는다. 멋대로 움직이면 놀란다. */
   var 손길있었나 = false;
   ['wheel','touchstart','keydown','mousedown'].forEach(function(이름){
     window.addEventListener(이름, function(){ 손길있었나 = true; }, { passive: true, once: true });
@@ -2995,7 +3751,8 @@ function openCafe(pcUrl, mobileUrl) {
     var 목표;
     try { 목표 = document.querySelector(자리표); } catch (e) { return; }
     if (!목표) return;
-    /* 화면에 다 그려진 뒤라야 위치가 정확하다. 두 번 재보정한다. */
+    /* 화면에 다 그려진 뒤라야 위치가 정확하다. 두 번 재보정한다.
+       requestAnimationFrame 은 다른 탭에 숨어 있으면 아예 안 돌아서 setTimeout 을 쓴다. */
     var 내려주기 = function(){
       if (손길있었나) return;
       var 다시 = document.querySelector(자리표);
@@ -3010,19 +3767,20 @@ function openCafe(pcUrl, mobileUrl) {
   function 굴림맞춤(개수){
     if (개수 <= 0) return;
     var 폰 = window.matchMedia('(max-width: 768px)').matches;
-    /* ★ 줄 높이가 화면 크기에 따라 다르다. 컴퓨터 66px / 폰 44px.
-         안 맞추면 명단이 어긋나게 흐른다. */
+    /* ★ 줄 높이가 화면 크기에 따라 다르다. 위 .rolling-item 의 height 와 반드시 같아야 한다.
+         컴퓨터 66px(1.5배) / 폰 44px(원래 크기). 안 맞추면 명단이 어긋나게 흐른다. */
     var 한줄 = 폰 ? 44 : ITEM_H;
     document.documentElement.style.setProperty('--roll-m-dist', '-' + (개수 * 한줄) + 'px');
     트랙.style.animationTimingFunction = 'steps(' + 개수 + ')';
-    트랙.style.animationDuration = (개수 * (폰 ? 1.5 : 2)) + 's';
+    트랙.style.animationDuration = (개수 * (폰 ? 0.8 : 0.9)) + 's';   /* 2026-08-25 : 한 줄당 2초/1.5초 -> 0.9초/0.8초 */
   }
 
   fetch('gift-data/index.json', { cache: 'no-store' })
     .then(function(r){ return r.json(); })
     .then(function(목록){
-      /* 최근 날짜부터 거슬러 올라가며 줄 수가 찰 때까지만 담는다.
-         어제 하루로 충분한 날에는 하루치만 써서 오래된 날짜가 안 섞인다. */
+      /* 최근 날짜부터 거슬러 올라가며, 줄 수가 찰 때까지만 담는다.
+         어제 하루로 충분한 날에는 하루치만 쓰게 되어 오래된 날짜가 안 섞인다.
+         한산한 날에만 조용히 하루씩 더 붙어서 명단이 빈약해지지 않는다. */
       var 자료들 = (목록.items || []).filter(function(it){ return it.type === 'data'; });
       var 날짜들 = [], 모인줄 = 0;
       for (var i = 0; i < 자료들.length && 날짜들.length < 최대날짜; i++) {
@@ -3030,6 +3788,7 @@ function openCafe(pcUrl, mobileUrl) {
         모인줄 += (자료들[i].count || 0);
         if (모인줄 >= 최소줄수) break;
       }
+      /* 옛 자료에는 건수가 안 적혀 있다. 그때는 예전처럼 최근 며칠로 채운다 */
       if (!모인줄) 날짜들 = 자료들.slice(0, 넉넉히).map(function(it){ return it.date; });
       if (!날짜들.length) throw new Error('글씨 명단이 아직 없음');
       return Promise.all(날짜들.map(function(d){
@@ -3050,8 +3809,10 @@ function openCafe(pcUrl, mobileUrl) {
       });
       if (!줄들.length) return;
 
-      var 날짜개수 = 날들.filter(function(d){ return d.rows.length; }).length;
-      // 날짜는 하루치여도 항상 적는다. 제목에 날짜가 없어졌으므로 줄마다 적어야 믿긴다.
+      // 날짜는 하루치여도 항상 적는다.
+      // 원래는 '하루치면 제목에 이미 날짜가 있으니 줄마다 또 적지 않는다'는 규칙이었는데,
+      // 지금 제목은 그냥 '사은품지급명단'이라 날짜가 없다. 그 전제가 깨져 있었다.
+      // 날짜가 적혀 있어야 '실제로 그날 지급했다'가 믿긴다.
       var 날짜보이기 = true;
 
       // 두 번 이어붙여야 끊김 없이 무한히 돈다
@@ -3065,12 +3826,11 @@ function openCafe(pcUrl, mobileUrl) {
         트랙.appendChild(div);
       });
 
-      // 제목에는 날짜를 넣지 않는다. 날짜는 줄마다 적히고, 제목 아래 안내가 갱신 주기를 알려준다.
       제목.textContent = '사은품지급명단';
 
       굴림맞춤(줄들.length);
       섹션.style.visibility = 'visible';        /* 2026-08-27 : 자리는 이미 잡혀 있다 */
-      자리표되잡기();                                   /* 2026-08-27 : 위 설명 참고 */
+      자리표되잡기();                                   /* 2026-08-26 : 위 설명 참고 */
       window.addEventListener('resize', function(){ 굴림맞춤(줄들.length); });
     })
     .catch(function(){
@@ -3085,20 +3845,18 @@ function openCafe(pcUrl, mobileUrl) {
 function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('open'); }
 function closeMobileMenu() { document.getElementById('mobileMenu').classList.remove('open'); }
 document.addEventListener('click', e => {
-  /* 2026-08-27 : 창 기록을 남기려면 반드시 closeMobileMenu 를 거쳐야 한다 */
-  if (!e.target.closest('header') && !e.target.closest('.mobile-menu'))
-    closeMobileMenu();
+  if (!e.target.closest('header') && !e.target.closest('.mobile-menu')) closeMobileMenu();
 });
 
 // Service tab (다중 선택, 재클릭 해제)
-let selectedServices = new Set(['water']);
+let selectedServices = new Set(['internet']);
 function toggleService(type) {
   if (selectedServices.has(type)) {
     selectedServices.delete(type);
   } else {
     selectedServices.add(type);
   }
-  document.getElementById('tab-water').classList.toggle('active', selectedServices.has('water'));
+  document.getElementById('tab-internet').classList.toggle('active', selectedServices.has('internet'));
   document.getElementById('tab-rental').classList.toggle('active', selectedServices.has('rental'));
 }
 
@@ -3177,22 +3935,42 @@ async function submitForm() {
   btn.disabled = true; btn.textContent = '신청 중...';
   dhTrack('lead_submit', { once: false });   /* 입력 검사 통과 시점에 전환 집계 */
 
-  const serviceMap = { water:'정수기', rental:'가전렌탈' };
+  const serviceMap = { internet:'인터넷', rental:'가전렌탈' };
   const serviceText = [...selectedServices].map(s => serviceMap[s]).join('+');
+  const usim = document.getElementById('usimCheck').checked ? 'Y' : 'N';
 
   try {
-    await dhSend(Object.assign({ name, phone, usim: 'N', service: serviceText, memo }, dhInflow()),
+    await dhSend(Object.assign({ name, phone, usim, service: serviceText, memo }, dhInflow()),
                  (문구) => { btn.textContent = 문구; });
     document.getElementById('formContent').style.display = 'none';
     document.getElementById('formSuccess').style.display = 'block';
       dhNaver('lead');   /* 네이버 전환: 진짜 접수된 뒤에만 (2026-08-28) */
   } catch(e) {
     alert('오류가 발생했습니다. 잠시 후 다시 시도하거나\n1600-4670으로 직접 문의해주세요.');
-    btn.disabled = false; btn.textContent = '내 최대 혜택 무료 확인';
+    btn.disabled = false; btn.textContent = '놓친 지원금 무료 확인';
   }
 }
 
-// 개인정보처리방침 모달
+function resetForm() {
+  document.getElementById('formContent').style.display = 'block';
+  document.getElementById('formSuccess').style.display = 'none';
+  document.getElementById('inputName').value = '';
+  document.getElementById('inputPhone').value = '';
+  document.getElementById('usimCheck').checked = false;
+  /* 요청사항 칸도 비우고 다시 접어 둔다 (2026-08-21) */
+  document.getElementById('inputMemo').value = '';
+  document.getElementById('memoCount').textContent = '0';
+  document.getElementById('memoCount').parentNode.classList.remove('over');
+  document.getElementById('memoFold').classList.remove('open');
+  document.getElementById('memoToggle').style.display = '';
+  document.getElementById('c1').checked = true;   /* 페이지 기본값과 맞춘다 (2026-08-20) */
+  selectedServices = new Set(['internet']);
+  document.getElementById('tab-internet').classList.add('active');
+  document.getElementById('tab-rental').classList.remove('active');
+  const btn = document.getElementById('submitBtn');
+  btn.disabled = false; btn.textContent = '놓친 지원금 무료 확인';
+}
+
 // 하단 바 단추는 부드럽게 흐르지 않고 한 번에 이동한다 (2026-08-13)
 // 페이지 전체 설정이 '부드럽게'라서, 이동하는 순간만 잠깐 껐다가 되돌려 놓는다.
 // 자리표를 주소에 남기지 않으므로, 같은 단추를 다시 눌러도 매번 제대로 이동한다.
@@ -3206,142 +3984,136 @@ function 바로이동(자리표) {
   뿌리.style.scrollBehavior = 원래;
 }
 
+// 개인정보처리방침 모달
 function openPrivacy() { document.getElementById('privacyOverlay').classList.add('open'); }
 function closePrivacy() { document.getElementById('privacyOverlay').classList.remove('open'); }
 function closePrivacyOutside(e) { if (e.target.id === 'privacyOverlay') closePrivacy(); }
 function openTerms() { document.getElementById('termsOverlay').classList.add('open'); }
 function closeTerms() { document.getElementById('termsOverlay').classList.remove('open'); }
 function closeTermsOutside(e) { if (e.target.id === 'termsOverlay') closeTerms(); }
+document.addEventListener('keydown', function(e) { if (e.key !== 'Escape') return; 맨위창닫기(); });
 
-// Sticky form 접기/펴기
-function toggleStickyForm() {
-  document.getElementById('stickyForm').classList.toggle('collapsed');
-}
-
-// 스크롤 폼 통합 트리거 (히어로 CTA 버튼이 뷰포트 밖으로 나가면 등장)
-const stickyForm = document.getElementById('stickyForm');
+// 스크롤 트리거 — 히어로 폼이 뷰포트 밖으로 나가면 CTA 바 등장
 const deskCtaBar = document.getElementById('deskCtaBar');
 const mobileCta  = document.getElementById('mobileCta');
-const applySection = document.getElementById('apply');
+/* heroFormWrap 은 더 이상 히어로에 없다 (별도 창 안으로 옮김) */
+
+/* 계산기 안에 이미 "정확히 확인받기" 단추가 있다.
+   그 단추가 화면에 보이는 동안에는 아래 고정 띠가 같은 말을 두 번 하는 셈이라 감춘다.
+   스크롤해서 단추가 위로 사라지면 그때 띠가 올라온다. (2026-08-25) */
+const dh계산기단추 = document.querySelector('.dh-calc-cta');
 
 function updateScrollForms() {
-  /* 2026-08-27 : 첫 화면의 누름단추를 뺐으므로, 예전처럼 '단추가 화면 밖으로 나가면'을
-     기준으로 삼을 수 없다(그 단추가 이제 없다). index.html 과 같이 처음부터 띄운다.
-     신청 구역에 다다르면 겹치므로 그때만 감춘다. */
-  const applyNear = applySection.getBoundingClientRect().top <= 100;
-  const isMobile  = window.innerWidth <= 768;
-  // 모바일은 첫 화면부터 띄우고, 신청 구역에 다다르면 감춘다 (2026-08-13, index.html과 같은 조치)
-  // 원래는 히어로 단추가 화면 밖으로 나가야 등장해서 첫 화면에선 누를 것이 없었다.
+  // 2026-08-25: 신청폼이 첫 화면에서 빠졌으므로 누를 곳은 아래 고정 띠 하나뿐이다.
+  // 그래서 스크롤 위치와 상관없이 처음부터 계속 띄운다.
+  // 다만 신청 창이 떠 있는 동안에는 창과 겹치므로 감춘다.
+  const 창열림 = document.body.classList.contains('apply-open');
+  const isMobile = window.innerWidth <= 768;
+  if (창열림) {
+    mobileCta.classList.remove('visible');
+    deskCtaBar.classList.remove('visible');
+    return;
+  }
+
+  /* 아래 띠는 '계산기를 지나 보낸 뒤에' 나타나고, 그 뒤로는 계속 남는다.
+     첫 화면에는 폰·컴퓨터 모두 띠가 없다 (2026-08-28 사장님 지시).
+
+     ── 옛 조건('자리.bottom > 0 && 자리.top < 화면높이')을 버린 이유 ──
+     ① 화면 맨 위 머리띠(64px)에 가려 눈에 안 보이는데도 '보인다'고 판단했다.
+        그동안 아래 띠도 감춰져 있어서 누를 곳이 하나도 없는 구간이 생겼다.
+        폴드(344x882) 실측: 스크롤 442~450(9px)과 1298~1370(73px) 두 구간.
+     ② 창 높이에 따라 첫 화면 결과가 뒤집혔다. 계산기 단추가 문서 874 자리라
+        창이 900이면 '보인다'며 감추고, 800이면 '안 보인다'며 띄웠다.
+        1280x800 실측: 띠가 떴다가 74에서 사라지고 922에서 다시 나타났다(깜빡임).
+
+     ── 첫 화면에 띠가 없어도 괜찮은 이유 ──
+     폰은 화면 오른쪽 아래에 전화·카카오 동그란 단추가 늘 떠 있고(.floating-btns),
+     컴퓨터는 머리띠에 전화·카톡 단추가 있다. 누를 곳이 사라지지 않는다.
+
+     ⚠ 고칠 일이 생기면 화면 크기를 하나만 재고 판단하지 말 것.
+        폰 344/360/390 과 컴퓨터 1280x800 / 1440x700 / 1440x900 을 함께 재야
+        '한 크기에서만 우연히 멀쩡한' 상태를 걸러낼 수 있다. */
+  if (dh계산기단추) {
+    const 자리 = dh계산기단추.getBoundingClientRect();
+    const 머리띠 = document.querySelector('header');
+    const 위선 = (머리띠 ? 머리띠.offsetHeight : 0) + 8;
+    if (자리.bottom > 위선) {
+      mobileCta.classList.remove('visible');
+      deskCtaBar.classList.remove('visible');
+      return;
+    }
+  }
+
   if (isMobile) {
-    if (applyNear) { mobileCta.classList.remove('visible'); }
-    else { mobileCta.classList.add('visible'); }
-    stickyForm.classList.remove('visible');   /* 폰에서는 옆 폼을 늘 끈다 — 지금은 어느 화면에서도 안 뜬다 */
+    mobileCta.classList.add('visible');
     deskCtaBar.classList.remove('visible');
     return;
   }
   mobileCta.classList.remove('visible');
-  if (!applyNear) {
-    stickyForm.classList.add('visible');
-    deskCtaBar.classList.add('visible');
-  } else {
-    stickyForm.classList.remove('visible');
-    deskCtaBar.classList.remove('visible');
-  }
+  deskCtaBar.classList.add('visible');
 }
 window.addEventListener('scroll', updateScrollForms, { passive: true });
-// 아래 세 가지는 '스크롤 신호가 안 나오는 경우'를 메운다 (2026-08-13, index.html과 같은 조치)
+// 아래 세 가지는 '스크롤 신호가 안 나오는 경우'를 메운다 (2026-08-13)
+//  - 즉시 1회: 스크롤하지 않아도 첫 화면부터 바가 보이도록
+//  - load: 주소 끝에 #applyForm 이 붙은 채로 열면 브라우저가 알아서 폼으로 내려가는데,
+//          그때는 스크롤 신호가 안 나와서 바가 그대로 남아 있었다
+//  - hashchange: 페이지 안에서 같은 자리표를 다시 누른 경우
 window.addEventListener('load', updateScrollForms);
 window.addEventListener('hashchange', updateScrollForms);
-// 화면 폭이 바뀌었는데 다시 세지 않아 하단 바가 이전 폭 기준 판단에 갇혀 있던 문제를
-// 메운다 (2026-08-21, index.html과 같은 조치). 창 크기 조절, 폰 가로로 눕히기,
-// 폴더블 펼치기, 카톡·인스타 안 브라우저처럼 열리는 순간 폭이 한 번 바뀌는 경우가 해당한다.
-// 회전은 크기가 확정되기 전에 신호가 오는 기기가 있어 조금 기다렸다 다시 센다.
+//  - resize/orientationchange: 화면 폭이 바뀌었는데 다시 세지 않아 하단 바가 이전 폭
+//    기준 판단에 갇혀 있던 문제를 메운다 (2026-08-21).
+//    창 크기 조절, 폰 가로로 눕히기, 폴더블 펼치기, 카톡·인스타 안 브라우저처럼
+//    열리는 순간 폭이 한 번 바뀌는 경우가 모두 여기에 해당한다.
+//    회전은 크기가 확정되기 전에 신호가 오는 기기가 있어 조금 기다렸다 다시 센다.
 window.addEventListener('resize', updateScrollForms);
 window.addEventListener('orientationchange', function(){ setTimeout(updateScrollForms, 200); });
 updateScrollForms();
 
-// Desktop bar phone format
-document.getElementById('deskPhone').addEventListener('input', function() {
-  let v = this.value.replace(/\D/g,'');
-  if (v.length > 11) v = v.slice(0,11);
-  if (v.length >= 8) v = v.slice(0,3)+'-'+v.slice(3,7)+'-'+v.slice(7);
-  else if (v.length >= 4) v = v.slice(0,3)+'-'+v.slice(3);
-  this.value = v;
-});
 
-// Desktop bar submit
-async function submitDeskForm() {
-  const name = document.getElementById('deskName').value.trim();
-  const phone = document.getElementById('deskPhone').value.trim();
-  /* 희망 제품은 필수로 받는다 (2026-09-02) */
-  const 희망제품 = (document.getElementById('deskService') || { value: '' }).value.trim();
-  if (!희망제품) { alert('희망 제품을 적어주세요.\n(예: 정수기, 비데, 매트리스)'); return; }
-  if (!phone || phone.replace(/\D/g,'').length !== 11) { alert('휴대폰 번호 11자리를 정확히 입력해주세요.\n(예: 010-1234-5678)'); return; }
-  dhTrack('lead_submit', { once: false });   /* 입력 검사 통과 시점에 전환 집계 */
-  /* 보내는 동안 버튼을 잠근다. 안 잠그면 느릴 때(최대 27초) 손님이 여러 번 누른다 */
-  const btn = document.querySelector('.desk-cta-bar-btn');
-  const 본래글자 = btn ? btn.textContent : '';
-  if (btn) { btn.disabled = true; btn.textContent = '신청 중...'; }
-  try {
-    await dhSend(Object.assign({ name, phone, usim: '미지정', service: 희망제품 }, dhInflow()),
-                 (문구) => { if (btn) btn.textContent = 문구; });
-    /* 하단 바에서 완료 메시지만 남기고 입력칸·버튼은 정리.
-       요소가 없어도 오류 나지 않도록 있는 것만 건드림 */
-    const deskInner = document.querySelector('.desk-cta-bar-inner');
-    if (deskInner) [...deskInner.children].forEach(el => {
-      if (el.id !== 'deskSuccess') el.style.display = 'none';
-    });
-    const deskOk = document.getElementById('deskSuccess');
-    if (deskOk) deskOk.style.display = 'block';
-      dhNaver('lead');   /* 네이버 전환: 진짜 접수된 뒤에만 (2026-08-28) */
-    const deskC = document.getElementById('deskConsent');
-    if (deskC) deskC.style.display = 'none';
-  } catch(e) {
-    if (btn) { btn.disabled = false; btn.textContent = 본래글자; }
-    alert('오류가 발생했습니다. 1600-4670으로 문의해주세요.');
+// ===== 폰에서만 사은품지급명단을 신청폼 바로 앞으로 옮긴다 (2026-08-21) =====
+// 왜: 번호를 적기 직전이 '먹튀 걱정'이 가장 커지는 순간이라 그 자리에 실제 지급명단을 둔다.
+// 컴퓨터 화면은 건드리지 않는다 — 넓어지면 원래 자리(히어로 아래)로 되돌린다.
+(function(){
+  var 명단 = document.getElementById('liveSection');
+  var 히어로 = document.querySelector('.hero-inner');
+  if (!명단 || !히어로) return;
+  var 원래부모 = 명단.parentNode;
+  var 원래다음 = 명단.nextSibling;   // 원래 자리를 가리키는 표시
+  var 폰 = window.matchMedia('(max-width: 768px)');
+
+  /* 2026-08-25 : 폰에서도 컴퓨터와 같은 자리(신뢰 숫자 칸 아래)에 둔다.
+     예전에 폰에서만 히어로 안으로 올렸던 것은, 히어로 안에 신청폼이 있어서
+     '번호 적기 직전'에 명단을 보여 주려던 것이었다. 신청폼이 별도 창으로 빠지면서
+     그 이유가 사라졌고, 두 화면이 갈라져 있으면 색·여백이 계속 어긋난다. */
+  function 자리잡기(){
+    if (명단.parentNode !== 원래부모 || 명단.nextSibling !== 원래다음) {
+      원래부모.insertBefore(명단, 원래다음);
+    }
   }
-}
-
-// Sticky phone format
-document.getElementById('stickyPhone').addEventListener('input', function() {
-  let v = this.value.replace(/\D/g,'');
-  if (v.length > 11) v = v.slice(0,11);
-  if (v.length >= 8) v = v.slice(0,3)+'-'+v.slice(3,7)+'-'+v.slice(7);
-  else if (v.length >= 4) v = v.slice(0,3)+'-'+v.slice(3);
-  this.value = v;
-});
-
-// Sticky form submit
-async function submitStickyForm() {
-  const name = document.getElementById('stickyName').value.trim();
-  const phone = document.getElementById('stickyPhone').value.trim();
-  if (!phone || phone.replace(/\D/g,'').length !== 11) { alert('휴대폰 번호 11자리를 정확히 입력해주세요.\n(예: 010-1234-5678)'); return; }
-  dhTrack('lead_submit', { once: false });   /* 입력 검사 통과 시점에 전환 집계 */
-  /* 보내는 동안 버튼을 잠근다. 안 잠그면 느릴 때(최대 27초) 손님이 여러 번 누른다 */
-  const btn = document.querySelector('.sticky-form-btn');
-  const 본래글자 = btn ? btn.textContent : '';
-  if (btn) { btn.disabled = true; btn.textContent = '신청 중...'; }
-  try {
-    await dhSend(Object.assign({ name, phone, usim: '미지정', service: '미지정' }, dhInflow()),
-                 (문구) => { if (btn) btn.textContent = 문구; });
-    document.getElementById('stickyFormContent').style.display = 'none';
-    document.getElementById('stickySuccess').style.display = 'block';
-      dhNaver('lead');   /* 네이버 전환: 진짜 접수된 뒤에만 (2026-08-28) */
-  } catch(e) {
-    if (btn) { btn.disabled = false; btn.textContent = 본래글자; }
-    alert('오류가 발생했습니다. 1600-4670으로 문의해주세요.');
-  }
-}
+  자리잡기();
+  // 신호 한 가지만 믿지 않는다 — 하단 바가 안 뜨던 문제도 신호 하나가 빠져서 생겼다.
+  // 폭 경계를 넘는 신호(matchMedia)와 폭 변화 신호(resize)를 둘 다 받는다.
+  if (폰.addEventListener) 폰.addEventListener('change', 자리잡기);
+  else 폰.addListener(자리잡기);      // 옛 브라우저용
+  window.addEventListener('resize', 자리잡기);
+  window.addEventListener('orientationchange', function(){ setTimeout(자리잡기, 200); });
+  // 폭 신호를 빠뜨리는 브라우저를 대비해 스크롤할 때도 한 번씩 확인한다.
+  // 제자리에 있으면 아무 일도 하지 않으므로 화면이 느려지지 않는다.
+  window.addEventListener('scroll', 자리잡기, { passive: true });
+})();
 
 
-// ===== 떠 있는 창 관리 + 뒤로가기로 닫기 (2026-08-27, index.html 에서 옮김) =====
+
+// ===== 떠 있는 창 관리 + 뒤로가기로 닫기 (2026-08-25) =====
 // 왜: 안드로이드 손님은 창을 닫을 때 습관적으로 뒤로가기를 누른다.
 //     그대로 두면 창이 닫히는 대신 페이지를 통째로 떠나 버린다(아이폰 화면 쓸어넘기기도 같다).
 // 어떻게: 창을 열 때 방문 기록에 빈 칸을 하나 넣어 둔다. 그러면 뒤로가기는
 //     '페이지를 떠나는 일'이 아니라 '그 빈 칸을 되돌리는 일'이 되어 창만 닫힌다.
 //
 // ★ 추적·접수에 영향 없음: 넣는 주소는 지금 주소(location.href) 그대로다.
-//    주소창도 안 바뀌고, 유입경로 부품(js/dh-inflow.js)이 읽는 값도 그대로다.
+//    주소창도 안 바뀌고, 유입경로 부품(js/dh-inflow.js)이 읽는
+//    location.search / pathname / hostname 도 그대로다. 페이지를 다시 읽지도 않으므로
+//    localStorage(dh_in) · sessionStorage(dh_*) · 구글시트 전송과는 아무 상관이 없다.
 var 창목록 = [];             // 지금 떠 있는 창들 (나중에 연 것이 뒤)
 var 뒤로가기처리중 = false;   // 뒤로가기가 부른 닫기인지 구분
 var 되돌리기예약 = false;     // 우리가 스스로 부른 되돌리기인지 구분
@@ -3351,6 +4123,8 @@ var 정리타이머 = null;
 function 창열림기록(이름, 닫기함수) {
   창목록.push({ 이름: 이름, 닫기: 닫기함수 });
   // 방금 닫힌 창이 쓰던 빈 칸이 아직 남아 있으면 그대로 물려받는다.
+  // (폰 메뉴에서 '무료상담'을 누르면 메뉴가 닫히는 것과 신청창이 열리는 것이
+  //  같은 순간에 일어난다. 이때 칸을 뺐다 넣었다 하면 순서가 꼬인다)
   if (뺄칸수 > 0) {
     뺄칸수--;
     if (!뺄칸수 && 정리타이머) { clearTimeout(정리타이머); 정리타이머 = null; }
@@ -3368,6 +4142,7 @@ function 창닫힘기록(이름) {
   창목록.splice(자리, 1);
   if (뒤로가기처리중) return;              // 기록은 이미 스스로 물러났다
   // X·바깥·ESC로 닫은 경우: 우리가 넣은 빈 칸을 스스로 치운다.
+  // 곧바로 다른 창이 열릴 수도 있으므로 한 박자 뒤에 정리한다.
   뺄칸수++;
   if (정리타이머) clearTimeout(정리타이머);
   정리타이머 = setTimeout(빈칸정리, 0);
@@ -3376,11 +4151,12 @@ function 빈칸정리() {
   정리타이머 = null;
   if (뺄칸수 <= 0) return;
   뺄칸수 = 0;
-  // ★ 지금 자리가 우리가 넣은 빈 칸일 때만 되돌린다. 아니면 손님이 사이트 밖으로 나가 버린다.
+  // ★ 지금 자리가 우리가 넣은 빈 칸일 때만 되돌린다.
+  //    아니면 손님이 사이트 밖으로 나가 버린다. 한 칸씩만 되돌려 절대 넘치지 않게 한다.
   if (!(history.state && history.state.dh창)) return;
   되돌리기예약 = true;
   try { history.back(); } catch (e) { 되돌리기예약 = false; }
-  setTimeout(function(){ 되돌리기예약 = false; }, 600);
+  setTimeout(function(){ 되돌리기예약 = false; }, 600);   // 신호가 안 오는 경우 대비
 }
 function 맨위창닫기() {
   if (!창목록.length) return;
@@ -3388,6 +4164,7 @@ function 맨위창닫기() {
 }
 window.addEventListener('popstate', function () {
   // 우리가 스스로 부른 되돌리기면 그냥 흘려보낸다.
+  // (창이 두 개 겹쳐 있을 때 위 창을 닫으면서 아래 창까지 닫히던 문제를 막는다)
   if (되돌리기예약) { 되돌리기예약 = false; return; }
   if (!창목록.length) return;
   var 맨위 = 창목록[창목록.length - 1];
@@ -3396,14 +4173,56 @@ window.addEventListener('popstate', function () {
   try { 닫혔나 = 맨위.닫기(); } catch (e) { 닫혔나 = true; }
   뒤로가기처리중 = false;
   if (닫혔나 === false) {
+    // 신청을 보내는 중이라 닫으면 안 되는 상황 — 빈 칸을 도로 넣어 제자리에 붙잡는다
     try { history.pushState({ dh창: 1 }, '', location.href); } catch (e) {}
     return;
   }
   var 자리 = 창목록.indexOf(맨위);
   if (자리 > -1) 창목록.splice(자리, 1);
 });
-document.addEventListener('keydown', function(e) { if (e.key !== 'Escape') return; 맨위창닫기(); });
 
+// ===== 신청 별도창 열고 닫기 =====
+// 왜: 첫 화면에서 곧바로 번호를 묻는 것이 손님에게 문턱이 된다고 보아,
+//     내용을 읽고 설득된 사람이 스스로 누를 때만 신청칸을 보여준다.
+function 신청창열기() {
+  var 창 = document.getElementById('applyOverlay');
+  if (!창 || 창.classList.contains('open')) return;
+  /* 지난번에 신청을 마친 뒤 창을 닫았다면, 다시 열 때 '완료' 화면이 그대로 남아 있다.
+     그러면 손님이 새로 신청할 길이 없어진다(2026-09-04 '다른 번호로 추가 신청' 단추를 빼면서 드러난 문제).
+     완료 화면이 떠 있을 때만 입력칸을 새것으로 되돌린다. 입력하다 닫은 경우는 건드리지 않는다. */
+  var 성공화면 = document.getElementById('formSuccess');
+  if (성공화면 && getComputedStyle(성공화면).display !== 'none') resetForm();
+  창.classList.add('open');
+  창.setAttribute('aria-hidden', 'false');
+  document.body.classList.add('apply-open');
+  창열림기록('apply', 신청창닫기);
+  if (typeof dhTrack === 'function') dhTrack('apply_open', { once: false });
+  updateScrollForms();
+  // 컴퓨터에서만 번호 칸에 커서를 놓는다(폰은 자판이 갑자기 올라와 놀란다)
+  if (window.innerWidth > 768) {
+    setTimeout(function(){ var p = document.getElementById('inputPhone'); if (p) p.focus(); }, 340);
+  }
+}
+function 신청창닫기() {
+  var 창 = document.getElementById('applyOverlay');
+  if (!창 || !창.classList.contains('open')) return true;
+  // ★ 구글 시트로 신청을 보내는 중에는 닫지 않는다.
+  //    보내기는 최대 45초까지 걸릴 수 있고, 그동안 화면에도 '화면을 닫지 말아 주세요'가 뜬다.
+  //    보내기가 끝나거나 실패하면 곧바로 다시 닫을 수 있게 된다.
+  var 단추 = document.getElementById('submitBtn');
+  var 성공 = document.getElementById('formSuccess');
+  var 보내는중 = !!(단추 && 단추.disabled && 성공 && getComputedStyle(성공).display === 'none');
+  if (보내는중) return false;
+  창.classList.remove('open');
+  창.setAttribute('aria-hidden', 'true');
+  document.body.classList.remove('apply-open');
+  창닫힘기록('apply');
+  updateScrollForms();
+  return true;
+}
+function 신청창바깥닫기(e) { if (e.target.id === 'applyOverlay') 신청창닫기(); }
+
+// ===== 개인정보처리방침 · 서비스이용약관 · 서약서 확대보기도 같은 방식으로 =====
 // 원래 있던 함수를 같은 이름으로 덮어써서, 페이지 곳곳의 누름단추는 그대로 두고 속만 바꾼다.
 openPrivacy = function () {
   var e = document.getElementById('privacyOverlay');
@@ -3447,7 +4266,7 @@ function 서약서닫기() {
   return true;
 }
 
-// ===== 폰 위쪽 메뉴(햄버거)도 뒤로가기로 닫히게 =====
+// ===== 폰 위쪽 메뉴(햄버거)도 뒤로가기로 닫히게 (2026-08-25) =====
 toggleMenu = function () {
   var e = document.getElementById('mobileMenu');
   if (!e) return;
@@ -3457,6 +4276,7 @@ toggleMenu = function () {
 };
 // 떠남=true 로 부르면 기록을 건드리지 않는다.
 // 메뉴 항목을 눌러 '다른 페이지로 가거나 페이지 안에서 자리를 옮기는' 경우가 그렇다.
+// 그때 우리가 빈 칸을 되돌리면 그 이동 자체와 부딪혀 엉뚱한 데로 간다.
 closeMobileMenu = function (떠남) {
   var e = document.getElementById('mobileMenu');
   if (!e || !e.classList.contains('open')) return true;
@@ -3466,21 +4286,22 @@ closeMobileMenu = function (떠남) {
   return true;
 };
 
-
-// Scroll animation
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
-}, { threshold: 0.1 });
-document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
-
-// 신뢰 숫자 칸 전용 관찰기 (2026-08-27)
-// 위 관찰기(threshold 0.1)는 화면 맨 아래에 살짝 걸치기만 해도 켜진다.
-// 여기는 아래쪽 12% 를 깎고 칸의 35% 가 보일 때 켜지므로, 제대로 올라온 뒤에 시작한다.
-const 늦은관찰기 = new IntersectionObserver(entries => {
-  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('보임'); });
-}, { threshold: 0.35, rootMargin: '0px 0px -12% 0px' });
-document.querySelectorAll('.늦게떠오름').forEach(el => 늦은관찰기.observe(el));
-
+// ===== 다른 페이지의 신청 단추로 들어온 경우 (2026-08-25) =====
+// #apply-now  : 사은품명단·요금제 페이지에서 "무료확인" 단추를 눌러 온 손님 -> 신청창을 바로 띄운다
+// #applyForm  : 신청칸이 첫 화면에 박혀 있던 시절의 옛 자리표 -> 창을 열지 않는다
+// #apply      : 같은 이유의 옛 자리표 -> 창을 열지 않는다
+// 왜 옛 자리표는 막나: 그 주소가 즐겨찾기·주소창 자동완성에 남아 있어서,
+//   그냥 danghh.com 을 열었는데도 들어가자마자 신청칸이 튀어나왔다.
+// 어느 쪽이든 자리표는 곧바로 지운다. 그래야 주소가 다시 쌓이지 않는다.
+(function () {
+  var 자리표 = location.hash;
+  if (자리표 !== '#apply-now' && 자리표 !== '#applyForm' && 자리표 !== '#apply') return;
+  try { history.replaceState(null, '', location.pathname + location.search); } catch (e) {}
+  if (자리표 !== '#apply-now') return;
+  var 띄우기 = function () { setTimeout(신청창열기, 250); };
+  if (document.readyState === 'complete') 띄우기();
+  else window.addEventListener('load', 띄우기);
+})();
 
 /* ── 메뉴 자리표를 주소에 남기지 않는다 (2026-08-27) ──
    메뉴에서 '혜택안내'를 누르면 주소가 danghh.com/#compare 로 바뀌고 그대로 눌러앉는다.
@@ -3511,6 +4332,132 @@ document.querySelectorAll('.늦게떠오름').forEach(el => 늦은관찰기.obse
   }, true);
 })();
 
+
+// 아래 고정 띠를 첫 화면부터 띄운다
+updateScrollForms();
+
+// Scroll animation
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+// 신뢰 숫자 칸 전용 관찰기 (2026-08-27)
+// 위 관찰기(threshold 0.1)는 화면 맨 아래에 살짝 걸치기만 해도 켜진다.
+// 여기는 아래쪽 12% 를 깎고 칸의 35% 가 보일 때 켜지므로, 제대로 올라온 뒤에 시작한다.
+const 늦은관찰기 = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('보임'); });
+}, { threshold: 0.35, rootMargin: '0px 0px -12% 0px' });
+document.querySelectorAll('.늦게떠오름').forEach(el => 늦은관찰기.observe(el));
+
+
+
+/* ===================================================================
+   v2 계산기 동작 (2026-08-25)
+
+   ⚠ 이 자리(스크립트 맨 끝)여야 한다. 아래 코드가 selectedServices 를 건드리는데
+     그것은 위쪽에서 let 으로 선언된다. let 은 선언 줄보다 위에서 건드리면 오류가 나고
+     화면이 통째로 멈춘다. 지급표(값 정의)는 맨 위에 있어도 안전하다.
+   =================================================================== */
+var dh고른값 = Object.assign({}, DH_기본값);
+
+/* 통신사만 놓고 본 기본 금액 (렌탈·유심 빼고) */
+function dh기본금액(통신사) {
+  var 표 = DH_지급표[통신사];
+  if (!표) return 0;
+  return (표[dh고른값.상품] || {})[dh고른값.속도] || 0;
+}
+function dh금액(통신사) {
+  return dh기본금액(통신사)
+       + (dh고른값.렌탈 ? DH_렌탈금액 : 0)
+       + (dh고른값.유심 ? DH유심(통신사) : 0);
+}
+
+function dh계산기그리기() {
+  ['sk','kt','lg'].forEach(function(c){
+    var 단추 = document.querySelector('.dh-carrier[data-carrier="' + c + '"]');
+    if (단추) 단추.classList.toggle('on', c === dh고른값.통신사);
+  });
+  document.querySelectorAll('[data-prod]').forEach(function(b){
+    b.classList.toggle('on', b.dataset.prod === dh고른값.상품); });
+  document.querySelectorAll('[data-speed]').forEach(function(b){
+    b.classList.toggle('on', b.dataset.speed === dh고른값.속도); });
+  document.querySelectorAll('[data-rental]').forEach(function(b){
+    b.classList.toggle('on', (b.dataset.rental === '1') === dh고른값.렌탈); });
+  document.querySelectorAll('[data-usim]').forEach(function(b){
+    b.classList.toggle('on', (b.dataset.usim === '1') === dh고른값.유심); });
+
+  var 합 = document.getElementById('dhCalcSum');
+  if (합) 합.textContent = dh금액(dh고른값.통신사);
+
+  /* 유심 질문 옆 '함께 하면 +○○만' — 통신사마다 다르므로 같이 바꾼다 (2026-08-28) */
+  var 유심안내 = document.getElementById('dh유심안내');
+  if (유심안내) 유심안내.textContent = DH유심(dh고른값.통신사);
+
+  /* 무엇을 더해 그 금액이 되는지 보여준다.
+     맨 끝 '추가혜택'은 늘 붙는다 — 위 "+ 추가혜택"이 무엇인지 여기서 답해준다. */
+  var 내역칸 = document.getElementById('dhCalcBreak');
+  if (내역칸) {
+    var 조각 = ['인터넷' + (dh고른값.상품 === 'net_tv' ? '+TV' : '')
+                + ' <b>' + dh기본금액(dh고른값.통신사) + '만</b>'];
+    if (dh고른값.유심) 조각.push('유심 <b>' + DH유심(dh고른값.통신사) + '만</b>');
+    if (dh고른값.렌탈) 조각.push('렌탈 <b>' + DH_렌탈금액 + '만</b>');
+    /* 2026-09-02: '추가혜택 (상담 시 안내)'를 이 줄로 되돌렸다 (사장님 지시).
+       아래에 따로 있던 주황 칸은 없앴다 — 한 화면에 같은 말이 세 번 나와 반복으로 읽혔다.
+       금액이 없는 항목이라 주황(#F26100)으로 다른 항목과 구분한다. */
+    조각.push('<b class="extra">추가혜택</b> <span class="soft">(상담 시 안내)</span>');
+    내역칸.innerHTML = 조각.join(' + ');
+  }
+}
+
+function dh통신사고르기(c){ dh고른값.통신사 = c; dh계산기그리기(); dhTrack('calc_carrier_' + c, {once:false}); }
+function dh상품고르기(p){ dh고른값.상품 = p; dh계산기그리기(); }
+function dh속도고르기(s){ dh고른값.속도 = s; dh계산기그리기(); }
+
+/* 렌탈·유심은 신청창 안의 서비스 탭·체크칸과 함께 움직여야 한다.
+   안 그러면 손님이 고른 것이 상담원에게 전해지지 않는다. */
+function dh렌탈고르기(v){
+  dh고른값.렌탈 = v;
+  if (v) selectedServices.add('rental'); else selectedServices.delete('rental');
+  selectedServices.add('internet');            /* 이 계산기는 인터넷 가입이 전제다 */
+  var 탭R = document.getElementById('tab-rental');
+  var 탭I = document.getElementById('tab-internet');
+  if (탭R) 탭R.classList.toggle('active', v);
+  if (탭I) 탭I.classList.add('active');
+  dh계산기그리기();
+}
+function dh유심고르기(v){
+  dh고른값.유심 = v;
+  var 칸 = document.getElementById('usimCheck');
+  if (칸) 칸.checked = v;
+  dh계산기그리기();
+}
+/* 손님이 신청창 안 유심 체크칸을 직접 건드린 경우에도 계산기가 따라간다 */
+(function(){
+  var 칸 = document.getElementById('usimCheck');
+  if (칸) 칸.addEventListener('change', function(){
+    dh고른값.유심 = 칸.checked;
+    dh계산기그리기();
+  });
+})();
+
+/* 계산기 아래 단추 → 신청창을 연다.
+   신청폼이 팝업으로 빠져 있어 그 창을 그대로 쓴다. */
+function dh계산기신청(){
+  dhTrack('calc_open_form', { once:false });   /* 계산기에서 신청창까지 온 사람 수 */
+  신청창열기();
+}
+
+dh계산기그리기();               /* 들어오자마자 기본값(SK 132만원)으로 금액을 띄운다 */
+
+/* ⚠ 여기서 dh렌탈고르기·dh유심고르기를 부르지 않는다 (2026-08-27)
+   전에는 계산기의 '처음 상태'(렌탈 켜짐·유심 켜짐)까지 신청창 탭·체크칸으로 옮겼다.
+   그러면 손님이 아무것도 안 만져도 시트에 '인터넷+가전렌탈'·유심 'Y'가 적혀,
+   상담원이 보는 신호가 손님마다 똑같아진다(2026-08-27 시트 34번 줄로 실제 확인).
+   ★ 계산기 자기 화면의 켜짐 표시와 금액(132만원)은 위 dh계산기그리기()가 이미 맡는다.
+     여기를 지워도 첫 화면 숫자는 그대로다.
+   ★ 손님이 정수기·유심 버튼을 손으로 누르면 그때 dh렌탈고르기·dh유심고르기가 불려
+     신청창으로 옮겨진다. 즉 '손님이 직접 고른 것'만 시트에 남는다. */
 </script>
 <script>
 /* ═════ 상담 상자 — 영업시간 안내 (2026-08-28) ═════
