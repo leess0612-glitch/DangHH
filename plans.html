@@ -803,6 +803,22 @@ table.rate th.prod { box-shadow: 1px 0 0 var(--border); }
 .jump:hover { border-color: var(--primary); color: var(--primary); }
 .jump[aria-current="true"] { background: #eff6ff; border-color: #dbeafe; color: var(--primary); }
 .jump[hidden] { display: none; }
+/* 옆으로 밀어 보는 줄임을 알리려고, 화면 밖으로 잘리는 쪽 끝을 옅게 지운다 (2026-09-10).
+   잘린 쪽에만 켜진다 — 오른쪽에 더 있으면 오른쪽 끝, 끝까지 밀면 왼쪽 끝이 옅어진다.
+   켜고 끄는 일은 dh-plans.js 의 목차그늘() 이 맡는다.
+   옛 브라우저가 mask 를 못 알아들으면 아무 일도 일어나지 않는다 — 지금처럼 그냥 잘려 보인다. */
+.jumps.can-r {
+  -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 52px), transparent);
+          mask-image: linear-gradient(to right, #000 calc(100% - 52px), transparent);
+}
+.jumps.can-l:not(.can-r) {
+  -webkit-mask-image: linear-gradient(to left, #000 calc(100% - 52px), transparent);
+          mask-image: linear-gradient(to left, #000 calc(100% - 52px), transparent);
+}
+.jumps.can-l.can-r {
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 52px, #000 calc(100% - 52px), transparent);
+          mask-image: linear-gradient(to right, transparent, #000 52px, #000 calc(100% - 52px), transparent);
+}
 @media (max-width: 560px) {
   .jumps { justify-content: flex-start; padding: 8px 16px; }
 }
