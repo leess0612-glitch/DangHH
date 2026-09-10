@@ -1132,9 +1132,25 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
   letter-spacing: -0.3px;
 }
 
+/* 막대 양옆 상담 단추 (2026-09-10) — 왼쪽 전화, 오른쪽 카톡.
+   화면 아래 오른쪽에 떠 있던 동그란 단추가 본문을 가려서 이 막대로 옮겼다.
+   48은 손가락으로 누르기에 권장되는 44보다 크다. 가운데 신청 단추는 남은 자리를 다 쓴다. */
+.mobile-cta-bar-inner { gap: 8px; }
+.mobile-cta-bar-inner .mobile-cta-btn { flex: 1 1 0; min-width: 0; width: auto; }
+.bar-side { flex: 0 0 auto; width: 48px; height: 48px; border-radius: 12px;
+  display: flex; align-items: center; justify-content: center; text-decoration: none;
+  transition: transform 0.08s ease; }
+.bar-phone { background: #E8F0FD; color: #1257C9; border: 1px solid #C7DBFA; }
+.bar-kakao { background: #fee500; color: #3a1d00; }
+.bar-side:active { transform: translateY(1px) scale(0.97); }
+
 @media (max-width: 768px) {
   .mobile-cta-bar { display: block; }
   .floating-btns { bottom: 80px; }
+  /* 2026-09-10: 아래 막대가 올라와 있는 동안만 동그란 전화·카톡을 감춘다.
+     이 쪽은 스크롤을 내려야 막대가 나타나므로, 막대가 없는 첫 화면에서는 동그란 단추가 그대로 보인다.
+     (요금표 쪽은 막대가 늘 떠 있어서 아예 감춘다) */
+  .mobile-cta-bar.visible ~ .floating-btns { display: none; }
 }
 @media (min-width: 769px) {
   /* 카드가 아래에서 99px(24 여백 + 75 높이)까지 차지한다.
@@ -3559,7 +3575,9 @@ function promiseZoom(src){ document.getElementById('promiseViewerImg').src=src; 
 <!-- MOBILE BOTTOM CTA -->
 <div class="mobile-cta-bar" id="mobileCta">
   <div class="mobile-cta-bar-inner">
+    <a class="bar-side bar-phone" href="tel:1600-4670" aria-label="전화 상담"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21 16.42V19.9561C21 20.4811 20.5941 20.9167 20.0705 20.9537C19.6331 20.9846 19.2763 21 19 21C10.1634 21 3 13.8366 3 5C3 4.72371 3.01545 4.36687 3.04635 3.9295C3.08337 3.40588 3.51894 3 4.04386 3H7.5801C7.83678 3 8.05176 3.19442 8.07753 3.4498C8.10067 3.67907 8.12218 3.86314 8.14207 4.00202C8.34435 5.41472 8.75753 6.75936 9.3487 8.00303C9.44359 8.20265 9.38171 8.44159 9.20185 8.57006L7.04355 10.1118C8.35752 13.1811 10.8189 15.6425 13.8882 16.9565L15.4271 14.8019C15.5572 14.6199 15.799 14.5573 16.001 14.6532C17.2446 15.2439 18.5891 15.6566 20.0016 15.8584C20.1396 15.8782 20.3225 15.8995 20.5502 15.9225C20.8056 15.9483 21 16.1633 21 16.42Z"/></svg></a>
     <button class="mobile-cta-btn" onclick="신청창열기()">놓친 내 지원금 무료 확인 →</button>
+    <a class="bar-side bar-kakao" href="https://pf.kakao.com/_yxgTAs" aria-label="카카오 상담"><svg width="23" height="23" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 3C6.477 3 2 6.477 2 10.5c0 2.667 1.556 5.011 3.9 6.4L5 21l4.1-2.7c.94.2 1.91.3 2.9.3 5.523 0 10-3.477 10-7.5S17.523 3 12 3z"/></svg></a>
   </div>
 </div>
 
