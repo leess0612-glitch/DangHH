@@ -427,6 +427,17 @@ footer { background: #0B2E5C; color: rgba(255,255,255,0.6); padding: 40px 20px; 
   transform: translateY(2px) scale(0.96);
   box-shadow: inset 0 2px 6px rgba(0,0,0,0.22);
 }
+/* 막대 양옆 상담 단추 (2026-09-10) — 왼쪽 전화, 오른쪽 카톡.
+   화면 아래 오른쪽에 떠 있던 동그란 단추가 본문(표 오른쪽과 주석)을 가로 52 세로 116 만큼
+   덮고 있어서 이 막대로 옮겼다. 48은 손가락으로 누르기에 권장되는 44보다 크다.
+   가운데 신청 단추는 남은 자리를 다 쓴다 — 폭 344 폰에서 200 이고, 지금 문구가 156이라 한 줄에 들어간다. */
+.mobile-cta-bar .mobile-cta-btn { flex: 1 1 0; min-width: 0; }
+.bar-side { flex: 0 0 auto; width: 48px; height: 48px; border-radius: 12px;
+  display: flex; align-items: center; justify-content: center; text-decoration: none;
+  transition: transform 0.08s ease; }
+.bar-phone { background: #E8F0FD; color: #1257C9; border: 1px solid #C7DBFA; }
+.bar-kakao { background: #fee500; color: #3a1d00; }
+.bar-side:active { transform: translateY(1px) scale(0.97); }
 
 /* 키보드로 옮겨 다닐 때 어디에 있는지 보이게 (index.html과 동일) */
 a:focus-visible, button:focus-visible {
@@ -458,8 +469,12 @@ footer :focus-visible {
   .zoom-hint { font-size: 12px; padding: 5px 11px; }
   .note { padding: 14px; font-size: 12.5px; }
   .cta-apply { padding: 15px 20px; font-size: 18px; width: 100%; white-space: normal; }
-  .floating-btns { bottom: 88px; right: 16px; }   /* 고정 막대(68px) 위로 */
-  .mobile-cta-bar { display: block; }
+  /* 2026-09-10: 떠 있던 동그란 전화·카톡을 없앤다. 같은 몫을 아래 막대가 한다.
+     되돌리려면 아래 두 줄을 옛 모습으로 돌리면 된다.
+       .floating-btns { bottom: 88px; right: 16px; }
+       .mobile-cta-bar { display: block; } */
+  .floating-btns { display: none; }
+  .mobile-cta-bar { display: flex; align-items: center; gap: 8px; }
   body { padding-bottom: 68px; }                   /* 회사정보 끝줄이 막대에 가리지 않게 */
   .zoom-inner { padding: 60px 0 30px; }
 }
