@@ -28,7 +28,7 @@
 <!-- ===== 당현함 통합 전환추적 v1 (네 페이지 공통: index·rental·check·gift / 수정 시 4개 파일 모두 동일하게) ===== -->
 <script>
 /* 이 페이지를 통계에서 부를 이름 */
-var DH_PAGE = 'danghh-rental-coway';
+var DH_PAGE = 'danghh-rental';
 /* 네이버 전환추적 공통키(AccountId) — 2026-08-28 발급받아 채움.
    홈페이지 소스에 그대로 드러나는 공개값이라 가려 둘 필요가 없다(구글 측정번호와 같은 성격) */
 var DH_NAVER_ID = 's_2e8bfd0103db';
@@ -132,9 +132,9 @@ if (typeof dhInflow !== 'function') { window.dhInflow = function () { return {};
      - 제목 태그 : 검색 결과에 뜨는 제목. 찾는 낱말이 많이 들어가야 걸린다
      - og:title : 카톡·카페에 링크를 붙였을 때 나오는 카드 제목. 짧아야 한 줄에 들어간다
      (index.html 과 같은 규칙, 2026-08-27) -->
-<title>당현함 | 코웨이 정수기렌탈 냉온얼음 비데 공기청정기 안마의자 요금 비교·추천, 사은품 많이 주는 곳 | 쿠쿠 청호 SK매직 웰스 LG</title>
+<title>당현함 | 정수기렌탈 냉온얼음 비데 공기청정기 안마의자 요금 비교·추천, 사은품 많이 주는 곳 현금지원금 당일입금 | 쿠쿠 청호 SK매직 웰스 LG</title>
 <!-- 2026-08-27 : 여기가 "최대 40만원"이라 화면 본문(최대 50만원)과 어긋나 있었다 -->
-<meta name="description" content="정수기·비데·공기청정기·안마의자 렌탈, 브랜드별 조건과 사은품 혜택을 비교해 안내드립니다. 타 업체가 더 주면 차액 120% 보상. 무료 비교 상담 ☎ 1600-4670">
+<meta name="description" content="정수기·가전렌탈 가입 시 최대 50만원 현금 지원금 당일 지급. 타 업체가 더 주면 차액 120% 보상. 무료 비교 상담 신청하세요. ☎ 1600-4670">
 <!-- 광고 전용 페이지. 자연 검색에는 노출시키지 않는다. (2026-08-19) -->
 <!-- 2026-09-04 : 검색 노출을 열었다. 2026-08-19 에 "페이지가 허접하다"는 이유로 막아두었는데,
      그 뒤 여러 번 손봤고 제목·설명도 검색용으로 갖춰졌다. 정수기렌탈 수요를 파워컨텐츠(유료)로만
@@ -142,11 +142,11 @@ if (typeof dhInflow !== 'function') { window.dhInflow = function () { return {};
      되돌리려면 아래를 noindex, follow 로 바꾸고 sitemap 에서 빼면 된다. -->
 <meta name="robots" content="index, follow">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://danghh.com/rental-c.html">
-<meta property="og:title" content="당현함 | 렌탈 최대 혜택 비교">
-<meta property="og:description" content="정수기·비데·공기청정기·안마의자 렌탈, 브랜드별 조건과 사은품 혜택을 비교해 안내드립니다. 타 업체가 더 주면 차액 120% 보상. 무료 상담 ☎ 1600-4670">
+<meta property="og:url" content="https://danghh.com/rental.html">
+<meta property="og:title" content="당현함 | 렌탈 지원금 당일지급">
+<meta property="og:description" content="정수기·가전렌탈 가입 시 최대 50만원 현금 지원금 당일 지급. 타 업체가 더 주면 차액 120% 보상. 무료 상담 신청하세요.">
 <!-- 2026-08-27 : 정사각 로고(300x300)라 카톡 카드가 작게 나왔다. index 와 같은 가로형 카드로 교체 -->
-<meta property="og:image" content="https://danghh.com/images/share-card-c.png">
+<meta property="og:image" content="https://danghh.com/images/share-card.png">
 <meta property="og:image:width" content="800">
 <meta property="og:image:height" content="400">
 <meta property="og:image:type" content="image/png">
@@ -320,10 +320,41 @@ nav a:hover { color: var(--primary); background: #eff6ff; }
 .hero h1 em { font-style: normal; color: #fee500; }
 .mob-br { display: none; }
 .hero p { font-size: clamp(15px, 2vw, 19px); opacity: 0.9; margin-bottom: 60px; }
+/* ⚠ 이 단추는 지금 화면에서 쓰이지 않는다 — 되살릴 때를 대비해 색만 규칙에 맞춰 두었다.
+   (2026-09-07: 바깥 번짐이 주황이었고, 손가락 기기에서 누르면 주황으로 변하던 찌꺼기를 없앴다) */
+.hero-cta {
+  display: inline-block; background: #1257C9; color: white;
+  font-size: 21px; font-weight: 900; padding: 22px 56px; border-radius: 16px;
+  text-decoration: none; transition: all 0.2s;
+  box-shadow: 0 8px 28px rgba(18,87,201,0.5);
+  letter-spacing: -0.3px;
+  border: 3px solid rgba(255,255,255,0.3);
+}
+.hero-cta:hover { background: #0E45A0; transform: translateY(-3px); box-shadow: 0 14px 36px rgba(18,87,201,0.6); }
+.hero-stats {
+  display: flex; justify-content: center; gap: 0;
+  margin-top: 72px; flex-wrap: wrap;
+}
+.hero-stat {
+  display: flex; flex-direction: column; align-items: center;
+  padding: 0 36px;
+  border-right: 1px solid rgba(255,255,255,0.2);
+}
+.hero-stat:last-child { border-right: none; }
+.since-badge {
+  display: inline-block;
+  background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.25);
+  color: white; font-size: 13px; font-weight: 700;
+  padding: 6px 16px; border-radius: 20px;
+  margin-bottom: 12px;
+}
 .hero-stat .num { font-size: 28px; font-weight: 900; color: white; }
+.hero-stat .label { font-size: 13px; opacity: 0.8; margin-top: 2px; }
 /* 넓은 화면: 세 칸의 폭을 똑같이 맞춰 구분선이 고르게 놓이도록 (2026-08-13)
    폰에서는 아래쪽 규칙이 위아래로 쌓으므로 여기 규칙을 적용하지 않는다 */
 @media (min-width: 769px) {
+  .hero-stats { max-width: 700px; margin-left: auto; margin-right: auto; }
+  .hero-stat { flex: 1 1 0; min-width: fit-content; text-align: center; }
   .hero-stat .num { white-space: nowrap; }
 }
 
@@ -333,6 +364,18 @@ nav a:hover { color: var(--primary); background: #eff6ff; }
   max-width: 900px; margin: 0 auto;
   display: flex; align-items: center; justify-content: center; gap: 10px; flex-wrap: wrap;
 }
+.carriers-label { font-size: 13px; color: var(--gray); font-weight: 500; margin-right: 4px; }
+.carrier-badge { padding: 7px 18px; border-radius: 8px; font-size: 14px; font-weight: 700; border: 2px solid var(--border); color: var(--dark); }
+.cert-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 7px 14px; border-radius: 8px; font-size: 13px; font-weight: 700;
+  border: 2px solid #16a34a; color: #16a34a;
+  text-decoration: none; transition: background 0.2s;
+}
+.cert-badge:hover { background: #f0fdf4; }
+.carrier-kt { border-color: #e50012; color: #e50012; }
+.carrier-skt { border-color: #e0002a; color: #e0002a; }
+.carrier-lgu { border-color: #e6007e; color: #e6007e; }
 
 /* ===== COMMON SECTION ===== */
 section { padding: 72px 20px; }
@@ -430,6 +473,12 @@ section { padding: 72px 20px; }
 .compare .section-title { color: white; }
 .compare .section-title em { color: #fcd34d; }
 .compare-wrap { max-width: 780px; margin: 48px auto 0; }
+.compare-rec { text-align: right; margin-bottom: 0; }
+.compare-rec span {
+  display: inline-block; background: #1257C9; color: white;
+  font-size: 13px; font-weight: 800; padding: 6px 20px;
+  border-radius: 12px 12px 0 0;
+}
 /* ===== COMPARE FLEX ===== */
 .compare-flex { display: flex; align-items: flex-end; gap: 0; width: fit-content; margin: 0 auto; }
 .cf-col { display: flex; flex-direction: column; }
@@ -497,6 +546,17 @@ a.plan-card:active { transform: translateY(0) scale(0.99); }
 /* 2026-08-28 : 바로 위 '왜 당현함인가요?' 칸이 회색이 되어, 여기는 흰색으로 둔다.
    (index.html 은 사이에 요금제 칸이 있어 회색 그대로다) */
 .process { background: #ffffff; }
+.compare-version-label {
+  display: inline-block; padding: 4px 14px; border-radius: 20px;
+  font-size: 11px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase;
+  margin-bottom: 24px;
+}
+.compare-version-label.ver-a { background: #e2e8f0; color: #475569; }
+.compare-version-label.ver-b { background: #fff3e8; color: #c2410c; }
+.process-divider {
+  border: none; border-top: 2px dashed #e2e8f0;
+  margin: 52px auto; max-width: 480px;
+}
 
 /* --- A안: 원래 카드 스타일 --- */
 .process-steps-a {
@@ -519,11 +579,89 @@ a.plan-card:active { transform: translateY(0) scale(0.99); }
 .step-icon-a { font-size: 52px; margin-bottom: 14px; line-height: 1; }
 .step-title-a { font-size: 18px; font-weight: 800; color: var(--dark); margin-bottom: 10px; }
 .step-desc-a { font-size: 14px; color: var(--gray); line-height: 1.7; }
+
+/* --- 개선안: 번호+연결선 카드 스타일 --- */
+.process-steps-b {
+  display: flex; align-items: flex-start; justify-content: center;
+  max-width: 860px; margin: 0 auto; position: relative;
+}
 .process-steps-b::before {
   content: ''; position: absolute;
   top: 28px; left: calc(16.66% + 18px); right: calc(16.66% + 18px);
   height: 2px; background: linear-gradient(90deg, #1257C9, #60a5fa);
   z-index: 0;
+}
+.process-step-b {
+  display: flex; flex-direction: column; align-items: center; text-align: center;
+  flex: 1; padding: 0 16px; position: relative; z-index: 1;
+}
+.step-num-b {
+  display: flex; align-items: center; justify-content: center;
+  width: 56px; height: 56px; border-radius: 50%;
+  background: var(--primary); color: white;
+  font-size: 20px; font-weight: 900;
+  border: 4px solid #f8fafc;
+  box-shadow: 0 4px 16px rgba(18,87,201,0.3);
+  margin-bottom: 20px; flex-shrink: 0;
+}
+.step-card-b {
+  background: white; border-radius: 14px; padding: 20px 18px;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+  border-top: 3px solid var(--primary);
+  width: 100%; transition: transform 0.2s;
+}
+.step-card-b:hover { transform: translateY(-4px); }
+.step-icon-b { font-size: 36px; margin-bottom: 10px; line-height: 1; }
+.step-title-b { font-size: 17px; font-weight: 800; color: var(--dark); margin-bottom: 8px; }
+.step-desc-b { font-size: 13px; color: var(--gray); line-height: 1.7; }
+
+.process-label {
+  display: inline-block; font-size: 15px; font-weight: 600; color: #64748b;
+  transform: rotate(-3deg); transform-origin: left center;
+  margin-bottom: 10px; letter-spacing: -0.3px;
+}
+.process-label em { color: var(--primary); font-style: normal; text-decoration: underline; text-underline-offset: 3px; }
+.process-title-big {
+  font-size: clamp(26px, 4vw, 42px); font-weight: 900; color: var(--dark);
+  line-height: 1.25; margin-bottom: 48px; letter-spacing: -1px;
+}
+.process-chevrons {
+  display: flex; align-items: stretch;
+  max-width: 780px; margin: 0 auto;
+  filter: drop-shadow(0 6px 20px rgba(18,87,201,0.20));
+}
+.process-chevron {
+  flex: 1; color: white; text-align: center;
+  padding: 30px 16px 26px;
+  position: relative;
+  clip-path: polygon(0 0, calc(100% - 30px) 0, 100% 50%, calc(100% - 30px) 100%, 0 100%, 30px 50%);
+  margin-left: -22px;
+}
+.process-chevron:first-child {
+  clip-path: polygon(0 0, calc(100% - 30px) 0, 100% 50%, calc(100% - 30px) 100%, 0 100%);
+  border-radius: 10px 0 0 10px;
+  margin-left: 0; z-index: 3;
+}
+.process-chevron:nth-child(2) { z-index: 2; }
+.process-chevron:last-child  { z-index: 1; }
+.process-chevron:nth-child(1) { background: #1257C9; }
+.process-chevron:nth-child(2) { background: #1257C9; }
+.process-chevron:nth-child(3) { background: #1257C9; }
+.chevron-badge {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 36px; height: 36px; border-radius: 50%;
+  background: #1257C9; color: white;
+  font-size: 13px; font-weight: 800; letter-spacing: -0.5px;
+  margin-bottom: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+.chevron-title {
+  font-size: clamp(17px, 2.2vw, 24px); font-weight: 900;
+  margin-bottom: 6px; line-height: 1.1;
+}
+.chevron-desc {
+  font-size: 12px; font-weight: 500;
+  opacity: 0.85; line-height: 1.5;
 }
 
 /* ===== REVIEWS ===== */
@@ -614,6 +752,20 @@ a.plan-card:active { transform: translateY(0) scale(0.99); }
 .memo-toggle:hover .plus { background: #dbeafe; color: var(--primary); }
 .memo-fold { display: none; }
 .memo-fold.open { display: block; }
+.consent-box { border: 1px solid var(--border); border-radius: 12px; padding: 14px 16px; margin-bottom: 18px; }
+.consent-all {
+  display: flex; align-items: center; gap: 8px; padding-bottom: 10px;
+  margin-bottom: 10px; border-bottom: 1px solid var(--border); cursor: pointer;
+}
+.consent-all label { font-size: 14px; font-weight: 700; cursor: pointer; }
+.consent-item { display: flex; align-items: center; justify-content: space-between; padding: 5px 0; }
+.consent-left { display: flex; align-items: center; gap: 7px; }
+.consent-item input[type="checkbox"],
+.consent-all input[type="checkbox"] { width: 16px; height: 16px; accent-color: var(--primary); cursor: pointer; flex-shrink: 0; }
+.badge { font-size: 11px; padding: 2px 6px; border-radius: 4px; font-weight: 600; }
+.badge.req { background: #fee2e2; color: #dc2626; }
+.badge.opt { background: #f1f5f9; color: var(--gray); }
+.consent-item label { font-size: 13px; color: var(--gray); cursor: pointer; }
 .form-submit {
   width: 100%; padding: 18px; background: #1257C9; color: white;
   font-size: 17px; font-weight: 800; border: none; border-radius: 12px; cursor: pointer;
@@ -962,7 +1114,11 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
      실측: 37px일 때 글자가 칠해지는 높이 35px -> 딱 맞음 */
   .logo { font-size: 37px; }
   .hero { padding: 48px 20px 56px; }
+  .hero-stats { flex-direction: column; align-items: center; gap: 0; margin-top: 40px; }
+  .hero-stat { padding: 16px 0; width: 100%; border-right: none; border-bottom: 1px solid rgba(255,255,255,0.15); }
+  .hero-stat:last-child { border-bottom: none; }
   .hero-stat .num { font-size: 22px; }
+  .since-badge { font-size: 11px; padding: 4px 10px; }
   .mob-br { display: block; }
   .benefits-grid { grid-template-columns: 1fr; gap: 16px; }
   .benefit-card.main { grid-row: auto; }
@@ -980,9 +1136,18 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
   .ok-label { font-size: 16px; }
   /* 2026-09-07 12px 미만 글씨 정리 */ .ok-sub { font-size: 12px; }
   .plans-grid { grid-template-columns: 1fr; }
+  .process-chevrons { flex-direction: column; gap: 12px; filter: none; }
+  .process-chevron { margin-left: 0 !important; margin-top: 0; clip-path: none !important; border-radius: 14px !important; padding: 22px 24px; display: flex; align-items: center; gap: 16px; text-align: left; }
+  .chevron-badge { margin-bottom: 0; flex-shrink: 0; }
+  .chevron-title { margin-bottom: 2px; font-size: 18px; }
   .process-steps-a { flex-direction: column; align-items: center; gap: 12px; }
   .process-arrow-a { transform: rotate(90deg); }
+  .process-steps-b { flex-direction: column; align-items: center; gap: 16px; }
   .process-steps-b::before { display: none; }
+  .process-step-b { flex-direction: row; text-align: left; gap: 16px; width: 100%; max-width: 340px; }
+  .step-num-b { margin-bottom: 0; flex-shrink: 0; }
+  .step-card-b { border-top: none; border-left: 3px solid var(--primary); border-radius: 10px; }
+  .chevron-desc { font-size: 13px; }
   .form-card { padding: 24px 18px; }
   section { padding: 52px 20px; }
 }
@@ -1022,12 +1187,54 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
   font-weight: 700; margin-bottom: 12px;
   background: #fff5f5; border-radius: 8px; padding: 8px 12px;
 }
+
+/* ===== LIVE ROLLING SECTION ===== */
+.live-section {
+  /* 위아래 여백 (2026-08-25): 28 -> 84px. 표가 파란 칸에 꽉 끼어 답답했다 */
+  background: #f0f6ff; padding: 84px 20px;
+  border-top: 1px solid #dbeafe; border-bottom: 1px solid #dbeafe;
+}
+.live-section-inner {
+  max-width: 780px; margin: 0 auto;
+  display: flex; gap: 16px; align-items: flex-start;
+}
+.rolling-col { flex: 1; }
+/* 제목 띠를 두 배로 (글자 13->26, 위아래 여백 8->16) */
+.rolling-col-header {
+  text-align: center; font-size: 26px; font-weight: 700;
+  padding: 16px 0; border-radius: 10px 10px 0 0;
+}
 /* 폰에서는 두 배가 너무 크게 보여 1.5배로 낮춘다 */
 @media (max-width: 768px) {
+  .rolling-col-header { font-size: 19.5px; padding: 12px 0; }
+}
+/* 제목 띠 안, 제목 글자 바로 아래 안내 한 줄 (2026-08-25)
+   명단은 영업일 저녁에 그날치가 올라가고 주말·공휴일은 쉰다.
+   날짜를 읽기 '전에' 이 줄을 먼저 보게 해서 '왜 어제 날짜지?' 하는 오해를 미리 푼다. */
+.rolling-note{
+  display:block; margin:5px 0 0;
+  font-size:13px; font-weight:600;
+  color:rgba(255,255,255,0.72);
+  letter-spacing:-0.2px; line-height:1.4;
+}
+.rolling-col-header.type-complete { background: #dcfce7; color: #15803d; }
+.rolling-col-header.type-cash { background: #fef9c3; color: #92400e; }
+.live-dot {
+  display: inline-block; width: 7px; height: 7px;
+  background: #22c55e; border-radius: 50%;
+  animation: livePulse 1.4s ease-in-out infinite;
+  margin-right: 4px; vertical-align: middle;
 }
 @keyframes livePulse {
   0%, 100% { opacity: 1; } 50% { opacity: 0.35; }
 }
+.rolling-wrap {
+  overflow: hidden; height: 335px;   /* 5줄 (66x5+1) — 줄이 1.5배가 되어 220 -> 335 */
+  background: white; border: 1px solid #dbeafe;
+  border-top: none; border-radius: 0 0 10px 10px; padding: 0 12px;
+}
+.rolling-track-complete { animation: rollUpComplete 48s linear infinite; }
+.rolling-track-cash     { animation: rollUpCash 48s linear infinite; }
 /* 컴퓨터에서 명단 줄을 1.5배로 (높이 44->66). 폰은 아래에서 원래 크기로 되돌린다.
    ★ 줄 높이를 바꾸면 아래 스크립트의 '한줄' 값도 반드시 같이 바꿔야 한다. */
 .rolling-item {
@@ -1036,6 +1243,12 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
 }
 .ri-date { color: #94a3b8; font-size: 16.5px; flex-shrink: 0; white-space: nowrap; }
 .ri-name { color: #1e293b; font-weight: 700; font-size: 19.5px; flex-shrink: 0; }
+.ri-service {
+  font-size: 16.5px; font-weight: 700;
+  padding: 3px 10.5px; border-radius: 999px; white-space: nowrap;
+}
+.ri-complete { background: #dcfce7; color: #15803d; }
+.ri-cash { background: #fef9c3; color: #92400e; }
 @keyframes rollUpComplete {
   0% { transform: translateY(0); }
   100% { transform: translateY(var(--roll-c-dist, -1056px)); }
@@ -1045,6 +1258,12 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
   100% { transform: translateY(var(--roll-m-dist, -1056px)); }
 }
 @media (max-width: 768px) {
+  .live-section { padding: 60px 16px; }   /* 폰 위아래 여백 (20 -> 60px) */
+  .live-section-inner { flex-direction: column; gap: 12px; }
+  .rolling-col { width: 100%; }
+  /* 폰에서는 한 줄만 보이고 일정 시간마다 다음 줄로 바뀐다 (2026-08-13)
+     45px = 줄 높이 44px + 상자 아래 테두리 1px */
+  .rolling-wrap { height: 45px; }
   .rolling-item { border-bottom: none; }
 }
 
@@ -1152,9 +1371,15 @@ nav a:active { background: #dbeafe; }
 /* (가) 손가락으로 쓰는 기기에서는 '마우스 올림' 효과를 끔 — 떼어도 남아서 눌림을 가림 */
 @media (hover: none) {
   a.plan-card:hover { transform: none; }
+  .hero-cta:hover { transform: none; box-shadow: 0 8px 28px rgba(18,87,201,0.5); background: #1257C9; }
   .form-submit:hover { transform: none; box-shadow: none; }
   .benefit-card:hover, .process-step-a:hover, .step-card-b:hover,
   .trust-cert-label-item:hover, .float-btn:hover { transform: none; }
+}
+/* (나) 큰 버튼은 더 확실히 눌리게 + 그림자도 낮춰 '내려앉는' 느낌 */
+.hero-cta:active {
+  transform: translateY(2px) scale(0.965);
+  box-shadow: 0 3px 10px rgba(18,87,201,0.45);
 }
 .form-submit:active {
   transform: translateY(2px) scale(0.98);
@@ -1179,6 +1404,7 @@ nav a:active { background: #dbeafe; }
   box-shadow: inset 0 2px 6px rgba(0,0,0,0.22);
 }
 .form-submit:active { background: #0E45A0; }
+.hero-cta:active { background: #0E45A0; }
 .desk-cta-bar-btn:active, .sticky-form-btn:active {
   background: #0E45A0;
   box-shadow: inset 0 2px 6px rgba(0,0,0,0.20);
@@ -1234,6 +1460,8 @@ header { box-shadow: 0 2px 12px rgba(15,42,90,0.09); }
 }
 .benefit-card:hover { box-shadow: 0 14px 34px rgba(15,42,90,0.15); }
 .process-step-a:hover, .step-card-b:hover { box-shadow: 0 14px 32px rgba(15,42,90,0.16); }
+.trust-cert-label-item { transition: transform 0.22s cubic-bezier(0.22,1,0.36,1), box-shadow 0.22s ease; }
+.trust-cert-label-item:hover { transform: translateY(-3px); box-shadow: 0 12px 28px rgba(15,42,90,0.14); }
 
 /* --- 7. 메뉴 눌러 이동할 때 바로 이동 + 고정 머리띠(64px)에 제목이 안 가리게 --- */
 /* 2026-09-02: smooth -> auto (사장님 지시). 위쪽 187번째 줄 근처에도 auto 가 있었지만
@@ -1263,6 +1491,7 @@ html { scroll-behavior: auto; scroll-padding-top: 78px; }
 /* ===== 사은품 지급명단 굴림칸 — 한 칸으로 합치고 브랜드 색으로 ===== */
 .live-section-inner{ max-width:560px }
 .rolling-col-header.type-cash{ background:#1257C9; color:#fff }
+.rolling-col-header .live-dot{ background:#fff }
 .ri-plan{
   min-width:0; font-size:18px; font-weight:600; color:#334155;
   white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
@@ -1280,6 +1509,11 @@ html { scroll-behavior: auto; scroll-padding-top: 78px; }
 .ri-name{ flex:none; width:4.4em; text-align:center }
 .ri-plan{ flex:none; width:10em;  text-align:center }
 .ri-bank{ flex:none; width:5.2em; text-align:center }
+.rolling-more{
+  display:block; text-align:center; margin-top:10px;
+  font-size:13px; font-weight:700; color:#1257C9; text-decoration:none;
+}
+.rolling-more:hover{ text-decoration:underline }
 @media (max-width:768px){
   .ri-plan{ font-size:12px }
   .ri-date{ font-size:12px }
@@ -1357,12 +1591,13 @@ html { scroll-behavior: auto; scroll-padding-top: 78px; }
   letter-spacing:-1.2px; line-height:1.25;
 }
 .hg-main strong{ color:#FFF200; font-weight:900; }
+.hg-note{ margin-top:12px !important; font-size:13px; color:rgba(255,255,255,0.8); }
 @media (max-width:768px){
   .hero-guarantee{ margin-top:20px; padding:16px 18px 18px; }
   .hg-badge{ font-size:13px; margin-bottom:10px; }
 }
 
-/* ===== 첫 화면 : 혜택 명세표 (index.html 에서 옮김) =====
+/* ===== 첫 화면 : 지원금 명세표 (index.html 에서 옮김) =====
    명세표는 '흰 종이'. 강조색 주황(#F26100)은 위 배지와 같은 색. */
 .dh-ledger{
   position:relative;
@@ -1390,10 +1625,14 @@ html { scroll-behavior: auto; scroll-padding-top: 78px; }
 .dh-ledger-row .d{ flex:1; border-bottom:1px dotted rgba(12,40,128,.22); transform:translateY(-4px) }
 .dh-ledger-row .v{ font-size:22px; font-weight:700; color:#0f172a; font-variant-numeric:tabular-nums; white-space:nowrap }
 .dh-ledger-row .v.small{ font-weight:800 }
-/* 비밀혜택 줄 — 어디와도 비교할 수 없는 유일한 항목이라 맨 아래에서 강조 */
+/* 비밀지원금 줄 — 어디와도 비교할 수 없는 유일한 항목이라 맨 아래에서 강조 */
 .dh-ledger-row.hi .t{ font-size:23px; font-weight:700; color:#F26100 }
 .dh-ledger-row.hi .v.small{ font-size:25px; color:#F26100 }
 .dh-ledger-row.hi .d{ border-bottom-color:rgba(255,107,0,.45) }
+.dh-ledger-sum{
+  display:flex; align-items:baseline; justify-content:space-between; gap:10px;
+  margin-top:9px; padding-top:10px; border-top:2px solid rgba(12,40,128,.45);
+}
 .dh-ledger-sum .t{ font-size:16px; font-weight:600; color:#64748b }
 .dh-ledger-sum .v{ font-size:32px; font-weight:900; color:#0B2E5C; letter-spacing:-.5px; font-variant-numeric:tabular-nums }
 .dh-ledger-sum .v em{ font-style:normal; font-size:27px; font-weight:800; color:#F26100 }
@@ -1403,6 +1642,7 @@ html { scroll-behavior: auto; scroll-padding-top: 78px; }
   .floating-btns{ right:14px }
   .float-btn{ width:46px; height:46px; font-size:20px }
   .dh-ledger-row{ padding:6px 36px }
+  .dh-ledger-sum{ padding-left:36px; padding-right:36px }
   .dh-ledger-row .t{ font-size:16px }
   .dh-ledger-row .v{ font-size:18px }
   .dh-ledger-row.hi .t{ font-size:18px }
@@ -1727,7 +1967,7 @@ html { scroll-behavior: auto; scroll-padding-top: 78px; }
     <nav>
       <a href="#compare">혜택안내</a>
       <a href="#reviews">설치후기</a>
-      
+      <a href="gift.html">사은품지급명단</a>
       <a href="#faq">자주묻는질문</a>
       <a href="#apply" style="color:var(--primary);font-weight:700;">무료상담</a>
     </nav>
@@ -1750,7 +1990,7 @@ html { scroll-behavior: auto; scroll-padding-top: 78px; }
 <div class="mobile-menu" id="mobileMenu">
   <a href="#compare" onclick="closeMobileMenu(true)">혜택안내</a>
   <a href="#reviews" onclick="closeMobileMenu(true)">설치후기</a>
-  
+  <a href="gift.html" onclick="closeMobileMenu(true)">사은품지급명단</a>
   <a href="#faq" onclick="closeMobileMenu(true)">자주묻는질문</a>
   <a href="#apply" onclick="closeMobileMenu(true)" style="color:var(--primary);font-weight:700;">무료상담 →</a>
 </div>
@@ -1758,9 +1998,9 @@ html { scroll-behavior: auto; scroll-padding-top: 78px; }
 <!-- HERO -->
 <section class="hero">
   <div class="hero-badge">정수기 · 가전렌탈 전문</div>
-  <div class="hero-cash-badge"><span class="cash-amount">🎁 최대 50만원</span><span class="cash-cond">사은품 제공</span></div>
-  <h1>놓치고 있던<br class="mob-br"> <em>내 최대 혜택</em><br>당현함이<br class="fold-br"> 알려드릴게요!</h1>
-  <p class="hero-desc">정수기·가전렌탈 시 최대 사은품 혜택, <strong>설치 당일 지급</strong><br>모든 상품 비교 후 가장 유리한 조건으로 안내해드립니다</p>
+  <div class="hero-cash-badge"><span class="cash-amount">💰 최대 50만원</span><span class="cash-cond">현금 당일입금</span></div>
+  <h1>놓치고 있던<br class="mob-br"> <em>내 최대 지원금</em><br>당현함이<br class="fold-br"> 알려드릴게요!</h1>
+  <p class="hero-desc">정수기·가전렌탈 시 최대 현금 지원, <strong>당일 지급</strong><br>모든 상품 비교 후 가장 유리한 조건으로 안내해드립니다</p>
 
   <!-- ===== 차액 보상 강조 (2026-08-27) =====
        첫 화면의 누름단추를 뺀 자리에, 손님이 가장 크게 걱정하는
@@ -1774,8 +2014,8 @@ html { scroll-behavior: auto; scroll-padding-top: 78px; }
     <p class="hg-main"><strong>차액 120% 보상</strong></p>
   </div>
 
-  <!-- ===== 혜택 명세표 — 지금은 잠시 꺼 둠 (2026-08-27) =====
-       상품별 실제 혜택을 아직 못 받아 금액 자리가 비어 있습니다.
+  <!-- ===== 지원금 명세표 — 지금은 잠시 꺼 둠 (2026-08-27) =====
+       상품별 실제 지원금을 아직 못 받아 금액 자리가 비어 있습니다.
        숫자 세 개를 받으면 아래 대괄호 자리를 채우고, 이 주석의 시작·끝만 걷어내면 켜집니다.
        (모양을 만드는 스타일은 이미 이 파일 안에 들어 있어 따로 손댈 것이 없습니다)
 
@@ -1786,7 +2026,7 @@ html { scroll-behavior: auto; scroll-padding-top: 78px; }
   </div>
   -->
 
-  <p class="hero-urgency">⏰ 오늘 오후 5:30 이전 설치 시 당일 지급</p>
+  <p class="hero-urgency">⏰ 오늘 오후 5:30 이전 설치 시 당일 입금</p>
 </section>
 
 <!-- ===== 신뢰 숫자 칸 (2026-08-27, index.html 에서 옮김) =====
@@ -1817,7 +2057,20 @@ html { scroll-behavior: auto; scroll-padding-top: 78px; }
      엉뚱하게 "가입 프로세스"에 서 버렸다(실측).
      -> visibility 로 바꿔 처음부터 자리를 잡아 둔다. 자료가 오면 보이기만 하므로 밀림이 없다.
      칸 높이는 글 개수와 무관하게 CSS 로 정해져 있어(컴퓨터 335 / 폰 133) 자리가 정확히 맞는다. -->
-<!-- 코웨이 판: 사은품지급명단 굴림칸을 통째로 뺐습니다 -->
+<div class="live-section" id="liveSection" style="visibility:hidden;">
+  <div class="live-section-inner">
+    <div class="rolling-col">
+      <div class="rolling-col-header type-cash">
+        <span id="rollingTitle">사은품지급명단</span>
+        <span class="rolling-note">최근 영업일 기준 · 매일 저녁 갱신</span>
+      </div>
+      <div class="rolling-wrap">
+        <div class="rolling-track-cash" id="rollingTrackCash"></div>
+      </div>
+      <a class="rolling-more" href="gift.html">전체 지급명단 보기 →</a>
+    </div>
+  </div>
+</div>
 
 <!-- ===== 후기칸 (2026-08-27 개편, index.html 과 같은 모양) =====
      옛 모습: 사진만 옆으로 자동으로 넘어가는 슬라이드. 글도 별점도 이름도 없었다.
@@ -1927,6 +2180,7 @@ html { scroll-behavior: auto; scroll-padding-top: 78px; }
   font-size:15px; line-height:1.75; color:var(--gray); margin:6px 0 0;
   display:-webkit-box; -webkit-line-clamp:4; -webkit-box-orient:vertical; overflow:hidden;
 }
+.후기카드.펼침 .후기본문{ display:block; overflow:visible; }
 .더읽기{
   align-self:flex-start; margin-top:10px; padding:0;
   background:none; border:0; color:var(--gray);
@@ -1983,6 +2237,7 @@ html { scroll-behavior: auto; scroll-padding-top: 78px; }
   font-size:15px; line-height:1.75; color:var(--gray); margin:6px 0 0;
   display:-webkit-box; -webkit-line-clamp:4; -webkit-box-orient:vertical; overflow:hidden;
 }
+.후기카드.펼침 .후기본문{ display:block; overflow:visible; }
 /* 본문을 펼치는 단추 — 주인공은 후기 내용이므로 강조색을 쓰지 않고 본문과 같은 회색 계통으로 둔다 */
 .더읽기{
   align-self:flex-start; margin-top:10px; padding:0;
@@ -2040,6 +2295,7 @@ html { scroll-behavior: auto; scroll-padding-top: 78px; }
   font-size:15px; line-height:1.75; color:var(--gray); margin:6px 0 0;
   display:-webkit-box; -webkit-line-clamp:4; -webkit-box-orient:vertical; overflow:hidden;
 }
+.후기카드.펼침 .후기본문{ display:block; overflow:visible; }
 /* 본문을 펼치는 단추 — 주인공은 후기 내용이므로 강조색을 쓰지 않고 본문과 같은 회색 계통으로 둔다 */
 .더읽기{
   align-self:flex-start; margin-top:10px; padding:0;
@@ -2075,108 +2331,110 @@ html { scroll-behavior: auto; scroll-padding-top: 78px; }
 
 <section id="reviews" class="reviews 후기칸">
   <div class="section-inner">
-    <!-- 사진 띠 : images/reviews-band-coway/ 의 15장 (coway-01 ~ 15). 전부 코웨이 정수기 설치 사진이다.
-         이 페이지는 코웨이 전용판이라 다른 브랜드 사진은 한 장도 쓰지 않는다.
-         15장뿐이라 줄마다 시작점을 5장씩 밀어(줄1=01부터, 줄2=06부터, 줄3=11부터)
-         세로로 같은 사진이 나란히 겹쳐 보이지 않게 했다.
+    <!-- 사진 띠 : images/reviews-band-rental/ 의 45장 (rband-01 ~ 45).
+         정수기 20 · 에어컨 6 · 공기청정기 6 · 비데 4 · 제습기 4 · 세탁기 2 · 냉장고 2 · 식기세척기 1.
+         렌탈 페이지라 TV·셋톱박스는 뺐다 — 렌탈 보러 온 손님에게 거실 TV가 흘러가면 엉뚱하다.
+         한 종류가 한 줄에 몰리면 그 줄만 어둡거나 하얗게 보이기 때문이다.
          줄당 15장 = 2610px 라 와이드 모니터(2560)까지 이음매가 안 보인다.
+         코웨이 제품은 뺐다 — 코웨이 전용 페이지(rental-c)용으로
+         images/reviews-band-coway/ 에 15장 따로 두었다.
          alt 를 비운 것은 장식용 사진이라 읽어줄 내용이 없기 때문이다(화면 읽어주는 기계 대비). -->
     <div class="후기띠">
       <div class="후기띠-줄 흐름1">
-        <img data-src="images/reviews-band-coway/coway-01.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-02.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-03.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-04.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-05.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-06.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-07.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-08.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-09.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-10.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-11.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-12.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-13.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-14.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-15.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-01.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-02.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-03.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-04.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-05.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-06.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-07.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-08.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-09.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-10.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-11.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-12.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-13.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-14.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-15.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band-rental/rband-01.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band-rental/rband-02.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band-rental/rband-03.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band-rental/rband-04.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band-rental/rband-05.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band-rental/rband-06.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band-rental/rband-07.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band-rental/rband-08.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band-rental/rband-09.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band-rental/rband-10.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band-rental/rband-11.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band-rental/rband-12.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band-rental/rband-13.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band-rental/rband-14.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band-rental/rband-15.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band-rental/rband-01.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band-rental/rband-02.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band-rental/rband-03.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band-rental/rband-04.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band-rental/rband-05.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band-rental/rband-06.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band-rental/rband-07.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band-rental/rband-08.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band-rental/rband-09.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band-rental/rband-10.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band-rental/rband-11.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band-rental/rband-12.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band-rental/rband-13.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band-rental/rband-14.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band-rental/rband-15.jpg" alt="" decoding="async">
       </div>
       <div class="후기띠-줄 흐름2">
-        <img data-src="images/reviews-band-coway/coway-06.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-07.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-08.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-09.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-10.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-11.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-12.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-13.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-14.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-15.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-01.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-02.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-03.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-04.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-05.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-06.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-07.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-08.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-09.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-10.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-11.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-12.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-13.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-14.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-15.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-01.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-02.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-03.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-04.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-05.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band-rental/rband-16.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band-rental/rband-17.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band-rental/rband-18.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band-rental/rband-19.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band-rental/rband-20.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band-rental/rband-21.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band-rental/rband-22.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band-rental/rband-23.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band-rental/rband-24.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band-rental/rband-25.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band-rental/rband-26.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band-rental/rband-27.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band-rental/rband-28.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band-rental/rband-29.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band-rental/rband-30.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band-rental/rband-16.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band-rental/rband-17.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band-rental/rband-18.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band-rental/rband-19.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band-rental/rband-20.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band-rental/rband-21.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band-rental/rband-22.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band-rental/rband-23.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band-rental/rband-24.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band-rental/rband-25.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band-rental/rband-26.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band-rental/rband-27.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band-rental/rband-28.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band-rental/rband-29.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band-rental/rband-30.jpg" alt="" decoding="async">
       </div>
       <div class="후기띠-줄 흐름3">
-        <img data-src="images/reviews-band-coway/coway-11.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-12.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-13.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-14.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-15.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-01.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-02.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-03.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-04.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-05.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-06.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-07.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-08.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-09.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-10.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-11.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-12.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-13.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-14.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-15.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-01.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-02.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-03.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-04.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-05.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-06.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-07.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-08.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-09.jpg" alt="" decoding="async">
-        <img data-src="images/reviews-band-coway/coway-10.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band-rental/rband-31.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band-rental/rband-32.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band-rental/rband-33.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band-rental/rband-34.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band-rental/rband-35.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band-rental/rband-36.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band-rental/rband-37.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band-rental/rband-38.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band-rental/rband-39.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band-rental/rband-40.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band-rental/rband-41.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band-rental/rband-42.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band-rental/rband-43.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band-rental/rband-44.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band-rental/rband-45.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band-rental/rband-31.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band-rental/rband-32.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band-rental/rband-33.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band-rental/rband-34.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band-rental/rband-35.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band-rental/rband-36.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band-rental/rband-37.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band-rental/rband-38.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band-rental/rband-39.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band-rental/rband-40.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band-rental/rband-41.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band-rental/rband-42.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band-rental/rband-43.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band-rental/rband-44.jpg" alt="" decoding="async">
+        <img data-src="images/reviews-band-rental/rband-45.jpg" alt="" decoding="async">
       </div>
       <div class="후기띠-상자">
         <h2 class="후기띠-큰글">실제 고객 설치 후기</h2>
@@ -2185,26 +2443,6 @@ html { scroll-behavior: auto; scroll-padding-top: 78px; }
     </div>
     <!-- '제목만'은 폰 폭에서만 작동한다. 컴퓨터에는 아무 영향이 없다. -->
     <div class="후기목록 제목만" id="후기목록">
-      <!-- 후기 6개 : 코웨이 4 + 쿠쿠 1 + SK매직 1 (브랜드가 몰리지 않게 섞어 놓았다).
-           쿠쿠·SK매직 건은 원래 렌탈 페이지에 있던 실제 후기 그대로다.
-           ⚠ 코웨이 4건은 사진만 진짜고 글은 화면 확인용 임시 글이다.
-           라이브에 올리기 전에 반드시 실제 고객 후기로 바꿀 것 (2026-09-04) -->
-      <article class="후기카드 늦게떠오름">
-        <figure class="후기사진">
-          <img src="images/reviews-story/story-cw1.jpg" loading="eager" decoding="async"
-               alt="정*미님의 코웨이 엘리트 정수기 렌탈 설치 후기 사진">
-        </figure>
-        <div class="후기글">
-          <div class="후기머리">
-            <span class="후기이름">정*미</span>
-            <span class="후기상품">코웨이 엘리트 정수기 렌탈</span>
-          </div>
-          <div class="후기별" aria-label="별점 5점 만점에 5점">⭐⭐⭐⭐⭐</div>
-          <p class="후기제목">상담 한 번에 정리가 끝나서 고민이 짧아졌어요!</p>
-          <p class="후기본문">업체마다 말이 달라서 헷갈렸는데 당현함에서 조건을 한 번에 정리해주셔서 바로 결정했어요. 설치 날짜도 원하는 날로 잡아주셨고, 기사님이 사용법까지 차근차근 알려주셔서 좋았습니다. 주방에 두니 깔끔해서 만족하고 있어요!</p>
-          <button type="button" class="더읽기">더 읽기</button>
-        </div>
-      </article>
       <article class="후기카드 늦게떠오름">
         <figure class="후기사진">
           <img src="images/reviews-story/story-01.jpg" loading="eager" decoding="async"
@@ -2223,17 +2461,33 @@ html { scroll-behavior: auto; scroll-padding-top: 78px; }
       </article>
       <article class="후기카드 늦게떠오름">
         <figure class="후기사진">
-          <img src="images/reviews-story/story-cw2.jpg" loading="lazy" decoding="async"
-               alt="한*주님의 코웨이 아이콘 얼음정수기 렌탈 설치 후기 사진">
+          <img src="images/reviews-story/story-12.jpg" loading="eager" decoding="async"
+               alt="박*은님의 쿠쿠 비데 렌탈 설치 후기 사진">
         </figure>
         <div class="후기글">
           <div class="후기머리">
-            <span class="후기이름">한*주</span>
-            <span class="후기상품">코웨이 아이콘 얼음정수기 렌탈</span>
+            <span class="후기이름">박*은</span>
+            <span class="후기상품">쿠쿠 비데 렌탈</span>
           </div>
           <div class="후기별" aria-label="별점 5점 만점에 5점">⭐⭐⭐⭐⭐</div>
-          <p class="후기제목">얼음까지 나오니 여름 내내 정말 잘 썼어요!</p>
-          <p class="후기본문">얼음정수기로 바꿀까 고민만 하다가 상담받고 바로 진행했어요. 꼭 필요한 기능만 짚어주셔서 과하지 않게 고를 수 있었고, 설치도 약속한 날짜에 정확히 와주셨습니다. 얼음이 금방 만들어져서 물 마시는 양이 늘었어요.</p>
+          <p class="후기제목">원하는 날짜에 맞춰 늦은 시간에도 설치해주셨어요!</p>
+          <p class="후기본문">회사에서만 비데를 쓰다가 불편하고 찝찝해서 집에서도 사용하려고 렌탈업체를 열심히 찾다가 진행하게 되었어요~ 집에서도 비데를 사용할 수 있어서 너무너무 좋습니다! 설치기사님도 제가 원하는 날짜에 설치해주시려고 늦은 시간에도 불구하고 오셔서 신속하고 친절하게 설치까지 해주시고 설명도 꼼꼼히 다 해주셨네요. 감사합니다!</p>
+          <button type="button" class="더읽기">더 읽기</button>
+        </div>
+      </article>
+      <article class="후기카드 늦게떠오름">
+        <figure class="후기사진">
+          <img src="images/reviews-story/story-13.jpg" loading="lazy" decoding="async"
+               alt="이*수님의 LG 공기청정기 렌탈 설치 후기 사진">
+        </figure>
+        <div class="후기글">
+          <div class="후기머리">
+            <span class="후기이름">이*수</span>
+            <span class="후기상품">LG 공기청정기 렌탈</span>
+          </div>
+          <div class="후기별" aria-label="별점 5점 만점에 5점">⭐⭐⭐⭐⭐</div>
+          <p class="후기제목">상담원도 기사님도 친절 그 자체, 시간 약속까지 잘 지켜주셨어요!</p>
+          <p class="후기본문">이사하면서 거실에 공기청정기 하나 쓰려고 렌탈 신청했어요. 합리적인 가격인 곳을 찾다가 지인 추천을 받고 바로 진행했습니다. 설치 전날 연락이 왔고 약속 시간을 잘 지켜서 방문해주셨어요. 문 앞에서 제품 개봉하시고 빠르게 설치해주시고 간단한 사용 설명도 해주셨습니다. 상담원분도 설치기사님도 너무 친절하셨고, 사은품도 만족합니다!</p>
           <button type="button" class="더읽기">더 읽기</button>
         </div>
       </article>
@@ -2255,33 +2509,33 @@ html { scroll-behavior: auto; scroll-padding-top: 78px; }
       </article>
       <article class="후기카드 늦게떠오름">
         <figure class="후기사진">
-          <img src="images/reviews-story/story-cw4.jpg" loading="lazy" decoding="async"
-               alt="신*호님의 코웨이 아이콘 얼음 맥스 렌탈 설치 후기 사진">
+          <img src="images/reviews-story/story-03.jpg" loading="lazy" decoding="async"
+               alt="박*찬님의 LG 정수기 렌탈 설치 후기 사진">
         </figure>
         <div class="후기글">
           <div class="후기머리">
-            <span class="후기이름">신*호</span>
-            <span class="후기상품">코웨이 아이콘 얼음 맥스 렌탈</span>
+            <span class="후기이름">박*찬</span>
+            <span class="후기상품">LG 정수기 렌탈</span>
           </div>
           <div class="후기별" aria-label="별점 5점 만점에 5점">⭐⭐⭐⭐⭐</div>
-          <p class="후기제목">용량 걱정 없이 넉넉하게 쓰고 있어요!</p>
-          <p class="후기본문">식구가 많아 물 쓰는 양이 걱정이었는데 사용량을 물어보시고 딱 맞는 걸로 추천해주셨어요. 설치 기사님도 시간 약속을 정확히 지켜주셔서 기다릴 일이 없었습니다. 얼음도 넉넉하게 나와서 여름에 특히 잘 썼어요.</p>
+          <p class="후기제목">사은품 혜택에 반해서 선택했는데, 설치기사님까지 너무 친절해요!</p>
+          <p class="후기본문">이사 후 정수기 알아보다가 사은품 혜택이 좋아서 당현함 선택했어요. 카톡 상담도 빠르고 친절하게 진행됐고, 설치기사님도 꼼꼼하게 설명해주셔서 만족스러웠습니다. 정수기가 생각보다 더 예쁘고 기능도 좋아서 예쁘게 잘 쓸게요!</p>
           <button type="button" class="더읽기">더 읽기</button>
         </div>
       </article>
       <article class="후기카드 늦게떠오름">
         <figure class="후기사진">
-          <img src="images/reviews-story/story-cw6.jpg" loading="lazy" decoding="async"
-               alt="윤*하님의 코웨이 아이콘 얼음정수기 렌탈 설치 후기 사진">
+          <img src="images/reviews-story/story-11.jpg" loading="lazy" decoding="async"
+               alt="이*진님의 LG 정수기 렌탈 설치 후기 사진">
         </figure>
         <div class="후기글">
           <div class="후기머리">
-            <span class="후기이름">윤*하</span>
-            <span class="후기상품">코웨이 아이콘 얼음정수기 렌탈</span>
+            <span class="후기이름">이*진</span>
+            <span class="후기상품">LG 정수기 렌탈</span>
           </div>
           <div class="후기별" aria-label="별점 5점 만점에 5점">⭐⭐⭐⭐⭐</div>
-          <p class="후기제목">비교표를 보여주셔서 결정이 쉬웠어요!</p>
-          <p class="후기본문">여러 곳에 문의해봤는데 당현함만 조건을 표로 정리해서 보여주셔서 비교가 편했어요. 설치도 신청한 주에 바로 잡혔고, 기사님이 필터 교체 주기까지 메모해주고 가셨습니다. 디자인이 깔끔해서 주방이 정돈된 느낌이에요.</p>
+          <p class="후기제목">디자인부터 기능까지, 선택에 완전 만족해요!</p>
+          <p class="후기본문">제품 먼저 고른 후 혜택 비교하면서 당현함에서 바로 진행했어요. 설치도 빠르게 잘 됐고, 주기적으로 관리도 받을 수 있어 안심이 돼요. 디자인이 깔끔해서 주방이 훨씬 정돈된 느낌이고, 냉수·온수·얼음에 10ml 단위 용량 설정까지 기능적으로도 정말 만족스럽습니다!</p>
           <button type="button" class="더읽기">더 읽기</button>
         </div>
       </article>
@@ -2446,7 +2700,7 @@ function promiseZoom(src){ document.getElementById('promiseViewerImg').src=src; 
         <!-- VS 항목 -->
         <div class="cf-col cf-col-vs">
           <div class="cf-head">VS</div>
-          <div class="cf-cell">사은품 혜택 제공</div>
+          <div class="cf-cell">현금 사은품 입금</div>
           <div class="cf-cell">월 18,900원<br>저렴한 직수 정수기</div>
           <div class="cf-cell">렌탈 브랜드<br>전체 비교</div>
           <div class="cf-cell">렌탈 2종 이상<br>동시 신청 혜택</div>
@@ -2468,20 +2722,20 @@ function promiseZoom(src){ document.getElementById('promiseViewerImg').src=src; 
 <section id="benefits" class="benefits">
   <div class="section-inner" style="text-align:center;">
     <span class="section-tag">왜 당현함인가요?</span>
-    <p style="font-size:17px;font-weight:500;color:#93afd4;letter-spacing:0.15em;margin:10px 0 28px;"><strong style="color:var(--primary);font-weight:900;font-size:20px;">당</strong>신께 <strong style="color:var(--primary);font-weight:900;font-size:20px;">현</strong>명한 선택 <strong style="color:var(--primary);font-weight:900;font-size:20px;">함</strong>께</p>
+    <p style="font-size:17px;font-weight:500;color:#93afd4;letter-spacing:0.15em;margin:10px 0 28px;"><strong style="color:var(--primary);font-weight:900;font-size:20px;">당</strong>일 <strong style="color:var(--primary);font-weight:900;font-size:20px;">현</strong>금지급 <strong style="color:var(--primary);font-weight:900;font-size:20px;">함</strong></p>
     <h2 class="section-title">당현함에서는<br><em>모든 혜택을 받을 수 있어요</em></h2>
     <div class="benefits-grid fade-up">
       <div class="benefit-card main">
         <div class="benefit-top">
           <span class="benefit-icon-lg">🎁</span>
-          <span class="benefit-tag">🎁 사은품 혜택 최고</span>
+          <span class="benefit-tag">💰 현금 지원 최고</span>
         </div>
-        <h3>사은품 혜택 업계 최고<br>설치 당일 바로 지급</h3>
+        <h3>현금 지원 업계 최고<br>당일 바로 입금</h3>
         <div class="benefit-amount-highlight">
-          <span class="amount-main">사은품 혜택 최대 50만원<br class="mob-br"> 렌탈 전문</span>
-          <span class="amount-sub">렌탈 제품 선택에 따라 최대 50만원 사은품 제공</span>
+          <span class="amount-main">현금 지원 최대 50만원<br class="mob-br"> 렌탈 전문</span>
+          <span class="amount-sub">렌탈 제품 선택에 따라 최대 50만원 현금 지급</span>
         </div>
-        <p>렌탈 본사 요금 그대로,<br>사은품 혜택은 업계 최고 수준으로 드립니다.<br>타 업체가 더 준다면<br>차액의 120%를 보상해드려요.</p>
+        <p>렌탈 본사 요금 그대로,<br>현금은 업계 최고 수준으로 드립니다.<br>타 업체가 더 준다면<br>차액의 120%를 보상해드려요.</p>
         <div class="benefit-guarantee">타 업체가 더 준다면<br class="mob-br"> 차액 120% 보상</div>
       </div>
       <div class="benefit-card">
@@ -2510,7 +2764,7 @@ function promiseZoom(src){ document.getElementById('promiseViewerImg').src=src; 
     <div style="text-align:center;">
       <span class="section-tag">요금제 비교</span>
       <h2 class="section-title">통신사별 <em>대표 요금제</em></h2>
-      <p class="section-sub">모든 요금제 가입 시 사은품 별도 제공</p>
+      <p class="section-sub">모든 요금제 가입 시 현금 지원금 별도 지급</p>
     </div>
     <div class="plans-grid fade-up">
       <a href="plans-kt.html" class="plan-card">
@@ -2571,9 +2825,9 @@ function promiseZoom(src){ document.getElementById('promiseViewerImg').src=src; 
       </div>
       <div class="process-arrow-a">›</div>
       <div class="process-step-a">
-        <div class="step-icon-a">🎁</div>
-        <div class="step-title-a">사은품 지급</div>
-        <div class="step-desc-a">설치 당일 지급을<br>원칙으로 하고 있습니다</div>
+        <div class="step-icon-a">💵</div>
+        <div class="step-title-a">현금 입금</div>
+        <div class="step-desc-a">설치 당일 현금 입금을<br>원칙으로 하고 있습니다</div>
       </div>
     </div>
   </div>
@@ -2591,10 +2845,10 @@ function promiseZoom(src){ document.getElementById('promiseViewerImg').src=src; 
     </div>
     <div class="faq-list">
       <div class="faq-item">
-        <div class="faq-question" onclick="toggleFaq(this)">사은품은 언제 받을 수 있나요? <span class="faq-icon">+</span></div>
+        <div class="faq-question" onclick="toggleFaq(this)">정말 당일에 현금으로 지급받을 수 있나요? <span class="faq-icon">+</span></div>
         <div class="faq-answer"><div class="faq-answer-inner">
-          네, 개통이 완료되면 설치 당일 지급해드립니다.<br>
-          설치가 끝나고 <strong>오후 5시 30분 이전</strong>에 연락 주시면 그날 안에 지급해드리고, 그 시각을 넘기면 다음 날 지급됩니다.
+          네, 개통이 완료되면 당일 현금(계좌이체)으로 지급해드립니다.<br>
+          설치가 끝나고 <strong>오후 5시 30분 이전</strong>에 연락 주시면 그날 안에 입금해드리고, 그 시각을 넘기면 다음 날 입금됩니다.
         </div></div>
       </div>
       <!-- ===== 번호를 남기기 직전에 걸리는 의심을 푸는 자리 (2026-08-31 추가) =====
@@ -2602,17 +2856,18 @@ function promiseZoom(src){ document.getElementById('promiseViewerImg').src=src; 
            '인터넷 품질'은 통신망 이야기라 뺐고, '요금이 비싸지나'와 '고르는 법'은
            낱말만 렌탈 말로 바꿨다(대리점->판매점, 요금제->필요 없는 제품). -->
       <div class="faq-item">
-        <div class="faq-question" onclick="toggleFaq(this)">사은품 혜택을 받으면 월 요금이 더 비싸지나요? <span class="faq-icon">+</span></div>
+        <div class="faq-question" onclick="toggleFaq(this)">현금 사은품을 받으면 월 요금이 더 비싸지나요? <span class="faq-icon">+</span></div>
         <div class="faq-answer"><div class="faq-answer-inner">
           아닙니다. 월 요금과 할인 조건은 어디서 신청하셔도 본사와 똑같습니다.<br>
-          그래서 월 요금은 그대로인데 사은품 혜택만 더 받으시게 됩니다.
+          사은품은 월 요금에 얹혀 나오는 돈이 아니라, 판매점이 본사에서 받는 몫에서 고객님께 돌려드리는 것입니다.<br>
+          그래서 월 요금은 그대로인데 현금만 더 받으시게 됩니다.
         </div></div>
       </div>
       <div class="faq-item">
         <div class="faq-question" onclick="toggleFaq(this)">사은품 많이 준다는 곳, 어떻게 고르나요? <span class="faq-icon">+</span></div>
         <div class="faq-answer"><div class="faq-answer-inner">
           세 가지만 보시면 됩니다.<br>
-          &middot; <strong>설치 당일에 사은품을 주는가</strong> &mdash; 며칠 뒤로 미루는 곳은 조건이 바뀌기도 합니다<br>
+          &middot; <strong>설치 당일에 현금을 주는가</strong> &mdash; 며칠 뒤로 미루는 곳은 조건이 바뀌기도 합니다<br>
           &middot; <strong>필요 없는 제품까지 권하지 않는가</strong> &mdash; 사은품을 많이 주는 대신 안 쓸 제품까지 얹으면 결국 손해입니다<br>
           &middot; <strong>지급받은 사람 명단을 공개하는가</strong> &mdash; 실제로 주고 있는지는 명단이 있어야 확인됩니다
         </div></div>
@@ -2635,7 +2890,7 @@ function promiseZoom(src){ document.getElementById('promiseViewerImg').src=src; 
       </div>
       <div class="faq-item">
         <div class="faq-question" onclick="toggleFaq(this)">렌탈 약정 기간은 얼마나 되나요? <span class="faq-icon">+</span></div>
-        <div class="faq-answer"><div class="faq-answer-inner">제품 및 업체마다 다르며, 보통 3년(36개월) ~ 5년(60개월) 약정입니다. 약정 기간과 월 요금, 혜택 조건은 상담 시 정확히 안내드립니다.</div></div>
+        <div class="faq-answer"><div class="faq-answer-inner">제품 및 업체마다 다르며, 보통 3년(36개월) ~ 5년(60개월) 약정입니다. 약정 기간과 월 요금, 지원금 조건은 상담 시 정확히 안내드립니다.</div></div>
       </div>
       <div class="faq-item">
         <div class="faq-question" onclick="toggleFaq(this)">설치는 얼마나 걸리나요? <span class="faq-icon">+</span></div>
@@ -2653,7 +2908,7 @@ function promiseZoom(src){ document.getElementById('promiseViewerImg').src=src; 
 <section id="apply" class="form-section">
   <div class="section-inner" style="text-align:center;">
     <span class="section-tag">무료 상담</span>
-    <h2 class="section-title" style="font-size:clamp(30px,5vw,52px);"><em>30초</em> 신청으로<br><em>내 최대 혜택</em> 확인</h2>
+    <h2 class="section-title" style="font-size:clamp(30px,5vw,52px);"><em>30초</em> 신청으로<br><em>내 최대 지원금</em> 확인</h2>
     <p class="section-sub" style="margin-bottom:36px;">상담은 무료, 부담 없이 신청하세요</p>
     <div class="form-card">
       <div id="formContent">
@@ -2689,8 +2944,8 @@ function promiseZoom(src){ document.getElementById('promiseViewerImg').src=src; 
           <input type="checkbox" id="c1" checked style="width:12px;height:12px;accent-color:#9ca3af;flex-shrink:0;margin-top:3px;cursor:pointer;opacity:0.7;">
           <label for="c1" style="font-size:13px;color:var(--gray);cursor:pointer;line-height:1.5;">개인정보 수집 및 활용동의 <a href="javascript:void(0)" onclick="openPrivacy()" style="color:var(--gray);font-weight:600;font-size:12px;text-decoration:none;">›</a> <span style="color:#b0b8c1;font-weight:500;font-size:12px;">(필수)</span></label>
         </div>
-        <p class="form-urgency">⏰ 오늘 오후 5:30 이전 설치 시 당일 지급</p>
-        <button class="form-submit" id="submitBtn" onclick="submitForm()">내 최대 혜택 무료 확인</button>
+        <p class="form-urgency">⏰ 오늘 오후 5:30 이전 설치 시 당일 현금 입금</p>
+        <button class="form-submit" id="submitBtn" onclick="submitForm()">내 최대 지원금 무료 확인</button>
         <p style="margin-top:10px;font-size:13px;color:var(--gray);text-align:center;">타업체가 더 준다면? <strong style="color:var(--primary);">차액 120% 보상</strong></p>
       </div>
       <div class="form-success" id="formSuccess">
@@ -2720,7 +2975,7 @@ function promiseZoom(src){ document.getElementById('promiseViewerImg').src=src; 
       <p>① 인터넷 가입 상담 및 통신사 비교 안내 (KT·SKT·LG U+ 등)<br>
       ② 정수기·가전렌탈 상담 및 업체 비교 안내<br>
       ③ 가입 신청 접수 및 설치 일정 조율 대행<br>
-      ④ 사은품 지급 안내</p>
+      ④ 현금 사은품 지급 안내</p>
       <p>본 서비스는 이용자에게 별도의 이용 요금을 부과하지 않습니다. 회사는 통신사·렌탈사로부터 가입 유치 수수료를 받는 구조로 운영됩니다.</p>
 
       <h4>제3조 (서비스 이용 방법)</h4>
@@ -2728,8 +2983,8 @@ function promiseZoom(src){ document.getElementById('promiseViewerImg').src=src; 
       ② 신청 접수 후 회사 담당자가 이용자에게 직접 연락하여 상담을 진행합니다.<br>
       ③ 최종 가입 계약은 이용자와 해당 통신사·렌탈사 간에 체결되며, 회사는 중개 역할을 수행합니다.</p>
 
-      <h4>제4조 (사은품 지급)</h4>
-      <p>① 사은품은 설치 완료 후 지급을 원칙으로 합니다.<br>
+      <h4>제4조 (현금 사은품 지급)</h4>
+      <p>① 현금 사은품은 설치 완료 후 지급을 원칙으로 합니다.<br>
       ② 지급 금액 및 조건은 통신사·상품·약정 조건에 따라 달라질 수 있으며, 상담 시 정확한 금액을 안내드립니다.<br>
       ③ 타 업체 대비 혜택 부족 시 차액 보상은 동일 조건 비교를 기준으로 하며, 상담을 통해 확인 후 적용됩니다.</p>
 
@@ -2820,7 +3075,7 @@ function promiseZoom(src){ document.getElementById('promiseViewerImg').src=src; 
     </div>
     <div class="footer-disclaimer">
       당현함은 정수기·가전렌탈 상품을 비교·중개하는 전문 상담 서비스입니다.<br>
-      제시된 혜택은 상품 및 약정 조건에 따라 변경될 수 있으며, 정확한 내용은 상담을 통해 안내드립니다.<br>
+      제시된 지원금은 상품 및 약정 조건에 따라 변경될 수 있으며, 정확한 내용은 상담을 통해 안내드립니다.<br>
       © 2026 당현함. All rights reserved.
     </div>
   </div>
@@ -2830,7 +3085,7 @@ function promiseZoom(src){ document.getElementById('promiseViewerImg').src=src; 
 <div class="mobile-cta-bar" id="mobileCta">
   <div class="mobile-cta-bar-inner">
     <a class="bar-side bar-phone" href="tel:1600-4670" aria-label="전화 상담"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21 16.42V19.9561C21 20.4811 20.5941 20.9167 20.0705 20.9537C19.6331 20.9846 19.2763 21 19 21C10.1634 21 3 13.8366 3 5C3 4.72371 3.01545 4.36687 3.04635 3.9295C3.08337 3.40588 3.51894 3 4.04386 3H7.5801C7.83678 3 8.05176 3.19442 8.07753 3.4498C8.10067 3.67907 8.12218 3.86314 8.14207 4.00202C8.34435 5.41472 8.75753 6.75936 9.3487 8.00303C9.44359 8.20265 9.38171 8.44159 9.20185 8.57006L7.04355 10.1118C8.35752 13.1811 10.8189 15.6425 13.8882 16.9565L15.4271 14.8019C15.5572 14.6199 15.799 14.5573 16.001 14.6532C17.2446 15.2439 18.5891 15.6566 20.0016 15.8584C20.1396 15.8782 20.3225 15.8995 20.5502 15.9225C20.8056 15.9483 21 16.1633 21 16.42Z"/></svg></a>
-    <button class="mobile-cta-btn" onclick="바로이동('apply')">놓친 내 혜택 무료 확인 →</button>
+    <button class="mobile-cta-btn" onclick="바로이동('apply')">놓친 내 지원금 무료 확인 →</button>
     <a class="bar-side bar-kakao" href="https://pf.kakao.com/_yxgTAs" aria-label="카카오 상담"><svg width="23" height="23" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 3C6.477 3 2 6.477 2 10.5c0 2.667 1.556 5.011 3.9 6.4L5 21l4.1-2.7c.94.2 1.91.3 2.9.3 5.523 0 10-3.477 10-7.5S17.523 3 12 3z"/></svg></a>
   </div>
 </div>
@@ -2838,7 +3093,7 @@ function promiseZoom(src){ document.getElementById('promiseViewerImg').src=src; 
 <!-- DESKTOP BOTTOM CTA BAR -->
 <div class="desk-cta-bar" id="deskCtaBar">
   <div class="desk-cta-bar-inner">
-    <div class="desk-cta-top">내가 받을 수 있는 혜택은?</div>
+    <div class="desk-cta-top">내가 받을 수 있는 지원금은?</div>
     <input type="text" id="deskName" placeholder="이름">
     <div class="desk-cta-phone-wrap">
       <input type="tel" id="deskPhone" placeholder="휴대폰 번호">
@@ -2860,7 +3115,7 @@ function promiseZoom(src){ document.getElementById('promiseViewerImg').src=src; 
   <div class="sticky-form-inner">
     <div class="sticky-form-body" id="stickyFormBody">
       <div id="stickyFormContent">
-        <p class="sticky-form-title"><span>내가 받을 수 있는</span><br>혜택은 얼마나 될까요?</p>
+        <p class="sticky-form-title"><span>내가 받을 수 있는</span><br>지원금은 얼마일까요?</p>
         <input type="text" id="stickyName" placeholder="이름 (선택)">
         <input type="tel" id="stickyPhone" placeholder="휴대폰 번호 (필수)">
         <button class="sticky-form-btn" onclick="submitStickyForm()">무료 확인 →</button>
@@ -3188,7 +3443,7 @@ async function submitForm() {
       dhNaver('lead');   /* 네이버 전환: 진짜 접수된 뒤에만 (2026-08-28) */
   } catch(e) {
     alert('오류가 발생했습니다. 잠시 후 다시 시도하거나\n1600-4670으로 직접 문의해주세요.');
-    btn.disabled = false; btn.textContent = '내 최대 혜택 무료 확인';
+    btn.disabled = false; btn.textContent = '내 최대 지원금 무료 확인';
   }
 }
 
