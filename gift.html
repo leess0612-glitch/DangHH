@@ -513,6 +513,17 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px 1
   box-shadow: inset 0 2px 6px rgba(0,0,0,0.22);
 }
 
+/* 막대 양옆 상담 단추 (2026-09-10) — 왼쪽 전화, 오른쪽 카톡.
+   화면 아래 오른쪽에 떠 있던 동그란 단추가 본문을 가려서 이 막대로 옮겼다.
+   48은 손가락으로 누르기에 권장되는 44보다 크다. 가운데 신청 단추는 남은 자리를 다 쓴다. */
+.mobile-cta-bar .mobile-cta-btn { flex: 1 1 0; min-width: 0; }
+.bar-side { flex: 0 0 auto; width: 48px; height: 48px; border-radius: 12px;
+  display: flex; align-items: center; justify-content: center; text-decoration: none;
+  transition: transform 0.08s ease; }
+.bar-phone { background: #E8F0FD; color: #1257C9; border: 1px solid #C7DBFA; }
+.bar-kakao { background: #fee500; color: #3a1d00; }
+.bar-side:active { transform: translateY(1px) scale(0.97); }
+
 @media (max-width: 768px) {
   nav { display: none; }
   .hamburger { display: flex; }
@@ -537,10 +548,12 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px 1
      왜: 다른 페이지는 폰에서 아래에 신청 단추 띠가 늘 붙어 있어 이 알약만 겉돌았다.
          컴퓨터 화면(769px 이상)에서는 그대로 둔다. */
   .follow-cta-wrap { display: none; }
-  .mobile-cta-bar { display: block; }   /* 대신 다른 페이지와 같은 흰 띠 + 파란 단추를 띄운다 */
+  .mobile-cta-bar { display: flex; align-items: center; gap: 8px; }   /* 대신 다른 페이지와 같은 흰 띠 + 파란 단추를 띄운다 */
   .past-btn { padding: 14px 16px; font-size: 14px; }
   .past-body { padding: 4px 12px 18px; }
-  .floating-btns { bottom: 88px; right: 16px; }   /* 고정 막대(68px) 위로 */
+  /* 2026-09-10: 떠 있던 동그란 전화·카톡을 없앤다. 같은 몫을 아래 막대 양옆이 한다.
+     되돌리려면 아래 한 줄을 .floating-btns { bottom: 88px; right: 16px; } 로 돌리면 된다. */
+  .floating-btns { display: none; }
 }
 @media (hover: none) {
   table.gift tbody tr:hover { background: inherit; }
@@ -1129,7 +1142,11 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px 1
 
 <!-- 휴대폰 아래 고정 신청 막대 (컴퓨터 화면에서는 안 보인다) -->
 <div class="mobile-cta-bar">
+  <!-- 2026-09-10: 화면 아래 오른쪽 동그란 전화·카톡을 이 막대 양옆으로 옮겼다.
+       클릭 집계는 주소(tel: / pf.kakao.com)를 보고 세므로 자리를 옮겨도 그대로 잡힌다. -->
+  <a class="bar-side bar-phone" href="tel:1600-4670" aria-label="전화 상담"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21 16.42V19.9561C21 20.4811 20.5941 20.9167 20.0705 20.9537C19.6331 20.9846 19.2763 21 19 21C10.1634 21 3 13.8366 3 5C3 4.72371 3.01545 4.36687 3.04635 3.9295C3.08337 3.40588 3.51894 3 4.04386 3H7.5801C7.83678 3 8.05176 3.19442 8.07753 3.4498C8.10067 3.67907 8.12218 3.86314 8.14207 4.00202C8.34435 5.41472 8.75753 6.75936 9.3487 8.00303C9.44359 8.20265 9.38171 8.44159 9.20185 8.57006L7.04355 10.1118C8.35752 13.1811 10.8189 15.6425 13.8882 16.9565L15.4271 14.8019C15.5572 14.6199 15.799 14.5573 16.001 14.6532C17.2446 15.2439 18.5891 15.6566 20.0016 15.8584C20.1396 15.8782 20.3225 15.8995 20.5502 15.9225C20.8056 15.9483 21 16.1633 21 16.42Z"/></svg></a>
   <a class="mobile-cta-btn" href="javascript:void(0)" onclick="신청창열기()">놓친 내 지원금 무료 확인 →</a>
+  <a class="bar-side bar-kakao" href="https://pf.kakao.com/_yxgTAs" aria-label="카카오 상담"><svg width="23" height="23" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 3C6.477 3 2 6.477 2 10.5c0 2.667 1.556 5.011 3.9 6.4L5 21l4.1-2.7c.94.2 1.91.3 2.9.3 5.523 0 10-3.477 10-7.5S17.523 3 12 3z"/></svg></a>
 </div>
 
 <!-- 컴퓨터 화면에서 스크롤을 따라오는 상담 단추 (파란 상자를 대신한다) -->
