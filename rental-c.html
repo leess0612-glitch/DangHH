@@ -133,6 +133,9 @@ if (typeof dhInflow !== 'function') { window.dhInflow = function () { return {};
      - og:title : 카톡·카페에 링크를 붙였을 때 나오는 카드 제목. 짧아야 한 줄에 들어간다
      (index.html 과 같은 규칙, 2026-08-27) -->
 <title>당현함 | 코웨이 정수기렌탈 냉온얼음 비데 공기청정기 안마의자 요금 비교·추천, 사은품 많이 주는 곳 | 쿠쿠 청호 SK매직 웰스 LG</title>
+<!-- 이 쪽의 대표 주소. 물음표가 붙은 주소(광고 꼬리표 등)로 들어와도
+     검색엔진이 이 주소 하나만 세도록 알려 준다 (2026-09-10) -->
+<link rel="canonical" href="https://danghh.com/rental-c.html">
 <!-- 2026-08-27 : 여기가 "최대 40만원"이라 화면 본문(최대 50만원)과 어긋나 있었다 -->
 <meta name="description" content="정수기·비데·공기청정기·안마의자 렌탈, 브랜드별 조건과 사은품 혜택을 비교해 안내드립니다. 타 업체가 더 주면 차액 120% 보상. 무료 비교 상담 ☎ 1600-4670">
 <!-- 광고 전용 페이지. 자연 검색에는 노출시키지 않는다. (2026-08-19) -->
@@ -183,6 +186,13 @@ if (typeof dhInflow !== 'function') { window.dhInflow = function () { return {};
 }
 html { scroll-behavior: auto; }
 body { font-family: 'Pretendard Variable', Pretendard, 'Noto Sans KR', sans-serif; color: var(--dark); line-height: 1.6; overflow-x: hidden; }
+/* 2026-09-10: 폰에서 화면이 좌우로 17px 밀리던 것을 막는다.
+   원인은 아래 '후기띠' 가 width:100vw 인 것 — 100vw 는 스크롤막대 폭까지 세기 때문에
+   실제로 보이는 폭보다 그만큼 넓어진다. 띠 자체는 화면 끝까지 닿아야 하므로 그대로 두고,
+   문서 바깥으로 삐져나온 만큼만 잘라 낸다.
+   ★ hidden 이 아니라 clip 을 쓴 까닭: hidden 은 스크롤 상자를 만들어
+     위에 붙어 따라오는 머리띠(sticky)를 망가뜨릴 수 있다. clip 은 자르기만 한다. */
+html { overflow-x: clip; }
 
 /* ===== HEADER ===== */
 header {
@@ -2687,7 +2697,7 @@ function promiseZoom(src){ document.getElementById('promiseViewerImg').src=src; 
              손 대는 단계가 하나 줄어든다. 끄고 싶으면 checked 를 지우면 된다. -->
         <div style="display:flex;align-items:flex-start;gap:8px;margin-bottom:18px;">
           <input type="checkbox" id="c1" checked style="width:12px;height:12px;accent-color:#9ca3af;flex-shrink:0;margin-top:3px;cursor:pointer;opacity:0.7;">
-          <label for="c1" style="font-size:13px;color:var(--gray);cursor:pointer;line-height:1.5;">개인정보 수집 및 활용동의 <a href="javascript:void(0)" onclick="openPrivacy()" style="color:var(--gray);font-weight:600;font-size:12px;text-decoration:none;">›</a> <span style="color:#b0b8c1;font-weight:500;font-size:12px;">(필수)</span></label>
+          <label for="c1" style="font-size:13px;color:var(--gray);cursor:pointer;line-height:1.5;">개인정보 수집 및 활용동의 <a href="javascript:void(0)" onclick="openPrivacy()" aria-label="개인정보처리방침 보기" title="개인정보처리방침 보기" style="color:var(--gray);font-weight:600;font-size:12px;text-decoration:none;display:inline-block;padding:6px 10px;margin:-6px -6px;">›</a> <span style="color:#b0b8c1;font-weight:500;font-size:12px;">(필수)</span></label>
         </div>
         <p class="form-urgency">⏰ 오늘 오후 5:30 이전 설치 시 당일 지급</p>
         <button class="form-submit" id="submitBtn" onclick="submitForm()">내 최대 혜택 무료 확인</button>
