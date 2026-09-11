@@ -113,7 +113,7 @@ window.DH_약관 = {
       /* 창이 떠 있는 동안 뒷 페이지가 같이 밀리지 않게 —
          사은품명단(gift.html)에는 이 규칙이 없어 뒷 페이지가 함께 굴러갔다 (2026-09-02 고침) */
       'body.locked{overflow:hidden;}',
-      '.privacy-modal{background:#fff;border-radius:16px;width:100%;max-width:640px;',
+      '.privacy-modal{background:#fff;border-radius:12px;width:100%;max-width:640px;',
       'max-height:80vh;display:flex;flex-direction:column;box-shadow:0 20px 60px rgba(0,0,0,0.3);}',
       '.privacy-modal-head{padding:20px 24px;border-bottom:1px solid #e5e7eb;display:flex;',
       'justify-content:space-between;align-items:center;flex-shrink:0;}',

@@ -149,7 +149,7 @@
       '#applyOverlay.open .apply-modal{transform:none;}',
       '#applyOverlay .hero-form-wrap{flex:none;width:100%;}',
       /* 닫기(X) 단추가 화면 밖으로 밀리지 않도록 '창 안쪽'만 굴러가게 한다 */
-      '#applyOverlay .form-card{background:#fff;border-radius:20px;padding:40px;max-width:100%;margin:0;',
+      '#applyOverlay .form-card{background:#fff;border-radius:12px;padding:40px;max-width:100%;margin:0;',
       'box-shadow:0 30px 80px rgba(2,10,40,.55);',
       'max-height:calc(100vh - 96px);max-height:calc(100dvh - 96px);',
       'overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;}',
