@@ -176,6 +176,8 @@ nav a.on { color: var(--primary); background: #eff6ff; font-weight: 700; }
   font-family: inherit; font-size: 17px; font-weight: 800; letter-spacing: -0.3px;
   flex: 0 0 auto; white-space: nowrap;
   padding: 13px 16px; border-radius: 12px; cursor: pointer;
+  /* 2026-09-11: 탭이 <a> 라 밑줄이 그어지고 있었다(통신사별 다섯 장에서 네 칸씩) */
+  text-decoration: none;
   background: white; border: 1.5px solid var(--border); color: var(--gray);
   box-shadow: 0 2px 12px rgba(15,42,90,0.06);
   transition: transform 0.12s ease, background 0.2s, border-color 0.2s, box-shadow 0.2s, color 0.2s;
@@ -892,3 +894,10 @@ nav a { padding: 13px 10px; }
    되돌리려면 아래 두 줄만 지운다. */
 table.rate thead th, table.bundle-tbl thead th, table.term-tbl thead th,
 .tab[aria-selected="true"] { text-shadow: 0 0 1px rgba(0,0,0,.45); }
+
+
+/* ===== 한글은 낱말 가운데를 끊지 않는다 (2026-09-11, 보드 규칙 9) =====
+   ⚠ 표 안에 문장을 넣을 때는 white-space:normal 을 함께 줘야 표가 안 늘어난다. */
+body, p, li, dd, dt, h1, h2, h3, h4, span, strong, em, b, a, div, label, button, td, th, figcaption, blockquote {
+  word-break: keep-all;
+}

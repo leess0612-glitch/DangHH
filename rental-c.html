@@ -3630,5 +3630,15 @@ if(window.wcs) {
 }
 </script>
 
+<style>
+/* ===== 한글은 낱말 가운데를 끊지 않는다 (2026-09-11, 보드 규칙 9) =====
+   왜: 좁은 폰에서 '상담까 / 지' 처럼 낱말이 두 줄로 갈라진다.
+   범위: 글이 들어가는 곳만. 주소·코드처럼 끊어야 하는 것은 뺀다.
+   ⚠ 표 안에 문장을 넣을 때는 white-space:normal 을 함께 줘야 한다 —
+     안 그러면 표가 옆으로 한없이 늘어난다. */
+body, p, li, dd, dt, h1, h2, h3, h4, span, strong, em, b, a, div, label, button, td, th, figcaption, blockquote {
+  word-break: keep-all;
+}
+</style>
 </body>
 </html>
