@@ -162,12 +162,12 @@ if (typeof dhInflow !== 'function') { window.dhInflow = function () { return {};
   --primary-dark: #0E45A0;
   --accent: #f59e0b;
   --dark: #0f172a;
-  --gray: #64748b;
-  --light-gray: #f1f5f9;
+  --gray: #5F6672;
+  --light-gray: #F5F6F8;
   --white: #ffffff;
   --border: #e2e8f0;
 }
-body { font-family: 'Pretendard Variable', Pretendard, 'Noto Sans KR', sans-serif; color: var(--dark); line-height: 1.6; overflow-x: hidden; background: #f8fafc; }
+body { font-family: 'Pretendard Variable', Pretendard, 'Noto Sans KR', sans-serif; color: var(--dark); line-height: 1.6; overflow-x: hidden; background: #FCFCFD; }
 
 /* ===== HEADER (index.html과 동일) ===== */
 header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: white; box-shadow: 0 2px 16px rgba(15,42,90,0.08); }
@@ -279,7 +279,7 @@ nav a.on { color: var(--primary); background: #eff6ff; font-weight: 700; }
   /* 2026-08-28: 파란 그라데이션 -> 흰 바탕으로 바꿈 (사장님 지시).
      index.html 의 '설치 후기' 칸과 같은 규칙을 따른다 —
      흰 바탕 · 제목은 진한 남색 · 설명은 회색 · 강조할 낱말만 파랑.
-     아래 칸이 연회색(#f8fafc)이라 흰색과 맞닿으면 경계가 저절로 생긴다. */
+     아래 칸이 연회색(#FCFCFD)이라 흰색과 맞닿으면 경계가 저절로 생긴다. */
   background: #ffffff;
   color: var(--dark); padding: 44px 20px 40px; text-align: center;
   border-bottom: 1px solid var(--border);
@@ -315,7 +315,7 @@ table.gift td.product { font-weight: 600; }
 table.gift td.bank { color: var(--gray); }
 table.gift tbody tr:last-child td { border-bottom: none; }
 
-.note { padding: 14px 24px; background: #f8fafc; border-top: 1px solid var(--border); font-size: 12px; color: var(--gray); line-height: 1.7; }
+.note { padding: 14px 24px; background: #FCFCFD; border-top: 1px solid var(--border); font-size: 12px; color: var(--gray); line-height: 1.7; }
 
 /* 상담 유도 */
 /* 다음 명단의 주인공 — 스크롤을 따라오는 단추 (2026-08-25)
@@ -386,7 +386,7 @@ table.gift tbody tr:last-child td { border-bottom: none; }
 .past-item:last-child { border-bottom: none; }
 .past-item.hide { display: none; }
 .past-btn { width: 100%; background: white; border: none; cursor: pointer; font-family: inherit; display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 15px 20px; font-size: 15px; color: var(--dark); text-align: left; transition: background 0.15s; }
-.past-btn:hover { background: #f8fafc; }
+.past-btn:hover { background: #FCFCFD; }
 .past-btn .d { font-weight: 700; }
 .past-btn .d .dow { font-weight: 600; color: #8A9099; }
 .past-btn .r { display: flex; align-items: center; gap: 10px; color: var(--gray); font-size: 13px; }
