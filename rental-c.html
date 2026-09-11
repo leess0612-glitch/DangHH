@@ -349,7 +349,7 @@ section { padding: 72px 20px; }
 .section-inner { max-width: 1100px; margin: 0 auto; }
 .section-tag {
   display: inline-block; background: #eff6ff; color: var(--primary);
-  font-size: 13px; font-weight: 700; padding: 4px 12px; border-radius: 20px; margin-bottom: 12px;
+  font-size: 13px; font-weight: 700; padding: 4px 12px; border-radius: 12px; margin-bottom: 12px;
 }
 .section-title { font-size: clamp(22px, 3.5vw, 36px); font-weight: 900; letter-spacing: -0.5px; margin-bottom: 8px; line-height: 1.3; }
 .section-title em { font-style: normal; color: var(--primary); }
@@ -359,7 +359,7 @@ section { padding: 72px 20px; }
 .ict-cert-wrap {
   display: inline-flex; align-items: center; gap: 18px;
   background: white; border: 2px solid #d1d5db;
-  border-radius: 16px; padding: 20px 32px;
+  border-radius: 12px; padding: 20px 32px;
   text-decoration: none; transition: border-color 0.2s, box-shadow 0.2s;
 }
 .ict-cert-wrap:hover { border-color: #1257C9; box-shadow: 0 4px 20px rgba(18,87,201,0.12); }
@@ -385,7 +385,7 @@ section { padding: 72px 20px; }
   gap: 20px; margin-top: 48px;
 }
 .benefit-card {
-  background: white; border-radius: 20px; padding: 28px 28px;
+  background: white; border-radius: 12px; padding: 28px 28px;
   box-shadow: 0 2px 16px rgba(15,42,90,0.08); transition: transform 0.2s; position: relative; overflow: hidden;
 }
 .benefit-amount-highlight {
@@ -418,7 +418,7 @@ section { padding: 72px 20px; }
 }
 .benefit-tag {
   display: inline-flex; align-items: center; background: #eff6ff; color: var(--primary);
-  font-size: 12px; font-weight: 700; padding: 4px 10px; border-radius: 20px;
+  font-size: 12px; font-weight: 700; padding: 4px 10px; border-radius: 12px;
 }
 .benefit-icon-lg { font-size: 36px; line-height: 1; flex-shrink: 0; }
 .benefit-card h3 { font-size: 20px; font-weight: 900; margin-bottom: 10px; line-height: 1.4; }
@@ -479,7 +479,7 @@ section { padding: 72px 20px; }
 .plans { background: white; }
 .plans-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
 .plan-card {
-  background: white; border: 1.5px solid #e5e7eb; border-radius: 16px;
+  background: white; border: 1.5px solid #e5e7eb; border-radius: 12px;
   padding: 20px 22px 24px; transition: all 0.2s; box-shadow: 0 2px 16px rgba(15,42,90,0.08);
 }
 .plan-card:hover { border-color: var(--primary); box-shadow: 0 8px 32px rgba(11,46,92,0.16); }
@@ -515,7 +515,7 @@ a.plan-card:active { transform: translateY(0) scale(0.99); }
 }
 .process-step-a {
   display: flex; flex-direction: column; align-items: center; justify-content: space-between; text-align: center;
-  background: white; border-radius: 16px; padding: 36px 28px;
+  background: white; border-radius: 12px; padding: 36px 28px;
   box-shadow: 0 2px 16px rgba(15,42,90,0.08); flex: 1;
   min-width: 180px; max-width: 260px;
   transition: transform 0.2s;
@@ -563,7 +563,7 @@ a.plan-card:active { transform: translateY(0) scale(0.99); }
 .form-section .section-title em { color: #fcd34d; }
 .form-section .section-sub { color: rgba(255,255,255,0.8); }
 .form-card {
-  background: white; border-radius: 20px; padding: 40px;
+  background: white; border-radius: 12px; padding: 40px;
   max-width: 580px; margin: 0 auto; box-shadow: 0 2px 16px rgba(15,42,90,0.08);
 }
 .form-headline { font-size: 17px; font-weight: 800; color: var(--dark); text-align: center; margin-bottom: 24px; }
@@ -643,7 +643,7 @@ a.plan-card:active { transform: translateY(0) scale(0.99); }
 }
 .privacy-overlay.open { display: flex; }
 .privacy-modal {
-  background: white; border-radius: 16px; width: 100%; max-width: 640px;
+  background: white; border-radius: 12px; width: 100%; max-width: 640px;
   max-height: 80vh; display: flex; flex-direction: column;
   box-shadow: 0 8px 32px rgba(11,46,92,0.16);
 }
@@ -730,7 +730,7 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
 .sticky-form.collapsed .sticky-form-tab .tab-arrow { transform: rotate(180deg); }
 .sticky-form-inner {
   width: 220px; background: white;
-  border-radius: 16px;
+  border-radius: 12px;
   border-top: 4px solid var(--primary);
   border-bottom: 4px solid var(--primary);
   box-shadow: 0 8px 32px rgba(11,46,92,0.16);
@@ -1314,8 +1314,10 @@ html { scroll-behavior: auto; scroll-padding-top: 78px; }
   .ri-name{ width:4.3em }
   .ri-bank{ width:5em }
 }
-@media (max-width: 340px) {
+@media (max-width: 370px) {
   /* 아무리 줄여도 한 줄에는 못 담는다. 이때만 두 줄로 나눈다.
+     ⚠ 2026-09-11 실측으로 340 -> 370 으로 올렸다. 344~360 에서 은행 이름이 잘렸다
+       (폴드5 앞화면이 344). 한 줄에 필요한 폭 305, 364 에서 여유 1px 뿐이다.
      윗줄 날짜·이름·은행 / 아랫줄 상품명. 칸 폭은 그대로라 세로줄은 계속 맞는다 */
   .rolling-item{ flex-wrap:wrap; align-content:center; row-gap:1px }
   .ri-date{ order:1 }
@@ -1528,7 +1530,7 @@ html { scroll-behavior: auto; scroll-padding-top: 78px; }
    읽기 나쁘므로, 카드 폭을 760px 로 줄여 가운데에 놓는다. */
 .promise-card {
   margin:30px auto 0; display:block; max-width:760px;
-  background:#fff; border:1px solid var(--border); border-radius:20px; overflow:hidden;
+  background:#fff; border:1px solid var(--border); border-radius:12px; overflow:hidden;
   box-shadow:0 2px 16px rgba(15,42,90,0.08); text-align:left;
 }
 .promise-body { padding:36px 40px 32px; }
@@ -1581,7 +1583,7 @@ html { scroll-behavior: auto; scroll-padding-top: 78px; }
 .trust-solution { margin:32px 0 96px; }
 .trust-solution-img { width:100%; max-width:480px; aspect-ratio:811/787; display:block; margin:0 auto; }
 .trust-cert { text-align:center; margin-top:60px; }
-.trust-cert-img { width:100%; max-width:720px; aspect-ratio:1060/822; border-radius:16px; box-shadow:0 2px 16px rgba(15,42,90,0.08); display:block; margin:0 auto 28px; }
+.trust-cert-img { width:100%; max-width:720px; aspect-ratio:1060/822; border-radius:12px; box-shadow:0 2px 16px rgba(15,42,90,0.08); display:block; margin:0 auto 28px; }
 
 /* ===== 간이 신청칸의 개인정보 안내 (2026-08-27 새로 넣음) =====
    옆칸·아래 띠에서 번호를 받으면서 동의 표시가 없던 것을 메운다 */
@@ -1916,7 +1918,7 @@ html { scroll-behavior: auto; scroll-padding-top: 78px; }
 .후기목록{ max-width:1000px; margin:0 auto; display:flex; flex-direction:column; gap:20px; }
 .후기카드{
   display:flex; gap:24px; align-items:stretch;
-  background:var(--white); border:1px solid var(--border); border-radius:16px;
+  background:var(--white); border:1px solid var(--border); border-radius:12px;
   padding:20px; box-shadow:0 2px 16px rgba(15,42,90,0.08);
 }
 /* ⚠ 사진에 height:100% 만 주면 안 된다 — 사진이 다 불러와진 순간 자기 원래 비율대로
@@ -1971,7 +1973,7 @@ html { scroll-behavior: auto; scroll-padding-top: 78px; }
 .후기목록{ max-width:1000px; margin:0 auto; display:flex; flex-direction:column; gap:20px; }
 .후기카드{
   display:flex; gap:24px; align-items:stretch;
-  background:var(--white); border:1px solid var(--border); border-radius:16px;
+  background:var(--white); border:1px solid var(--border); border-radius:12px;
   padding:20px; box-shadow:0 2px 16px rgba(15,42,90,0.08);
 }
 /* ⚠ 사진에 height:100% 만 주면 안 된다 — 사진이 다 불러와진 순간 자기 원래 비율대로
@@ -2028,7 +2030,7 @@ html { scroll-behavior: auto; scroll-padding-top: 78px; }
 .후기목록{ max-width:1000px; margin:0 auto; display:flex; flex-direction:column; gap:20px; }
 .후기카드{
   display:flex; gap:24px; align-items:stretch;
-  background:var(--white); border:1px solid var(--border); border-radius:16px;
+  background:var(--white); border:1px solid var(--border); border-radius:12px;
   padding:20px; box-shadow:0 2px 16px rgba(15,42,90,0.08);
 }
 /* ⚠ 사진에 height:100% 만 주면 안 된다 — 사진이 다 불러와진 순간 자기 원래 비율대로
