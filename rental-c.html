@@ -3640,5 +3640,22 @@ body, p, li, dd, dt, h1, h2, h3, h4, span, strong, em, b, a, div, label, button,
   word-break: keep-all;
 }
 </style>
+<style>
+/* ===== 누르는 자리 44 (2026-09-11, 보드 규칙 9) =====
+   보이는 크기는 그대로 두고 그 위에 보이지 않는 44짜리 층만 덮는다.
+   층은 자리를 차지하지 않으므로 카드 높이도 발바닥 높이도 안 변한다.
+   ⚠ 층이 옆 부품 위로 넘어가면 그쪽 누름을 가로챈다. 나란히 붙은 자리는 재고 덮었다. */
+.더읽기, .logo, .hamburger, .rolling-more, .footer-links a, .doc-back { position: relative; }
+.더읽기::after, .logo::after, .hamburger::after, .rolling-more::after,
+.footer-links a::after, .doc-back::after {
+  content: ""; position: absolute; left: 0; right: 0; top: 50%;
+  transform: translateY(-50%); height: 44px;
+}
+/* 가로도 좁은 것은 44로 넓힌다 */
+.더읽기::after, .hamburger::after {
+  left: 50%; right: auto; width: 44px; min-width: 100%;
+  transform: translate(-50%, -50%);
+}
+</style>
 </body>
 </html>
