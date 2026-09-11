@@ -184,7 +184,7 @@ body { font-family: 'Pretendard Variable', Pretendard, 'Noto Sans KR', sans-seri
 /* ===== HEADER ===== */
 header {
   position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-  background: white; box-shadow: 0 2px 12px rgba(0,0,0,0.08); transition: all 0.3s;
+  background: white; box-shadow: 0 2px 16px rgba(15,42,90,0.08); transition: all 0.3s;
 }
 .header-inner {
   max-width: 1200px; margin: 0 auto; padding: 0 20px;
@@ -285,7 +285,7 @@ nav a:hover { color: var(--primary); background: #eff6ff; }
 .hamburger span { display: block; width: 24px; height: 2px; background: var(--dark); border-radius: 2px; }
 .mobile-menu {
   display: none; position: fixed; top: 64px; left: 0; right: 0;
-  background: white; padding: 12px 20px; box-shadow: 0 8px 20px rgba(0,0,0,0.1); z-index: 999;
+  background: white; padding: 12px 20px; box-shadow: 0 8px 32px rgba(11,46,92,0.16); z-index: 999;
 }
 .mobile-menu.open { display: block; }
 .mobile-menu a {
@@ -478,7 +478,7 @@ section { padding: 72px 20px; }
 .cf-col-vs .cf-head { background: white; color: #374151; font-size: 21px; padding: 12px 9px; }
 .cf-col-vs .cf-cell { font-size: 22px; font-weight: 700; color: #1e293b; padding: 15px 9px; border-top: 1px solid #e5e9ee; background: white; }
 /* 당현함 열 — 헤더 120px(=84+36), margin-top: -36px, margin-bottom: -36px → 위아래 돌출 */
-.cf-col-us { flex: 0 0 345px; margin-top: -36px; margin-bottom: -36px; overflow: hidden; box-shadow: 0 8px 32px rgba(18,87,201,0.45); }
+.cf-col-us { flex: 0 0 345px; margin-top: -36px; margin-bottom: -36px; overflow: hidden; box-shadow: 0 2px 16px rgba(15,42,90,0.08); }
 .cf-col-us .cf-head { background: #0E45A0; color: white; font-size: 42px; padding: 18px 9px; min-height: 120px; }
 .cf-col-us .cf-cell { padding: 10px 9px; border-top: 1px solid rgba(255,255,255,0.35); background: #1257C9; }
 .cf-col-us .cf-cell:last-child { min-height: 138px; }
@@ -496,7 +496,7 @@ section { padding: 72px 20px; }
   background: white; border: 1.5px solid #e5e7eb; border-radius: 16px;
   padding: 20px 22px 24px; transition: all 0.2s; box-shadow: 0 2px 12px rgba(0,0,0,0.04);
 }
-.plan-card:hover { border-color: var(--primary); box-shadow: 0 8px 24px rgba(18,87,201,0.1); }
+.plan-card:hover { border-color: var(--primary); box-shadow: 0 8px 32px rgba(11,46,92,0.16); }
 .plan-top {
   display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px;
 }
@@ -722,7 +722,7 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
   padding: 13px 16px 13px 28px;
   background: #12336E;
   border: 1.5px solid rgba(255,255,255,0.10); border-radius: 14px;
-  box-shadow: 0 -2px 12px rgba(11,46,92,.08);
+  box-shadow: 0 8px 32px rgba(11,46,92,0.16);
   cursor: pointer; font-family: 'Pretendard Variable', Pretendard, sans-serif; text-align: left;
   -webkit-tap-highlight-color: transparent;
   transition: transform 0.08s ease, background 0.2s, box-shadow 0.2s;
@@ -1204,22 +1204,22 @@ input[type="checkbox"]:focus-visible {
 }
 
 /* --- 5. 그림자를 순수 검정 → 브랜드 남색 기운으로 (탁함 제거) --- */
-header { box-shadow: 0 2px 12px rgba(15,42,90,0.09); }
+header { box-shadow: 0 2px 16px rgba(15,42,90,0.08); }
 .benefit-card { box-shadow: 0 2px 16px rgba(15,42,90,0.08); }
-.plan-card { box-shadow: 0 2px 12px rgba(15,42,90,0.06); }
-.process-step-a, .step-card-b, .trust-cert-label-item { box-shadow: 0 2px 16px rgba(15,42,90,0.09); }
-.trust-news-img, .trust-cert-img { box-shadow: 0 4px 24px rgba(15,42,90,0.13); }
-.form-card { box-shadow: 0 20px 60px rgba(8,26,70,0.26); }
-.faq-item { box-shadow: 0 1px 5px rgba(15,42,90,0.07); }
-.mobile-cta-bar { box-shadow: 0 -2px 12px rgba(11,46,92,.08); }
-.float-btn { box-shadow: 0 4px 16px rgba(15,42,90,0.18); }
+.plan-card { box-shadow: 0 2px 16px rgba(15,42,90,0.08); }
+.process-step-a, .step-card-b, .trust-cert-label-item { box-shadow: 0 2px 16px rgba(15,42,90,0.08); }
+.trust-news-img, .trust-cert-img { box-shadow: 0 2px 16px rgba(15,42,90,0.08); }
+.form-card { box-shadow: 0 2px 16px rgba(15,42,90,0.08); }
+.faq-item { box-shadow: 0 2px 16px rgba(15,42,90,0.08); }
+.mobile-cta-bar { box-shadow: 0 -3px 16px rgba(15,42,90,0.14); }
+.float-btn { box-shadow: 0 8px 32px rgba(11,46,92,0.16); }
 
 /* --- 6. 카드에 마우스 올릴 때 그림자도 함께 (원래는 위로 뜨기만 함) --- */
 .benefit-card, .process-step-a, .step-card-b {
   transition: transform 0.22s cubic-bezier(0.22,1,0.36,1), box-shadow 0.22s ease;
 }
-.benefit-card:hover { box-shadow: 0 14px 34px rgba(15,42,90,0.15); }
-.process-step-a:hover, .step-card-b:hover { box-shadow: 0 14px 32px rgba(15,42,90,0.16); }
+.benefit-card:hover { box-shadow: 0 8px 32px rgba(11,46,92,0.16); }
+.process-step-a:hover, .step-card-b:hover { box-shadow: 0 8px 32px rgba(11,46,92,0.16); }
 
 /* --- 7. 메뉴 눌러 이동할 때 바로 이동 + 고정 머리띠(64px)에 제목이 안 가리게 --- */
 /* 2026-09-02: smooth -> auto (사장님 지시). 위쪽 187번째 줄 근처에도 auto 가 있었지만
@@ -1335,7 +1335,7 @@ html { scroll-behavior: auto; scroll-padding-top: 78px; }
 }
 
 /* ── 앞뒤 서열: 신청폼이 앞, 명세표가 뒤, 누를 곳이 가장 진한 파랑 ── */
-.hero-form-wrap .form-card{ box-shadow:0 30px 70px rgba(4,18,60,.45), 0 6px 16px rgba(4,18,60,.28) }
+.hero-form-wrap .form-card{ box-shadow:0 8px 32px rgba(11,46,92,0.16) }
 /* ★ 마우스를 올리면 단추가 깜빡이던 문제 (2026-08-25 고침)
    원인: 바탕이 '위아래 그라데이션(그림)'인데 마우스 올림 상태는 '단색'이다.
         브라우저는 그림과 단색을 부드럽게 이어 그리지 못해 그라데이션을 즉시 지우는데,
@@ -1474,7 +1474,7 @@ html { scroll-behavior: auto; scroll-padding-top: 78px; }
 .promise-card {
   margin:30px auto 0; display:block; max-width:760px;
   background:#fff; border:1px solid var(--border); border-radius:20px; overflow:hidden;
-  box-shadow:0 4px 24px rgba(15,42,90,0.10); text-align:left;
+  box-shadow:0 2px 16px rgba(15,42,90,0.08); text-align:left;
 }
 .promise-body { padding:36px 40px 32px; }
 .promise-head { font-size:22px; font-weight:900; letter-spacing:-0.5px; line-height:1.4; margin-bottom:22px; }
@@ -1496,8 +1496,8 @@ html { scroll-behavior: auto; scroll-padding-top: 78px; }
 .promise-docs .lbl { font-size:14px; color:var(--gray); margin-bottom:12px; }
 .promise-docs-row { display:flex; gap:20px; justify-content:center; }
 .promise-doc { width:240px; border:1px solid var(--border); border-radius:12px; background:#fff; padding:10px 10px 12px;
-  cursor:zoom-in; transition:transform .2s, box-shadow .2s; box-shadow:0 2px 10px rgba(15,42,90,0.07); }
-.promise-doc:hover { transform:translateY(-3px); box-shadow:0 10px 24px rgba(15,42,90,0.14); }
+  cursor:zoom-in; transition:transform .2s, box-shadow .2s; box-shadow:0 2px 16px rgba(15,42,90,0.08); }
+.promise-doc:hover { transform:translateY(-3px); box-shadow:0 8px 32px rgba(11,46,92,0.16); }
 .promise-doc img { width:100%; aspect-ratio:1024/1448; object-fit:cover; object-position:top; border-radius:7px; display:block; background:#f8fafc; }
 .promise-doc span { display:block; margin-top:9px; font-size:12.5px; font-weight:700; color:#334155; text-align:center; }
 .promise-viewer { position:fixed; inset:0; background:rgba(15,23,42,0.88); display:none; align-items:center; justify-content:center; padding:30px; z-index:9999; cursor:zoom-out; }
@@ -1546,7 +1546,7 @@ html { scroll-behavior: auto; scroll-padding-top: 78px; }
 .apply-overlay.open .apply-modal{ transform:none; }
 /* 히어로 안에 있을 때 쓰던 폭 규칙을 창 안에서는 풀어준다 */
 .apply-modal .hero-form-wrap{ flex:none; width:100%; }
-.apply-modal .form-card{ max-width:100%; margin:0; box-shadow:0 30px 80px rgba(2,10,40,.55); }
+.apply-modal .form-card{ max-width:100%; margin:0; box-shadow:0 8px 32px rgba(11,46,92,0.16); }
 /* 화면이 낮거나 요청사항을 펴서 내용이 길어지면 '창 안쪽'만 굴러가게 한다.
    창 전체가 굴러가면 위에 달린 닫기(X) 단추가 화면 밖으로 밀려 안 보였다. */
 .apply-modal{ max-height: calc(100vh - 96px); max-height: calc(100dvh - 96px); }
@@ -1938,10 +1938,10 @@ body.apply-open{ overflow:hidden; }
    아주 옅은 그림자로 띄운다. 파란 바탕에서 쓰던 짙은 그림자는 흰 바탕에서 때가 탄 것처럼 보인다. */
 .hero-form-wrap .dh-calc{
   border-color:#E2E8F0;
-  box-shadow:0 4px 20px rgba(15,23,42,0.06);
+  box-shadow:0 2px 16px rgba(15,42,90,0.08);
 }
 .hero-form-wrap .form-card{
-  box-shadow:0 4px 20px rgba(15,23,42,0.06);
+  box-shadow:0 2px 16px rgba(15,42,90,0.08);
 }
 
 /* ══════════════ 첫 화면 숨통 트기 (2026-08-31) ══════════════
@@ -2302,7 +2302,7 @@ body.apply-open{ overflow:hidden; }
   background:var(--primary); color:#fff;
   border-radius:14px; padding:14px 36px; text-align:center;
   display:flex; flex-direction:column; align-items:center; justify-content:center;
-  box-shadow:0 8px 28px rgba(18,87,201,0.28);
+  box-shadow:0 2px 16px rgba(15,42,90,0.08);
 }
 .후기띠-큰글{ display:block; margin:0; font-size:30px; white-space:nowrap;
   font-weight:900; letter-spacing:-1px; line-height:1.25; }
@@ -2327,7 +2327,7 @@ body.apply-open{ overflow:hidden; }
 .후기카드{
   display:flex; gap:24px; align-items:stretch;
   background:var(--white); border:1px solid var(--border); border-radius:16px;
-  padding:20px; box-shadow:0 2px 10px rgba(15,23,42,0.05);
+  padding:20px; box-shadow:0 2px 16px rgba(15,42,90,0.08);
 }
 /* ⚠ 사진에 height:100% 만 주면 안 된다 — 사진이 다 불러와진 순간 자기 원래 비율대로
    높이를 밀어 올려 카드가 통째로 길어진다(2026-08-27 실제로 물림).
@@ -2384,7 +2384,7 @@ body.apply-open{ overflow:hidden; }
 .후기카드{
   display:flex; gap:24px; align-items:stretch;
   background:var(--white); border:1px solid var(--border); border-radius:16px;
-  padding:20px; box-shadow:0 2px 10px rgba(15,23,42,0.05);
+  padding:20px; box-shadow:0 2px 16px rgba(15,42,90,0.08);
 }
 /* ⚠ 사진에 height:100% 만 주면 안 된다 — 사진이 다 불러와진 순간 자기 원래 비율대로
    높이를 밀어 올려 카드가 통째로 길어진다(2026-08-27 실제로 물림).
