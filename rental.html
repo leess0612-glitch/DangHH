@@ -1051,7 +1051,7 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
 }
 /* 폰에서는 두 배가 너무 크게 보여 1.5배로 낮춘다 */
 @media (max-width: 768px) {
-  .rolling-col-header { font-size: 19.5px; padding: 12px 0; }
+  .rolling-col-header { font-size: 20px; padding: 12px 0; }
 }
 /* 제목 띠 안, 제목 글자 바로 아래 안내 한 줄 (2026-08-25)
    명단은 영업일 저녁에 그날치가 올라가고 주말·공휴일은 쉰다.
@@ -1079,8 +1079,8 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
   height: 66px; display: flex; align-items: center;
   gap: 6px; border-bottom: 1px solid #f1f5f9; overflow: hidden;
 }
-.ri-date { color: #94a3b8; font-size: 16.5px; flex-shrink: 0; white-space: nowrap; }
-.ri-name { color: #1e293b; font-weight: 700; font-size: 19.5px; flex-shrink: 0; }
+.ri-date { color: #94a3b8; font-size: 16px; flex-shrink: 0; white-space: nowrap; }
+.ri-name { color: #1e293b; font-weight: 700; font-size: 20px; flex-shrink: 0; }
 @keyframes rollUpComplete {
   0% { transform: translateY(0); }
   100% { transform: translateY(var(--roll-c-dist, -1056px)); }
@@ -1321,7 +1321,7 @@ html { scroll-behavior: auto; scroll-padding-top: 78px; }
 }
 /* 은행은 배지(알약) 대신 그냥 글씨로 — 알약이 줄 끝에서 눈을 끌어 이름·상품보다 먼저 읽혔다 */
 .ri-bank{
-  font-size:16.5px; font-weight:600;
+  font-size:16px; font-weight:600;
   color:#64748b; white-space:nowrap;
 }
 /* ===== 안 보이는 칸으로 줄 맞추기 (2026-08-25) =====
@@ -1588,7 +1588,7 @@ html { scroll-behavior: auto; scroll-padding-top: 78px; }
 .promise-list strong { display:block; font-size:17px; font-weight:800; letter-spacing:-0.3px; margin-bottom:3px; }
 .promise-list p { font-size:14px; color:var(--gray); line-height:1.65; }
 .promise-oath { margin-top:26px; padding-top:20px; border-top:1px dashed var(--border); display:block; }
-.promise-oath p { font-size:13.5px; color:#475569; line-height:1.6; margin-bottom:14px; }
+.promise-oath p { font-size:13px; color:#475569; line-height:1.6; margin-bottom:14px; }
 .promise-oath p b { color:var(--dark); font-weight:800; }
 .promise-sign { display:flex; align-items:center; justify-content:flex-end; gap:12px; padding-right:44px; }
 .promise-sign span { font-size:12px; color:var(--gray); white-space:nowrap; }
@@ -1600,7 +1600,7 @@ html { scroll-behavior: auto; scroll-padding-top: 78px; }
   cursor:zoom-in; transition:transform .2s, box-shadow .2s; box-shadow:0 2px 16px rgba(15,42,90,0.08); }
 .promise-doc:hover { transform:translateY(-3px); box-shadow:0 8px 32px rgba(11,46,92,0.16); }
 .promise-doc img { width:100%; aspect-ratio:1024/1448; object-fit:cover; object-position:top; border-radius:7px; display:block; background:#f8fafc; }
-.promise-doc span { display:block; margin-top:9px; font-size:12.5px; font-weight:700; color:#334155; text-align:center; }
+.promise-doc span { display:block; margin-top:9px; font-size:12px; font-weight:700; color:#334155; text-align:center; }
 .promise-viewer { position:fixed; inset:0; background:rgba(15,23,42,0.88); display:none; align-items:center; justify-content:center; padding:30px; z-index:9999; cursor:zoom-out; }
 .promise-viewer.on { display:flex; }
 .promise-viewer img { max-width:100%; max-height:100%; border-radius:8px; }
