@@ -161,7 +161,7 @@ nav a.on { color: var(--primary); background: #eff6ff; font-weight: 700; }
 .page-head .badge {
   /* 흰 바탕에서는 반투명 흰 알약이 안 보인다. 연한 파란 알약으로 바꾼다. */
   display: inline-block; background: #eff6ff; border: 1px solid #dbeafe; color: var(--primary);
-  font-size: 13px; font-weight: 700; padding: 4px 16px; border-radius: 20px; margin-bottom: 12px;
+  font-size: 13px; font-weight: 700; padding: 4px 16px; border-radius: 12px; margin-bottom: 12px;
 }
 
 /* ===== 통신사 고르는 단추 (화면 위에 붙어서 따라옴) ===== */
@@ -428,7 +428,7 @@ footer { background: #0B2E5C; color: rgba(255,255,255,0.6); padding: 40px 20px; 
 .join-guide .row span em:first-child { margin-top: 0; }   /* 위에 설명 줄이 없을 때 */
 
 /* 표 몸통 */
-.rate-wrap { background: white; border: 1px solid var(--border); border-radius: 16px; overflow: hidden; }
+.rate-wrap { background: white; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
 .table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
 table.rate { border-collapse: collapse; width: 100%; }
 table.rate th, table.rate td {
