@@ -1,0 +1,94 @@
+/* ══════════════════════════════════════════════════════════════════════
+   아래 따라다니는 띠 (세 번째 판) · dh-bar3.css
+
+   전화·카톡 단추를 이 안에 넣어, 오른쪽 아래 떠다니던 동그라미를 없앱니다.
+   폰에서 오른쪽 아래가 가려지지 않게 하려는 것이 목적입니다.
+   ══════════════════════════════════════════════════════════════════════ */
+
+.bar3{position:fixed;left:0;right:0;bottom:0;z-index:950;
+  padding:12px var(--pad-screen) calc(12px + env(safe-area-inset-bottom,0px));
+  background:var(--c-card);border-top:1px solid var(--c-line);
+  box-shadow:0 -3px 16px rgba(0,0,0,.10)}
+
+/* 넓은 화면에서는 본문 폭에 맞춰 가운데로 모읍니다 */
+.bar3 > *{max-width:var(--w-page);margin-left:auto;margin-right:auto}
+
+/* ── 요금 세 줄 (상세 화면에서만) ──────────────────────
+   2026-09-09 글씨 키움 (사장님 지시) — 화면에서 가장 중요한 숫자인데
+   제품 규격 제목(20)이나 목록 카드 요금(20)보다 작아 위계가 뒤집혀 있었습니다.
+   ★ 보드에 없는 크기를 지어내지 않고 눈금 안에서만 올렸습니다.
+     프로모션가 16 → 26(요금 전용 눈금) · 제휴카드가 16 → 20 · 나머지는 한 칸씩 */
+.bar-money{margin-bottom:10px}
+.bar-money[hidden]{display:none}
+.bar-row{display:flex;align-items:center;justify-content:space-between;gap:10px;
+  min-height:28px;font-size:var(--t-h3);line-height:var(--lh-h3)}
+.bar-row[hidden]{display:none}
+/* 이름과 값을 한 줄로 묶어 읽히게 색을 맞춥니다 (2026-09-09 사장님 지시).
+   ⚠ 굵기까지 맞추지는 않습니다 — 세 줄이 모두 굵으면 무엇이 낼 값인지 흐려집니다.
+     색이 묶어 주고, 굵기·크기가 차례를 알려 주는 짜임입니다. */
+.bar-key{display:flex;align-items:center;gap:6px;flex:1 1 auto;min-width:0;
+  color:var(--c-sub);font-weight:500}
+.bar-row.bar-now .bar-key{color:var(--c-title);font-weight:700}    /* 실제로 낼 값 */
+.bar-row.bar-pay .bar-key{color:var(--c-strong);font-weight:600}   /* 제휴카드가 */
+/* ⚠ 줄 갈래 이름에 was·now·card 같은 흔한 낱말을 쓰지 말 것.
+   card 로 지었더니 dh-brand.css 의 .card(상자 모양)가 덧씌워져 줄이 깨졌습니다. */
+/* 정상가 줄은 취소선이 그어진 값이라 이름도 그대로 흐리게 둡니다 */
+.bar-sub{font-style:normal;font-size:var(--t-min);font-weight:var(--w-min);
+  color:var(--c-sub);opacity:.85}
+/* 프로모션가 — 손님이 실제로 낼 값이라 요금 전용 눈금을 씁니다 */
+.bar-val{flex:0 0 auto;white-space:nowrap;font-variant-numeric:tabular-nums;
+  font-size:var(--t-money);line-height:var(--lh-money);font-weight:var(--w-money);
+  color:var(--c-title);letter-spacing:var(--ls-title)}
+/* 정상가는 목록 카드(.li-was)와 같이 취소선을 긋습니다.
+   취소선이 그어진 값이라 일부러 조용히 둡니다 — 프로모션가와 겨루면 안 됩니다. */
+.bar-val.plain{font-size:var(--t-h3);line-height:var(--lh-h3);font-weight:500;
+  color:var(--c-sub);letter-spacing:var(--ls-sub);text-decoration:line-through}
+.bar-val.pay{font-size:var(--t-h2);line-height:var(--lh-h2);font-weight:var(--w-h2);
+  color:var(--c-strong)}
+/* 2026-09-11: 제휴카드 줄에 값 대신 말이 들어갑니다.
+   요금 눈금(h2)으로 두면 낼 값보다 커 보여 차례가 뒤집힙니다 — 한 단 낮춥니다. */
+.bar-val.pay.말{font-size:var(--t-sub);line-height:var(--lh-sub);
+  font-weight:var(--w-sub);letter-spacing:var(--ls-sub)}
+.bar-val b{font-weight:inherit}
+
+/* 프로모션 딱지 — 뜻이 같은 것끼리 한 색입니다(디자인보드 5절).
+   2026-09-09: 보드에 없는 주황을 쓰고 있어 보드 색으로 바로잡았습니다. */
+.bar-badge{display:inline-flex;align-items:center;font-style:normal;
+  padding:3px 8px;border-radius:var(--r-chip);background:var(--c-line);color:var(--c-sub);
+  font-size:var(--t-sub);font-weight:700;line-height:18px;letter-spacing:var(--ls-chip)}
+.bar-badge.half{background:var(--c-strong);color:#fff}   /* 반값 계열 */
+.bar-badge.off {background:var(--c-band);color:#fff}     /* 요금할인 · 면제 */
+.bar-badge.deal{background:var(--c-danger);color:#fff}   /* 특가 · 한정 */
+.bar-badge[hidden]{display:none}
+
+/* ── 단추 줄 ────────────────────────────────────────── */
+.bar-acts{display:flex;align-items:center;gap:8px}
+.bar-ico{flex:none;width:var(--h-control);height:var(--h-control);
+  display:flex;align-items:center;justify-content:center;
+  border-radius:var(--r-card);text-decoration:none}
+.bar-ico.phone{background:var(--c-strong-bg);color:var(--c-strong)}
+.bar-ico.kakao{background:var(--c-kakao);color:#3C1E1E}
+.bar-ico:active{transform:translateY(1px)}
+
+.bar-cta{flex:1 1 auto;min-height:var(--h-control);border:none;cursor:pointer;
+  border-radius:var(--r-card);background:var(--c-strong);color:#fff;
+  font-family:inherit;font-size:var(--t-h2);font-weight:800;letter-spacing:var(--ls-sub)}
+.bar-cta:hover{background:var(--c-strong-press)}
+.bar-cta:active{transform:translateY(1px)}
+
+/* 띠에 가려 마지막 내용이 안 보이지 않도록 본문 아래에 여백을 줍니다 */
+body.bar3-on{padding-bottom:calc(var(--bar-h,120px) + 16px)}
+
+/* ⛔ 세 번째 판에서는 떠다니는 동그라미도, 옛 폰 신청막대도 쓰지 않습니다.
+   둘 다 이 띠 안으로 들어왔습니다. */
+.bar3 ~ .floating-btns,
+body.bar3-on .floating-btns,
+.bar3 ~ .mobile-cta-bar,
+body.bar3-on .mobile-cta-bar{display:none}
+
+/* 좁은 화면에서는 단추 글씨만 한 칸 내립니다.
+   폰 375px 에서 전화·카톡 동그라미를 빼면 단추에 231px 가 남는데,
+   「내 사은품 얼마인지 확인」 열두 글자를 20px 로 넣으면 넘칩니다. */
+@media(max-width:480px){
+  .bar-cta{font-size:var(--t-h3)}
+}

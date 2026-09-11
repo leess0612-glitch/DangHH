@@ -1,0 +1,68 @@
+/* ══════════════════════════════════════════════════════════════════════
+   신청창 안 「선택한 상품」 모양 · dh-pick.css  (2026-09-10)
+
+   ⚠ 신청창(js/dh-apply.js)은 스스로 모양 규칙을 만들어 붙이고, 그 안에서
+     `var(--primary,#1257C9)` 처럼 **되돌아갈 색을 함께** 적습니다.
+     여기서도 같은 방식으로 색을 직접 적습니다 — 이 창은 메인·요금표에서도 뜨는데
+     그 화면들은 dh-brand.css 를 부르지 않기 때문입니다.
+
+   ⚠ 클래스 이름은 모두 `pick-` 으로 시작합니다.
+     `card` 처럼 흔한 이름을 쓰면 dh-brand.css 의 `.card` 와 부딪힙니다(두 번 겪음).
+   ══════════════════════════════════════════════════════════════════════ */
+
+#applyOverlay .pick-box{
+  border:1.5px solid #c7dbfa;background:#eff6ff;border-radius:12px;
+  margin:0 0 14px;overflow:hidden}
+
+#applyOverlay .pick-head{
+  width:100%;display:flex;align-items:center;justify-content:space-between;gap:8px;
+  background:none;border:none;padding:13px 15px;cursor:pointer;
+  font-family:inherit;text-align:left}
+#applyOverlay .pick-title{
+  display:inline-flex;align-items:center;gap:7px;
+  font-size:13.5px;font-weight:700;color:var(--primary,#1257C9)}
+#applyOverlay .pick-count{
+  font-size:11px;font-weight:800;font-style:normal;line-height:1.5;
+  background:var(--primary,#1257C9);color:#fff;border-radius:999px;padding:2px 7px}
+#applyOverlay .pick-arrow{
+  flex:none;width:16px;height:16px;color:var(--primary,#1257C9);transition:transform .22s ease}
+#applyOverlay .pick-box.open .pick-arrow{transform:rotate(180deg)}
+#applyOverlay .pick-head:focus-visible{outline:2px solid var(--primary,#1257C9);outline-offset:-3px}
+
+#applyOverlay .pick-body{display:none;padding:0 15px 14px}
+#applyOverlay .pick-box.open .pick-body{display:block}
+
+#applyOverlay .pick-row{
+  display:flex;gap:12px;align-items:center;background:#fff;border-radius:10px;padding:11px 12px}
+#applyOverlay .pick-row + .pick-row{margin-top:8px}
+#applyOverlay .pick-row img,
+#applyOverlay .pick-noimg{
+  flex:none;width:52px;height:52px;object-fit:contain;border-radius:8px;background:#fff}
+#applyOverlay .pick-noimg{background:#f1f5f9}
+
+#applyOverlay .pick-text{flex:1 1 auto;min-width:0}
+#applyOverlay .pick-brand{font-size:11.5px;font-weight:600;color:var(--gray,#64748b)}
+#applyOverlay .pick-name{
+  font-size:13.5px;font-weight:700;line-height:1.4;margin:1px 0 3px;
+  color:var(--dark,#0f172a);overflow-wrap:anywhere}
+#applyOverlay .pick-name span{font-weight:500;color:var(--gray,#64748b)}
+#applyOverlay .pick-cond{font-size:11.5px;color:var(--gray,#64748b)}
+
+#applyOverlay .pick-money{flex:none;text-align:right}
+#applyOverlay .pick-won{
+  font-size:15px;font-weight:800;letter-spacing:-.3px;color:var(--dark,#0f172a);
+  font-variant-numeric:tabular-nums;white-space:nowrap}
+#applyOverlay .pick-card{
+  font-size:11.5px;font-weight:700;color:var(--primary,#1257C9);margin-top:2px;
+  font-variant-numeric:tabular-nums;white-space:nowrap}
+
+/* 창이 좁으면 사진을 줄이고 금액을 아래로 내립니다 */
+@media (max-width:380px){
+  #applyOverlay .pick-row{flex-wrap:wrap}
+  #applyOverlay .pick-row img,
+  #applyOverlay .pick-noimg{width:44px;height:44px}
+  #applyOverlay .pick-money{flex:1 0 100%;text-align:left;padding-left:56px}
+}
+@media (prefers-reduced-motion:reduce){
+  #applyOverlay .pick-arrow{transition:none}
+}

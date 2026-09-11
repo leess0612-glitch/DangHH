@@ -1,0 +1,140 @@
+/* ══════════════════════════════════════════════════════════════════════
+   정수기 목록 한 장 (세 번째 판) · dh-list3.css
+
+   미소의 「사진 왼쪽 · 정보 오른쪽」 한 줄 카드에
+   인잘알의 요금 표기와 우리 할인율 배지를 얹었습니다.
+   ══════════════════════════════════════════════════════════════════════ */
+
+/* ── 거르개 줄 ─────────────────────────────────────────
+   조건이 많아 다 늘어놓으면 두세 줄을 먹습니다. 눌러 펼치는 알약으로 둡니다. */
+.filter-row{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;
+  gap:8px;margin-top:12px;padding-bottom:4px}
+/* ⛔ 2026-09-11 고침 — 예전에는 `overflow-x:auto` 로 옆으로 밀어 보게 했습니다.
+   그런데 넘침을 감추는 칸은 **아래로 펼쳐지는 메뉴까지 잘라냅니다.**
+   알약을 눌러도 고르는 칸이 화면에 안 나타나 「거르개가 안 된다」고 보였습니다.
+   좁은 화면에서는 줄을 바꿔 내려가게 두면 잘리지 않습니다. */
+.pill-row{display:flex;flex-wrap:wrap;gap:8px;padding-bottom:2px}
+.sort-box{flex:none}
+
+.pill-wrap{position:relative;flex:0 0 auto}
+.pill{display:inline-flex;align-items:center;gap:4px;white-space:nowrap;cursor:pointer;
+  min-height:var(--h-touch);padding:0 14px;border-radius:var(--r-pill);
+  border:1px solid var(--c-line);background:var(--c-card);color:var(--c-body);
+  font-family:inherit;font-size:var(--t-table);font-weight:500;
+  letter-spacing:var(--ls-chip)}
+.pill.on{border:1.5px solid var(--c-strong);background:var(--c-strong-bg);
+  color:var(--c-strong);font-weight:700}
+.pill svg{flex:none;opacity:.7}
+.pill[aria-expanded="true"] svg{transform:rotate(180deg)}
+
+.pill-menu{position:absolute;top:calc(100% + 6px);left:0;z-index:60;min-width:150px;
+  padding:6px;border-radius:var(--r-card);background:var(--c-card);
+  border:1px solid var(--c-line);box-shadow:0 8px 28px rgba(11,46,92,.14)}
+.pill-menu.right{left:auto;right:0}
+.pill-menu[hidden]{display:none}
+.pill-item{display:block;width:100%;text-align:left;cursor:pointer;
+  min-height:40px;padding:0 12px;border:none;border-radius:var(--r-control);
+  background:none;color:var(--c-body);font-family:inherit;
+  font-size:var(--t-table);font-weight:500;white-space:nowrap}
+.pill-item:hover{background:var(--c-strong-bg)}
+.pill-item.on{color:var(--c-strong);font-weight:700;background:var(--c-strong-bg)}
+
+/* ── 목록 ──────────────────────────────────────────── */
+.list3{margin-top:16px}
+/* 담기 단추를 링크 밖에 두어야 해서 카드를 한 겹 감쌌습니다.
+   줄과 바탕색은 감싼 칸이 맡습니다. */
+.li-item{position:relative;border-bottom:1px solid var(--c-line)}
+.li-item:first-child{border-top:1px solid var(--c-line)}
+.li-item:hover{background:var(--c-strong-bg)}
+.li-card{display:flex;gap:14px;padding:16px 0;text-decoration:none;color:inherit}
+/* 담기 단추는 카드 오른쪽 위에 겹쳐 둡니다 */
+.li-item .cmp3-btn{position:absolute;top:16px;right:0;z-index:2}
+.li-photo{flex:none;width:112px;height:112px;display:flex;align-items:center;
+  justify-content:center;background:var(--c-card);border-radius:var(--r-card)}
+.li-photo img{max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain}
+.li-info{flex:1;min-width:0}
+
+/* ── 프로모션 딱지 ────────────────────────────────────
+   뜻이 같은 것끼리 한 색입니다 — 당현함 디자인보드 5절.
+   ⚠ 색을 새로 지어내지 말 것. 아래 네 갈래 안에서만 씁니다. */
+.li-tags{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:4px}
+.li-tag{padding:3px 8px;border-radius:var(--r-chip);color:#fff;
+  font-size:var(--t-min);font-weight:700;letter-spacing:var(--ls-chip)}
+.li-tag.half{background:var(--c-strong)}   /* 반값 계열 */
+.li-tag.off {background:var(--c-band)}     /* 요금할인 · 면제 */
+.li-tag.deal{background:var(--c-danger)}   /* 특가 · 한정 */
+.li-tag.etc {background:var(--c-line);color:var(--c-sub)}
+
+.li-brand{margin:0;font-size:var(--t-sub);font-weight:var(--w-sub);
+  line-height:var(--lh-sub);color:var(--c-sub)}
+.li-brand span{opacity:.8}
+/* ⛔ 2026-09-11 사장님 지시 — 좁은 화면에서 이름이 「아이콘 정수기 3 (냉…」처럼
+   잘려 나갔습니다(폴더블 겉화면 344px 에서 확인).
+   한 줄로 못 박고 점점점을 찍던 것을 **두 줄까지 풀어** 줍니다.
+   ⚠ 세 줄부터는 점점점을 찍습니다 — 카드 높이가 들쭉날쭉해지면 목록이 흐트러집니다.
+   ⚠ `-webkit-line-clamp` 는 모든 폰 브라우저가 알아듣습니다(크롬·사파리·삼성). */
+.li-name{margin:2px 0 0;font-size:var(--t-h3);line-height:var(--lh-h3);
+  font-weight:800;letter-spacing:var(--ls-sub);color:var(--c-title);
+  overflow:hidden;display:-webkit-box;-webkit-box-orient:vertical;
+  -webkit-line-clamp:2;line-clamp:2;word-break:keep-all;overflow-wrap:anywhere}
+/* ── 기능 딱지 ─────────────────────────────────────────
+   여섯 가지만 색이 있고 나머지는 회색입니다 — 디자인보드 5절.
+   ⚠ 이 색들은 기능 딱지에만 씁니다. 단추·제목에 꺼내 쓰지 않습니다.
+   (2026-09-09: 이 규칙이 목록 화면에 빠져 있어 딱지가 색 없이 나왔습니다) */
+.li-fn{display:flex;flex-wrap:wrap;gap:4px;margin-top:6px}
+.li-fn span{padding:3px 7px;border-radius:var(--r-chip);
+  font-size:var(--t-min);font-weight:600;letter-spacing:var(--ls-chip)}
+.li-fn .fn-ice{background:var(--fb-ice-bg);color:var(--fb-ice-tx)}
+.li-fn .fn-cold{background:var(--fb-cold-bg);color:var(--fb-cold-tx)}
+.li-fn .fn-hot{background:var(--fb-hot-bg);color:var(--fb-hot-tx)}
+.li-fn .fn-pure{background:var(--fb-pure-bg);color:var(--fb-pure-tx)}
+.li-fn .fn-direct{background:var(--fb-direct-bg);color:var(--fb-direct-tx)}
+.li-fn .fn-etc{background:var(--dh-gray-100);color:var(--c-sub)}
+
+/* 정상가를 한 줄 위에 두고, 그 아래 실제로 낼 값을 크게 둡니다 */
+.li-was{margin:8px 0 0;font-size:var(--t-sub);line-height:var(--lh-sub);
+  font-weight:var(--w-sub);color:var(--c-sub);text-decoration:line-through;
+  font-variant-numeric:tabular-nums}
+.li-price{display:flex;align-items:baseline;flex-wrap:wrap;gap:6px;margin-top:2px;
+  font-variant-numeric:tabular-nums}
+.li-was + .li-price{margin-top:0}
+.li-now{font-size:var(--t-h2);line-height:var(--lh-h2);font-weight:800;
+  letter-spacing:var(--ls-title);color:var(--c-title)}
+.li-card-line{margin:4px 0 0;font-size:var(--t-sub);font-weight:var(--w-sub);
+  line-height:var(--lh-sub);color:var(--c-strong)}
+.li-card-line b{font-weight:800}
+
+@media(max-width:480px){
+  .li-photo{width:92px;height:92px}
+  .li-card{gap:12px;padding:14px 0}
+  .li-item .cmp3-btn{top:14px}
+  /* 좁은 화면에서는 이름이 단추에 닿지 않게 자리를 비웁니다 */
+  .li-name,.li-brand{padding-right:64px}
+  /* 이름 뒤에 기능이 붙으면서 길어졌습니다(2026-09-11).
+     폭이 좁으면 두 줄로도 모자라 잘리므로 여기서만 **세 줄까지** 풀어 줍니다. */
+  .li-name{-webkit-line-clamp:3;line-clamp:3}
+}
+
+/* ── 목록 머리글이 세 줄이 되었습니다 (2026-09-11 사장님 지시) ──────
+   `.lead` 는 여백이 0 이라 그냥 두면 줄끼리 달라붙습니다.
+   셋째 줄(모든 가전 상담)은 곁들이는 말이라 한 단계 작게 둡니다. */
+.page-head .lead + .lead{margin-top:7px}
+
+/* ── 「모든 가전 렌탈 상담」 상자 (2026-09-11 사장님 지시) ─────────
+   ★ 디자인보드 : `--dh-c-highlight`(#F26100)는 **강조 띠 전용** 입니다.
+     파랑은 단추·링크 자리라 이 상자에 쓰면 서로 부딪힙니다.
+   ★ 「색이 든 카드」 규칙 그대로 — 바탕은 가장 옅은 판, 핵심 낱말은 진한 판,
+     읽는 글은 `--c-sub` 고정.
+   작은 주석이 아니라 **눈에 띄는 별도 문단**입니다.
+   윗줄과 넉넉히 띄우고, 글자를 줄이지 않고 본문 크기 그대로 둡니다.
+   글만큼만 넓어지게 해 한 줄짜리 상자가 허전해 보이지 않게 합니다. */
+.page-head .lead-box{
+  display:inline-block;margin:26px 0 0;padding:14px 18px;
+  border:1px solid var(--c-highlight-line);border-radius:var(--r-card);
+  background:var(--c-highlight-bg);
+  color:var(--c-sub);font-size:var(--t-body);line-height:var(--lh-body);
+  font-weight:500;letter-spacing:var(--ls-sub)}
+.page-head .lead-box b{color:var(--c-highlight-text);font-weight:800}
+@media(max-width:560px){
+  .page-head .lead-box{display:block;margin-top:20px;padding:13px 15px}
+}
