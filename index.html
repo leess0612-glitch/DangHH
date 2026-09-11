@@ -1803,6 +1803,7 @@ body.apply-open{ overflow:hidden; }
    '+ 추가혜택'은 inherit 이라 이 줄을 따라 함께 800 이 된다. */
 .dh-calc-result-num { font-size:34px; font-weight:800; color:var(--dh-blue);
                       line-height:1.15; letter-spacing:-1.2px; font-variant-numeric:tabular-nums; }
+.dh-calc-result-num strong { font-weight:inherit; }   /* strong 기본값(bolder)이 800 위에서 900으로 올라간다 */
 .dh-calc-result-num em { font-style:normal; font-size:16px; font-weight:800;
                          color:var(--dh-sub); letter-spacing:0; }
 /* 금액 옆 "+ 추가혜택" — 132만원이 끝이 아니라는 표시. 조건을 다 꺼도 늘 남는다.
