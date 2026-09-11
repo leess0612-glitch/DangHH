@@ -106,7 +106,7 @@ header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: 
 }
 .header-inner nav a { white-space: nowrap; }
 nav { display: flex; gap: 4px; align-items: center; }
-nav a { font-size: 14px; font-weight: 600; color: var(--gray); text-decoration: none; padding: 6px 10px; border-radius: 6px; transition: all 0.2s; }
+nav a { font-size: 14px; font-weight: 600; color: var(--gray); text-decoration: none; padding: 6px 10px; border-radius: 8px; transition: all 0.2s; }
 nav a:hover { color: var(--primary); background: #eff6ff; }
 nav a.on { color: var(--primary); background: #eff6ff; font-weight: 700; }
 .header-phone { display: flex; align-items: center; gap: 6px; background: var(--primary); color: white; padding: 8px 16px; border-radius: 8px; font-size: 15px; font-weight: 700; text-decoration: none; transition: transform 0.12s ease, background 0.2s; }
@@ -135,7 +135,7 @@ nav a.on { color: var(--primary); background: #eff6ff; font-weight: 700; }
 }
 .header-phone:active { transform: translateY(1px) scale(0.985); }
 .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 5px; }
-.hamburger span { display: block; width: 24px; height: 2px; background: var(--dark); border-radius: 2px; }
+.hamburger span { display: block; width: 24px; height: 2px; background: var(--dark); border-radius: 4px; }
 .mobile-menu { display: none; position: fixed; top: 64px; left: 0; right: 0; background: white; padding: 12px 20px; box-shadow: 0 8px 20px rgba(0,0,0,0.1); z-index: 999; }
 .mobile-menu.open { display: block; }
 .mobile-menu a { display: block; padding: 13px 0; font-size: 15px; font-weight: 600; color: var(--dark); text-decoration: none; border-bottom: 1px solid var(--border); }
@@ -258,7 +258,7 @@ footer { background: #0B2E5C; color: rgba(255,255,255,0.6); padding: 40px 20px; 
   position: fixed; right: 20px; top: 42%; transform: translateY(-50%); z-index: 900;
   max-height: calc(84vh - 168px); overflow-y: auto;
   width: 200px; padding: 16px 14px;
-  background: white; border: 1px solid #EEEFF3; border-radius: 14px;
+  background: white; border: 1px solid #EEEFF3; border-radius: 12px;
   box-shadow: 0 10px 30px rgba(15,23,42,0.13);
   font-family: 'Pretendard Variable', Pretendard, 'Noto Sans KR', sans-serif;
 }
@@ -279,7 +279,7 @@ footer { background: #0B2E5C; color: rgba(255,255,255,0.6); padding: 40px 20px; 
 .cs-btn {
   display: flex; align-items: center; justify-content: center; gap: 7px;
   width: 100%; min-height: 42px; margin-bottom: 8px; padding: 0 10px;
-  border: none; border-radius: 9px; cursor: pointer;
+  border: none; border-radius: 8px; cursor: pointer;
   font-family: 'Pretendard Variable', Pretendard, 'Noto Sans KR', sans-serif;
   font-size: 15px; font-weight: 700; letter-spacing: -0.3px;
   text-decoration: none; transition: background 0.2s;
@@ -328,7 +328,7 @@ footer { background: #0B2E5C; color: rgba(255,255,255,0.6); padding: 40px 20px; 
   max-width: calc(100vw - 48px);
   padding: 13px 16px 13px 28px;
   background: #12336E;
-  border: 1.5px solid rgba(255,255,255,0.10); border-radius: 14px;
+  border: 1.5px solid rgba(255,255,255,0.10); border-radius: 12px;
   box-shadow: 0 14px 34px rgba(4,18,60,0.34), 0 2px 8px rgba(4,18,60,0.22);
   cursor: pointer; font-family: 'Pretendard Variable', Pretendard, sans-serif; text-align: left;
   text-decoration: none;
@@ -396,7 +396,7 @@ footer { background: #0B2E5C; color: rgba(255,255,255,0.6); padding: 40px 20px; 
   .page-head h1 { font-size: 24px; }
   .page-head p { font-size: 13px; }
   .tabs { padding: 10px 14px; gap: 8px; }
-  .tab { font-size: 15px; padding: 12px 14px; border-radius: 11px; }
+  .tab { font-size: 15px; padding: 12px 14px; border-radius: 8px; }
   .wrap { padding: 22px 14px 50px; }
   .note { padding: 14px; font-size: 12px; }
   /* 2026-09-10: 떠 있던 동그란 전화·카톡을 없앤다. 같은 몫을 아래 막대가 한다.
