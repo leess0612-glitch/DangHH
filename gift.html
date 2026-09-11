@@ -170,7 +170,7 @@ if (typeof dhInflow !== 'function') { window.dhInflow = function () { return {};
 body { font-family: 'Pretendard Variable', Pretendard, 'Noto Sans KR', sans-serif; color: var(--dark); line-height: 1.6; overflow-x: hidden; background: #f8fafc; }
 
 /* ===== HEADER (index.html과 동일) ===== */
-header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: white; box-shadow: 0 2px 12px rgba(0,0,0,0.08); }
+header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: white; box-shadow: 0 2px 16px rgba(15,42,90,0.08); }
 .header-inner { max-width: 1200px; margin: 0 auto; padding: 0 20px; height: 64px; display: flex; align-items: center; justify-content: space-between; }
 /* 로고를 오른쪽 전화 단추와 같은 높이로 (2026-08-25 다시 잼)
    ★ 글자 높이는 '줄상자'가 아니라 '글자가 실제로 칠해지는 범위'로 재야 한다.
@@ -295,7 +295,7 @@ nav a.on { color: var(--primary); background: #eff6ff; font-weight: 700; }
 
 /* ===== 본문 ===== */
 .wrap { max-width: 820px; margin: 0 auto; padding: 36px 20px 60px; }
-.card { background: white; border: 1px solid var(--border); border-radius: 16px; box-shadow: 0 2px 12px rgba(15,42,90,0.05); overflow: hidden; }
+.card { background: white; border: 1px solid var(--border); border-radius: 16px; box-shadow: 0 2px 16px rgba(15,42,90,0.08); overflow: hidden; }
 
 .today-head { padding: 22px 24px 18px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
 .today-date { font-size: 21px; font-weight: 800; letter-spacing: -0.5px; }
@@ -446,7 +446,7 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px 1
   max-height: calc(84vh - 168px); overflow-y: auto;
   width: 200px; padding: 16px 14px;
   background: white; border: 1px solid #e2e8f0; border-radius: 14px;
-  box-shadow: 0 10px 30px rgba(15,23,42,0.13);
+  box-shadow: 0 8px 32px rgba(11,46,92,0.16);
   font-family: 'Pretendard Variable', Pretendard, 'Noto Sans KR', sans-serif;
 }
 @media (min-width: 1600px) { .consult-panel { display: block; } }
@@ -484,7 +484,7 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px 1
    되살리려면 이 자리에 아래 두 줄을 넣고 html 에 단추를 다시 넣으면 된다.
      .cs-apply { background: #1257C9; color: white; }
      .cs-apply:hover { background: #0E45A0; } */
-.float-btn { width: 52px; height: 52px; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; box-shadow: 0 4px 16px rgba(0,0,0,0.15); transition: transform 0.2s; font-size: 22px; }
+.float-btn { width: 52px; height: 52px; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; box-shadow: 0 8px 32px rgba(11,46,92,0.16); transition: transform 0.2s; font-size: 22px; }
 .float-btn:hover { transform: scale(1.1); }
 .float-phone { background: var(--primary); color: white; border: 1px solid white; }
 .float-kakao { background: #fee500; color: #3a1d00; }
@@ -493,7 +493,7 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px 1
    이 페이지에는 신청폼이 없어 숨길 조건 없이 항상 떠 있는다 (요금 페이지와 같은 방식) */
 .mobile-cta-bar {
   display: none; position: fixed; bottom: 0; left: 0; right: 0; z-index: 950;
-  padding: 10px 16px; background: white; box-shadow: 0 -2px 12px rgba(11,46,92,.08);
+  padding: 10px 16px; background: white; box-shadow: 0 -3px 16px rgba(15,42,90,0.14);
 }
 .mobile-cta-btn {
   display: flex; align-items: center; justify-content: center;

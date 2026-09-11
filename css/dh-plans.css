@@ -839,13 +839,13 @@ header        { box-shadow: none; border-bottom: 1px solid var(--border); }
 /* ⚠ 카톡 단추는 그림자를 없애면 안 된다 — 보드가 정한 '남의 브랜드색' 규칙이다.
    노랑을 어둡게 만들지 않는 대신 손 얹었을 때 그림자로 알린다. 그래서 여기서 건드리지 않는다. */
 /* 떠 있는 동그란 단추는 팝업과 같은 '진짜 떠 있는 것'이라 보드의 팝업 그림자를 쓴다 */
-.float-btn    { box-shadow: 0 8px 32px rgba(11,46,92,.16); }
+.float-btn    { box-shadow: 0 8px 32px rgba(11,46,92,0.16); }
 /* 예외 ㉠ 화면 아래에 고정돼 떠 있는 것 */
-.mobile-cta-bar { box-shadow: 0 -2px 12px rgba(11,46,92,.08); }
-.desk-cta-card  { box-shadow: 0 -2px 12px rgba(11,46,92,.08); }
+.mobile-cta-bar { box-shadow: 0 -3px 16px rgba(15,42,90,0.14); }
+.desk-cta-card  { box-shadow: 0 8px 32px rgba(11,46,92,0.16); }
 /* 예외 ㉡ 팝업처럼 화면 위로 뜨는 것 */
-.mobile-menu    { box-shadow: 0 8px 32px rgba(11,46,92,.16); }
-.consult-panel  { box-shadow: 0 8px 32px rgba(11,46,92,.16); }
+.mobile-menu    { box-shadow: 0 8px 32px rgba(11,46,92,0.16); }
+.consult-panel  { box-shadow: 0 8px 32px rgba(11,46,92,0.16); }
 
 /* ③ 누르는 것은 44px 이상 — 높이를 억지로 늘리는 대신
      누르는 자리(안쪽 여백)를 넓혀 머리띠 64px 안에 그대로 담는다 */
