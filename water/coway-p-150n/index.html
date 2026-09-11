@@ -136,23 +136,23 @@ if (typeof dhInflow !== 'function') { window.dhInflow = function () { return {};
 <!-- ===== 전환추적 끝 ===== -->
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.css">
-<link rel="stylesheet" href="../../css/dh-brand.css?v=58">
-<link rel="stylesheet" href="../../css/dh-item3.css?v=58">
-<link rel="stylesheet" href="../../css/dh-bar3.css?v=58">
-<link rel="stylesheet" href="../../css/dh-compare3.css?v=58">
-<link rel="stylesheet" href="../../css/dh-pick.css?v=58">
+<link rel="stylesheet" href="../../css/dh-brand.css?v=60">
+<link rel="stylesheet" href="../../css/dh-item3.css?v=60">
+<link rel="stylesheet" href="../../css/dh-bar3.css?v=60">
+<link rel="stylesheet" href="../../css/dh-compare3.css?v=60">
+<link rel="stylesheet" href="../../css/dh-pick.css?v=60">
 
 <!-- 라이브가 쓰는 공용 부품 그대로입니다.
      dh-inflow : 어디서 들어오셨는지 기록 · dh-terms : 개인정보처리방침·이용약관 창
      dh-apply  : 신청창
      dh-pick   : 고른 제품을 신청창에 접어서 보여 주고, 보낼 때 요청사항에 함께 적습니다
      dh-nocash : 코웨이가 함께 나오는 화면이라 현금 계열 낱말을 지웁니다 -->
-<script src="../../js/dh-inflow.js?v=58"></script>
-<script src="../../js/dh-terms.js?v=58"></script>
-<script src="../../js/dh-apply.js?v=58"></script>
-<script src="../../js/dh-pick.js?v=58"></script>
+<script src="../../js/dh-inflow.js?v=60"></script>
+<script src="../../js/dh-terms.js?v=60"></script>
+<script src="../../js/dh-apply.js?v=60"></script>
+<script src="../../js/dh-pick.js?v=60"></script>
 <!-- ⛔ 코웨이가 같은 화면에 있으므로 현금 계열 낱말을 화면에서 지웁니다 -->
-<script src="../../js/dh-nocash.js?v=58"></script>
+<script src="../../js/dh-nocash.js?v=60"></script>
 </head>
 <body>
 
@@ -182,6 +182,38 @@ if (typeof dhInflow !== 'function') { window.dhInflow = function () { return {};
   <a onclick="closeMobileMenu(true)" href="../../rental.html#faq">자주묻는질문</a>
   <a href="javascript:void(0)" class="cta" onclick="closeMobileMenu(); 렌탈신청창열기()">무료상담 →</a>
 </div>
+<script>
+/* ── 로고를 「들어온 문」으로 돌려보냅니다 (2026-09-11 사장님 지시) ──────
+   정수기 목록은 첫화면(index)에서도, 렌탈(rental.html)에서도 들어옵니다.
+   렌탈에서 들어온 손님이 로고를 누르면 렌탈 첫장으로 가야 자연스럽습니다.
+   ⚠ 목록 → 제품 → 다른 제품 으로 옮겨 다녀도 유지되도록 창 기억(sessionStorage)에 적습니다.
+   ⚠ 기억이 없으면 판본이 정한 집(index.html)으로 갑니다. */
+(function () {
+  var 열쇠 = 'dh_정수기_들어온문';
+  var 밑동 = '../../';
+  var 아는문 = ['rental.html', 'index.html'];
+  function 문찾기() {
+    var 값 = null;
+    try { 값 = sessionStorage.getItem(열쇠); } catch (e) {}
+    if (값) return 값;
+    var r = document.referrer || '';
+    if (r.indexOf(location.origin) === 0) {
+      var 길 = r.slice(location.origin.length).split('?')[0].split('#')[0];
+      /* ⚠ 여기에 정규식을 쓰면 안 됩니다. 이 글은 템플릿 글자(` `) 안에 들어 있어서
+         역슬래시가 사라지고 /\/rental/ 이 //rental 이 되어 **주석으로 변합니다.**
+         실제로 한 번 당했습니다(2026-09-11). 그래서 글자 맞대보기로만 가릅니다. */
+      if (길 === '/rental.html') 값 = 'rental.html';
+      else if (길 === '/' || 길 === '/index.html') 값 = 'index.html';
+    }
+    if (값) { try { sessionStorage.setItem(열쇠, 값); } catch (e) {} }
+    return 값;
+  }
+  var 문 = 문찾기();
+  if (!문 || 아는문.indexOf(문) < 0) return;
+  var 로고 = document.querySelector('a.logo');
+  if (로고) 로고.setAttribute('href', 밑동 + 문);
+})();
+</script>
 
 <main>
 
@@ -226,12 +258,12 @@ if (typeof dhInflow !== 'function') { window.dhInflow = function () { return {};
 
 <!-- 이 화면이 어느 제품인지 알려 줍니다 -->
 <script>window.이제품 = {모델: "P-150N", 사진: "coway-2163"};</script>
-<script src="../../js/dh-card-benefit.js?v=58"></script>
-<script src="../../js/data2-coway.js?v=58"></script>
-<script src="../../js/dh-calc3.js?v=58"></script>
-<script src="../../js/dh-bar3.js?v=58"></script>
-<script src="../../js/dh-compare3.js?v=58"></script>
-<script src="../../js/dh-item3.js?v=58"></script>
+<script src="../../js/dh-card-benefit.js?v=60"></script>
+<script src="../../js/data2-coway.js?v=60"></script>
+<script src="../../js/dh-calc3.js?v=60"></script>
+<script src="../../js/dh-bar3.js?v=60"></script>
+<script src="../../js/dh-compare3.js?v=60"></script>
+<script src="../../js/dh-item3.js?v=60"></script>
 <script>
 /* 이 화면은 정수기 렌탈이라 신청창을 '렌탈'로 열어 둡니다.
    공용 부품(js/dh-apply.js)은 손대지 않고, 연 뒤에 갈래만 바꿔 줍니다. */
