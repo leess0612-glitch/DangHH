@@ -264,7 +264,7 @@ header {
 }
 .header-inner nav a { white-space: nowrap; }
 nav { display: flex; gap: 4px; align-items: center; }
-nav a { font-size: 14px; font-weight: 600; color: var(--gray); text-decoration: none; padding: 6px 10px; border-radius: 6px; transition: all 0.2s; }
+nav a { font-size: 14px; font-weight: 600; color: var(--gray); text-decoration: none; padding: 6px 10px; border-radius: 8px; transition: all 0.2s; }
 nav a:hover { color: var(--primary); background: #eff6ff; }
 .header-phone {
   display: flex; align-items: center; gap: 6px;
@@ -295,7 +295,7 @@ nav a:hover { color: var(--primary); background: #eff6ff; }
 .header-kakao:active { transform:translateY(1px) scale(.985); box-shadow:none; }
 .header-kakao .kakao-label { display: none; }
 .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 5px; }
-.hamburger span { display: block; width: 24px; height: 2px; background: var(--dark); border-radius: 2px; }
+.hamburger span { display: block; width: 24px; height: 2px; background: var(--dark); border-radius: 4px; }
 .mobile-menu {
   display: none; position: fixed; top: 64px; left: 0; right: 0;
   background: white; padding: 12px 20px; box-shadow: 0 8px 32px rgba(11,46,92,0.16); z-index: 999;
@@ -428,7 +428,7 @@ section { padding: 72px 20px; }
   /* 위 금액칸과 같은 '고른 칸' 모양으로 맞춘다(2026-08-28) */
   background: #EFF6FF;
   border: 1.5px solid var(--primary);
-  border-radius: 10px;
+  border-radius: 8px;
   font-size: 22px; font-weight: 800;
   color: var(--primary);
   text-align: center;
@@ -579,14 +579,14 @@ a.plan-card:active { transform: translateY(0) scale(0.99); }
 .usim-check {
   display: flex; align-items: flex-start; gap: 10px;
   padding: 13px 15px; background: #fffbeb; border: 1px solid #fde68a;
-  border-radius: 10px; margin-bottom: 16px; cursor: pointer;
+  border-radius: 8px; margin-bottom: 16px; cursor: pointer;
 }
 .usim-check input[type="checkbox"] { width: 17px; height: 17px; accent-color: var(--primary); flex-shrink: 0; margin-top: 2px; cursor: pointer; }
 .usim-check label { font-size: 13px; font-weight: 600; color: #92400e; cursor: pointer; line-height: 1.5; }
 .form-group { margin-bottom: 14px; }
 .form-group label { display: block; font-size: 13px; font-weight: 600; color: var(--gray); margin-bottom: 5px; }
 .form-group input {
-  width: 100%; padding: 13px 16px; border: 2px solid var(--border); border-radius: 10px;
+  width: 100%; padding: 13px 16px; border: 2px solid var(--border); border-radius: 8px;
   font-size: 15px; font-family: 'Pretendard Variable', Pretendard, sans-serif; transition: border-color 0.2s; outline: none;
 }
 .form-group input:focus { border-color: var(--primary); }
@@ -596,7 +596,7 @@ a.plan-card:active { transform: translateY(0) scale(0.99); }
    평소엔 접혀 있고 눌러야 펴진다. 폼이 길어져 손님이 신청을 포기하는 것을 막기 위함이다.
    글상자 모양은 위 이름·번호 칸과 똑같이 맞췄고, 높이만 다르게 준다. */
 .form-group textarea {
-  width: 100%; padding: 13px 16px; border: 2px solid var(--border); border-radius: 10px;
+  width: 100%; padding: 13px 16px; border: 2px solid var(--border); border-radius: 8px;
   font-size: 15px; font-family: 'Pretendard Variable', Pretendard, sans-serif; transition: border-color 0.2s; outline: none;
   line-height: 1.6; resize: vertical; min-height: 84px; color: var(--dark);
 }
@@ -857,7 +857,7 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
        붙어 보였다(실측). 그래서 셋을 같이 조정했다:
        폭 200->216 · 좌우 안쪽여백 14->12(안쪽 폭 190 확보, 4px 여유) · 오른쪽 띄움 20->14. */
   width: 216px; padding: 16px 12px;
-  background: white; border: 1px solid #e2e8f0; border-radius: 14px;
+  background: white; border: 1px solid #e2e8f0; border-radius: 12px;
   box-shadow: 0 8px 32px rgba(11,46,92,0.16);
   font-family: 'Pretendard Variable', Pretendard, 'Noto Sans KR', sans-serif;
 }
@@ -885,7 +885,7 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
 .cs-btn {
   display: flex; align-items: center; justify-content: center; gap: 7px;
   width: 100%; min-height: 42px; margin-bottom: 8px; padding: 0 10px;
-  border: none; border-radius: 9px; cursor: pointer;
+  border: none; border-radius: 8px; cursor: pointer;
   font-family: 'Pretendard Variable', Pretendard, 'Noto Sans KR', sans-serif;
   font-size: 15px; font-weight: 700; letter-spacing: -0.3px;
   text-decoration: none; transition: background 0.2s;
@@ -1047,7 +1047,7 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
 /* 제목 띠를 두 배로 (글자 13->26, 위아래 여백 8->16) */
 .rolling-col-header {
   text-align: center; font-size: 26px; font-weight: 700;
-  padding: 16px 0; border-radius: 10px 10px 0 0;
+  padding: 16px 0; border-radius: 8px 8px 0 0;
 }
 /* 폰에서는 두 배가 너무 크게 보여 1.5배로 낮춘다 */
 @media (max-width: 768px) {
@@ -1070,7 +1070,7 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
 .rolling-wrap {
   overflow: hidden; height: 335px;   /* 5줄 (66x5+1) — 줄이 1.5배가 되어 220 -> 335 */
   background: white; border: 1px solid #dbeafe;
-  border-top: none; border-radius: 0 0 10px 10px; padding: 0 12px;
+  border-top: none; border-radius: 0 0 8px 8px; padding: 0 12px;
 }
 .rolling-track-cash     { animation: rollUpCash 48s linear infinite; }
 /* 컴퓨터에서 명단 줄을 1.5배로 (높이 44->66). 폰은 아래에서 원래 크기로 되돌린다.
@@ -1585,7 +1585,7 @@ html { scroll-behavior: auto; scroll-padding-top: 78px; }
 .promise-head em { font-style:normal; color:var(--primary); }
 .promise-list { list-style:none; display:flex; flex-direction:column; gap:18px; }
 .promise-list li { display:flex; gap:14px; }
-.promise-num { flex:0 0 30px; height:30px; border-radius:9px; background:var(--primary); color:#fff;
+.promise-num { flex:0 0 30px; height:30px; border-radius:999px; background:var(--primary); color:#fff;
   font-size:15px; font-weight:800; display:flex; align-items:center; justify-content:center; margin-top:2px; }
 .promise-list strong { display:block; font-size:17px; font-weight:800; letter-spacing:-0.3px; margin-bottom:3px; }
 .promise-list p { font-size:14px; color:var(--gray); line-height:1.65; }
@@ -1601,7 +1601,7 @@ html { scroll-behavior: auto; scroll-padding-top: 78px; }
 .promise-doc { width:240px; border:1px solid var(--border); border-radius:12px; background:#fff; padding:10px 10px 12px;
   cursor:zoom-in; transition:transform .2s, box-shadow .2s; box-shadow:0 2px 16px rgba(15,42,90,0.08); }
 .promise-doc:hover { transform:translateY(-3px); box-shadow:0 8px 32px rgba(11,46,92,0.16); }
-.promise-doc img { width:100%; aspect-ratio:1024/1448; object-fit:cover; object-position:top; border-radius:7px; display:block; background:#f8fafc; }
+.promise-doc img { width:100%; aspect-ratio:1024/1448; object-fit:cover; object-position:top; border-radius:8px; display:block; background:#f8fafc; }
 .promise-doc span { display:block; margin-top:9px; font-size:12px; font-weight:700; color:#333D4B; text-align:center; }
 .promise-viewer { position:fixed; inset:0; background:rgba(15,23,42,0.88); display:none; align-items:center; justify-content:center; padding:30px; z-index:9999; cursor:zoom-out; }
 .promise-viewer.on { display:flex; }
@@ -1937,7 +1937,7 @@ html { scroll-behavior: auto; scroll-padding-top: 78px; }
 .후기띠-줄 + .후기띠-줄{ margin-top:4px; }
 .후기띠-줄 img{
   width:170px; height:122px; flex:0 0 auto; margin-right:4px;
-  object-fit:cover; border-radius:6px; display:block;
+  object-fit:cover; border-radius:8px; display:block;
 }
 /* 움직임을 줄이도록 설정한 분에게는 흐르지 않고 가운데 맞춘 상태로 서 있는다 */
 @media (prefers-reduced-motion:reduce){
@@ -1952,7 +1952,7 @@ html { scroll-behavior: auto; scroll-padding-top: 78px; }
   position:absolute; left:50%; top:50%; transform:translate(-50%,-50%);
   z-index:2;                          /* 흰 막(::after)보다 위 */
   background:var(--primary); color:#fff;
-  border-radius:14px; padding:14px 36px; text-align:center;
+  border-radius:12px; padding:14px 36px; text-align:center;
   display:flex; flex-direction:column; align-items:center; justify-content:center;
   box-shadow:0 2px 16px rgba(15,42,90,0.08);
 }
@@ -1971,7 +1971,7 @@ html { scroll-behavior: auto; scroll-padding-top: 78px; }
   /* 폰에서는 최소 폭·높이를 풀어 글자에 딱 맞춘다.
      컴퓨터 화면은 제목보다 넓게 보이려고 480px 를 잡았지만,
      폰은 화면이 좁아 그 크기가 그대로 오면 상자만 커다랗게 남는다. */
-  .후기띠-상자{ padding:10px 20px; border-radius:10px; }
+  .후기띠-상자{ padding:10px 20px; border-radius:8px; }
   .후기띠-큰글{ font-size:22px; }
   .후기띠-작은글{ font-size:13px; margin-top:4px; }
 }
@@ -2011,7 +2011,7 @@ html { scroll-behavior: auto; scroll-padding-top: 78px; }
 .후기링크들{ display:flex; justify-content:center; gap:12px; flex-wrap:wrap; margin-top:32px; }
 .후기링크{
   display:inline-flex; align-items:center; gap:7px; padding:13px 24px;
-  border:2px solid var(--primary); border-radius:10px; font-size:14px; font-weight:700;
+  border:2px solid var(--primary); border-radius:8px; font-size:14px; font-weight:700;
   color:var(--primary); text-decoration:none; background:var(--white); transition:background-color 0.2s;
 }
 .후기링크:hover{ background:#eff6ff; }
@@ -2026,7 +2026,7 @@ html { scroll-behavior: auto; scroll-padding-top: 78px; }
   /* 폰에서는 최소 폭·높이를 풀어 글자에 딱 맞춘다.
      컴퓨터 화면은 제목보다 넓게 보이려고 480px 를 잡았지만,
      폰은 화면이 좁아 그 크기가 그대로 오면 상자만 커다랗게 남는다. */
-  .후기띠-상자{ padding:10px 20px; border-radius:10px; }
+  .후기띠-상자{ padding:10px 20px; border-radius:8px; }
   .후기띠-큰글{ font-size:22px; }
   .후기띠-작은글{ font-size:13px; margin-top:4px; }
 }
@@ -2068,7 +2068,7 @@ html { scroll-behavior: auto; scroll-padding-top: 78px; }
 .후기링크들{ display:flex; justify-content:center; gap:12px; flex-wrap:wrap; margin-top:32px; }
 .후기링크{
   display:inline-flex; align-items:center; gap:7px; padding:13px 24px;
-  border:2px solid var(--primary); border-radius:10px; font-size:14px; font-weight:700;
+  border:2px solid var(--primary); border-radius:8px; font-size:14px; font-weight:700;
   color:var(--primary); text-decoration:none; background:var(--white); transition:background-color 0.2s;
 }
 .후기링크:hover{ background:#eff6ff; }
@@ -2083,7 +2083,7 @@ html { scroll-behavior: auto; scroll-padding-top: 78px; }
   /* 폰에서는 최소 폭·높이를 풀어 글자에 딱 맞춘다.
      컴퓨터 화면은 제목보다 넓게 보이려고 480px 를 잡았지만,
      폰은 화면이 좁아 그 크기가 그대로 오면 상자만 커다랗게 남는다. */
-  .후기띠-상자{ padding:10px 20px; border-radius:10px; }
+  .후기띠-상자{ padding:10px 20px; border-radius:8px; }
   .후기띠-큰글{ font-size:22px; }
   .후기띠-작은글{ font-size:13px; margin-top:4px; }
 }
@@ -2125,15 +2125,15 @@ html { scroll-behavior: auto; scroll-padding-top: 78px; }
 .후기링크들{ display:flex; justify-content:center; gap:12px; flex-wrap:wrap; margin-top:32px; }
 .후기링크{
   display:inline-flex; align-items:center; gap:7px; padding:13px 24px;
-  border:2px solid var(--primary); border-radius:10px; font-size:14px; font-weight:700;
+  border:2px solid var(--primary); border-radius:8px; font-size:14px; font-weight:700;
   color:var(--primary); text-decoration:none; background:var(--white); transition:background-color 0.2s;
 }
 .후기링크:hover{ background:#eff6ff; }
 @media (max-width:768px){
   .후기목록{ gap:14px; }
-  .후기카드{ gap:14px; padding:14px; border-radius:14px; }
+  .후기카드{ gap:14px; padding:14px; border-radius:12px; }
   /* 폰 사진은 정사각. 카드 높이만큼 늘리면 좌우가 많이 잘려 원래 모습이 안 보인다. */
-  .후기사진{ flex:0 0 110px; align-self:flex-start; height:110px; min-height:110px; border-radius:10px; }
+  .후기사진{ flex:0 0 110px; align-self:flex-start; height:110px; min-height:110px; border-radius:8px; }
   .후기이름{ font-size:15px; }
   .후기상품{ font-size:13px; }
   .후기별{ font-size:13px; margin-top:5px; }
