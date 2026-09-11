@@ -202,13 +202,16 @@ if (typeof dhInflow !== 'function') { window.dhInflow = function () { return {};
   <button type="button" class="tabnav tabnav-r" id="tabnavR" aria-label="다음 통신사 보기">
     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
   </button>
+  <!-- 2026-09-11: 단추를 링크로 바꿨다. 검색엔진은 단추를 따라가지 못해
+       이 화면에서 통신사별 다섯 장으로 가는 길이 없었다.
+       사람이 누를 때는 js/dh-plans.js 가 막아서 지금처럼 그 자리에서 갈아 끼운다. -->
   <div class="tabs" role="tablist" aria-label="통신사 선택">
-    <button type="button" class="tab kt" role="tab" id="tab-kt" aria-controls="panel-kt" aria-selected="true" data-co="kt">KT</button>
-    <button type="button" class="tab sk" role="tab" id="tab-sk" aria-controls="panel-sk" aria-selected="false" tabindex="-1" data-co="sk">SK</button>
-    <button type="button" class="tab lg" role="tab" id="tab-lg" aria-controls="panel-lg" aria-selected="false" tabindex="-1" data-co="lg">LG U+</button>
+    <a class="tab kt" role="tab" id="tab-kt" aria-controls="panel-kt" aria-selected="true" data-co="kt" href="plans-kt.html">KT</a>
+    <a class="tab sk" role="tab" id="tab-sk" aria-controls="panel-sk" aria-selected="false" tabindex="-1" data-co="sk" href="plans-sk.html">SK</a>
+    <a class="tab lg" role="tab" id="tab-lg" aria-controls="panel-lg" aria-selected="false" tabindex="-1" data-co="lg" href="plans-lg.html">LG U+</a>
     <span class="tab-break" role="presentation" aria-hidden="true"></span>
-    <button type="button" class="tab sky" role="tab" id="tab-sky" aria-controls="panel-sky" aria-selected="false" tabindex="-1" data-co="sky">스카이라이프</button>
-    <button type="button" class="tab hello" role="tab" id="tab-hello" aria-controls="panel-hello" aria-selected="false" tabindex="-1" data-co="hello">헬로비전</button>
+    <a class="tab sky" role="tab" id="tab-sky" aria-controls="panel-sky" aria-selected="false" tabindex="-1" data-co="sky" href="plans-sky.html">스카이라이프</a>
+    <a class="tab hello" role="tab" id="tab-hello" aria-controls="panel-hello" aria-selected="false" tabindex="-1" data-co="hello" href="plans-hello.html">헬로비전</a>
   </div>
   </div>
   <!-- 고른 통신사 안의 소제목으로 바로 가는 줄 (2026-09-04 시험) -->

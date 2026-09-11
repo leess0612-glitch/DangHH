@@ -1942,7 +1942,10 @@ var 요금자료 = {
   }
 
   통신사들.forEach(function (c) {
-    탭들[c].addEventListener('click', function () { 고르기(c, true); });
+    /* 탭이 <a> 라도 페이지를 넘기지 않고 이 자리에서 갈아 끼운다 (2026-09-11)
+       주소(href)는 검색엔진이 따라가라고 적어 둔 것이다. 사람이 누를 때는 막는다.
+       자바스크립트가 안 뜨면 이 줄이 안 돌아 그 통신사 페이지로 넘어간다(대비책). */
+    탭들[c].addEventListener('click', function (e) { if (e && e.preventDefault) e.preventDefault(); 고르기(c, true); });
   });
 
   // 키보드 좌우 화살표로도 옮길 수 있게
