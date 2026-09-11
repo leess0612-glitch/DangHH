@@ -179,7 +179,7 @@ nav a.on { color: var(--primary); background: #eff6ff; font-weight: 700; }
 }
 .tabs::-webkit-scrollbar { display: none; }
 .tab {
-  font-family: inherit; font-size: 17px; font-weight: 800; letter-spacing: -0.3px;
+  font-family: inherit; font-size: 16px; font-weight: 800; letter-spacing: -0.3px;
   flex: 0 0 auto; white-space: nowrap;
   padding: 13px 16px; border-radius: 12px; cursor: pointer;
   /* 2026-09-11: 탭이 <a> 라 밑줄이 그어지고 있었다(통신사별 다섯 장에서 네 칸씩) */
@@ -221,7 +221,7 @@ footer { background: #0B2E5C; color: rgba(255,255,255,0.6); padding: 40px 20px; 
 .footer-links { display: flex; gap: 20px; flex-wrap: wrap; }
 .footer-links a { color: rgba(255,255,255,0.6); text-decoration: none; font-size: 13px; }
 .footer-links a:hover { color: white; }
-.footer-disclaimer { margin-top: 16px; font-size: 11px; color: rgba(255,255,255,0.3); line-height: 1.7; }
+.footer-disclaimer { margin-top: 16px; font-size: 12px; color: rgba(255,255,255,0.3); line-height: 1.7; }
 
 /* 플로팅 */
 .floating-btns { position: fixed; right: 30px; bottom: 24px; display: flex; flex-direction: column; gap: 12px; z-index: 900; }
@@ -340,7 +340,7 @@ footer { background: #0B2E5C; color: rgba(255,255,255,0.6); padding: 40px 20px; 
 .desk-cta-bar-btn {
   display: inline-flex; align-items: center;
   padding: 12px 28px; background: #1257C9; color: white;
-  font-size: 23px; font-weight: 700; border: 1.5px solid transparent; border-radius: 8px;
+  font-size: 22px; font-weight: 700; border: 1.5px solid transparent; border-radius: 8px;
   font-family: 'Pretendard Variable', Pretendard, sans-serif; transition: background 0.2s;
   white-space: nowrap; line-height: 1;
   pointer-events: none;   /* 주황 조각은 따로 반응하지 않는다 — 카드가 하나로 움직인다 */
