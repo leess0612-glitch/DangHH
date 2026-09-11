@@ -1,0 +1,92 @@
+/* ══════════════════════════════════════════════════════════════════════
+   비교함 (세 번째 판) · dh-compare3.css
+
+   담은 것이 있을 때만 아래 띠 **위에** 얇은 줄이 하나 붙습니다.
+   아래 띠(dh-bar3)를 가리지 않도록 높이를 서로 알려 줍니다.
+   ══════════════════════════════════════════════════════════════════════ */
+
+/* ── 담기 단추 ─────────────────────────────────────── */
+.cmp3-btn{display:inline-flex;align-items:center;gap:4px;flex:none;cursor:pointer;
+  min-height:32px;padding:0 12px;border-radius:var(--r-pill);
+  border:1px solid var(--c-line);background:var(--c-card);color:var(--c-sub);
+  font-family:inherit;font-size:var(--t-min);font-weight:700;letter-spacing:var(--ls-chip)}
+.cmp3-btn svg{opacity:.45}
+.cmp3-btn:hover{border-color:var(--c-strong);color:var(--c-strong)}
+.cmp3-btn[aria-pressed="true"]{border:1.5px solid var(--c-strong);
+  background:var(--c-strong);color:#fff}
+.cmp3-btn[aria-pressed="true"] svg{opacity:1}
+
+/* ── 아래 띠 위의 얇은 줄 ──────────────────────────── */
+.cmp3-bar{position:fixed;left:0;right:0;bottom:var(--bar-h,120px);z-index:940;
+  padding:8px var(--pad-screen);
+  background:var(--c-strong-bg);border-top:1px solid var(--c-line)}
+.cmp3-inner{display:flex;align-items:center;gap:8px;
+  max-width:var(--w-page);margin:0 auto}
+.cmp3-chips{display:flex;gap:6px;flex:1 1 auto;min-width:0;
+  overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.cmp3-chips::-webkit-scrollbar{display:none}
+.cmp3-chip{display:inline-flex;align-items:center;gap:2px;flex:0 0 auto;white-space:nowrap;
+  min-height:28px;padding:0 4px 0 10px;border-radius:var(--r-pill);
+  background:var(--c-card);border:1px solid var(--c-line);
+  font-size:var(--t-min);font-weight:600;color:var(--c-body)}
+.cmp3-x{width:24px;height:24px;padding:0;border:0;background:none;cursor:pointer;
+  color:var(--c-sub);font-size:12px;line-height:1}
+.cmp3-x:hover{color:var(--c-title)}
+.cmp3-open{flex:none;min-height:32px;padding:0 14px;border:none;cursor:pointer;
+  border-radius:var(--r-pill);background:var(--c-band);color:#fff;
+  font-family:inherit;font-size:var(--t-min);font-weight:700}
+.cmp3-open:active{transform:translateY(1px)}
+
+/* 아래 띠와 비교줄을 합한 만큼 본문 아래를 비워 둡니다 */
+body.bar3-on{padding-bottom:calc(var(--bar-h,120px) + var(--cmp-h,0px) + 16px)}
+
+/* ── 알림 말풍선 ───────────────────────────────────── */
+.cmp3-toast{position:fixed;left:50%;transform:translate(-50%,-12px);z-index:2100;
+  bottom:calc(var(--bar-h,120px) + var(--cmp-h,0px) + 24px);
+  max-width:320px;padding:10px 16px;border-radius:var(--r-card);
+  background:var(--c-band);color:#fff;font-size:var(--t-sub);font-weight:600;
+  opacity:0;pointer-events:none;transition:opacity .2s}
+.cmp3-toast.on{opacity:1}
+
+/* ── 비교하는 표 ───────────────────────────────────── */
+.cmp3-body{padding:0 20px}
+/* 표가 넓어지면 표 안에서만 옆으로 밀리게 합니다 — 화면 전체가 밀리면 안 됩니다 */
+.cmp3-table{width:100%;border-collapse:collapse;table-layout:fixed;
+  font-size:var(--t-table);line-height:var(--lh-table)}
+/* 낱말 단위로 줄바꿈하되, 한 덩어리가 칸보다 길면 그때만 잘라 넘깁니다 */
+.cmp3-table th,.cmp3-table td{padding:10px 8px;text-align:left;vertical-align:top;
+  border-bottom:1px solid var(--c-line);word-break:keep-all;overflow-wrap:anywhere}
+.cmp3-table th[scope="row"]{width:88px;color:var(--c-sub);font-weight:500;white-space:nowrap}
+.cmp3-table td{color:var(--c-body)}
+.cmp3-table td b{color:var(--c-title);font-weight:700}
+/* 정상가는 목록 카드와 같이 취소선을 긋습니다 */
+.cmp3-table td s{color:var(--c-sub);text-decoration:line-through}
+.cmp3-table td.big{font-size:var(--t-h3);font-weight:800;color:var(--c-strong);
+  letter-spacing:var(--ls-sub);font-variant-numeric:tabular-nums;white-space:nowrap}
+.cmp3-photo{display:block}
+.cmp3-photo img{display:block;width:auto;height:auto;
+  max-width:100%;max-height:120px;margin:0 auto}
+.cmp3-note{margin:12px 0 0;padding-bottom:4px;
+  font-size:var(--t-min);font-weight:var(--w-min);line-height:var(--lh-min);color:var(--c-sub)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+
+.cmp3-foot{display:flex;align-items:center;gap:8px;
+  padding:14px 20px calc(14px + env(safe-area-inset-bottom,0px));
+  border-top:1px solid var(--c-line)}
+.cmp3-clear{flex:none;min-height:var(--h-control);padding:0 16px;cursor:pointer;
+  border:1px solid var(--c-line);border-radius:var(--r-card);
+  background:var(--c-card);color:var(--c-sub);
+  font-family:inherit;font-size:var(--t-sub);font-weight:600}
+.cmp3-clear:hover{color:var(--c-title);border-color:var(--c-sub)}
+.cmp3-cta{flex:1 1 auto;min-height:var(--h-control);border:none;cursor:pointer;
+  border-radius:var(--r-card);background:var(--c-strong);color:#fff;
+  font-family:inherit;font-size:var(--t-h3);font-weight:800;letter-spacing:var(--ls-sub)}
+.cmp3-cta:hover{background:var(--c-strong-press)}
+
+@media(max-width:480px){
+  .cmp3-table th[scope="row"]{width:62px;font-size:var(--t-min)}
+  .cmp3-table th,.cmp3-table td{padding:8px 5px}
+  .cmp3-body{padding:0 12px}
+  /* 좁은 화면에서는 요금을 한 치수 줄여 한 줄에 담습니다 */
+  .cmp3-table td.big{font-size:var(--t-table)}
+}

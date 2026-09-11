@@ -1,0 +1,141 @@
+/* ══════════════════════════════════════════════════════════════════════
+   제품 상세 한 장 (세 번째 판) · dh-item3.css
+
+   미소의 「사진 크게 → 정보 → 고르개」 세로 흐름에,
+   아정당의 넉넉한 상세 그림을 붙였습니다.
+   요금 세 줄과 신청 단추는 아래 따라다니는 띠(dh-bar3)가 맡습니다.
+   ══════════════════════════════════════════════════════════════════════ */
+
+/* ── 맨 위 돌아가기 줄 ─────────────────────────────────
+   폰에서 뒤로 가기를 못 찾는 분이 많아 화면 안에도 둡니다. */
+/* ⚠ 머리띠(header)는 화면에 붙박이(fixed)라, 그 높이만큼 내려서 붙여야
+     겹치지 않습니다. 브랜드 고르는 줄(.tabbar)과 같은 자리 규칙입니다. */
+.it-back{position:sticky;top:var(--h-header);z-index:500;
+  background:var(--c-card);border-bottom:1px solid var(--c-line)}
+.it-back > div{display:flex;align-items:center;gap:8px;
+  max-width:var(--w-page);margin:0 auto;padding:0 var(--pad-screen);
+  min-height:var(--h-touch)}
+.it-back a{flex:none;display:flex;align-items:center;justify-content:center;
+  width:36px;height:36px;margin-left:-8px;border-radius:var(--r-control);
+  color:var(--c-title);text-decoration:none}
+.it-back a:hover{background:var(--c-strong-bg);color:var(--c-strong)}
+.it-back b{font-size:var(--t-h3);line-height:var(--lh-h3);font-weight:700;
+  letter-spacing:var(--ls-sub);color:var(--c-title);
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+.it-wrap{max-width:var(--w-page);margin:0 auto;padding:8px var(--pad-screen) 24px}
+
+/* ── 사진 ──────────────────────────────────────────── */
+.it-photo{display:flex;align-items:center;justify-content:center;
+  padding:16px;border-radius:var(--r-card);background:var(--c-card)}
+.it-photo img{width:auto;height:auto;max-width:100%;max-height:340px;object-fit:contain}
+
+/* ── 이름 ──────────────────────────────────────────── */
+/* 브랜드·모델 줄 오른쪽에 비교 담기 단추가 붙습니다 */
+.it-head{display:flex;align-items:center;justify-content:space-between;gap:12px;
+  margin-top:16px}
+.it-brand{margin:0;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+  font-size:var(--t-sub);font-weight:var(--w-sub);
+  line-height:var(--lh-sub);color:var(--c-sub)}
+.it-brand span{opacity:.8}
+.it-name{margin:4px 0 0;font-size:var(--t-h1);line-height:var(--lh-h1);font-weight:800;
+  letter-spacing:var(--ls-title);color:var(--c-title)}
+
+/* ── 줄 한 벌 (색상 · 약정 · 관리 방식) ──────────────── */
+.it-row{margin-top:20px}
+.it-label{display:block;margin-bottom:8px;font-size:var(--t-h3);line-height:var(--lh-h3);
+  letter-spacing:var(--ls-sub);color:var(--c-title);font-weight:700}
+.it-label em{font-style:normal;font-weight:400;color:var(--c-sub)}
+
+.it-colors{display:flex;flex-wrap:wrap;gap:4px}
+.it-color{width:44px;height:44px;padding:0;border:0;background:none;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;border-radius:var(--r-pill)}
+.it-color i{display:block;width:28px;height:28px;border-radius:var(--r-pill);
+  border:1px solid var(--c-line);box-sizing:border-box}
+.it-color[aria-pressed="true"] i{box-shadow:0 0 0 2px var(--c-card),0 0 0 4px var(--c-strong)}
+/* 색값을 모르는 제품은 동그라미 대신 이름만 적습니다 */
+.it-color-text{margin:0;font-size:var(--t-sub);line-height:var(--lh-sub);
+  font-weight:var(--w-sub);color:var(--c-body)}
+
+/* ── 기능 딱지 — 사장님 지시대로 색상 밑에 옵니다 ────── */
+.it-fn{display:flex;flex-wrap:wrap;gap:4px;margin-top:16px}
+.it-fn span{padding:4px 8px;border-radius:var(--r-chip);
+  font-size:var(--t-min);font-weight:600}
+.fn-ice{background:var(--fb-ice-bg);color:var(--fb-ice-tx)}
+.fn-cold{background:var(--fb-cold-bg);color:var(--fb-cold-tx)}
+.fn-hot{background:var(--fb-hot-bg);color:var(--fb-hot-tx)}
+.fn-pure{background:var(--fb-pure-bg);color:var(--fb-pure-tx)}
+.fn-direct{background:var(--fb-direct-bg);color:var(--fb-direct-tx)}
+.fn-etc{background:var(--dh-gray-100);color:var(--c-sub)}
+
+/* ── 제휴카드 여는 줄 ──────────────────────────────── */
+.it-card-open{display:flex;align-items:center;gap:8px;width:100%;margin-top:20px;
+  min-height:var(--h-control);padding:0 14px;cursor:pointer;
+  border:1px solid var(--c-line);border-radius:var(--r-card);
+  background:var(--c-card);color:var(--c-body);font-family:inherit;text-align:left}
+.it-card-open:hover{border-color:var(--c-strong);background:var(--c-strong-bg)}
+.it-card-open .it-label{flex:none;margin:0}
+.it-card-open .it-card-sum{flex:1 1 auto;min-width:0;color:var(--c-strong);
+  font-size:var(--t-sub);font-weight:700;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.it-card-open svg{flex:none;color:var(--c-sub)}
+
+/* ── 계산기 ────────────────────────────────────────── */
+.it-calc{margin-top:24px;padding-top:20px;border-top:1px solid var(--c-line)}
+.it-opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(64px,1fr));gap:8px}
+.it-opts.two{grid-template-columns:1fr 1fr}
+.it-opt{letter-spacing:var(--ls-chip);min-height:var(--h-control);padding:0 12px;cursor:pointer;
+  background:var(--c-card);border:1px solid var(--c-line);border-radius:var(--r-pill);
+  color:var(--c-body);font-family:inherit;font-size:var(--t-body);font-weight:500}
+.it-opt[aria-pressed="true"]{background:var(--c-strong-bg);border:1.5px solid var(--c-strong);
+  color:var(--c-strong);font-weight:700}
+
+.it-after{margin:16px 0 0;font-size:var(--t-sub);font-weight:var(--w-sub);
+  line-height:var(--lh-sub);color:var(--c-body)}
+.it-after b{color:var(--c-title);font-weight:700}
+.it-after:empty{display:none}
+
+/* ── 제품 상세 그림 ────────────────────────────────────
+   ⚠ 가로만 줄이면 세로가 늘어납니다. height:auto 를 반드시 함께 둡니다. */
+.it-detail{margin-top:32px;padding-top:24px;border-top:1px solid var(--c-line)}
+.it-detail h2{margin:0 0 16px;font-size:var(--t-h2);line-height:var(--lh-h2);
+  font-weight:800;letter-spacing:var(--ls-sub);color:var(--c-title)}
+.it-detail img{display:block;width:100%;max-width:760px;height:auto;margin:0 auto}
+
+/* ── 제품 규격 표 ─────────────────────────────────────
+   공홈은 이 내용을 그림 한 장으로 주지만, 우리는 글자로 넣습니다.
+   폰에서 확대하지 않아도 읽히고, 검색에도 잡힙니다. */
+.it-spec{margin-top:32px;padding-top:24px;border-top:1px solid var(--c-line)}
+.it-spec h2{margin:0 0 16px;font-size:var(--t-h2);line-height:var(--lh-h2);
+  font-weight:800;letter-spacing:var(--ls-sub);color:var(--c-title)}
+.it-spec table{width:100%;border-collapse:collapse;
+  font-size:var(--t-table);line-height:var(--lh-table)}
+.it-spec th,.it-spec td{padding:10px 8px;text-align:left;vertical-align:top;
+  border-bottom:1px solid var(--c-line);word-break:keep-all}
+.it-spec th[scope="row"]{width:34%;color:var(--c-sub);font-weight:500}
+.it-spec td{color:var(--c-body)}
+.it-spec-note{margin:12px 0 0;font-size:var(--t-min);font-weight:var(--w-min);
+  line-height:var(--lh-min);color:var(--c-sub)}
+
+@media(max-width:480px){
+  .it-photo img{max-height:260px}
+  .it-spec th[scope="row"]{width:38%}
+  .it-spec th,.it-spec td{padding:9px 4px}
+}
+
+/* ── 제휴카드 창을 글자 표로 보여 줄 때 ─────────────────
+   그림 안내를 받아 두지 못한 브랜드(현대큐밍)는 표를 글자로 그립니다. */
+.card-text{padding:20px}
+.card-name{margin:0 0 12px;font-size:var(--t-h3);line-height:var(--lh-h3);
+  font-weight:700;letter-spacing:var(--ls-sub);color:var(--c-title)}
+.card-text table{width:100%;border-collapse:collapse;
+  font-size:var(--t-table);line-height:var(--lh-table)}
+.card-text th,.card-text td{padding:10px 8px;text-align:left;
+  border-bottom:1px solid var(--c-line)}
+.card-text thead th{color:var(--c-sub);font-weight:500;
+  border-bottom:1.5px solid var(--c-line)}
+.card-text tbody th[scope="row"]{width:50%;color:var(--c-body);font-weight:500}
+.card-text tbody td{font-weight:800;color:var(--c-strong);
+  font-variant-numeric:tabular-nums}
+.card-tail{margin:12px 0 0;font-size:var(--t-min);font-weight:var(--w-min);
+  line-height:var(--lh-min);color:var(--c-sub)}
