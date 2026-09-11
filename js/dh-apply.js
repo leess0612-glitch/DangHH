@@ -180,7 +180,7 @@
       'background:#fffbeb;border:1px solid #fde68a;border-radius:10px;margin-bottom:16px;cursor:pointer;}',
       '#applyOverlay .usim-check input[type="checkbox"]{width:17px;height:17px;accent-color:var(--primary,#1257C9);',
       'flex-shrink:0;margin-top:2px;cursor:pointer;}',
-      '#applyOverlay .usim-check label{font-size:13px;font-weight:500;color:#92400e;cursor:pointer;line-height:1.5;}',
+      '#applyOverlay .usim-check label{font-size:13px;font-weight:600;color:#92400e;cursor:pointer;line-height:1.5;}',
       '#applyOverlay .form-group{margin-bottom:14px;}',
       '#applyOverlay .form-group label{display:block;font-size:13px;font-weight:600;color:var(--gray,#64748b);margin-bottom:5px;}',
       '#applyOverlay .form-group input{width:100%;padding:13px 16px;border:2px solid var(--border,#e2e8f0);',
@@ -258,11 +258,11 @@
                 '<label for="usimCheck">휴대폰 기종 변경 없이<br class="fold-br"> 통신사만 바꾸고 추가 현금 받기 <span style="white-space:nowrap;">(유심 번호이동)</span></label>' +
               '</div>' +
               '<div class="form-group">' +
-                '<label for="inputName">이름 <span style="font-size:11px;color:#94a3b8;font-weight:500;">(선택)</span></label>' +
+                '<label for="inputName">이름 <span style="font-size:11px;color:#94a3b8;font-weight:600;">(선택)</span></label>' +
                 '<input type="text" id="inputName" placeholder="이름을 입력해주세요" maxlength="20">' +
               '</div>' +
               '<div class="form-group">' +
-                '<label for="inputPhone">휴대폰 번호 <span style="font-size:11px;color:#b0b8c1;font-weight:500;">(필수)</span></label>' +
+                '<label for="inputPhone">휴대폰 번호 <span style="font-size:11px;color:#b0b8c1;font-weight:600;">(필수)</span></label>' +
                 '<input type="tel" id="inputPhone" placeholder="휴대폰번호를 입력해주세요" maxlength="13">' +
               '</div>' +
               '<button type="button" class="memo-toggle" id="memoToggle"><span class="plus">+</span> 요청사항 남기기</button>' +
@@ -273,7 +273,7 @@
               '</div>' +
               '<div style="display:flex;align-items:flex-start;gap:8px;margin-bottom:18px;">' +
                 '<input type="checkbox" id="c1" checked style="width:12px;height:12px;accent-color:#9ca3af;flex-shrink:0;margin-top:3px;cursor:pointer;opacity:0.7;">' +
-                '<label for="c1" style="font-size:13px;color:var(--gray,#64748b);cursor:pointer;line-height:1.5;">개인정보 수집 및 활용동의 <a href="javascript:void(0)" onclick="openPrivacy()" style="color:var(--gray,#64748b);font-weight:600;font-size:12px;text-decoration:none;">›</a> <span style="color:#b0b8c1;font-weight:500;font-size:11px;">(필수)</span></label>' +
+                '<label for="c1" style="font-size:13px;color:var(--gray,#64748b);cursor:pointer;line-height:1.5;">개인정보 수집 및 활용동의 <a href="javascript:void(0)" onclick="openPrivacy()" style="color:var(--gray,#64748b);font-weight:600;font-size:12px;text-decoration:none;">›</a> <span style="color:#b0b8c1;font-weight:600;font-size:11px;">(필수)</span></label>' +
               '</div>' +
               '<p class="form-urgency">⏰ 오후 5:30 이전 설치 시 당일 현금 입금</p>' +
               '<button type="button" class="form-submit" id="submitBtn">놓친 지원금 무료 확인</button>' +

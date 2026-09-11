@@ -100,7 +100,7 @@ header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: 
 }
 .header-inner nav a { white-space: nowrap; }
 nav { display: flex; gap: 4px; align-items: center; }
-nav a { font-size: 14px; font-weight: 500; color: var(--gray); text-decoration: none; padding: 6px 10px; border-radius: 6px; transition: all 0.2s; }
+nav a { font-size: 14px; font-weight: 600; color: var(--gray); text-decoration: none; padding: 6px 10px; border-radius: 6px; transition: all 0.2s; }
 nav a:hover { color: var(--primary); background: #eff6ff; }
 nav a.on { color: var(--primary); background: #eff6ff; font-weight: 700; }
 .header-phone { display: flex; align-items: center; gap: 6px; background: var(--primary); color: white; padding: 8px 16px; border-radius: 8px; font-size: 15px; font-weight: 700; text-decoration: none; transition: transform 0.12s ease, background 0.2s; }
@@ -132,7 +132,7 @@ nav a.on { color: var(--primary); background: #eff6ff; font-weight: 700; }
 .hamburger span { display: block; width: 24px; height: 2px; background: var(--dark); border-radius: 2px; }
 .mobile-menu { display: none; position: fixed; top: 64px; left: 0; right: 0; background: white; padding: 12px 20px; box-shadow: 0 8px 20px rgba(0,0,0,0.1); z-index: 999; }
 .mobile-menu.open { display: block; }
-.mobile-menu a { display: block; padding: 13px 0; font-size: 15px; font-weight: 500; color: var(--dark); text-decoration: none; border-bottom: 1px solid var(--border); }
+.mobile-menu a { display: block; padding: 13px 0; font-size: 15px; font-weight: 600; color: var(--dark); text-decoration: none; border-bottom: 1px solid var(--border); }
 .mobile-menu a:last-child { border-bottom: none; }
 
 /* 메뉴가 6개(요금·사은품 추가)가 되면서 좁은 컴퓨터 화면에서 전화번호 버튼과 거의 붙었다.
@@ -696,7 +696,7 @@ table.term-tbl em.plus { display: block; font-style: normal; font-size: 14px; fo
 .term-res { border: 1px solid #D92D20; background: #FDF3F2; border-radius: 8px; padding: 16px; margin-bottom: 64px; }
 .term-res p { margin-bottom: 0; }
 .term-res p + p { margin-top: 8px; }
-.term-res p.cav { font-size: 13px; font-weight: 500; color: var(--gray); line-height: 1.8; margin-top: 12px; }
+.term-res p.cav { font-size: 13px; font-weight: 600; color: var(--gray); line-height: 1.8; margin-top: 12px; }
 .term-warn { border-left: 3px solid #D92D20; padding-left: 12px; margin-bottom: 64px; }
 .term p.tight { margin-bottom: 64px; }
 .term p.lead { margin-bottom: 64px; }
@@ -704,7 +704,7 @@ table.term-tbl em.plus { display: block; font-style: normal; font-size: 14px; fo
 .term p.lead + h4 { margin-top: 72px; }
 .term-warn p { margin-bottom: 0; color: var(--gray); }
 .term-note { margin-top: 64px; }
-.term-note li { list-style: none; font-size: 13px; font-weight: 500; color: var(--gray); line-height: 1.8; padding-left: 12px; position: relative; word-break: keep-all; }
+.term-note li { list-style: none; font-size: 13px; font-weight: 600; color: var(--gray); line-height: 1.8; padding-left: 12px; position: relative; word-break: keep-all; }
 .term-note li::before { content: '·'; position: absolute; left: 0; }
 .term p.term-hint { display: none; font-size: 12px; color: var(--dark); margin-bottom: 8px; }
 /* ⚠ '.term p' 의 문단 여백(128px)이 더 세서, 여기서도 'p' 를 붙여야 8px 가 먹는다 */
@@ -762,7 +762,7 @@ table.term-tbl .nw { white-space: nowrap; }
 /* 표 바로 밑에 붙는 단서 — 아래 주석 목록과 같은 크기·색으로 담백하게 */
 .term-scroll.has-note { margin-bottom: 12px; }
 ul.tbl-note { margin-bottom: 64px; }
-ul.tbl-note li { list-style: none; font-size: 13px; font-weight: 500; color: var(--gray);
+ul.tbl-note li { list-style: none; font-size: 13px; font-weight: 600; color: var(--gray);
   line-height: 1.8; padding-left: 12px; position: relative; word-break: keep-all; }
 ul.tbl-note li::before { content: '·'; position: absolute; left: 0; }
 table.term-tbl.txt td.L { text-align: left; padding-left: 12px; padding-right: 12px; }
@@ -773,7 +773,7 @@ table.term-tbl.txt th.rn { width: 140px; }
   border-left: 3px solid var(--border); border-radius: 0 8px 8px 0;
   font-size: 15px; line-height: 1.7; color: var(--dark); word-break: keep-all; }
 .term blockquote cite { display: block; margin-top: 8px; font-style: normal;
-  font-size: 13px; font-weight: 500; color: var(--gray); }
+  font-size: 13px; font-weight: 600; color: var(--gray); }
 @media (max-width: 768px) {
   .know-head { padding: 24px 16px; }
   .know-head h2 { font-size: 22px; }
