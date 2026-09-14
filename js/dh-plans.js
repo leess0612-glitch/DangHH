@@ -1778,6 +1778,7 @@ var 요금자료 = {
     }
     var 셋톱마디 = {
       제목: T.셋톱.제목,
+      앵커: 'knowSettop',
       앞글: T.셋톱.앞글,
       표: T.셋톱.표, 사이글: T.셋톱.사이글, 표2: T.셋톱.표2, 뒷글: T.셋톱.뒷글
     };
@@ -1996,6 +1997,8 @@ var 요금자료 = {
        칸에 이름표가 아직 없으면 예전처럼 구역 맨 위로 간다 */
     if (무엇 === 'speed') return document.getElementById('knowSpeed') || document.getElementById('knowBox');
     if (무엇 === 'know') return document.getElementById('knowDevice') || document.getElementById('knowBox');
+    if (무엇 === 'router') return document.getElementById('knowRouter') || document.getElementById('knowDevice') || document.getElementById('knowBox');
+    if (무엇 === 'settop') return document.getElementById('knowSettop') || document.getElementById('knowDevice') || document.getElementById('knowBox');
     var 판 = 지금판();
     if (!판) return null;
     if (무엇 === 'rate') return 판.querySelector('.rate-head');
