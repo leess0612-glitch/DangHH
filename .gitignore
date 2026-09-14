@@ -26,3 +26,8 @@ font-test.html
 
 # filter-branch 임시폴더는 절대 추적하지 않음 (2026-09-14 경합사고 재발방지)
 .git-rewrite/
+
+# === KT 와이파이(공유기) 상세페이지 시험본 — 검토 전까지 danghh.com 에 안 올림 (2026-09-15) ===
+#   라이브로 올릴 때 이 블록을 지운다. (settop 처럼 자동공개 사고 방지)
+wifi/
+css/dh-wifi.css
