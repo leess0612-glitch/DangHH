@@ -1816,7 +1816,7 @@ var 요금자료 = {
 
     칸들.forEach(function (칸, ci) {
       var 번 = 0;
-      var 소제목 = function (t) { 번++; return '<h4><span class="num">' + 번 + '</span>' + t + '</h4>'; };
+      var 소제목 = function (t, 앵커) { 번++; return '<h4' + (앵커 ? ' id="' + 앵커 + '"' : '') + '><span class="num">' + 번 + '</span>' + t + '</h4>'; };
       /* 2026-09-10: 위 목차 알약단추가 찾아올 수 있게 앞 두 칸에 이름표를 붙인다.
          01 속도 가이드 = knowSpeed / 02 셋톱박스와 공유기 = knowDevice */
       h += '<div class="term"' +
