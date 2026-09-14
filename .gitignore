@@ -23,3 +23,6 @@ font-test.html
 
 # (2026-08-27) images/reviews-story/ 는 라이브 후기칸이 실제로 쓰는 사진이라 올린다.
 #   시험 단계에서 잠시 막아 두었던 규칙을 뺐다.
+
+# filter-branch 임시폴더는 절대 추적하지 않음 (2026-09-14 경합사고 재발방지)
+.git-rewrite/
