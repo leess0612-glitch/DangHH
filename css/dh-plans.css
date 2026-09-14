@@ -917,3 +917,7 @@ body, p, li, dd, dt, h1, h2, h3, h4, span, strong, em, b, a, div, label, button,
   transform: translateY(-50%); height: 44px;
 }
 .hamburger::after { left: 50%; right: auto; width: 44px; min-width: 100%; transform: translate(-50%, -50%); }
+
+/* 셋톱박스 월 요금 표 — 제품 이름을 상세페이지로 잇는 링크 (새 창) 2026-09-14 */
+.know .term-tbl .rn .settop-link{color:var(--primary,#1257C9);font-weight:700;text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px;}
+.know .term-tbl .rn .settop-link:hover{opacity:.82;}

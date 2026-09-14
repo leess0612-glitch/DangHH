@@ -1122,15 +1122,15 @@ var 요금자료 = {
         표: {
           머리: ['셋톱박스', '월 요금', '특징'],
           줄들: [
-            ['기가지니A', '3,300원',
+            ['<a class="settop-link" href="settop/genie-a/" target="_blank" rel="noopener">기가지니A</a>', '3,300원',
              '리모컨 없이 음성으로 TV를 조작할 수 있습니다.<br>유튜브·넷플릭스 바로가기 버튼이 있습니다.'],
-            ['기가지니A2<br><em class="new">2026년 9월 신규</em>', '<span class="nw">케어형 5,500원</span><br><span class="nw">단독형 7,700원</span>',
+            ['<a class="settop-link" href="settop/genie-a2/" target="_blank" rel="noopener">기가지니A2</a><br><em class="new">2026년 9월 신규</em>', '<span class="nw">케어형 5,500원</span><br><span class="nw">단독형 7,700원</span>',
              '인테리어에 어울리는 오브제 디자인입니다.<br>AI 기능 네 가지가 강화되었습니다.<br>화질 최적화, 보이스·사운드 강화, 실시간 자막, 대화형 AI 입니다.'],
-            ['기가지니3', '4,400원',
+            ['<a class="settop-link" href="settop/genie-3/" target="_blank" rel="noopener">기가지니3</a>', '4,400원',
              '기가지니A 의 기능을 모두 지원합니다.<br>돌비 비전을 탑재해 화질이 더 선명합니다.<br>블루투스 통화와 가전 제어 범위가 넓어졌습니다.'],
-            ['기가지니4', '6,600원',
+            ['<a class="settop-link" href="settop/genie-4/" target="_blank" rel="noopener">기가지니4</a>', '6,600원',
              '최대 8K 해상도를 지원합니다.<br>돌비 애트모스를 탑재해 음향이 개선되었습니다.<br>AI 업스케일링으로 화질을 자동 보정합니다.'],
-            ['올인원 사운드바', '8,800원',
+            ['<a class="settop-link" href="settop/soundbar/" target="_blank" rel="noopener">올인원 사운드바</a>', '8,800원',
              '셋톱박스·와이파이·AI 스피커를 하나로 합친 제품입니다.<br>입체음향 스피커가 들어 있어 별도 스피커가 필요 없습니다.']
           ]
         },
