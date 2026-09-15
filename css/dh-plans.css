@@ -538,10 +538,20 @@ table.rate tr.addtv td.addtv-list i {
 .co.hello { color: var(--hello); }
 
 /* 옆으로 밀어도 상품 이름 칸은 왼쪽에 붙어 있게 (폰에서 어떤 상품인지 놓치지 않도록) */
-/* 2026-09-15: '첫 칸 고정(sticky)'을 뺀다 — 좁은 폭에서 표를 옆으로 밀면 고정된
-   '인터넷 상품' 칸이 바로 옆 '요금' 칸을 덮어 글자가 가려지던 버그(라이브)를 없앤다.
-   이제 표 전체가 함께 밀려서 요금·사은품이 짝지어 온전히 보인다. */
-table.rate th.prod { box-shadow: 1px 0 0 var(--border); }
+/* 2026-09-15: '인터넷 상품 + 결합 여부' 두 칸을 함께 왼쪽에 고정한다.
+   좁은 폭에서 표를 옆으로 밀어도 '어느 상품·어느 결합'이 늘 보이고 요금·사은품만 밀린다.
+   ⚠ 상품 칸만 고정하면 결합 라벨이 밀려 사라져, 요금이 어느 결합 것인지 모르게 되는
+      버그가 있었다(사장님 지적). 결합 칸도 함께 고정해 그 문제를 없앤다.
+   ⚠ 머리글은 rowspan(상품·결합이 2줄을 차지) 탓에 아래 소제목(요금/사은품)이 비쳐 보이므로,
+      고정된 머리칸의 z-index를 6으로 올려 확실히 덮는다.
+   ⚠ 결합 칸의 left(왼쪽 시작점)는 상품 칸 너비와 같아야 한다 → PC 168px / 폰 132px. */
+table.rate th.prod { position: sticky; left: 0; z-index: 2; background: #fff; box-shadow: 1px 0 0 var(--border); }
+table.rate th.kind { position: sticky; left: 168px; z-index: 2; box-shadow: 2px 0 0 rgba(0,0,0,0.06); }
+table.rate thead th.prod-head { position: sticky; left: 0; z-index: 6; }
+table.rate thead th.kind-head { position: sticky; left: 168px; z-index: 6; }
+@media (max-width: 768px) {
+  table.rate th.kind, table.rate thead th.kind-head { left: 132px; }
+}
 
 /* 컴퓨터에서는 줄바꿈 자리가 없는 것처럼 둔다 (한 줄에 다섯 개가 다 들어간다) */
 .tabs .tab-break { display: none; }
