@@ -733,6 +733,15 @@ table.term-tbl em.plus { display: block; font-style: normal; font-size: 14px; fo
   table.term-tbl em.plus { font-size: 13px; }
 }
 
+/* 모바일: '가입 전 알아 두면 좋은 것' 표의 좌우 여백을 줄여 내용 폭을 넓힌다 —
+   특히 셋톱박스 표의 '특징' 칸이 오른쪽에서 잘리던 것을 막는다 (2026-09-15 사장님 지시) */
+@media (max-width: 768px) {
+  .wrap { padding-left: 10px; padding-right: 10px; }
+  .know .term { padding-left: 8px; padding-right: 8px; }
+  .know table.term-tbl th.rn { width: 84px; min-width: 84px; padding-left: 8px; }
+  .know table.term-tbl th, .know table.term-tbl td { padding-left: 5px; padding-right: 5px; }
+}
+
 @media (max-width: 768px) {
   .bundle { padding: 12px; }
   table.bundle-tbl th, table.bundle-tbl td { padding: 8px; font-size: 12px; }
