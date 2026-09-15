@@ -237,3 +237,53 @@
 /* 우리가 얹은 안내 한 줄 (KT 내용 위, 상담으로 연결) */
 .settop-lead{max-width:1080px;margin:14px auto 24px;padding:0 20px;color:var(--gray-600,#55585D);font-size:15px;line-height:1.6;text-align:center;}
 .settop-lead a{color:var(--primary,#1257C9);font-weight:700;text-decoration:none;}
+
+/* ══════════════════════════════════════════════════════════════════
+   모바일 최적화 (2026-09-15 사장님 지시) — KT 내용부(.kt-mirror)는 원래
+   가로 1080 고정이라 폰에서 잘렸다. 폰에서는 유동 폭·세로 쌓기·표 스크롤로 바꾼다.
+   ══════════════════════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+  /* 고정 폭을 폰 폭에 맞춰 유동으로 */
+  .kt-mirror .nsprod-page-inner { min-width: 0; width: auto; padding: 0 14px; }
+  .kt-mirror .nsprod-hero-primary { min-width: 0; }
+  .kt-mirror .nsprod-hero-primary-inner { width: auto; }
+  .kt-mirror .nsprod-accordion-group { width: auto; }
+  .kt-mirror .nsprod-hero-primary-visual { position: static; left: 0; transform: none; max-width: 100%; height: auto; }
+  .kt-mirror img { max-width: 100%; height: auto; }
+
+  /* 카드·두 칸 배치를 세로로 쌓기 */
+  .kt-mirror .nsprod-i1711-detail-group { flex-direction: column; gap: 12px; padding-top: 24px; }
+  .kt-mirror .nsprod-use-case { flex-direction: column; padding-top: 40px; gap: 16px; }
+  .kt-mirror .nsprod-use-case .info-column { padding-left: 0; }
+  .kt-mirror .nsprod-i1711-img-use-case { flex-direction: column; }
+  .kt-mirror .nsprod-i1711-box-wrap.box-wrap-2x { grid-template-columns: 1fr; row-gap: 12px; }
+  .kt-mirror .nsprod-i1711-flex { padding: 40px 16px; }
+  .kt-mirror .down-info-list-wrap { flex-direction: column; }
+
+  /* 제목·글자 크기 축소 */
+  .kt-mirror .nsprod-section-title { font-size: 26px; }
+  .kt-mirror .nsprod-title-lead { font-size: 28px; }
+  .kt-mirror .nsprod-title-sub { font-size: 22px; }
+  .kt-mirror .nsprod-title-desc { font-size: 16px; }
+  .kt-mirror .nsprod-title-desc.fz18 { font-size: 15px; }
+  .kt-mirror .nsprod-title-eyebrow { font-size: 16px; }
+
+  /* 큰 위·아래 간격 줄이기 */
+  .kt-mirror .mt-tp120 { margin-top: 64px !important; }
+  .kt-mirror .mt-tp80 { margin-top: 48px !important; }
+
+  /* 넓은 표는 그 칸 안에서만 좌우 스크롤(페이지 전체는 안 밀리게) */
+  .kt-mirror .kt-tblscroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .kt-mirror .kt-tblscroll .nsprod-table { min-width: 460px; }
+  .kt-mirror .nsprod-accordion-panel-inner { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .kt-mirror .nsprod-accordion-panel-inner .nsprod-table { min-width: 460px; }
+
+  /* 구 단말 매뉴얼 격자(셋톱) 5칸 → 2칸 */
+  .kt-mirror .nsprod-i1711-down-grid { grid-template-columns: 1fr 1fr; max-width: none; }
+  .kt-mirror .nsprod-i1711-down-grid .down-link { width: auto; }
+}
+
+/* WiFi 제품 사진 (셋톱엔 없음) */
+.wifi-photo { text-align: center; }
+.wifi-photo img { max-width: 380px; width: 100%; height: auto; }
+.wifi-photo-sm img { max-width: 240px; }
