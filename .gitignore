@@ -31,3 +31,6 @@ font-test.html
 #   라이브로 올릴 때 이 블록을 지운다. (settop 처럼 자동공개 사고 방지)
 wifi/
 css/dh-wifi.css
+
+# 요금표 모바일 카드형 시험본 (2026-09-15) — 라이브 아님
+plans-mobiletest.html
