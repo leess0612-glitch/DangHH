@@ -29,6 +29,14 @@
   /* 목록은 /water/ 에, 제품은 /water/{주소}/ 에 있습니다 (2026-09-10 자리 옮김) */
   function 밑동() { return (window.이제품 ? '../../' : '../'); }
 
+  /* 2026-09-16 — 지금 화면이 코웨이 전용 칸이면 코웨이 칸으로 보낸다.
+     전에는 늘 'water/' 로 못 박혀 있어서, 코웨이 전용 화면의 비교함 사진을 누르면
+     일반 목록으로 빠져나갔다(2026-09-16 실제로 눌러 확인한 결함). */
+  function 물칸() {
+    try { return /\/water-c(\/|$)/.test(location.pathname) ? 'water-c/' : 'water/'; }
+    catch (e) { return 'water/'; }
+  }
+
   function 읽기() {
     try {
       var t = localStorage.getItem(곳간이름);
@@ -264,7 +272,7 @@
     return '<table class="cmp3-table"><tbody>' +
       '<tr><th scope="row"><span class="sr">사진</span></th>' +
         줄.map(function (r) {
-          return '<td><a class="cmp3-photo" href="' + 밑 + 'water/' +
+          return '<td><a class="cmp3-photo" href="' + 밑 + 물칸() +
             encodeURIComponent(r.주소) + '/">' +
             '<img src="' + 밑 + 'img/' + 막(r.p.사진) + '.jpg" alt="' + 막(r.p.이름) + '"></a></td>';
         }).join('') + '</tr>' +

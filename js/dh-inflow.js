@@ -370,3 +370,172 @@ global.dhInflow = dhInflow;
 global.dhInflowReset = dhInflowReset;
 
 })(window);
+
+/* ══════════════════════════════════════════════════════════════════════
+   코웨이 문 기억 · 2026-09-16
+   ──────────────────────────────────────────────────────────────────────
+   ⛔ 왜 필요한가
+     코웨이 전용 트랙(rental-c.html · water-c/**)으로 들어온 손님이
+     메뉴에서 [인터넷]을 누르면 plans.html(일반 트랙)로 갑니다.
+     거기서 [정수기]를 누르면 water/(일반 목록)로 빠져, 코웨이 트랙으로
+     영영 돌아오지 못했습니다. 2026-09-16 실제로 눌러 확인한 결함입니다.
+
+   ★ 무엇을 하나
+     ① 코웨이 트랙 화면에 닿으면 "이 손님은 코웨이 문으로 들어왔다"를 기억합니다.
+     ② 그 뒤로는 어느 화면에서든 메뉴와 로고가 코웨이 트랙을 가리킵니다.
+     ③ 일반 트랙 화면(index · rental · water/)에 닿으면 기억을 지웁니다.
+
+   ★ 기억은 sessionStorage 입니다 — 창을 닫으면 잊습니다. 탭마다 따로입니다.
+     주소에 표시를 붙이지 않으므로 카톡으로 퍼지거나 검색에 걸리지 않습니다.
+
+   ⚠ 검색엔진은 이 기억을 쓰지 않습니다. 크롤러에게는 화면에 적힌 원래 주소
+     (일반 트랙)가 그대로 보입니다. water-c/ 는 noindex 이므로 영향 없습니다.
+   ══════════════════════════════════════════════════════════════════════ */
+(function (global) {
+  'use strict';
+
+  var 열쇠 = 'dh_coway_door';
+
+  /* ── 지금 화면이 어느 트랙인가 ───────────────────────────────── */
+  function 길() {
+    try { return decodeURIComponent(global.location.pathname || '/'); }
+    catch (e) { return global.location.pathname || '/'; }
+  }
+
+  function 코웨이칸인가(p) {
+    return /\/water-c(\/|$)/.test(p) || /\/rental-c\.html$/.test(p);
+  }
+
+  /* 세 갈래 규칙 (2026-09-16 사장님 확정)
+       ① 당현함닷컴(첫 화면)·렌탈 메인·일반 정수기  -> 일반 정수기 쪽으로만 다닌다
+       ② 코웨이 첫 화면·코웨이 정수기              -> 코웨이 정수기 쪽으로만 다닌다
+       ③ 어느 쪽도 아닌 화면(요금표·사은품명단·셋톱·약관) -> 들어온 문을 따라간다
+
+     즉 '지금 어느 화면에 있느냐'가 갈래를 정한다. 일반 정수기 화면에 닿으면
+     그 손님은 일반 손님이므로 기억을 지운다. ③ 만 기억이 필요하다. */
+  function 일반칸인가(p) {
+    return /\/water(\/|$)/.test(p) ||
+           /\/rental\.html$/.test(p) ||
+           /\/index\.html$/.test(p) ||
+           /^\/?$/.test(p);
+  }
+
+  function 기억읽기() {
+    try { return global.sessionStorage.getItem(열쇠) === '1'; } catch (e) { return false; }
+  }
+  function 기억쓰기(값) {
+    try {
+      if (값) global.sessionStorage.setItem(열쇠, '1');
+      else global.sessionStorage.removeItem(열쇠);
+    } catch (e) {}
+  }
+
+  /* ── 여기서 사이트 꼭대기까지 몇 단계인가 ────────────────────────
+     /plans.html        -> ''
+     /water/            -> '../'
+     /water/coway-x/    -> '../../'
+     깃허브 페이지는 사이트가 도메인 뿌리에 있으므로 이 셈이 맞다. */
+  function 밑동() {
+    var 조각 = 길().replace(/^\/+/, '').split('/');
+    var 끝 = 조각[조각.length - 1];
+    if (끝 === '' || 끝.indexOf('.') >= 0) 조각.pop();
+    return 조각.map(function () { return '../'; }).join('');
+  }
+
+  /* ── 주소를 보고 바꾼다 (메뉴 글자가 아니라) ─────────────────────
+     글자로 고르면 화면마다 메뉴 이름이 달라 빠지는 곳이 생긴다.
+     실제로 privacy·terms 는 「요금·사은품」이라는 다른 이름을 쓰고,
+     무료상담이 index.html#apply-now 로 가서 기억이 지워지는 구멍이 있었다.
+     그래서 '어디로 가느냐'만 본다. */
+
+  /* 첫 화면·렌탈 메인의 자리표를 코웨이 첫 화면의 자리표로 옮긴다 */
+  var 자리표 = { '#apply-now': '#apply', '#apply': '#apply',
+                '#compare': '#compare', '#reviews': '#reviews', '#faq': '#faq' };
+
+  function 바꾼주소(h) {
+    if (!h) return null;
+    if (h.charAt(0) === '#') return null;
+    if (/^(https?:|tel:|mailto:|javascript:|data:)/i.test(h)) return null;
+
+    /* ⚠ 글자만 보면 안 된다. 일반 정수기 상세의 [정수기] 메뉴는 '../' 라서
+       'water' 라는 글자가 아예 없다(2026-09-16 전수 훑기가 잡아낸 결함).
+       그래서 지금 화면을 기준으로 주소를 '펼쳐서' 어디로 가는지 본다. */
+    var 펼침;
+    try { 펼침 = new URL(h, global.location.href); } catch (e) { return null; }
+    if (펼침.origin !== global.location.origin) return null;
+
+    var 길2 = 펼침.pathname, 자리 = 펼침.hash || '';
+
+    /* ① 일반 정수기 -> 코웨이 정수기 */
+    if (/^\/water\//.test(길2))
+      return 길2.replace(/^\/water\//, '/water-c/') + 펼침.search + 자리;
+
+    /* ② 첫 화면·렌탈 메인 -> 코웨이 첫 화면 */
+    if (/^\/(index\.html)?$/.test(길2) || /^\/rental\.html$/.test(길2))
+      return '/rental-c.html' + 펼침.search + (자리표[자리] || 자리);
+
+    return null;
+  }
+
+  function 고치기() {
+    if (!기억읽기()) return;
+    if (코웨이칸인가(길())) return;   /* 코웨이 화면은 제 주소가 이미 맞다 */
+
+    var 링크 = global.document.querySelectorAll('a[href]');
+    for (var i = 0; i < 링크.length; i++) {
+      var a = 링크[i];
+      var 새주소 = 바꾼주소(a.getAttribute('href'));
+      if (새주소) { a.setAttribute('href', 새주소); a.setAttribute('data-coway-door', '1'); }
+    }
+
+    /* 사은품 지급명단 — 코웨이 트랙에는 없는 메뉴다(rental-c.html 도 안 단다).
+       그 화면에는 현금 표현이 있으므로 코웨이 손님에게는 감춘다. */
+    var 메뉴 = global.document.querySelectorAll('nav a, .m-menu a');
+    for (var j = 0; j < 메뉴.length; j++) {
+      if ((메뉴[j].textContent || '').replace(/\s+/g, '') === '사은품지급명단') {
+        메뉴[j].style.display = 'none';
+        메뉴[j].setAttribute('data-coway-door', 'hide');
+      }
+    }
+  }
+
+  /* ── 실행 ─────────────────────────────────────────────────────── */
+  function 돌기() {
+    var p = 길();
+    if (코웨이칸인가(p)) 기억쓰기(true);
+    else if (일반칸인가(p)) 기억쓰기(false);
+    고치기();
+  }
+
+  try { 돌기(); } catch (e) {}
+
+  if (global.document.readyState === 'loading') {
+    global.document.addEventListener('DOMContentLoaded', function () {
+      try { 고치기(); } catch (e) {}
+    });
+  }
+
+  /* 뒤로가기로 되살아난 화면(bfcache)에서도 다시 맞춘다 */
+  global.addEventListener('pageshow', function (e) {
+    if (e && e.persisted) { try { 돌기(); } catch (err) {} }
+  });
+
+  /* 폰 메뉴가 나중에 만들어지는 화면이 있어 한 번 더 늦게 맞춘다 */
+  global.addEventListener('load', function () { try { 고치기(); } catch (e) {} });
+
+  /* ── 누를 때 한 번 더 잡는 그물 ─────────────────────────────
+     화면이 다 뜬 뒤에 자바스크립트가 새로 만들어 붙이는 링크(비교함 사진 등)는
+     위 고치기()가 지나간 뒤에 생긴다. 그래서 누르는 순간에 한 번 더 본다.
+     water/ 로 가려는 링크를 water-c/ 로 돌려놓는다. */
+  global.document.addEventListener('click', function (e) {
+    if (!기억읽기()) return;
+    if (코웨이칸인가(길())) return;
+    var a = e.target && e.target.closest ? e.target.closest('a[href]') : null;
+    if (!a) return;
+    var 새주소 = 바꾼주소(a.getAttribute('href'));
+    if (새주소) { a.setAttribute('href', 새주소); a.setAttribute('data-coway-door', 'click'); }
+  }, true);
+
+  global.dhCowayDoor = { 켜짐: 기억읽기, 지우기: function () { 기억쓰기(false); } };
+
+})(window);
