@@ -262,4 +262,31 @@
   <url><loc>https://danghh.com/water/qming-delight-i/</loc><lastmod>2026-09-11</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://danghh.com/water/qming-delight-ice/</loc><lastmod>2026-09-11</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <!-- 정수기 끝 -->
+  <!-- KT 셋톱박스 상세 다섯 장 (2026-09-16 검색 차단을 풀고 사이트맵에 넣음)
+       "지니TV 셋톱박스 A2" 같은 제품 이름 검색을 각각 맡는다. -->
+  <url>
+    <loc>https://danghh.com/settop/genie-3/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://danghh.com/settop/genie-4/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://danghh.com/settop/genie-a/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://danghh.com/settop/genie-a2/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://danghh.com/settop/soundbar/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
 </urlset>
