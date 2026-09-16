@@ -34,3 +34,5 @@ css/dh-wifi.css
 
 # 요금표 모바일 카드형 시험본 (2026-09-15) — 라이브 아님
 plans-mobiletest.html
+# (2026-09-16) 비슷한제품 색인 — 시험 중이라 아직 안 올린다. 적용 결정되면 이 줄을 뺄 것
+js/dh-similar.js
