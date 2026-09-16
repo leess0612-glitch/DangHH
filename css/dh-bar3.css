@@ -72,7 +72,10 @@
 
 .bar-cta{flex:1 1 auto;min-height:var(--h-control);border:none;cursor:pointer;
   border-radius:var(--r-card);background:var(--c-strong);color:#fff;
-  font-family:inherit;font-size:var(--t-h2);font-weight:800;letter-spacing:var(--ls-sub)}
+  font-family:inherit;font-size:var(--t-h2);font-weight:700;letter-spacing:var(--ls-chip)}
+/* 2026-09-16 — 굵기를 800에서 700으로 내렸습니다.
+   디자인보드: 800은 제목·금액 전용이고, 신청폼을 여는 큰 단추는 700입니다.
+   자간도 소제목용(ls-sub)에서 단추 글씨용(ls-chip)으로 바꿨습니다. */
 .bar-cta:hover{background:var(--c-strong-press)}
 .bar-cta:active{transform:translateY(1px)}
 
