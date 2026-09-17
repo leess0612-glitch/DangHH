@@ -699,9 +699,11 @@ table.term-tbl th, table.term-tbl td {
   border: 1px solid var(--border); padding: 12px 8px; font-size: 15px; text-align: center;
   white-space: nowrap; vertical-align: middle;
 }
-table.term-tbl thead th { background: var(--head-bg); font-weight: 700; color: #FFFFFF; }
+/* 2026-09-17: 표 머리를 회색으로 통일(모바일과 동일 #EDEFF2). 요금표(table.rate)만 통신사색 유지 —
+   주인공만 색을 줘야 정보 위계가 서고, 조연 표들이 다 색이면 난잡해진다(모바일에서 먼저 정리한 규칙). */
+table.term-tbl thead th { background: #EDEFF2; font-weight: 700; color: var(--dark); }
 table.term-tbl th.rn { background: #F5F6F8; font-weight: 600; color: var(--dark); text-align: left; padding-left: 16px; }
-table.term-tbl thead th.rn { background: var(--head-bg); color: #FFFFFF; font-weight: 700; }
+table.term-tbl thead th.rn { background: #EDEFF2; color: var(--dark); font-weight: 700; }
 table.term-tbl tr.pick th.rn { background: #FDF3F2; color: #D92D20; font-weight: 800; }
 table.term-tbl tr.pick td { background: #FDF3F2; font-weight: 800; color: #D92D20; }
 table.term-tbl tr.tot th.rn, table.term-tbl tr.tot td { background: #FDF3F2; font-weight: 800; color: var(--dark); }
