@@ -490,7 +490,9 @@ global.dhInflowReset = dhInflowReset;
 
     /* 사은품 지급명단 — 코웨이 트랙에는 없는 메뉴다(rental-c.html 도 안 단다).
        그 화면에는 현금 표현이 있으므로 코웨이 손님에게는 감춘다. */
-    var 메뉴 = global.document.querySelectorAll('nav a, .m-menu a');
+    /* 2026-09-17 고침 — 요금표·셋톱·약관·명단 화면의 폰 메뉴는 .m-menu 가 아니라 #mobileMenu(.mobile-menu) 라
+       여기서 빠져, 코웨이 손님이 햄버거를 열면 사은품지급명단이 보였습니다. 폰 메뉴 두 모양을 모두 셉니다. */
+    var 메뉴 = global.document.querySelectorAll('nav a, .m-menu a, #mobileMenu a, .mobile-menu a');
     for (var j = 0; j < 메뉴.length; j++) {
       if ((메뉴[j].textContent || '').replace(/\s+/g, '') === '사은품지급명단') {
         메뉴[j].style.display = 'none';
