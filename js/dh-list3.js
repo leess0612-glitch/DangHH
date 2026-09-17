@@ -161,22 +161,36 @@
   }
 
   /* ── 고르개 그리기 ──────────────────────────────────── */
-  var 갈래아이콘 = {
-    '전체': '<path d="M12 3c-3.5 4-6 7-6 10a6 6 0 0012 0c0-3-2.5-6-6-10z"/>',
-    '얼음냉온정': '<path d="M12 3v18M4.5 7.5l15 9M19.5 7.5l-15 9"/>',
-    /* 2026-09-11: 얼음은 있고 온수가 없는 갈래가 있습니다 (코웨이 CPI- · 청호 옴니 플러스).
-       눈꽃은 그대로 두고 테두리를 옅게 해서 「온수 없음」을 알립니다. */
-    '얼음냉정': '<path d="M12 6.5v11M7 9l10 6M17 9l-10 6"/>' +
-                '<circle cx="12" cy="12" r="9"/>',
-    '냉온정': '<path d="M12 3a9 9 0 000 18z" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="9"/>',
-    /* 2026-09-11: 온수가 없는 「냉정」 갈래가 생겼습니다 (코웨이 CP- 모델) */
-    '냉정': '<path d="M12 3v18M4.5 7.5l15 9M19.5 7.5l-15 9" opacity=".55"/><circle cx="12" cy="12" r="9"/>',
-    /* 2026-09-11: 거꾸로 냉수가 없는 「온정」도 생겼습니다 (LG 라이트온) — 김 오르는 표 */
-    '온정': '<path d="M9 3.5c0 1.9 1.6 1.9 1.6 3.8S9 9.2 9 11.1s1.6 1.9 1.6 3.8S9 16.8 9 18.7' +
-            'M14.4 3.5c0 1.9 1.6 1.9 1.6 3.8s-1.6 1.9-1.6 3.8 1.6 1.9 1.6 3.8-1.6 1.9-1.6 3.8" ' +
-            'opacity=".55"/><circle cx="12" cy="12" r="9"/>',
-    '정수': '<circle cx="12" cy="12" r="9"/>'
+  /* ── 기능 그림 (2026-09-17 사장님 결정: 대안 다섯 중 ②「색 그림 나열」) ──────────────
+     화면에서는 「갈래」가 아니라 **「기능」** 이라 부릅니다(사장님 지시). 코드 속 이름(갈래)은 자료와 맞물려 그대로 둡니다.
+     기능은 얼음·냉수·온수·정수 네 가지의 조합이라, 든 것만 색 그림으로 늘어놓습니다.
+       얼음 = 하늘색 얼음 조각 · 냉수 = 파란 물방울 · 온수 = 빨간 불꽃 · 정수 = 초록 물방울
+     「전체」는 얼음냉온정과 같은 그림이 되면 구분이 안 되므로 네 칸 격자(모두 보기)로 둡니다.
+     ⚠ 색은 디자인보드 「기능 딱지 색」과 같은 뜻입니다. 얼음만 보드 값(#0E45A0)이 냉수와 거의 같아
+       하늘색 #5AB4E5 로 따로 잡았습니다 — 보드에도 적어 두었습니다. */
+  var 갈래기능 = {
+    '얼음냉온정': ['얼음', '냉', '온', '정'], '얼음냉정': ['얼음', '냉', '정'],
+    '냉온정': ['냉', '온', '정'], '냉정': ['냉', '정'], '온정': ['온', '정'], '정수': ['정']
   };
+  var 기능색 = { '얼음': '#5AB4E5', '냉': '#1257C9', '온': '#D2463A', '정': '#13A172' };
+  var 조각 = {
+    얼음: function (c) { return '<rect x="5" y="5" width="14" height="14" rx="3.5" fill="' + c + '"/>' +
+      '<path d="M8.5 9.5l2.5-2" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/>'; },
+    냉: function (c) { return '<path d="M12 3c-3.5 4-6 7-6 10a6 6 0 0012 0c0-3-2.5-6-6-10z" fill="' + c + '"/>'; },
+    온: function (c) { return '<path d="M12.5 2.5c.8 3.4 5 5.3 5 10.5a5.5 5.5 0 01-11 0c0-2.3 1.1-4 2.3-5 .3 2 1.3 3 2.4 3.4-.6-3.3.1-6.3 1.3-8.9z" fill="' + c + '"/>'; },
+    정: function (c) { return '<path d="M12 3c-3.5 4-6 7-6 10a6 6 0 0012 0c0-3-2.5-6-6-10z" fill="' + c + '"/>' +
+      '<path d="M9.2 13.5a3 3 0 002.3 2.8" stroke="#fff" stroke-width="1.6" stroke-linecap="round" fill="none"/>'; }
+  };
+  function 갈래그림(g) {
+    if (!갈래기능[g]) {
+      return '<svg class="g-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">' +
+        '<rect x="4" y="4" width="6.5" height="6.5" rx="1.8"/><rect x="13.5" y="4" width="6.5" height="6.5" rx="1.8"/>' +
+        '<rect x="4" y="13.5" width="6.5" height="6.5" rx="1.8"/><rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1.8"/></svg>';
+    }
+    var 든 = 갈래기능[g];
+    return '<svg class="g-ico wide" viewBox="0 0 ' + (든.length * 24) + ' 24" style="width:' + (든.length * 17) + 'px" aria-hidden="true">' +
+      든.map(function (k, i) { return '<g transform="translate(' + (i * 24) + ' 0)">' + 조각[k](기능색[k]) + '</g>'; }).join('') + '</svg>';
+  }
 
   function 고르개그리기() {
     var 칸 = document.getElementById('갈래고르개');
@@ -187,9 +201,7 @@
       칸.innerHTML = ['전체'].concat(갈래들).map(function (g) {
         return '<button type="button" class="pick-btn' + (g === 고른갈래 ? ' on' : '') +
           '" data-갈래="' + 막(g) + '" aria-pressed="' + (g === 고른갈래) + '">' +
-          '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" ' +
-          'stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
-          (갈래아이콘[g] || 갈래아이콘['전체']) + '</svg><b>' + 막(g) + '</b></button>';
+          갈래그림(g) + '<b>' + 막(g) + '</b></button>';
       }).join('');
     }
 
@@ -209,7 +221,19 @@
     ];
     var 줄 = document.getElementById('거르개');
     if (줄) {
-      줄.innerHTML = 알약.map(function (a) {
+      /* 방식 C — 붙었을 때 큰 기능 칸 대신 쓰는 「기능」 알약. 평소에는 css 가 감춥니다. */
+      var 갈래목록 = ['전체', '얼음냉온정', '얼음냉정', '냉온정', '냉정', '온정', '정수'].filter(function (g) {
+        return g === '전체' || 모두.some(function (p) { return p.갈래 === g; });
+      });
+      var 갈래알약 = '<div class="pill-wrap g-pill"><button type="button" class="pill' + (고른갈래 !== '전체' ? ' on' : '') +
+        '" data-알약="갈래" aria-expanded="false">' + (고른갈래 === '전체' ? '기능 전체' : 막(고른갈래)) +
+        '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" ' +
+        'stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>' +
+        '</button><div class="pill-menu" hidden>' + 갈래목록.map(function (g) {
+          return '<button type="button" class="pill-item g-item' + (g === 고른갈래 ? ' on' : '') +
+            '" data-알약="갈래" data-값="' + 막(g) + '"><span class="g-slot">' + 갈래그림(g) + '</span><span>' + 막(g) + '</span></button>';
+        }).join('') + '</div></div>';
+      줄.innerHTML = 갈래알약 + 알약.map(function (a) {
         var 키 = a[2] || a[0];
         var 값 = 고른거름[키];
         var 켬 = 값 !== '전체';
@@ -390,7 +414,7 @@
       if (항) {
         var 키 = 항.getAttribute('data-알약');
         var 값 = 항.getAttribute('data-값');
-        if (키 === '정렬') 고른정렬 = 값; else 고른거름[키] = 값;
+        if (키 === '정렬') 고른정렬 = 값; else if (키 === '갈래') 고른갈래 = 값; else 고른거름[키] = 값;
         보임 = 처음보임;
         고르개그리기(); 목록그리기(); 알약닫기(null); 밀줄맞추기(); 목록위로();
         return;
@@ -437,15 +461,34 @@
       if (!위 || !아래 || 위.parentNode !== 아래.parentNode || 위.parentNode.classList.contains('filter-stick')) return;
       var 묶음 = document.createElement('div');
       묶음.className = 'filter-stick';
+      var 표지 = document.createElement('div');
+      표지.className = 'filter-stick-mark';
+      위.parentNode.insertBefore(표지, 위);
       위.parentNode.insertBefore(묶음, 위);
       묶음.appendChild(위);
       묶음.appendChild(아래);
       /* 붙어 있을 때만 아래 그림자를 줍니다 */
+      /* 방식 C — 묶음 앞 표지가 머리띠 밑으로 들어가면 「붙음」. 붙으면 큰 기능 칸 줄을 접고
+         알약 줄 맨 앞에 「기능」 알약을 보입니다. 접힌 높이만큼 아래 여백을 줘 목록이 덜컥 뛰지 않게 합니다. */
       function 붙음보기() {
         var 머 = document.querySelector('header');
         var 높이 = 머 ? 머.getBoundingClientRect().bottom : 0;
-        묶음.classList.toggle('stuck', 묶음.getBoundingClientRect().top <= 높이 + 0.5 &&
-          window.matchMedia('(max-width:560px)').matches);
+        var 폰 = window.matchMedia('(max-width:560px)').matches;
+        var 붙음 = 폰 && 표지.getBoundingClientRect().top <= 높이 + 0.5;
+        if (붙음 === 묶음.classList.contains('stuck')) return;
+        if (붙음) {
+          var 전 = 묶음.offsetHeight;
+          묶음.classList.add('stuck', 'mini');
+          /* 바로 아래 목록의 위 여백(16)과 겹쳐 사라지지 않도록 그만큼 더합니다 */
+          var 다음 = 묶음.nextElementSibling;
+          var 겹침 = 다음 ? parseFloat(getComputedStyle(다음).marginTop) || 0 : 0;
+          묶음.style.marginBottom = (전 - 묶음.offsetHeight + 겹침) + 'px';
+        } else {
+          묶음.classList.remove('stuck', 'mini');
+          묶음.style.marginBottom = '';
+        }
+        알약닫기(null);
+        밀줄맞추기();
       }
       window.addEventListener('scroll', 붙음보기, { passive: true });
       window.addEventListener('resize', 붙음보기);

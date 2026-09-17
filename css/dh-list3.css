@@ -190,3 +190,21 @@
   .filter-stick.stuck{box-shadow:0 1px 0 var(--c-line),0 6px 12px -8px rgba(15,42,90,.18)}
   #알약띄움{z-index:450}
 }
+
+/* ── 방식 C (2026-09-17 사장님 결정) — 폰에서 붙으면 큰 기능 칸 줄을 접고, 알약 줄 맨 앞 「기능」 알약으로 고릅니다 ──
+   접힌 높이만큼은 js/dh-list3.js 가 아래 여백으로 채워 목록이 덜컥 뛰지 않습니다. */
+.g-pill{display:none}
+@media(max-width:560px){
+  .filter-stick.mini .slide-wrap:not(.pill-slide){display:none}
+  .filter-stick.mini .slide-wrap.pill-slide{margin-top:0}
+  .filter-stick.mini{padding-top:8px;padding-bottom:8px}
+  .filter-stick.mini .g-pill{display:block}
+}
+/* 기능 그림 — 여러 기능을 늘어놓는 그림은 폭이 넓습니다 */
+.pick-btn svg.g-ico{width:26px;height:26px}
+.pick-btn svg.g-ico.wide{height:20px}
+.pill-item.g-item{display:flex;align-items:center;gap:10px}
+.pill-item.g-item{min-width:190px}
+.pill-item.g-item .g-slot{flex:0 0 64px;display:flex;align-items:center;justify-content:flex-start}
+.pill-item.g-item svg{width:20px;height:20px;flex:none}
+.pill-item.g-item svg.g-ico.wide{height:15px;width:auto!important}
