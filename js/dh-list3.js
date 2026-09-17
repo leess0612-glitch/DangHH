@@ -345,6 +345,18 @@
     [].forEach.call(document.querySelectorAll('.slide-wrap'), function (w) { if (w.맞추기) w.맞추기(); });
   }
 
+  /* 거름을 바꾼 뒤 — 묶음이 머리띠 아래에 붙어 있을 만큼 내려와 있었다면 목록 맨 위로 올립니다.
+     목록이 짧아지면 빈 곳에 머물러 「결과가 없다」로 보였습니다(2026-09-17 실측).
+     부드럽게 움직이지 않고 바로 옮깁니다(화면이 안 뜬 검사창에서 smooth 가 멈추는 함정). */
+  function 목록위로() {
+    var 묶음 = document.querySelector('.filter-stick.stuck');
+    var 칸 = document.getElementById('제품칸');
+    if (!묶음 || !칸) return;
+    var 머 = document.querySelector('header');
+    var 위 = (머 ? 머.getBoundingClientRect().bottom : 0) + 묶음.offsetHeight + 8;
+    window.scrollTo(0, Math.max(0, window.pageYOffset + 칸.getBoundingClientRect().top - 위));
+  }
+
   /* ── 눌림 받기 ─────────────────────────────────────── */
   function 알약닫기(빼고) {
     [].forEach.call(document.querySelectorAll('.pill-menu'), function (m) {
@@ -360,7 +372,7 @@
       var 갈 = e.target.closest('[data-갈래]');
       if (갈) {
         고른갈래 = 갈.getAttribute('data-갈래');
-        보임 = 처음보임; 고르개그리기(); 목록그리기(); 알약닫기(null); 밀줄맞추기(); return;
+        보임 = 처음보임; 고르개그리기(); 목록그리기(); 알약닫기(null); 밀줄맞추기(); 목록위로(); return;
       }
 
       var 알 = e.target.closest('.pill');
@@ -380,7 +392,7 @@
         var 값 = 항.getAttribute('data-값');
         if (키 === '정렬') 고른정렬 = 값; else 고른거름[키] = 값;
         보임 = 처음보임;
-        고르개그리기(); 목록그리기(); 알약닫기(null); 밀줄맞추기();
+        고르개그리기(); 목록그리기(); 알약닫기(null); 밀줄맞추기(); 목록위로();
         return;
       }
 
@@ -418,6 +430,27 @@
     달기();
     밀줄만들기(document.getElementById('갈래고르개'));
     밀줄만들기(document.querySelector('.filter-row'), 'pill-slide');
+    /* 거름 묶음 고정 — 갈래 칸과 알약 줄을 한 칸으로 감싸 머리띠 아래에 붙입니다(모양은 dh-list3.css) */
+    (function () {
+      var 갈 = document.getElementById('갈래고르개'), 알 = document.querySelector('.filter-row');
+      var 위 = 갈 && 갈.parentNode, 아래 = 알 && 알.parentNode;
+      if (!위 || !아래 || 위.parentNode !== 아래.parentNode || 위.parentNode.classList.contains('filter-stick')) return;
+      var 묶음 = document.createElement('div');
+      묶음.className = 'filter-stick';
+      위.parentNode.insertBefore(묶음, 위);
+      묶음.appendChild(위);
+      묶음.appendChild(아래);
+      /* 붙어 있을 때만 아래 그림자를 줍니다 */
+      function 붙음보기() {
+        var 머 = document.querySelector('header');
+        var 높이 = 머 ? 머.getBoundingClientRect().bottom : 0;
+        묶음.classList.toggle('stuck', 묶음.getBoundingClientRect().top <= 높이 + 0.5 &&
+          window.matchMedia('(max-width:560px)').matches);
+      }
+      window.addEventListener('scroll', 붙음보기, { passive: true });
+      window.addEventListener('resize', 붙음보기);
+      붙음보기();
+    })();
     밀줄맞추기();
     window.addEventListener('resize', 알약여백맞추기);
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(밀줄맞추기);

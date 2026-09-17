@@ -32,6 +32,8 @@
   border:1px solid var(--c-line);box-shadow:0 8px 28px rgba(11,46,92,.14)}
 .pill-menu.right{left:auto;right:0}
 .pill-menu[hidden]{display:none}
+/* 2026-09-17 고침 — .more-btn 의 display:block 이 hidden 을 이겨 「더 보기 (0개 남음)」이 보였습니다 */
+.more-btn[hidden]{display:none}
 .pill-item{display:block;width:100%;text-align:left;cursor:pointer;
   min-height:40px;padding:0 12px;border:none;border-radius:var(--r-control);
   background:none;color:var(--c-body);font-family:inherit;
@@ -172,4 +174,19 @@
   .slide-wrap.pill-slide{margin-top:12px}
   .slide-wrap .pill-row{flex-wrap:nowrap}
   .slide-wrap .pill{padding-left:var(--pill-px,14px);padding-right:var(--pill-px,14px)}
+}
+
+/* ── 좁은 화면: 거름 묶음(갈래 칸 + 알약 줄)을 머리띠 바로 아래에 고정합니다 (2026-09-17 사장님 지시) ──
+   아정당 폰 화면·당현함 요금표의 통신사 줄과 같은 방식입니다. 목록을 내려 봐도 거름을 바로 바꿀 수 있습니다.
+   js/dh-list3.js 가 두 줄을 .filter-stick 으로 한 번 감쌉니다.
+   ⚠ sticky 는 조상 중 하나라도 overflow 가 hidden/auto 이면 작동하지 않습니다.
+   ⚠ 흰 바탕을 화면 양끝까지 깔려고 좌우 여백을 음수로 뻗고 안쪽 여백으로 되돌립니다.
+     그 안의 .slide-wrap 이 다시 음수 여백으로 화면 끝까지 뻗으므로 줄은 여전히 화면 끝에서 잘립니다. */
+@media(max-width:560px){
+  .filter-stick{position:sticky;top:var(--h-header);z-index:400;background:var(--c-card);
+    margin:0 calc(-1 * var(--pad-screen));padding:10px var(--pad-screen) 10px;
+    transition:box-shadow .15s}
+  .filter-stick .slide-wrap .picks{margin-top:0}
+  .filter-stick.stuck{box-shadow:0 1px 0 var(--c-line),0 6px 12px -8px rgba(15,42,90,.18)}
+  #알약띄움{z-index:450}
 }
