@@ -920,7 +920,9 @@ nav a { padding: 13px 10px; }
    1px 로 줄이면 어두운 기운이 글자에 바싹 붙어 윤곽이 더 또렷해진다 (사장님 지시).
    더 세게 하려면 진하기(.45)를 올리는 길이 남아 있는데, 글자 둘레가 탁해질 수 있다.
    되돌리려면 아래 두 줄만 지운다. */
-table.rate thead th, table.bundle-tbl thead th, table.term-tbl thead th,
+/* 2026-09-17: term-tbl 은 머리가 회색(어두운 글자)으로 바뀌어 어두운 번짐이 오히려 탁해지므로 뺐다.
+   흰 글자가 얹히는 요금표·bundle-tbl·통신사 탭에만 남긴다. */
+table.rate thead th, table.bundle-tbl thead th,
 .tab[aria-selected="true"] { text-shadow: 0 0 1px rgba(0,0,0,.45); }
 
 
