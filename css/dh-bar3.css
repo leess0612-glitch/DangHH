@@ -65,13 +65,13 @@
 .bar-acts{display:flex;align-items:center;gap:8px}
 .bar-ico{flex:none;width:var(--h-control);height:var(--h-control);
   display:flex;align-items:center;justify-content:center;
-  border-radius:var(--r-card);text-decoration:none}
+  border-radius:var(--r-control);text-decoration:none}
 .bar-ico.phone{background:var(--c-strong-bg);color:var(--c-strong)}
 .bar-ico.kakao{background:var(--c-kakao);color:#3C1E1E}
 .bar-ico:active{transform:translateY(1px)}
 
 .bar-cta{flex:1 1 auto;min-height:var(--h-control);border:none;cursor:pointer;
-  border-radius:var(--r-card);background:var(--c-strong);color:#fff;
+  border-radius:var(--r-control);background:var(--c-strong);color:#fff;
   font-family:inherit;font-size:var(--t-h2);font-weight:700;letter-spacing:var(--ls-chip)}
 /* 2026-09-16 — 굵기를 800에서 700으로 내렸습니다.
    디자인보드: 800은 제목·금액 전용이고, 신청폼을 여는 큰 단추는 700입니다.
