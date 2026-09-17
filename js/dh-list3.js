@@ -255,6 +255,85 @@
     }
   }
 
+  /* ── 좁은 화면에서 옆으로 미는 줄 (2026-09-17) ────────────────
+     요금표 통신사 탭과 같은 방식입니다. 줄을 감싸는 칸을 하나 만들고 양옆에 화살표를 붙입니다.
+     옆에 더 있으면 감싸는 칸에 can-l / can-r 가 붙고, 모양은 dh-list3.css 가 맡습니다. */
+  function 밀줄만들기(줄, 덧이름) {
+    if (!줄 || 줄.parentNode.classList.contains('slide-wrap')) return;
+    var 감쌈 = document.createElement('div');
+    감쌈.className = 'slide-wrap' + (덧이름 ? ' ' + 덧이름 : '');
+    줄.parentNode.insertBefore(감쌈, 줄);
+    감쌈.appendChild(줄);
+    var 화살 = function (방향, 길) {
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'slide-nav ' + 방향;
+      b.setAttribute('aria-label', 방향 === 'l' ? '앞 칸 보기' : '다음 칸 보기');
+      b.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" ' +
+        'stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
+        '<path d="' + 길 + '"/></svg>';
+      감쌈.appendChild(b);
+      return b;
+    };
+    var 왼 = 화살('l', 'M15 18l-6-6 6-6');
+    var 오 = 화살('r', 'M9 18l6-6-6-6');
+    function 맞추기() {
+      var 끝 = 줄.scrollWidth - 줄.clientWidth;
+      감쌈.classList.toggle('can-l', 끝 > 4 && 줄.scrollLeft > 4);
+      감쌈.classList.toggle('can-r', 끝 > 4 && 줄.scrollLeft < 끝 - 4);
+    }
+    function 밀기(방향) {
+      var 목표 = 줄.scrollLeft + 방향 * Math.max(120, 줄.clientWidth * 0.7);
+      try { 줄.scrollTo({ left: 목표, behavior: 'smooth' }); }
+      catch (e) { 줄.scrollLeft = 목표; }   /* 옛 브라우저 안전장치 */
+    }
+    왼.addEventListener('click', function (e) { e.stopPropagation(); 밀기(-1); });
+    오.addEventListener('click', function (e) { e.stopPropagation(); 밀기(1); });
+    /* 줄이 밀리면 열린 메뉴도 알약을 따라갑니다 (닫아 버리면 누르자마자 닫히는 일이 생깁니다) */
+    줄.addEventListener('scroll', function () { 맞추기(); 열린메뉴따라가기(); }, { passive: true });
+    window.addEventListener('resize', 맞추기);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(맞추기);
+    감쌈.맞추기 = 맞추기;
+    맞추기();
+  }
+
+  /* 미는 줄 안의 메뉴는 줄 밖에 띄웁니다.
+     줄은 넘침을 감추고 양끝을 흐리게(mask) 하므로, 줄 안에 있는 메뉴는 잘리고 흐려집니다.
+     그래서 좁은 화면에서는 메뉴 내용을 화면 맨 위층의 칸(#알약띄움)에 옮겨 적어 알약 바로 아래에 띄웁니다.
+     칸 안의 항목도 같은 pill-item 이라 누르면 원래대로 걸러집니다. */
+  function 미는줄인가(알) {
+    return !!(알 && 알.closest('.slide-wrap') && window.matchMedia('(max-width:560px)').matches);
+  }
+  function 메뉴자리(알, 메뉴) {
+    if (!미는줄인가(알)) return;
+    var 띄움 = document.getElementById('알약띄움');
+    if (!띄움) {
+      띄움 = document.createElement('div');
+      띄움.id = '알약띄움';
+      띄움.className = 'pill-menu';
+      document.body.appendChild(띄움);
+    }
+    if (메뉴) {
+      띄움.innerHTML = 메뉴.innerHTML;
+      메뉴.hidden = true;
+      띄움.hidden = false;
+    }
+    var r = 알.getBoundingClientRect();
+    띄움.style.position = 'fixed';
+    띄움.style.top = Math.round(r.bottom + 6) + 'px';
+    var 폭 = 띄움.offsetWidth || 150;
+    띄움.style.left = Math.round(Math.min(Math.max(8, r.left), window.innerWidth - 폭 - 8)) + 'px';
+  }
+  function 열린메뉴따라가기() {
+    var 띄움 = document.getElementById('알약띄움');
+    if (!띄움 || 띄움.hidden) return;
+    var 알 = document.querySelector('.slide-wrap .pill[aria-expanded="true"]');
+    if (알) 메뉴자리(알, null); else 띄움.hidden = true;
+  }
+  function 밀줄맞추기() {
+    [].forEach.call(document.querySelectorAll('.slide-wrap'), function (w) { if (w.맞추기) w.맞추기(); });
+  }
+
   /* ── 눌림 받기 ─────────────────────────────────────── */
   function 알약닫기(빼고) {
     [].forEach.call(document.querySelectorAll('.pill-menu'), function (m) {
@@ -270,15 +349,16 @@
       var 갈 = e.target.closest('[data-갈래]');
       if (갈) {
         고른갈래 = 갈.getAttribute('data-갈래');
-        보임 = 처음보임; 고르개그리기(); 목록그리기(); 알약닫기(null); return;
+        보임 = 처음보임; 고르개그리기(); 목록그리기(); 알약닫기(null); 밀줄맞추기(); return;
       }
 
       var 알 = e.target.closest('.pill');
       if (알) {
         var 메뉴 = 알.nextElementSibling;
-        var 열림 = !메뉴.hidden;
+        var 열림 = 알.getAttribute('aria-expanded') === 'true';
         알약닫기(열림 ? null : 메뉴);
         메뉴.hidden = 열림;
+        if (!열림) 메뉴자리(알, 메뉴);
         알.setAttribute('aria-expanded', String(!열림));
         return;
       }
@@ -289,7 +369,7 @@
         var 값 = 항.getAttribute('data-값');
         if (키 === '정렬') 고른정렬 = 값; else 고른거름[키] = 값;
         보임 = 처음보임;
-        고르개그리기(); 목록그리기(); 알약닫기(null);
+        고르개그리기(); 목록그리기(); 알약닫기(null); 밀줄맞추기();
         return;
       }
 
@@ -325,6 +405,9 @@
     고르개그리기();
     목록그리기();
     달기();
+    밀줄만들기(document.getElementById('갈래고르개'));
+    밀줄만들기(document.querySelector('.filter-row'), 'pill-slide');
+    window.addEventListener('scroll', 열린메뉴따라가기, { passive: true });
 
     if (window.아래띠) {
       document.body.classList.add('bar3-on');
