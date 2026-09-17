@@ -256,39 +256,22 @@
   }
 
   /* ── 좁은 화면에서 옆으로 미는 줄 (2026-09-17) ────────────────
-     요금표 통신사 탭과 같은 방식입니다. 줄을 감싸는 칸을 하나 만들고 양옆에 화살표를 붙입니다.
-     옆에 더 있으면 감싸는 칸에 can-l / can-r 가 붙고, 모양은 dh-list3.css 가 맡습니다. */
+     폰에서만 옆으로 밉니다. **화살표는 넣지 않습니다** (사장님 결정 2026-09-17, 모바일 기준).
+       요금표 통신사 탭에 화살표가 있는 것은 칸이 조금만 잘려 옆에 더 있는 줄 몰랐기 때문이고,
+       요금표 바로가기 알약은 흐림만 둡니다. 여기 갈래 칸은 폭을 화면의 세 칸 반으로 맞춰
+       어느 폰에서든 넷째 칸이 반쯤 잘려 보이므로 흐림만으로 충분합니다(320·360·390·412 실측).
+     옆에 더 있으면 감싸는 칸에 can-l / can-r 가 붙고, 흐림 모양은 dh-list3.css 가 맡습니다. */
   function 밀줄만들기(줄, 덧이름) {
     if (!줄 || 줄.parentNode.classList.contains('slide-wrap')) return;
     var 감쌈 = document.createElement('div');
     감쌈.className = 'slide-wrap' + (덧이름 ? ' ' + 덧이름 : '');
     줄.parentNode.insertBefore(감쌈, 줄);
     감쌈.appendChild(줄);
-    var 화살 = function (방향, 길) {
-      var b = document.createElement('button');
-      b.type = 'button';
-      b.className = 'slide-nav ' + 방향;
-      b.setAttribute('aria-label', 방향 === 'l' ? '앞 칸 보기' : '다음 칸 보기');
-      b.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" ' +
-        'stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
-        '<path d="' + 길 + '"/></svg>';
-      감쌈.appendChild(b);
-      return b;
-    };
-    var 왼 = 화살('l', 'M15 18l-6-6 6-6');
-    var 오 = 화살('r', 'M9 18l6-6-6-6');
     function 맞추기() {
       var 끝 = 줄.scrollWidth - 줄.clientWidth;
       감쌈.classList.toggle('can-l', 끝 > 4 && 줄.scrollLeft > 4);
       감쌈.classList.toggle('can-r', 끝 > 4 && 줄.scrollLeft < 끝 - 4);
     }
-    function 밀기(방향) {
-      var 목표 = 줄.scrollLeft + 방향 * Math.max(120, 줄.clientWidth * 0.7);
-      try { 줄.scrollTo({ left: 목표, behavior: 'smooth' }); }
-      catch (e) { 줄.scrollLeft = 목표; }   /* 옛 브라우저 안전장치 */
-    }
-    왼.addEventListener('click', function (e) { e.stopPropagation(); 밀기(-1); });
-    오.addEventListener('click', function (e) { e.stopPropagation(); 밀기(1); });
     /* 줄이 밀리면 열린 메뉴도 알약을 따라갑니다 (닫아 버리면 누르자마자 닫히는 일이 생깁니다) */
     줄.addEventListener('scroll', function () { 맞추기(); 열린메뉴따라가기(); }, { passive: true });
     window.addEventListener('resize', 맞추기);
