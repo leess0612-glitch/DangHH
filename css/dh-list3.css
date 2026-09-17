@@ -140,31 +140,36 @@
 }
 
 /* ── 좁은 화면: 갈래 칸 · 거르개 알약을 한 줄로 눕혀 옆으로 밉니다 (2026-09-17 사장님 지시) ──
-   옆에 더 있으면 그쪽 끝을 흐리게 합니다. **화살표는 두지 않습니다** — 요금표 바로가기 알약과 같습니다.
-   흐림은 칸 자체를 가리는 방식(mask)이라 바탕색과 상관없습니다.
-   갈래 칸 폭은 화면의 「세 칸 반」으로 맞춥니다. 고정 폭(96px)이면 폭 360 폰에서 넷째 칸이 16px 만 보여
-   흐림에 묻혔습니다(2026-09-17 실측). 비율로 두면 어느 폰에서든 넷째 칸이 반쯤 잘려 보입니다.
+   아정당 폰 화면과 같은 방식입니다 — **흐림 없이, 줄을 화면 양끝까지 뻗어 화면 끝에서 칸이 선명하게 잘립니다.**
+     (처음엔 끝을 흐리게 했는데, 잘린 칸이 스르르 사라져 「옆에 더 있다」가 안 읽혔습니다. 줄도 본문 여백 안에서
+      끝나 흰 바탕 한가운데서 멈춘 것처럼 보였습니다 — 2026-09-17 사장님 지적)
+   첫 칸은 본문 글줄(여백 16px)에 맞춰 시작하고, 끝까지 밀면 마지막 칸 뒤에도 같은 여백이 남습니다.
+   **화살표는 두지 않습니다** — 반쯤 잘린 칸이 보이면 충분합니다(사장님 결정, 모바일 기준).
+   갈래 칸 폭은 「화면에 세 칸 반」이 보이도록 비율로 맞춥니다. 고정 폭이면 폰 폭마다 잘리는 양이
+   16px~83% 로 들쭉날쭉했습니다(2026-09-17 실측). 폭 = (줄 안쪽 폭 − 틈 셋) ÷ 3.5
+     (줄 안쪽 폭 = 화면폭 − 왼여백 16. 오른쪽 안쪽 여백은 0 이라 이미 빠져 있습니다)
+   알약은 글자 길이가 제각각이라 비율로 못 맞춥니다. 폭 390 에서 「관리 유형」이 화면 끝에 딱 맞아
+   「인기순」이 전혀 안 보였습니다. 그래서 js/dh-list3.js 의 알약여백맞추기() 가 알약 좌우 안쪽 여백을
+   10~18px 안에서 골라, 화면 끝 알약이 30~70% 걸리게 합니다(--pill-px).
    ⚠ scroll-behavior:smooth 는 넣지 않습니다 — 옛 브라우저용 안전장치까지 가로채 멈춥니다.
    ⚠ 넘침을 감추는 줄은 아래로 펼치는 메뉴를 잘라냅니다(2026-09-11 사고).
      그래서 이 줄 안의 메뉴는 js/dh-list3.js 가 줄 밖(#알약띄움)에 띄웁니다. */
 .slide-wrap{position:relative}
 @media(max-width:560px){
-  .slide-wrap .picks{display:flex;flex-wrap:nowrap;overflow-x:auto;gap:8px;
-    scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch;scrollbar-width:none;
-    padding-bottom:2px}
-  .slide-wrap .picks .pick-btn{flex:0 0 calc((100% - 24px) / 3.5);min-width:72px;scroll-snap-align:start}
-  .slide-wrap .filter-row{flex-wrap:nowrap;overflow-x:auto;justify-content:flex-start;
-    -webkit-overflow-scrolling:touch;scrollbar-width:none;margin-top:0}
+  .slide-wrap{margin-left:calc(-1 * var(--pad-screen));margin-right:calc(-1 * var(--pad-screen))}
+  .slide-wrap .picks,.slide-wrap .filter-row{
+    overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;
+    padding-left:var(--pad-screen);padding-right:0;scroll-padding-left:var(--pad-screen)}
+  .slide-wrap .picks::-webkit-scrollbar,.slide-wrap .filter-row::-webkit-scrollbar{display:none}
+  /* 끝 여백 — 아이폰 사파리는 넘치는 줄의 오른쪽 안쪽 여백을 무시하므로 빈 칸으로 만듭니다 */
+  .slide-wrap .picks::after,.slide-wrap .filter-row::after{
+    content:'';flex:0 0 calc(var(--pad-screen) - 8px);height:1px}
+  .slide-wrap .picks{display:flex;flex-wrap:nowrap;gap:8px;margin-top:20px;
+    scroll-snap-type:x proximity;padding-bottom:2px}
+  .slide-wrap .picks .pick-btn{flex:0 0 calc((100% - 24px) / 3.5);min-width:72px;
+    scroll-snap-align:start}
+  .slide-wrap .filter-row{flex-wrap:nowrap;justify-content:flex-start;margin-top:0}
   .slide-wrap.pill-slide{margin-top:12px}
   .slide-wrap .pill-row{flex-wrap:nowrap}
-  .slide-wrap .picks::-webkit-scrollbar,.slide-wrap .filter-row::-webkit-scrollbar{display:none}
-  .slide-wrap.can-r:not(.can-l) .picks,.slide-wrap.can-r:not(.can-l) .filter-row{
-    -webkit-mask-image:linear-gradient(to right,#000 calc(100% - 40px),transparent);
-            mask-image:linear-gradient(to right,#000 calc(100% - 40px),transparent)}
-  .slide-wrap.can-l:not(.can-r) .picks,.slide-wrap.can-l:not(.can-r) .filter-row{
-    -webkit-mask-image:linear-gradient(to left,#000 calc(100% - 40px),transparent);
-            mask-image:linear-gradient(to left,#000 calc(100% - 40px),transparent)}
-  .slide-wrap.can-l.can-r .picks,.slide-wrap.can-l.can-r .filter-row{
-    -webkit-mask-image:linear-gradient(to right,transparent,#000 40px,#000 calc(100% - 40px),transparent);
-            mask-image:linear-gradient(to right,transparent,#000 40px,#000 calc(100% - 40px),transparent)}
+  .slide-wrap .pill{padding-left:var(--pill-px,14px);padding-right:var(--pill-px,14px)}
 }

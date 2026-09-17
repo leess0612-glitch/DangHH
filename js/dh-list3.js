@@ -256,11 +256,9 @@
   }
 
   /* ── 좁은 화면에서 옆으로 미는 줄 (2026-09-17) ────────────────
-     폰에서만 옆으로 밉니다. **화살표는 넣지 않습니다** (사장님 결정 2026-09-17, 모바일 기준).
-       요금표 통신사 탭에 화살표가 있는 것은 칸이 조금만 잘려 옆에 더 있는 줄 몰랐기 때문이고,
-       요금표 바로가기 알약은 흐림만 둡니다. 여기 갈래 칸은 폭을 화면의 세 칸 반으로 맞춰
-       어느 폰에서든 넷째 칸이 반쯤 잘려 보이므로 흐림만으로 충분합니다(320·360·390·412 실측).
-     옆에 더 있으면 감싸는 칸에 can-l / can-r 가 붙고, 흐림 모양은 dh-list3.css 가 맡습니다. */
+     폰에서만 옆으로 밉니다. 흐림도 화살표도 없이, 줄을 화면 양끝까지 뻗어 칸이 화면 끝에서 잘리게 합니다
+     (아정당 방식 — 사장님 결정 2026-09-17, 모양은 dh-list3.css).
+     can-l / can-r 는 지금은 모양에 쓰지 않지만, 어느 쪽에 더 있는지 알려 주는 표시로 남겨 둡니다. */
   function 밀줄만들기(줄, 덧이름) {
     if (!줄 || 줄.parentNode.classList.contains('slide-wrap')) return;
     var 감쌈 = document.createElement('div');
@@ -313,7 +311,37 @@
     var 알 = document.querySelector('.slide-wrap .pill[aria-expanded="true"]');
     if (알) 메뉴자리(알, null); else 띄움.hidden = true;
   }
+  /* 알약 줄 — 화면 끝에 걸리는 알약이 반쯤 보이도록 알약 안쪽 여백을 고릅니다 (2026-09-17)
+     알약은 글자 길이가 제각각이라, 폰 폭에 따라 알약이 화면 끝에 딱 맞게 끝나 버리면
+     옆에 더 있다는 게 안 보입니다(폭 390 에서 실제로 그랬습니다).
+     10~18px 을 차례로 넣어 보고, 걸린 알약이 보이는 비율이 45% 에 가장 가까운 값을 씁니다.
+     줄을 밀어 둔 상태여도 되도록 밀린 양(scrollLeft)을 더해 처음 자리로 셉니다. */
+  function 알약여백맞추기() {
+    var 줄 = document.querySelector('.slide-wrap .filter-row');
+    if (!줄) return;
+    if (!window.matchMedia('(max-width:560px)').matches) { 줄.style.removeProperty('--pill-px'); return; }
+    var 화면끝 = 줄.getBoundingClientRect().right;
+    /* 기본 여백(14px)으로 다 들어가면 손대지 않습니다 */
+    줄.style.setProperty('--pill-px', '14px');
+    if (줄.scrollWidth <= 줄.clientWidth + 1) return;
+    var 가장 = 14, 가장차이 = 9;
+    for (var px = 10; px <= 18; px++) {
+      줄.style.setProperty('--pill-px', px + 'px');
+      var 알들 = 줄.querySelectorAll('.pill');
+      var 비율 = null;
+      for (var i = 0; i < 알들.length; i++) {
+        var r = 알들[i].getBoundingClientRect();
+        var 왼 = r.left + 줄.scrollLeft, 오 = r.right + 줄.scrollLeft;
+        if (오 > 화면끝 + 0.5) { 비율 = Math.max(0, 화면끝 - 왼) / r.width; break; }
+      }
+      if (비율 === null) continue;   /* 이 여백에선 넘치지 않음 — 걸린 알약이 없어 고르지 않습니다 */
+      var 차이 = Math.abs(비율 - 0.45);
+      if (차이 < 가장차이) { 가장차이 = 차이; 가장 = px; }
+    }
+    줄.style.setProperty('--pill-px', 가장 + 'px');
+  }
   function 밀줄맞추기() {
+    알약여백맞추기();
     [].forEach.call(document.querySelectorAll('.slide-wrap'), function (w) { if (w.맞추기) w.맞추기(); });
   }
 
@@ -390,6 +418,9 @@
     달기();
     밀줄만들기(document.getElementById('갈래고르개'));
     밀줄만들기(document.querySelector('.filter-row'), 'pill-slide');
+    밀줄맞추기();
+    window.addEventListener('resize', 알약여백맞추기);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(밀줄맞추기);
     window.addEventListener('scroll', 열린메뉴따라가기, { passive: true });
 
     if (window.아래띠) {
