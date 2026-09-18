@@ -97,7 +97,19 @@
         e.style.bottom = 올림 ? 올림 + 'px' : '';
       }
     }
-    /* 띠가 발바닥 위로 올라붙으므로, 화면 끝에 두던 여유 공간은 필요 없습니다 */
+    /* 본문 마지막 줄이 띠에 가리지 않도록, 발바닥 바로 앞에 띠 높이만큼만 자리를 둡니다.
+       (2026-09-18 — 0 으로 두었더니 목록 맨 아래 주석이 띠에 가렸습니다) */
+    var 높이 = 0;
+    for (var k = 0; k < 띠목록.length; k++) {
+      var 것 = document.querySelectorAll(띠목록[k]);
+      for (var m = 0; m < 것.length; m++) {
+        var s2 = window.getComputedStyle(것[m]);
+        if (s2.position !== 'fixed' || s2.display === 'none' || s2.visibility === 'hidden') continue;
+        var h2 = 것[m].getBoundingClientRect().height;
+        if (h2 > 높이) 높이 = h2;
+      }
+    }
+    발.style.marginTop = 높이 ? Math.round(높이 + 12) + 'px' : '';
     document.body.style.paddingBottom = '0px';
   }
 
