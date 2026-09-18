@@ -8,7 +8,7 @@
    · 「무료상담」은 넣지 않습니다 — 아래 띠에 늘 있습니다.
    · 차례는 상품(인터넷·정수기)을 앞으로 뺍니다.
    · 줄은 화면 끝까지 뻗어 끝 항목이 잘려 보이게 합니다(거름 알약 줄과 같은 방식, 흐림·화살표 없음).
-   · 머리띠 아래에 붙지 않고 **본문과 함께 위로 밀려 올라갑니다** — 목록의 거름 묶음 고정과 겹치지 않게.
+   · 머리띠 바로 아래에 늘 떠 있습니다. 붙는 줄(요금표 탭·정수기 기능 줄)은 이 줄 아래(머리띠+44)로 내려 붙습니다.
    ══════════════════════════════════════════════════════════════════════ */
 (function () {
   'use strict';
@@ -49,13 +49,9 @@
     줄.appendChild(안);
     document.body.appendChild(줄);
     document.documentElement.classList.add('tn-on');
-    function 따라가기() {
-      var y = Math.min(window.pageYOffset || 0, 44);
-      줄.style.transform = 'translateY(' + (-y) + 'px)';
-      줄.style.visibility = y >= 44 ? 'hidden' : '';
-    }
-    window.addEventListener('scroll', 따라가기, { passive: true });
-    따라가기();
+    /* 2026-09-18 — 줄을 스크롤에 따라 감추지 않습니다.
+       감추면 머리띠 아래 44px 이 비어, 그 사이로 본문이 지나가는 것이 보였습니다(사장님 지적).
+       늘 떠 있게 두고, 아래에 붙는 줄들(요금표 탭·정수기 기능 줄)은 이 줄 아래로 내려 붙입니다. */
   }
 
   var 모양 = document.createElement('style');
@@ -74,6 +70,10 @@
       'border-bottom:2px solid transparent;box-sizing:border-box}' +
     '#상단메뉴줄 a[aria-current="page"]{color:#1257C9;border-bottom-color:#1257C9}' +
     '#상단메뉴줄 a[hidden]{display:none}' +
+    /* 아래에 붙는 줄들이 이 줄에 가리지 않도록 그만큼 내려 붙입니다 */
+    'html.tn-on .tabbar{top:calc(var(--h-header, 64px) + 44px)}' +
+    'html.tn-on .filter-stick{top:calc(var(--h-header, 64px) + 44px)}' +
+    'html.tn-on{scroll-padding-top:calc(var(--stick-h, 133px) + 44px)}' +
     '}' +
     '@media(min-width:769px){#상단메뉴줄{display:none}}';
   document.head.appendChild(모양);
