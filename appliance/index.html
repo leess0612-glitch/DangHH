@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>가전 렌탈 — 공기청정기·비데·안마의자·TV·냉장고 | 당현함</title>
+<link rel="icon" href="/favicon.ico?v=2" sizes="32x32">
+<link rel="icon" href="/favicon.svg?v=2" type="image/svg+xml">
+<!-- 이 쪽의 대표 주소. 물음표가 붙은 주소(광고 꼬리표 등)로 들어와도
+     검색엔진이 이 주소 하나만 세도록 알려 준다 (2026-09-10) -->
+<link rel="canonical" href="https://danghh.com/appliance/">
+<meta name="description" content="공기청정기·비데·안마의자·에어컨·TV·냉장고까지 가전 렌탈을 카카오톡으로 안내드립니다. 코웨이·SK매직·LG·쿠쿠·청호·웰스·현대큐밍.">
+<meta name="robots" content="index, follow">
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.css">
+<!-- ===== 당현함 통합 전환추적 v1 (다섯 페이지 공통: index·internet·rental·gift·plans / 수정 시 5개 파일 모두 동일하게) ===== -->
+<script>
+/* 이 페이지를 통계에서 부를 이름 */
+var DH_PAGE = 'danghh-appliance';
+/* 네이버 전환추적 공통키(AccountId) — 2026-08-28 발급받아 채움.
+   홈페이지 소스에 그대로 드러나는 공개값이라 가려 둘 필요가 없다(구글 측정번호와 같은 성격) */
+var DH_NAVER_ID = 's_2e8bfd0103db';
+
+/* 같은 방문에서 한 번만 세도록 막는 장치 */
+function dhOnce(key){
+  try{
+    if(sessionStorage.getItem('dh_'+key)) return false;
+    sessionStorage.setItem('dh_'+key,'1'); return true;
+  }catch(e){ return true; }
+}
+
+/* 네이버 전환 한 건 보내기 (2026-08-28)
+   공통키(AccountId) s_2e8bfd0103db · 설치 가이드 https://navercts.gitbook.io/guide
+   전환 종류 - lead=신청 완료 / custom001=카카오톡 상담 / custom002=전화 걸기
+   ※ custom001·002 는 네이버 광고 화면에서 '사용자 정의' 전환으로 신청돼 있어야 집계된다 */
+function dhNaver(종류){
+  try{
+    if(!DH_NAVER_ID || !window.wcs || typeof wcs.trans !== 'function') return;
+    if(!window.wcs_add) window.wcs_add = {};
+    wcs_add['wa'] = DH_NAVER_ID;
+    var _conv = {};
+    _conv.type = 종류;
+    wcs.trans(_conv);
+  }catch(e){ /* 추적이 실패해도 신청 접수는 절대 방해하지 않음 */ }
+}
+
+/* 전환 1건을 구글·메타·네이버에 동시에 알림 (개인정보는 보내지 않음) */
+function dhTrack(action, opts){
+ try{
+  opts = opts || {};
+  if(opts.once !== false && !dhOnce(action)) return;
+
+  /* 1) 구글 애널리틱스 */
+  if(typeof gtag === 'function'){
+    gtag('event', action, { dh_page: DH_PAGE });
+  }
+  /* 2) 메타 픽셀 */
+  if(typeof fbq === 'function'){
+    var metaName = { lead_submit:'Lead', kakao_click:'Contact', phone_click:'Contact' }[action];
+    if(metaName) fbq('track', metaName, { content_name: DH_PAGE + '/' + action });
+    else fbq('trackCustom', action, { content_name: DH_PAGE });
+  }
+  /* 3) 네이버 (ID를 채운 경우에만)
+     2026-08-28 : 옛 방식 wcs.cnv 는 전환을 번호로만 구분해 신청·카톡·전화가 한 덩어리로 뭉쳤다.
+     가이드가 시키는 wcs.trans 로 바꿔 종류를 나눈다.
+     신청(lead)은 여기서 안 쏜다 — 이 자리는 '보내기 직전'이라 실패한 신청까지 세어진다.
+     진짜 접수된 뒤(성공 화면이 뜰 때) dhNaver('lead') 를 따로 부른다. */
+  var 네이버종류 = { kakao_click:'custom001', phone_click:'custom002' }[action];
+  if(네이버종류) dhNaver(네이버종류);
+ }catch(e){ /* 추적이 실패해도 신청 접수는 절대 방해하지 않음 */ }
+}
+
+/* 네이버 스크립트는 ID가 채워졌을 때만 불러옴 */
+(function(){
+  if(!DH_NAVER_ID) return;
+  var s=document.createElement('script'); s.async=true; s.src='//wcs.naver.net/wcslog.js';
+  s.onload=function(){
+    try{
+      if(!window.wcs_add) window.wcs_add={};
+      wcs_add['wa']=DH_NAVER_ID;
+      if(!window._nasa) window._nasa={};
+      if(window.wcs) wcs.inflow();
+      wcs_do();   /* 네이버가 발급한 안내문과 같은 형태로 맞춤 (2026-08-28) */
+    }catch(e){}
+  };
+  document.head.appendChild(s);
+})();
+
+/* 전화·카카오 링크 클릭 자동 감지 (버튼이 몇 개든 자동으로 잡힘) */
+document.addEventListener('click', function(e){
+  var a = e.target && e.target.closest ? e.target.closest('a') : null;
+  if(!a) return;
+  var href = a.getAttribute('href') || '';
+  if(href.indexOf('tel:') === 0) dhTrack('phone_click');
+  else if(href.indexOf('pf.kakao.com') > -1) dhTrack('kakao_click');
+}, true);
+
+/* 페이지를 절반 이상 읽었는지 */
+window.addEventListener('scroll', function(){
+  var h = document.documentElement.scrollHeight - window.innerHeight;
+  if(h > 0 && (window.scrollY / h) >= 0.5) dhTrack('scroll_50');
+}, { passive: true });
+</script>
+<script src="../js/dh-inflow.js?v=65"></script>
+<script src="../js/dh-topnav.js?v=4"></script>
+<script src="../js/dh-find.js?v=1"></script>
+<script src="../js/dh-footer.js?v=1"></script>
+<style>
+/* ===== 글꼴: Pretendard (2026-09-04, SUIT 에서 갈아탐) =====
+   전에는 여기서 SUIT 6굵기를 통째로 받았다 — 약 1.0MB.
+   지금은 위 <link> 한 줄로 '쓰는 글자만 골라 받는' 방식을 쓴다.
+   화면에 실제로 나온 글자 조각만 내려받아 약 0.4MB 로 줄었다.
+   Variable 판이라 400~900 굵기가 한 가족 안에 다 들어 있다.
+   갈아탄 까닭: SUIT 는 숫자 폭 고정이 제대로 안 들어 계산기 금액이 바뀔 때
+   옆 글자가 몇 px 씩 밀렸다. Pretendard 는 어긋남이 0 이다. */
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --primary: #1257C9;
+  --primary-dark: #0E45A0;
+  --accent: #f59e0b;
+  --dark: #0f172a;
+  --gray: #5F6672;
+  --light-gray: #F5F6F8;
+  --white: #ffffff;
+  --border: #e2e8f0;
+  --ground: #FCFCFD;
+  /* 통신사 고유색 — index.html 카드 로고에 쓰는 색과 같음 */
+  --kt: #e60012;
+  --sk: #E7630F;
+  --lg: #DE0087;
+}
+body { font-family: 'Pretendard Variable', Pretendard, 'Noto Sans KR', sans-serif; color: var(--dark); line-height: 1.6; overflow-x: hidden; background: var(--ground); }
+body.locked { overflow: hidden; }
+
+/* ===== HEADER (index.html과 동일) ===== */
+header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: white; box-shadow: 0 2px 16px rgba(15,42,90,0.08); }
+.header-inner { max-width: 1200px; margin: 0 auto; padding: 0 20px; height: 56px; display: flex; align-items: center; justify-content: space-between; }
+/* 로고를 오른쪽 전화 단추와 같은 높이로 (2026-08-25 다시 잼)
+   ★ 글자 높이는 '줄상자'가 아니라 '글자가 실제로 칠해지는 범위'로 재야 한다.
+     줄상자로 재면 글자 위아래 빈 공간까지 세어져 실제보다 크게 나온다(32px일 때 30px인데 40px로 나왔다).
+   실측: 전화 단추 40px / 43px일 때 글자가 칠해지는 높이 40px -> 딱 맞음 */
+.logo { font-size: 24px; font-weight: 900; color: var(--primary); text-decoration: none; letter-spacing: -0.5px;
+        line-height: 1; }   /* 줄간격을 1로: 안 그러면 글자 줄상자(69px)가 머리띠(64px)보다 커진다 */
+.logo span { color: var(--primary); }
+
+/* ═════ 2026-08-28 로고·머리띠 개편 ═════
+   1) 로고를 '파란 둥근 네모 + 흰 글자' 그림으로 바꾸고 이름 옆에 함께 쓴다.
+      모양은 원본 logo.png 를 소수점까지 실측해 코드로 다시 그린 것이다(어긋난 점 35/90000).
+   2) 머리띠에서 전화·카톡을 빼고, 오른쪽에 떠 있는 단추(좁을 때)와 상담 패널(넓을 때)로 옮겼다.
+      까닭: 오른쪽 색 덩어리가 왼쪽 로고의 2.2배라 서로 눈길을 나눠 가졌다.
+   3) 메뉴를 머리띠 한가운데로 옮겼다.
+   ★ 되돌리려면 이 덩어리와 아래 '상담 패널' 덩어리를 지우고,
+     머리띠·꼬리말 html 에서 <svg> 조각만 빼면 된다. */
+.logo { display: inline-flex; align-items: center; gap: 10px; min-height: 44px; }   /* 누름 영역 44 (2026-09-18) */
+.logo-mark { flex: none; display: block; width: 37px; height: 24px; }   /* 2026-09-18 로고 한 벌 — 마크+글자 높이 24 (사장님 지시) */
+.footer-logo { display: flex; align-items: center; gap: 8px; }
+.footer-mark { flex: none; display: block; }
+
+/* 로고 그림이 보이는 넓은 화면에서만 '당현함' 글씨를 그림과 같은 높이(30)로 맞춘다.
+   ★ 글자 높이는 줄상자가 아니라 '실제로 칠해지는 범위'로 재야 한다.
+     실측: 32px 일 때 칠해지는 높이 30px (43px 일 때는 40px). */
+@media (min-width: 931px) { .logo { font-size: 24px; } }
+/* 창이 좁으면 그림을 감추고 글자만 남긴다 -> 좁은 화면은 예전과 똑같아진다.
+   실측 근거: 머리띠 안쪽폭 = 창너비 - 40. 로고글자 111 + 메뉴 514 + (뺀)단추 자리.
+   931 에서 양옆 틈이 33px 씩 남아 넉넉하다. */
+/* 2026-09-18: 폰에서 마크를 감추던 규칙을 뺐습니다 — 모든 화면이 마크+글자 한 벌입니다 */
+
+/* 머리띠에서 전화·카톡을 뺀다. 되돌리려면 이 한 줄만 지운다. */
+.header-cta { display: none !important; }
+
+/* 메뉴를 머리띠의 '진짜 가운데'에 둔다.
+   ★ 그냥 가운데 정렬하면 왼쪽 로고 때문에 오른쪽으로 밀린다.
+     그래서 흐름에서 빼내어(absolute) 가운데에 고정하고 부모에 자리표(relative)를 준다. */
+.header-inner { position: relative; }
+/* ★ width: max-content 가 없으면 좁은 화면에서 메뉴 글자가 두 줄로 접힌다 (2026-08-28 실제로 겪음).
+     까닭: 흐름에서 빼낸(absolute) 칸에 left 만 주면, 쓸 수 있는 너비가
+          '왼쪽 끝(50%)부터 오른쪽 끝까지' 즉 화면의 절반뿐이 된다.
+          메뉴가 그보다 넓어지는 순간 글자가 접힌다 (혜택안/내 처럼).
+     max-content 는 '내용 만큼'이라 자리에 상관없이 한 줄을 지킨다. */
+/* 가운데 맞춤은 자리가 넉넉한 931 이상에서만 한다.
+   실측(2026-08-28): 창 785 에서 가운데로 맞추면 로고와 메뉴 사이가 10px 까지 붙었다.
+     (메뉴 514 를 가운데 두면 양옆에 121 씩 남는데, 로고가 111 이라 10 만 남는다)
+   930 이하는 로고 그림도 감춰지는 구간이므로, 손대기 전 모습(오른쪽 정렬) 그대로 둔다. */
+@media (min-width: 931px) {
+  .header-inner nav {
+    position: absolute; left: 50%; transform: translateX(-50%);
+    /* ★ width: max-content 가 없으면 메뉴 글자가 두 줄로 접힌다 (2026-08-28 실제로 겪음).
+         까닭: 흐름에서 빼낸(absolute) 칸에 left 만 주면 쓸 수 있는 너비가
+              '왼쪽 끝(50%)부터 오른쪽 끝까지' 곧 화면의 절반뿐이 된다.
+              메뉴가 그보다 넓어지는 순간 '혜택안 / 내' 처럼 접힌다.
+         max-content 는 '내용 만큼'이라 자리에 상관없이 한 줄을 지킨다. */
+    width: max-content; max-width: none;
+  }
+}
+.header-inner nav a { white-space: nowrap; }
+nav { display: flex; gap: 4px; align-items: center; }
+nav a { font-size: 14px; font-weight: 600; color: var(--gray); text-decoration: none; padding: 6px 10px; border-radius: 8px; transition: all 0.2s; }
+nav a:hover { color: var(--primary); background: #eff6ff; }
+nav a.on { color: var(--primary); background: #eff6ff; font-weight: 700; }
+.header-phone { display: flex; align-items: center; gap: 6px; background: var(--primary); color: white; padding: 8px 16px; border-radius: 8px; font-size: 15px; font-weight: 700; text-decoration: none; transition: transform 0.12s ease, background 0.2s; }
+.header-phone:hover { background: var(--primary-dark); }
+/* ===== 머리띠 전화·카톡 단추 (2026-08-25) =====
+   카톡은 전에 화면 아래 오른쪽에 동그랗게 떠다니던 것을 여기로 올렸다.
+   전화 단추와 같은 크기·모양으로 맞춰 한 쌍처럼 보이게 한다. */
+.header-cta { display: flex; align-items: center; gap: 8px; }
+/* 좁은 컴퓨터 화면에서 전화번호가 두 줄로 접혀 단추가 64px로 부풀었다 (실측).
+   min-height: 카톡 글씨를 뺀 화면에서 그림만 남아 33px로 낮아지는 것을 40px로 맞춘다. */
+.header-cta > a { white-space: nowrap; flex: none; min-height: 40px; }
+.header-kakao {
+  display: flex; align-items: center; gap: 6px;
+  background: #fee500; color: #3a1d00; padding: 8px 16px;
+  border-radius: 8px; font-size: 15px; font-weight: 700; text-decoration: none; transition: background 0.2s;
+}
+/* 2026-09-07 카톡 단추: 남의 브랜드색(#FEE500)은 어둡게 만들지 않는다. 눌림은 움직임으로. */
+.header-kakao{ transition:transform .08s ease, box-shadow .08s ease }
+.header-kakao:hover { box-shadow:0 2px 6px rgba(0,0,0,.16); }
+.header-kakao:active { transform:translateY(1px) scale(.985); box-shadow:none; }
+/* 좁은 컴퓨터 화면(태블릿 가로 등)에서는 글씨를 빼고 그림만 남긴다.
+   실측: 769px에서 글씨까지 두면 로고와 메뉴가 딱 붙어 숨이 막힌다 */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .header-kakao { padding: 8px 12px; }
+  .header-kakao .kakao-label { display: none; }
+}
+.header-phone:active { transform: translateY(1px) scale(0.985); }
+.hamburger { display: none; cursor: pointer; flex-direction: column; gap: 5px; }
+.hamburger span { display: block; width: 24px; height: 2px; background: var(--dark); border-radius: 4px; }
+.mobile-menu { display: none; position: fixed; top: 56px; left: 0; right: 0; background: white; padding: 12px 20px; box-shadow: 0 8px 20px rgba(0,0,0,0.1); z-index: 999; }
+.mobile-menu.open { display: block; }
+.mobile-menu a { display: block; padding: 13px 0; font-size: 15px; font-weight: 600; color: var(--dark); text-decoration: none; border-bottom: 1px solid var(--border); }
+.mobile-menu a:last-child { border-bottom: none; }
+
+/* 메뉴가 6개(요금·사은품 추가)가 되면서 좁은 컴퓨터 화면에서 전화번호 버튼과 거의 붙었다.
+   769~880px 구간에서만 항목 사이 여백을 살짝 줄여 숨통을 틔운다 (2026-08-20)
+   768px 이하는 어차피 햄버거 메뉴로 접히므로 영향 없음 */
+@media (min-width: 769px) and (max-width: 880px) {
+  nav a { padding: 6px 7px; }
+  .header-inner { padding: 0 14px; }
+}
+.mobile-menu a:active { background: #F5F6F8; }
+
+/* ===== 통신사 고르는 단추 (화면 위에 붙어서 따라옴) ===== */
+.tabbar { position: sticky; top: 56px; z-index: 500; background: var(--ground); border-bottom: 1px solid var(--border); }
+.tabs {
+  max-width: 860px; margin: 0 auto; padding: 12px 20px;
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;
+}
+.tab.kt { color: var(--kt); }
+.tab.sk { color: var(--sk); }
+.tab.lg { color: var(--lg); font-size: 15px; }
+.tab.kt[aria-selected="true"] { background: var(--kt); border-color: var(--kt); }
+.tab.sk[aria-selected="true"] { background: var(--sk); border-color: var(--sk); }
+.tab.lg[aria-selected="true"] { background: var(--lg); border-color: var(--lg); }
+.panel[hidden] { display: none; }
+.sheet-name .co { font-weight: 800; }
+.sheet-name.kt .co { color: var(--kt); }
+.sheet-name.sk .co { color: var(--sk); }
+.sheet-name.lg .co { color: var(--lg); }
+
+.note { margin-top: 16px; padding: 15px 18px; background: white; border: 1px solid var(--border); border-radius: 12px; font-size: 13px; color: var(--gray); line-height: 1.8; word-break: keep-all; }
+.zoom.open { display: block; }
+
+/* ===== FOOTER (index.html과 동일) ===== */
+footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; font-size: 13px; line-height: 1.9; }
+.footer-inner { max-width: 1100px; margin: 0 auto; }
+.footer-top { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 20px; margin-bottom: 24px; padding-bottom: 24px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+.footer-logo { font-size: 20px; font-weight: 900; color: white; }
+.footer-links { display: flex; gap: 20px; flex-wrap: wrap; }
+.footer-links a { color: rgba(255,255,255,0.6); text-decoration: none; font-size: 13px; }
+.footer-links a:hover { color: white; }
+.footer-disclaimer { margin-top: 16px; font-size: 12px; color: rgba(255,255,255,0.3); line-height: 1.7; }
+/* 아래 카드가 24 여백 + 75 높이까지 차지한다. 좁은 컴퓨터 화면에서 카드 오른쪽 끝과
+   동그란 단추가 겹치므로 위로 올린다 (index.html 과 같은 규칙) */
+@media (min-width: 769px) { }
+/* 컴퓨터에서는 떠다니는 동그란 단추를 없앤다 (2026-08-25)
+   전화 단추는 삭제하고, 카톡 단추는 위 머리띠로 옮겼다. 폰에서는 그대로 둔다. */
+/* 2026-08-25 에는 컴퓨터에서 이 단추를 없애고 카톡을 머리띠로 올렸었다.
+   2026-08-28 되돌린다 — 머리띠에서 전화·카톡을 뺐으니 이 단추가 그 몫을 한다.
+   1600 이상에서만 감춘다. 그 위는 오른쪽 상담 패널이 대신 뜬다. */
+@media (min-width: 1600px) { }
+@media (min-width: 1600px) { }
+
+
+/* ═════ 컴퓨터 화면 아래 '따라오는' 신청 카드 — 2026-08-28 ═════
+   index.html 의 .desk-cta-bar 를 그대로 옮겨 온 것이다.
+   까닭(index 에 적힌 그대로): 좌우로 꽉 찬 띠는 광고 배너와 모양이 같아서
+     손님 눈이 자동으로 건너뛴다. 그래서 좌우를 잘라내고 내용만큼만 차지하는 카드로 띄운다.
+   ★ 카드 전체가 하나의 누르는 곳이다.
+   이 페이지에는 신청폼이 없으므로 index.html 의 신청 자리로 보낸다.
+   폰(768 이하)에서는 아래 흰 띠가 그 몫을 하므로 이 카드는 뜨지 않는다. */
+.desk-cta-bar {
+  display: none;
+  position: fixed; bottom: 24px; left: 0; right: 0; z-index: 940;
+  justify-content: center;
+  opacity: 0; transform: translateY(16px);
+  transition: opacity 0.3s, transform 0.35s cubic-bezier(0.4,0,0.2,1);
+  pointer-events: none;
+}
+.desk-cta-bar.visible { opacity: 1; transform: translateY(0); }
+/* 바깥 칸은 화면을 가로지르므로 눌림을 꺼 두고, 보일 때만 카드에 눌림을 준다 */
+.desk-cta-bar.visible .desk-cta-card { pointer-events: auto; }
+@media (min-width: 769px) { .desk-cta-bar { display: flex; } }
+
+/* 휴대폰 아래 고정 신청 막대 — index.html의 .mobile-cta-bar와 같은 디자인.
+   이 페이지에는 신청폼이 없어 숨길 조건 없이 항상 떠 있는다 (2026-08-21) */
+.mobile-cta-bar {
+  display: none; position: fixed; bottom: 0; left: 0; right: 0; z-index: 950;
+  padding: 10px 16px; background: white; box-shadow: 0 -3px 16px rgba(0,0,0,0.12);
+}
+
+@media (max-width: 768px) {
+  nav { display: none; }
+  .hamburger { display: flex; }
+  /* 폰에서는 머리띠의 전화·카톡 단추를 없앤다 (2026-08-25)
+     화면 아래 오른쪽에 떠다니는 전화·카톡 단추가 이미 그 몫을 하고 있어 겹친다 */
+  .header-cta { display: none; }
+  /* 폰에서는 전화 단추가 작아진다(높이 35px). 로고도 그에 맞춘다
+     실측: 37px일 때 글자가 칠해지는 높이 35px -> 딱 맞음 */
+  .logo { font-size: 24px; }
+  .tabs { padding: 10px 14px; gap: 8px; }
+  .tab.lg { font-size: 13px; }
+  .note { padding: 14px; font-size: 12px; }   /* 고정 막대(68px) 위로 */
+  .mobile-cta-bar { display: block; }
+  body { padding-bottom: 68px; }
+}
+@media (hover: none) {
+}
+@media (prefers-reduced-motion: reduce) {
+  * { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+}
+</style>
+<style>
+/* ═════ 가전 렌탈 화면 (2026-09-18) ═════
+   값은 모두 「당현함 디자인보드」에서 가져온 것입니다.
+   · 색 — 파랑 #1257C9(--primary) · 보조글자 #5F6672(--gray) · 선 --border
+   · 크기 — 제목 28/800 · 소제목 20/800 · 품목 15/600 · 단추 16/700 · 주석 13/600
+   · 모서리 — 누르는 것 8 · 카드 12    · 여백 눈금 8 12 16 20 24 32
+   · 누르는 것은 모두 44 이상 (보드 규칙 9)
+   ⚠ 색이 든 단추는 카톡 하나뿐입니다. 파란 단추를 여기에 더 놓지 않습니다. */
+.ap-head { background: white; border-bottom: 1px solid var(--border); padding: 96px 20px 32px; text-align: center; }
+.ap-head h1 { font-size: 28px; font-weight: 800; color: var(--dark); letter-spacing: -0.5px; }
+/* 안내 글은 **줄을 끊지 않고** 너비에 맡깁니다 (A안 · 2026-09-18 사장님 결정).
+   정수기 목록 머리글(css/dh-brand.css 의 .page-head + .lead)과 같은 방식입니다 —
+   그쪽은 860 칸 안에서 한 줄에 34~44자로 흐릅니다. 두 화면이 한 벌로 보이게 맞췄습니다.
+   820 = 860(읽는 칸) - 좌우 여백 20씩. */
+.ap-head p { max-width: 820px; margin: 16px auto 0; font-size: 16px; line-height: 1.7; color: var(--gray); }
+.ap-head p + p { margin-top: 12px; }
+.ap-head .ap-kakao { margin-top: 24px; }
+
+.ap-wrap { max-width: 860px; margin: 0 auto; padding: 32px 20px 120px; }
+.ap-sec + .ap-sec { margin-top: 32px; }
+.ap-sec h2 { font-size: 20px; font-weight: 800; color: var(--dark); letter-spacing: -0.4px; margin-bottom: 16px; }
+
+/* 품목 — 한 눈에 훑도록 격자 하나에 늘어놓습니다. 묶음을 만들면 한 번 더 눌러야 합니다.
+   ★ 칸 수를 4와 2로 **못 박습니다.** 품목이 열여섯이라 4로 나누면 네 줄, 2로 나누면 여덟 줄로
+     언제나 꽉 찹니다. 폭에 맡기면(auto-fill) 중간 크기 화면에서 3칸이 되어
+     마지막 줄에 하나만 덩그러니 남았습니다. */
+.ap-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+.ap-item {
+  display: flex; align-items: center; justify-content: center; text-align: center;
+  min-height: 56px; padding: 8px 12px; background: white;
+  border: 1.5px solid var(--border); border-radius: 8px;
+  font-size: 15px; font-weight: 600; color: var(--dark); text-decoration: none;
+  transition: border-color .15s ease, color .15s ease;
+}
+.ap-item:hover { border-color: var(--primary); color: var(--primary); }
+.ap-item:active { transform: translateY(1px); }
+/* 「기타 모든 가전」은 다른 칸과 성격이 달라 한 줄을 통째로 씁니다.
+   마지막 줄에 혼자 남아 빈자리가 생기는 것도 함께 막아 줍니다. */
+.ap-item.ap-etc { grid-column: 1 / -1; }
+
+/* 이 화면의 주 단추는 카톡 하나입니다 */
+.ap-kakao {
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  max-width: 320px; margin: 0 auto; height: 48px;
+  background: #FEE500; color: #3A1D00; border-radius: 8px;
+  font-size: 16px; font-weight: 700; text-decoration: none;
+  transition: box-shadow .08s ease, transform .08s ease;
+}
+/* 남의 브랜드색은 어둡게 만들지 않습니다 (보드 규칙 6) — 눌림은 움직임으로 알립니다 */
+.ap-kakao:hover { box-shadow: 0 2px 6px rgba(0,0,0,.16); }
+.ap-kakao:active { transform: translateY(1px) scale(.985); box-shadow: none; }
+
+/* 아래 따라다니는 띠 — **폰에서만** 띄웁니다.
+   컴퓨터는 이 화면이 한 눈에 다 들어와, 띠를 두면 상담 칸의 카톡 단추와 나란히 두 번 보였습니다. */
+.ap-bar { display: none; }
+@media (max-width: 768px) {
+  .ap-bar {
+    display: block; position: fixed; left: 0; right: 0; bottom: 0; z-index: 900;
+    background: white; box-shadow: 0 -3px 16px rgba(15,42,90,.14);
+    padding: 10px 16px; padding-bottom: calc(10px + env(safe-area-inset-bottom, 0px));
+  }
+  .ap-bar .ap-kakao { max-width: 520px; }
+}
+
+@media (max-width: 768px) {
+  .ap-head { padding: 84px 16px 28px; }
+  .ap-head h1 { font-size: 24px; }
+  .ap-head p { font-size: 15px; }
+  /* 아래 여백 120 = 띠 높이(48+20) 에 넉넉히 더한 값. 띠가 마지막 글을 가리지 않습니다 */
+  .ap-wrap { padding: 24px 16px 120px; }
+  .ap-sec h2 { font-size: 18px; }
+  .ap-item { min-height: 52px; font-size: 14px; }
+}
+/* 좁은 화면은 두 칸 — 열여섯이 여덟 줄로 꽉 찹니다 */
+@media (max-width: 600px) {
+  .ap-grid { grid-template-columns: repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs><g id="dh-logo"><path d="M42 68H268.4v29.4H65.4v103.2H272v29.8H25.6V84.4A16.4 16.4 0 0 1 42 68Z"/><g><rect x="124.17" y="118.6" width="18.47" height="8.4"/><rect x="96" y="127" width="74.84" height="12"/><path fill-rule="evenodd" d="M168.88 157.4C168.88 169.33 160.31 173.1 133.18 173.1C106.05 173.1 97.48 169.33 97.48 157.4C97.48 145.47 106.05 141.7 133.18 141.7C160.31 141.7 168.88 145.47 168.88 157.4ZM150.63 157.41C150.63 159.98 145.83 160.96 133.18 160.96C120.53 160.96 115.73 159.98 115.73 157.41C115.73 154.84 120.53 153.86 133.18 153.86C145.83 153.86 150.63 154.84 150.63 157.41Z"/></g><g transform="translate(93 0)"><rect x="124.17" y="118.6" width="18.47" height="8.4"/><rect x="96" y="127" width="74.84" height="12"/><path fill-rule="evenodd" d="M168.88 157.4C168.88 169.33 160.31 173.1 133.18 173.1C106.05 173.1 97.48 169.33 97.48 157.4C97.48 145.47 106.05 141.7 133.18 141.7C160.31 141.7 168.88 145.47 168.88 157.4ZM150.63 157.41C150.63 159.98 145.83 160.96 133.18 160.96C120.53 160.96 115.73 159.98 115.73 157.41C115.73 154.84 120.53 153.86 133.18 153.86C145.83 153.86 150.63 154.84 150.63 157.41Z"/></g></g><path id="dh-ico-phone" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/><path id="dh-ico-kakao" d="M12 3C6.477 3 2 6.477 2 10.5c0 2.667 1.556 5.011 3.9 6.4L5 21l4.1-2.7c.94.2 1.91.3 2.9.3 5.523 0 10-3.477 10-7.5S17.523 3 12 3z"/></defs></svg>
+<!-- HEADER -->
+<header>
+  <div class="header-inner">
+    <a href="../index.html" class="logo"><svg class="logo-mark" width="46" height="30" viewBox="25.6 68 246.4 162.4" aria-hidden="true"><use href="#dh-logo" fill="currentColor"/></svg><span>당<span>현</span>함</span></a>
+    <nav>
+      <a href="../index.html#compare">혜택안내</a>
+      <a href="../plans.html">인터넷가입</a>
+      <a href="../water/">정수기렌탈</a>
+      <a href="../index.html#reviews">설치후기</a>
+      <a href="../gift.html">사은품지급명단</a>
+      <a href="../index.html#faq">자주묻는질문</a>
+    </nav>
+    <!-- 전화·카톡 단추 묶음. 카톡은 화면 아래를 따라다니던 것을 여기로 옮겼다 (2026-08-25) -->
+    <div class="header-cta">
+      <a href="tel:1600-4670" class="header-phone">
+        <svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+        1600-4670
+      </a>
+      <a href="https://pf.kakao.com/_yxgTAs" class="header-kakao" title="카카오 상담">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3C6.477 3 2 6.477 2 10.5c0 2.667 1.556 5.011 3.9 6.4L5 21l4.1-2.7c.94.2 1.91.3 2.9.3 5.523 0 10-3.477 10-7.5S17.523 3 12 3z"/></svg>
+        <span class="kakao-label">카카오 상담</span>
+      </a>
+    </div>
+    <div class="hamburger" onclick="document.getElementById('mobileMenu').classList.toggle('open')">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</header>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="../index.html#compare">혜택안내</a>
+  <a href="../plans.html">인터넷가입</a>
+  <a href="../water/">정수기렌탈</a>
+  <a href="../index.html#reviews">설치후기</a>
+  <a href="../gift.html">사은품지급명단</a>
+  <a href="../index.html#faq">자주묻는질문</a>
+  <a href="../index.html#apply-now" style="color:var(--primary);font-weight:700;">무료상담</a>
+</div>
+
+
+<div class="ap-head">
+  <h1>가전 렌탈</h1>
+  <p>제품마다 모양·요금·약정이 달라 사진과 요금표를 함께 보시면서 고르셔야 합니다.</p>
+  <p>카카오톡으로 희망 제품에 대한 상담 및 현금 사은품까지 안내드립니다.</p>
+  <a class="ap-kakao" href="https://pf.kakao.com/_yxgTAs/chat">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><use href="#dh-ico-kakao"/></svg>
+    카카오톡 상담
+  </a>
+</div>
+
+<div class="ap-wrap">
+  <section class="ap-sec">
+    <h2>찾으시는 제품</h2>
+    <div class="ap-grid">
+      <a class="ap-item" href="https://pf.kakao.com/_yxgTAs/chat" data-item="공기청정기">공기청정기</a>
+      <a class="ap-item" href="https://pf.kakao.com/_yxgTAs/chat" data-item="비데">비데</a>
+      <a class="ap-item" href="https://pf.kakao.com/_yxgTAs/chat" data-item="매트리스">매트리스</a>
+      <a class="ap-item" href="https://pf.kakao.com/_yxgTAs/chat" data-item="안마의자">안마의자</a>
+      <a class="ap-item" href="https://pf.kakao.com/_yxgTAs/chat" data-item="에어컨">에어컨</a>
+      <a class="ap-item" href="https://pf.kakao.com/_yxgTAs/chat" data-item="TV">TV</a>
+      <a class="ap-item" href="https://pf.kakao.com/_yxgTAs/chat" data-item="냉장고">냉장고</a>
+      <a class="ap-item" href="https://pf.kakao.com/_yxgTAs/chat" data-item="김치냉장고">김치냉장고</a>
+      <a class="ap-item" href="https://pf.kakao.com/_yxgTAs/chat" data-item="세탁기">세탁기</a>
+      <a class="ap-item" href="https://pf.kakao.com/_yxgTAs/chat" data-item="건조기">건조기</a>
+      <a class="ap-item" href="https://pf.kakao.com/_yxgTAs/chat" data-item="청소기">청소기</a>
+      <a class="ap-item" href="https://pf.kakao.com/_yxgTAs/chat" data-item="전기레인지">전기레인지</a>
+      <a class="ap-item" href="https://pf.kakao.com/_yxgTAs/chat" data-item="식기세척기">식기세척기</a>
+      <a class="ap-item" href="https://pf.kakao.com/_yxgTAs/chat" data-item="의류관리기">의류관리기</a>
+      <a class="ap-item" href="https://pf.kakao.com/_yxgTAs/chat" data-item="제습기">제습기</a>
+      <a class="ap-item" href="https://pf.kakao.com/_yxgTAs/chat" data-item="음식물처리기">음식물처리기</a>
+      <a class="ap-item ap-etc" href="https://pf.kakao.com/_yxgTAs/chat" data-item="기타 모든 가전">기타 모든 가전</a>
+    </div>
+  </section>
+</div>
+
+<!-- 아래 따라다니는 띠 — 폰에서 품목을 훑어 내려갈 때도 상담이 손에 닿게 -->
+<div class="ap-bar">
+  <a class="ap-kakao" href="https://pf.kakao.com/_yxgTAs/chat">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><use href="#dh-ico-kakao"/></svg>
+    카카오톡 상담
+  </a>
+</div>
+
+<!-- FOOTER -->
+<!-- 발바닥은 공용 부품이 그립니다 — 글을 고치려면 js/dh-footer.js 한 곳만 -->
+<footer data-dh-footer></footer>
+<script>
+document.addEventListener('click', function (e) {
+  if (!e.target.closest('header') && !e.target.closest('.mobile-menu'))
+    document.getElementById('mobileMenu').classList.remove('open');
+});
+</script>
+
+<!-- 네이버 애널리틱스 (2026-09-04 발급 · 발급ID 1acd2d92ff9ef60)
+     광고 전환추적(s_2e8bfd0103db)과는 별개다. 네이버 공식 안내대로 둘 다 심는 것이 정상이며,
+     페이지뷰 기록이 두 번(각 번호마다 한 번씩) 나가는 것이 정상이다.
+     목적: 네이버 유입 검색어 보기. 서치어드바이저는 검색어를 주지 않는다. -->
+<script type="text/javascript" src="//wcs.pstatic.net/wcslog.js"></script>
+<script type="text/javascript">
+if(!wcs_add) var wcs_add = {};
+wcs_add["wa"] = "1acd2d92ff9ef60";
+if(window.wcs) {
+  wcs_do();
+}
+</script>
+
+<style>
+/* ===== 한글은 낱말 가운데를 끊지 않는다 (2026-09-11, 보드 규칙 9) =====
+   왜: 좁은 폰에서 '상담까 / 지' 처럼 낱말이 두 줄로 갈라진다.
+   범위: 글이 들어가는 곳만. 주소·코드처럼 끊어야 하는 것은 뺀다.
+   ⚠ 표 안에 문장을 넣을 때는 white-space:normal 을 함께 줘야 한다 —
+     안 그러면 표가 옆으로 한없이 늘어난다. */
+body, p, li, dd, dt, h1, h2, h3, h4, span, strong, em, b, a, div, label, button, td, th, figcaption, blockquote {
+  word-break: keep-all;
+}
+</style>
+<style>
+/* ===== 누르는 자리 44 (2026-09-11, 보드 규칙 9) =====
+   보이는 크기는 그대로 두고 그 위에 보이지 않는 44짜리 층만 덮는다.
+   층은 자리를 차지하지 않으므로 카드 높이도 발바닥 높이도 안 변한다.
+   ⚠ 층이 옆 부품 위로 넘어가면 그쪽 누름을 가로챈다. 나란히 붙은 자리는 재고 덮었다. */
+.더읽기, .logo, .hamburger, .rolling-more, .footer-links a, .doc-back { position: relative; }
+.더읽기::after, .logo::after, .hamburger::after, .rolling-more::after,
+.footer-links a::after, .doc-back::after {
+  content: ""; position: absolute; left: 0; right: 0; top: 50%;
+  transform: translateY(-50%); height: 44px;
+}
+/* 가로도 좁은 것은 44로 넓힌다 */
+.더읽기::after, .hamburger::after {
+  left: 50%; right: auto; width: 44px; min-width: 100%;
+  transform: translate(-50%, -50%);
+}
+</style>
+<script>
+/* 어느 품목을 눌러 카톡으로 갔는지 통계에 남깁니다.
+   카카오톡은 주소로 첫 마디를 넣어 주지 못해, 상담원이 화면에서 알 길이 없습니다.
+   대신 구글 통계에 품목을 남겨 두면 어느 제품 광고가 상담으로 이어졌는지 볼 수 있습니다.
+   (카톡 누름 자체는 머리에 있는 자동 감지가 이미 셉니다) */
+document.addEventListener('click', function (e) {
+  var a = e.target && e.target.closest ? e.target.closest('.ap-item') : null;
+  if (!a) return;
+  try {
+    if (typeof gtag === 'function')
+      gtag('event', 'appliance_pick', { dh_page: DH_PAGE, dh_item: a.getAttribute('data-item') });
+  } catch (err) {}
+}, true);
+</script>
+</body>
+</html>
