@@ -33,7 +33,16 @@
       'header .header-inner .logo{flex:none}' +
     '}';
 
-  function 물칸() { return location.pathname.indexOf('/water-c/') >= 0 ? 'water-c/' : 'water/'; }
+  /* 정수기 목록은 두 벌입니다 — 일반(water/)과 코웨이판(water-c/).
+     ⚠ 지금 화면 주소만 보면 안 됩니다. 사은품명단처럼 어느 쪽도 아닌 화면에서 찾으면
+       코웨이 문으로 들어온 손님도 일반 목록으로 빠졌습니다(2026-09-18 실측).
+       그래서 들어온 문 기억(js/dh-inflow.js)도 함께 봅니다.
+       ※ dh-inflow.js 를 먼저 부르므로 window.dhDoor 가 이미 있습니다. 없으면 그냥 일반으로 갑니다. */
+  function 물칸() {
+    if (location.pathname.indexOf('/water-c/') >= 0) return 'water-c/';
+    try { if (window.dhDoor && window.dhDoor.지금() === 'coway') return 'water-c/'; } catch (e) {}
+    return 'water/';
+  }
 
   /* ── 찾는 말이 어느 화면으로 가야 하는가 (2026-09-18 사장님 지시) ──────────
      ★ 제품군 화면이 새로 생기면 **이 표에 한 줄만 더하면** 됩니다.
