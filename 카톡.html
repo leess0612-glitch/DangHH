@@ -111,8 +111,40 @@
      주소의 ?출처= 값을 그대로 기록한다. 파일에 등록할 필요가 없다.
      새 카페 글이 생기면 그 글에 ?출처=인터넷-157xxx 를 붙이기만 하면
      대시보드가 알아서 새 줄로 잡는다. 이 파일은 손대지 않는다. */
-  var 꼬리표 = '';
-  try{ 꼬리표 = (new URLSearchParams(location.search).get('출처') || '').trim(); }catch(e){}
+  /* ★2026-09-18 추가 — 구형 에디터(스마트에디터 2.0) 대비
+       옛 에디터는 링크 칸에 넣은 한글을 **옛 방식(EUC-KR)**으로 바꿔 넣는다.
+       그러면 열쇠말까지 %C3%E2%C3%B3 으로 바뀌어 '출처' 를 못 찾는다(2026-09-18 실측).
+       그래서 ① 영문 열쇠말 f · from 도 받고 ② 옛 방식으로 바뀐 주소도 되돌려 읽는다.
+       구형 에디터에서는 ?f=front-126190 처럼 **영문으로 넣는 것을 권한다.** */
+  function 옛방식되돌리기(글){
+    try{
+      var 바이트 = [];
+      String(글).replace(/%([0-9A-Fa-f]{2})|([\s\S])/g, function(_, 열여섯, 글자){
+        if (열여섯) 바이트.push(parseInt(열여섯, 16));
+        else for (var i = 0; i < 글자.length; i++) 바이트.push(글자.charCodeAt(i) & 0xff);
+        return '';
+      });
+      return new TextDecoder('euc-kr').decode(new Uint8Array(바이트));
+    }catch(e){ return String(글); }
+  }
+  function 꼬리표읽기(){
+    try{
+      var p = new URLSearchParams(location.search);
+      var v = (p.get('출처') || p.get('f') || p.get('from') || '').trim();
+      if (v) return v;
+      var 조각 = location.search.replace(/^\?/, '').split('&');
+      for (var i = 0; i < 조각.length; i++){
+        if (!조각[i]) continue;
+        var 자리 = 조각[i].indexOf('=');
+        var 열쇠 = 옛방식되돌리기(자리 < 0 ? 조각[i] : 조각[i].slice(0, 자리));
+        if (열쇠 === '출처' || 열쇠 === 'f' || 열쇠 === 'from'){
+          return 옛방식되돌리기(자리 < 0 ? '' : 조각[i].slice(자리 + 1)).trim();
+        }
+      }
+    }catch(e){}
+    return '';
+  }
+  var 꼬리표 = 꼬리표읽기();
 
   /* 2026-09-07: 옛 꼬리표를 새 이름으로 바꿔 주던 표를 지웠다.
      카페 글의 꼬리표를 모두 '종류-글번호' 규칙으로 고쳐 넣어 예외가 없어졌다.
