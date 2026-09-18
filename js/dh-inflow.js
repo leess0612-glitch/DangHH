@@ -488,16 +488,10 @@ global.dhInflowReset = dhInflowReset;
       if (새주소) { a.setAttribute('href', 새주소); a.setAttribute('data-coway-door', '1'); }
     }
 
-    /* 사은품 지급명단 — 코웨이 트랙에는 없는 메뉴다(rental-c.html 도 안 단다).
-       그 화면에는 현금 표현이 있으므로 코웨이 손님에게는 감춘다. */
-    /* 2026-09-17 고침 — 요금표·셋톱·약관·명단 화면의 폰 메뉴는 .m-menu 가 아니라 #mobileMenu(.mobile-menu) 라
-       여기서 빠져, 코웨이 손님이 햄버거를 열면 사은품지급명단이 보였습니다. 폰 메뉴 두 모양을 모두 셉니다. */
-    var 메뉴 = global.document.querySelectorAll('nav a, .m-menu a, #mobileMenu a, .mobile-menu a');
-    for (var j = 0; j < 메뉴.length; j++) {
-      if ((메뉴[j].textContent || '').replace(/\s+/g, '') === '사은품지급명단') {
-        메뉴[j].style.display = 'none';
-        메뉴[j].setAttribute('data-coway-door', 'hide');
-      }
+    /* 사은품 지급명단 — 2026-09-18 사장님 지시로 **감추지 않습니다**.
+       9/16 에 제가 스스로 감추도록 넣었던 것을 되돌렸습니다(사장님 지시가 아니었습니다).
+       코웨이 손님에게도 메뉴가 그대로 보입니다. 화면 안 현금 표현은 따로 검토 중입니다. */
+  }
     }
   }
 
