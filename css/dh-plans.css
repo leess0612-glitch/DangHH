@@ -51,7 +51,7 @@ header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: 
    ★ 글자 높이는 '줄상자'가 아니라 '글자가 실제로 칠해지는 범위'로 재야 한다.
      줄상자로 재면 글자 위아래 빈 공간까지 세어져 실제보다 크게 나온다(32px일 때 30px인데 40px로 나왔다).
    실측: 전화 단추 40px / 43px일 때 글자가 칠해지는 높이 40px -> 딱 맞음 */
-.logo { font-size: 43px; font-weight: 900; color: var(--primary); text-decoration: none; letter-spacing: -0.5px;
+.logo { font-size: 24px; font-weight: 900; color: var(--primary); text-decoration: none; letter-spacing: -0.5px;
         line-height: 1; }   /* 줄간격을 1로: 안 그러면 글자 줄상자(69px)가 머리띠(64px)보다 커진다 */
 .logo span { color: var(--primary); }
 
@@ -64,18 +64,18 @@ header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: 
    ★ 되돌리려면 이 덩어리와 아래 '상담 패널' 덩어리를 지우고,
      머리띠·꼬리말 html 에서 <svg> 조각만 빼면 된다. */
 .logo { display: inline-flex; align-items: center; gap: 10px; }
-.logo-mark { flex: none; display: block; }
+.logo-mark { flex: none; display: block; width: 37px; height: 24px; }   /* 2026-09-18 로고 한 벌 — 마크+글자 높이 24 (사장님 지시) */
 .footer-logo { display: flex; align-items: center; gap: 8px; }
 .footer-mark { flex: none; display: block; }
 
 /* 로고 그림이 보이는 넓은 화면에서만 '당현함' 글씨를 그림과 같은 높이(30)로 맞춘다.
    ★ 글자 높이는 줄상자가 아니라 '실제로 칠해지는 범위'로 재야 한다.
      실측: 32px 일 때 칠해지는 높이 30px (43px 일 때는 40px). */
-@media (min-width: 931px) { .logo { font-size: 32px; } }
+@media (min-width: 931px) { .logo { font-size: 24px; } }
 /* 창이 좁으면 그림을 감추고 글자만 남긴다 -> 좁은 화면은 예전과 똑같아진다.
    실측 근거: 머리띠 안쪽폭 = 창너비 - 40. 로고글자 111 + 메뉴 514 + (뺀)단추 자리.
    931 에서 양옆 틈이 33px 씩 남아 넉넉하다. */
-@media (max-width: 930px) { .logo-mark { display: none !important; } }
+/* 2026-09-18: 폰에서 마크를 감추던 규칙을 뺐습니다 — 모든 화면이 마크+글자 한 벌입니다 */
 
 /* 머리띠에서 전화·카톡을 뺀다. 되돌리려면 이 한 줄만 지운다. */
 .header-cta { display: none !important; }
@@ -390,7 +390,7 @@ footer { background: #0B2E5C; color: rgba(255,255,255,0.6); padding: 40px 20px; 
   .header-cta { display: none; }
   /* 폰에서는 전화 단추가 작아진다(높이 35px). 로고도 그에 맞춘다
      실측: 37px일 때 글자가 칠해지는 높이 35px -> 딱 맞음 */
-  .logo { font-size: 37px; }
+  .logo { font-size: 24px; }
   .page-head { padding: 34px 20px 30px; }
   .page-head h1 { font-size: 24px; }
   .page-head p { font-size: 13px; }

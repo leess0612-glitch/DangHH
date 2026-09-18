@@ -79,7 +79,7 @@
   --w-page:860px; --w-foot:1100px;
   --h-header:64px;                     /* 머리띠 높이 — 여백 눈금과 별개(라이브와 같아야 함) */
   --t-nav:14px;                        /* 머리띠 메뉴 글씨 — 라이브 값. 보드 글씨 눈금과 별개 */
-  --t-logo:32px; --t-logo-sm:43px;   /* 로고 전용 — 글씨 눈금과 별개 */
+  --t-logo:24px; --t-logo-sm:24px;   /* 로고 전용 — 글씨 눈금과 별개 */
   --r-pill:999px;
   --font:'Pretendard Variable',Pretendard,-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
 }
@@ -117,7 +117,7 @@ header{position:fixed;top:0;left:0;right:0;z-index:1000;background:var(--c-card)
    폰은 메뉴가 접혀 자리가 넉넉하므로 그림을 그대로 두고 크기를 32 로 맞춥니다. */
 .logo{display:inline-flex;align-items:center;gap:8px;font-size:var(--t-logo);font-weight:900;
   color:var(--c-strong);text-decoration:none;letter-spacing:-.5px;line-height:1;flex:none}
-.logo-mark{flex:none;display:block}
+.logo-mark{flex:none;display:block;width:37px;height:24px}
 nav{display:flex;gap:4px;align-items:center}
 nav a{display:flex;align-items:center;min-height:var(--h-touch);padding:0 12px;
   border-radius:var(--r-control);font-size:var(--t-nav);font-weight:500;color:var(--c-sub);
