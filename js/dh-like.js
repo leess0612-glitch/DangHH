@@ -121,7 +121,9 @@
         }).join('') +
         '</ul>' +
       '</div>';
-    몸통.parentNode.insertBefore(칸, 몸통.nextSibling);
+    /* 본문 기둥(제품몸통) **안에** 넣습니다 — 밖에 두었더니 폰에서는 화면이 가로로 밀리고
+       컴퓨터에서는 글이 왼쪽 끝에 붙었습니다(2026-09-18 확인). 안에 넣으면 좌우 여백이 본문과 같아집니다. */
+    몸통.appendChild(칸);
 
     /* 화살표·끝 흐림 표시 */
     var 감쌈 = 칸.querySelector('.it-like-wrap'), 줄 = 칸.querySelector('.it-like-list');
