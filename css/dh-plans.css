@@ -46,7 +46,7 @@ body.locked { overflow: hidden; }
 
 /* ===== HEADER (index.html과 동일) ===== */
 header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: white; box-shadow: 0 2px 12px rgba(15,42,90,0.09); }
-.header-inner { max-width: 1200px; margin: 0 auto; padding: 0 20px; height: 64px; display: flex; align-items: center; justify-content: space-between; }
+.header-inner { max-width: 1200px; margin: 0 auto; padding: 0 20px; height: 56px; display: flex; align-items: center; justify-content: space-between; }
 /* 로고를 오른쪽 전화 단추와 같은 높이로 (2026-08-25 다시 잼)
    ★ 글자 높이는 '줄상자'가 아니라 '글자가 실제로 칠해지는 범위'로 재야 한다.
      줄상자로 재면 글자 위아래 빈 공간까지 세어져 실제보다 크게 나온다(32px일 때 30px인데 40px로 나왔다).
@@ -136,7 +136,7 @@ nav a.on { color: var(--primary); background: #eff6ff; font-weight: 700; }
 .header-phone:active { transform: translateY(1px) scale(0.985); }
 .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 5px; }
 .hamburger span { display: block; width: 24px; height: 2px; background: var(--dark); border-radius: 4px; }
-.mobile-menu { display: none; position: fixed; top: 64px; left: 0; right: 0; background: white; padding: 12px 20px; box-shadow: 0 8px 20px rgba(0,0,0,0.1); z-index: 999; }
+.mobile-menu { display: none; position: fixed; top: 56px; left: 0; right: 0; background: white; padding: 12px 20px; box-shadow: 0 8px 20px rgba(0,0,0,0.1); z-index: 999; }
 .mobile-menu.open { display: block; }
 .mobile-menu a { display: block; padding: 13px 0; font-size: 15px; font-weight: 600; color: var(--dark); text-decoration: none; border-bottom: 1px solid var(--border); }
 .mobile-menu a:last-child { border-bottom: none; }
@@ -152,7 +152,7 @@ nav a.on { color: var(--primary); background: #eff6ff; font-weight: 700; }
 
 /* ===== 페이지 머리띠 (gift.html과 동일한 틀) ===== */
 .page-head {
-  margin-top: 64px;
+  margin-top: 56px;
   /* 2026-08-28: 파란 그라데이션 -> 흰 바탕으로 바꿈 (사장님 지시).
      index.html 의 '설치 후기' 칸과 같은 규칙을 따른다 —
      흰 바탕 · 제목은 진한 남색 · 설명은 회색 · 강조할 낱말만 파랑.
@@ -171,7 +171,7 @@ nav a.on { color: var(--primary); background: #eff6ff; font-weight: 700; }
 }
 
 /* ===== 통신사 고르는 단추 (화면 위에 붙어서 따라옴) ===== */
-.tabbar { position: sticky; top: 64px; z-index: 500; background: #ffffff; border-bottom: 1px solid var(--border); }
+.tabbar { position: sticky; top: 56px; z-index: 500; background: #ffffff; border-bottom: 1px solid var(--border); }
 .tabs {
   max-width: 860px; margin: 0 auto; padding: 12px 20px;
   display: flex; gap: 8px; justify-content: center;

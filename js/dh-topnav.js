@@ -59,7 +59,7 @@
     '@media(max-width:768px){' +
     'html.tn-on body{padding-top:44px}' +
     'html.tn-on .hamburger{display:none!important}' +
-    '#상단메뉴줄{position:fixed;left:0;right:0;top:64px;z-index:900;height:44px;background:#fff;' +
+    '#상단메뉴줄{position:fixed;left:0;right:0;top:var(--h-header, 56px);z-index:900;height:44px;background:#fff;' +
       'border-bottom:1px solid #E5E8EB;will-change:transform}' +
     '#상단메뉴줄 .tn-row{display:flex;gap:4px;height:100%;overflow-x:auto;scrollbar-width:none;' +
       '-webkit-overflow-scrolling:touch;padding-left:8px}' +
@@ -71,8 +71,8 @@
     '#상단메뉴줄 a[aria-current="page"]{color:#1257C9;border-bottom-color:#1257C9}' +
     '#상단메뉴줄 a[hidden]{display:none}' +
     /* 아래에 붙는 줄들이 이 줄에 가리지 않도록 그만큼 내려 붙입니다 */
-    'html.tn-on .tabbar{top:calc(var(--h-header, 64px) + 44px)}' +
-    'html.tn-on .filter-stick{top:calc(var(--h-header, 64px) + 44px)}' +
+    'html.tn-on .tabbar{top:calc(var(--h-header, 56px) + 44px)}' +
+    'html.tn-on .filter-stick{top:calc(var(--h-header, 56px) + 44px)}' +
     'html.tn-on{scroll-padding-top:calc(var(--stick-h, 133px) + 44px)}' +
     '}' +
     '@media(min-width:769px){#상단메뉴줄{display:none}}';
