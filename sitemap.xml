@@ -61,6 +61,10 @@
     <priority>0.7</priority>
   </url>
   <!-- 정수기 시작 — 만들기/시험본만들기.js 가 끼워 넣습니다 (손으로 고치지 마십시오) -->
+  <!-- 가전 렌탈 (2026-09-18) — 정수기 말고 나머지 가전을 맡는다.
+       「비데렌탈·공기청정기렌탈·안마의자렌탈」 같은 검색어가 목표다.
+       지금은 제품 목록 없이 카카오톡 상담으로 잇는 한 장이다. -->
+  <url><loc>https://danghh.com/appliance/</loc><lastmod>2026-09-18</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
   <url><loc>https://danghh.com/water/</loc><lastmod>2026-09-11</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
   <url><loc>https://danghh.com/water/coway-chp-7220n/</loc><lastmod>2026-09-11</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://danghh.com/water/coway-chpi-7430n/</loc><lastmod>2026-09-11</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
