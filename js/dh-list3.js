@@ -376,8 +376,9 @@
     var 묶음 = document.querySelector('.filter-stick.stuck');
     var 칸 = document.getElementById('제품칸');
     if (!묶음 || !칸) return;
-    var 머 = document.querySelector('header');
-    var 위 = (머 ? 머.getBoundingClientRect().bottom : 0) + 묶음.offsetHeight + 8;
+    /* 2026-09-18 — 묶음이 붙는 자리가 머리띠 아래 메뉴 줄 밑으로 내려갔습니다.
+       머리띠 높이로 세지 말고, 붙어 있는 묶음의 아래끝을 그대로 씁니다. */
+    var 위 = 묶음.getBoundingClientRect().bottom + 8;
     window.scrollTo(0, Math.max(0, window.pageYOffset + 칸.getBoundingClientRect().top - 위));
   }
 
@@ -472,7 +473,10 @@
          알약 줄 맨 앞에 「기능」 알약을 보입니다. 접힌 높이만큼 아래 여백을 줘 목록이 덜컥 뛰지 않게 합니다. */
       function 붙음보기() {
         var 머 = document.querySelector('header');
-        var 높이 = 머 ? 머.getBoundingClientRect().bottom : 0;
+        var 줄 = document.getElementById('상단메뉴줄');
+        /* 머리띠 + (있으면) 메뉴 줄 아래가 붙는 자리입니다 */
+        var 높이 = (머 ? 머.getBoundingClientRect().bottom : 0) +
+                   (줄 && getComputedStyle(줄).display !== 'none' ? 줄.offsetHeight : 0);
         var 폰 = window.matchMedia('(max-width:560px)').matches;
         var 붙음 = 폰 && 표지.getBoundingClientRect().top <= 높이 + 0.5;
         if (붙음 === 묶음.classList.contains('stuck')) return;
