@@ -361,7 +361,52 @@
      한 번에 40초까지 기다리고, 전체 45초에서 끊는다.
      ⚠ 구글 쪽 중복막기(같은 번호 120초)와 한 쌍이다 — 한쪽만 되돌리면 중복이 생긴다.
      ─────────────────────────────────────────────────────────── */
+  /* ===== 신청 중간 접수처 (2026-09-17) =====
+     신청을 먼저 클라우드플레어 접수처로 보낸다. 접수처는 창고에 넣고 0.1초 안에 "받았다"고 답한 뒤,
+     뒤에서 구글시트로 넘긴다(구글이 느리거나 실패하면 5분마다 다시 보낸다).
+     ★신청번호(req_id): 손님이 신청을 한 번 누를 때마다 새로 만든다. 같은 신청을 여러 번 보내도
+       구글이 같은 신청번호는 한 번만 적는다. 손님이 다시 누르면 새 번호라 새 줄로 적힌다.
+     ★비상구: 접수처가 3초 안에 답하지 않으면(2번까지) 예전처럼 구글로 직접 보낸다 — 아래 구글직접().
+       같은 신청번호를 그대로 쓰므로 접수처가 나중에 넘겨도 두 줄이 되지 않는다.
+     ★같은 번호로 사람이 누를 수 없는 속도(10분 20번)면 접수처가 막는다(429). 그때는 구글 직접으로 돌리지 않는다.
+     ⚠ 짝: 안티그라비티\신청중간접수처\src\index.js · 구글스크립트정리\당현함_신청폼.gs */
+  var DH_접수처 = 'https://danghh-apply.danghh.workers.dev/apply';
+  var DH_갈래 = 'main';
+
+  function dh신청번호() {
+    try { if (window.crypto && crypto.randomUUID) return crypto.randomUUID(); } catch (e) {}
+    return Date.now().toString(36) + '-' + Math.random().toString(36).slice(2, 12) + '-' + Math.random().toString(36).slice(2, 12);
+  }
+
   function dhSend(payload, 상태알림) {
+    var 보낼것 = Object.assign({}, payload, { req_id: dh신청번호(), req_target: DH_갈래 });
+    function 한번(회) {
+      if (회 > 2) {
+        if (typeof 상태알림 === 'function') { try { 상태알림('연결이 느려요. 다시 시도 중...'); } catch (e) {} }
+        return 구글직접(보낼것, 상태알림);
+      }
+      var controller = new AbortController();
+      var 시간끝 = setTimeout(function () { controller.abort(); }, 3000);
+      return fetch(DH_접수처, {
+        method: 'POST', headers: { 'Content-Type': 'text/plain;charset=UTF-8' },
+        body: JSON.stringify(보낼것), signal: controller.signal
+      }).then(function (r) {
+        clearTimeout(시간끝);
+        if (r.status === 429) { var 막힘 = new Error('too_many'); 막힘.막힘 = true; throw 막힘; }
+        if (!r.ok) return 한번(회 + 1);
+        return r.json().catch(function () { return null; }).then(function (답) {
+          return (답 && 답.ok) ? undefined : 한번(회 + 1);
+        });
+      }, function () {
+        clearTimeout(시간끝);
+        return 한번(회 + 1);
+      });
+    }
+    return 한번(1);
+  }
+
+  /* 비상구: 구글로 직접 보내기 (예전 dhSend 그대로, 이름만 바꿈) */
+  function 구글직접(payload, 상태알림) {
     var 최대횟수 = 3, 한번한도 = 40000, 전체한도 = 45000;
     var 시작 = Date.now();
     var 말하기 = function (문구) {
