@@ -79,27 +79,26 @@
     '</div>';
   }
 
-  /* ── 아래 고정 띠와 겹치지 않게 ────────────────────────────────
-     신청 막대(.mobile-cta-bar)·정수기 띠(.bar3)·비교함 띠(.cmp-bar)는 화면 아래에 떠 있습니다.
-     발바닥 마지막 줄이 그 밑에 깔리지 않도록, 띠 높이만큼 발바닥 아래에 여백을 줍니다. */
-  function 띠높이() {
-    var 후보 = ['.mobile-cta-bar', '.bar3', '.cmp-bar', '.desk-cta-bar'];
-    var 최대 = 0;
-    for (var i = 0; i < 후보.length; i++) {
-      var 들 = document.querySelectorAll(후보[i]);
+  /* ── 아래 고정 띠는 발바닥을 만나면 그 위로 올라붙습니다 (2026-09-18 사장님 지시) ──
+     신청 막대(.mobile-cta-bar)·정수기 띠(.bar3)·비교함 띠(.cmp-bar)는 화면 맨 아래에 떠 있습니다.
+     그대로 두면 발바닥을 덮습니다. 빈 여백을 더해 밀어내는 대신,
+     **발바닥이 보이기 시작하면 띠를 그만큼 위로 올려** 발바닥 위에 얹습니다.
+     그래서 아래쪽에 쓸데없는 흰 여백이 생기지 않습니다. */
+  var 띠목록 = ['.mobile-cta-bar', '.bar3', '.cmp-bar'];
+
+  function 띠맞추기(발) {
+    var 발윗선 = 발.getBoundingClientRect().top;
+    var 올림 = Math.max(0, Math.round(window.innerHeight - 발윗선));
+    for (var i = 0; i < 띠목록.length; i++) {
+      var 들 = document.querySelectorAll(띠목록[i]);
       for (var j = 0; j < 들.length; j++) {
         var e = 들[j], s = window.getComputedStyle(e);
-        if (s.display === 'none' || s.visibility === 'hidden' || s.position !== 'fixed') continue;
-        var r = e.getBoundingClientRect();
-        if (r.height > 최대 && r.bottom > window.innerHeight - 4) 최대 = r.height;
+        if (s.position !== 'fixed') continue;
+        e.style.bottom = 올림 ? 올림 + 'px' : '';
       }
     }
-    return Math.round(최대);
-  }
-
-  function 여백맞추기(발) {
-    var h = 띠높이();
-    발.style.paddingBottom = h ? (h + 16) + 'px' : '';
+    /* 띠가 발바닥 위로 올라붙으므로, 화면 끝에 두던 여유 공간은 필요 없습니다 */
+    document.body.style.paddingBottom = '0px';
   }
 
   function 그리기() {
@@ -109,13 +108,15 @@
       document.body.appendChild(발);
     }
     발.innerHTML = 속();
-    여백맞추기(발);
-    window.addEventListener('resize', function () { 여백맞추기(발); });
-    /* 띠는 스크롤 도중 나타나기도 합니다 — 몇 번 더 재 맞춥니다 */
+    var 맞추기 = function () { 띠맞추기(발); };
+    맞추기();
+    window.addEventListener('scroll', 맞추기, { passive: true });
+    window.addEventListener('resize', 맞추기);
+    /* 띠는 스크롤 도중 새로 나타나기도 하고, 목록이 길어지며 자리가 바뀌기도 합니다 */
     var n = 0;
     var 되풀이 = setInterval(function () {
-      여백맞추기(발);
-      if (++n > 6) clearInterval(되풀이);
+      맞추기();
+      if (++n > 8) clearInterval(되풀이);
     }, 700);
   }
 
