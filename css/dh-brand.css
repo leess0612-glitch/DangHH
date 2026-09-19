@@ -146,7 +146,23 @@ nav a.cta,.m-menu a.cta{color:var(--c-strong);font-weight:700}
   .header-inner nav{position:absolute;left:50%;transform:translateX(-50%);
     width:max-content;max-width:none}
 }
-@media(max-width:930px){ nav{display:none} .hamburger{display:block} }
+/* 2026-09-19 — 메뉴를 감추는 폭을 930 에서 768 로 내렸습니다 (사장님 지시).
+   ⛔ 무엇이 문제였나
+     정수기 400장만 930 이하에서 메뉴를 감췄고, 나머지 21장(첫화면·렌탈·요금표·셋톱·가전)은
+     768 이하에서 감췄습니다. 그래서 창이 769~930 인 자리(태블릿 가로·좁은 노트북)에서
+     같은 손님이 첫화면 → 정수기로 넘어가면 가로 메뉴가 사라지고 햄버거로 바뀌었습니다.
+   ★ 이제 421장이 모두 768 에서 갈립니다. 폰(768 이하)은 머리띠 아래 메뉴 줄(js/dh-topnav.js)이
+     맡으므로, 이 줄이 켜지는 폭과도 이제 딱 맞습니다(전에는 769~930 이 둘 다 없는 빈 구간이었습니다). */
+@media(max-width:768px){ nav{display:none} .hamburger{display:block} }
+/* 769~880 은 메뉴가 그대로 들어가기에는 빠듯한 구간입니다 — 라이브(index.html · dh-plans.css)와
+   똑같이 메뉴 옆여백과 머리띠 옆여백을 한 번 줄여 한 줄을 지킵니다.
+   실측(2026-09-19 · 창 769): 줄이기 전 로고 115.5 + 메뉴 676.5 = 792 > 쓸 수 있는 폭 729 (넘침),
+     줄인 뒤 로고 115.5 + 메뉴 606.5 = 722 < 741 (19px 남음).
+   ⚠ 세로 여백은 건드리지 않습니다 — nav a 의 min-height:44(누름 영역)를 지켜야 합니다. */
+@media(min-width:769px) and (max-width:880px){
+  .header-inner{padding:0 14px}
+  nav a{padding:0 7px}
+}
 
 /* 머리띠가 화면에 못 박혀 있어 본문이 그 아래로 숨는다. 그만큼 자리를 비운다. */
 main{padding-top:var(--h-header)}
