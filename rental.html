@@ -315,6 +315,17 @@ nav a:hover { color: var(--primary); background: #eff6ff; }
 }
 .mobile-menu a:last-child { border-bottom: none; }
 
+/* 769~880px 구간에서만 항목 사이 여백을 살짝 줄여 숨통을 틔운다.
+   index.html · gift.html · dh-plans.css 에 이미 있던 규칙인데 이 화면에만 빠져 있었다 (2026-09-19).
+   ⛔ 빠져 있으면 어떻게 되나 — 실측(창 769): 로고 117.5 + 메뉴 654 = 771.5 인데
+     쓸 수 있는 폭은 729 뿐이라 42.5px 넘쳤다(로고와 메뉴가 서로 밀었다).
+     이 규칙을 넣으면 메뉴가 612 로 줄어 합계 729.5 < 741 로 들어간다.
+   768px 이하는 어차피 햄버거·머리띠 아래 메뉴 줄로 접히므로 영향 없음 */
+@media (min-width: 769px) and (max-width: 880px) {
+  nav a { padding: 6px 7px; }
+  .header-inner { padding: 0 14px; }
+}
+
 /* ===== HERO ===== */
 .hero {
   margin-top: 56px;
