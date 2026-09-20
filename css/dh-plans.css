@@ -877,10 +877,14 @@ header        { box-shadow: none; border-bottom: 1px solid var(--border); }
 .mobile-menu    { box-shadow: 0 8px 32px rgba(11,46,92,0.16); }
 .consult-panel  { box-shadow: 0 8px 32px rgba(11,46,92,0.16); }
 
-/* ③ 누르는 것은 44px 이상 — 높이를 억지로 늘리는 대신
-     누르는 자리(안쪽 여백)를 넓혀 머리띠 64px 안에 그대로 담는다 */
-nav a { padding: 13px 10px; }
-@media (min-width: 769px) and (max-width: 880px) { nav a { padding: 13px 7px; } }
+/* ③ 누르는 것은 44px 이상.
+   2026-09-20 — 안쪽 여백(13px)으로 48 을 만들던 방식을 버리고, 다른 열아홉 장과 같이
+     높이를 44 로 못 박는 방식으로 바꿨습니다 (사장님 지시).
+     까닭: 이 열한 장만 48 이라 손님이 요금표 ↔ 첫 화면을 오갈 때 파란 알약 두께가 달랐습니다.
+       정수기 400장(dh-brand.css)도, 첫 화면 쪽 일곱 장도 모두 44 입니다.
+   ★ 옆여백(10px · 좁은 구간 7px)은 그대로라 메뉴 너비는 654px 그대로입니다 — 세로만 48 → 44. */
+nav a { display: flex; align-items: center; min-height: 44px; padding: 6px 10px; }
+@media (min-width: 769px) and (max-width: 880px) { nav a { padding: 6px 7px; } }
 .logo { min-height: 44px; }
 .jump { min-height: 44px; display: inline-flex; align-items: center; }
 .footer-links a { display: inline-flex; align-items: center; min-height: 44px; }
