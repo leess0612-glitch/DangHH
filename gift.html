@@ -196,7 +196,9 @@ header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: 
    3) 메뉴를 머리띠 한가운데로 옮겼다.
    ★ 되돌리려면 이 덩어리와 아래 '상담 패널' 덩어리를 지우고,
      머리띠·꼬리말 html 에서 <svg> 조각만 빼면 된다. */
-.logo { display: inline-flex; align-items: center; gap: 10px; min-height: 44px; }   /* 누름 영역 44 (2026-09-18) */
+.logo { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; }   /* 누름 영역 44 (2026-09-18) · 마크~글자 틈 10 → 8 (2026-09-20 사장님 지시 —
+     정수기 400장(dh-brand.css)과 이 화면 발바닥 로고(.footer-logo)가 이미 8 이라 그 값으로 맞췄습니다.
+     한 화면 안에서 머리띠 로고 10 · 발바닥 로고 8 로 서로 달랐습니다) */
 .logo-mark { flex: none; display: block; width: 37px; height: 24px; }   /* 2026-09-18 로고 한 벌 — 마크+글자 높이 24 (사장님 지시) */
 .footer-logo { display: flex; align-items: center; gap: 8px; }
 .footer-mark { flex: none; display: block; }
