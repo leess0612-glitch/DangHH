@@ -272,7 +272,12 @@ header {
 }
 .header-inner nav a { white-space: nowrap; }
 nav { display: flex; gap: 4px; align-items: center; }
-nav a { font-size: 14px; font-weight: 600; color: var(--gray); text-decoration: none; padding: 6px 10px; border-radius: 8px; transition: all 0.2s; }
+/* 2026-09-20 — 누르는 높이를 34 에서 44 로 올렸습니다 (사장님 지시 · 디자인보드 '반드시 할 것' 1번).
+   글자만 있는 줄글 링크라 실제로 눌리는 곳이 34px 뿐이었습니다 (정수기 화면은 44, 요금표·셋톱은 48).
+   ★ 옆여백(10px)은 그대로라 메뉴 너비는 1px 도 바뀌지 않습니다 — 세로만 커집니다.
+     display:flex 로 바꾼 까닭: 줄글(inline) 링크는 위아래 안쪽여백을 줘도 줄상자가 커지지 않아
+     머리띠 안에서 높이를 맞출 수가 없습니다. */
+nav a { display: flex; align-items: center; min-height: 44px; font-size: 14px; font-weight: 600; color: var(--gray); text-decoration: none; padding: 6px 10px; border-radius: 8px; transition: all 0.2s; }
 nav a:hover { color: var(--primary); background: #eff6ff; }
 .header-phone {
   display: flex; align-items: center; gap: 6px;
