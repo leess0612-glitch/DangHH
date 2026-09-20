@@ -246,7 +246,14 @@ nav { display: flex; gap: 4px; align-items: center; }
    ★ 옆여백(10px)은 그대로라 메뉴 너비는 1px 도 바뀌지 않습니다 — 세로만 커집니다.
      display:flex 로 바꾼 까닭: 줄글(inline) 링크는 위아래 안쪽여백을 줘도 줄상자가 커지지 않아
      머리띠 안에서 높이를 맞출 수가 없습니다. */
-nav a { display: flex; align-items: center; min-height: 44px; font-size: 14px; font-weight: 600; color: var(--gray); text-decoration: none; padding: 6px 10px; border-radius: 8px; transition: all 0.2s; }
+/* 2026-09-20 — 메뉴 글자 색·굵기를 디자인보드 값으로 맞췄습니다 (사장님 지시).
+   색 var(--gray)(#5F6672 · gray-500) → #465368 (gray-600) · 굵기 600 → 500.
+   까닭: 보드가 2026-09-08 에 보조 글자를 gray-500 → gray-600 으로 올렸습니다
+     (흰 바탕 대비 5.8 → 7.8 — 세 곳 실측에서 우리가 가장 옅었습니다).
+     정수기 400장(dh-brand.css)은 이미 새 값이라 이 스물한 장만 옛 값으로 남아 있었습니다.
+   ★ 색과 굵기는 한 짝입니다 — 색이 진해진 만큼 굵기를 한 단 내려야 메뉴 덩어리가 무거워지지 않습니다.
+   ⚠ --gray 눈금 자체는 건드리지 않습니다 — 이 화면 안에서 스물두 곳이 쓰고 있습니다. */
+nav a { display: flex; align-items: center; min-height: 44px; font-size: 14px; font-weight: 500; color: #465368; text-decoration: none; padding: 6px 10px; border-radius: 8px; transition: all 0.2s; }
 nav a:hover { color: var(--primary); background: #eff6ff; }
 nav a.on { color: var(--primary); background: #eff6ff; font-weight: 700; }
 .header-phone { display: flex; align-items: center; gap: 6px; background: var(--primary); color: white; padding: 8px 16px; border-radius: 8px; font-size: 15px; font-weight: 700; text-decoration: none; transition: background 0.2s; }
