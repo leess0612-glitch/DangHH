@@ -209,7 +209,7 @@ nav { display: flex; gap: 4px; align-items: center; }
      정수기 400장(dh-brand.css)은 이미 새 값이라 이 스물한 장만 옛 값으로 남아 있었습니다.
    ★ 색과 굵기는 한 짝입니다 — 색이 진해진 만큼 굵기를 한 단 내려야 메뉴 덩어리가 무거워지지 않습니다.
    ⚠ --gray 눈금 자체는 건드리지 않습니다 — 이 화면 안에서 스물두 곳이 쓰고 있습니다. */
-nav a { display: flex; align-items: center; min-height: 44px; font-size: 14px; font-weight: 500; color: #465368; text-decoration: none; padding: 6px 10px; border-radius: 8px; transition: all 0.2s; }
+nav a { display: flex; align-items: center; min-height: 44px; font-size: 14px; font-weight: 500; color: #465368; text-decoration: none; padding: 6px 12px; border-radius: 8px; transition: all 0.2s; }
 nav a:hover { color: var(--primary); background: #eff6ff; }
 nav a.on { color: var(--primary); background: #eff6ff; font-weight: 700; }
 .header-phone { display: flex; align-items: center; gap: 6px; background: var(--primary); color: white; padding: 8px 16px; border-radius: 8px; font-size: 15px; font-weight: 700; text-decoration: none; transition: transform 0.12s ease, background 0.2s; }
@@ -328,6 +328,9 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
   display: flex; align-items: center; justify-content: center;
   width: 100%; height: 48px; border-radius: 8px; text-decoration: none;
   color: white; font-size: 16px; font-weight: 700; letter-spacing: -0.3px;
+  /* 2026-09-20 — 이 단추는 화면에 따라 <button>(신청창 열기)과 <a>(다른 화면으로)
+     둘 다로 쓰입니다. 태그가 달라도 똑같이 그려지도록 <button> 기본값을 지웁니다. */
+  border: 0; cursor: pointer; font-family: inherit;
   background-color: #1257C9;   /* 디자인보드 주 단추 — 파랑 단색 (2026-09-17 그라데이션 뺌) */
   box-shadow: none;
   transition: transform 0.08s ease, background 0.2s, box-shadow 0.2s;

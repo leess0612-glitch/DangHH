@@ -110,7 +110,7 @@ nav { display: flex; gap: 4px; align-items: center; }
 /* 2026-09-20 — 메뉴 글자 색·굵기를 디자인보드 값으로 맞췄습니다 (사장님 지시).
    #5F6672(gray-500)·600 → #465368(gray-600)·500 — 정수기 400장(dh-brand.css)과 같은 값입니다.
    ⚠ --gray 눈금 자체는 건드리지 않습니다 — 이 파일 안 여러 곳이 쓰고 있습니다. */
-nav a { font-size: 14px; font-weight: 500; color: #465368; text-decoration: none; padding: 6px 10px; border-radius: 8px; transition: all 0.2s; }
+nav a { font-size: 14px; font-weight: 500; color: #465368; text-decoration: none; padding: 6px 12px; border-radius: 8px; transition: all 0.2s; }
 nav a:hover { color: var(--primary); background: #eff6ff; }
 nav a.on { color: var(--primary); background: #eff6ff; font-weight: 700; }
 .header-phone { display: flex; align-items: center; gap: 6px; background: var(--primary); color: white; padding: 8px 16px; border-radius: 8px; font-size: 15px; font-weight: 700; text-decoration: none; transition: transform 0.12s ease, background 0.2s; }
@@ -368,6 +368,9 @@ footer { background: #0F172A; color: rgba(255,255,255,0.6); padding: 40px 20px; 
   display: flex; align-items: center; justify-content: center;
   width: 100%; height: 48px; border-radius: 12px; text-decoration: none;
   color: white; font-size: 16px; font-weight: 700; letter-spacing: -0.3px;
+  /* 2026-09-20 — 이 단추는 화면에 따라 <button>(신청창 열기)과 <a>(다른 화면으로)
+     둘 다로 쓰입니다. 태그가 달라도 똑같이 그려지도록 <button> 기본값을 지웁니다. */
+  border: 0; cursor: pointer; font-family: inherit;
   background-color: #1257C9;   /* 디자인보드 주 단추 — 파랑 단색 (2026-09-17 그라데이션 뺌) */
   box-shadow: 0 8px 20px rgba(18,87,201,0.45);
   transition: transform 0.08s ease, background 0.2s, box-shadow 0.2s;
@@ -889,7 +892,7 @@ header        { box-shadow: none; border-bottom: 1px solid var(--border); }
      까닭: 이 열한 장만 48 이라 손님이 요금표 ↔ 첫 화면을 오갈 때 파란 알약 두께가 달랐습니다.
        정수기 400장(dh-brand.css)도, 첫 화면 쪽 일곱 장도 모두 44 입니다.
    ★ 옆여백(10px · 좁은 구간 7px)은 그대로라 메뉴 너비는 654px 그대로입니다 — 세로만 48 → 44. */
-nav a { display: flex; align-items: center; min-height: 44px; padding: 6px 10px; }
+nav a { display: flex; align-items: center; min-height: 44px; padding: 6px 12px; }
 @media (min-width: 769px) and (max-width: 880px) { nav a { padding: 6px 7px; } }
 .logo { min-height: 44px; }
 .jump { min-height: 44px; display: inline-flex; align-items: center; }
