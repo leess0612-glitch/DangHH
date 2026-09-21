@@ -50,7 +50,7 @@
     if (!나) return;
     var s = document.createElement('script');
     s.id = 'dhCallhopeJs';
-    s.src = 나.replace(/[^/]*$/, 'dh-callhope.js?v=2');
+    s.src = 나.replace(/[^/]*$/, 'dh-callhope.js?v=3');
     s.onload = function () { if (document.getElementById('applyOverlay') && window.dh통화칸넣기) window.dh통화칸넣기(); };
     document.head.appendChild(s);
   })();
