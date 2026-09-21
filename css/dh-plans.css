@@ -334,7 +334,7 @@ footer { background: #0F172A; color: rgba(255,255,255,0.6); padding: 40px 20px; 
   display: inline-flex; align-items: center; gap: 20px;
   max-width: calc(100vw - 48px);
   padding: 13px 16px 13px 28px;
-  background: #12336E;
+  background: #0B2E5C;   /* 2026-09-21 첫 화면 카드와 같은 남색으로 (사장님 결정). 전에는 한 계단 밝은 #12336E */
   border: 1.5px solid rgba(255,255,255,0.10); border-radius: 12px;
   box-shadow: 0 14px 34px rgba(4,18,60,0.34), 0 2px 8px rgba(4,18,60,0.22);
   cursor: pointer; font-family: 'Pretendard Variable', Pretendard, sans-serif; text-align: left;
