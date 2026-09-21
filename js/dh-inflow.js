@@ -602,7 +602,9 @@ global.dhInflowReset = dhInflowReset;
   function 이화면의집(p) {
     if (/\/rental-c\.html$/.test(p) || /\/water-c(\/|$)/.test(p)) return 'coway';
     if (/\/rental\.html$/.test(p)) return 'rental';
-    if (/\/index\.html$/.test(p) || /^\/?$/.test(p)) return 'index';
+    /* 2026-09-21 — 맨 위 주소의 index.html 만 첫 화면입니다. 예전 /\/index\.html$/ 은 settop/x/index.html 처럼
+       하위 폴더 index.html 로 직접 열면 코웨이 문 기억을 「첫 화면」으로 바꿔 버렸습니다(검사 중 발견). */
+    if (/^\/index\.html$/.test(p) || /^\/?$/.test(p)) return 'index';
     return null;
   }
 
