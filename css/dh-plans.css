@@ -45,15 +45,14 @@ body { font-family: 'Pretendard Variable', Pretendard, 'Noto Sans KR', sans-seri
 body.locked { overflow: hidden; }
 
 /* ===== HEADER (index.html과 동일) ===== */
-header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: white; box-shadow: 0 2px 16px rgba(15,42,90,0.08); }
-.header-inner { max-width: 1200px; margin: 0 auto; padding: 0 20px; height: 56px; display: flex; align-items: center; justify-content: space-between; }
+
+
 /* 로고를 오른쪽 전화 단추와 같은 높이로 (2026-08-25 다시 잼)
    ★ 글자 높이는 '줄상자'가 아니라 '글자가 실제로 칠해지는 범위'로 재야 한다.
      줄상자로 재면 글자 위아래 빈 공간까지 세어져 실제보다 크게 나온다(32px일 때 30px인데 40px로 나왔다).
    실측: 전화 단추 40px / 43px일 때 글자가 칠해지는 높이 40px -> 딱 맞음 */
-.logo { font-size: 24px; font-weight: 900; color: var(--primary); text-decoration: none; letter-spacing: -0.5px;
-        line-height: 1; }   /* 줄간격을 1로: 안 그러면 글자 줄상자(69px)가 머리띠(64px)보다 커진다 */
-.logo span { color: var(--primary); }
+   /* 줄간격을 1로: 안 그러면 글자 줄상자(69px)가 머리띠(64px)보다 커진다 */
+
 
 /* ═════ 2026-08-28 로고·머리띠 개편 ═════
    1) 로고를 '파란 둥근 네모 + 흰 글자' 그림으로 바꾸고 이름 옆에 함께 쓴다.
@@ -63,28 +62,28 @@ header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: 
    3) 메뉴를 머리띠 한가운데로 옮겼다.
    ★ 되돌리려면 이 덩어리와 아래 '상담 패널' 덩어리를 지우고,
      머리띠·꼬리말 html 에서 <svg> 조각만 빼면 된다. */
-.logo { display: inline-flex; align-items: center; gap: 8px; }   /* 마크~글자 틈 10 → 8 (2026-09-20 사장님 지시 —
+   /* 마크~글자 틈 10 → 8 (2026-09-20 사장님 지시 —
      정수기 400장(dh-brand.css)과 발바닥 로고(.footer-logo)가 이미 8 이라 그 값으로 맞췄습니다) */
-.logo-mark { flex: none; display: block; width: 37px; height: 24px; }   /* 2026-09-18 로고 한 벌 — 마크+글자 높이 24 (사장님 지시) */
-.footer-logo { display: flex; align-items: center; gap: 8px; }
-.footer-mark { flex: none; display: block; }
+   /* 2026-09-18 로고 한 벌 — 마크+글자 높이 24 (사장님 지시) */
+
+
 
 /* 로고 그림이 보이는 넓은 화면에서만 '당현함' 글씨를 그림과 같은 높이(30)로 맞춘다.
    ★ 글자 높이는 줄상자가 아니라 '실제로 칠해지는 범위'로 재야 한다.
      실측: 32px 일 때 칠해지는 높이 30px (43px 일 때는 40px). */
-@media (min-width: 931px) { .logo { font-size: 24px; } }
+
 /* 창이 좁으면 그림을 감추고 글자만 남긴다 -> 좁은 화면은 예전과 똑같아진다.
    실측 근거: 머리띠 안쪽폭 = 창너비 - 40. 로고글자 111 + 메뉴 514 + (뺀)단추 자리.
    931 에서 양옆 틈이 33px 씩 남아 넉넉하다. */
 /* 2026-09-18: 폰에서 마크를 감추던 규칙을 뺐습니다 — 모든 화면이 마크+글자 한 벌입니다 */
 
 /* 머리띠에서 전화·카톡을 뺀다. 되돌리려면 이 한 줄만 지운다. */
-.header-cta { display: none !important; }
+
 
 /* 메뉴를 머리띠의 '진짜 가운데'에 둔다.
    ★ 그냥 가운데 정렬하면 왼쪽 로고 때문에 오른쪽으로 밀린다.
      그래서 흐름에서 빼내어(absolute) 가운데에 고정하고 부모에 자리표(relative)를 준다. */
-.header-inner { position: relative; }
+
 /* ★ width: max-content 가 없으면 좁은 화면에서 메뉴 글자가 두 줄로 접힌다 (2026-08-28 실제로 겪음).
      까닭: 흐름에서 빼낸(absolute) 칸에 left 만 주면, 쓸 수 있는 너비가
           '왼쪽 끝(50%)부터 오른쪽 끝까지' 즉 화면의 절반뿐이 된다.
@@ -94,43 +93,29 @@ header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: 
    실측(2026-08-28): 창 785 에서 가운데로 맞추면 로고와 메뉴 사이가 10px 까지 붙었다.
      (메뉴 514 를 가운데 두면 양옆에 121 씩 남는데, 로고가 111 이라 10 만 남는다)
    930 이하는 로고 그림도 감춰지는 구간이므로, 손대기 전 모습(오른쪽 정렬) 그대로 둔다. */
-@media (min-width: 931px) {
-  .header-inner nav {
-    position: absolute; left: 50%; transform: translateX(-50%);
-    /* ★ width: max-content 가 없으면 메뉴 글자가 두 줄로 접힌다 (2026-08-28 실제로 겪음).
-         까닭: 흐름에서 빼낸(absolute) 칸에 left 만 주면 쓸 수 있는 너비가
-              '왼쪽 끝(50%)부터 오른쪽 끝까지' 곧 화면의 절반뿐이 된다.
-              메뉴가 그보다 넓어지는 순간 '혜택안 / 내' 처럼 접힌다.
-         max-content 는 '내용 만큼'이라 자리에 상관없이 한 줄을 지킨다. */
-    width: max-content; max-width: none;
-  }
-}
-.header-inner nav a { white-space: nowrap; }
-nav { display: flex; gap: 4px; align-items: center; }
+
+
+
 /* 2026-09-20 — 메뉴 글자 색·굵기를 디자인보드 값으로 맞췄습니다 (사장님 지시).
    #5F6672(gray-500)·600 → #465368(gray-600)·500 — 정수기 400장(dh-brand.css)과 같은 값입니다.
    ⚠ --gray 눈금 자체는 건드리지 않습니다 — 이 파일 안 여러 곳이 쓰고 있습니다. */
-nav a { font-size: 14px; font-weight: 600; color: #465368; text-decoration: none; padding: 6px 12px; border-radius: 8px; transition: all 0.2s; }
-nav a:hover { background: #F5F6F8; }
+
+
 nav a.on, nav a[aria-current="page"] { color: var(--primary); background: #eff6ff; font-weight: 700; }
-.header-phone { display: flex; align-items: center; gap: 6px; background: var(--primary); color: white; padding: 8px 16px; border-radius: 8px; font-size: 15px; font-weight: 700; text-decoration: none; transition: transform 0.12s ease, background 0.2s; }
-.header-phone:hover { background: var(--primary-dark); }
+.header-phone { padding: 8px 16px; transition: transform 0.12s ease, background 0.2s; }
+
 /* ===== 머리띠 전화·카톡 단추 (2026-08-25) =====
    카톡은 전에 화면 아래 오른쪽에 동그랗게 떠다니던 것을 여기로 올렸다.
    전화 단추와 같은 크기·모양으로 맞춰 한 쌍처럼 보이게 한다. */
-.header-cta { display: flex; align-items: center; gap: 8px; }
+
 /* 좁은 컴퓨터 화면에서 전화번호가 두 줄로 접혀 단추가 64px로 부풀었다 (실측).
    min-height: 카톡 글씨를 뺀 화면에서 그림만 남아 33px로 낮아지는 것을 40px로 맞춘다. */
-.header-cta > a { white-space: nowrap; flex: none; min-height: 40px; }
-.header-kakao {
-  display: flex; align-items: center; gap: 6px;
-  background: #fee500; color: #3a1d00; padding: 8px 16px;
-  border-radius: 8px; font-size: 15px; font-weight: 700; text-decoration: none; transition: background 0.2s;
-}
+.header-cta > a { min-height: 40px; }
+.header-kakao { padding: 8px 16px; }
 /* 2026-09-07 카톡 단추: 남의 브랜드색(#FEE500)은 어둡게 만들지 않는다. 눌림은 움직임으로. */
-.header-kakao{ transition:transform .08s ease, box-shadow .08s ease }
-.header-kakao:hover { box-shadow:0 2px 6px rgba(0,0,0,.16); }
-.header-kakao:active { transform:translateY(1px) scale(.985); box-shadow:none; }
+
+
+
 /* 좁은 컴퓨터 화면(태블릿 가로 등)에서는 글씨를 빼고 그림만 남긴다.
    실측: 769px에서 글씨까지 두면 로고와 메뉴가 딱 붙어 숨이 막힌다 */
 @media (min-width: 769px) and (max-width: 1024px) {
@@ -138,20 +123,17 @@ nav a.on, nav a[aria-current="page"] { color: var(--primary); background: #eff6f
   .header-kakao .kakao-label { display: none; }
 }
 .header-phone:active { transform: translateY(1px) scale(0.985); }
-.hamburger { display: none; cursor: pointer; flex-direction: column; gap: 5px; }
-.hamburger span { display: block; width: 24px; height: 2px; background: var(--dark); border-radius: 4px; }
-.mobile-menu { display: none; position: fixed; top: 56px; left: 0; right: 0; background: white; padding: 12px 20px; box-shadow: 0 8px 20px rgba(0,0,0,0.1); z-index: 999; }
-.mobile-menu.open { display: block; }
-.mobile-menu a { display: block; padding: 13px 0; font-size: 15px; font-weight: 600; color: var(--dark); text-decoration: none; border-bottom: 1px solid var(--border); }
-.mobile-menu a:last-child { border-bottom: none; }
+
+
+.mobile-menu { box-shadow: 0 8px 20px rgba(0,0,0,0.1); }
+
+.mobile-menu a { display: block; }
+
 
 /* 메뉴가 6개(요금·사은품 추가)가 되면서 좁은 컴퓨터 화면에서 전화번호 버튼과 거의 붙었다.
    769~880px 구간에서만 항목 사이 여백을 살짝 줄여 숨통을 틔운다 (2026-08-20)
    768px 이하는 어차피 햄버거 메뉴로 접히므로 영향 없음 */
-@media (min-width: 769px) and (max-width: 880px) {
-  nav a { padding: 6px 7px; }
-  .header-inner { padding: 0 14px; }
-}
+
 .mobile-menu a:active { background: #F5F6F8; }
 
 /* ===== 페이지 머리띠 (gift.html과 동일한 틀) ===== */
@@ -221,14 +203,14 @@ nav a.on, nav a[aria-current="page"] { color: var(--primary); background: #eff6f
 /* 2026-09-20 — 발바닥 바탕을 남색(#0B2E5C)에서 다른 410장과 같은 #0F172A 로 바꿨습니다 (사장님 지시).
    남색은 디자인보드에서 「강조 띠」 전용 색(--c-band)이라 발바닥에 쓰면 역할이 겹쳤습니다.
    이 열한 장만 남색이어서, 손님이 요금표 ↔ 첫 화면을 오갈 때 발바닥 색이 바뀌었습니다. */
-footer { background: #0F172A; color: rgba(255,255,255,0.6); padding: 40px 20px; font-size: 13px; line-height: 1.9; }
-.footer-inner { max-width: 1100px; margin: 0 auto; }
-.footer-top { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 20px; margin-bottom: 24px; padding-bottom: 24px; border-bottom: 1px solid rgba(255,255,255,0.1); }
-.footer-logo { font-size: 20px; font-weight: 900; color: white; }
-.footer-links { display: flex; gap: 20px; flex-wrap: wrap; }
-.footer-links a { color: rgba(255,255,255,0.6); text-decoration: none; font-size: 13px; }
-.footer-links a:hover { color: white; }
-.footer-disclaimer { margin-top: 16px; font-size: 12px; color: rgba(255,255,255,0.35); line-height: 1.7; }
+
+
+
+
+
+
+
+
 
 /* 플로팅 */
 .floating-btns { position: fixed; right: 30px; bottom: 24px; display: flex; flex-direction: column; gap: 12px; z-index: 900; }
@@ -360,49 +342,35 @@ footer { background: #0F172A; color: rgba(255,255,255,0.6); padding: 40px 20px; 
 
 /* 휴대폰 아래 고정 신청 막대 — index.html의 .mobile-cta-bar와 같은 디자인.
    이 페이지에는 신청폼이 없어 숨길 조건 없이 항상 떠 있는다 (2026-08-21) */
-.mobile-cta-bar {
-  display: none; position: fixed; bottom: 0; left: 0; right: 0; z-index: 950;
-  padding: 10px 16px; background: white; box-shadow: 0 -3px 16px rgba(0,0,0,0.12);
-}
-.mobile-cta-btn {
-  display: flex; align-items: center; justify-content: center;
-  width: 100%; height: 48px; border-radius: 12px; text-decoration: none;
-  color: white; font-size: 16px; font-weight: 700; letter-spacing: -0.3px;
-  /* 2026-09-20 — 이 단추는 화면에 따라 <button>(신청창 열기)과 <a>(다른 화면으로)
+.mobile-cta-bar { padding: 10px 16px; }
+.mobile-cta-btn { /* 2026-09-20 — 이 단추는 화면에 따라 <button>(신청창 열기)과 <a>(다른 화면으로)
      둘 다로 쓰입니다. 태그가 달라도 똑같이 그려지도록 <button> 기본값을 지웁니다. */
-  border: 0; cursor: pointer; font-family: inherit;
+  border: 0; font-family: inherit;
   background-color: #1257C9;   /* 디자인보드 주 단추 — 파랑 단색 (2026-09-17 그라데이션 뺌) */
   box-shadow: 0 8px 20px rgba(18,87,201,0.45);
-  transition: transform 0.08s ease, background 0.2s, box-shadow 0.2s;
-}
-.mobile-cta-btn:active {
-  background: #0E45A0;
-  transform: translateY(2px) scale(0.96);
-  box-shadow: inset 0 2px 6px rgba(0,0,0,0.22);
-}
+  transition: transform 0.08s ease, background 0.2s, box-shadow 0.2s; }
+.mobile-cta-btn:active { box-shadow: inset 0 2px 6px rgba(0,0,0,0.22); }
 /* 막대 양옆 상담 단추 (2026-09-10) — 왼쪽 전화, 오른쪽 카톡.
    화면 아래 오른쪽에 떠 있던 동그란 단추가 본문(표 오른쪽과 주석)을 가로 52 세로 116 만큼
    덮고 있어서 이 막대로 옮겼다. 48은 손가락으로 누르기에 권장되는 44보다 크다.
    가운데 신청 단추는 남은 자리를 다 쓴다 — 폭 344 폰에서 200 이고, 지금 문구가 156이라 한 줄에 들어간다. */
-.mobile-cta-bar .mobile-cta-btn { flex: 1 1 0; min-width: 0; }
+
 /* 2026-09-21 태블릿 폭(481~768)은 단추가 넓어 글자 한 칸 크게 — 폰 16 · 태블릿 18 · 컴퓨터 20 (사장님 결정, 정수기 띠와 같은 규칙) */
-@media (min-width: 481px) and (max-width: 768px) { .mobile-cta-bar .mobile-cta-btn { font-size: 18px; } }
-.bar-side { flex: 0 0 auto; width: 48px; height: 48px; border-radius: 8px;
-  display: flex; align-items: center; justify-content: center; text-decoration: none;
-  transition: transform 0.08s ease; }
-.bar-phone { background: #EFF6FF; color: #1257C9; }   /* 디자인보드 --dh-c-strong-bg, 테두리 없음 (2026-09-17) */
-.bar-kakao { background: #fee500; color: #3C1E1E; }
-.bar-side:active { transform: translateY(1px) scale(0.97); }
+
+
+   /* 디자인보드 --dh-c-strong-bg, 테두리 없음 (2026-09-17) */
+
+
 
 @media (max-width: 768px) {
-  nav { display: none; }
-  .hamburger { display: flex; }
+  
+  
   /* 폰에서는 머리띠의 전화·카톡 단추를 없앤다 (2026-08-25)
      화면 아래 오른쪽에 떠다니는 전화·카톡 단추가 이미 그 몫을 하고 있어 겹친다 */
-  .header-cta { display: none; }
+  
   /* 폰에서는 전화 단추가 작아진다(높이 35px). 로고도 그에 맞춘다
      실측: 37px일 때 글자가 칠해지는 높이 35px -> 딱 맞음 */
-  .logo { font-size: 24px; }
+  
   .page-head { padding: 34px 20px 30px; }
   .page-head h1 { font-size: 24px; }
   .page-head p { font-size: 13px; }
@@ -415,7 +383,7 @@ footer { background: #0F172A; color: rgba(255,255,255,0.6); padding: 40px 20px; 
        .floating-btns { bottom: 88px; right: 16px; }
        .mobile-cta-bar { display: block; } */
   .floating-btns { display: none; }
-  .mobile-cta-bar { display: flex; align-items: center; gap: 8px; }
+  
   body { padding-bottom: 68px; }
 }
 @media (hover: none) {
@@ -863,16 +831,16 @@ table.term-tbl.txt th.rn { width: 140px; }
 #panel-hello { --head-bg: var(--hello); }
 
 /* ① 모서리 — 눈금 밖 값(6·9·14·50%)을 눈금 위로 올린다 */
-nav a            { border-radius: 8px; }
+
 .cs-btn          { border-radius: 8px; }
 .consult-panel   { border-radius: 12px; }
 .desk-cta-card   { border-radius: 12px; }
-.mobile-cta-btn  { border-radius: 8px; }   /* 주 단추는 모서리 8 */
+   /* 주 단추는 모서리 8 */
 .float-btn, .zoom-close, .tabnav { border-radius: 999px; }
 
 /* ② 그림자 — 기본 없음. 머리띠만 보드 목록의 카드 그림자(sh-card)를 쓴다.
    (2026-09-21 — 아래 선 1px 을 쓰던 이 11장만 머리띠가 57px 이었다. 나머지 410장과 같게 56px + 그림자) */
-header        { box-shadow: 0 2px 16px rgba(15,42,90,0.08); }
+
 .tab          { box-shadow: none; }
 .tab[aria-selected="true"] { box-shadow: none; }
 .tabnav       { box-shadow: none; }
@@ -883,7 +851,7 @@ header        { box-shadow: 0 2px 16px rgba(15,42,90,0.08); }
 /* 떠 있는 동그란 단추는 팝업과 같은 '진짜 떠 있는 것'이라 보드의 팝업 그림자를 쓴다 */
 .float-btn    { box-shadow: 0 8px 32px rgba(11,46,92,0.16); }
 /* 예외 ㉠ 화면 아래에 고정돼 떠 있는 것 */
-.mobile-cta-bar { box-shadow: 0 -3px 16px rgba(15,42,90,0.14); }
+
 .desk-cta-card  { box-shadow: 0 8px 32px rgba(11,46,92,0.16); }
 /* 예외 ㉡ 팝업처럼 화면 위로 뜨는 것 */
 .mobile-menu    { box-shadow: 0 8px 32px rgba(11,46,92,0.16); }
@@ -895,9 +863,9 @@ header        { box-shadow: 0 2px 16px rgba(15,42,90,0.08); }
      까닭: 이 열한 장만 48 이라 손님이 요금표 ↔ 첫 화면을 오갈 때 파란 알약 두께가 달랐습니다.
        정수기 400장(dh-brand.css)도, 첫 화면 쪽 일곱 장도 모두 44 입니다.
    ★ 옆여백(10px · 좁은 구간 7px)은 그대로라 메뉴 너비는 654px 그대로입니다 — 세로만 48 → 44. */
-nav a { display: flex; align-items: center; min-height: 44px; padding: 6px 12px; }
-@media (min-width: 769px) and (max-width: 880px) { nav a { padding: 6px 7px; } }
-.logo { min-height: 44px; }
+
+
+
 .jump { min-height: 44px; display: inline-flex; align-items: center; }
 .footer-links a { display: inline-flex; align-items: center; min-height: 44px; }
 .mobile-menu a  { min-height: 44px; display: flex; align-items: center; }

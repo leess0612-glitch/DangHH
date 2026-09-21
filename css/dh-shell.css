@@ -1,0 +1,70 @@
+/* ══════════════════════════════════════════════════════════════════════
+   당현함 인터넷 쪽 공용 모양 · dh-shell.css   (2026-09-21 1단계)
+   ──────────────────────────────────────────────────────────────────────
+   ★ 무엇인가
+     첫 화면·렌탈 2·사은품명단·약관 2·가전(화면 속 7벌)과 요금표·셋톱(dh-plans.css) 8벌에
+     「똑같이」 들어 있던 머리띠·메뉴·발바닥·아래 띠 모양을 한 곳에 모은 파일입니다.
+     인터넷 쪽 18장이 이 파일을 「맨 먼저」 부릅니다.
+   ★ 규칙
+     · 여기 있는 값을 고치면 18장이 함께 바뀝니다. 고친 뒤 18장의 ?v= 를 올리세요.
+     · 화면마다 달라야 하는 것은 각 화면(또는 dh-plans.css)에 남아 있고, 이 파일보다 뒤에 와서 이깁니다.
+     · 1단계는 「모양을 하나도 안 바꾸고 옮기기만」 했습니다(전후 전수 측정으로 확인).
+     · 정수기 400장은 아직 css/dh-brand.css 를 씁니다(2단계에서 합칠 예정).
+   ══════════════════════════════════════════════════════════════════════ */
+header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: white; box-shadow: 0 2px 16px rgba(15,42,90,.08); }
+.header-inner { max-width: 1200px; margin: 0 auto; padding: 0 20px; height: 56px; display: flex; align-items: center; justify-content: space-between; position: relative; }
+.logo { font-size: 24px; font-weight: 900; color: var(--primary); text-decoration: none; letter-spacing: -.5px; line-height: 1; display: inline-flex; align-items: center; gap: 8px; min-height: 44px; }
+.logo span { color: var(--primary); }
+.logo-mark { flex: none; display: block; width: 37px; height: 24px; }
+.footer-logo { display: flex; align-items: center; gap: 8px; font-size: 20px; font-weight: 900; color: white; }
+.footer-mark { flex: none; display: block; }
+.header-cta { display: none !important; align-items: center; gap: 8px; }
+.header-inner nav a { white-space: nowrap; }
+nav { display: flex; gap: 4px; align-items: center; }
+nav a { display: flex; align-items: center; min-height: 44px; font-size: 14px; font-weight: 600; color: #465368; text-decoration: none; padding: 6px 12px; border-radius: 8px; transition: all .2s; }
+nav a:hover { background: #f5f6f8; }
+.header-phone { display: flex; align-items: center; gap: 6px; background: var(--primary); color: white; border-radius: 8px; font-size: 15px; font-weight: 700; text-decoration: none; }
+.header-phone:hover { background: var(--primary-dark); }
+.header-cta > a { white-space: nowrap; flex: none; }
+.header-kakao { display: flex; align-items: center; gap: 6px; background: #fee500; color: #3a1d00; border-radius: 8px; font-size: 15px; font-weight: 700; text-decoration: none; transition: transform .08s ease,box-shadow .08s ease; }
+.header-kakao:hover { box-shadow: 0 2px 6px rgba(0,0,0,.16); }
+.header-kakao:active { transform: translateY(1px) scale(.985); box-shadow: none; }
+.hamburger { display: none; cursor: pointer; flex-direction: column; gap: 5px; }
+.hamburger span { display: block; width: 24px; height: 2px; background: var(--dark); border-radius: 4px; }
+.mobile-menu { display: none; position: fixed; top: 56px; left: 0; right: 0; background: white; padding: 12px 20px; z-index: 999; }
+.mobile-menu.open { display: block; }
+.mobile-menu a { padding: 13px 0; font-size: 15px; font-weight: 600; color: var(--dark); text-decoration: none; border-bottom: 1px solid var(--border); }
+.mobile-menu a:last-child { border-bottom: none; }
+footer { background: #0f172a; color: rgba(255,255,255,.6); padding: 40px 20px; font-size: 13px; line-height: 1.9; }
+.footer-inner { max-width: 1100px; margin: 0 auto; }
+.footer-top { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 20px; margin-bottom: 24px; padding-bottom: 24px; border-bottom: 1px solid rgba(255,255,255,.1); }
+.footer-links { display: flex; gap: 20px; flex-wrap: wrap; }
+.footer-links a { color: rgba(255,255,255,.6); text-decoration: none; font-size: 13px; }
+.footer-links a:hover { color: white; }
+.footer-disclaimer { margin-top: 16px; font-size: 12px; color: rgba(255,255,255,.35); line-height: 1.7; }
+.mobile-cta-bar { display: none; position: fixed; bottom: 0; left: 0; right: 0; z-index: 950; background: white; box-shadow: 0 -3px 16px rgba(15,42,90,.14); }
+.mobile-cta-btn { display: flex; align-items: center; justify-content: center; text-decoration: none; width: 100%; height: 48px; color: white; font-size: 16px; font-weight: 700; border-radius: 8px; cursor: pointer; letter-spacing: -.3px; }
+.mobile-cta-bar .mobile-cta-btn { flex: 1 1 0; min-width: 0; }
+.bar-side { flex: 0 0 auto; width: 48px; height: 48px; border-radius: 8px; display: flex; align-items: center; justify-content: center; text-decoration: none; transition: transform .08s ease; }
+.bar-phone { background: #eff6ff; color: #1257c9; }
+.bar-kakao { background: #fee500; color: #3c1e1e; }
+.bar-side:active { transform: translateY(1px) scale(.97); }
+.mobile-cta-btn:active { background: #0e45a0; transform: translateY(2px) scale(.96); }
+@media (min-width:931px) {
+  .logo { font-size: 24px; }
+  .header-inner nav { position: absolute; left: 50%; transform: translateX(-50%); width: max-content; max-width: none; }
+}
+@media (min-width:769px) and (max-width:880px) {
+  nav a { padding: 6px 7px; }
+  .header-inner { padding: 0 14px; }
+}
+@media (min-width:481px) and (max-width:768px) {
+  .mobile-cta-bar .mobile-cta-btn { font-size: 18px; }
+}
+@media (max-width:768px) {
+  .mobile-cta-bar { display: flex; align-items: center; gap: 8px; }
+  nav { display: none; }
+  .hamburger { display: flex; }
+  .header-cta { display: none; }
+  .logo { font-size: 24px; }
+}
