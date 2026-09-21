@@ -14,6 +14,7 @@
    ★ 공용 부품(js/dh-apply.js · js/dh-terms.js)은 **한 줄도 손대지 않습니다.**
      여기서는 창이 만들어진 뒤 **글자만 바꿔 끼웁니다.**
      이 파일을 부르지 않는 화면은 지금까지와 똑같이 움직입니다.
+     (2026-09-21 부터 정수기 밖 중립 화면 15장도 부릅니다 — 아래 「어디서 켜지나」)
 
    ⚠ 막아야 할 낱말 15개 (렌탈대본 감시와 같은 목록)
      현금 지원금 지원비 상품권 페이백 캐시백 캐시 환급 사은금
@@ -24,6 +25,38 @@
    ══════════════════════════════════════════════════════════════════════ */
 (function () {
   'use strict';
+
+  /* ★ 2026-09-21 — 어디서 켜지나 (사장님 지시)
+     ① 정수기 화면(/water/ · /water-c/) — 늘 켭니다 (전과 같음)
+     ② 그 밖에 이 파일을 부르는 화면(요금표 6 · 셋톱 5 · 사은품명단 · 개인정보 · 약관 · 가전)
+        — **코웨이 문으로 들어온 손님일 때만** 켭니다. 일반 손님에게는 아무 일도 하지 않습니다.
+        문 기억은 js/dh-inflow.js 가 적는 sessionStorage 'dh_door' (옛 판은 'dh_coway_door' = '1').
+        까닭: 코웨이 광고로 들어와 메뉴를 따라 요금표 등에 간 손님에게 띠 단추·신청창·탭 제목의
+        「지원금·현금·입금」이 그대로 보였습니다. 문 기억은 링크만 바꾸고 글자는 안 바꿨기 때문입니다.
+     ② 에서는 글자가 잠깐 비치지 않도록, 바꾸기를 마칠 때까지 본문을 감춰 둡니다.
+        무슨 일이 있어도 2.5초 뒤에는 다시 보이게 합니다(화면이 영영 안 보이는 사고 방지). */
+  var 길 = '';
+  try { 길 = decodeURIComponent(location.pathname); } catch (e) { 길 = location.pathname || ''; }
+  var 정수기 = /\/water(-c)?\//.test(길);
+  var 코웨이문 = false;
+  try {
+    코웨이문 = sessionStorage.getItem('dh_door') === 'coway' ||
+              sessionStorage.getItem('dh_coway_door') === '1';
+  } catch (e) {}
+  if (!정수기 && !코웨이문) return;
+
+  var 풀기 = function () {};
+  if (!정수기) {
+    var 감춤 = document.createElement('style');
+    감춤.id = 'dh-nocash-wait';
+    감춤.textContent = 'body{visibility:hidden!important}';
+    (document.head || document.documentElement).appendChild(감춤);
+    풀기 = function () {
+      var s = document.getElementById('dh-nocash-wait');
+      if (s && s.parentNode) s.parentNode.removeChild(s);
+    };
+    setTimeout(풀기, 2500);
+  }
 
   /* 긴 말부터 바꿉니다 — 짧은 낱말을 먼저 바꾸면 문장이 어색해집니다 */
   var 바꿈표 = [
@@ -121,6 +154,10 @@
 
   function 켜기() {
     고치기(document.body);
+    /* 탭 제목도 — 요금표 KT·LG 제목에 「현금 사은품」이 있습니다 (2026-09-21) */
+    var 새제목 = 고친글(document.title);
+    if (새제목 !== document.title) document.title = 새제목;
+    풀기();
     if (!window.MutationObserver) return;
     new MutationObserver(function (기록) {
       for (var i = 0; i < 기록.length; i++) {
