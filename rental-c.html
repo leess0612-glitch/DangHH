@@ -836,7 +836,7 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
 .desk-cta-bar input::placeholder { color: #8A9099; }
 .desk-cta-bar-btn {
   padding: 12px 28px; background: #FFFFFF; color: #1257C9;
-  font-size: 22px; font-weight: 700; border: 1.5px solid transparent; border-radius: 8px;
+  font-size: 20px;   /* 2026-09-21 22→20 (컴퓨터 단추 20 규칙) */ font-weight: 700; border: 1.5px solid transparent; border-radius: 8px;
   cursor: pointer; font-family: 'Pretendard Variable', Pretendard, sans-serif; transition: background 0.2s;
   white-space: nowrap; line-height: 1;
 }
@@ -969,6 +969,8 @@ footer { background: #0f172a; color: rgba(255,255,255,0.6); padding: 40px 20px; 
    화면 아래 오른쪽에 떠 있던 동그란 단추가 본문을 가려서 이 막대로 옮겼다.
    48은 손가락으로 누르기에 권장되는 44보다 크다. 가운데 신청 단추는 남은 자리를 다 쓴다. */
 .mobile-cta-bar .mobile-cta-btn { flex: 1 1 0; min-width: 0; width: auto; }
+/* 2026-09-21 태블릿 폭(481~768)은 단추가 넓어 글자 한 칸 크게 — 폰 16 · 태블릿 18 · 컴퓨터 20 (사장님 결정, 정수기 띠와 같은 규칙) */
+@media (min-width: 481px) and (max-width: 768px) { .mobile-cta-bar .mobile-cta-btn { font-size: 18px; } }
 .bar-side { flex: 0 0 auto; width: 48px; height: 48px; border-radius: 8px;
   display: flex; align-items: center; justify-content: center; text-decoration: none;
   transition: transform 0.08s ease; }
