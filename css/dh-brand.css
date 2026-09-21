@@ -93,7 +93,7 @@ html{scroll-padding-top:calc(var(--stick-h,133px) + var(--pad-screen))}
 body{
   margin:0; font-family:var(--font); font-size:var(--t-body); line-height:var(--lh-body);
   font-weight:400; color:var(--c-body); background:var(--c-page);
-  letter-spacing:-.01em; word-break:keep-all;
+  word-break:keep-all;   /* 본문 자간은 건드리지 않음(보드 3장). 2026-09-21 -.01em 뺌 */
   -webkit-tap-highlight-color:transparent;
 }
 .dh-num{font-variant-numeric:tabular-nums}
@@ -114,7 +114,7 @@ a{color:inherit}
         글씨 크기·색은 라이브 그대로라 보기에는 같습니다.
      3) 꼬리말 맨 아래 고지는 라이브 11px 대신 12px 입니다 — 보드가 12 미만을 막습니다. */
 header{position:fixed;top:0;left:0;right:0;z-index:1000;background:var(--c-card);
-  box-shadow:0 2px 12px rgba(0,0,0,.08)}
+  box-shadow:0 2px 16px rgba(15,42,90,.08)}
 .header-inner{position:relative;max-width:1200px;margin:0 auto;padding:0 var(--pad-card);
   height:var(--h-header);display:flex;align-items:center;justify-content:space-between}
 /* 2026-09-09: 폰에서 로고 글씨가 PC(32)보다 커지고(43) 그림도 사라졌습니다.
@@ -124,10 +124,10 @@ header{position:fixed;top:0;left:0;right:0;z-index:1000;background:var(--c-card)
 .logo-mark{flex:none;display:block;width:37px;height:24px}
 nav{display:flex;gap:4px;align-items:center}
 nav a{display:flex;align-items:center;min-height:var(--h-touch);padding:0 12px;
-  border-radius:var(--r-control);font-size:var(--t-nav);font-weight:500;color:var(--c-sub);
+  border-radius:var(--r-control);font-size:var(--t-nav);font-weight:600;color:var(--c-sub);
   text-decoration:none;white-space:nowrap;transition:.2s}
-nav a:hover{color:var(--c-strong);background:var(--c-strong-bg)}
-nav a[aria-current="page"]{color:var(--c-strong);font-weight:700}
+nav a:hover{background:var(--dh-gray-100)}
+nav a[aria-current="page"],nav a.on{color:var(--c-strong);background:var(--c-strong-bg);font-weight:700}
 nav a.cta,.m-menu a.cta{color:var(--c-strong);font-weight:700}
 .hamburger{display:none;width:var(--h-touch);height:var(--h-touch);border:0;background:none;
   padding:12px;cursor:pointer}
@@ -246,7 +246,7 @@ footer{background:var(--dh-gray-950);color:rgba(255,255,255,.6);
 .footer-links a:hover{color:#fff}
 .footer-info strong{color:rgba(255,255,255,.8)}
 .footer-disclaimer{margin-top:16px;font-size:var(--t-min);font-weight:400;line-height:var(--lh-min);
-  color:rgba(255,255,255,.3)}
+  color:rgba(255,255,255,.35)}   /* 대비 3.2 (보드 규칙 2: 묻어 두는 법적 문구 3.0) 2026-09-21 */
 
 /* ── 본문 틀 ──────────────────────────────────────────── */
 /* 칸(section)은 화면 폭을 그대로 쓰고, 글 폭은 그 안의 .wrap 이 잡는다.
@@ -414,7 +414,8 @@ h2{font-size:var(--t-h2);line-height:var(--lh-h2);font-weight:800;color:var(--c-
   font-weight:700;color:var(--c-title)}
 .fee .why{display:block;font-size:var(--t-min);font-weight:var(--w-min);line-height:var(--lh-min);
   color:var(--c-sub);font-weight:500}
-.fee-note{font-size:var(--t-min);font-weight:var(--w-min);line-height:var(--lh-min);color:var(--c-sub);margin:8px 0 0}
+.fee-note{font-size:var(--t-min);font-weight:var(--w-min);line-height:var(--lh-min);color:var(--c-sub);margin:8px 0 0;
+  text-wrap:balance}   /* 끝 낱말 혼자 떨어짐 방지 (2026-09-21) */
 
 /* ── 설득 그림 ────────────────────────────────────────── */
 /* 설득 자리 — 짧은 글 한 덩이 + 그림 한 장을 한 묶음으로 둔다.

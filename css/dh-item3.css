@@ -113,7 +113,7 @@
 .it-spec th,.it-spec td{padding:10px 8px;text-align:left;vertical-align:top;
   border-bottom:1px solid var(--c-line);word-break:keep-all}
 .it-spec th[scope="row"]{width:34%;color:var(--c-sub);font-weight:500}
-.it-spec td{color:var(--c-body)}
+.it-spec td{color:var(--c-body);text-wrap:pretty}   /* 끝 낱말 혼자 떨어짐 방지 (2026-09-21) */
 .it-spec-note{margin:12px 0 0;font-size:var(--t-min);font-weight:var(--w-min);
   line-height:var(--lh-min);color:var(--c-sub)}
 

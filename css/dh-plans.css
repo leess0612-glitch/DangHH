@@ -45,7 +45,7 @@ body { font-family: 'Pretendard Variable', Pretendard, 'Noto Sans KR', sans-seri
 body.locked { overflow: hidden; }
 
 /* ===== HEADER (index.html과 동일) ===== */
-header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: white; box-shadow: 0 2px 12px rgba(15,42,90,0.09); }
+header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: white; box-shadow: 0 2px 16px rgba(15,42,90,0.08); }
 .header-inner { max-width: 1200px; margin: 0 auto; padding: 0 20px; height: 56px; display: flex; align-items: center; justify-content: space-between; }
 /* 로고를 오른쪽 전화 단추와 같은 높이로 (2026-08-25 다시 잼)
    ★ 글자 높이는 '줄상자'가 아니라 '글자가 실제로 칠해지는 범위'로 재야 한다.
@@ -110,9 +110,9 @@ nav { display: flex; gap: 4px; align-items: center; }
 /* 2026-09-20 — 메뉴 글자 색·굵기를 디자인보드 값으로 맞췄습니다 (사장님 지시).
    #5F6672(gray-500)·600 → #465368(gray-600)·500 — 정수기 400장(dh-brand.css)과 같은 값입니다.
    ⚠ --gray 눈금 자체는 건드리지 않습니다 — 이 파일 안 여러 곳이 쓰고 있습니다. */
-nav a { font-size: 14px; font-weight: 500; color: #465368; text-decoration: none; padding: 6px 12px; border-radius: 8px; transition: all 0.2s; }
-nav a:hover { color: var(--primary); background: #eff6ff; }
-nav a.on { color: var(--primary); background: #eff6ff; font-weight: 700; }
+nav a { font-size: 14px; font-weight: 600; color: #465368; text-decoration: none; padding: 6px 12px; border-radius: 8px; transition: all 0.2s; }
+nav a:hover { background: #F5F6F8; }
+nav a.on, nav a[aria-current="page"] { color: var(--primary); background: #eff6ff; font-weight: 700; }
 .header-phone { display: flex; align-items: center; gap: 6px; background: var(--primary); color: white; padding: 8px 16px; border-radius: 8px; font-size: 15px; font-weight: 700; text-decoration: none; transition: transform 0.12s ease, background 0.2s; }
 .header-phone:hover { background: var(--primary-dark); }
 /* ===== 머리띠 전화·카톡 단추 (2026-08-25) =====
@@ -228,7 +228,7 @@ footer { background: #0F172A; color: rgba(255,255,255,0.6); padding: 40px 20px; 
 .footer-links { display: flex; gap: 20px; flex-wrap: wrap; }
 .footer-links a { color: rgba(255,255,255,0.6); text-decoration: none; font-size: 13px; }
 .footer-links a:hover { color: white; }
-.footer-disclaimer { margin-top: 16px; font-size: 12px; color: rgba(255,255,255,0.3); line-height: 1.7; }
+.footer-disclaimer { margin-top: 16px; font-size: 12px; color: rgba(255,255,255,0.35); line-height: 1.7; }
 
 /* 플로팅 */
 .floating-btns { position: fixed; right: 30px; bottom: 24px; display: flex; flex-direction: column; gap: 12px; z-index: 900; }
@@ -868,8 +868,9 @@ nav a            { border-radius: 8px; }
 .mobile-cta-btn  { border-radius: 8px; }   /* 주 단추는 모서리 8 */
 .float-btn, .zoom-close, .tabnav { border-radius: 999px; }
 
-/* ② 그림자 — 기본 없음. 머리띠는 그림자 대신 아래 선으로 경계를 만든다 */
-header        { box-shadow: none; border-bottom: 1px solid var(--border); }
+/* ② 그림자 — 기본 없음. 머리띠만 보드 목록의 카드 그림자(sh-card)를 쓴다.
+   (2026-09-21 — 아래 선 1px 을 쓰던 이 11장만 머리띠가 57px 이었다. 나머지 410장과 같게 56px + 그림자) */
+header        { box-shadow: 0 2px 16px rgba(15,42,90,0.08); }
 .tab          { box-shadow: none; }
 .tab[aria-selected="true"] { box-shadow: none; }
 .tabnav       { box-shadow: none; }
