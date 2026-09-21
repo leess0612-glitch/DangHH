@@ -124,6 +124,7 @@ window.addEventListener('scroll', function(){
 <script src="js/dh-find.js?v=3"></script>
 <script src="js/dh-footer.js?v=2"></script>
 <script src="js/dh-terms.js?v=1"></script>
+<script src="js/dh-callhope.js?v=1" defer></script>
 <script>
 /* 부품 파일을 못 받아 왔더라도 신청 접수는 막히지 않게 한다 (유입 칸만 비게 된다) */
 if (typeof dhInflow !== 'function') { window.dhInflow = function () { return {}; }; }
@@ -3292,7 +3293,7 @@ document.getElementById('inputMemo').addEventListener('input', function() {
 async function submitForm() {
   const name = document.getElementById('inputName').value.trim();
   const phone = document.getElementById('inputPhone').value.trim();
-  const memo = document.getElementById('inputMemo').value.trim();
+  let memo = document.getElementById('inputMemo').value.trim();
   if (selectedServices.size === 0) { alert('서비스를 하나 이상 선택해주세요.'); return; }
   if (!phone || phone.replace(/\D/g,'').length !== 11) { alert('휴대폰 번호 11자리를 정확히 입력해주세요.\n(예: 010-1234-5678)'); return; }
   if (!document.getElementById('c1').checked) {
@@ -3306,10 +3307,12 @@ async function submitForm() {
   const serviceText = [...selectedServices].map(s => serviceMap[s]).join('+');
 
   try {
+    if (window.dh통화붙이기) memo = window.dh통화붙이기(memo);   /* 통화 희망 시간 줄 (js/dh-callhope.js, 2026-09-21) */
     await dhSend(Object.assign({ name, phone, usim: 'N', service: serviceText, memo }, dhInflow()),
                  (문구) => { btn.textContent = 문구; });
     document.getElementById('formContent').style.display = 'none';
     document.getElementById('formSuccess').style.display = 'block';
+    if (window.dh통화완료) window.dh통화완료();   /* 완료창에 전화 드릴 때를 적는다 */
       dhNaver('lead');   /* 네이버 전환: 진짜 접수된 뒤에만 (2026-08-28) */
   } catch(e) {
     alert('오류가 발생했습니다. 잠시 후 다시 시도하거나\n1600-4670으로 직접 문의해주세요.');

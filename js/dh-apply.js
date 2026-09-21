@@ -41,6 +41,20 @@
 (function () {
   'use strict';
 
+  /* ===== 통화 희망 시간 부품을 함께 싣는다 (2026-09-21) =====
+     js/dh-callhope.js — 이 파일을 부르는 화면이 많아(412쪽) 한 줄씩 넣지 않고 여기서 부른다.
+     ⚠ 그 파일을 고치면 아래 ?v= 숫자만 올리면 된다(이 파일을 부르는 화면들은 그대로). */
+  (function () {
+    if (window.dh통화칸넣기 || document.getElementById('dhCallhopeJs')) return;
+    var 나 = document.currentScript && document.currentScript.src;
+    if (!나) return;
+    var s = document.createElement('script');
+    s.id = 'dhCallhopeJs';
+    s.src = 나.replace(/[^/]*$/, 'dh-callhope.js?v=1');
+    s.onload = function () { if (document.getElementById('applyOverlay') && window.dh통화칸넣기) window.dh통화칸넣기(); };
+    document.head.appendChild(s);
+  })();
+
   var SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxmkjm-U5m29WEkjKpAV8RovWAo9JMFJmR6t2BCgQPboPdpLSVwORTJ1_-kRXeCAeS84A/exec';
 
   var 고른서비스 = { internet: true, rental: false };
@@ -327,6 +341,7 @@
   function 열기() {
     var 창 = 상자만들기();
     if (!창 || 창.classList.contains('open')) return;
+    if (window.dh통화칸넣기) window.dh통화칸넣기();   /* 통화 희망 시간 칸 — 열 때마다 지금 시각으로 목록을 새로 만든다 */
     창.classList.add('open');
     창.setAttribute('aria-hidden', 'false');
     document.body.classList.add('apply-open');
@@ -556,9 +571,11 @@
       try { 보낼값 = Object.assign(보낼값, dhInflow()); } catch (e) {}
     }
 
+    if (window.dh통화붙이기) 보낼값.memo = window.dh통화붙이기(보낼값.memo);   /* 통화 희망 시간 줄 */
     dhSend(보낼값, function (문구) { btn.textContent = 문구; }).then(function () {
       document.getElementById('formContent').style.display = 'none';
       document.getElementById('formSuccess').style.display = 'block';
+      if (window.dh통화완료) window.dh통화완료();   /* 완료창에 전화 드릴 때를 적는다 */
       if (typeof dhNaver === 'function') dhNaver('lead');   /* 네이버 전환: 진짜 접수된 뒤에만 */
     }, function () {
       alert('오류가 발생했습니다. 잠시 후 다시 시도하거나\n1600-4670으로 직접 문의해주세요.');
@@ -577,6 +594,7 @@
     document.getElementById('memoCount').parentNode.classList.remove('over');
     document.getElementById('memoFold').classList.remove('open');
     document.getElementById('memoToggle').style.display = '';
+    if (window.dh통화비우기) window.dh통화비우기();
     document.getElementById('c1').checked = true;
     고른서비스 = { internet: true, rental: false };
     document.getElementById('tab-internet').classList.add('active');
