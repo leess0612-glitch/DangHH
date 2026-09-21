@@ -1,10 +1,11 @@
 /* ===================================================================
    당현함 유입경로 공용 부품  —  dh-inflow.js
-   (2026-08-20 신설 / 같은 날 v2 · v3 / 2026-09-03 v4 : gclid 안전망 · v5 : 안 채워진 빈칸 걸러내기)
+   (2026-08-20 신설 / 같은 날 v2 · v3 / 2026-09-03 v4 : gclid 안전망 · v5 : 안 채워진 빈칸 걸러내기
+    / 2026-09-21 : 경유글 — 거쳐 온 블로그·카페 글 주소와 그 글 속 검색어)
 
    ■ 무슨 일을 하나
      "이 손님이 어디서 왔는지"를 알아내 손님 브라우저에 7일 동안 기억해 두고,
-     신청서를 보낼 때 같이 실어 보낸다. (구글 시트 '당현함_신청DB' G~K 5칸)
+     신청서를 보낼 때 같이 실어 보낸다. (구글 시트 '당현함_신청DB' 의 유입 칸 5개 + 경유글 칸)
 
    ■ 왜 파일로 뺐나
      예전에는 이 코드가 index·internet·rental·gift 네 파일에 통째로 복사돼 있었다.
@@ -240,6 +241,147 @@ function 넘어온곳찾기() {
   return { summary: 집 + ' 링크', source: 집 };
 }
 
+/* -- 거쳐 온 글 주소 읽기 (2026-09-21 추가) -----------------------
+   손님이 우리 홈페이지로 넘어오기 직전에 보고 있던 글의 주소를 읽어,
+   시트 '경유글' 칸에 적을 짧은 주소로 다듬는다. 누르면 그 글이 바로 열린다.
+
+   ■ 왜 넣었나 (2026-09-21 사장님 질문)
+     "대행사가 어디에 주소를 넣든, 그 글이 어느 블로그·카페인지 알 수 없나"
+     예전에는 '(네이버 카페 경유)' 처럼 사이트 이름만 남기고 주소는 버렸다.
+     구글 통계로 확인해 보니 네이버 블로그·카페는 대부분 글 주소 전체
+     (블로그 아이디·카페 이름·글 번호)를 넘겨주고 있었다.
+
+   ■ 블로그 이름을 미리 적어 두지 않는다
+     들어온 주소에서 그대로 읽어 내므로, 대행사가 처음 보는 블로그·카페에 올려도
+     고칠 것이 없다. 아래 규칙은 '어느 블로그'가 아니라 '네이버 주소의 모양'이다.
+       - 네이버 블로그 -> https://blog.naver.com/아이디/글번호
+       - 네이버 카페   -> https://cafe.naver.com/카페이름/글번호
+                          카페 이름 대신 번호만 오면 번호 주소 그대로 둔다(눌러도 같은 글이 열린다)
+       - 그 밖의 곳    -> 받은 주소 그대로 (# 뒤는 버리고 200자까지)
+       - 사이트 대문만 온 경우(아이폰 등) · 검색 결과 화면 -> 비운다
+
+   ■ 덤 : 손님이 검색한 말
+     네이버는 글 주소 뒤에 '무슨 말로 검색해서 이 글을 봤는지'를 붙여 둘 때가 있다.
+     (카페 query= · 모바일 블로그 searchKeyword= · PC 블로그 topReferer 안의 query=)
+     그 말을 시트 '소재·검색어' 칸에 적는다. 꼬리표 검색어(utm_term)나
+     네이버 광고 검색어(n_query)가 있으면 그쪽이 이긴다.
+
+   ■ 한계 (2026-09-21 실측)
+     - 아이폰(사파리)은 애플이 주소를 잘라 사이트 이름만 보낸다 -> 경유글 빈칸
+     - 네이버 앱 안에서 열거나 네이버 단축주소(m.site.naver.com)를 거치면
+       주소가 아예 안 온다 -> 경유글 빈칸                                  */
+var 글주소길이 = 200;
+var 검색어길이 = 50;
+var 이름모양 = /^[A-Za-z0-9_-]{1,50}$/;          /* 블로그 아이디 · 카페 이름 */
+var 번호모양 = /^\d{1,20}$/;                      /* 글 번호 · 카페 번호 */
+var 검색어이름들 = ['query', 'searchKeyword', 'q'];
+var 안쪽주소이름들 = ['topReferer', 'proxyReferer'];  /* 네이버 블로그가 '이 글에 어디서 왔나'를 담아 두는 이름 */
+
+function 꼬리값(주소객체, 이름) {
+  try { return 주소객체.searchParams.get(이름) || ''; } catch (e) { return ''; }
+}
+
+function 검색어꺼내기(주소객체) {
+  var i, 값;
+  for (i = 0; i < 검색어이름들.length; i++) {
+    값 = 꼬리값(주소객체, 검색어이름들[i]);
+    if (값) return 값;
+  }
+  for (i = 0; i < 안쪽주소이름들.length; i++) {
+    var 안쪽 = 꼬리값(주소객체, 안쪽주소이름들[i]);
+    if (!안쪽) continue;
+    try {
+      var 안쪽객체 = new URL(안쪽);
+      for (var j = 0; j < 검색어이름들.length; j++) {
+        값 = 꼬리값(안쪽객체, 검색어이름들[j]);
+        if (값) return 값;
+      }
+    } catch (e) {}
+  }
+  return '';
+}
+
+/* 네이버 검색어는 띄어쓰기가 + 로 남아 올 때가 있다 ('얼음정수기+렌탈').
+   '=' '+' '-' '@' 로 시작하면 구글시트가 계산식으로 읽으므로 앞에서 떼어 낸다 */
+function 검색어다듬기(값) {
+  var 말 = String(값 || '').replace(/\+/g, ' ').replace(/\s+/g, ' ');
+  말 = 말.replace(/^[=+\-@\s]+/, '').trim();
+  if (안채워진빈칸(말)) return '';
+  return 말.slice(0, 검색어길이).trim();
+}
+
+/* 카페 주소에 카페 이름 대신 번호만 올 때, 네이버가 붙여 둔 표(art=)를 풀면
+   카페 이름이 들어 있는 경우가 있다. 글 번호가 맞을 때만 믿는다. 없으면 빈 글. */
+function 표속카페이름(주소객체, 글번호) {
+  var 표 = 꼬리값(주소객체, 'art');
+  if (!표) return '';
+  var 조각 = 표.split('.');
+  for (var i = 0; i < 조각.length; i++) {
+    try {
+      var 글자 = 조각[i].replace(/-/g, '+').replace(/_/g, '/');
+      while (글자.length % 4) 글자 += '=';
+      var 속 = JSON.parse(atob(글자));
+      if (속 && typeof 속.cafeUrl === 'string' && 이름모양.test(속.cafeUrl) &&
+          (속.articleId === undefined || String(속.articleId) === 글번호)) return 속.cafeUrl;
+    } catch (e) {}
+  }
+  return '';
+}
+
+function 블로그글(주소객체) {
+  var 아이디 = 꼬리값(주소객체, 'blogId');
+  var 번호 = 꼬리값(주소객체, 'logNo');
+  var 조각 = 주소객체.pathname.match(/^\/([A-Za-z0-9_-]+)(?:\/(\d+))?\/?$/);   /* /아이디/글번호 · /아이디 */
+  if (조각) {
+    아이디 = 아이디 || 조각[1];
+    번호 = 번호 || 조각[2] || '';
+  }
+  if (!이름모양.test(아이디)) return '';
+  return 'https://blog.naver.com/' + 아이디 + (번호모양.test(번호) ? '/' + 번호 : '');
+}
+
+function 카페글(주소객체) {
+  var 길 = 주소객체.pathname, 카페 = '', 번호 = '';
+  var 조각 = 길.match(/\/cafes\/([A-Za-z0-9_-]+)\/(?:[^\/]+\/)*articles\/(\d+)/)   /* 새 주소 */
+          || 길.match(/^\/([A-Za-z0-9_-]+)\/(\d+)\/?$/);                          /* 옛 주소 */
+  if (조각) { 카페 = 조각[1]; 번호 = 조각[2]; }
+  else if (/ArticleRead\.(nhn|naver)$/i.test(길)) {
+    카페 = 꼬리값(주소객체, 'clubid'); 번호 = 꼬리값(주소객체, 'articleid');
+  } else {
+    var 대문 = 길.match(/^\/([A-Za-z0-9_-]+)\/?$/);                               /* 카페 대문 */
+    if (대문) 카페 = 대문[1];
+  }
+  if (!이름모양.test(카페) || 카페 === 'ca-fe' || 카페 === 'f-e') return '';
+  var 번호카페 = /^\d+$/.test(카페);
+  if (!번호모양.test(번호)) return 번호카페 ? '' : 'https://cafe.naver.com/' + 카페;
+  if (번호카페) {
+    var 이름 = 표속카페이름(주소객체, 번호);
+    if (!이름) return 'https://cafe.naver.com/ca-fe/cafes/' + 카페 + '/articles/' + 번호;
+    카페 = 이름;
+  }
+  return 'https://cafe.naver.com/' + 카페 + '/' + 번호;
+}
+
+/* 돌려주는 값 { 글: 경유글 칸에 적을 주소(없으면 ''), 낱말: 손님이 검색한 말(없으면 '') }
+   우리 페이지끼리 이동한 경우는 부르는 쪽(넘어온곳찾기)이 먼저 걸러 준다 */
+function 거쳐온글() {
+  var 빈것 = { 글: '', 낱말: '' };
+  var 주소 = document.referrer || '';
+  if (!주소) return 빈것;
+  var 객체;
+  try { 객체 = new URL(주소); } catch (e) { return 빈것; }
+  var 집 = 객체.hostname.replace(/^www\./, '').toLowerCase();
+  var 낱말 = 검색어다듬기(검색어꺼내기(객체));
+  var 글 = '';
+  if (/(^|\.)blog\.naver\.com$/.test(집)) 글 = 블로그글(객체);
+  else if (/(^|\.)cafe\.naver\.com$/.test(집)) 글 = 카페글(객체);
+  else if (/^https?:$/.test(객체.protocol) &&        /* 앱이 보내는 android-app:// 같은 주소는 뺀다 */
+           객체.pathname && 객체.pathname !== '/' && !(낱말 && /\bsearch/i.test(객체.pathname))) {
+    글 = (객체.origin + 객체.pathname + 객체.search).slice(0, 글주소길이);
+  }
+  return { 글: 글, 낱말: 낱말 };
+}
+
 /* -- 기억해 두기 / 꺼내 보기 ------------------------------------- */
 function 저장하기(값) {
   try {
@@ -285,9 +427,13 @@ function 지금판단() {
        중간에서 얼마나 새는지 신청 단위로 보인다. */
     var 경유 = 넘어온곳찾기();
     var 경유말 = (경유 && !경유.직접) ? ' (' + 경유.summary + ' 경유)' : '';
+    /* ★2026-09-21 : 바깥 사이트에서 넘어왔으면 그 글 주소(경유글)와 검색어도 읽는다 */
+    var 거쳐 = (경유 && !경유.직접) ? 거쳐온글() : { 글: '', 낱말: '' };
     /* 손님이 검색한 낱말 : utm_term 이 제대로 채워졌으면 그것을 쓰고,
-       비었거나 {keyword} 처럼 안 채워진 빈칸이면 네이버가 붙여 준 것을 쓴다 */
+       비었거나 {keyword} 처럼 안 채워진 빈칸이면 네이버가 붙여 준 것을 쓴다.
+       둘 다 없으면 거쳐 온 글 주소에 들어 있던 검색어를 쓴다 (2026-09-21) */
     var 검색낱말 = 안채워진빈칸(꼬리표.term) ? 네이버검색어() : 꼬리표.term;
+    if (!검색낱말) 검색낱말 = 거쳐.낱말;
 
     /* ★2026-09-03 : 소재·묶음도 '안 채워진 빈칸'을 걸러낸다.
        예전에는 검색어(utm_term) 한 곳만 걸렀다. 소재·묶음에는 사람이 직접 적은 값만
@@ -305,7 +451,8 @@ function 지금판단() {
       source  : 꼬리표.source || '',
       campaign: 묶음,
       detail  : [소재, 검색낱말].filter(Boolean).join(' / '),
-      page    : location.pathname || '/'
+      page    : location.pathname || '/',
+      post    : 거쳐.글
     });
     return;
   }
@@ -328,9 +475,11 @@ function 지금판단() {
   if (어디 === null) return;
 
   if (!어디.직접) {
+    var 거쳐온 = 거쳐온글();   /* 2026-09-21 : 글 주소와 검색어 */
     저장하기({
       summary : 어디.summary, source: 어디.source,
-      campaign: '', detail: '', page: location.pathname || '/'
+      campaign: '', detail: 거쳐온.낱말, page: location.pathname || '/',
+      post    : 거쳐온.글
     });
     return;
   }
@@ -351,7 +500,8 @@ function dhInflow() {
       in_source  : 값.source   || '(direct)',
       in_campaign: 값.campaign || '',
       in_detail  : 값.detail   || '',
-      in_page    : 값.page     || (location.pathname || '/')
+      in_page    : 값.page     || (location.pathname || '/'),
+      in_post    : 값.post     || ''          /* 2026-09-21 : 시트 '경유글' 칸 */
     };
   } catch (e) { return {}; }
 }
