@@ -33,6 +33,16 @@
        dh통화비우기()      「다른 번호로 추가 신청」 때 처음 상태로 돌린다
      이 파일이 안 실려도 네 신청칸은 예전 그대로 움직입니다(이름이 없으면 건너뜀).
 
+   ★ 렌탈·코웨이용 렌탈 화면의 컴퓨터 아래 입력칸 띠는 이름 셋을 따로 부릅니다 (2026-09-22 더함).
+       dh통화띠넣기()      띠의 고르기 칸(#deskCallTime, 화면 HTML 에 이미 있음)에 시간 목록을 채운다
+       dh통화띠줄()        보낼 [통화] 줄. 안 골랐거나 「가능한 빨리」면 빈 글
+                           — 그때 띠는 요청사항을 아예 보내지 않는다(예전과 같은 접수)
+       dh통화띠완료()      띠의 완료 문구(#deskSuccess)를 바꾼다
+     띠에는 요청사항 칸이 없어 「직접 적기」를 넣지 않고, 칸 이름표 대신 회색 「통화 희망 시간 (선택)」이 보입니다.
+     띠 목록에서는 모레 이후 날짜를 「10/12(월)」처럼 짧게 적습니다(칸 폭을 줄이려고, 2026-09-22 사장님 지시).
+     「오늘」·「내일(수)」와 완료 문구는 위 신청칸과 같은 모양 그대로입니다.
+     시간 목록·완료 문구는 위 신청칸과 **같은 함수**(목록글·안내줄)로 만듭니다 — 한 곳만 고치면 둘 다 바뀝니다.
+
    ⚠ 구글 쪽(당현함_신청폼.gs)이 요청사항을 자르는 선: 2026-09-21 저녁부터 **1,000자**(전에는 200자).
      손님 글은 홈페이지에서 200자로 막고, 이 부품도 합친 글을 1,000자에서 끊습니다(v3).
      ⚠ 구글 쪽을 다시 200자로 되돌리면 이 부품도 v2 로 되돌려야 손님 글 끝이 안 잘립니다.
@@ -151,16 +161,23 @@
 
   function 칸() { return document.getElementById('inputCallTime'); }
 
+  /* 고르기 칸 안의 목록 글 — 위 신청칸과 아래 띠(2026-09-22)가 함께 쓴다.
+     짧게 = 모레 이후 날짜를 「10/12(월)」로(아래 띠 전용 — 칸 폭을 줄이려고). 오늘·내일은 그대로 */
+  function 목록글(처음, 직접포함, 짧게) {
+    var html = 처음;
+    목록().forEach(function (x) {
+      var 날글 = (짧게 && x.며칠뒤 >= 2) ? 시트날글(x.날) : 날부름(x.날, x.며칠뒤);
+      html += '<option value="' + 값만들기(x) + '">' + 날글 + ' ' + 구간글(x.칸) + '</option>';
+    });
+    if (직접포함) html += '<option value="write">직접 적기</option>';
+    return html;
+  }
+
   function 목록채우기() {
     var 고름 = 칸();
     if (!고름) return;
     var 전 = 고름.value;
-    var 줄 = 목록();
-    var html = '<option value="">가능한 빨리</option>';
-    줄.forEach(function (x) {
-      html += '<option value="' + 값만들기(x) + '">' + 날부름(x.날, x.며칠뒤) + ' ' + 구간글(x.칸) + '</option>';
-    });
-    html += '<option value="write">직접 적기</option>';
+    var html = 목록글('<option value="">가능한 빨리</option>', true);
     /* 목록이 그대로면 손대지 않는다 — 폰 선택창이 열리는 순간 바꾸면 깜빡이거나 닫힐 수 있다 */
     if (고름.__목록 === html) { 글자한도맞추기(); return; }
     고름.__목록 = html;
@@ -176,8 +193,7 @@
 
   /* 고른 시간 → 시트에 적을 줄. 안 골랐거나 지났으면 빈 글.
      「직접 적기」는 손님이 요청사항에 글을 썼을 때만 표시를 남긴다(안 썼으면 거짓 표시가 되므로) */
-  function 통화줄(손님글있음) {
-    var 고름 = 칸();
+  function 통화줄(고름, 손님글있음) {
     if (!고름) return '';
     if (고름.value === 'write') return 손님글있음 ? 직접표시 : '';
     var x = 값풀기(고름.value);
@@ -243,36 +259,39 @@
     var 나눠짐 = 제품있음() && /^\[선택\]/.test(memo);
     var 몸 = 나눠짐 ? memo : (memo ? 요청머리 + memo : '');
     var 손님글있음 = 나눠짐 ? /(^|\n)\[요청\] \S/.test(memo) : !!memo;
-    var 줄 = 통화줄(손님글있음);
+    var 줄 = 통화줄(칸(), 손님글있음);
     var 합친 = 줄 ? (몸 ? 줄 + '\n' + 몸 : 줄) : 몸;
     return 합친.length > 전체한도 ? 합친.slice(0, 전체한도) : 합친;
   };
+
+  /* 완료 안내 글 — 고른 시간(고름)을 보고 만든다. 줄바꿈 자리는 <br>.
+     위 신청칸과 아래 띠(2026-09-22)가 함께 쓴다. 직접글있음 = 「직접 적기」를 고르고 요청사항을 썼나 */
+  function 안내줄(고름, 직접글있음, 번호글) {
+    var x = 고름 ? 값풀기(고름.value) : null;
+    if (x && !지났나(x)) {
+      return 날부름(x.날, 며칠뒤(x.날)) + ' ' + 구간글(x.칸) + '에<br>' + 번호글 + ' 번호로 전화드립니다.';
+    }
+    if (고름 && 고름.value === 'write' && 직접글있음) {
+      return '남기신 시간에<br>' + 번호글 + ' 번호로 전화드립니다.';
+    }
+    var 오늘 = 지금(), 문 = 여는시간[오늘.w];
+    if (!쉬는날(오늘) && 문 && 오늘.분 >= 문[0] && 오늘.분 < 문[1] - 30) {
+      return 번호글 + ' 번호로<br>곧 전화드립니다.';
+    }
+    /* 업무시간 밖: 오늘 아직 안 열었으면 오늘, 아니면 다음 영업일 */
+    var 날 = null, 뒤 = 0;
+    if (!쉬는날(오늘) && 문 && 오늘.분 < 문[0]) { 날 = 오늘; 뒤 = 0; }
+    else { var 다음 = 다음영업일(오늘); if (다음) { 날 = 다음.날; 뒤 = 다음.며칠뒤; } }
+    return 날
+      ? '지금은 상담 시간이 아닙니다.<br>' + 날부름(날, 뒤) + ' ' + 때글(여는시간[날.w][0]) + ' 이후<br>' + 번호글 + ' 번호로 전화드립니다.'
+      : 번호글 + ' 번호로 전화드립니다.';
+  }
 
   window.dh통화완료 = function () {
     var 문단 = document.querySelector('#formSuccess p');
     if (!문단) return;
     var 번호글 = '<strong style="color:var(--primary,#1257C9);font-size:17px;">' + 번호 + '</strong>';
-    var 고름 = 칸();
-    var x = 고름 ? 값풀기(고름.value) : null;
-    var 첫줄;
-    if (x && !지났나(x)) {
-      첫줄 = 날부름(x.날, 며칠뒤(x.날)) + ' ' + 구간글(x.칸) + '에<br>' + 번호글 + ' 번호로 전화드립니다.';
-    } else if (고름 && 고름.value === 'write' && (document.getElementById('inputMemo') || {}).value) {
-      첫줄 = '남기신 시간에<br>' + 번호글 + ' 번호로 전화드립니다.';
-    } else {
-      var 오늘 = 지금(), 문 = 여는시간[오늘.w];
-      if (!쉬는날(오늘) && 문 && 오늘.분 >= 문[0] && 오늘.분 < 문[1] - 30) {
-        첫줄 = 번호글 + ' 번호로<br>곧 전화드립니다.';
-      } else {
-        /* 업무시간 밖: 오늘 아직 안 열었으면 오늘, 아니면 다음 영업일 */
-        var 날 = null, 뒤 = 0;
-        if (!쉬는날(오늘) && 문 && 오늘.분 < 문[0]) { 날 = 오늘; 뒤 = 0; }
-        else { var 다음 = 다음영업일(오늘); if (다음) { 날 = 다음.날; 뒤 = 다음.며칠뒤; } }
-        첫줄 = 날
-          ? '지금은 상담 시간이 아닙니다.<br>' + 날부름(날, 뒤) + ' ' + 때글(여는시간[날.w][0]) + ' 이후<br>' + 번호글 + ' 번호로 전화드립니다.'
-          : 번호글 + ' 번호로 전화드립니다.';
-      }
-    }
+    var 첫줄 = 안내줄(칸(), !!(document.getElementById('inputMemo') || {}).value, 번호글);
     문단.innerHTML = 첫줄 + '<span class="dh-call-done" style="display:block;">먼저 연락하셔도 됩니다.</span>';
   };
 
@@ -284,8 +303,60 @@
     글자한도맞추기();
   };
 
+  /* ══ 렌탈 화면 컴퓨터 아래 입력칸 띠 (2026-09-22 더함) ══
+     띠에는 칸 이름표가 없어서, 고르기 전에는 옆 칸들처럼 회색 「통화 희망 시간 (선택)」이 보인다
+     (그 줄은 목록을 펼치면 숨는다 — hidden). 고를 수 있는 시간은 위 신청칸과 같다.
+     「가능한 빨리」는 값이 'asap' 이다 — 빈 값('')인 회색 줄과 구별해야, 목록을 새로 만들 때
+     손님이 고른 「가능한 빨리」가 회색 줄로 되돌아가지 않는다. 둘 다 시트에는 아무것도 안 적힌다. */
+  var 띠처음 = '<option value="" disabled hidden selected>통화 희망 시간 (선택)</option><option value="asap">가능한 빨리</option>';
+  function 띠칸() { return document.getElementById('deskCallTime'); }
+  function 띠빈칸표시(고름) { 고름.classList.toggle('dh-call-empty', !고름.value); }
+  function 띠목록채우기() {
+    var 고름 = 띠칸();
+    if (!고름) return;
+    var 전 = 고름.value;
+    var html = 목록글(띠처음, false, true);
+    /* 목록이 그대로면 손대지 않는다 — 선택창이 열리는 순간 바꾸면 깜빡이거나 닫힐 수 있다 */
+    if (고름.__목록 !== html) {
+      고름.__목록 = html;
+      고름.innerHTML = html;
+      고름.value = 전;
+      if (고름.value !== 전) 고름.value = '';
+    }
+    띠빈칸표시(고름);
+  }
+
+  window.dh통화띠넣기 = function () {
+    var 고름 = 띠칸();
+    if (!고름) return;
+    if (!고름.__이음) {
+      고름.__이음 = true;
+      /* 창을 열어 둔 채 시간이 흘러도 누르는 순간의 시각으로 목록을 다시 만든다 */
+      ['focus', 'mousedown', 'touchstart'].forEach(function (e) {
+        고름.addEventListener(e, 띠목록채우기, { passive: true });
+      });
+      고름.addEventListener('change', function () { 띠빈칸표시(고름); });
+    }
+    띠목록채우기();
+  };
+
+  window.dh통화띠줄 = function () {
+    return 통화줄(띠칸(), false);
+  };
+
+  window.dh통화띠완료 = function () {
+    var 문구칸 = document.getElementById('deskSuccess');
+    if (!문구칸) return;
+    var 줄 = 안내줄(띠칸(), false, '<strong>' + 번호 + '</strong>').replace(/<br>/g, ' ');
+    문구칸.innerHTML = '✅ 신청 완료! ' + 줄 + ' <span class="dh-call-desk-more">먼저 연락하셔도 됩니다.</span>';
+  };
+
   /* 신청칸이 이미 화면에 있으면(메인·렌탈) 바로 끼워 넣는다.
      공용 신청창(dh-apply.js)은 창을 처음 열 때 만들어지므로 그쪽에서 dh통화칸넣기()를 부른다. */
   window.dh통화칸넣기();
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', window.dh통화칸넣기);
+  window.dh통화띠넣기();
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', window.dh통화칸넣기);
+    document.addEventListener('DOMContentLoaded', window.dh통화띠넣기);
+  }
 })();

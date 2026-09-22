@@ -43,14 +43,16 @@
 
   /* ===== 통화 희망 시간 부품을 함께 싣는다 (2026-09-21) =====
      js/dh-callhope.js — 이 파일을 부르는 화면이 많아(412쪽) 한 줄씩 넣지 않고 여기서 부른다.
-     ⚠ 그 파일을 고치면 아래 ?v= 숫자만 올리면 된다(이 파일을 부르는 화면들은 그대로). */
+     ⚠ 그 파일을 고치면 아래 ?v= 숫자를 올리고, 그러면 이 파일도 바뀐 것이므로 이 파일을 부르는 화면들의
+       dh-apply.js?v= 도 함께 올린다(2026-09-22 바로잡음 — 안 올리면 재방문 손님이 최대 10분 옛 이 파일로 옛 번호를 부른다.
+       건강검진 빠른 점검이 「번호 안 올림」으로 잡는다). */
   (function () {
     if (window.dh통화칸넣기 || document.getElementById('dhCallhopeJs')) return;
     var 나 = document.currentScript && document.currentScript.src;
     if (!나) return;
     var s = document.createElement('script');
     s.id = 'dhCallhopeJs';
-    s.src = 나.replace(/[^/]*$/, 'dh-callhope.js?v=3');
+    s.src = 나.replace(/[^/]*$/, 'dh-callhope.js?v=4');
     s.onload = function () { if (document.getElementById('applyOverlay') && window.dh통화칸넣기) window.dh통화칸넣기(); };
     document.head.appendChild(s);
   })();

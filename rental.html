@@ -126,7 +126,7 @@ window.addEventListener('scroll', function(){
 <script src="js/dh-find.js?v=3"></script>
 <script src="js/dh-footer.js?v=3"></script>
 <script src="js/dh-terms.js?v=1"></script>
-<script src="js/dh-callhope.js?v=3" defer></script>
+<script src="js/dh-callhope.js?v=4" defer></script>
 <script>
 /* 부품 파일을 못 받아 왔더라도 신청 접수는 막히지 않게 한다 (유입 칸만 비게 된다) */
 if (typeof dhInflow !== 'function') { window.dhInflow = function () { return {}; }; }
@@ -796,6 +796,30 @@ a.plan-card:active { transform: translateY(0) scale(0.99); }
   .sticky-form { display: none !important; } /* B-OPTION: 원복 시 이 줄 삭제 */
 }
 
+/* ===== 아래 띠 「통화 희망 시간」 칸 (2026-09-22, 사장님 「나」안) =====
+   왜 넣었나 — 9/21 에 넣은 통화 희망 시간이 이 띠에만 없어서, 컴퓨터로 이 띠에서 신청한 손님은
+   시간을 못 고르고 완료 문구도 「곧 연락드리겠습니다」 한 가지였다. 목록·완료 문구는 js/dh-callhope.js 가 만든다.
+   ★ 칸이 하나 늘어 폭을 다시 나눴다(칸 폭은 공용 css/dh-shell.css 에 있고 여기서 덮는다).
+     이름·번호·제품 칸은 가장 좁을 때 110·156·180 이고 자리가 남으면 170·220·230 까지 커진다.
+     통화 시간 칸은 가장 긴 글(「10/30(일) 오후 3시 30분~4시 30분」 234)이 다 보이는 폭 298 로 고정.
+     (띠 목록은 모레 이후 날짜를 「10/12(월)」로 짧게 적는다 — 긴 모양 「10월 12일(월)」이면 324 가 필요했다. 사장님 지시)
+   ★ 통화 시간 칸과 「무료 확인」 단추는 한 묶음(.desk-cta-send)이다. 한 줄에 다 안 들어가면
+     둘이 같이 아랫줄로 내려간다(창 폭 약 980 아래). 그때 띠 높이는 142 → 197 (전에도 창 폭 약 900 아래는 197). */
+.desk-cta-bar #deskName { flex: 1 1 110px; width: auto; min-width: 110px; max-width: 170px; }
+.desk-cta-bar .desk-cta-phone-wrap { flex: 1 1 156px; min-width: 156px; max-width: 220px; }
+.desk-cta-bar #deskPhone { width: 100%; }
+.desk-cta-bar #deskService { flex: 1 1 180px; width: auto; min-width: 180px; max-width: 230px; }
+.desk-cta-send { flex: 0 0 auto; display: flex; align-items: flex-end; gap: 10px; }
+.desk-cta-bar select.dh-call-desk { width: 298px; padding: 12px 38px 12px 18px;
+  border: 1.5px solid #d1d5db; border-radius: 8px; font-size: 16px; line-height: normal;
+  font-family: 'Pretendard Variable', Pretendard, sans-serif; color: #222934;
+  background: #fff url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2712%27 height=%278%27%3E%3Cpath d=%27M1 1l5 5 5-5%27 fill=%27none%27 stroke=%27%23465368%27 stroke-width=%271.8%27/%3E%3C/svg%3E") no-repeat right 15px center;
+  -webkit-appearance: none; appearance: none; outline: none; cursor: pointer; transition: border-color .2s; }
+.desk-cta-bar select.dh-call-desk:focus { border-color: #1257c9; }
+.desk-cta-bar select.dh-call-desk.dh-call-empty { color: #8a9099; }   /* 고르기 전 — 옆 칸 안내 글씨와 같은 회색 */
+.desk-cta-bar select.dh-call-desk option { color: #222934; }
+.dh-call-desk-more { font-weight: 600; color: rgba(255,255,255,0.75); }
+
 /* ===== FLOATING ===== */
 
 /* 컴퓨터에서는 떠다니는 동그란 단추를 없앤다 (2026-08-25)
@@ -912,6 +936,11 @@ a.plan-card:active { transform: translateY(0) scale(0.99); }
 }
 @media (min-width: 769px) {
   .floating-btns { bottom: 170px; }
+}
+/* 2026-09-22 : 아래 띠가 두 줄(높이 197)이 되는 좁은 컴퓨터 폭에서는 동그란 전화·카톡이 띠 윗부분에 겹쳤다.
+   (띠는 창 폭 약 980 아래에서 두 줄 — 위 「통화 희망 시간」 칸 설명 참고) */
+@media (min-width: 769px) and (max-width: 980px) {
+  .floating-btns { bottom: 225px; }
 }
 
 /* ===== ANIMATION ===== */
@@ -2852,7 +2881,11 @@ function promiseZoom(src){ document.getElementById('promiseViewerImg').src=src; 
       <input type="tel" id="deskPhone" placeholder="휴대폰 번호">
     </div>
     <input type="text" id="deskService" placeholder="희망 제품 (예: 정수기)" maxlength="30">
-    <button class="desk-cta-bar-btn" onclick="submitDeskForm()">무료 확인</button>
+    <!-- 2026-09-22 : 통화 희망 시간 칸 — 단추와 한 묶음이라 좁은 폭에서 같이 아랫줄로 간다. 목록은 js/dh-callhope.js 가 채운다 -->
+    <div class="desk-cta-send">
+      <select id="deskCallTime" class="dh-call-desk dh-call-empty" aria-label="통화 희망 시간 (선택)"><option value="" disabled hidden selected>통화 희망 시간 (선택)</option><option value="asap">가능한 빨리</option></select>
+      <button class="desk-cta-bar-btn" onclick="submitDeskForm()">무료 확인</button>
+    </div>
     <div class="desk-cta-success" id="deskSuccess">✅ 신청 완료! 곧 연락드리겠습니다.</div>
   </div>
   <!-- 2026-08-27 : 여기서도 번호를 받는데 동의 표시가 없었다 -->
@@ -3333,7 +3366,10 @@ async function submitDeskForm() {
   const 본래글자 = btn ? btn.textContent : '';
   if (btn) { btn.disabled = true; btn.textContent = '신청 중...'; }
   try {
-    await dhSend(Object.assign({ name, phone, usim: '미지정', service: 희망제품 }, dhInflow()),
+    /* 통화 희망 시간 (js/dh-callhope.js, 2026-09-22) — 골랐을 때만 요청사항 칸에 [통화] 줄을 보낸다.
+       안 골랐으면 예전과 똑같이 요청사항 없이 보낸다. */
+    const 통화줄 = window.dh통화띠줄 ? window.dh통화띠줄() : '';
+    await dhSend(Object.assign({ name, phone, usim: '미지정', service: 희망제품 }, 통화줄 ? { memo: 통화줄 } : {}, dhInflow()),
                  (문구) => { if (btn) btn.textContent = 문구; });
     /* 하단 바에서 완료 메시지만 남기고 입력칸·버튼은 정리.
        요소가 없어도 오류 나지 않도록 있는 것만 건드림 */
@@ -3343,6 +3379,7 @@ async function submitDeskForm() {
     });
     const deskOk = document.getElementById('deskSuccess');
     if (deskOk) deskOk.style.display = 'block';
+    if (window.dh통화띠완료) window.dh통화띠완료();   /* 완료 문구에 전화 드릴 때를 적는다 (2026-09-22) */
       dhNaver('lead');   /* 네이버 전환: 진짜 접수된 뒤에만 (2026-08-28) */
     const deskC = document.getElementById('deskConsent');
     if (deskC) deskC.style.display = 'none';
