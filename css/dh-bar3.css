@@ -5,10 +5,13 @@
    폰에서 오른쪽 아래가 가려지지 않게 하려는 것이 목적입니다.
    ══════════════════════════════════════════════════════════════════════ */
 
+/* 2026-09-22 — 인터넷 쪽 아래 띠와 같은 모양으로 맞췄습니다(사장님 결정).
+   위 테두리 선을 없애고, 그림자는 디자인보드 「화면 아래 고정 띠」 값(--dh-sh-bar, 옅은 남색),
+   위아래 여백은 12 → 10 입니다. 단추·글자는 그대로입니다. */
 .bar3{position:fixed;left:0;right:0;bottom:0;z-index:950;
-  padding:12px var(--pad-screen) calc(12px + env(safe-area-inset-bottom,0px));
-  background:var(--c-card);border-top:1px solid var(--c-line);
-  box-shadow:0 -3px 16px rgba(0,0,0,.10)}
+  padding:10px var(--pad-screen) calc(10px + env(safe-area-inset-bottom,0px));
+  background:var(--c-card);
+  box-shadow:0 -3px 16px rgba(15,42,90,.14)}
 
 /* 넓은 화면에서는 본문 폭에 맞춰 가운데로 모읍니다 */
 .bar3 > *{max-width:var(--w-page);margin-left:auto;margin-right:auto}
