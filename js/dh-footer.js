@@ -84,23 +84,32 @@
   }
 
   /* ── 아래 고정 띠는 발바닥을 만나면 그 위로 올라붙습니다 (2026-09-18 사장님 지시) ──
-     신청 막대(.mobile-cta-bar)·정수기 띠(.bar3)·비교함 띠(.cmp-bar)는 화면 맨 아래에 떠 있습니다.
+     신청 막대(.mobile-cta-bar)·정수기 띠(.bar3)는 화면 맨 아래에 떠 있습니다.
      그대로 두면 발바닥을 덮습니다. 빈 여백을 더해 밀어내는 대신,
      **발바닥이 보이기 시작하면 띠를 그만큼 위로 올려** 발바닥 위에 얹습니다.
      그래서 아래쪽에 쓸데없는 흰 여백이 생기지 않습니다. */
-  var 띠목록 = ['.mobile-cta-bar', '.bar3', '.cmp-bar'];
+  var 띠목록 = ['.mobile-cta-bar', '.bar3'];
+  /* 2026-09-22 — 비교함 줄이 옛 이름(.cmp-bar)으로 적혀 있어, 화면 맨 아래에서 띠만 올라가고
+     비교함 줄은 발바닥 위에 남아 회사 정보를 가렸습니다(9/11 판부터 이름은 .cmp3-bar).
+     비교함 줄은 띠 바로 위에 붙어 다니는 부품이라 여기서 직접 올리지 않고,
+     올린 만큼을 --dh-lift 로 알려 줍니다(css/dh-compare3.css 가 그만큼 같이 올라갑니다). */
 
   function 띠맞추기(발) {
     var 발윗선 = 발.getBoundingClientRect().top;
     var 올림 = Math.max(0, Math.round(window.innerHeight - 발윗선));
+    var 올린띠 = false;
     for (var i = 0; i < 띠목록.length; i++) {
       var 들 = document.querySelectorAll(띠목록[i]);
       for (var j = 0; j < 들.length; j++) {
         var e = 들[j], s = window.getComputedStyle(e);
         if (s.position !== 'fixed') continue;
         e.style.bottom = 올림 ? 올림 + 'px' : '';
+        올린띠 = true;
       }
     }
+    /* 비교함 줄(.cmp3-bar)은 실제로 올린 띠가 있을 때만 그만큼 같이 올라갑니다. 띠가 아직 안 생긴 순간의
+       계산값이 남으면 비교함 줄만 화면 위쪽으로 떠오릅니다(2026-09-22 사본 측정에서 잡음) */
+    document.documentElement.style.setProperty('--dh-lift', (올린띠 ? 올림 : 0) + 'px');
     /* 본문 마지막 줄이 띠에 가리지 않도록, 발바닥 바로 앞에 띠 높이만큼만 자리를 둡니다.
        (2026-09-18 — 0 으로 두었더니 목록 맨 아래 주석이 띠에 가렸습니다) */
     var 높이 = 0;
@@ -112,6 +121,12 @@
         var h2 = 것[m].getBoundingClientRect().height;
         if (h2 > 높이) 높이 = h2;
       }
+    }
+    /* 비교함 줄이 띠 위에 떠 있으면 그 높이만큼 더 비웁니다 (2026-09-22) */
+    var 비교줄 = document.querySelector('.cmp3-bar');
+    if (높이 && 비교줄) {
+      var s3 = window.getComputedStyle(비교줄);
+      if (s3.position === 'fixed' && s3.display !== 'none' && s3.visibility !== 'hidden') 높이 += 비교줄.getBoundingClientRect().height;
     }
     발.style.marginTop = 높이 ? Math.round(높이 + 12) + 'px' : '';
     document.body.style.paddingBottom = '0px';

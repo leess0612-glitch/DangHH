@@ -17,7 +17,8 @@
 .cmp3-btn[aria-pressed="true"] svg{opacity:1}
 
 /* ── 아래 띠 위의 얇은 줄 ──────────────────────────── */
-.cmp3-bar{position:fixed;left:0;right:0;bottom:var(--bar-h,120px);z-index:940;
+/* 2026-09-22 — 발바닥이 보이면 아래 띠가 그만큼 올라갑니다(js/dh-footer.js 가 --dh-lift 로 알려 줌). 비교함 줄도 같이 올라가 띠에 붙어 있게 합니다 */
+.cmp3-bar{position:fixed;left:0;right:0;bottom:calc(var(--bar-h,120px) + var(--dh-lift,0px));z-index:940;
   padding:8px var(--pad-screen);
   background:var(--c-strong-bg);border-top:1px solid var(--c-line)}
 .cmp3-inner{display:flex;align-items:center;gap:8px;
@@ -42,7 +43,7 @@ body.bar3-on{padding-bottom:calc(var(--bar-h,120px) + var(--cmp-h,0px) + 16px)}
 
 /* ── 알림 말풍선 ───────────────────────────────────── */
 .cmp3-toast{position:fixed;left:50%;transform:translate(-50%,-12px);z-index:2100;
-  bottom:calc(var(--bar-h,120px) + var(--cmp-h,0px) + 24px);
+  bottom:calc(var(--bar-h,120px) + var(--cmp-h,0px) + 24px + var(--dh-lift,0px));
   max-width:320px;padding:10px 16px;border-radius:var(--r-card);
   background:var(--c-band);color:#fff;font-size:var(--t-sub);font-weight:600;
   opacity:0;pointer-events:none;transition:opacity .2s}
