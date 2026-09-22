@@ -123,7 +123,7 @@
   }
 
   /* ── 카드 한 장 ────────────────────────────────────── */
-  function 카드만들기(p) {
+  function 카드만들기(p, 숨김) {
     var 값 = 대표값(p);
     if (!값) return '';
     var 기능 = (p.기능 || []).filter(function (k) { return k !== '탱크형'; })
@@ -138,7 +138,7 @@
       : '';
 
     /* 담기 단추는 링크(<a>) 안에 넣을 수 없어 카드를 한 겹 감쌉니다 */
-    return '<div class="li-item">' +
+    return '<div class="li-item"' + (숨김 ? ' hidden' : '') + '>' +
       '<a class="li-card" href="' + 막(상세주소(p)) + '">' +
       '<div class="li-photo"><img src="' + 밑동() + 'img/' + 막(p.사진) + '.jpg" alt="' + 막(p.이름) +
         '" loading="lazy" width="112" height="112"></div>' +
@@ -280,19 +280,45 @@
     }
   }
 
-  /* ── 목록 그리기 ────────────────────────────────────── */
+  /* ── 목록 그리기 ──────────────────────────────────────
+     처음 24개만 손님에게 보여 주고, 나머지는 화면이 뜬 뒤 20개씩 **숨긴 채로** 뒤에 채웁니다.
+     왜 채우나: 구글은 「더 보기」 단추를 누르지 못해, 채워 두지 않으면 나머지 제품 화면으로 가는 길을 못 찾습니다
+       (2026-09-22 서치 콘솔 확인 — 제품 89장이 「발견됨·읽지 않음」이었고 참조 페이지가 없었습니다).
+     왜 나눠서 뒤에 채우나: 한 번에 199개를 그리면 느린 폰에서 목록이 0.3초쯤 늦게 떴습니다(실측).
+     숨긴 칸의 사진은 불러오지 않습니다(loading="lazy" + 안 보이는 칸) — 내려받는 양은 그대로입니다. */
+  var 뒤채움 = 0, 다채움 = false, 목수 = 0;
+  function 더보기맞추기() {
+    var 더 = document.getElementById('더보기');
+    if (더) {
+      더.hidden = !(목수 > 보임);
+      더.textContent = '더 보기 (' + Math.max(0, 목수 - 보임) + '개 남음)';
+    }
+  }
   function 목록그리기() {
     var 목 = 줄세우기(거른목록());
     var 칸 = document.getElementById('제품칸');
     if (!칸) return;
-    칸.innerHTML = 목.slice(0, 보임).map(카드만들기).join('') ||
+    clearTimeout(뒤채움); 다채움 = false; 목수 = 목.length;
+    /* ⚠ map(카드만들기) 로 바로 넘기지 말 것 — map 이 순번을 둘째 칸(숨김)으로 넘겨 첫 장 빼고 다 숨습니다 */
+    칸.innerHTML = 목.slice(0, 보임).map(function (p) { return 카드만들기(p); }).join('') ||
       '<p class="lead">고르신 조건에 맞는 제품이 없습니다. 전화 주시면 찾아 드리겠습니다.</p>';
     if (window.비교함) window.비교함.맞추기();
-    var 더 = document.getElementById('더보기');
-    if (더) {
-      더.hidden = !(목.length > 보임);
-      더.textContent = '더 보기 (' + Math.max(0, 목.length - 보임) + '개 남음)';
+    더보기맞추기();
+    var 남은 = 목.slice(보임);
+    function 채우기() {
+      if (!남은.length) { 다채움 = true; if (window.비교함) window.비교함.맞추기(); return; }
+      칸.insertAdjacentHTML('beforeend', 남은.splice(0, 20).map(function (p) { return 카드만들기(p, true); }).join(''));
+      뒤채움 = setTimeout(채우기, 30);
     }
+    뒤채움 = setTimeout(채우기, 300);
+  }
+  /* 「더 보기」 — 채워 둔 칸을 24개씩 드러냅니다(새로 그리지 않아 더 빠릅니다) */
+  function 더보기누름() {
+    보임 += 더보기묶음;
+    if (!다채움) { 목록그리기(); return; }
+    var 숨은 = document.querySelectorAll('#제품칸 .li-item[hidden]');
+    for (var i = 0; i < 숨은.length && i < 더보기묶음; i++) 숨은[i].hidden = false;
+    더보기맞추기();
   }
 
   /* ── 좁은 화면에서 옆으로 미는 줄 (2026-09-17) ────────────────
@@ -437,7 +463,7 @@
         return;
       }
 
-      if (e.target.closest('#더보기')) { 보임 += 더보기묶음; 목록그리기(); return; }
+      if (e.target.closest('#더보기')) { 더보기누름(); return; }
       알약닫기(null);
     });
     document.addEventListener('keydown', function (e) {
