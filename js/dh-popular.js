@@ -30,7 +30,9 @@ window.인기순서 = {
             /* 9/22 사장님 선택 */ 'WPUIAC425S', 'WPUJAC125', 'WPUTDF104RNW', 'WPUIC110FRSL', 'WPUTDC104RNW', 'WPU-GBC102S', 'WPUPBC204S'],
   cuckoo:  ['CP-AMS100E', 'CP-AQS100EWH', 'CP-AHS101HEW', 'CP-ABS100',
             /* 9/22 사장님 선택 */ 'CP-F603SW', 'CP-AJS821SW', 'CP-F603HW', 'CP-AK011'],
-  lg:      ['WD523V', 'WD724R(K/H/E)', 'WD722R', 'WD120M',
+  /* 2026-09-22 사장님 지시 「722 대신 724를 추천제품으로」 — 둘은 같은 오브제 얼음정수기 줄의 형제(요금 1,000원 차이).
+     724 는 이미 2번째라 3번째의 WD722R 만 뺐습니다(추천칸에서도 722 자리에 724 가 나옵니다). */
+  lg:      ['WD523V', 'WD724R(K/H/E)', 'WD120M',
             /* 9/22 사장님 선택 */ 'WD520VC', 'WS511SH', 'WS513SH'],
   chungho: ['WI-36C90620N', 'WI-53C9600M', 'WP-50C90621N', 'WP-30C9460BN',
             /* 9/22 사장님 선택 */ 'WI-37C90720N', 'WP-30S50010N', 'WI-55S90510M', 'WP-43C60000M'],
