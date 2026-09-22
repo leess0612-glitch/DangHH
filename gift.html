@@ -156,7 +156,7 @@ if (typeof dhInflow !== 'function') { window.dhInflow = function () { return {};
      한글을 통째로 받지 않고, 화면에 실제로 나온 글자 조각만 내려받는다. -->
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.css">
-<link rel="stylesheet" href="css/dh-shell.css?v=1">
+<link rel="stylesheet" href="css/dh-shell.css?v=2">
 <style>
 /* ===== 글꼴: Pretendard (2026-09-04, SUIT 에서 갈아탐) =====
    전에는 여기서 SUIT 6굵기를 통째로 받았다 — 약 1.0MB.
@@ -246,7 +246,7 @@ body { font-family: 'Pretendard Variable', Pretendard, 'Noto Sans KR', sans-seri
    ⚠ --gray 눈금 자체는 건드리지 않습니다 — 이 화면 안에서 스물두 곳이 쓰고 있습니다. */
 
 
-nav a.on, nav a[aria-current="page"] { color: var(--primary); background: #eff6ff; font-weight: 700; }
+
 .header-phone { padding: 8px 16px; transition: background 0.2s; }
 
 /* ===== 머리띠 전화·카톡 단추 (2026-08-25) =====
@@ -423,13 +423,13 @@ table.gift tbody tr:last-child td { border-bottom: none; }
 
 
 /* 플로팅 */
-.floating-btns { position: fixed; right: 30px; bottom: 24px; display: flex; flex-direction: column; gap: 12px; z-index: 900; }
+
 /* 컴퓨터에서는 떠다니는 동그란 단추를 없앤다 (2026-08-25)
    전화 단추는 삭제하고, 카톡 단추는 위 머리띠로 옮겼다. 폰에서는 그대로 둔다. */
 /* 2026-08-25 에는 컴퓨터에서 이 단추를 없애고 카톡을 머리띠로 올렸었다.
    2026-08-28 되돌린다 — 머리띠에서 전화·카톡을 뺐으니 이 단추가 그 몫을 한다.
    1600 이상에서만 감춘다. 그 위는 오른쪽 상담 패널이 대신 뜬다. */
-@media (min-width: 1600px) { .floating-btns { display: none; } }
+
 /* ═════ 넓은 화면(1600 이상) 상담 패널 — 2026-08-28 ═════
    자리가 남는 화면에서만 펼쳐 두고, 좁아지면 위 동그란 단추가 그 몫을 한다.
    ★ 경계 1600 의 근거 — 브라우저에서 직접 재며 두 번 고친 값이다.
@@ -493,10 +493,10 @@ table.gift tbody tr:last-child td { border-bottom: none; }
    되살리려면 이 자리에 아래 두 줄을 넣고 html 에 단추를 다시 넣으면 된다.
      .cs-apply { background: #1257C9; color: white; }
      .cs-apply:hover { background: #0E45A0; } */
-.float-btn { width: 52px; height: 52px; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; box-shadow: 0 8px 32px rgba(11,46,92,0.16); transition: transform 0.2s; font-size: 22px; }
-.float-btn:hover { transform: scale(1.1); }
-.float-phone { background: var(--primary); color: white; border: 1px solid white; }
-.float-kakao { background: #fee500; color: #3a1d00; }
+
+
+
+
 
 /* 휴대폰 아래 고정 신청 막대 — 다른 페이지(index·plans)와 같은 디자인 (2026-08-25)
    이 페이지에는 신청폼이 없어 숨길 조건 없이 항상 떠 있는다 (요금 페이지와 같은 방식) */

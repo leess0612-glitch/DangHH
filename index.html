@@ -162,7 +162,7 @@ if (typeof dhInflow !== 'function') { window.dhInflow = function () { return {};
      한글을 통째로 받지 않고, 화면에 실제로 나온 글자 조각만 내려받는다. -->
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.css">
-<link rel="stylesheet" href="css/dh-shell.css?v=1">
+<link rel="stylesheet" href="css/dh-shell.css?v=2">
 <style>
 /* 가장 얇은 300(Light)은 불러오지 않음 — FAQ 열림 표시(+) 한 곳에만 쓰이는데
    파일 하나가 165KB라 낭비. 빼면 브라우저가 400으로 대신 그리며 눈에 띄는 차이 없음 */
@@ -687,65 +687,36 @@ a.plan-card:active { transform: translateY(0) scale(0.99); }
    ★ 카드 전체가 하나의 누르는 곳이다.
      전에는 눌리는 곳이 주황 단추 212px뿐이었는데 이제 카드 617px 전체가 눌린다.
      '크게 보이는 것'과 '크게 누를 수 있는 것'이 처음으로 일치한다. */
-.desk-cta-bar {
-  display: none;
-  position: fixed; bottom: 24px; left: 0; right: 0; z-index: 950;
-  justify-content: center;
-  opacity: 0; transform: translateY(16px);
-  transition: opacity 0.3s, transform 0.35s cubic-bezier(0.4,0,0.2,1);
-  pointer-events: none;
-}
-.desk-cta-bar.visible { opacity: 1; transform: translateY(0); }
+.desk-cta-bar { bottom: 24px; z-index: 950;
+  justify-content: center; transform: translateY(16px); }
+
 /* 바깥 칸은 화면을 가로지르므로 눌림을 꺼 두고, 보일 때만 카드에 눌림을 준다.
    (꺼 두지 않으면 안 보이는 동안에도 눌려서 뒤 내용을 못 누른다) */
-.desk-cta-bar.visible .desk-cta-card { pointer-events: auto; }
-.desk-cta-card {
-  pointer-events: none;
-  display: inline-flex; align-items: center; gap: 20px;
-  max-width: calc(100vw - 48px);
-  padding: 13px 16px 13px 28px;
-  background: #0B2E5C;
-  border: 1.5px solid rgba(255,255,255,0.10); border-radius: 12px;
-  box-shadow: 0 8px 32px rgba(11,46,92,0.16);
-  cursor: pointer; font-family: 'Pretendard Variable', Pretendard, sans-serif; text-align: left;
-  -webkit-tap-highlight-color: transparent;
-  transition: transform 0.08s ease, background 0.2s, box-shadow 0.2s;
-}
-.desk-cta-card:hover { background: #0B2E5C; }
-.desk-cta-top { font-size: 18px; font-weight: 700; color: white; letter-spacing: -0.3px; }
-.desk-cta-bar-btn {
-  display: inline-flex; align-items: center;
-  padding: 12px 28px; background: #1257C9; color: white;
-  font-size: 20px;   /* 2026-09-21 22→20 (컴퓨터 단추 20 규칙) */ font-weight: 700; border: 1.5px solid transparent; border-radius: 8px;
-  font-family: 'Pretendard Variable', Pretendard, sans-serif; transition: background 0.2s;
-  white-space: nowrap; line-height: 1;
-  pointer-events: none;   /* 주황 조각은 따로 반응하지 않는다 — 카드가 하나로 움직인다 */
-}
+
+
+
+.desk-cta-top { font-size: 18px; font-weight: 700; }
+.desk-cta-bar-btn { display: inline-flex; align-items: center; background: #1257C9; color: white;
+  pointer-events: none;   /* 주황 조각은 따로 반응하지 않는다 — 카드가 하나로 움직인다 */ }
 /* 카드를 누르면 주황 조각도 함께 반응해야 '한 덩어리'로 읽힌다.
    주황 조각은 카드의 자식이라 :hover / :active 가 스스로 걸리지 않으므로
    반드시 카드 쪽에서 함께 지정해야 한다. */
-.desk-cta-card:hover .desk-cta-bar-btn { background: #0E45A0; }
-.desk-cta-card:active {
-  transform: translateY(2px) scale(0.99);
-  box-shadow: 0 6px 16px rgba(4,18,60,0.30);
-}
-.desk-cta-card:active .desk-cta-bar-btn {
-  background: #0E45A0;
-  box-shadow: inset 0 2px 6px rgba(0,0,0,0.20);
-}
+
+
+
 
 @media (min-width: 769px) {
   .desk-cta-bar { display: flex; } /* B-OPTION: 원복 시 이 줄 삭제 */
 }
 
 /* ===== FLOATING ===== */
-.floating-btns { position: fixed; right: 30px; bottom: 24px; display: flex; flex-direction: column; gap: 12px; z-index: 900; }
+
 /* 컴퓨터에서는 떠다니는 동그란 단추를 없앤다 (2026-08-25)
    전화 단추는 삭제하고, 카톡 단추는 위 머리띠로 옮겼다. 폰에서는 그대로 둔다. */
 /* 2026-08-25 에는 컴퓨터에서 이 단추를 없애고 카톡을 머리띠로 올렸었다.
    2026-08-28 되돌린다 — 머리띠에서 전화·카톡을 뺐으니 이 단추가 그 몫을 한다.
    1600 이상에서만 감춘다. 그 위는 오른쪽 상담 패널이 대신 뜬다. */
-@media (min-width: 1600px) { .floating-btns { display: none; } }
+
 /* ═════ 넓은 화면(1600 이상) 상담 패널 — 2026-08-28 ═════
    자리가 남는 화면에서만 펼쳐 두고, 좁아지면 위 동그란 단추가 그 몫을 한다.
    ★ 경계 1600 의 근거 — 브라우저에서 직접 재며 두 번 고친 값이다.
@@ -820,13 +791,10 @@ a.plan-card:active { transform: translateY(0) scale(0.99); }
    되살리려면 이 자리에 아래 두 줄을 넣고 html 에 단추를 다시 넣으면 된다.
      .cs-apply { background: #F26100; color: white; }
      .cs-apply:hover { background: #0E45A0; } */
-.float-btn {
-  width: 52px; height: 52px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
-  text-decoration: none; box-shadow: 0 4px 16px rgba(0,0,0,0.15); transition: transform 0.2s; font-size: 22px;
-}
-.float-btn:hover { transform: scale(1.1); }
-.float-phone { background: var(--primary); color: white; border: 1px solid white; }
-.float-kakao { background: #fee500; color: #3a1d00; }
+
+
+
+
 
 /* ===== MOBILE BOTTOM CTA ===== */
 .mobile-cta-bar { padding: 10px 16px 10px;
@@ -1177,7 +1145,7 @@ input[type="checkbox"]:focus-visible {
 .form-card { box-shadow: 0 2px 16px rgba(15,42,90,0.08); }
 .faq-item { box-shadow: 0 2px 16px rgba(15,42,90,0.08); }
 
-.float-btn { box-shadow: 0 8px 32px rgba(11,46,92,0.16); }
+
 
 /* --- 6. 카드에 마우스 올릴 때 그림자도 함께 (원래는 위로 뜨기만 함) --- */
 .benefit-card, .process-step-a, .step-card-b {
