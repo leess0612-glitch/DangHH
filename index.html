@@ -3,6 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <!-- Google tag (gtag.js) -->
+<script>/* 2026-09-22 — 프로그램이 자동으로 조종하는 브라우저(사이트 확인용)의 방문·신청은 구글·메타·네이버 통계에 넣지 않습니다. 손님 브라우저는 그대로 셉니다. */
+if(navigator.webdriver===true){window.DH_BOT=true;window['ga-disable-G-NBGKQ2Y301']=true;window.fbq=window._fbq=function(){};}</script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-NBGKQ2Y301"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -30,7 +32,7 @@
 var DH_PAGE = 'danghh-internet';
 /* 네이버 전환추적 공통키(AccountId) — 2026-08-28 발급받아 채움.
    홈페이지 소스에 그대로 드러나는 공개값이라 가려 둘 필요가 없다(구글 측정번호와 같은 성격) */
-var DH_NAVER_ID = 's_2e8bfd0103db';
+var DH_NAVER_ID = window.DH_BOT ? '' : 's_2e8bfd0103db';
 
 /* 같은 방문에서 한 번만 세도록 막는 장치 */
 function dhOnce(key){
@@ -4187,7 +4189,7 @@ dh계산기그리기();               /* 들어오자마자 기본값(SK 132만�
 <script type="text/javascript">
 if(!wcs_add) var wcs_add = {};
 wcs_add["wa"] = "1acd2d92ff9ef60";
-if(window.wcs) {
+if(window.wcs && !window.DH_BOT) {
   wcs_do();
 }
 </script>
