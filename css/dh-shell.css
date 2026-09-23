@@ -28,7 +28,7 @@ nav a:hover { background: #f5f6f8; }
 .header-phone { display: flex; align-items: center; gap: 6px; background: var(--primary); color: white; border-radius: 8px; font-size: 15px; font-weight: 700; text-decoration: none; }
 .header-phone:hover { background: var(--primary-dark); }
 .header-cta > a { white-space: nowrap; flex: none; }
-.header-kakao { display: flex; align-items: center; gap: 6px; background: #fee500; color: #3a1d00; border-radius: 8px; font-size: 15px; font-weight: 700; text-decoration: none; transition: transform .08s ease,box-shadow .08s ease; }
+.header-kakao { display: flex; align-items: center; gap: 6px; background: #fee500; color: #3c1e1e; border-radius: 8px; font-size: 15px; font-weight: 700; text-decoration: none; transition: transform .08s ease,box-shadow .08s ease; }
 .header-kakao:hover { box-shadow: 0 2px 6px rgba(0,0,0,.16); }
 .header-kakao:active { transform: translateY(1px) scale(.985); box-shadow: none; }
 .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 5px; }
@@ -66,7 +66,7 @@ footer { background: #0f172a; color: rgba(255,255,255,.6); padding: 40px 20px; f
 .float-btn { width: 52px; height: 52px; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; transition: transform .2s; font-size: 22px; box-shadow: 0 8px 32px rgba(11,46,92,.16); }
 .float-btn:hover { transform: scale(1.1); }
 .float-phone { background: var(--primary); color: white; border: 1px solid white; }
-.float-kakao { background: #fee500; color: #3a1d00; }
+.float-kakao { background: #fee500; color: #3c1e1e; }   /* 2026-09-23 카톡 글자색 한 가지로(#3c1e1e) */
 .desk-cta-bar-inner { max-width: 1040px; margin: 0 auto; display: flex; flex-direction: row; align-items: flex-end; justify-content: center; gap: 10px; flex-wrap: wrap; }
 .desk-cta-phone-wrap { display: flex; flex-direction: column; gap: 6px; align-items: center; }
 .desk-cta-bar input { padding: 12px 18px; border: 1.5px solid #d1d5db; border-radius: 8px; font-size: 16px; font-family: 'Pretendard Variable',Pretendard,sans-serif; outline: none; transition: border-color .2s; background: white; color: #222934; }
