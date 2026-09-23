@@ -20,7 +20,7 @@
       '#찾기칸{display:block;position:relative;flex:1 1 auto;min-width:0;margin-left:10px}' +
       '#찾기칸 input{width:100%;height:36px;border:0;border-radius:999px;background:#F1F3F5;' +
         'padding:0 32px 0 34px;font:600 14px/1 "Pretendard Variable",Pretendard,system-ui,sans-serif;' +
-        'color:#191F28;outline:none;box-sizing:border-box}' +
+        'color:#0F172A;outline:none;box-sizing:border-box}' +   /* 2026-09-23 보드 값으로 맞춤 */
       '#찾기칸 input::placeholder{color:#8A9099;font-weight:500}' +
       '#찾기칸 input:focus{background:#fff;box-shadow:0 0 0 1.5px #1257C9 inset}' +
       '#찾기칸 .돋보기{position:absolute;left:11px;top:50%;transform:translateY(-50%);color:#8A9099;' +
