@@ -219,7 +219,7 @@ main{padding-top:var(--h-header)}
   box-shadow:0 4px 16px rgba(0,0,0,.18);transition:transform .08s ease,box-shadow .08s ease}
 .float-btn:active{transform:translateY(1px) scale(.985)}
 .float-phone{background:var(--c-strong);color:#fff}
-.float-kakao{background:var(--c-kakao);color:#3C1E1E}
+.float-kakao{background:var(--c-kakao);color:#000}   /* 카카오 규정(2026-09-23): 글자 검정 85% · 말풍선 기호 검정 */
 @media(min-width:769px){ .floating-btns{bottom:24px;right:24px} }
 @media(max-width:768px){
   .mobile-cta-bar{display:block}
@@ -445,7 +445,7 @@ h2{font-size:var(--t-h2);line-height:var(--lh-h2);font-weight:800;color:var(--c-
 .btn-primary{background:var(--c-strong);color:#fff}
 .btn-primary:hover{background:var(--c-strong-press)}
 .btn-primary:active{transform:translateY(1px) scale(.985)}
-.btn-kakao{background:var(--c-kakao);color:#3C1E1E}
+.btn-kakao{background:var(--c-kakao);color:rgba(0,0,0,.85)}   /* 쓰는 화면 없음(옛 규칙) */
 .btn-kakao:hover{box-shadow:0 2px 6px rgba(0,0,0,.16)}
 .btn-kakao:active{transform:translateY(1px) scale(.985);box-shadow:none}
 
