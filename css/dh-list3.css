@@ -129,17 +129,7 @@
      읽는 글은 `--c-sub` 고정.
    작은 주석이 아니라 **눈에 띄는 별도 문단**입니다.
    윗줄과 넉넉히 띄우고, 글자를 줄이지 않고 본문 크기 그대로 둡니다.
-   글만큼만 넓어지게 해 한 줄짜리 상자가 허전해 보이지 않게 합니다. */
-.page-head .lead-box{
-  display:inline-block;margin:26px 0 0;padding:14px 18px;
-  border:1px solid var(--c-highlight-line);border-radius:var(--r-card);
-  background:var(--c-highlight-bg);
-  color:var(--c-sub);font-size:var(--t-body);line-height:var(--lh-body);
-  font-weight:500;letter-spacing:var(--ls-sub)}
-.page-head .lead-box b{color:var(--c-highlight-text);font-weight:800}
-@media(max-width:560px){
-  .page-head .lead-box{display:block;margin-top:20px;padding:13px 15px}
-}
+   글만큼만 넓어지게 해 한 줄짜리 상자가 허전해 보이지 않게 합니다. */@media(max-width:560px){}
 
 /* ── 좁은 화면: 갈래 칸 · 거르개 알약을 한 줄로 눕혀 옆으로 밉니다 (2026-09-17 사장님 지시) ──
    아정당 폰 화면과 같은 방식입니다 — **흐림 없이, 줄을 화면 양끝까지 뻗어 화면 끝에서 칸이 선명하게 잘립니다.**

@@ -117,9 +117,7 @@
 .kt-mirror em {font-style: normal;}
 .kt-mirror a:link {text-decoration: none;}
 .kt-mirror button {overflow: visible; background: none; border: 0px; cursor: pointer;}
-.kt-mirror button:focus {padding: 0px; border: initial;}
-.kt-mirror .forte-area strong {font-weight: normal;}
-.kt-mirror strong {font-weight: normal;}
+.kt-mirror button:focus {padding: 0px; border: initial;}.kt-mirror strong {font-weight: normal;}
 .kt-mirror .mt-tp0 {margin-top: 0px !important;}
 .kt-mirror .mt-tp8 {margin-top: 8px !important;}
 .kt-mirror .mt-tp32 {margin-top: 32px !important;}
@@ -128,15 +126,7 @@
 .kt-mirror .mt-tp120 {margin-top: 120px !important;}
 .kt-mirror .nsprod-page * {font-family: var(--font-family-pretendard); line-height: 1.48; letter-spacing: 0px; box-sizing: border-box; word-break: keep-all; overflow-wrap: break-word;}
 .kt-mirror .nsprod-page-inner {position: relative; min-width: 1080px; width: 1080px; margin: 0px auto;}
-.kt-mirror .nsprod-blind {position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); clip-path: inset(50%); white-space: nowrap; border: 0px;}
-.kt-mirror .nsprod-hero-primary {min-width: var(--layout-min-width); overflow: hidden;}
-.kt-mirror .nsprod-hero-primary-inner {position: relative; width: var(--layout-width); height: 100%; margin: 0px auto;}
-.kt-mirror .nsprod-hero-primary-title-group {z-index: 2; display: flex; flex-direction: column; gap: var(--space-12); position: absolute; top: 0px; left: 0px; height: 100%;}
-.kt-mirror .nsprod-hero-primary-title-group.space-title-line-clamp1 {padding: 160.5px 0px 0px;}
-.kt-mirror .nsprod-hero-primary-title-group .nsprod-section-title {color: var(--gray-900); font-family: var(--font-family-kt-flow); font-size: var(--font-size-36); font-weight: var(--font-weight-bold); line-height: 1.48;}
-.kt-mirror .nsprod-hero-primary-title-group .nsprod-section-title-desc {color: var(--gray-600); font-family: var(--font-family-pretendard); font-size: var(--font-size-18); font-weight: var(--font-weight-medium); line-height: 1.48;}
-.kt-mirror .nsprod-hero-primary-visual {z-index: 1; position: relative; left: 50%; transform: translateX(-50%);}
-.kt-mirror .nsprod-title-group {display: flex; flex-direction: column; gap: var(--space-12);}
+.kt-mirror .nsprod-blind {position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); clip-path: inset(50%); white-space: nowrap; border: 0px;}.kt-mirror .nsprod-title-group {display: flex; flex-direction: column; gap: var(--space-12);}
 .kt-mirror .nsprod-title-group.space8 {gap: var(--space-8);}
 .kt-mirror .nsprod-title-eyebrow {color: var(--gray-600); font-family: var(--font-family-pretendard); font-size: var(--font-size-22); font-weight: var(--font-weight-bold); line-height: 1.48; text-align: center;}
 .kt-mirror .nsprod-title-lead {color: var(--gray-900); font-family: var(--font-family-kt-flow); font-size: var(--font-size-40); font-weight: var(--font-weight-bold); line-height: 1.3; letter-spacing: -0.4px; text-align: center; word-break: keep-all;}
@@ -167,9 +157,7 @@
 .kt-mirror .nsprod-table thead th {background: var(--gray-75); color: var(--text-primary); font-weight: var(--font-weight-bold);}
 .kt-mirror .nsprod-table thead th + th {border-left: 1px solid var(--border-secondary-02);}
 .kt-mirror .nsprod-table thead tr + tr th {border-top: 1px solid var(--border-secondary-02);}
-.kt-mirror .nsprod-table thead th.brline {border-right: 1px solid var(--border-inverse);}
-.kt-mirror .nsprod-table thead th.blline-none {border-left: 0px;}
-.kt-mirror .nsprod-table tbody th {border-right: 1px solid var(--border-inverse); border-top: 1px solid var(--border-secondary-01); background: var(--gray-25); color: var(--text-secondary-02); font-weight: var(--font-weight-medium); text-align: center;}
+.kt-mirror .nsprod-table thead th.brline {border-right: 1px solid var(--border-inverse);}.kt-mirror .nsprod-table tbody th {border-right: 1px solid var(--border-inverse); border-top: 1px solid var(--border-secondary-01); background: var(--gray-25); color: var(--text-secondary-02); font-weight: var(--font-weight-medium); text-align: center;}
 .kt-mirror .nsprod-table tbody td {border-top: 1px solid var(--border-secondary-01); color: var(--text-tertiary-01); font-weight: var(--font-weight-medium);}
 .kt-mirror .nsprod-table tbody tr:first-child td {border-top: 1px solid var(--border-secondary-02);}
 .kt-mirror .nsprod-table tbody td + td {border-left: 1px solid var(--border-secondary-01);}
@@ -218,19 +206,7 @@
 .kt-mirror .nsprod-i1711-down-group .down-info-list {flex: 1 1 0%;}
 .kt-mirror .nsprod-i1711-down-group .down-info-list > li {display: flex; align-items: flex-start; gap: var(--space-20); padding: var(--space-8) 0; color: var(--text-tertiary-01); font-size: var(--font-size-14); font-family: var(--font-family-pretendard); font-weight: var(--font-weight-medium); line-height: 1.48;}
 .kt-mirror .nsprod-i1711-down-group .down-info-list > li .head {position: relative; flex: 0 0 120px; width: 120px; padding: 0px 0px 0px 18px; color: var(--text-primary); font-weight: var(--font-weight-semibold);}
-.kt-mirror .nsprod-i1711-down-group .down-info-list > li .head::before {content: ""; position: absolute; top: 8.5px; left: 5.5px; width: 3px; height: 3px; border-radius: 50%; background-color: var(--gray-900);}
-.kt-mirror .nsprod-i1711-down-group.down-group-manual {display: flex; padding-top: 12px; flex-direction: column; gap: var(--space-16); align-self: stretch; border: 0px; box-shadow: none;}
-.kt-mirror .nsprod-i1711-down-group.down-group-manual .head {display: flex; padding-bottom: 12px; justify-content: space-between; align-items: center; align-self: stretch; border-bottom: 1px solid var(--border-secondary-02); color: var(--text-primary); font-family: var(--font-family-pretendard); font-size: var(--font-size-16); font-weight: var(--font-weight-semibold); line-height: 148%;}
-.kt-mirror .nsprod-i1711-down-group .down-button-group {display: flex; width: calc(100% - 2px); margin: 0px auto; padding: var(--space-16) var(--space-20); justify-content: space-between; align-items: center; border-top-left-radius: var(--radius-12); border-top-right-radius: var(--radius-12); background: var(--gray-75); box-shadow: inset 0 1px 0 var(--border-secondary-02);}
-.kt-mirror .nsprod-i1711-down-group .down-button-group .section-title {padding: 0px; min-height: unset; box-shadow: none;}
-.kt-mirror .nsprod-i1711-down-group .down-button-group-column {display: flex; gap: var(--space-8);}
-.kt-mirror .nsprod-i1711-down-group .down-button {display: inline-flex; align-items: center; min-width: 64px; min-height: 40px; padding: var(--space-8) var(--space-12); border-radius: var(--radius-6); background: var(--fill-primary); color: rgb(255, 255, 255); font-family: var(--font-family-pretendard); font-size: var(--font-size-13); font-weight: var(--font-weight-medium); line-height: 1.48; white-space: nowrap;}
-.kt-mirror .nsprod-i1711-down-grid {display: grid; grid-template-columns: repeat(5, 1fr); gap: var(--space-8); max-width: 1032px;}
-.kt-mirror .nsprod-i1711-down-grid .down-link {display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); width: 200px; min-height: 40px; padding: var(--space-8) var(--space-10) var(--space-8) var(--space-12); border-radius: var(--radius-6); background: rgb(255, 255, 255); box-shadow: inset 0 0 0 1px var(--border-primary-01); color: var(--gray-900); font-family: var(--font-family-pretendard); font-size: var(--font-size-13); font-weight: var(--font-weight-medium); line-height: 1.48; text-decoration: none; text-align: left;}
-.kt-mirror .nsprod-i1711-down-grid .down-link-text {overflow: hidden; text-overflow: ellipsis; white-space: nowrap;}
-.kt-mirror .nsprod-i1711-down-grid .down-link::after {content: ""; flex: 0 0 auto; width: 16px; height: 16px; background: url("../settop/img/w_ic_icode_1711_download.png") 50% 50% / contain no-repeat;}
-
-@media (prefers-reduced-motion: reduce) {
+.kt-mirror .nsprod-i1711-down-group .down-info-list > li .head::before {content: ""; position: absolute; top: 8.5px; left: 5.5px; width: 3px; height: 3px; border-radius: 50%; background-color: var(--gray-900);}@media (prefers-reduced-motion: reduce) {
 .kt-mirror .nsprod-accordion-button::after {transition: none;}
 }
 
@@ -244,12 +220,7 @@
    ══════════════════════════════════════════════════════════════════ */
 @media (max-width: 768px) {
   /* 고정 폭을 폰 폭에 맞춰 유동으로 */
-  .kt-mirror .nsprod-page-inner { min-width: 0; width: auto; padding: 0 14px; }
-  .kt-mirror .nsprod-hero-primary { min-width: 0; }
-  .kt-mirror .nsprod-hero-primary-inner { width: auto; }
-  .kt-mirror .nsprod-accordion-group { width: auto; }
-  .kt-mirror .nsprod-hero-primary-visual { position: static; left: 0; transform: none; max-width: 100%; height: auto; }
-  .kt-mirror img { max-width: 100%; height: auto; }
+  .kt-mirror .nsprod-page-inner { min-width: 0; width: auto; padding: 0 14px; }  .kt-mirror .nsprod-accordion-group { width: auto; }  .kt-mirror img { max-width: 100%; height: auto; }
 
   /* 카드·두 칸 배치를 세로로 쌓기 */
   .kt-mirror .nsprod-i1711-detail-group { flex-direction: column; gap: 12px; padding-top: 24px; }
@@ -260,9 +231,7 @@
   .kt-mirror .nsprod-i1711-flex { padding: 40px 16px; }
   .kt-mirror .down-info-list-wrap { flex-direction: column; }
 
-  /* 제목·글자 크기 축소 */
-  .kt-mirror .nsprod-section-title { font-size: 26px; }
-  .kt-mirror .nsprod-title-lead { font-size: 28px; }
+  /* 제목·글자 크기 축소 */  .kt-mirror .nsprod-title-lead { font-size: 28px; }
   .kt-mirror .nsprod-title-sub { font-size: 22px; }
   .kt-mirror .nsprod-title-desc { font-size: 16px; }
   .kt-mirror .nsprod-title-desc.fz18 { font-size: 15px; }
@@ -278,10 +247,7 @@
   .kt-mirror .nsprod-accordion-panel-inner { overflow-x: auto; -webkit-overflow-scrolling: touch; }
   .kt-mirror .nsprod-accordion-panel-inner .nsprod-table { min-width: 460px; }
 
-  /* 구 단말 매뉴얼 격자(셋톱) 5칸 → 2칸 */
-  .kt-mirror .nsprod-i1711-down-grid { grid-template-columns: 1fr 1fr; max-width: none; }
-  .kt-mirror .nsprod-i1711-down-grid .down-link { width: auto; }
-}
+  /* 구 단말 매뉴얼 격자(셋톱) 5칸 → 2칸 */}
 
 /* WiFi 제품 사진 (셋톱엔 없음) */
 .wifi-photo { text-align: center; }

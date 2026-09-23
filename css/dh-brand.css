@@ -264,8 +264,7 @@ h2{font-size:var(--t-h2);line-height:var(--lh-h2);font-weight:800;color:var(--c-
   color:var(--c-sub);text-decoration:none;margin-bottom:12px}
 .back:hover{color:var(--c-strong)}
 
-/* ── 브랜드 이동 단추 ─────────────────────────────────── */.brands a.now{background:var(--c-strong);border-color:var(--c-strong);color:#fff}
-
+/* ── 브랜드 이동 단추 ─────────────────────────────────── */
 /* ── 안내 상자 ────────────────────────────────────────── *//* ── 갈래 고르개 · 더 보기 ────────────────────────────────
    제품이 브랜드마다 최대 36종이라 한 번에 다 펼치면 손님이 지칩니다.
    먼저 갈래로 좁히고, 여섯 개씩 펼쳐 보게 합니다.
@@ -278,12 +277,8 @@ h2{font-size:var(--t-h2);line-height:var(--lh-h2);font-weight:800;color:var(--c-
   background:var(--c-card);border:1.5px solid var(--c-line);border-radius:var(--r-card);
   color:var(--c-body);font-family:inherit;font-size:var(--t-sub);font-weight:var(--w-sub);font-weight:600;
   transition:border-color .15s,background-color .15s,color .15s}
-.pick-btn svg{width:24px;height:24px;flex:none}
-.pick-btn .pick-num{font-size:var(--t-min);font-weight:var(--w-min);font-weight:500;color:var(--c-sub)}
-.pick-btn:hover{border-color:var(--c-strong)}
+.pick-btn svg{width:24px;height:24px;flex:none}.pick-btn:hover{border-color:var(--c-strong)}
 .pick-btn.on{background:var(--c-strong-bg);border-color:var(--c-strong);color:var(--c-strong)}
-.pick-btn.on .pick-num{color:var(--c-strong)}
-
 /* 보조 단추 — 흰 바탕이 아니라 연파랑 바탕에 파란 글씨(보드 5절) */
 /* 보드의 '보조 단추' 그대로입니다 — 흰 바탕 + 파란 테두리 1.5px + 파란 글씨, 높이 44.
    (2026-09-08 이 단추 때문에 보드 규칙을 정리했습니다. 옛 규칙이던 '연파랑 바탕 + 테두리 없음'은
@@ -309,18 +304,8 @@ h2{font-size:var(--t-h2);line-height:var(--lh-h2);font-weight:800;color:var(--c-
   min-width:0;overflow:hidden}
 .card > *{min-width:0;max-width:100%}.name{font-size:var(--t-h3);line-height:var(--lh-h3);font-weight:700;color:var(--c-title);margin:0}
 /* 프로모션 딱지 — 뜻이 같은 것끼리 한 색 (디자인보드 5절).
-   ⚠ 색을 새로 지어내지 말 것. 아래 다섯 갈래 안에서만 씁니다. */.promo.half{background:var(--c-strong)}   /* 반값 계열 */
-.promo.off {background:var(--c-band)}     /* 요금할인 · 면제 */
-.promo.deal{background:var(--c-danger)}   /* 특가 · 한정 */
-.promo.pick{background:var(--c-sub)}      /* 신상 · 인기 */
-.promo.etc {background:var(--c-line);color:var(--c-sub)}
-
-/* 기능 딱지 — 여섯만 색이 있고 나머지는 회색 (디자인보드 5절) */.tag{font-size:var(--t-min);font-weight:var(--w-min);line-height:1;font-weight:600;padding:4px 8px;border-radius:var(--r-chip)}
-.tag.cold  {background:var(--fb-cold-bg);  color:var(--fb-cold-tx)}
-.tag.hot   {background:var(--fb-hot-bg);   color:var(--fb-hot-tx)}
-.tag.pure  {background:var(--fb-pure-bg);  color:var(--fb-pure-tx)}
-.tag.ice   {background:var(--fb-ice-bg);   color:var(--fb-ice-tx)}
-.tag.filter{background:var(--fb-filter-bg);color:var(--fb-pure-tx)}
+   ⚠ 색을 새로 지어내지 말 것. 아래 다섯 갈래 안에서만 씁니다. */   /* 반값 계열 */     /* 요금할인 · 면제 */   /* 특가 · 한정 */      /* 신상 · 인기 */
+/* 기능 딱지 — 여섯만 색이 있고 나머지는 회색 (디자인보드 5절) */.tag{font-size:var(--t-min);font-weight:var(--w-min);line-height:1;font-weight:600;padding:4px 8px;border-radius:var(--r-chip)}.tag.filter{background:var(--fb-filter-bg);color:var(--fb-pure-tx)}
 .tag.direct{background:var(--fb-direct-bg);color:var(--fb-direct-tx)}
 .tag.etc   {background:var(--c-line);      color:var(--c-sub)}
 
@@ -334,9 +319,7 @@ h2{font-size:var(--t-h2);line-height:var(--lh-h2);font-weight:800;color:var(--c-
    칸이 많아 좁은 화면에서는 표만 옆으로 밀립니다(페이지는 안 밀림). */
 .fee{border-top:1px solid var(--c-line);padding-top:12px;margin-top:auto}
 /* 칸이 많아 좁은 화면에서는 표만 옆으로 밀린다. 오른쪽 끝을 흐리게 해서
-   '더 있다'는 것을 알려 준다(가려진 칸이 있는 줄 모르고 지나치는 일을 막는다). *//* 다 보이는 표는 흐리게 하지 않는다 */
-.fee-scroll.all{-webkit-mask-image:none;mask-image:none}
-.fee table{width:100%;min-width:340px;border-collapse:collapse;font-variant-numeric:tabular-nums}
+   '더 있다'는 것을 알려 준다(가려진 칸이 있는 줄 모르고 지나치는 일을 막는다). *//* 다 보이는 표는 흐리게 하지 않는다 */.fee table{width:100%;min-width:340px;border-collapse:collapse;font-variant-numeric:tabular-nums}
 .fee th,.fee td{padding:8px;font-size:var(--t-sub);font-weight:var(--w-sub);line-height:var(--lh-sub);text-align:right;
   vertical-align:top;white-space:nowrap}
 /* 첫 칸(관리 방식)은 표를 옆으로 밀어도 자리에 남는다.
@@ -349,15 +332,7 @@ h2{font-size:var(--t-h2);line-height:var(--lh-h2);font-weight:800;color:var(--c-
 .fee thead th:first-child{text-align:left;padding-left:0}
 .fee tbody tr+tr th,.fee tbody tr+tr td{border-top:1px solid var(--c-line)}
 .fee td.none{color:var(--c-dim);font-weight:400}
-/* 값 한 칸 = 취소선 원래값 / 할인값 / 할인 이름 */
-.fee .was{display:block;font-size:var(--t-min);font-weight:var(--w-min);line-height:var(--lh-min);color:var(--c-dim)}
-.fee .now-price{display:block;font-size:var(--t-sub);font-weight:var(--w-sub);line-height:var(--lh-sub);
-  font-weight:800;color:var(--c-strong)}
-.fee .won{display:block;font-size:var(--t-sub);font-weight:var(--w-sub);line-height:var(--lh-sub);
-  font-weight:700;color:var(--c-title)}
-.fee .why{display:block;font-size:var(--t-min);font-weight:var(--w-min);line-height:var(--lh-min);
-  color:var(--c-sub);font-weight:500}
-.fee-note{font-size:var(--t-min);font-weight:var(--w-min);line-height:var(--lh-min);color:var(--c-sub);margin:8px 0 0;
+/* 값 한 칸 = 취소선 원래값 / 할인값 / 할인 이름 */.fee-note{font-size:var(--t-min);font-weight:var(--w-min);line-height:var(--lh-min);color:var(--c-sub);margin:8px 0 0;
   text-wrap:balance}   /* 끝 낱말 혼자 떨어짐 방지 (2026-09-21) */
 
 /* ── 설득 그림 ────────────────────────────────────────── */

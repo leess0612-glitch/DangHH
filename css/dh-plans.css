@@ -46,13 +46,11 @@ body.locked { overflow: hidden; }
 
 /* ===== HEADER (index.html과 동일) ===== */
 
-
 /* 로고를 오른쪽 전화 단추와 같은 높이로 (2026-08-25 다시 잼)
    ★ 글자 높이는 '줄상자'가 아니라 '글자가 실제로 칠해지는 범위'로 재야 한다.
      줄상자로 재면 글자 위아래 빈 공간까지 세어져 실제보다 크게 나온다(32px일 때 30px인데 40px로 나왔다).
    실측: 전화 단추 40px / 43px일 때 글자가 칠해지는 높이 40px -> 딱 맞음 */
    /* 줄간격을 1로: 안 그러면 글자 줄상자(69px)가 머리띠(64px)보다 커진다 */
-
 
 /* ═════ 2026-08-28 로고·머리띠 개편 ═════
    1) 로고를 '파란 둥근 네모 + 흰 글자' 그림으로 바꾸고 이름 옆에 함께 쓴다.
@@ -66,8 +64,6 @@ body.locked { overflow: hidden; }
      정수기 400장(dh-brand.css)과 발바닥 로고(.footer-logo)가 이미 8 이라 그 값으로 맞췄습니다) */
    /* 2026-09-18 로고 한 벌 — 마크+글자 높이 24 (사장님 지시) */
 
-
-
 /* 로고 그림이 보이는 넓은 화면에서만 '당현함' 글씨를 그림과 같은 높이(30)로 맞춘다.
    ★ 글자 높이는 줄상자가 아니라 '실제로 칠해지는 범위'로 재야 한다.
      실측: 32px 일 때 칠해지는 높이 30px (43px 일 때는 40px). */
@@ -78,7 +74,6 @@ body.locked { overflow: hidden; }
 /* 2026-09-18: 폰에서 마크를 감추던 규칙을 뺐습니다 — 모든 화면이 마크+글자 한 벌입니다 */
 
 /* 머리띠에서 전화·카톡을 뺀다. 되돌리려면 이 한 줄만 지운다. */
-
 
 /* 메뉴를 머리띠의 '진짜 가운데'에 둔다.
    ★ 그냥 가운데 정렬하면 왼쪽 로고 때문에 오른쪽으로 밀린다.
@@ -94,13 +89,9 @@ body.locked { overflow: hidden; }
      (메뉴 514 를 가운데 두면 양옆에 121 씩 남는데, 로고가 111 이라 10 만 남는다)
    930 이하는 로고 그림도 감춰지는 구간이므로, 손대기 전 모습(오른쪽 정렬) 그대로 둔다. */
 
-
-
 /* 2026-09-20 — 메뉴 글자 색·굵기를 디자인보드 값으로 맞췄습니다 (사장님 지시).
    #5F6672(gray-500)·600 → #465368(gray-600)·500 — 정수기 400장(dh-brand.css)과 같은 값입니다.
    ⚠ --gray 눈금 자체는 건드리지 않습니다 — 이 파일 안 여러 곳이 쓰고 있습니다. */
-
-
 
 .header-phone { padding: 8px 16px; transition: transform 0.12s ease, background 0.2s; }
 
@@ -114,8 +105,6 @@ body.locked { overflow: hidden; }
 .header-kakao { padding: 8px 16px; }
 /* 2026-09-07 카톡 단추: 남의 브랜드색(#FEE500)은 어둡게 만들지 않는다. 눌림은 움직임으로. */
 
-
-
 /* 좁은 컴퓨터 화면(태블릿 가로 등)에서는 글씨를 빼고 그림만 남긴다.
    실측: 769px에서 글씨까지 두면 로고와 메뉴가 딱 붙어 숨이 막힌다 */
 @media (min-width: 769px) and (max-width: 1024px) {
@@ -124,11 +113,9 @@ body.locked { overflow: hidden; }
 }
 .header-phone:active { transform: translateY(1px) scale(0.985); }
 
-
 .mobile-menu { box-shadow: 0 8px 20px rgba(0,0,0,0.1); }
 
 .mobile-menu a { display: block; }
-
 
 /* 메뉴가 6개(요금·사은품 추가)가 되면서 좁은 컴퓨터 화면에서 전화번호 버튼과 거의 붙었다.
    769~880px 구간에서만 항목 사이 여백을 살짝 줄여 숨통을 틔운다 (2026-08-20)
@@ -203,14 +190,6 @@ body.locked { overflow: hidden; }
 /* 2026-09-20 — 발바닥 바탕을 남색(#0B2E5C)에서 다른 410장과 같은 #0F172A 로 바꿨습니다 (사장님 지시).
    남색은 디자인보드에서 「강조 띠」 전용 색(--c-band)이라 발바닥에 쓰면 역할이 겹쳤습니다.
    이 열한 장만 남색이어서, 손님이 요금표 ↔ 첫 화면을 오갈 때 발바닥 색이 바뀌었습니다. */
-
-
-
-
-
-
-
-
 
 /* 플로팅 */
 
@@ -288,11 +267,7 @@ body.locked { overflow: hidden; }
      .cs-apply { background: #1257C9; color: white; }
      .cs-apply:hover { background: #0E45A0; } */
 
-
 .float-btn:active { transform: scale(1.02); }
-
-
-
 
 /* ═════ 컴퓨터 화면 아래 '따라오는' 신청 카드 — 2026-08-28 ═════
    index.html 의 .desk-cta-bar 를 그대로 옮겨 온 것이다.
@@ -313,8 +288,6 @@ body.locked { overflow: hidden; }
   pointer-events: none;   /* 주황 조각은 따로 반응하지 않는다 — 카드가 하나로 움직인다 */ }
 /* 카드를 누르면 주황 조각도 함께 반응해야 '한 덩어리'로 읽힌다 */
 
-
-
 @media (min-width: 769px) { .desk-cta-bar { display: flex; } }
 
 /* 휴대폰 아래 고정 신청 막대 — index.html의 .mobile-cta-bar와 같은 디자인.
@@ -334,10 +307,7 @@ body.locked { overflow: hidden; }
 
 /* 2026-09-21 태블릿 폭(481~768)은 단추가 넓어 글자 한 칸 크게 — 폰 16 · 태블릿 18 · 컴퓨터 20 (사장님 결정, 정수기 띠와 같은 규칙) */
 
-
    /* 디자인보드 --dh-c-strong-bg, 테두리 없음 (2026-09-17) */
-
-
 
 @media (max-width: 768px) {
   
@@ -436,7 +406,6 @@ table.rate td.gift em.plus {
   display: block; font-style: normal; font-size: 12px; font-weight: 700;
   color: #D92D20; margin-top: 2px; white-space: nowrap; letter-spacing: -0.3px;
 }
-
 
 /* ===== TV 추가 줄을 요금표 안으로 (2026-09-03 시험본) ===== */
 table.rate tr.addtv td.addtv-list {
@@ -594,8 +563,6 @@ table.rate thead th.kind-head { position: sticky; left: 168px; z-index: 6; }
 }
 
 /* 구분칸 아래 딸린 작은 설명 (예: 30% 할인 적용 → 사은품 변동) */
-table.rate th.kind .kind-sub { display: block; font-size: 12px; font-weight: 400; color: var(--dark); margin-top: 4px; white-space: nowrap; }
-
 /* 대부분 놓치고 있는 가족결합 할인 상자 */
 .bundle { margin-top: 12px; background: white; border: 1px solid var(--border); border-radius: 12px; padding: 16px; }
 .bundle h3 { font-size: 24px; font-weight: 800; letter-spacing: -0.5px; color: var(--dark); margin-bottom: 16px; }
@@ -717,7 +684,6 @@ table.term-tbl em.plus { display: block; font-style: normal; font-size: 14px; fo
   table.bundle-tbl { min-width: 520px; }
 }
 
-
 /* ── 가입 전에 알아 두면 좋은 것 (2026-09-03) ──
    요금표 탭 아래에 두고, 탭을 누르면 그 통신사 몫으로 다시 그린다.
    속도 가이드·회선 방식처럼 어느 통신사나 같은 이야기는 한 벌만 두고,
@@ -812,8 +778,7 @@ table.term-tbl.txt th.rn { width: 140px; }
 .cs-btn          { border-radius: 8px; }
 .consult-panel   { border-radius: 12px; }
 
-   /* 주 단추는 모서리 8 */
-.float-btn, .zoom-close, .tabnav { border-radius: 999px; }
+   /* 주 단추는 모서리 8 */.float-btn, .tabnav{ border-radius: 999px; }
 
 /* ② 그림자 — 기본 없음. 머리띠만 보드 목록의 카드 그림자(sh-card)를 쓴다.
    (2026-09-21 — 아래 선 1px 을 쓰던 이 11장만 머리띠가 57px 이었다. 나머지 410장과 같게 56px + 그림자) */
@@ -829,7 +794,6 @@ table.term-tbl.txt th.rn { width: 140px; }
 
 /* 예외 ㉠ 화면 아래에 고정돼 떠 있는 것 */
 
-
 /* 예외 ㉡ 팝업처럼 화면 위로 뜨는 것 */
 .mobile-menu    { box-shadow: 0 8px 32px rgba(11,46,92,0.16); }
 .consult-panel  { box-shadow: 0 8px 32px rgba(11,46,92,0.16); }
@@ -840,8 +804,6 @@ table.term-tbl.txt th.rn { width: 140px; }
      까닭: 이 열한 장만 48 이라 손님이 요금표 ↔ 첫 화면을 오갈 때 파란 알약 두께가 달랐습니다.
        정수기 400장(dh-brand.css)도, 첫 화면 쪽 일곱 장도 모두 44 입니다.
    ★ 옆여백(10px · 좁은 구간 7px)은 그대로라 메뉴 너비는 654px 그대로입니다 — 세로만 48 → 44. */
-
-
 
 .jump { min-height: 44px; display: inline-flex; align-items: center; }
 .footer-links a { display: inline-flex; align-items: center; min-height: 44px; }
@@ -886,13 +848,11 @@ table.term-tbl.txt th.rn { width: 140px; }
 table.rate thead th,
 .tab[aria-selected="true"] { text-shadow: 0 0 1px rgba(0,0,0,.45); }
 
-
 /* ===== 한글은 낱말 가운데를 끊지 않는다 (2026-09-11, 보드 규칙 9) =====
    ⚠ 표 안에 문장을 넣을 때는 white-space:normal 을 함께 줘야 표가 안 늘어난다. */
 body, p, li, dd, dt, h1, h2, h3, h4, span, strong, em, b, a, div, label, button, td, th, figcaption, blockquote {
   word-break: keep-all;
 }
-
 
 /* ===== 누르는 자리 44 (2026-09-11, 보드 규칙 9) =====
    보이는 크기는 그대로 두고 위에 보이지 않는 44짜리 층만 덮는다. */
