@@ -259,12 +259,7 @@ h2{font-size:var(--t-h2);line-height:var(--lh-h2);font-weight:800;color:var(--c-
   letter-spacing:var(--ls-title);margin:0 0 4px}
 .lead{color:var(--c-sub);font-size:var(--t-body);margin:0}
 /* 문장 전체를 강조색으로 (어디서 신청해도 요금이 같다는 결론) */
-.lead b{color:var(--c-strong);font-weight:700}
-.back{display:inline-flex;align-items:center;gap:4px;font-size:var(--t-sub);font-weight:var(--w-sub);
-  color:var(--c-sub);text-decoration:none;margin-bottom:12px}
-.back:hover{color:var(--c-strong)}
-
-/* ── 브랜드 이동 단추 ─────────────────────────────────── */
+.lead b{color:var(--c-strong);font-weight:700}/* ── 브랜드 이동 단추 ─────────────────────────────────── */
 /* ── 안내 상자 ────────────────────────────────────────── *//* ── 갈래 고르개 · 더 보기 ────────────────────────────────
    제품이 브랜드마다 최대 36종이라 한 번에 다 펼치면 손님이 지칩니다.
    먼저 갈래로 좁히고, 여섯 개씩 펼쳐 보게 합니다.
@@ -305,8 +300,7 @@ h2{font-size:var(--t-h2);line-height:var(--lh-h2);font-weight:800;color:var(--c-
 .card > *{min-width:0;max-width:100%}.name{font-size:var(--t-h3);line-height:var(--lh-h3);font-weight:700;color:var(--c-title);margin:0}
 /* 프로모션 딱지 — 뜻이 같은 것끼리 한 색 (디자인보드 5절).
    ⚠ 색을 새로 지어내지 말 것. 아래 다섯 갈래 안에서만 씁니다. */   /* 반값 계열 */     /* 요금할인 · 면제 */   /* 특가 · 한정 */      /* 신상 · 인기 */
-/* 기능 딱지 — 여섯만 색이 있고 나머지는 회색 (디자인보드 5절) */.tag{font-size:var(--t-min);font-weight:var(--w-min);line-height:1;font-weight:600;padding:4px 8px;border-radius:var(--r-chip)}.tag.filter{background:var(--fb-filter-bg);color:var(--fb-pure-tx)}
-.tag.direct{background:var(--fb-direct-bg);color:var(--fb-direct-tx)}
+/* 기능 딱지 — 여섯만 색이 있고 나머지는 회색 (디자인보드 5절) */.tag{font-size:var(--t-min);font-weight:var(--w-min);line-height:1;font-weight:600;padding:4px 8px;border-radius:var(--r-chip)}.tag.direct{background:var(--fb-direct-bg);color:var(--fb-direct-tx)}
 .tag.etc   {background:var(--c-line);      color:var(--c-sub)}
 
 /* ⚠ body 에 word-break:keep-all 이 걸려 있어, 가운뎃점으로 길게 이어진 기능 설명이

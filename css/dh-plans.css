@@ -177,15 +177,7 @@ body.locked { overflow: hidden; }
 
 /* ===== 본문 ===== */
 .wrap { max-width: 860px; margin: 0 auto; padding: 26px 20px 60px; }
-.panel[hidden] { display: none; }
-.sheet-name .co { font-weight: 800; }
-.sheet-name.kt .co { color: var(--kt); }
-.sheet-name.sk .co { color: var(--sk); }
-.sheet-name.lg .co { color: var(--lg); }
-
-.note { margin-top: 16px; padding: 15px 18px; background: white; border: 1px solid var(--border); border-radius: 12px; font-size: 13px; color: var(--gray); line-height: 1.8; word-break: keep-all; }
-.zoom.open { display: block; }
-
+.panel[hidden] { display: none; }.note { margin-top: 16px; padding: 15px 18px; background: white; border: 1px solid var(--border); border-radius: 12px; font-size: 13px; color: var(--gray); line-height: 1.8; word-break: keep-all; }
 /* ===== FOOTER (index.html과 동일) ===== */
 /* 2026-09-20 — 발바닥 바탕을 남색(#0B2E5C)에서 다른 410장과 같은 #0F172A 로 바꿨습니다 (사장님 지시).
    남색은 디자인보드에서 「강조 띠」 전용 색(--c-band)이라 발바닥에 쓰면 역할이 겹쳤습니다.
@@ -420,22 +412,7 @@ table.rate tr.addtv td.addtv-list i {
 }
 @media (max-width: 768px) {
   table.rate tr.addtv td.addtv-list { font-size: 13px; padding-left: 12px; }
-}
-.sub-box { background: white; border: 1px solid var(--border); border-radius: 12px; padding: 16px; }
-.sub-box h3 { font-size: 15px; font-weight: 800; color: var(--dark); margin-bottom: 4px; }
-.sub-box .sub-gift { font-size: 14px; font-weight: 700; color: #D92D20; margin-bottom: 8px; }
-/* 2026-09-03: 금액을 위 요금표 사은품 칸과 같은 크기로 키운다 */
-.sub-box .sub-gift b { font-size: 22px; font-weight: 800; color: #D92D20; letter-spacing: -0.5px; }
-.sub-box .sub-gift span { font-size: 13px; font-weight: 600; color: #D92D20; margin-left: 1px; }
-/* 요금표 사은품 칸과 같은 '+ 추가혜택' 표시 */
-.sub-box .sub-gift em.plus { display: inline; font-style: normal; font-size: 12px; font-weight: 700;
-  color: #D92D20; margin-left: 8px; letter-spacing: -0.3px; white-space: nowrap; }
-@media (max-width: 768px) { .sub-box .sub-gift b { font-size: 19px; } }
-.sub-box dl { display: grid; grid-template-columns: 1fr auto; gap: 8px 12px; margin-top: 8px; }
-.sub-box dt { font-size: 14px; color: var(--dark); word-break: keep-all; }
-.sub-box dd { font-size: 14px; font-weight: 700; color: var(--dark); text-align: right; white-space: nowrap; }
-
-/* 회사별 주석 */
+}/* 2026-09-03: 금액을 위 요금표 사은품 칸과 같은 크기로 키운다 *//* 요금표 사은품 칸과 같은 '+ 추가혜택' 표시 */@media (max-width: 768px) { }/* 회사별 주석 */
 .rate-note { margin-top: 12px; padding: 16px; background: white; border: 1px solid var(--border); border-radius: 12px; }
 .rate-note li { list-style: none; font-size: 13px; color: var(--gray); line-height: 1.8; word-break: keep-all; padding-left: 12px; position: relative; }
 .rate-note li::before { content: '·'; position: absolute; left: 0; }
