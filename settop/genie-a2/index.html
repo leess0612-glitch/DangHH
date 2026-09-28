@@ -27,79 +27,9 @@ if(navigator.webdriver===true){window.DH_BOT=true;window['ga-disable-G-NBGKQ2Y30
 <!-- End Meta Pixel Code -->
 
 <!-- ===== 당현함 통합 전환추적 v1 (다른 페이지와 같은 방식) ===== -->
-<script>
-/* 이 페이지를 통계에서 부를 이름 */
-var DH_PAGE = 'danghh-settop-genie-a2';
-/* 네이버 전환추적 공통키(AccountId) — 공개값이라 가려 둘 필요 없음(구글 측정번호와 같은 성격) */
-var DH_NAVER_ID = window.DH_BOT ? '' : 's_2e8bfd0103db';
-
-/* 같은 방문에서 한 번만 세도록 막는 장치 */
-function dhOnce(key){
-  try{
-    if(sessionStorage.getItem('dh_'+key)) return false;
-    sessionStorage.setItem('dh_'+key,'1'); return true;
-  }catch(e){ return true; }
-}
-
-/* 네이버 전환 한 건 보내기 */
-function dhNaver(종류){
-  try{
-    if(!DH_NAVER_ID || !window.wcs || typeof wcs.trans !== 'function') return;
-    if(!window.wcs_add) window.wcs_add = {};
-    wcs_add['wa'] = DH_NAVER_ID;
-    var _conv = {};
-    _conv.type = 종류;
-    wcs.trans(_conv);
-  }catch(e){ }
-}
-
-/* 전환 1건을 구글·메타·네이버에 동시에 알림 (개인정보는 보내지 않음) */
-function dhTrack(action, opts){
- try{
-  opts = opts || {};
-  if(opts.once !== false && !dhOnce(action)) return;
-  if(typeof gtag === 'function'){ gtag('event', action, { dh_page: DH_PAGE }); }
-  if(typeof fbq === 'function'){
-    var metaName = { lead_submit:'Lead', kakao_click:'Contact', phone_click:'Contact' }[action];
-    if(metaName) fbq('track', metaName, { content_name: DH_PAGE + '/' + action });
-    else fbq('trackCustom', action, { content_name: DH_PAGE });
-  }
-  var 네이버종류 = { kakao_click:'custom001', phone_click:'custom002' }[action];
-  if(네이버종류) dhNaver(네이버종류);
- }catch(e){ }
-}
-
-/* 네이버 스크립트는 ID가 채워졌을 때만 불러옴 */
-(function(){
-  if(!DH_NAVER_ID) return;
-  var s=document.createElement('script'); s.async=true; s.src='//wcs.naver.net/wcslog.js';
-  s.onload=function(){
-    try{
-      if(!window.wcs_add) window.wcs_add={};
-      wcs_add['wa']=DH_NAVER_ID;
-      if(!window._nasa) window._nasa={};
-      if(window.wcs) wcs.inflow();
-      wcs_do();
-    }catch(e){}
-  };
-  document.head.appendChild(s);
-})();
-
-/* 전화·카카오 링크 클릭 자동 감지 */
-document.addEventListener('click', function(e){
-  var a = e.target && e.target.closest ? e.target.closest('a') : null;
-  if(!a) return;
-  var href = a.getAttribute('href') || '';
-  if(href.indexOf('tel:') === 0) dhTrack('phone_click');
-  else if(href.indexOf('pf.kakao.com') > -1) dhTrack('kakao_click');
-}, true);
-
-/* 페이지를 절반 이상 읽었는지 */
-window.addEventListener('scroll', function(){
-  var h = document.documentElement.scrollHeight - window.innerHeight;
-  if(h > 0 && (window.scrollY / h) >= 0.5) dhTrack('scroll_50');
-}, { passive: true });
-</script>
+<script>/* 이 화면을 통계에서 부를 이름 */
+var DH_PAGE = 'danghh-settop-genie-a2';</script>
+<script src="../../js/dh-track.js?v=1"></script>
 <script src="../../js/dh-inflow.js?v=68"></script>
 <script src="../../js/dh-nocash.js?v=64"></script>
 <script src="../../js/dh-topnav.js?v=6"></script>
