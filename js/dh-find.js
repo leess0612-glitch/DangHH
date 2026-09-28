@@ -1,36 +1,58 @@
 /* ══════════════════════════════════════════════════════════════════════
-   머리띠 로고 옆 검색칸 · dh-find.js  (2026-09-18 라이브, 인잘알 방식)
+   검색칸 · dh-find.js  (2026-09-18 라이브, 인잘알 방식)
    ──────────────────────────────────────────────────────────────────────
-   햄버거를 없애며 머리띠 오른쪽이 비었습니다. 그 자리를 검색칸이 꽉 채웁니다.
-   · 폰(폭 768 이하)에서만 나옵니다. 컴퓨터는 지금처럼 메뉴가 그 자리를 씁니다.
+   2026-09-28 — 사장님 지시로 **컴퓨터에서도** 나오게 했습니다. 자리가 둘입니다.
+
+     · 폰(폭 768 이하)  → **로고 오른쪽** (2026-09-18부터 쓰던 자리)
+     · 컴퓨터(769 이상) → **거르개 줄 가운데** (「관리 유형」과 「인기순」 사이)
+     · 창 폭이 바뀌면 그때그때 알맞은 자리로 **옮겨 다닙니다**
+     · 거르개 줄(.filter-row)이 없는 화면에서는 컴퓨터일 때 **안 나옵니다**
+       (메인·렌탈처럼 메뉴가 그 자리를 쓰는 화면입니다)
+
+   ⚠ 칸은 **하나만** 만들고 자리를 옮깁니다. 두 개를 만들면 한쪽에 친 글자가
+     다른 쪽에 안 남아 손님이 헷갈립니다.
+   ⚠ 컴퓨터 쪽 높이 44 는 알약(--h-touch)과 **같은 값**입니다. 다르게 두면 줄이 삐뚤어집니다.
+
+   그 밖의 동작(2026-09-18부터 그대로)
    · 회색 둥근 칸 + 왼쪽 돋보기 + 글씨가 있으면 오른쪽에 지우기(✕) — 인잘알과 같은 모양입니다.
    · 정수기 목록에서는 치는 대로 걸러집니다(199개 전부에서 찾습니다 — 「더 보기」를 먼저 다 펼칩니다).
-   · 다른 화면에서 엔터를 치면 그 말에 맞는 화면으로 넘어갑니다 (2026-09-18 사장님 지시)
+   · 다른 화면에서 엔터를 치면 그 말에 맞는 화면으로 넘어갑니다
        비데·공기청정기 같은 가전 낱말 -> 가전 렌탈 화면(/appliance/)
        그 밖의 말                     -> 정수기 목록(지금까지와 같음)
      어느 말이 어디로 가는지는 아래 「갈곳표」 한 곳에 있습니다.
-     (인터넷 요금제까지 찾게 하려면 규칙을 더 정해야 합니다)
    ══════════════════════════════════════════════════════════════════════ */
 (function () {
   'use strict';
 
   var 모양 =
-    '#찾기칸{display:none}' +
+    /* 공통 — 어느 자리에 있든 같은 모양입니다 */
+    '#찾기칸{display:none;position:relative;min-width:0}' +
+    '#찾기칸 input{width:100%;border:0;border-radius:999px;background:#F1F3F5;' +
+      'font-family:"Pretendard Variable",Pretendard,system-ui,sans-serif;font-weight:600;line-height:1;' +
+      'color:#0F172A;outline:none;box-sizing:border-box}' +   /* 2026-09-23 보드 값으로 맞춤 */
+    '#찾기칸 input::placeholder{color:#8A9099;font-weight:500}' +
+    '#찾기칸 input:focus{background:#fff;box-shadow:0 0 0 1.5px #1257C9 inset}' +
+    '#찾기칸 .돋보기{position:absolute;top:50%;transform:translateY(-50%);color:#8A9099;' +
+      'pointer-events:none;display:flex}' +
+    '#찾기칸 .지우기{position:absolute;right:8px;top:50%;transform:translateY(-50%);width:20px;height:20px;' +
+      'border:0;border-radius:999px;background:#C6CBD2;color:#fff;font:700 11px/1 inherit;cursor:pointer;' +
+      'display:none;align-items:center;justify-content:center;padding:0}' +
+    '#찾기칸.글씨있음 .지우기{display:flex}' +
+
+    /* ① 폰 — 로고 오른쪽. 로고는 줄지 않고 검색칸이 남은 폭을 다 가져갑니다 */
     '@media(max-width:768px){' +
-      '#찾기칸{display:block;position:relative;flex:1 1 auto;min-width:0;margin-left:10px}' +
-      '#찾기칸 input{width:100%;height:36px;border:0;border-radius:999px;background:#F1F3F5;' +
-        'padding:0 32px 0 34px;font:600 14px/1 "Pretendard Variable",Pretendard,system-ui,sans-serif;' +
-        'color:#0F172A;outline:none;box-sizing:border-box}' +   /* 2026-09-23 보드 값으로 맞춤 */
-      '#찾기칸 input::placeholder{color:#8A9099;font-weight:500}' +
-      '#찾기칸 input:focus{background:#fff;box-shadow:0 0 0 1.5px #1257C9 inset}' +
-      '#찾기칸 .돋보기{position:absolute;left:11px;top:50%;transform:translateY(-50%);color:#8A9099;' +
-        'pointer-events:none;display:flex}' +
-      '#찾기칸 .지우기{position:absolute;right:8px;top:50%;transform:translateY(-50%);width:20px;height:20px;' +
-        'border:0;border-radius:999px;background:#C6CBD2;color:#fff;font:700 11px/1 inherit;cursor:pointer;' +
-        'display:none;align-items:center;justify-content:center;padding:0}' +
-      '#찾기칸.글씨있음 .지우기{display:flex}' +
-      /* 로고는 줄지 않고, 검색칸이 남은 폭을 다 가져갑니다 */
+      '#찾기칸.머리자리{display:block;flex:1 1 auto;margin-left:10px}' +
+      '#찾기칸.머리자리 input{height:36px;padding:0 32px 0 34px;font-size:14px}' +
+      '#찾기칸.머리자리 .돋보기{left:11px}' +
       'header .header-inner .logo{flex:none}' +
+    '}' +
+
+    /* ② 컴퓨터 — 거르개 줄 가운데.
+       ⚠ 최소 폭 180 을 두어, 좁은 노트북에서는 눌리지 않고 아랫줄로 내려가게 했습니다. */
+    '@media(min-width:769px){' +
+      '#찾기칸.거르개자리{display:block;flex:1 1 180px;max-width:320px;margin:0 8px}' +
+      '#찾기칸.거르개자리 input{height:44px;padding:0 36px 0 40px;font-size:15px}' +
+      '#찾기칸.거르개자리 .돋보기{left:14px}' +
     '}';
 
   /* 정수기 목록은 두 벌입니다 — 일반(water/)과 코웨이판(water-c/).
@@ -115,9 +137,39 @@
     }
   }
 
+  /* ── 자리 옮기기 (2026-09-28) ─────────────────────────────────────────
+     ⚠ 옮길 때 글자와 기능은 그대로 따라갑니다(같은 칸을 움직이는 것이라).
+       다만 글자 깜빡이는 자리(포커스)는 풀립니다 — 창 폭을 바꿀 때만이라 괜찮습니다. */
+  var 폰 = window.matchMedia('(max-width:768px)');
+
+  function 자리잡기() {
+    var 칸 = document.getElementById('찾기칸');
+    if (!칸) return;
+    var 거르개줄 = document.querySelector('.filter-row');
+    var 머리 = document.querySelector('header .header-inner');
+
+    if (!폰.matches && 거르개줄) {
+      if (칸.parentNode !== 거르개줄) {
+        var 정렬 = 거르개줄.querySelector('.sort-box');   /* 「인기순」 바로 앞에 끼웁니다 */
+        if (정렬) 거르개줄.insertBefore(칸, 정렬);
+        else 거르개줄.appendChild(칸);
+      }
+      칸.classList.remove('머리자리');
+      칸.classList.add('거르개자리');
+    } else if (머리) {
+      if (칸.parentNode !== 머리) {
+        var 로고 = 머리.querySelector('.logo');
+        if (로고 && 로고.nextSibling) 머리.insertBefore(칸, 로고.nextSibling);
+        else 머리.appendChild(칸);
+      }
+      칸.classList.remove('거르개자리');
+      칸.classList.add('머리자리');
+    }
+  }
+
   function 달기() {
-    var 속 = document.querySelector('header .header-inner');
-    if (!속 || document.getElementById('찾기칸')) return;
+    var 머리 = document.querySelector('header .header-inner');
+    if (!머리 || document.getElementById('찾기칸')) return;
     var st = document.createElement('style'); st.textContent = 모양; document.head.appendChild(st);
 
     var 칸 = document.createElement('div');
@@ -128,11 +180,12 @@
         '<path d="M20 20l-3.6-3.6"/></svg></span>' +
       '<input type="text" placeholder="제품·모델명 검색" aria-label="제품 찾기">' +
       '<button type="button" class="지우기" aria-label="지우기">✕</button>';
+    머리.appendChild(칸);
+    자리잡기();
 
-    /* 로고 바로 다음 자리 — 로고는 왼쪽, 검색칸이 남은 폭 전부 */
-    var 로고 = 속.querySelector('.logo');
-    if (로고 && 로고.nextSibling) 속.insertBefore(칸, 로고.nextSibling);
-    else 속.appendChild(칸);
+    /* 창 폭이 바뀌면 자리를 다시 잡습니다 (폰을 돌려 세울 때도 걸립니다) */
+    if (폰.addEventListener) 폰.addEventListener('change', 자리잡기);
+    else if (폰.addListener) 폰.addListener(자리잡기);
 
     var 입력 = 칸.querySelector('input'), 지움 = 칸.querySelector('.지우기');
     function 상태() { 칸.classList.toggle('글씨있음', !!입력.value); }
