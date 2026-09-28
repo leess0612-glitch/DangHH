@@ -69,7 +69,7 @@
         '<a class="bar-ico phone" href="tel:1600-4670" aria-label="전화 상담 1600-4670">' + 전화아이콘 + '</a>' +
         '<a class="bar-ico kakao" href="https://pf.kakao.com/_yxgTAs" target="_blank" rel="noopener" ' +
           'aria-label="카카오톡 상담">' + 카톡아이콘 + '</a>' +
-        '<button type="button" class="bar-cta" id="띠단추">내 혜택 얼마인지 확인</button>' +
+        '<button type="button" class="bar-cta" id="띠단추">내 지원금 얼마인지 확인</button>' +
       '</div>';
     document.body.appendChild(띠);
 

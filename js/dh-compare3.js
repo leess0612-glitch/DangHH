@@ -238,7 +238,7 @@
         '<div class="pop-body cmp3-body" id="비교몸통3"></div>' +
         '<div class="cmp3-foot">' +
           '<button type="button" class="cmp3-clear" id="비교비우기">모두 빼기</button>' +
-          '<button type="button" class="cmp3-cta" id="비교신청">내 혜택 얼마인지 확인</button>' +
+          '<button type="button" class="cmp3-cta" id="비교신청">내 지원금 얼마인지 확인</button>' +
         '</div>' +
       '</div>';
     document.body.appendChild(창);
