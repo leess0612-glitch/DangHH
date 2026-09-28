@@ -66,7 +66,7 @@
     '#상단메뉴줄 .tn-row::-webkit-scrollbar{display:none}' +
     '#상단메뉴줄 .tn-row::after{content:"";flex:0 0 8px}' +
     '#상단메뉴줄 a{flex:none;display:flex;align-items:center;padding:0 12px;height:100%;' +
-      'font-size:15px;font-weight:600;color:#4E5968;text-decoration:none;white-space:nowrap;' +
+      'font-size:15px;font-weight:600;color:#465368;text-decoration:none;white-space:nowrap;' +
       'border-bottom:2px solid transparent;box-sizing:border-box}' +
     '#상단메뉴줄 a[aria-current="page"]{color:#1257C9;border-bottom-color:#1257C9}' +
     '#상단메뉴줄 a[hidden]{display:none}' +
