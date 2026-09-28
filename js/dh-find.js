@@ -183,9 +183,17 @@
     머리.appendChild(칸);
     자리잡기();
 
-    /* 창 폭이 바뀌면 자리를 다시 잡습니다 (폰을 돌려 세울 때도 걸립니다) */
+    /* 창 폭이 바뀌면 자리를 다시 잡습니다 (폰을 돌려 세울 때도 걸립니다)
+       ⚠ 두 가지를 함께 듣습니다. matchMedia 의 change 만 걸어 두면 **안 걸리는 경우가 있습니다**
+         (2026-09-28 시험 중 실제로 놓쳤습니다). 창 크기 바뀜도 같이 듣습니다.
+         자리잡기()는 이미 제자리면 아무것도 안 하므로 여러 번 불려도 괜찮습니다. */
     if (폰.addEventListener) 폰.addEventListener('change', 자리잡기);
     else if (폰.addListener) 폰.addListener(자리잡기);
+    var 기다림 = 0;
+    window.addEventListener('resize', function () {
+      clearTimeout(기다림);
+      기다림 = setTimeout(자리잡기, 120);
+    });
 
     var 입력 = 칸.querySelector('input'), 지움 = 칸.querySelector('.지우기');
     function 상태() { 칸.classList.toggle('글씨있음', !!입력.value); }
