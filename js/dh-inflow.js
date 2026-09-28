@@ -673,12 +673,52 @@ global.dhInflowReset = dhInflowReset;
     고치기();
   }
 
+  /* ── 나중에 생기는 링크도 잡는다 (2026-09-28) ──────────────────────────
+     정수기 목록은 자바스크립트가 그립니다. 처음 24장을 그린 뒤 나머지를 이어 그리는데,
+     위 고치기() 는 그 사이에 지나갑니다. 그래서 늦게 그려진 제품은 주소가
+     /water/… 그대로 남았습니다 (2026-09-28 실측 : 198장 가운데 74장).
+
+     ⚠ 아래 「누를 때 한 번 더 잡는 그물」이 있어 **눌러서 들어가면 제대로 갔습니다**(실측).
+       다만 그물은 누를 때만 걸립니다. 이런 길은 안 걸립니다.
+         · 가운데 단추로 새 탭에 열기 (click 이 아니라 auxclick 입니다)
+         · 오른쪽 눌러 「링크 주소 복사」
+         · 가리켰을 때 화면 왼쪽 아래에 뜨는 주소
+     그래서 링크가 새로 생기면 한 번 더 맞춥니다.
+     ⚠ 너무 자주 돌지 않게 조금 모았다가 한 번만 돕니다(120밀리초).
+       고치기()는 이미 맞은 링크는 건드리지 않으므로 여러 번 돌아도 괜찮습니다. */
+  function 감시시작() {
+    if (!global.MutationObserver || !global.document.body) return;
+    var 기다림 = 0;
+    function 곧() {
+      if (기다림) return;
+      기다림 = global.setTimeout(function () {
+        기다림 = 0;
+        try { 고치기(); } catch (e) {}
+      }, 120);
+    }
+    try {
+      new global.MutationObserver(function (바뀜들) {
+        for (var i = 0; i < 바뀜들.length; i++) {
+          var 더해진 = 바뀜들[i].addedNodes;
+          for (var j = 0; j < 더해진.length; j++) {
+            var n = 더해진[j];
+            if (!n || n.nodeType !== 1) continue;
+            if (n.tagName === 'A' || (n.querySelector && n.querySelector('a[href]'))) { 곧(); return; }
+          }
+        }
+      }).observe(global.document.body, { childList: true, subtree: true });
+    } catch (e) {}
+  }
+
   try { 돌기(); } catch (e) {}
 
   if (global.document.readyState === 'loading') {
     global.document.addEventListener('DOMContentLoaded', function () {
       try { 고치기(); } catch (e) {}
+      try { 감시시작(); } catch (e) {}
     });
+  } else {
+    try { 감시시작(); } catch (e) {}
   }
 
   /* 뒤로가기로 되살아난 화면(bfcache)에서도 다시 맞춘다 */
