@@ -178,7 +178,7 @@ a.plan-card:active { transform: translateY(0) scale(0.99); }
 .cs-kakao { transition: transform .08s ease, box-shadow .08s ease; }
 .cs-kakao:hover { box-shadow: 0 2px 6px rgba(0,0,0,.16); }
 .cs-kakao:active { transform: translateY(1px) scale(.985); box-shadow: none; }
-.mobile-cta-bar { padding: 10px 16px 10px; opacity: 0; transform: translateY(100%); transition: opacity 0.3s, transform 0.35s cubic-bezier(0.4,0,0.2,1); pointer-events: none; }
+.mobile-cta-bar { opacity: 0; transform: translateY(100%); transition: opacity 0.3s, transform 0.35s cubic-bezier(0.4,0,0.2,1); pointer-events: none; }
 .mobile-cta-bar.visible { opacity: 1; transform: translateY(0); }
 .mobile-cta-btn { border: none; font-family: 'Pretendard Variable', Pretendard, sans-serif; }
 .mobile-cta-bar .mobile-cta-btn { width: auto; }
