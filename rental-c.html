@@ -82,7 +82,7 @@ if (typeof dhInflow !== 'function') { window.dhInflow = function () { return {};
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.css">
 <link rel="stylesheet" href="css/dh-shell.css?v=4">
-<link rel="stylesheet" href="css/dh-landing.css?v=2">
+<link rel="stylesheet" href="css/dh-landing.css?v=3">
 <style>
 /* 가장 얇은 300(Light)은 불러오지 않음 — FAQ 열림 표시(+) 한 곳에만 쓰이는데
    파일 하나가 165KB라 낭비. 빼면 브라우저가 400으로 대신 그리며 눈에 띄는 차이 없음 */
@@ -305,81 +305,9 @@ html { overflow-x: clip; }
 
 
 
-/* ===== STICKY MINI FORM ===== */
-/* ⚠ 지금은 어느 화면에서도 안 뜨는 폼입니다 (2026-09-02 확인) ⚠
-   ── 왜 안 뜨나 ──
-   ① 컴퓨터(769 이상) : 아래 `@media (min-width: 769px)` 에서 display:none !important 로 막혀 있다
-   ② 폰(768 이하)     : updateScrollForms() 가 `if (isMobile)` 갈래에서
-                        stickyForm.classList.remove('visible') 로 항상 끈다
-   즉 CSS 와 자바스크립트 양쪽에서 막혀 있어, 켜려면 두 곳을 함께 풀어야 한다.
-
-   ── 지금 실제로 쓰는 신청 통로 ──
-   · 컴퓨터 : 아래 고정 띠(.desk-cta-bar) — 이름·번호·희망 제품
-   · 폰     : 아래 고정 띠(.mobile-cta-bar) 는 단추 하나. 누르면 큰 신청폼(#apply)으로 간다
-   · 큰 신청폼(#apply) : 제품 아이콘·이름·번호·요청사항
-
-   ── 그래서 ──
-   이 폼(모양·markup·submitStickyForm)을 고쳐도 손님 화면에는 아무 변화가 없다.
-   지우지 않고 남겨 둔 것은 되살릴 수 있게 하기 위함이다. 손대기 전에 위 ①②를 먼저 풀 것. */
-.sticky-form {
-  position: fixed; top: 120px; right: 0; z-index: 800;
-  display: flex; align-items: flex-start;
-  opacity: 0;
-  transform: translateX(244px);
-  transition: opacity 0.3s, transform 0.4s cubic-bezier(0.4,0,0.2,1);
-  pointer-events: none;
-}
-.sticky-form-tab {
-  width: 24px; height: 44px; flex-shrink: 0;
-  background: var(--primary);
-  border-radius: 8px 0 0 8px;
-  display: flex; align-items: center; justify-content: center;
-  cursor: pointer; margin-top: 24px;
-  box-shadow: 0 8px 32px rgba(11,46,92,0.16);
-  transition: background 0.2s;
-  border: 1px solid white;
-  border-right: none;
-}
-.sticky-form-tab:hover { background: #1257C9; }
-.sticky-form-tab .tab-arrow {
-  width: 0; height: 0;
-  border-top: 5px solid transparent;
-  border-bottom: 5px solid transparent;
-  border-left: 8px solid white;
-  transition: transform 0.4s cubic-bezier(0.4,0,0.2,1);
-}
-/* 열려있을 때: ▶ (오른쪽) / 접혔을 때: 180도 = ◀ (왼쪽) */
-.sticky-form.collapsed .sticky-form-tab .tab-arrow { transform: rotate(180deg); }
-.sticky-form-inner {
-  width: 220px; background: white;
-  border-radius: 12px;
-  border-top: 4px solid var(--primary);
-  border-bottom: 4px solid var(--primary);
-  box-shadow: 0 8px 32px rgba(11,46,92,0.16);
-  overflow: hidden;
-}
-.sticky-form-body { padding: 14px 16px 16px; }
-.sticky-form-title {
-  font-size: 13px; font-weight: 800; color: var(--dark);
-  margin-bottom: 12px; text-align: center; line-height: 1.4;
-}
-.sticky-form-title span { color: var(--primary); }
-.sticky-form input {
-  width: 100%; padding: 10px 12px; border: 1.5px solid var(--border);
-  border-radius: 8px; font-size: 13px; font-family: 'Pretendard Variable', Pretendard, sans-serif;
-  outline: none; margin-bottom: 8px; transition: border-color 0.2s;
-}
-.sticky-form input:focus { border-color: var(--primary); }
-.sticky-form-btn {
-  width: 100%; padding: 11px; background: #1257C9; color: white;
-  font-size: 13px; font-weight: 700; border: none; border-radius: 8px;
-  cursor: pointer; font-family: 'Pretendard Variable', Pretendard, sans-serif; transition: background 0.2s;
-}
-.sticky-form-btn:hover { background: #0E45A0; }
-.sticky-form-success { text-align: center; padding: 8px 0; font-size: 13px; color: var(--primary); font-weight: 700; display: none; }
 
 /* ===== DESKTOP BOTTOM CTA BAR ===== */
-/* B-OPTION: 원복 시 아래 두 블록(.desk-cta-bar, @media min-width 769 sticky) 삭제 */
+/* B-OPTION: 원복 시 아래 .desk-cta-bar 블록 삭제 (옛 작은 신청서는 2026-09-29 지웠습니다) */
 .desk-cta-bar { bottom: 0;
   /* 2026-09-04 아래 띠 색 재정립 (남색 띠 + 흰 단추)
      전에는 진파랑 바탕(#0E45A0)에 파란 단추(#1257C9)라 1.36배밖에 차이가 안 나 단추가 묻혔다. */
@@ -414,7 +342,7 @@ html { overflow-x: clip; }
 
 @media (min-width: 769px) {
   .desk-cta-bar { display: block; }
-  .sticky-form { display: none !important; } /* B-OPTION: 원복 시 이 줄 삭제 */
+ /* B-OPTION: 원복 시 이 줄 삭제 */
 }
 
 /* ===== 아래 띠 「통화 희망 시간」 칸 (2026-09-22, 사장님 「나」안) =====
@@ -635,7 +563,7 @@ h1, h2, h3,
 .plan-title, .chevron-title, .chevron-desc,
 .step-title-a, .step-desc-a, .step-title-b, .step-desc-b,
 .faq-question, .faq-answer-inner,
-.form-headline, .sticky-form-title, .desk-cta-top {
+.form-headline, .desk-cta-top {
   word-break: keep-all;
   overflow-wrap: break-word;
 }
@@ -645,11 +573,11 @@ h1, h2, .section-title, .trust-sol-title, .process-title-big {
 }
 
 /* --- 2. 버튼을 누를 때 눌리는 느낌 (원래는 한 곳도 없었음) --- */
-.form-submit, .sticky-form-btn, .desk-cta-bar-btn, .mobile-cta-btn,
+.form-submit, .desk-cta-bar-btn, .mobile-cta-btn,
 .header-phone, .service-tab, .privacy-close, .cert-badge, .ict-cert-wrap, .hero-cta {
   transition: transform 0.12s ease, background 0.2s, border-color 0.2s, box-shadow 0.2s;
 }
-.form-submit:active, .sticky-form-btn:active, .desk-cta-bar-btn:active,
+.form-submit:active, .desk-cta-bar-btn:active,
 .mobile-cta-btn:active, .header-phone:active, .privacy-close:active,
 .cert-badge:active, .ict-cert-wrap:active, .plan-link:active, .hero-cta:active {
   transform: translateY(1px) scale(0.985);
@@ -670,11 +598,11 @@ h1, h2, .section-title, .trust-sol-title, .process-title-big {
 .form-submit:active {
   transform: translateY(2px) scale(0.98);
 }
-.mobile-cta-btn:active, .desk-cta-bar-btn:active, .sticky-form-btn:active {
+.mobile-cta-btn:active, .desk-cta-bar-btn:active {
   transform: translateY(2px) scale(0.975);
 }
 /* (다) 누르는 순간 바로 반응하도록 조금 더 빠르게 */
-.hero-cta, .form-submit, .mobile-cta-btn, .desk-cta-bar-btn, .sticky-form-btn {
+.hero-cta, .form-submit, .mobile-cta-btn, .desk-cta-bar-btn {
   transition-duration: 0.08s, 0.2s, 0.2s, 0.2s;
 }
 /* (라) 누를 때 색이 진해지도록 (2026-08-12 보강)
@@ -683,7 +611,7 @@ h1, h2, .section-title, .trust-sol-title, .process-title-big {
    특히 화면 하단 고정 버튼은 그림자가 없어 크기 변화만으로는 표시가 안 남
    → 색 + 안쪽 그림자(움푹 들어간 느낌)를 함께 줌 */
 /* ※ 이 페이지의 하단 고정 버튼은 주황색임 (index.html은 파란색) → 눌림 색도 진한 주황 */
-.desk-cta-bar-btn:active, .sticky-form-btn:active {
+.desk-cta-bar-btn:active {
   background: #0E45A0;
 }
 
@@ -699,10 +627,6 @@ h1, h2, .section-title, .trust-sol-title, .process-title-big {
 .trust-news-img, .trust-cert-img { box-shadow: 0 2px 16px rgba(15,42,90,0.08); }
 .form-card { box-shadow: 0 2px 16px rgba(15,42,90,0.08); }
 .faq-item { box-shadow: 0 2px 16px rgba(15,42,90,0.08); }
-.sticky-form-inner { box-shadow: 0 8px 32px rgba(11,46,92,0.16); }
-
-
-
 /* --- 6. 카드에 마우스 올릴 때 그림자도 함께 (원래는 위로 뜨기만 함) --- */
 
 /* --- 7. 메뉴 눌러 이동할 때 바로 이동 + 고정 머리띠(64px)에 제목이 안 가리게 --- */
@@ -2190,27 +2114,6 @@ function promiseZoom(src){ document.getElementById('promiseViewerImg').src=src; 
   <p class="mini-consent desk" id="deskConsent">무료 확인을 누르시면 <a href="javascript:void(0)" onclick="openPrivacy()">개인정보 수집·이용</a>에 동의하신 것으로 봅니다</p>
 </div>
 
-<!-- STICKY MINI FORM -->
-<!-- ⚠ 지금은 어느 화면에서도 안 뜹니다 — 자세한 까닭은 위 스타일의 `.sticky-form` 앞 메모 참고 (2026-09-02) -->
-<div class="sticky-form" id="stickyForm">
-  <div class="sticky-form-tab" onclick="toggleStickyForm()">
-    <span class="tab-arrow"></span>
-  </div>
-  <div class="sticky-form-inner">
-    <div class="sticky-form-body" id="stickyFormBody">
-      <div id="stickyFormContent">
-        <p class="sticky-form-title"><span>내가 받을 수 있는</span><br>혜택은 얼마나 될까요?</p>
-        <input type="text" id="stickyName" placeholder="이름 (선택)">
-        <input type="tel" id="stickyPhone" placeholder="휴대폰 번호 (필수)">
-        <button class="sticky-form-btn" onclick="submitStickyForm()">무료 확인</button>
-        <!-- 2026-08-27 : 여기서도 번호를 받는데 동의 표시가 없었다 -->
-        <p class="mini-consent">무료 확인을 누르시면 <a href="javascript:void(0)" onclick="openPrivacy()">개인정보 수집·이용</a>에 동의하신 것으로 봅니다</p>
-      </div>
-      <div class="sticky-form-success" id="stickySuccess">✅ 신청 완료!<br>곧 연락드리겠습니다.</div>
-    </div>
-  </div>
-</div>
-
 <!-- FLOATING BUTTONS -->
 <!-- 넓은 화면(1600 이상) 상담 패널 — 2026-08-28 -->
 <div class="consult-panel" id="consultPanel">
@@ -2479,13 +2382,8 @@ function openTerms() { document.getElementById('termsOverlay').classList.add('op
 function closeTerms() { document.getElementById('termsOverlay').classList.remove('open'); }
 function closeTermsOutside(e) { if (e.target.id === 'termsOverlay') closeTerms(); }
 
-// Sticky form 접기/펴기
-function toggleStickyForm() {
-  document.getElementById('stickyForm').classList.toggle('collapsed');
-}
 
 // 스크롤 폼 통합 트리거 (히어로 CTA 버튼이 뷰포트 밖으로 나가면 등장)
-const stickyForm = document.getElementById('stickyForm');
 const deskCtaBar = document.getElementById('deskCtaBar');
 const mobileCta  = document.getElementById('mobileCta');
 const applySection = document.getElementById('apply');
@@ -2501,16 +2399,13 @@ function updateScrollForms() {
   if (isMobile) {
     if (applyNear) { mobileCta.classList.remove('visible'); }
     else { mobileCta.classList.add('visible'); }
-    stickyForm.classList.remove('visible');   /* 폰에서는 옆 폼을 늘 끈다 — 지금은 어느 화면에서도 안 뜬다 */
     deskCtaBar.classList.remove('visible');
     return;
   }
   mobileCta.classList.remove('visible');
   if (!applyNear) {
-    stickyForm.classList.add('visible');
     deskCtaBar.classList.add('visible');
   } else {
-    stickyForm.classList.remove('visible');
     deskCtaBar.classList.remove('visible');
   }
 }
@@ -2537,37 +2432,6 @@ document.getElementById('deskPhone').addEventListener('input', function() {
 
 // Desktop bar submit
 
-
-// Sticky phone format
-document.getElementById('stickyPhone').addEventListener('input', function() {
-  let v = this.value.replace(/\D/g,'');
-  if (v.length > 11) v = v.slice(0,11);
-  if (v.length >= 8) v = v.slice(0,3)+'-'+v.slice(3,7)+'-'+v.slice(7);
-  else if (v.length >= 4) v = v.slice(0,3)+'-'+v.slice(3);
-  this.value = v;
-});
-
-// Sticky form submit
-async function submitStickyForm() {
-  const name = document.getElementById('stickyName').value.trim();
-  const phone = document.getElementById('stickyPhone').value.trim();
-  if (!phone || phone.replace(/\D/g,'').length !== 11) { alert('휴대폰 번호 11자리를 정확히 입력해주세요.\n(예: 010-1234-5678)'); return; }
-  dhTrack('lead_submit', { once: false });   /* 입력 검사 통과 시점에 전환 집계 */
-  /* 보내는 동안 버튼을 잠근다. 안 잠그면 느릴 때(최대 27초) 손님이 여러 번 누른다 */
-  const btn = document.querySelector('.sticky-form-btn');
-  const 본래글자 = btn ? btn.textContent : '';
-  if (btn) { btn.disabled = true; btn.textContent = '신청 중...'; }
-  try {
-    await dhSend(Object.assign({ name, phone, usim: '미지정', service: '미지정' }, dhInflow()),
-                 (문구) => { if (btn) btn.textContent = 문구; });
-    document.getElementById('stickyFormContent').style.display = 'none';
-    document.getElementById('stickySuccess').style.display = 'block';
-      dhNaver('lead');   /* 네이버 전환: 진짜 접수된 뒤에만 (2026-08-28) */
-  } catch(e) {
-    if (btn) { btn.disabled = false; btn.textContent = 본래글자; }
-    alert('오류가 발생했습니다. 1600-4670으로 문의해주세요.');
-  }
-}
 
 
 // ===== 떠 있는 창 관리 + 뒤로가기로 닫기 (2026-08-27, index.html 에서 옮김) =====

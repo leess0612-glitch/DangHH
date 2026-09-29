@@ -76,7 +76,7 @@ if (typeof dhInflow !== 'function') { window.dhInflow = function () { return {};
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.css">
 <link rel="stylesheet" href="css/dh-shell.css?v=4">
-<link rel="stylesheet" href="css/dh-landing.css?v=2">
+<link rel="stylesheet" href="css/dh-landing.css?v=3">
 <style>
 /* 가장 얇은 300(Light)은 불러오지 않음 — FAQ 열림 표시(+) 한 곳에만 쓰이는데
    파일 하나가 165KB라 낭비. 빼면 브라우저가 400으로 대신 그리며 눈에 띄는 차이 없음 */
@@ -562,7 +562,7 @@ h1, h2, h3,
 .plan-title, .chevron-title, .chevron-desc,
 .step-title-a, .step-desc-a, .step-title-b, .step-desc-b,
 .faq-question, .faq-answer-inner,
-.form-headline, .sticky-form-title, .desk-cta-top,
+.form-headline, .desk-cta-top,
 .hero-cash-badge {                 /* 34px 로 키우니 절반 화면에서 '가만두면 손 / 해!' 로 낱말이 끊겼다 */
   word-break: keep-all;
   overflow-wrap: break-word;
@@ -574,11 +574,11 @@ h1, h2, .section-title, .trust-sol-title, .process-title-big,
 }
 
 /* --- 2. 버튼을 누를 때 눌리는 느낌 (원래는 한 곳도 없었음) --- */
-.form-submit, .sticky-form-btn, .desk-cta-bar-btn, .mobile-cta-btn,
+.form-submit, .desk-cta-bar-btn, .mobile-cta-btn,
 .header-phone, .service-tab, .privacy-close, .cert-badge, .ict-cert-wrap {
   transition: transform 0.12s ease, background 0.2s, border-color 0.2s, box-shadow 0.2s;
 }
-.form-submit:active, .sticky-form-btn:active, .desk-cta-bar-btn:active,
+.form-submit:active, .desk-cta-bar-btn:active,
 .mobile-cta-btn:active, .header-phone:active, .privacy-close:active,
 .cert-badge:active, .ict-cert-wrap:active, .plan-link:active {
   transform: translateY(1px) scale(0.985);
@@ -600,11 +600,11 @@ h1, h2, .section-title, .trust-sol-title, .process-title-big,
 .form-submit:active {
   transform: translateY(2px) scale(0.98);
 }
-.mobile-cta-btn:active, .desk-cta-bar-btn:active, .sticky-form-btn:active {
+.mobile-cta-btn:active, .desk-cta-bar-btn:active {
   transform: translateY(2px) scale(0.975);
 }
 /* (다) 누르는 순간 바로 반응하도록 조금 더 빠르게 */
-.form-submit, .mobile-cta-btn, .desk-cta-bar-btn, .sticky-form-btn {
+.form-submit, .mobile-cta-btn, .desk-cta-bar-btn {
   transition-duration: 0.08s, 0.2s, 0.2s, 0.2s;
 }
 /* (라) 누를 때 색이 진해지도록 (2026-08-12 보강)
@@ -612,7 +612,7 @@ h1, h2, .section-title, .trust-sol-title, .process-title-big,
    → 껐더니 누를 때 색이 그대로여서 눌린 티가 안 났음. 눌림 쪽에 색을 따로 지정해 해결.
    특히 화면 하단 고정 버튼은 그림자가 없어 크기 변화만으로는 표시가 안 남
    → 색 + 안쪽 그림자(움푹 들어간 느낌)를 함께 줌 */
-.desk-cta-bar-btn:active, .sticky-form-btn:active {
+.desk-cta-bar-btn:active {
   background: #0E45A0;
 }
 
@@ -727,7 +727,7 @@ html { scroll-behavior: auto; }
 }
 /* PC 아래 고정 막대와 옆 신청칸은 파란 바탕 위에 있어 파란 버튼이 묻힌다.
    그래서 색은 주황 그대로 두고, 입체 효과만 똑같이 준다 */
-.desk-cta-bar-btn, .sticky-form-btn{
+.desk-cta-bar-btn {
   background-color:#1257C9;            /* 파랑 단색 — 그라데이션 없앰 (디자인보드) */
   background-image:none;
   box-shadow:none;
