@@ -210,12 +210,12 @@
     ['wd723r',   'wd723rk|wd723re'],
     ['wd722r',   'wd722rk|wd722rh|wd722re'],
     ['wu923a',   'wu923acb|wu923awb|wu923anb|wu923abb'],
-    ['wu523acb', 'wu523awb'],
-    ['wd524vc',  'wd524vct|wd524vht|wd524vst'],
+    ['wu523a',   'wu523acb|wu523awb'],
+    ['wd524v',   'wd524vct|wd524vht|wd524vst'],
     ['wd523v',   'wd523vct|wd523vht'],
-    ['wd323a',   'wd323awb'],
-    ['wd520vc',  'wd520vct'],
     ['wd525a',   'wd525acb|wd525agb'],
+    /* WD323AWB · WD520VCT 는 파는 색이 하나뿐이라 **화면에 온전한 코드를 적었습니다.**
+       그래서 따로 딴이름을 둘 것이 없습니다 (2026-09-29 표기 통일). */
     ['wd220m',   'wd220mcb|wd220mnb|wd221mcb|wd221mnb'],
     ['wd120m',   'wd120mcb|wd120mnb|wd121mcb|wd121mnb']
   ];
