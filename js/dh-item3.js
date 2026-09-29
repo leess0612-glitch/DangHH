@@ -161,8 +161,33 @@
     return b ? (b.getAttribute('data-값') || b.textContent.trim()) : null;
   }
 
+  /* ★ 2026-09-29 — 지금 고른 색. 색마다 요금이 다른 제품이 있어 셈에 함께 넘깁니다. */
+  function 고른색() {
+    var b = document.querySelector('.it-color[aria-pressed="true"]');
+    return b ? b.getAttribute('data-이름') : ((p.색 || [])[0] || [])[0];
+  }
+
+  /* 고른 색이 첫 색보다 얼마나 비싼지 — 색 이름 옆에 적어 줍니다 */
+  function 색값차이(약, 관, 타) {
+    if (!p.색요금) return 0;
+    var 첫 = ((p.색 || [])[0] || [])[0];
+    var 지금 = 고른색();
+    if (!지금 || 지금 === 첫) return 0;
+    var a = 셈부품.셈(p, 약, 관, 타, 첫);
+    var b = 셈부품.셈(p, 약, 관, 타, 지금);
+    return (a && b) ? (b.값 - a.값) : 0;
+  }
+
   function 다시셈() {
-    var 결 = 셈부품.셈(p, 고름('약정'), 고름('관리 방식'), 고름('지금 쓰는 정수기') === '있어요');
+    var 약 = 고름('약정'), 관 = 고름('관리 방식');
+    var 타 = 고름('지금 쓰는 정수기') === '있어요';
+    var 결 = 셈부품.셈(p, 약, 관, 타, 고른색());
+    /* 색 이름 옆에 「+1,000원」을 붙여 줍니다 (감추지 않습니다) */
+    var 이름칸 = document.querySelector('.it-color-name');
+    if (이름칸) {
+      var 차 = 색값차이(약, 관, 타);
+      이름칸.textContent = (고른색() || '') + (차 > 0 ? ' (+' + 셈부품.돈(차) + '원)' : '');
+    }
     var 설 = document.getElementById('설명');
     if (!결) {
       if (설) 설.innerHTML = '이 조합은 없습니다. 다른 약정이나 관리 방식을 골라 주세요.';
@@ -193,7 +218,7 @@
     if (typeof window.고른제품담기 === 'function') {
       var 약 = 고름('약정'), 관 = 고름('관리 방식');
       var 결 = (약 && 관)
-        ? 셈부품.셈(p, 약, 관, 고름('지금 쓰는 정수기') === '있어요') : null;
+        ? 셈부품.셈(p, 약, 관, 고름('지금 쓰는 정수기') === '있어요', 고른색()) : null;
       window.고른제품담기([{
         사진: p.사진, 브랜드: p.브랜드, 이름: p.이름, 모델: p.모델,
         조건: [약 && 약.replace(' 약정', ''), 관 && 셈부품.짧게(관)].filter(Boolean).join(' · '),
@@ -263,8 +288,9 @@
         [].forEach.call(색칸.children, function (x) {
           x.setAttribute('aria-pressed', x === 색 ? 'true' : 'false');
         });
-        var 이름칸 = document.querySelector('.it-color-name');
-        if (이름칸) 이름칸.textContent = 색.getAttribute('data-이름');
+        /* ★ 2026-09-29 — 색마다 요금이 다른 제품이 있어, 색을 바꾸면 요금도 다시 셉니다.
+           (예전에는 색 이름만 바꿔서 비싼 색을 골라도 싼 값이 그대로 보였습니다) */
+        다시셈();
         return;
       }
       var 옵 = e.target.closest('.it-opt');
