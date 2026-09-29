@@ -142,12 +142,12 @@ footer{background:var(--dh-gray-950);color:rgba(255,255,255,.6);padding:40px var
 
 /* ── 폰 가로 메뉴 띠 (js/dh-topnav.js 가 만듭니다 · 768 이하에서만) ──
    2026-09-29: 자바 안에 글자로 박혀 있던 모양을 여기로 옮겼습니다.
-   ⚠ 아래 줄 색 #E5E8EB 은 보드 선 색(#EEEFF3)과 다릅니다 — 옮기기만 하고 값은 그대로 두었습니다. */
+   2026-09-29: 아래 줄 색을 보드 선 색(--c-line #EEEFF3)으로 맞췄습니다(전 #E5E8EB — 이 줄에만 쓰던 값). */
 @media(max-width:768px){
   html.tn-on body{padding-top:44px}
   html.tn-on .hamburger{display:none!important}
   #상단메뉴줄{position:fixed;left:0;right:0;top:var(--h-header, 56px);z-index:900;height:44px;
-    background:var(--c-card);border-bottom:1px solid #E5E8EB;will-change:transform}
+    background:var(--c-card);border-bottom:1px solid var(--c-line);will-change:transform}
   #상단메뉴줄 .tn-row{display:flex;gap:4px;height:100%;overflow-x:auto;scrollbar-width:none;
     -webkit-overflow-scrolling:touch;padding-left:8px}
   #상단메뉴줄 .tn-row::-webkit-scrollbar{display:none}
