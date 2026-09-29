@@ -32,7 +32,7 @@ if(navigator.webdriver===true){window.DH_BOT=true;window['ga-disable-G-NBGKQ2Y30
 var DH_PAGE = 'danghh-rental-coway';</script>
 <script src="js/dh-track.js?v=1"></script>
 <script src="js/dh-inflow.js?v=68"></script>
-<script src="js/dh-send.js?v=1"></script>
+<script src="js/dh-send.js?v=2"></script>
 <script src="js/dh-topnav.js?v=6"></script>
 <script src="js/dh-find.js?v=9"></script>
 <script src="js/dh-footer.js?v=3"></script>
@@ -2241,6 +2241,7 @@ const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby6NFsBfLjk1XCGuuzLF
 
 const DH_접수처 = 'https://danghh-apply.danghh.workers.dev/apply';
 const DH_갈래 = 'rental';
+var DH_서비스이름 = { water:'정수기', rental:'가전렌탈' };   /* 이 화면의 서비스 갈래 이름 — 신청서 코드는 js/dh-send.js 에 있습니다 */
 /* 신청을 보내는 기계(신청번호 만들기 · 중간 접수처로 보내기 · 구글로 직접 보내기)는
    공용 부품 js/dh-send.js 한 곳에 있습니다. 왜 그렇게 만들었는지(다시 보내기 3번 ·
    40초까지 기다림 · 구글 쪽 중복막기와 한 쌍)도 그 파일 머리에 적혀 있습니다.
@@ -2455,35 +2456,7 @@ document.getElementById('inputMemo').addEventListener('input', function() {
   표시.parentNode.classList.toggle('over', this.value.length >= 200);
 });
 
-async function submitForm() {
-  const name = document.getElementById('inputName').value.trim();
-  const phone = document.getElementById('inputPhone').value.trim();
-  let memo = document.getElementById('inputMemo').value.trim();
-  if (selectedServices.size === 0) { alert('서비스를 하나 이상 선택해주세요.'); return; }
-  if (!phone || phone.replace(/\D/g,'').length !== 11) { alert('휴대폰 번호 11자리를 정확히 입력해주세요.\n(예: 010-1234-5678)'); return; }
-  if (!document.getElementById('c1').checked) {
-    alert('개인정보 수집 및 이용에 동의해주세요.'); return;
-  }
-  const btn = document.getElementById('submitBtn');
-  btn.disabled = true; btn.textContent = '신청 중...';
-  dhTrack('lead_submit', { once: false });   /* 입력 검사 통과 시점에 전환 집계 */
 
-  const serviceMap = { water:'정수기', rental:'가전렌탈' };
-  const serviceText = [...selectedServices].map(s => serviceMap[s]).join('+');
-
-  try {
-    if (window.dh통화붙이기) memo = window.dh통화붙이기(memo);   /* 통화 희망 시간 줄 (js/dh-callhope.js, 2026-09-21) */
-    await dhSend(Object.assign({ name, phone, usim: 'N', service: serviceText, memo }, dhInflow()),
-                 (문구) => { btn.textContent = 문구; });
-    document.getElementById('formContent').style.display = 'none';
-    document.getElementById('formSuccess').style.display = 'block';
-    if (window.dh통화완료) window.dh통화완료();   /* 완료창에 전화 드릴 때를 적는다 */
-      dhNaver('lead');   /* 네이버 전환: 진짜 접수된 뒤에만 (2026-08-28) */
-  } catch(e) {
-    alert('오류가 발생했습니다. 잠시 후 다시 시도하거나\n1600-4670으로 직접 문의해주세요.');
-    btn.disabled = false; btn.textContent = '내 최대 혜택 무료 확인';
-  }
-}
 
 // 개인정보처리방침 모달
 // 하단 바 단추는 부드럽게 흐르지 않고 한 번에 이동한다 (2026-08-13)
@@ -2563,41 +2536,7 @@ document.getElementById('deskPhone').addEventListener('input', function() {
 });
 
 // Desktop bar submit
-async function submitDeskForm() {
-  const name = document.getElementById('deskName').value.trim();
-  const phone = document.getElementById('deskPhone').value.trim();
-  /* 희망 제품은 필수로 받는다 (2026-09-02) */
-  const 희망제품 = (document.getElementById('deskService') || { value: '' }).value.trim();
-  if (!희망제품) { alert('희망 제품을 적어주세요.\n(예: 정수기, 비데, 매트리스)'); return; }
-  if (!phone || phone.replace(/\D/g,'').length !== 11) { alert('휴대폰 번호 11자리를 정확히 입력해주세요.\n(예: 010-1234-5678)'); return; }
-  dhTrack('lead_submit', { once: false });   /* 입력 검사 통과 시점에 전환 집계 */
-  /* 보내는 동안 버튼을 잠근다. 안 잠그면 느릴 때(최대 27초) 손님이 여러 번 누른다 */
-  const btn = document.querySelector('.desk-cta-bar-btn');
-  const 본래글자 = btn ? btn.textContent : '';
-  if (btn) { btn.disabled = true; btn.textContent = '신청 중...'; }
-  try {
-    /* 통화 희망 시간 (js/dh-callhope.js, 2026-09-22) — 골랐을 때만 요청사항 칸에 [통화] 줄을 보낸다.
-       안 골랐으면 예전과 똑같이 요청사항 없이 보낸다. */
-    const 통화줄 = window.dh통화띠줄 ? window.dh통화띠줄() : '';
-    await dhSend(Object.assign({ name, phone, usim: '미지정', service: 희망제품 }, 통화줄 ? { memo: 통화줄 } : {}, dhInflow()),
-                 (문구) => { if (btn) btn.textContent = 문구; });
-    /* 하단 바에서 완료 메시지만 남기고 입력칸·버튼은 정리.
-       요소가 없어도 오류 나지 않도록 있는 것만 건드림 */
-    const deskInner = document.querySelector('.desk-cta-bar-inner');
-    if (deskInner) [...deskInner.children].forEach(el => {
-      if (el.id !== 'deskSuccess') el.style.display = 'none';
-    });
-    const deskOk = document.getElementById('deskSuccess');
-    if (deskOk) deskOk.style.display = 'block';
-    if (window.dh통화띠완료) window.dh통화띠완료();   /* 완료 문구에 전화 드릴 때를 적는다 (2026-09-22) */
-      dhNaver('lead');   /* 네이버 전환: 진짜 접수된 뒤에만 (2026-08-28) */
-    const deskC = document.getElementById('deskConsent');
-    if (deskC) deskC.style.display = 'none';
-  } catch(e) {
-    if (btn) { btn.disabled = false; btn.textContent = 본래글자; }
-    alert('오류가 발생했습니다. 1600-4670으로 문의해주세요.');
-  }
-}
+
 
 // Sticky phone format
 document.getElementById('stickyPhone').addEventListener('input', function() {

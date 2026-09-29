@@ -103,3 +103,81 @@ async function dh구글직접(payload, 상태알림) {
 
 /* 옮겨 온 이력 한 줄 — 렌탈 화면에만 적혀 있던 메모입니다(2026-09-29 이 파일로 합칠 때 옮김):
    「이 쪽(렌탈)은 원래 시간 제한조차 없어서 "신청 중..."에서 멈추기도 했다.」 */
+
+/* ── 본문 신청서 보내기 (2026-09-29 세 장에서 합침) ─────────────────
+   화면마다 다른 것은 **서비스 갈래 이름 한 줄**뿐입니다:
+       var DH_서비스이름 = { internet:'인터넷', rental:'가전렌탈' };   ← 첫 화면
+       var DH_서비스이름 = { water:'정수기',  rental:'가전렌탈' };   ← 렌탈 2장
+   · 유심 칸은 **있으면 그 값, 없으면 'N'** (렌탈 2장에는 그 칸이 없습니다)
+   · 단추 글자는 **처음 글자를 기억해 되돌립니다**(화면마다 글자가 달라도 그대로)
+   · 통계·유입경로는 여기서 부르지만 만드는 곳은 공용 부품입니다
+     (dhTrack=js/dh-track.js · dhInflow=js/dh-inflow.js · dhNaver=js/dh-track.js) */
+async function submitForm() {
+  const name = document.getElementById('inputName').value.trim();
+  const phone = document.getElementById('inputPhone').value.trim();
+  let memo = document.getElementById('inputMemo').value.trim();
+  if (selectedServices.size === 0) { alert('서비스를 하나 이상 선택해주세요.'); return; }
+  if (!phone || phone.replace(/\D/g,'').length !== 11) { alert('휴대폰 번호 11자리를 정확히 입력해주세요.\n(예: 010-1234-5678)'); return; }
+  if (!document.getElementById('c1').checked) {
+    alert('개인정보 수집 및 이용에 동의해주세요.'); return;
+  }
+  const btn = document.getElementById('submitBtn');
+  const 본래글자 = btn.textContent;                 /* 화면마다 다른 글자를 그대로 되돌리려고 기억 */
+  btn.disabled = true; btn.textContent = '신청 중...';
+  dhTrack('lead_submit', { once: false });   /* 입력 검사 통과 시점에 전환 집계 */
+
+  const serviceMap = (typeof DH_서비스이름 !== 'undefined') ? DH_서비스이름 : {};
+  const serviceText = [...selectedServices].map(s => serviceMap[s]).join('+');
+  const usimEl = document.getElementById('usimCheck');
+  const usim = usimEl ? (usimEl.checked ? 'Y' : 'N') : 'N';   /* 칸이 없는 화면(렌탈 2장)은 'N' */
+
+  try {
+    if (window.dh통화붙이기) memo = window.dh통화붙이기(memo);   /* 통화 희망 시간 줄 (js/dh-callhope.js, 2026-09-21) */
+    await dhSend(Object.assign({ name, phone, usim, service: serviceText, memo }, dhInflow()),
+                 (문구) => { btn.textContent = 문구; });
+    document.getElementById('formContent').style.display = 'none';
+    document.getElementById('formSuccess').style.display = 'block';
+    if (window.dh통화완료) window.dh통화완료();   /* 완료창에 전화 드릴 때를 적는다 */
+    dhNaver('lead');   /* 네이버 전환: 진짜 접수된 뒤에만 (2026-08-28) */
+  } catch(e) {
+    alert('오류가 발생했습니다. 잠시 후 다시 시도하거나\n1600-4670으로 직접 문의해주세요.');
+    btn.disabled = false; btn.textContent = 본래글자;
+  }
+}
+
+/* ── 컴퓨터 입력칸 띠에서 보내기 (렌탈 2장에만 있는 띠. 그 칸이 없는 화면에서는 불리지 않습니다) ── */
+async function submitDeskForm() {
+  const name = document.getElementById('deskName').value.trim();
+  const phone = document.getElementById('deskPhone').value.trim();
+  /* 희망 제품은 필수로 받는다 (2026-09-02) */
+  const 희망제품 = (document.getElementById('deskService') || { value: '' }).value.trim();
+  if (!희망제품) { alert('희망 제품을 적어주세요.\n(예: 정수기, 비데, 매트리스)'); return; }
+  if (!phone || phone.replace(/\D/g,'').length !== 11) { alert('휴대폰 번호 11자리를 정확히 입력해주세요.\n(예: 010-1234-5678)'); return; }
+  dhTrack('lead_submit', { once: false });   /* 입력 검사 통과 시점에 전환 집계 */
+  /* 보내는 동안 버튼을 잠근다. 안 잠그면 느릴 때(최대 27초) 손님이 여러 번 누른다 */
+  const btn = document.querySelector('.desk-cta-bar-btn');
+  const 본래글자 = btn ? btn.textContent : '';
+  if (btn) { btn.disabled = true; btn.textContent = '신청 중...'; }
+  try {
+    /* 통화 희망 시간 (js/dh-callhope.js, 2026-09-22) — 골랐을 때만 요청사항 칸에 [통화] 줄을 보낸다.
+       안 골랐으면 예전과 똑같이 요청사항 없이 보낸다. */
+    const 통화줄 = window.dh통화띠줄 ? window.dh통화띠줄() : '';
+    await dhSend(Object.assign({ name, phone, usim: '미지정', service: 희망제품 }, 통화줄 ? { memo: 통화줄 } : {}, dhInflow()),
+                 (문구) => { if (btn) btn.textContent = 문구; });
+    /* 하단 바에서 완료 메시지만 남기고 입력칸·버튼은 정리.
+       요소가 없어도 오류 나지 않도록 있는 것만 건드림 */
+    const deskInner = document.querySelector('.desk-cta-bar-inner');
+    if (deskInner) [...deskInner.children].forEach(el => {
+      if (el.id !== 'deskSuccess') el.style.display = 'none';
+    });
+    const deskOk = document.getElementById('deskSuccess');
+    if (deskOk) deskOk.style.display = 'block';
+    if (window.dh통화띠완료) window.dh통화띠완료();   /* 완료 문구에 전화 드릴 때를 적는다 (2026-09-22) */
+      dhNaver('lead');   /* 네이버 전환: 진짜 접수된 뒤에만 (2026-08-28) */
+    const deskC = document.getElementById('deskConsent');
+    if (deskC) deskC.style.display = 'none';
+  } catch(e) {
+    if (btn) { btn.disabled = false; btn.textContent = 본래글자; }
+    alert('오류가 발생했습니다. 1600-4670으로 문의해주세요.');
+  }
+}
