@@ -74,8 +74,8 @@
           '<a href="tel:' + 막(회사.전화) + '">' + 막(회사.전화) + '</a>' +
         '</div>' +
       '</div>' +
-      '<div class="footer-info" style="font-size:13px;">' +
-        '<strong style="color:rgba(255,255,255,0.8);">' + 막(회사.이름) + '</strong> | 대표: ' + 막(회사.대표) +
+      '<div class="footer-info">' +
+        '<strong>' + 막(회사.이름) + '</strong> | 대표: ' + 막(회사.대표) +
         ' | 사업자등록번호: ' + 막(회사.등록번호) + '<br>' +
         '주소: ' + 막(회사.주소) + ' | 대표번호: ' + 막(회사.전화) +
       '</div>' +

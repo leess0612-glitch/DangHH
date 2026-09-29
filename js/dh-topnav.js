@@ -54,29 +54,8 @@
        늘 떠 있게 두고, 아래에 붙는 줄들(요금표 탭·정수기 기능 줄)은 이 줄 아래로 내려 붙입니다. */
   }
 
-  var 모양 = document.createElement('style');
-  모양.textContent =
-    '@media(max-width:768px){' +
-    'html.tn-on body{padding-top:44px}' +
-    'html.tn-on .hamburger{display:none!important}' +
-    '#상단메뉴줄{position:fixed;left:0;right:0;top:var(--h-header, 56px);z-index:900;height:44px;background:#fff;' +
-      'border-bottom:1px solid #E5E8EB;will-change:transform}' +
-    '#상단메뉴줄 .tn-row{display:flex;gap:4px;height:100%;overflow-x:auto;scrollbar-width:none;' +
-      '-webkit-overflow-scrolling:touch;padding-left:8px}' +
-    '#상단메뉴줄 .tn-row::-webkit-scrollbar{display:none}' +
-    '#상단메뉴줄 .tn-row::after{content:"";flex:0 0 8px}' +
-    '#상단메뉴줄 a{flex:none;display:flex;align-items:center;padding:0 12px;height:100%;' +
-      'font-size:15px;font-weight:600;color:#465368;text-decoration:none;white-space:nowrap;' +
-      'border-bottom:2px solid transparent;box-sizing:border-box}' +
-    '#상단메뉴줄 a[aria-current="page"]{color:#1257C9;border-bottom-color:#1257C9}' +
-    '#상단메뉴줄 a[hidden]{display:none}' +
-    /* 아래에 붙는 줄들이 이 줄에 가리지 않도록 그만큼 내려 붙입니다 */
-    'html.tn-on .tabbar{top:calc(var(--h-header, 56px) + 44px)}' +
-    'html.tn-on .filter-stick{top:calc(var(--h-header, 56px) + 44px)}' +
-    'html.tn-on{scroll-padding-top:calc(var(--stick-h, 133px) + 44px)}' +
-    '}' +
-    '@media(min-width:769px){#상단메뉴줄{display:none}}';
-  document.head.appendChild(모양);
+  /* 2026-09-29 — 이 줄의 모양은 css/dh-frame.css 로 옮겼습니다.
+     (전에는 여기서 <style> 을 만들어 머리에 붙였습니다) */
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', 만들기);
   else 만들기();
