@@ -1,0 +1,28 @@
+# 당현함 (danghh.com)
+
+> 인터넷·TV 가입과 정수기·가전 렌탈 신청을 대행하는 통신 3사(KT·SK브로드밴드·LG U+) 정식 판매점. 현금 사은품을 개통 당일 지급한다. 운영: 유진텔레콤(경상남도 함안군), 대표번호 1600-4670.
+
+요금·사은품 조건은 통신사 정책과 약정 조건에 따라 달라지며, 각 페이지에 적힌 기준일의 값이다. 정확한 조건은 상담으로 확인한다.
+
+## 인터넷·TV
+
+- [첫 화면](https://danghh.com/): 인터넷 가입 현금 사은품 안내, 자주 묻는 질문 9개
+- [인터넷 요금표 모아보기](https://danghh.com/plans.html): KT·SK·LG·스카이라이프·헬로비전 요금제 한눈에
+- [KT 인터넷 요금표](https://danghh.com/plans-kt.html)
+- [SK브로드밴드 인터넷 요금표](https://danghh.com/plans-sk.html)
+- [LG U+ 인터넷 요금표](https://danghh.com/plans-lg.html)
+- [KT 스카이라이프 요금표](https://danghh.com/plans-sky.html)
+- [LG 헬로비전 요금표](https://danghh.com/plans-hello.html)
+- [KT 셋톱박스 안내](https://danghh.com/settop/genie-a/): 지니 TV 셋톱 5종 비교
+
+## 정수기·가전 렌탈
+
+- [렌탈 안내](https://danghh.com/rental.html): 정수기·비데·공기청정기·안마의자 렌탈 조건과 사은품
+- [코웨이 렌탈 안내](https://danghh.com/rental-c.html)
+- [정수기 렌탈 요금 비교](https://danghh.com/water/): 코웨이·SK매직·LG·쿠쿠·청호·웰스·루헨스·현대큐밍 198개 제품, 브랜드·약정·관리 방식별 월 요금(제품마다 /water/<제품>/ 개별 페이지)
+- [가전 렌탈](https://danghh.com/appliance/): 공기청정기·비데·안마의자·에어컨·TV·냉장고
+
+## 그 밖에
+
+- [사은품 지급명단](https://danghh.com/gift.html)
+- [사이트맵](https://danghh.com/sitemap.xml)
