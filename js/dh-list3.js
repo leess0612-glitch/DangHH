@@ -228,6 +228,11 @@
     var 형태들 = ['데스크형', '스탠드형', '언더싱크', '지하수용'].filter(function (f) {
       return 모두.some(function (p) { return (p.곁 || []).indexOf(f) >= 0; });
     });
+    /* 2026-10-06 사장님 — 「지하수용」은 화면에 「지하수용/석회(고경도)」로 보입니다(석회수 지역 손님도 알아보게).
+       자료(곁)의 값은 그대로 「지하수용」이라 거르기 동작·다른 도구는 바뀌지 않습니다.
+       비교표(dh-compare3.js 「형태」 줄)도 같은 이름표를 씁니다 — 바꾸면 두 곳 함께. */
+    var 형태이름표 = { '지하수용': '지하수용/석회(고경도)' };
+    function 보일말(v) { return 형태이름표[v] || v; }
 
     var 알약 = [
       ['브랜드', ['전체'].concat(브랜드들)],
@@ -255,13 +260,13 @@
         var 켬 = 값 !== '전체';
         return '<div class="pill-wrap"><button type="button" class="pill' + (켬 ? ' on' : '') +
           '" data-알약="' + 막(키) + '" aria-expanded="false">' +
-          막(켬 ? 값 : a[0]) +
+          막(켬 ? 보일말(값) : a[0]) +
           '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" ' +
           'stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>' +
           '</button><div class="pill-menu" hidden>' +
           a[1].map(function (v) {
             return '<button type="button" class="pill-item' + (v === 값 ? ' on' : '') +
-              '" data-알약="' + 막(키) + '" data-값="' + 막(v) + '">' + 막(v) + '</button>';
+              '" data-알약="' + 막(키) + '" data-값="' + 막(v) + '">' + 막(보일말(v)) + '</button>';
           }).join('') + '</div></div>';
       }).join('');
     }

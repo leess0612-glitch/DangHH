@@ -295,7 +295,10 @@
       칸(function (r) {
         return (r.p.기능 || []).filter(function (k) { return k !== '탱크형'; }).join(' · ') || '—';
       }, '기능') +
-      칸(function (r) { return (r.p.곁 || []).join(' · ') || '—'; }, '형태') +
+      /* 2026-10-06 — 「지하수용」은 「지하수용/석회(고경도)」로 보입니다(목록 거르기 dh-list3.js 와 같은 이름표). 자료 값은 그대로 */
+      칸(function (r) {
+        return (r.p.곁 || []).map(function (f) { return f === '지하수용' ? '지하수용/석회(고경도)' : f; }).join(' · ') || '—';
+      }, '형태') +
       칸(function (r) {
         return (r.p.열 || []).map(window.요금셈.짧게).join(' · ') || '—';
       }, '약정') +
