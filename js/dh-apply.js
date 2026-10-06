@@ -545,8 +545,26 @@
     if (칸) 칸.focus();
   };
 
+  /* ── 이름 칸 거르기 (2026-10-06 사장님 「이름칸에 특수문자 못넣게 막아」) ──
+     한글·영문·띄어쓰기만. 시트가 '='로 시작하는 글을 계산식으로 읽는 것을 막는다.
+     js/dh-send.js 에도 같은 것이 있고, 한 화면에 둘 다 있어도 한 번만 설치된다. */
+  window.dh이름거르기 = window.dh이름거르기 || function (s) {
+    return String(s || '').replace(/[^가-힣ㄱ-ㅎㅏ-ㅣa-zA-Z\s]/g, '').replace(/\s+/g, ' ').trim();
+  };
+  if (!window.__dh이름막기) {
+    window.__dh이름막기 = true;
+    var 이름칸거르기 = function (e) {
+      var t = e.target;
+      if (!t || (t.id !== 'inputName' && t.id !== 'deskName') || e.isComposing) return;   /* 한글 조합 중엔 건드리지 않음 */
+      var 걸러짐 = t.value.replace(/[^가-힣ㄱ-ㅎㅏ-ㅣa-zA-Z\s]/g, '');
+      if (걸러짐 !== t.value) t.value = 걸러짐;
+    };
+    document.addEventListener('input', 이름칸거르기);
+    document.addEventListener('compositionend', 이름칸거르기);
+  }
+
   window.submitForm = function () {
-    var name = document.getElementById('inputName').value.trim();
+    var name = window.dh이름거르기(document.getElementById('inputName').value);
     var phone = document.getElementById('inputPhone').value.trim();
     var memo = document.getElementById('inputMemo').value.trim();
     if (!고른서비스.internet && !고른서비스.rental) { alert('서비스를 하나 이상 선택해주세요.'); return; }

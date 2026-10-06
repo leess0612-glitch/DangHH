@@ -112,8 +112,27 @@ async function dh구글직접(payload, 상태알림) {
    · 단추 글자는 **처음 글자를 기억해 되돌립니다**(화면마다 글자가 달라도 그대로)
    · 통계·유입경로는 여기서 부르지만 만드는 곳은 공용 부품입니다
      (dhTrack=js/dh-track.js · dhInflow=js/dh-inflow.js · dhNaver=js/dh-track.js) */
+/* ── 이름 칸 거르기 (2026-10-06 사장님 「이름칸에 특수문자 못넣게 막아」) ──
+   이름에는 한글·영문·띄어쓰기만 받는다. '=' '+' '-' '@' 로 시작하는 글을 구글 시트가
+   계산식으로 읽는 것을 막는 뜻. 입력할 때 바로 빼고, 보내기 직전에 한 번 더 거른다.
+   js/dh-apply.js 에도 같은 것이 있고, 한 화면에 둘 다 있어도 한 번만 설치된다. */
+window.dh이름거르기 = window.dh이름거르기 || function (s) {
+  return String(s || '').replace(/[^가-힣ㄱ-ㅎㅏ-ㅣa-zA-Z\s]/g, '').replace(/\s+/g, ' ').trim();
+};
+if (!window.__dh이름막기) {
+  window.__dh이름막기 = true;
+  const 이름칸거르기 = function (e) {
+    const t = e.target;
+    if (!t || (t.id !== 'inputName' && t.id !== 'deskName') || e.isComposing) return;   /* 한글 조합 중엔 건드리지 않음 */
+    const 걸러짐 = t.value.replace(/[^가-힣ㄱ-ㅎㅏ-ㅣa-zA-Z\s]/g, '');
+    if (걸러짐 !== t.value) t.value = 걸러짐;
+  };
+  document.addEventListener('input', 이름칸거르기);
+  document.addEventListener('compositionend', 이름칸거르기);
+}
+
 async function submitForm() {
-  const name = document.getElementById('inputName').value.trim();
+  const name = window.dh이름거르기(document.getElementById('inputName').value);
   const phone = document.getElementById('inputPhone').value.trim();
   let memo = document.getElementById('inputMemo').value.trim();
   if (selectedServices.size === 0) { alert('서비스를 하나 이상 선택해주세요.'); return; }
@@ -146,38 +165,38 @@ async function submitForm() {
 }
 
 /* ── 컴퓨터 입력칸 띠에서 보내기 (렌탈 2장에만 있는 띠. 그 칸이 없는 화면에서는 불리지 않습니다) ── */
-async function submitDeskForm() {
-  const name = document.getElementById('deskName').value.trim();
-  const phone = document.getElementById('deskPhone').value.trim();
-  /* 희망 제품은 필수로 받는다 (2026-09-02) */
-  const 희망제품 = (document.getElementById('deskService') || { value: '' }).value.trim();
-  if (!희망제품) { alert('희망 제품을 적어주세요.\n(예: 정수기, 비데, 매트리스)'); return; }
-  if (!phone || phone.replace(/\D/g,'').length !== 11) { alert('휴대폰 번호 11자리를 정확히 입력해주세요.\n(예: 010-1234-5678)'); return; }
-  dhTrack('lead_submit', { once: false });   /* 입력 검사 통과 시점에 전환 집계 */
-  /* 보내는 동안 버튼을 잠근다. 안 잠그면 느릴 때(최대 27초) 손님이 여러 번 누른다 */
-  const btn = document.querySelector('.desk-cta-bar-btn');
-  const 본래글자 = btn ? btn.textContent : '';
-  if (btn) { btn.disabled = true; btn.textContent = '신청 중...'; }
-  try {
-    /* 통화 희망 시간 (js/dh-callhope.js, 2026-09-22) — 골랐을 때만 요청사항 칸에 [통화] 줄을 보낸다.
-       안 골랐으면 예전과 똑같이 요청사항 없이 보낸다. */
-    const 통화줄 = window.dh통화띠줄 ? window.dh통화띠줄() : '';
-    await dhSend(Object.assign({ name, phone, usim: '미지정', service: 희망제품 }, 통화줄 ? { memo: 통화줄 } : {}, dhInflow()),
-                 (문구) => { if (btn) btn.textContent = 문구; });
-    /* 하단 바에서 완료 메시지만 남기고 입력칸·버튼은 정리.
-       요소가 없어도 오류 나지 않도록 있는 것만 건드림 */
-    const deskInner = document.querySelector('.desk-cta-bar-inner');
-    if (deskInner) [...deskInner.children].forEach(el => {
-      if (el.id !== 'deskSuccess') el.style.display = 'none';
-    });
-    const deskOk = document.getElementById('deskSuccess');
-    if (deskOk) deskOk.style.display = 'block';
-    if (window.dh통화띠완료) window.dh통화띠완료();   /* 완료 문구에 전화 드릴 때를 적는다 (2026-09-22) */
-      dhNaver('lead');   /* 네이버 전환: 진짜 접수된 뒤에만 (2026-08-28) */
-    const deskC = document.getElementById('deskConsent');
-    if (deskC) deskC.style.display = 'none';
-  } catch(e) {
-    if (btn) { btn.disabled = false; btn.textContent = 본래글자; }
-    alert('오류가 발생했습니다. 1600-4670으로 문의해주세요.');
-  }
+async function submitDeskForm() {
+  const name = window.dh이름거르기(document.getElementById('deskName').value);
+  const phone = document.getElementById('deskPhone').value.trim();
+  /* 희망 제품은 필수로 받는다 (2026-09-02) */
+  const 희망제품 = (document.getElementById('deskService') || { value: '' }).value.trim();
+  if (!희망제품) { alert('희망 제품을 적어주세요.\n(예: 정수기, 비데, 매트리스)'); return; }
+  if (!phone || phone.replace(/\D/g,'').length !== 11) { alert('휴대폰 번호 11자리를 정확히 입력해주세요.\n(예: 010-1234-5678)'); return; }
+  dhTrack('lead_submit', { once: false });   /* 입력 검사 통과 시점에 전환 집계 */
+  /* 보내는 동안 버튼을 잠근다. 안 잠그면 느릴 때(최대 27초) 손님이 여러 번 누른다 */
+  const btn = document.querySelector('.desk-cta-bar-btn');
+  const 본래글자 = btn ? btn.textContent : '';
+  if (btn) { btn.disabled = true; btn.textContent = '신청 중...'; }
+  try {
+    /* 통화 희망 시간 (js/dh-callhope.js, 2026-09-22) — 골랐을 때만 요청사항 칸에 [통화] 줄을 보낸다.
+       안 골랐으면 예전과 똑같이 요청사항 없이 보낸다. */
+    const 통화줄 = window.dh통화띠줄 ? window.dh통화띠줄() : '';
+    await dhSend(Object.assign({ name, phone, usim: '미지정', service: 희망제품 }, 통화줄 ? { memo: 통화줄 } : {}, dhInflow()),
+                 (문구) => { if (btn) btn.textContent = 문구; });
+    /* 하단 바에서 완료 메시지만 남기고 입력칸·버튼은 정리.
+       요소가 없어도 오류 나지 않도록 있는 것만 건드림 */
+    const deskInner = document.querySelector('.desk-cta-bar-inner');
+    if (deskInner) [...deskInner.children].forEach(el => {
+      if (el.id !== 'deskSuccess') el.style.display = 'none';
+    });
+    const deskOk = document.getElementById('deskSuccess');
+    if (deskOk) deskOk.style.display = 'block';
+    if (window.dh통화띠완료) window.dh통화띠완료();   /* 완료 문구에 전화 드릴 때를 적는다 (2026-09-22) */
+      dhNaver('lead');   /* 네이버 전환: 진짜 접수된 뒤에만 (2026-08-28) */
+    const deskC = document.getElementById('deskConsent');
+    if (deskC) deskC.style.display = 'none';
+  } catch(e) {
+    if (btn) { btn.disabled = false; btn.textContent = 본래글자; }
+    alert('오류가 발생했습니다. 1600-4670으로 문의해주세요.');
+  }
 }
