@@ -190,6 +190,21 @@
   .filter-stick.mini{padding-top:8px;padding-bottom:8px}
   .filter-stick.mini .g-pill{display:block}
 }
+/* ── 넓은 화면(561 이상)도 거름 묶음을 머리띠 아래에 고정합니다 (2026-10-07 사장님 지시) ──
+   붙기 전 모양은 그대로 두고, 붙었을 때만 큰 기능 칸을 접고 「기능」 알약을 보입니다(폰과 같은 방식 C).
+   ⚠ 흰 띠를 화면 양끝까지 까는 데 border-image 바깥 그리기를 씁니다 — 100vw·음수 여백과 달리
+     가로 스크롤을 만들지 않습니다(본문 틀 설명의 8px 함정 참고). 맨 아래 1px 이 구분선입니다.
+   ⚠ 폭 800 안팎에서는 「인기순」이 아랫줄로 내려가 붙은 띠가 두 줄 높이가 됩니다(알고 둔 것). */
+@media(min-width:561px){
+  .filter-stick{position:sticky;top:var(--h-header);z-index:400;background:var(--c-card)}
+  .filter-stick.stuck{padding:8px 0;
+    border-image:linear-gradient(var(--c-card) calc(100% - 1px),var(--c-line) 0) fill 0/0/0 100vmax}
+  .filter-stick.mini .slide-wrap:not(.pill-slide){display:none}
+  .filter-stick.mini .slide-wrap.pill-slide,.filter-stick.mini .filter-row{margin-top:0}
+  .filter-stick.mini .g-pill{display:block}
+  #알약띄움{z-index:450}
+}
+
 /* 기능 그림 — 여러 기능을 늘어놓는 그림은 폭이 넓습니다 */
 .pick-btn svg.g-ico{width:26px;height:26px}
 .pick-btn svg.g-ico.wide{height:20px}

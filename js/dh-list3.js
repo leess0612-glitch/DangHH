@@ -524,8 +524,8 @@
         /* 머리띠 + (있으면) 메뉴 줄 아래가 붙는 자리입니다 */
         var 높이 = (머 ? 머.getBoundingClientRect().bottom : 0) +
                    (줄 && getComputedStyle(줄).display !== 'none' ? 줄.offsetHeight : 0);
-        var 폰 = window.matchMedia('(max-width:560px)').matches;
-        var 붙음 = 폰 && 표지.getBoundingClientRect().top <= 높이 + 0.5;
+        /* 2026-10-07 사장님 지시 — 컴퓨터에서도 폰처럼 붙습니다(모양은 dh-list3.css 의 「넓은 화면」 칸) */
+        var 붙음 = 표지.getBoundingClientRect().top <= 높이 + 0.5;
         if (붙음 === 묶음.classList.contains('stuck')) return;
         if (붙음) {
           var 전 = 묶음.offsetHeight;
