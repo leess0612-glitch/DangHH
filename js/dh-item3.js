@@ -61,19 +61,22 @@
         return '<span class="' + (기능색[k] || 'fn-etc') + '">' + 막(k) + '</span>';
       }).join('');
 
+    /* ★ 2026-10-06 — 처음 골라 둘 색과 큰 사진이 같은 색이 되게 합니다(처음색번호·색사진주소 아래). */
+    var 첫번 = 처음색번호();
     var 색 = (p.색 || []).map(function (c, n) {
-      return '<button type="button" class="it-color" aria-pressed="' + (n === 0) +
+      return '<button type="button" class="it-color" aria-pressed="' + (n === 첫번) +
              '" data-이름="' + 막(c[0]) + '" aria-label="' + 막(c[0]) + '">' +
              '<i style="background:' + 막(c[1]) + '"></i></button>';
     }).join('');
+    var 첫색이름 = ((p.색 || [])[첫번] || [])[0];
 
     var 카 = (window.제휴카드자료 || {})[p.코드];
     var 첫 = 셈부품.첫조합(p);
     var 타사있나 = Object.keys(p.요금 || {}).some(function (k) { return p.요금[k].타사 != null; });
 
     몸.innerHTML =
-      '<div class="it-photo"><img src="' + 밑동 + 'img/' + 막(p.사진) + '.jpg" alt="' +
-        막(p.이름) + '" width="360" height="360"></div>' +
+      '<div class="it-photo"><img src="' + 막(색사진주소(첫색이름)) + '" alt="' +
+        막(사진글(첫색이름)) + '" width="360" height="360"></div>' +
 
       '<div class="it-head">' +
         '<p class="it-brand">' + 막(p.브랜드) + ' <span>│ ' + 막(p.모델) + '</span></p>' +
@@ -131,7 +134,7 @@
         : '');
 
     var 이름칸 = 몸.querySelector('.it-color-name');
-    var 첫색 = 몸.querySelector('.it-color');
+    var 첫색 = 몸.querySelector('.it-color[aria-pressed="true"]');
     if (이름칸 && 첫색) 이름칸.textContent = 첫색.getAttribute('data-이름');
 
     if (window.비교함) window.비교함.다시그리기();
@@ -164,13 +167,58 @@
   /* ★ 2026-09-29 — 지금 고른 색. 색마다 요금이 다른 제품이 있어 셈에 함께 넘깁니다. */
   function 고른색() {
     var b = document.querySelector('.it-color[aria-pressed="true"]');
-    return b ? b.getAttribute('data-이름') : ((p.색 || [])[0] || [])[0];
+    return b ? b.getAttribute('data-이름') : ((p.색 || [])[처음색번호()] || [])[0];
+  }
+
+  /* ★ 2026-10-06 — 색마다 사진
+     자료의 색사진 = {'색 이름': 'color/coway-1-1'} (img/ 아래 길, .jpg 는 뺌). 짝이 없는 색은 대표 사진(img/<사진>.jpg).
+     처음 골라 둘 색은 맨 앞 색입니다. 단 맨 앞 색에 사진이 없으면 사진이 있는 색 가운데 맨 앞 —
+     목록의 대표 사진(img/<사진>.jpg)도 그 색 사진으로 만들어 두어 목록과 상세가 같은 색으로 보입니다. */
+  function 색사진주소(색이름) {
+    var 길 = (p.색사진 && 색이름 && p.색사진[색이름]) || p.사진;
+    return 밑동 + 'img/' + 길 + '.jpg';
+  }
+  function 사진글(색이름) { return p.이름 + (색이름 ? ' ' + 색이름 : ''); }
+  function 처음색번호() {
+    var 목 = p.색 || [];
+    /* ★ 2026-10-07 — 자료에 처음색(공홈이 제품 화면을 처음 열 때 골라 두는 색)이 있으면 그 색.
+       코웨이 일부는 색 단추 맨 앞과 처음 골라진 색이 다릅니다(아이콘 정수기 3 : 맨 앞 플래티넘 실버, 처음 크림 베이지). */
+    if (p.처음색) {
+      for (var j = 0; j < 목.length; j++) if (목[j][0] === p.처음색) return j;
+    }
+    if (!p.색사진) return 0;
+    for (var i = 0; i < 목.length; i++) if (p.색사진[목[i][0]]) return i;
+    return 0;
+  }
+
+  /* 색을 누르면 큰 사진을 그 색으로 — 새 사진을 다 받은 뒤 바꿔 끼워 빈칸이 생기지 않게 합니다.
+     여러 색을 빨리 누르면 마지막에 누른 색만 남깁니다. 사진을 못 받으면 지금 사진을 그대로 둡니다. */
+  var 사진차례 = 0;
+  function 사진바꾸기(색이름) {
+    var 그림 = document.querySelector('.it-photo img');
+    if (!그림) return;
+    var 새 = 색사진주소(색이름), 차례 = ++사진차례, 미리 = new Image();
+    미리.onload = function () {
+      if (차례 !== 사진차례) return;
+      그림.src = 새;
+      그림.alt = 사진글(색이름);
+    };
+    미리.src = 새;
+  }
+  /* 손님이 색 줄에 손(마우스·손가락)을 올리면 그 제품의 색 사진을 미리 받아 둡니다 — 누르는 즉시 바뀌게. */
+  var 미리받음 = false;
+  function 색사진미리받기() {
+    if (미리받음 || !p || !p.색사진) return;
+    미리받음 = true;
+    (p.색 || []).forEach(function (c) { (new Image()).src = 색사진주소(c[0]); });
   }
 
   /* 고른 색이 첫 색보다 얼마나 비싼지 — 색 이름 옆에 적어 줍니다 */
   function 색값차이(약, 관, 타) {
     if (!p.색요금) return 0;
-    var 첫 = ((p.색 || [])[0] || [])[0];
+    /* ★ 2026-10-07 — 견줄 기준은 「색요금이 따로 없는 색(본래 요금)」입니다. 색 순서를 공홈대로 바꾸면
+       비싼 색이 맨 앞에 올 수 있어(청호 세니타 RO 티탄) 「맨 앞 색」을 기준으로 두면 +1,000원이 사라집니다. */
+    var 첫 = ((p.색 || []).filter(function (c) { return !p.색요금[c[0]]; })[0] || (p.색 || [])[0] || [])[0];
     var 지금 = 고른색();
     if (!지금 || 지금 === 첫) return 0;
     var a = 셈부품.셈(p, 약, 관, 타, 첫);
@@ -292,6 +340,8 @@
         });
         /* ★ 2026-09-29 — 색마다 요금이 다른 제품이 있어, 색을 바꾸면 요금도 다시 셉니다.
            (예전에는 색 이름만 바꿔서 비싼 색을 골라도 싼 값이 그대로 보였습니다) */
+        /* ★ 2026-10-06 — 큰 사진도 그 색으로 바꿉니다(예전에는 사진이 한 장 그대로였습니다) */
+        사진바꾸기(색.getAttribute('data-이름'));
         다시셈();
         return;
       }
@@ -309,6 +359,11 @@
       var 카창 = document.getElementById('카드창');
       if (카창 && e.target === 카창) { 카드창닫기(); return; }
     });
+    function 색줄이면미리(e) {
+      if (e.target && e.target.closest && e.target.closest('.it-colors')) 색사진미리받기();
+    }
+    document.addEventListener('pointerover', 색줄이면미리, { passive: true });
+    document.addEventListener('focusin', 색줄이면미리);
     document.addEventListener('keydown', function (e) {
       if (e.key !== 'Escape') return;
       var 창 = document.getElementById('카드창');
