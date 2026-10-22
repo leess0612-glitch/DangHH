@@ -7,6 +7,5 @@ n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
 n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
 t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}
 (window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
-fbq('init','1578163177053016');   /* 옛 픽셀(다른 페이스북 계정 소유) — 새 픽셀이 신호를 받는지 확인되면 이 줄만 지움 */
 fbq('init','4048280455303580');   /* 당현함 포트폴리오 「당현함 픽셀」 — 광고 계정 당현함 광고(1103190795798508)와 연결됨 */
 fbq('track','PageView');
