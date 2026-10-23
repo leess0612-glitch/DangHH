@@ -429,6 +429,15 @@
     window.scrollTo(0, Math.max(0, window.pageYOffset + 칸.getBoundingClientRect().top - 위));
   }
 
+  /* 거름을 바꾼 뒤 — 찾기칸에 글씨가 남아 있으면 다시 찾습니다 (2026-10-23 사장님 발견).
+     찾기(js/dh-find.js)는 그려진 칸을 숨기는 방식이라, 목록을 새로 그리면 숨김이 풀립니다.
+     그래서 칸에는 「메가」가 그대로인데 208개가 다 보였습니다. 찾기칸의 input 을 한 번 더 울려
+     dh-find.js 의 찾기를 그대로 다시 태웁니다(찾는 잣대를 두 군데 두지 않으려고). */
+  function 찾기다시() {
+    var 찾칸 = document.querySelector('#찾기칸 input');
+    if (찾칸 && 찾칸.value) 찾칸.dispatchEvent(new Event('input'));
+  }
+
   /* ── 눌림 받기 ─────────────────────────────────────── */
   function 알약닫기(빼고) {
     [].forEach.call(document.querySelectorAll('.pill-menu'), function (m) {
@@ -444,7 +453,7 @@
       var 갈 = e.target.closest('[data-갈래]');
       if (갈) {
         고른갈래 = 갈.getAttribute('data-갈래');
-        보임 = 처음보임; 고르개그리기(); 목록그리기(); 알약닫기(null); 밀줄맞추기(); 목록위로(); return;
+        보임 = 처음보임; 고르개그리기(); 목록그리기(); 찾기다시(); 알약닫기(null); 밀줄맞추기(); 목록위로(); return;
       }
 
       var 알 = e.target.closest('.pill');
@@ -464,7 +473,7 @@
         var 값 = 항.getAttribute('data-값');
         if (키 === '정렬') 고른정렬 = 값; else if (키 === '갈래') 고른갈래 = 값; else 고른거름[키] = 값;
         보임 = 처음보임;
-        고르개그리기(); 목록그리기(); 알약닫기(null); 밀줄맞추기(); 목록위로();
+        고르개그리기(); 목록그리기(); 찾기다시(); 알약닫기(null); 밀줄맞추기(); 목록위로();
         return;
       }
 

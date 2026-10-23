@@ -149,6 +149,17 @@
       맞추기();
       if (++n > 8) clearInterval(되풀이);
     }, 700);
+    /* 2026-10-23 — 스크롤 없이 본문 길이만 바뀌어도 다시 맞춥니다 (사장님 발견).
+       정수기 목록에서 찾은 결과가 0개 → 발바닥이 보여 띠를 176 올림 → 거름을 풀어 목록이 길어짐.
+       이때는 스크롤이 일어나지 않아 띠가 176 올라간 채 화면 가운데 떠 있었고, 손으로 굴려야 내려왔습니다.
+       ⚠ 맞추기()가 발바닥 윗여백을 바꿔 본문 길이가 또 바뀌므로, 한 틀에 한 번만 부릅니다(같은 값이면 멈춤). */
+    if (window.ResizeObserver) {
+      var 예약 = 0;
+      new ResizeObserver(function () {
+        if (예약) return;
+        예약 = requestAnimationFrame(function () { 예약 = 0; 맞추기(); });
+      }).observe(document.body);
+    }
   }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', 그리기);
