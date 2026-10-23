@@ -226,7 +226,49 @@
     return (a && b) ? (b.값 - a.값) : 0;
   }
 
+  /* ★ 2026-10-24 — 브랜드가 팔지 않는 약정·관리 짝 (사장님 지시)
+     약정 줄과 관리 줄을 따로 그려서, 정책에 없는 짝(웰스 6년+방문, 청호 3년+방문 6개월 등)도 골라졌고
+     그때 아래 띠에는 정상가·프로모션가가 「—원」으로만 보였습니다(2026-10-23 클릭 전수검사).
+     ① 짝이 없는 단추는 흐리게 그립니다.
+     ② 그래도 누르면 누른 쪽은 그대로 두고, 다른 줄을 짝이 있는 첫 값으로 옮깁니다 — 막다른 길이 없습니다.
+     ⚠ 짝이 있는지는 요금 셈(셈부품.셈)에 그대로 물어봅니다. 기준을 두 군데 두지 않으려고. */
+  function 되나(약, 관) {
+    return !!셈부품.셈(p, 약, 관, 고름('지금 쓰는 정수기') === '있어요', 고른색());
+  }
+  function 짝맞추기(누른칸) {
+    var 약칸 = document.querySelector('[data-고르개="약정"]');
+    var 관칸 = document.querySelector('[data-고르개="관리 방식"]');
+    if (!약칸 || !관칸) return;
+    var 약 = 고름('약정'), 관 = 고름('관리 방식');
+    if (되나(약, 관)) return;
+    var 옮길칸 = (누른칸 === 약칸) ? 관칸 : 약칸;
+    var 짝 = [].filter.call(옮길칸.querySelectorAll('.it-opt'), function (b) {
+      var v = b.getAttribute('data-값');
+      return 옮길칸 === 관칸 ? 되나(약, v) : 되나(v, 관);
+    })[0];
+    if (!짝) return;
+    [].forEach.call(옮길칸.children, function (x) {
+      x.setAttribute('aria-pressed', x === 짝 ? 'true' : 'false');
+    });
+  }
+  function 흐림표시() {
+    var 약 = 고름('약정'), 관 = 고름('관리 방식');
+    if (!약 || !관) return;
+    [['약정', function (v) { return 되나(v, 관); }],
+     ['관리 방식', function (v) { return 되나(약, v); }]].forEach(function (줄) {
+      var 칸 = document.querySelector('[data-고르개="' + 줄[0] + '"]');
+      if (!칸) return;
+      [].forEach.call(칸.querySelectorAll('.it-opt'), function (b) {
+        var 없음 = !줄[1](b.getAttribute('data-값'));
+        b.classList.toggle('짝없음', 없음);
+        if (없음) b.title = '지금 고른 ' + (줄[0] === '약정' ? '관리 방식' : '약정') + '과는 함께 고를 수 없습니다';
+        else b.removeAttribute('title');
+      });
+    });
+  }
+
   function 다시셈() {
+    흐림표시();
     var 약 = 고름('약정'), 관 = 고름('관리 방식');
     var 타 = 고름('지금 쓰는 정수기') === '있어요';
     var 결 = 셈부품.셈(p, 약, 관, 타, 고른색());
@@ -351,6 +393,7 @@
         [].forEach.call(옵칸.children, function (x) {
           x.setAttribute('aria-pressed', x === 옵 ? 'true' : 'false');
         });
+        짝맞추기(옵칸);
         다시셈();
         return;
       }

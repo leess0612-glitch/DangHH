@@ -89,6 +89,8 @@
   color:var(--c-body);font-family:inherit;font-size:var(--t-body);font-weight:500}
 .it-opt[aria-pressed="true"]{background:var(--c-strong-bg);border:1.5px solid var(--c-strong);
   color:var(--c-strong);font-weight:700}
+/* 2026-10-24 — 브랜드가 팔지 않는 약정·관리 짝(js/dh-item3.js 흐림표시). 누르면 다른 줄이 짝 있는 값으로 옮겨 갑니다 */
+.it-opt.짝없음{color:var(--c-sub);border-style:dashed;opacity:.5}
 
 .it-after{margin:16px 0 0;font-size:var(--t-sub);font-weight:var(--w-sub);
   line-height:var(--lh-sub);color:var(--c-body)}
