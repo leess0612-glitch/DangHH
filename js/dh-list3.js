@@ -89,8 +89,9 @@
         if (고른거름.정수 === '저수조형' && 직수) return false;
       }
       if (고른거름.관리 !== '전체') {
-        var 셀프 = (p.관리 || []).some(function (g) { return /셀프|자가/.test(g); });
-        var 방문 = (p.관리 || []).some(function (g) { return /방문/.test(g); });
+        /* 2026-10-26 — 맨 앞 낱말로 가른다. 셀프 이름에도 「·12개월방문」이 들어가고, 코웨이 방문은 「2M(…)」로 적혀 있어서 */
+        var 셀프 = (p.관리 || []).some(function (g) { return /^(셀프|자가)/.test(g); });
+        var 방문 = (p.관리 || []).some(function (g) { return /^(방문|\d+M)/.test(g); });
         if (고른거름.관리 === '셀프·자가관리' && !셀프) return false;
         if (고른거름.관리 === '방문관리' && !방문) return false;
       }
