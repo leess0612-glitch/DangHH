@@ -310,8 +310,24 @@
        되던 모델명 찾기가 안 됐습니다 (2026-09-28 시험에서 잡음). */
     var 찾 = 말.toLowerCase().replace(/[^0-9a-z가-힣]+/g, '');
     var 줄들 = 칸.querySelectorAll('.li-item');
+    var 보임 = 0;
     for (var i = 0; i < 줄들.length; i++) {
-      줄들[i].style.display = (!찾 || 걸리나(찾, 찾을거리(줄들[i]))) ? '' : 'none';
+      var 맞 = !찾 || 걸리나(찾, 찾을거리(줄들[i]));
+      줄들[i].style.display = 맞 ? '' : 'none';
+      if (맞 && !줄들[i].hidden) 보임++;
+    }
+    /* 2026-10-26 사장님 — 찾은 제품이 하나도 없으면 빈칸만 남아 고장처럼 보였습니다.
+       거르개로 0개일 때(js/dh-list3.js)와 같은 말을 같은 자리에 띄웁니다. 목록을 다시 그리면 저절로 사라집니다. */
+    var 없음 = document.getElementById('찾기없음');
+    if (찾 && !보임 && 줄들.length) {
+      if (!없음) {
+        없음 = document.createElement('p');
+        없음.id = '찾기없음'; 없음.className = 'lead';
+        칸.appendChild(없음);
+      }
+      없음.textContent = '「' + 말.trim() + '」에 맞는 제품이 없습니다. 전화 주시면 찾아 드리겠습니다.';
+    } else if (없음) {
+      없음.parentNode.removeChild(없음);
     }
   }
 

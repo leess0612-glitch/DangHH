@@ -213,3 +213,8 @@
 .pill-item.g-item .g-slot{flex:0 0 64px;display:flex;align-items:center;justify-content:flex-start}
 .pill-item.g-item svg{width:20px;height:20px;flex:none}
 .pill-item.g-item svg.g-ico.wide{height:15px;width:auto!important}
+
+/* 2026-10-26 사장님 — 거르개·검색 결과가 0개(또는 몇 개)면 화면이 짧아져 발바닥이 첫 화면에 올라오고,
+   아래 띠가 발바닥 위에 얹혀(js/dh-footer.js) 화면 가운데 떠서 가리는 것처럼 보였습니다.
+   목록 칸을 최소 한 화면 높이로 두어, 발바닥이 첫 화면 밖에 있게 합니다 → 띠는 늘 화면 맨 아래. */
+#제품칸{min-height:100vh;min-height:100dvh}
