@@ -474,7 +474,7 @@ document.querySelectorAll('form.apply').forEach(function(f){
       .catch(function(){btn.disabled=false;btn.textContent=글;er.style.display='block';er.textContent='접수가 잠시 안 됩니다. 1600-4670으로 전화 주시거나 카톡으로 남겨 주세요.';});
   });
 });
-document.getElementById('goForm').onclick=function(){var f=document.getElementById('form1');var y=f.getBoundingClientRect().top+scrollY-60;window.scrollTo(0,y);setTimeout(function(){f.querySelector('[name=name]').focus({preventScroll:true})},50)};
+document.getElementById('goForm').onclick=function(){window.scrollTo(0,0)};  /* 2026-10-26 사장님: 입력칸으로 가는 단추는 모두 첫 화면 맨 위로(이름 칸에 커서를 넣으면 휴대폰 키보드가 화면을 밀어 애매한 자리에 멈춰서 뺌) */
 document.getElementById('closeDone').onclick=function(){document.getElementById('done').classList.remove('on')};
 </script>
 </body>
