@@ -34,10 +34,53 @@ function dhNaver(종류){
   }catch(e){ /* 추적이 실패해도 신청 접수는 절대 방해하지 않음 */ }
 }
 
+/* SNS 광고 기록 (2026-10-26) — 인스타·유튜브 등 SNS 꼬리표로 들어온 손님의 방문과 카톡·전화·신청서 제출을
+   당현함 SNS 통계 창고로 보낸다(보는 곳: 성지똑똑 관리자 화면 「당현함」 탭).
+   · 주소의 utm_source 가 SNS 일 때만 「방문」 한 줄 + 이 방문 꼬리표를 창 저장소(dh_sns)에 둔다.
+     같은 창에서 다른 화면으로 옮겨 다녀도 누른 것은 이 꼬리표로 이어 센다. SNS 가 아닌 꼬리표로 다시 들어오면 지운다.
+   · 로봇(DH_BOT)·?test 가 붙은 방문(그 창이 닫힐 때까지)·danghh.com 이 아닌 곳(내 컴퓨터 시험본 등)은 보내지 않는다.
+   · 개인정보는 보내지 않는다. 실패해도 화면·신청은 막지 않는다. */
+var DH_SNS_URL = 'https://danghh-sns-stats.danghh.workers.dev/e';
+var dhSns = (function(){
+  try{
+    if(window.DH_BOT || !/(^|\.)danghh\.com$/.test(location.hostname) || !window.sessionStorage) return null;
+    var q = new URLSearchParams(location.search);
+    if(q.has('test')) sessionStorage.setItem('dh_sns_test', '1');
+    if(sessionStorage.getItem('dh_sns_test')) return null;
+    var 새표 = function(){ return (window.crypto && crypto.randomUUID) ? crypto.randomUUID() : (Date.now().toString(36) + Math.random().toString(36).slice(2, 12)); };
+    var 사람 = localStorage.getItem('dh_uid');
+    if(!사람){ 사람 = 새표(); localStorage.setItem('dh_uid', 사람); }
+    var 출처 = (q.get('utm_source') || '').trim();
+    if(출처){
+      if(/^(instagram|ig|facebook|fb|meta|youtube|yt|tiktok|threads)$/i.test(출처)){
+        var 표 = { s: 출처, md: q.get('utm_medium') || '', c: q.get('utm_campaign') || '', ct: q.get('utm_content') || '', u: 사람, v: 새표() };
+        sessionStorage.setItem('dh_sns', JSON.stringify(표));
+        dhSnsSend('visit', '', 표);
+        return 표;
+      }
+      sessionStorage.removeItem('dh_sns');
+      return null;
+    }
+    return JSON.parse(sessionStorage.getItem('dh_sns') || 'null');
+  }catch(e){ return null; }
+})();
+function dhSnsSend(k, m, 표){
+  try{
+    표 = 표 || dhSns;
+    if(!표) return;
+    var 몸 = JSON.stringify({ k: k, m: m, s: 표.s, md: 표.md, c: 표.c, ct: 표.ct, u: 표.u, v: 표.v, p: window.DH_PAGE || '' });
+    if(navigator.sendBeacon && navigator.sendBeacon(DH_SNS_URL, 몸)) return;
+    fetch(DH_SNS_URL, { method: 'POST', body: 몸, keepalive: true, mode: 'no-cors' });
+  }catch(e){}
+}
+
 /* 전환 1건을 구글·메타·네이버에 동시에 알림 (개인정보는 보내지 않음) */
 function dhTrack(action, opts){
  try{
   opts = opts || {};
+  /* SNS 통계는 누를 때마다 센다(한 번만 세기 장치보다 먼저) — 신청은 입력검사를 통과해 보낼 때(lead_submit) */
+  var sns메뉴 = { kakao_click: 'kakao', phone_click: 'phone', lead_submit: 'apply' }[action];
+  if(sns메뉴) dhSnsSend('click', sns메뉴);
   if(opts.once !== false && !dhOnce(action)) return;
 
   /* 1) 구글 애널리틱스 */
