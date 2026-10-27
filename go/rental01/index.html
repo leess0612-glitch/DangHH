@@ -348,11 +348,11 @@ a{color:inherit;text-decoration:none}
         <span class="pp">월 25,900원~</span><span class="pk">제휴카드 <b>월 10,900원~</b></span></button>
   </div>
   <div class="pgrid" data-c="chair" data-note="※ 5년 약정 · 관리 없는 상품 기준(쿠쿠·LG는 방문관리) · 제휴카드 전월 실적 30만원 · 신규 발급 카드 기준" hidden>
-    <button type="button" class="pc"><img src="img/p-chair-mc-300w.webp" alt="청호나이스 로망 안마의자" loading="lazy">
-        <span class="pb">청호나이스</span><span class="pn">로망 안마의자</span><span class="pcn">5년 약정</span>
-        <span class="pp">월 40,900원~</span><span class="pk">제휴카드 <b>월 20,900원~</b></span></button><button type="button" class="pc"><img src="img/p-chair-cms-g210nw.webp" alt="쿠쿠 레스티노 안마의자 (리클라이너형)" loading="lazy">
+    <button type="button" class="pc"><img src="img/p-chair-cms-g210nw.webp" alt="쿠쿠 레스티노 안마의자 (리클라이너형)" loading="lazy">
         <span class="pb">쿠쿠</span><span class="pn">레스티노 안마의자 (리클라이너형)</span><span class="pcn">5년 약정 · 1년마다 방문</span>
-        <span class="pp">월 41,900원~</span><span class="pk">제휴카드 <b>월 21,900원~</b></span></button><button type="button" class="pc"><img src="img/p-chair-k8f600ga.webp" alt="현대큐밍 브람스 안마의자 골든이글 더블스파" loading="lazy">
+        <span class="pp">월 33,520원~</span><span class="pk">제휴카드 <b>월 13,520원~</b></span></button><button type="button" class="pc"><img src="img/p-chair-mc-300w.webp" alt="청호나이스 로망 안마의자" loading="lazy">
+        <span class="pb">청호나이스</span><span class="pn">로망 안마의자</span><span class="pcn">5년 약정</span>
+        <span class="pp">월 40,900원~</span><span class="pk">제휴카드 <b>월 20,900원~</b></span></button><button type="button" class="pc"><img src="img/p-chair-k8f600ga.webp" alt="현대큐밍 브람스 안마의자 골든이글 더블스파" loading="lazy">
         <span class="pt">6개월 반값</span><span class="pb">현대큐밍</span><span class="pn">브람스 안마의자 골든이글 더블스파</span><span class="pcn">5년 약정</span>
         <span class="pw">월 81,900원</span><span class="pp">월 40,950원~</span><span class="pk">제휴카드 <b>월 25,950원~</b></span><span class="pa">7개월째부터 제휴카드가<br><b>월 66,900원</b></span></button><button type="button" class="pc"><img src="img/p-chair-mh21bby.webp" alt="LG 힐링미 오브제컬렉션 안마의자 아르테UP" loading="lazy">
         <span class="pb">LG</span><span class="pn">힐링미 오브제컬렉션 안마의자 아르테UP</span><span class="pcn">5년 약정 · 36개월마다 방문</span>
@@ -583,8 +583,8 @@ document.querySelectorAll('form.apply').forEach(function(f){
     var btn=f.querySelector('.cta'),글=btn.textContent; btn.disabled=true; btn.textContent='신청 중...';
     if(typeof dhTrack==='function') dhTrack('lead_submit',{once:false});
     var 전화=d.slice(0,3)+'-'+d.slice(3,d.length-4)+'-'+d.slice(-4);
-    var 탭=document.querySelector('#prod .chips button.on'), 품목=탭?탭.textContent.trim():'정수기';
-    dhSend(Object.assign({name:(window.dh이름거르기?window.dh이름거르기(n):n),phone:전화,usim:'N',service:(품목==='정수기'?'정수기':'가전렌탈'),memo:'[인스타 랜딩 렌탈01] 보던 품목: '+품목},dhInflow()),function(문구){btn.textContent=문구})
+    /* 2026-10-27 사장님: 제품 목록은 예시라 넘기지 않음 · 서비스 칸(인터넷/가전렌탈 구분 자리)으로 어느 랜딩인지 알림 */
+    dhSend(Object.assign({name:(window.dh이름거르기?window.dh이름거르기(n):n),phone:전화,usim:'N',service:'가전렌탈',memo:'[인스타 랜딩 렌탈01]'},dhInflow()),function(문구){btn.textContent=문구})
       .then(function(){btn.disabled=false;btn.textContent=글;f.reset();f.querySelector('.agree input').checked=true;
         document.getElementById('doneName').textContent=n+'님, ';document.getElementById('done').classList.add('on');
         if(typeof dhNaver==='function') dhNaver('lead');})
