@@ -1,0 +1,614 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<script>/* 프로그램이 조종하는 브라우저의 방문·신청은 통계에 넣지 않는다(홈페이지와 같음) */
+if(navigator.webdriver===true){window.DH_BOT=true;window['ga-disable-G-NBGKQ2Y301']=true;window.fbq=window._fbq=function(){};}</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NBGKQ2Y301"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-NBGKQ2Y301');</script>
+<script src="../../js/dh-meta.js?v=2"></script>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=4048280455303580&ev=PageView&noscript=1"/></noscript>
+<script>var DH_PAGE = 'danghh-rental01-c';</script>
+<script src="../../js/dh-track.js?v=2"></script>
+<script src="../../js/dh-inflow.js?v=69"></script>
+<script src="../../js/dh-send.js?v=3"></script>
+<script>
+if (typeof dhInflow !== 'function') { window.dhInflow = function () { return {}; }; }
+/* 신청 보내기 설정 — 렌탈 화면(rental.html · rental-c.html)과 같은 구글 웹앱·접수처·갈래 */
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby6NFsBfLjk1XCGuuzLF5DHbwxAXPyz9HNQKJGkdh5BxFqQZ9EPg3Bl4XasN6ojTxdOGA/exec';
+const DH_접수처 = 'https://danghh-apply.danghh.workers.dev/apply';
+const DH_갈래 = 'rental';
+</script>
+<title>당현함 렌탈 | 설치한 날 저녁 6시 혜택 지급</title>
+<meta name="robots" content="noindex, nofollow">
+<!-- 인스타 광고 전용 랜딩 「렌탈 01-C」 (2026-10-27). 원본 시안 다운로드\당현함_인스타랜딩_렌탈01_20261026 → 라이브판_만들기.py. 신청은 렌탈 화면과 같은 중간 접수처(갈래 rental) → 시트. 통계 이름 DH_PAGE=danghh-rental01-c -->
+<style>
+:root{--b6:#1257C9;--b5:#196AEB;--b7:#0E45A0;--b8:#0B377F;--b9:#082759;--b0:#EFF6FF;--b1:#AFCBF8;
+  --ink:#111827;--sub:#4B5563;--line:#E5E7EB;--yel:#FFE14D;--kakao:#FEE500;--red:#E5322D}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic","맑은 고딕",sans-serif;color:var(--ink);
+  background:var(--b9);word-break:keep-all;line-height:1.5}
+.page{max-width:480px;margin:0 auto;background:#fff;min-height:100vh;padding-bottom:84px;position:relative;overflow:hidden}
+@media(min-width:600px){body{background:linear-gradient(160deg,var(--b8),var(--b9))}.page{box-shadow:0 0 60px rgba(0,0,0,.35)}}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+.tag{position:absolute;right:8px;top:8px;background:rgba(17,24,39,.72);color:#fff;font-size:10px;font-weight:700;padding:3px 7px;border-radius:6px;z-index:3;letter-spacing:-.2px}
+.rel{position:relative}
+
+/* 머리 */
+.hd{height:50px;display:flex;align-items:center;justify-content:space-between;padding:0 16px;background:#fff}
+.hd .logo{display:flex;align-items:center;gap:7px;font-weight:900;font-size:19px;color:var(--b6);letter-spacing:-.5px}
+.hd .logo img{height:22px}
+.hd .tel{font-size:13px;font-weight:800;color:var(--b6);border:1.5px solid var(--b6);border-radius:999px;padding:4px 11px}
+
+/* 첫 화면 */
+.hero{position:relative;background:linear-gradient(170deg,var(--b6) 0%,var(--b7) 70%,var(--b8) 100%);color:#fff;padding:18px 20px 74px;overflow:hidden}
+.hero .bgart{position:absolute;inset:0;opacity:.95}
+.hero .shade{position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(8,39,89,.93) 0%,rgba(11,55,127,.8) 45%,rgba(11,55,127,.1) 75%,rgba(11,55,127,0) 100%),linear-gradient(0deg,#082759 0%,rgba(8,39,89,.85) 14%,rgba(8,39,89,0) 40%)}
+.hero .in{position:relative;z-index:2}
+@media(min-width:430px){.hero img.bgart{right:-10px!important}}
+.pill{display:inline-block;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.35);font-size:12.5px;font-weight:800;padding:4px 11px;border-radius:999px}
+.hero h1{font-size:29px;line-height:1.28;font-weight:900;letter-spacing:-1px;margin-top:6px;text-shadow:0 2px 10px rgba(0,0,0,.25)}
+.band{display:inline-block;background:var(--yel);color:var(--b9);font-weight:900;padding:1px 9px 2px;border-radius:4px;transform:skew(-4deg)}
+.hero .amt{margin-top:10px;font-size:15px;font-weight:700;opacity:.95}
+.hero .amt b{font-size:30px;font-weight:900;color:var(--yel);letter-spacing:-1px;vertical-align:-2px}
+.hero .amt .plus{display:inline-block;margin-left:6px;font-size:15px;white-space:nowrap;font-weight:900;color:#fff;background:var(--red);border-radius:6px;padding:2px 8px;vertical-align:4px;letter-spacing:-.3px}
+.noti{margin-top:12px;display:flex;align-items:center;gap:10px;background:rgba(255,255,255,.97);color:var(--ink);border-radius:16px;padding:10px 12px;
+  box-shadow:0 10px 24px rgba(0,0,0,.25);max-width:310px;animation:drop .7s cubic-bezier(.2,1.3,.4,1) .35s both}
+.noti .ic{width:34px;height:34px;border-radius:9px;background:var(--b6);display:grid;place-items:center;flex:none}
+.noti .t1{font-size:11.5px;color:var(--sub);display:flex;justify-content:space-between;gap:10px}
+.noti .t2{font-size:14px;font-weight:800;letter-spacing:-.3px}
+.noti .t2 em{font-style:normal;color:var(--b6)}
+.nb{transition:opacity .25s,transform .25s}
+.nb.out{opacity:0;transform:translateY(-6px)}
+.noti.end{margin:24px auto 0;max-width:400px;border:1px solid #DCE7FB;box-shadow:0 8px 20px rgba(11,55,127,.12);animation:none;text-align:left}
+.noti.end + .formcard.end{margin-top:12px}
+@keyframes drop{from{transform:translateY(-14px) scale(.96);opacity:0}to{transform:none;opacity:1}}
+
+/* 신청 상자 */
+.formbg{background:#082759;padding:0 0 22px}
+.formcard{position:relative;z-index:4;margin:-58px 14px 0;background:#fff;border-radius:18px;box-shadow:0 12px 34px rgba(11,55,127,.22);padding:16px 16px 14px;border:1px solid #DCE7FB}
+.formcard h2{font-size:17px;font-weight:900;letter-spacing:-.5px;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.q{display:inline-flex;align-items:center;justify-content:center;min-width:86px;height:30px;padding:0 10px;border-radius:8px;background:var(--b0);color:var(--b6);font-weight:900;font-size:17px;border:1.5px dashed var(--b5)}
+.row{display:flex;gap:8px;margin-top:12px}
+.row input{height:50px;border:1.5px solid #CBD5E1;border-radius:11px;padding:0 12px;font-size:16px;font-family:inherit;width:100%;background:#fff;color:var(--ink)}
+.row input:focus{outline:none;border-color:var(--b6);box-shadow:0 0 0 3px rgba(18,87,201,.15)}
+.row .nm{flex:0 0 34%}
+.agree{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--sub);margin-top:9px}
+.agree input{width:17px;height:17px;accent-color:var(--b6)}
+.agree a{text-decoration:underline;color:#6B7280}
+.cta{display:flex;align-items:center;justify-content:center;gap:6px;width:100%;height:56px;margin-top:10px;border:0;border-radius:13px;background:var(--red);color:#fff;
+  font-size:18.5px;font-weight:900;letter-spacing:-.5px;font-family:inherit;box-shadow:0 6px 16px rgba(229,50,45,.35);cursor:pointer;position:relative;overflow:hidden}
+.cta::after{content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.45),transparent);transform:skewX(-20deg);animation:shine 2.6s infinite 1.2s}
+@keyframes shine{0%{left:-60%}55%,100%{left:130%}}
+.err{color:var(--red);font-size:12.5px;font-weight:700;margin-top:6px;display:none}
+.mini{display:flex;flex-wrap:wrap;justify-content:center;gap:4px 12px;font-size:12px;color:var(--sub);margin-top:9px;font-weight:700}
+.mini span{white-space:nowrap}
+.note{text-align:center;font-size:11.5px;color:#9CA3AF;margin-top:6px;letter-spacing:-.2px}
+.mini span::before{content:"✓ ";color:var(--b6)}
+
+/* 본문 단락(인잘알 꼴: 큰 문장 + 강조 띠 + 사진) */
+.sec{padding:52px 20px;text-align:center}
+.sec.gray{background:#F3F6FB}
+.sec.warn{background:#FFF4F2}
+.sec.warn h3 .hl{background:var(--red)}
+.sec.blue{background:linear-gradient(170deg,var(--b6),var(--b8));color:#fff}
+.sec .kick{font-size:13px;font-weight:800;color:var(--b6);letter-spacing:.2px}
+.sec.blue .kick{color:var(--b1)}
+.sec h3{font-size:27px;font-weight:900;line-height:1.32;letter-spacing:-1px}
+.sec h3 .hl{background:var(--b6);color:#fff;padding:0 7px;border-radius:4px}
+.sec.blue h3 .hl{background:var(--yel);color:var(--b9)}
+.sec p.lead{font-size:16px;color:var(--sub);margin-top:12px;line-height:1.6}
+.sec.blue p.lead{color:#DCE7FB}
+.art{margin:24px auto 0;border-radius:18px;overflow:hidden;position:relative;max-width:400px}
+.checks{margin:22px auto 0;display:grid;gap:9px;max-width:360px;text-align:left}
+.checks div{background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 14px;font-size:15.5px;font-weight:800;display:flex;gap:9px;align-items:flex-start}
+.checks div::before{content:"✓";color:#fff;background:var(--b6);border-radius:50%;width:21px;height:21px;display:grid;place-items:center;font-size:12px;flex:none;margin-top:1px}
+.vs{display:grid;grid-template-columns:1fr 1.15fr;gap:8px;margin:24px auto 0;max-width:400px;text-align:center}
+.vs .c{border-radius:14px;padding:12px 8px}
+.vs .a{background:#E5E7EB;color:#6B7280}
+.vs .d{background:var(--b6);color:#fff;box-shadow:0 8px 20px rgba(18,87,201,.3)}
+.vs .h{font-size:13px;font-weight:800;margin-bottom:6px}
+.vs .d .h{color:var(--yel)}
+.vs li{list-style:none;font-size:13.5px;font-weight:700;padding:7px 0;border-top:1px solid rgba(0,0,0,.07)}
+.vs .d li{border-top-color:rgba(255,255,255,.18)}
+.steps{margin:24px auto 0;display:grid;gap:12px;max-width:400px;text-align:left}
+.step{display:grid;grid-template-columns:92px 1fr;gap:12px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:16px;padding:10px;position:relative}
+.step .n{font-size:12px;font-weight:900;color:var(--b6)}
+.step .tt{font-size:17px;font-weight:900;letter-spacing:-.4px}
+.step .ds{font-size:13px;color:var(--sub)}
+.step .pic{width:92px;height:92px;border-radius:12px;overflow:hidden;position:relative}
+.step .pic .tag{font-size:8.5px;right:3px;top:3px;padding:2px 4px}
+.big120{font-size:76px;font-weight:900;letter-spacing:-3px;line-height:1;color:var(--yel);margin-top:14px}
+.big120 small{font-size:30px}
+.proofimg{margin:18px auto 0;max-width:360px;border-radius:12px;overflow:hidden;box-shadow:0 10px 26px rgba(0,0,0,.2);background:#fff}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:22px auto 0;max-width:400px}
+.stats div{background:#fff;border-radius:14px;padding:14px 4px;border:1px solid var(--line)}
+.stats b{display:block;font-size:26px;font-weight:900;color:var(--b6);letter-spacing:-1px}
+.stats span{font-size:12.5px;color:var(--sub);font-weight:700}
+
+
+/* 매일 아침 시장조사 인포그래픽 */
+.mr{max-width:400px;margin:24px auto 0;background:#fff;border:1px solid var(--line);border-radius:18px;padding:16px 16px 14px;text-align:left;box-shadow:0 10px 26px rgba(11,55,127,.10)}
+.mr-top{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:800;color:var(--sub)}
+.mr-clock{background:var(--b9);color:#fff;border-radius:8px;padding:4px 9px;font-size:14px;font-weight:900;letter-spacing:-.3px}
+.mr-dot{width:8px;height:8px;border-radius:50%;background:#16A34A;margin-left:auto;animation:blink 1.2s infinite}
+@keyframes blink{50%{opacity:.25}}
+.mr-bars{display:grid;gap:9px;margin-top:14px}
+.mr-row{display:grid;grid-template-columns:52px 1fr;align-items:center;gap:8px;font-size:13.5px;font-weight:800;color:#6B7280}
+.mr-row i{font-style:normal;display:block;height:24px;border-radius:7px;background:#E5E7EB;width:0;transition:width 1s cubic-bezier(.2,.8,.2,1);position:relative}
+.mr.on .mr-row i{width:var(--w)}
+.mr-row.me{color:var(--b6)}
+.mr-row.me i{background:linear-gradient(90deg,var(--b5),var(--b7));height:30px;transition-delay:.45s}
+.mr-row.me b{position:absolute;right:9px;top:50%;transform:translateY(-50%);color:#fff;font-size:13px;white-space:nowrap;opacity:0;transition:opacity .4s 1.3s}
+.mr.on .mr-row.me b{opacity:1}
+.mr-steps{display:grid;grid-template-columns:1fr 14px 1fr 14px 1fr;align-items:center;margin-top:16px;padding-top:14px;border-top:1px dashed #CBD5E1;text-align:center;font-size:13px;font-weight:800;line-height:1.35;color:var(--ink)}
+.mr-steps em{display:grid;place-items:center;width:24px;height:24px;margin:0 auto 5px;border-radius:50%;background:var(--b6);color:#fff;font-style:normal;font-size:12.5px}
+.mr-steps .ar{color:#94A3B8;font-size:20px}
+
+/* 후기 사진 누르면 내용 보기 */
+.reviews .rv{padding:0;border:0;background:none;cursor:pointer;position:relative;display:block}
+.reviews .rv img{aspect-ratio:3/4;object-fit:cover;border-radius:10px;width:100%}
+.reviews .rv::after{content:"★5";position:absolute;left:6px;bottom:6px;background:rgba(17,24,39,.72);color:#FFE14D;font-size:11px;font-weight:900;border-radius:6px;padding:2px 6px}
+.rvm{position:fixed;inset:0;z-index:120;background:rgba(8,39,89,.66);display:none;align-items:center;justify-content:center;padding:16px}
+.rvm.on{display:flex}
+.rvm .box{background:#fff;border-radius:18px;max-width:400px;width:100%;max-height:88vh;overflow:auto;text-align:left;animation:up .25s ease-out}
+.rvm .box img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:18px 18px 0 0}
+.rvm .in{padding:16px 18px 18px}
+.rvm .hd2{display:flex;gap:8px;align-items:center;font-size:14px}
+.rvm .hd2 b{font-size:16px;font-weight:900}
+.rvm .hd2 span{color:var(--b6);font-weight:800;background:var(--b0);border-radius:6px;padding:2px 8px;font-size:13px}
+.rvm .st{color:#F59E0B;font-size:15px;margin-top:6px;letter-spacing:1px}
+.rvm .tt2{font-size:17px;font-weight:900;margin-top:8px;line-height:1.4;letter-spacing:-.3px}
+.rvm .bd{font-size:15px;color:var(--sub);margin-top:8px;line-height:1.65}
+.rvm .x{display:block;width:100%;height:48px;margin-top:14px;border:0;border-radius:12px;background:var(--b6);color:#fff;font-size:16px;font-weight:900;font-family:inherit;cursor:pointer}
+.honest{position:relative;max-width:400px;margin:52px auto 0;background:#fff;border:2px solid var(--b6);border-radius:14px;padding:14px 10px 14px 48px;font-size:14.5px;letter-spacing:-.3px;line-height:1.5;color:var(--ink);text-align:left;box-shadow:0 8px 20px rgba(18,87,201,.14);opacity:0;transform:translateY(10px) scale(.98);transition:opacity .5s,transform .5s}
+.honest::before{content:"✓";position:absolute;left:12px;top:50%;margin-top:-14px;width:28px;height:28px;border-radius:50%;background:var(--b6);color:#fff;display:grid;place-items:center;font-size:16px;font-weight:900}
+.honest.on{opacity:1;transform:none;animation:hpulse 1.6s ease-out .5s 2}
+@keyframes hpulse{0%{box-shadow:0 8px 20px rgba(18,87,201,.14),0 0 0 0 rgba(18,87,201,.45)}70%{box-shadow:0 8px 20px rgba(18,87,201,.14),0 0 0 12px rgba(18,87,201,0)}100%{box-shadow:0 8px 20px rgba(18,87,201,.14),0 0 0 0 rgba(18,87,201,0)}}
+.honest b{color:var(--b6);font-weight:900;font-size:16.5px;background:linear-gradient(transparent 62%,#FFE14D 62%);padding:0 2px}
+.rvm .box.pv{max-width:420px}
+.pvt{width:100%;border-collapse:collapse;margin-top:12px;font-size:13.5px;line-height:1.5}
+.pvt th{width:76px;text-align:left;vertical-align:top;color:var(--ink);font-weight:800;padding:8px 6px 8px 0;border-top:1px solid var(--line)}
+.pvt td{color:var(--sub);padding:8px 0;border-top:1px solid var(--line)}
+
+/* 인기 렌탈 제품 */
+.perf{display:inline-block;background:var(--yel);color:var(--b9);font-size:15px;font-weight:900;border-radius:999px;padding:5px 14px;margin-bottom:10px;letter-spacing:-.3px}
+.perf b{color:var(--red)}
+.chips{display:flex;gap:5px;justify-content:center;margin-top:18px;flex-wrap:wrap}
+.chips button{border:1.5px solid #CBD5E1;background:#fff;border-radius:999px;padding:7px 11px;font-size:13.5px;letter-spacing:-.3px;font-weight:800;color:var(--sub);font-family:inherit;cursor:pointer}
+.chips button.on{background:var(--b6);border-color:var(--b6);color:#fff}
+.pgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;max-width:400px;margin:16px auto 0;text-align:left}
+.pgrid[hidden]{display:none}
+.pc{position:relative;display:flex;flex-direction:column;background:#fff;border:1px solid var(--line);border-radius:14px;padding:10px 10px 12px;font-family:inherit;cursor:pointer;text-align:left}
+.pc img{width:100%;aspect-ratio:1/1;object-fit:contain;background:#F8FAFC;border-radius:10px}
+.pc .pt{position:absolute;left:8px;top:8px;background:var(--red);color:#fff;font-size:11px;font-weight:900;border-radius:6px;padding:2px 6px}
+.pc .pb{font-size:11.5px;color:#6B7280;font-weight:700;margin-top:8px}
+.pc .pn{font-size:13px;font-weight:800;color:var(--ink);line-height:1.35;margin-top:2px;min-height:35px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.pc .pcn{font-size:11px;color:#6B7280;margin-top:3px;letter-spacing:-.3px;line-height:1.35;min-height:2.7em}
+.pc .pw{font-size:11.5px;color:#9CA3AF;text-decoration:line-through;margin-top:6px}
+.pc .pp{font-size:16px;font-weight:900;color:var(--ink);letter-spacing:-.3px}
+.pc .pk{margin-top:6px;font-size:12px;font-weight:800;color:var(--b6);background:var(--b0);border-radius:8px;padding:5px 6px;text-align:center}
+.pc .pk b{color:var(--red);font-size:13.5px}
+.pc .pk{white-space:nowrap;letter-spacing:-.5px;padding:5px 4px}
+.pc .pa{margin-top:5px;font-size:11.5px;color:var(--sub);text-align:center;line-height:1.35}
+.pc .pa b{color:var(--ink);font-weight:800}
+@media(max-width:340px){.pc .pa{font-size:10.5px;letter-spacing:-.4px}}
+.pother{max-width:400px;margin:16px auto 0;background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px 16px;font-size:15px;line-height:1.6;color:var(--ink)}
+.pother b{color:var(--b6)}
+.pbtn{display:block;width:100%;height:50px;margin-top:14px;border:0;border-radius:12px;background:var(--red);color:#fff;font-size:16px;font-weight:900;font-family:inherit;cursor:pointer}
+.vs .c li:last-child{min-height:56px;display:flex;align-items:center;justify-content:center}
+.pmore{display:block;width:100%;max-width:400px;margin:14px auto 0;border:2px solid var(--b6);background:#fff;border-radius:14px;padding:12px 10px;font-family:inherit;font-size:15.5px;font-weight:900;color:var(--b6);cursor:pointer;letter-spacing:-.3px;line-height:1.45}
+.pmore span{display:block;font-size:13px;font-weight:700;color:var(--sub)}
+.pmore b{color:var(--red)}
+.pnote{font-size:11.5px;color:#9CA3AF;margin-top:10px}
+/* 지급 명단(실제 자료) */
+.paid{margin:22px auto 0;max-width:400px;background:#fff;border-radius:16px;border:1px solid var(--line);overflow:hidden;text-align:left}
+.paid .top{display:flex;justify-content:space-between;align-items:center;padding:12px 14px;background:var(--b9);color:#fff;font-weight:800;font-size:14px}
+.paid .top span{font-size:12px;color:var(--b1);font-weight:700}
+.paid .vw{height:250px;overflow:hidden;position:relative}
+.paid .vw::after{content:"";position:absolute;left:0;right:0;bottom:0;height:40px;background:linear-gradient(transparent,#fff)}
+.paid .tr{animation:roll 38s linear infinite}
+.paid .r{display:grid;grid-template-columns:62px 1fr 44px 74px;gap:6px;align-items:center;padding:0 14px;height:50px;border-bottom:1px solid #F1F5F9;font-size:14px}
+.paid .r .nm{font-weight:800}
+.paid .r .pd{color:var(--sub);font-size:13px}
+.paid .r .tc{font-size:12px;font-weight:800;color:var(--b6)}
+.paid .r .st{justify-self:end;font-size:12px;font-weight:800;color:#fff;background:#16A34A;border-radius:999px;padding:3px 9px}
+@keyframes roll{from{transform:translateY(0)}to{transform:translateY(-50%)}}
+.reviews{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin:22px auto 0;max-width:400px}
+.reviews img{aspect-ratio:3/4;object-fit:cover;border-radius:10px;width:100%}
+.reviews .k{grid-column:1/-1;border-radius:12px;overflow:hidden;border:1px solid var(--line)}
+.faq{max-width:400px;margin:22px auto 0;text-align:left;display:grid;gap:8px}
+.faq details{background:#fff;border:1px solid var(--line);border-radius:12px;padding:13px 14px}
+.faq summary{font-weight:800;font-size:15px;list-style:none;cursor:pointer}
+.faq summary::before{content:"Q. ";color:var(--b6)}
+.faq p{font-size:14px;color:var(--sub);margin-top:8px}
+.formcard.end{margin:26px auto 0;max-width:400px;text-align:left}
+.foot{background:#0F172A;color:#94A3B8;font-size:11.5px;padding:24px 20px 30px;line-height:1.7}
+.foot b{color:#E2E8F0}
+.foot{display:flex;align-items:center;gap:14px}
+.ftxt{flex:1;min-width:0}
+.ftxt span{white-space:nowrap}
+.addr i{font-style:normal;white-space:nowrap}
+.certlink{color:inherit;text-decoration:underline;text-underline-offset:2px}
+.ftxt span:not(:last-child)::after{content:"·";margin:0 6px;color:#64748B}
+.certbtn{flex:none;display:block;width:64px;height:64px;border-radius:50%;background:#fff;padding:3px}
+.certbtn img{width:100%;height:100%;border-radius:50%}
+
+/* 아래 고정 띠 */
+.bar{position:fixed;left:50%;transform:translateX(-50%);bottom:0;width:100%;max-width:480px;z-index:50;display:grid;grid-template-columns:1fr 1fr 1.5fr;gap:6px;
+  padding:8px 8px calc(8px + env(safe-area-inset-bottom));background:rgba(255,255,255,.97);border-top:1px solid var(--line);box-shadow:0 -6px 18px rgba(0,0,0,.08)}
+.bar a,.bar button{height:52px;border-radius:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-weight:900;font-size:14px;border:0;font-family:inherit;cursor:pointer;letter-spacing:-.3px}
+.bar .t{background:#fff;border:1.5px solid var(--b6);color:var(--b6)}
+.bar .k{background:var(--kakao);color:#3C1E1E}
+.bar .g{background:var(--red);color:#fff;font-size:15px}
+.bar small{font-size:10.5px;font-weight:700;opacity:.85}
+
+/* 완료 화면 */
+.done{position:fixed;inset:0;z-index:100;background:rgba(8,39,89,.6);display:none;align-items:flex-end;justify-content:center}
+.done.on{display:flex}
+.sheet{background:#fff;width:100%;max-width:480px;border-radius:22px 22px 0 0;padding:24px 20px calc(22px + env(safe-area-inset-bottom));text-align:center;animation:up .35s ease-out}
+@keyframes up{from{transform:translateY(40%)}to{transform:none}}
+.sheet h4{font-size:24px;font-weight:900;letter-spacing:-.8px;margin-top:12px}
+.sheet p{font-size:15px;color:var(--sub);margin-top:8px}
+.sheet .hours{margin-top:12px;background:var(--b0);border-radius:12px;padding:10px;font-size:13.5px;color:var(--b7);font-weight:700}
+.sheet .two{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:14px}
+.sheet .two a{height:54px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:16px}
+.sheet .close{margin-top:10px;font-size:13px;color:#9CA3AF;background:none;border:0;font-family:inherit;cursor:pointer}
+</style>
+</head>
+<body>
+<div class="page">
+
+<header class="hd">
+  <div class="logo"><img src="img/logo.svg" alt="">당현함</div>
+  <a class="tel" href="tel:1600-4670">📞 1600-4670</a>
+</header>
+
+<!-- ① 첫 화면: 3초 안에 금액·입금 알림·신청 칸이 다 보이게 -->
+<section class="hero" id="top">
+  <img class="bgart" src="img/hero2.webp" alt="" fetchpriority="high" style="position:absolute;top:-20px;left:-10px;bottom:auto;right:auto;height:118%;width:auto;max-width:none">
+  <div class="shade" aria-hidden="true"></div>
+  <div class="in">
+    <h1>설치한 날 <span class="band">저녁 6시</span><br>혜택이 바로 지급됩니다</h1>
+    <div class="amt">렌탈 혜택 최대 <b>50만원</b><span class="plus">+@ 추가지급</span></div>
+    <div class="noti" aria-hidden="true">
+      <div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="#fff"><path d="M20 7h-2.2A3 3 0 0 0 12 4.4 3 3 0 0 0 6.2 7H4a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h1v8a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-8h1a1 1 0 0 0 1-1V8a1 1 0 0 0-1-1zM9 5.5c.8 0 1.5.7 1.5 1.5H9a1.5 1.5 0 0 1 0-3zm6 0a1.5 1.5 0 0 1 0 3h-1.5c0-.8.7-1.5 1.5-1.5zM11 19H7v-7h4zm0-9H5V9h6zm6 9h-4v-7h4zm2-9h-6V9h6z"/></svg></div>
+      <div class="nb" style="flex:1;min-width:0" data-start="0"><div class="t1"><span>지급 알림</span><span>오후 6:00</span></div><div class="t2"><span class="nn">유*원님</span> <span class="np">SK매직 정수기+공기청정기</span><br>혜택 <em class="na">820,000원</em> 지급되었습니다</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="formbg"><div class="formcard" id="form1">
+  <h2>내 최대 혜택은 <span class="q">? 원</span></h2>
+  <form class="apply" novalidate>
+    <div class="row"><input class="nm" name="name" placeholder="이름" autocomplete="name"><input name="phone" inputmode="numeric" placeholder="휴대폰 번호" autocomplete="tel"></div>
+    <label class="agree"><input type="checkbox" checked> 개인정보 수집·이용 동의 <a href="#" class="pvopen">보기</a></label>
+    <div class="err"></div>
+    <button class="cta" type="submit">내 최대 혜택 확인하기</button>
+  </form>
+  <div class="mini"><span>상담 무료</span><span>본사 프로모션 동일 제공</span><span>차액 120% 보상</span></div>
+  <p class="note">※ 렌탈료 연체 또는 신용불량 시 가입 제한</p>
+</div></div>
+
+<!-- ② 공감 -->
+<!-- 인기 렌탈 제품 (요금·카드할인가 = danghh.com/water 목록과 같은 값, 2026-10-26) -->
+<section class="sec gray" id="prod">
+  <div class="perf">카드 실적 <b>월 30만원</b>만 써도</div>
+  <h3>제휴카드 쓰면<br><span class="hl">월요금 0원부터</span></h3>
+  <div class="chips" role="tablist">
+    <button type="button" class="on" data-c="water">정수기</button><button type="button" data-c="bidet">비데</button><button type="button" data-c="air">공기청정기</button><button type="button" data-c="chair">안마의자</button>
+  </div>
+  <!--품목칸-->
+  <div class="pgrid" data-c="water" data-note="※ 5년 약정 · 셀프관리 기준 · 제휴카드 전월 실적 30만원 · 신규 발급 카드 기준">
+    <button type="button" class="pc"><img src="img/p-coway-1.webp" alt="코웨이 아이콘 정수기 3 (냉온정)" loading="lazy">
+        <span class="pt">6개월 1만원</span><span class="pb">코웨이</span><span class="pn">아이콘 정수기 3 (냉온정)</span><span class="pcn">5년 약정 · 셀프관리</span>
+        <span class="pw">월 32,900원</span><span class="pp">월 10,000원~</span><span class="pk">제휴카드 <b>월 0원~</b></span><span class="pa">7개월째부터 제휴카드가<br><b>월 11,900원</b></span></button><button type="button" class="pc"><img src="img/p-coway-57.webp" alt="코웨이 아이콘 얼음정수기 미니 (얼음냉온정)" loading="lazy">
+        <span class="pt">6개월 반값</span><span class="pb">코웨이</span><span class="pn">아이콘 얼음정수기 미니 (얼음냉온정)</span><span class="pcn">5년 약정 · 셀프관리</span>
+        <span class="pw">월 44,900원</span><span class="pp">월 22,450원~</span><span class="pk">제휴카드 <b>월 1,450원~</b></span><span class="pa">7개월째부터 제휴카드가<br><b>월 23,900원</b></span></button><button type="button" class="pc"><img src="img/p-cuckoo-1636.webp" alt="쿠쿠 인스퓨어 미니100 초소형 정수기 (냉온정)" loading="lazy">
+        <span class="pt">6개월 반값</span><span class="pb">쿠쿠</span><span class="pn">인스퓨어 미니100 초소형 정수기 (냉온정)</span><span class="pcn">5년 약정 · 셀프 + 1년마다 방문</span>
+        <span class="pw">월 32,900원</span><span class="pp">월 16,450원~</span><span class="pk">제휴카드 <b>월 0원~</b></span><span class="pa">7개월째부터 제휴카드가<br><b>월 12,900원</b></span></button><button type="button" class="pc"><img src="img/p-sk-219.webp" alt="SK매직 MEGA ICE 얼음정수기 mini (얼음냉온정)" loading="lazy">
+        <span class="pt">6개월 반값</span><span class="pb">SK매직</span><span class="pn">MEGA ICE 얼음정수기 mini (얼음냉온정)</span><span class="pcn">5년 약정 · 셀프 + 1년마다 방문</span>
+        <span class="pw">월 44,900원</span><span class="pp">월 22,450원~</span><span class="pk">제휴카드 <b>월 450원~</b></span><span class="pa">7개월째부터 제휴카드가<br><b>월 22,900원</b></span></button><button type="button" class="pc"><img src="img/p-lg-1437.webp" alt="LG 퓨리케어 오브제컬렉션 정수기(맞춤 출수, 초고온수, 냉온정)" loading="lazy">
+        <span class="pt">6개월 반값</span><span class="pb">LG 퓨리케어</span><span class="pn">오브제컬렉션 정수기(맞춤 출수, 초고온수, 냉온정)</span><span class="pcn">5년 약정 · 셀프관리</span>
+        <span class="pw">월 35,900원</span><span class="pp">월 17,950원~</span><span class="pk">제휴카드 <b>월 0원~</b></span><span class="pa">7개월째부터 제휴카드가<br><b>월 17,900원</b></span></button><button type="button" class="pc"><img src="img/p-sk-1704.webp" alt="SK매직 초소형 플러스 직수 정수기 (냉온정)" loading="lazy">
+        <span class="pt">6개월 반값</span><span class="pb">SK매직</span><span class="pn">초소형 플러스 직수 정수기 (냉온정)</span><span class="pcn">5년 약정 · 셀프 + 1년마다 방문</span>
+        <span class="pw">월 32,400원</span><span class="pp">월 16,200원~</span><span class="pk">제휴카드 <b>월 0원~</b></span><span class="pa">7개월째부터 제휴카드가<br><b>월 10,400원</b></span></button><button type="button" class="pc"><img src="img/p-cuckoo-104.webp" alt="쿠쿠 제로100 미니 얼음 정수기 (얼음냉온정)" loading="lazy">
+        <span class="pt">6개월 반값</span><span class="pb">쿠쿠</span><span class="pn">제로100 미니 얼음 정수기 (얼음냉온정)</span><span class="pcn">5년 약정 · 셀프 + 1년마다 방문</span>
+        <span class="pw">월 42,900원</span><span class="pp">월 21,450원~</span><span class="pk">제휴카드 <b>월 1,450원~</b></span><span class="pa">7개월째부터 제휴카드가<br><b>월 22,900원</b></span></button><button type="button" class="pc"><img src="img/p-wells-358.webp" alt="교원웰스 슈퍼쿨링 정수기 (냉온정)" loading="lazy">
+        <span class="pt">6개월 반값</span><span class="pb">교원웰스</span><span class="pn">슈퍼쿨링 정수기 (냉온정)</span><span class="pcn">5년 약정 · 셀프관리</span>
+        <span class="pw">월 18,900원</span><span class="pp">월 9,450원~</span><span class="pk">제휴카드 <b>월 0원~</b></span><span class="pa">7개월째부터 제휴카드가<br><b>월 3,900원</b></span></button>
+  </div>
+  <div class="pgrid" data-c="bidet" data-note="※ 5년 약정 · 셀프관리 기준(청호나이스는 방문관리) · 제휴카드 전월 실적 30만원 · 신규 발급 카드 기준" hidden>
+    <button type="button" class="pc"><img src="img/p-bidet-bas37-c.webp" alt="코웨이 더블케어 비데" loading="lazy">
+        <span class="pt">6개월 1만원</span><span class="pb">코웨이</span><span class="pn">더블케어 비데</span><span class="pcn">5년 약정 · 셀프관리</span>
+        <span class="pw">월 25,400원</span><span class="pp">월 10,000원~</span><span class="pk">제휴카드 <b>월 0원~</b></span><span class="pa">7개월째부터 제휴카드가<br><b>월 4,400원</b></span></button><button type="button" class="pc"><img src="img/p-bidet-bas51-a.webp" alt="코웨이 더매너 비데 플러스" loading="lazy">
+        <span class="pt">6개월 1만원</span><span class="pb">코웨이</span><span class="pn">더매너 비데 플러스</span><span class="pcn">5년 약정 · 셀프관리</span>
+        <span class="pw">월 30,400원</span><span class="pp">월 10,000원~</span><span class="pk">제휴카드 <b>월 0원~</b></span><span class="pa">7개월째부터 제휴카드가<br><b>월 9,400원</b></span></button><button type="button" class="pc"><img src="img/p-bidet-cbt-qsb1041w.webp" alt="쿠쿠 인스퓨어 트리플케어8 비데" loading="lazy">
+        <span class="pt">9개월 반값</span><span class="pb">쿠쿠</span><span class="pn">인스퓨어 트리플케어8 비데</span><span class="pcn">5년 약정 · 셀프 + 1년마다 방문</span>
+        <span class="pw">월 18,900원</span><span class="pp">월 9,450원~</span><span class="pk">제휴카드 <b>월 0원~</b></span><span class="pa">10개월째부터 제휴카드가<br><b>월 0원</b></span></button><button type="button" class="pc"><img src="img/p-bidet-bid-f17d.webp" alt="SK매직 풀스텐 스파 비데" loading="lazy">
+        <span class="pb">SK매직</span><span class="pn">풀스텐 스파 비데</span><span class="pcn">5년 약정 · 셀프 + 1년마다 방문</span>
+        <span class="pp">월 15,900원~</span><span class="pk">제휴카드 <b>월 0원~</b></span></button><button type="button" class="pc"><img src="img/p-bidet-bs-65d70.webp" alt="청호나이스 B700 살균 리모컨 비데" loading="lazy">
+        <span class="pt">6개월 반값</span><span class="pb">청호나이스</span><span class="pn">B700 살균 리모컨 비데</span><span class="pcn">5년 약정 · 8개월마다 방문</span>
+        <span class="pw">월 21,900원</span><span class="pp">월 10,950원~</span><span class="pk">제휴카드 <b>월 0원~</b></span><span class="pa">7개월째부터 제휴카드가<br><b>월 1,900원</b></span></button><button type="button" class="pc"><img src="img/p-bidet-bt660.webp" alt="교원웰스 스파원 비데" loading="lazy">
+        <span class="pt">8개월 반값</span><span class="pb">교원웰스</span><span class="pn">스파원 비데</span><span class="pcn">5년 약정 · 셀프 + 1년마다 방문</span>
+        <span class="pw">월 16,900원</span><span class="pp">월 8,450원~</span><span class="pk">제휴카드 <b>월 0원~</b></span><span class="pa">9개월째부터 제휴카드가<br><b>월 1,900원</b></span></button><button type="button" class="pc"><img src="img/p-bidet-whb-5400.webp" alt="루헨스 퍼펙트 클린 비데" loading="lazy">
+        <span class="pb">루헨스</span><span class="pn">퍼펙트 클린 비데</span><span class="pcn">5년 약정 · 셀프관리</span>
+        <span class="pp">월 9,900원~</span><span class="pk">제휴카드 <b>월 0원~</b></span></button><button type="button" class="pc"><img src="img/p-bidet-hqbp530w0d.webp" alt="현대큐밍 더클린 케어 비데" loading="lazy">
+        <span class="pt">12개월 반값</span><span class="pb">현대큐밍</span><span class="pn">더클린 케어 비데</span><span class="pcn">5년 약정 · 셀프 + 1년마다 방문</span>
+        <span class="pw">월 20,900원</span><span class="pp">월 10,450원~</span><span class="pk">제휴카드 <b>월 0원~</b></span><span class="pa">13개월째부터 제휴카드가<br><b>월 5,900원</b></span></button>
+  </div>
+  <div class="pgrid" data-c="air" data-note="※ 5년 약정 · 셀프관리 기준(청호나이스는 방문관리) · 제휴카드 전월 실적 30만원 · 신규 발급 카드 기준" hidden>
+    <button type="button" class="pc"><img src="img/p-air-ap-2023k.webp" alt="코웨이 노블 공기청정기2 (20평)" loading="lazy">
+        <span class="pt">6개월 1만원</span><span class="pb">코웨이</span><span class="pn">노블 공기청정기2 (20평)</span><span class="pcn">5년 약정 · 셀프관리</span>
+        <span class="pw">월 35,900원</span><span class="pp">월 10,000원~</span><span class="pk">제휴카드 <b>월 0원~</b></span><span class="pa">7개월째부터 제휴카드가<br><b>월 14,900원</b></span></button><button type="button" class="pc"><img src="img/p-air-ap-1125g.webp" alt="코웨이 스퀘어핏 공기청정기 (11평)" loading="lazy">
+        <span class="pt">6개월 1만원</span><span class="pb">코웨이</span><span class="pn">스퀘어핏 공기청정기 (11평)</span><span class="pcn">5년 약정 · 셀프관리</span>
+        <span class="pw">월 19,400원</span><span class="pp">월 10,000원~</span><span class="pk">제휴카드 <b>월 0원~</b></span><span class="pa">7개월째부터 제휴카드가<br><b>월 0원</b></span></button><button type="button" class="pc"><img src="img/p-air-ap-25h8150.webp" alt="청호나이스 서밋 타워 공기청정기 (25평)" loading="lazy">
+        <span class="pt">12개월 반값</span><span class="pb">청호나이스</span><span class="pn">서밋 타워 공기청정기 (25평)</span><span class="pcn">5년 약정 · 1년마다 방문</span>
+        <span class="pw">월 34,900원</span><span class="pp">월 17,450원~</span><span class="pk">제휴카드 <b>월 0원~</b></span><span class="pa">13개월째부터 제휴카드가<br><b>월 14,900원</b></span></button><button type="button" class="pc"><img src="img/p-air-acl-20c1a.webp" alt="SK매직 올클린 공기청정기 (20평)" loading="lazy">
+        <span class="pt">6개월 반값</span><span class="pb">SK매직</span><span class="pn">올클린 공기청정기 (20평)</span><span class="pcn">5년 약정 · 셀프 + 1년마다 방문</span>
+        <span class="pw">월 21,900원</span><span class="pp">월 10,950원~</span><span class="pk">제휴카드 <b>월 0원~</b></span><span class="pa">7개월째부터 제휴카드가<br><b>월 0원</b></span></button><button type="button" class="pc"><img src="img/p-air-a-c102w.webp" alt="현대큐밍 더케어 큐브 공기청정기 (11평)" loading="lazy">
+        <span class="pb">현대큐밍</span><span class="pn">더케어 큐브 공기청정기 (11평)</span><span class="pcn">5년 약정 · 셀프관리</span>
+        <span class="pp">월 15,900원~</span><span class="pk">제휴카드 <b>월 900원~</b></span></button><button type="button" class="pc"><img src="img/p-air-ac-25w10fws.webp" alt="쿠쿠 W8200 타워형 공기청정기 (25평)" loading="lazy">
+        <span class="pb">쿠쿠</span><span class="pn">W8200 타워형 공기청정기 (25평)</span><span class="pcn">5년 약정 · 셀프 + 1년마다 방문</span>
+        <span class="pp">월 20,900원~</span><span class="pk">제휴카드 <b>월 900원~</b></span></button><button type="button" class="pc"><img src="img/p-air-as195dwwam.webp" alt="LG 퓨리케어 AI 360° 공기청정기 플러스 무빙휠 세트 (19평)" loading="lazy">
+        <span class="pb">LG</span><span class="pn">퓨리케어 AI 360° 공기청정기 플러스 무빙휠 세트 (19평)</span><span class="pcn">5년 약정 · 셀프관리</span>
+        <span class="pp">월 28,900원~</span><span class="pk">제휴카드 <b>월 10,900원~</b></span></button><button type="button" class="pc"><img src="img/p-air-ar626.webp" alt="교원웰스 에어가든 공기청정기 (27평)" loading="lazy">
+        <span class="pt">3개월 면제</span><span class="pb">교원웰스</span><span class="pn">에어가든 공기청정기 (27평)</span><span class="pcn">5년 약정 · 셀프관리</span>
+        <span class="pp">월 25,900원~</span><span class="pk">제휴카드 <b>월 10,900원~</b></span></button>
+  </div>
+  <div class="pgrid" data-c="chair" data-note="※ 5년 약정 · 관리 없는 상품 기준(쿠쿠·LG는 방문관리) · 제휴카드 전월 실적 30만원 · 신규 발급 카드 기준" hidden>
+    <button type="button" class="pc"><img src="img/p-chair-mc-r01m.webp" alt="코웨이 BEREX 트리플체어 (무빙형)" loading="lazy">
+        <span class="pt">5개월 1만원</span><span class="pb">코웨이</span><span class="pn">BEREX 트리플체어 (무빙형)</span><span class="pcn">5년 약정</span>
+        <span class="pw">월 62,900원</span><span class="pp">월 10,000원~</span><span class="pk">제휴카드 <b>월 0원~</b></span><span class="pa">6개월째부터 제휴카드가<br><b>월 41,900원</b></span></button><button type="button" class="pc"><img src="img/p-chair-mc-b02.webp" alt="코웨이 BEREX 안마의자 마인 플러스" loading="lazy">
+        <span class="pt">5개월 1만원</span><span class="pb">코웨이</span><span class="pn">BEREX 안마의자 마인 플러스</span><span class="pcn">5년 약정</span>
+        <span class="pw">월 44,900원</span><span class="pp">월 10,000원~</span><span class="pk">제휴카드 <b>월 0원~</b></span><span class="pa">6개월째부터 제휴카드가<br><b>월 23,900원</b></span></button><button type="button" class="pc"><img src="img/p-chair-mc-300w.webp" alt="청호나이스 로망 안마의자" loading="lazy">
+        <span class="pb">청호나이스</span><span class="pn">로망 안마의자</span><span class="pcn">5년 약정</span>
+        <span class="pp">월 40,900원~</span><span class="pk">제휴카드 <b>월 20,900원~</b></span></button><button type="button" class="pc"><img src="img/p-chair-cms-g210nw.webp" alt="쿠쿠 레스티노 안마의자 (리클라이너형)" loading="lazy">
+        <span class="pb">쿠쿠</span><span class="pn">레스티노 안마의자 (리클라이너형)</span><span class="pcn">5년 약정 · 1년마다 방문</span>
+        <span class="pp">월 41,900원~</span><span class="pk">제휴카드 <b>월 21,900원~</b></span></button><button type="button" class="pc"><img src="img/p-chair-k8f600ga.webp" alt="현대큐밍 브람스 안마의자 골든이글 더블스파" loading="lazy">
+        <span class="pt">6개월 반값</span><span class="pb">현대큐밍</span><span class="pn">브람스 안마의자 골든이글 더블스파</span><span class="pcn">5년 약정</span>
+        <span class="pw">월 81,900원</span><span class="pp">월 40,950원~</span><span class="pk">제휴카드 <b>월 25,950원~</b></span><span class="pa">7개월째부터 제휴카드가<br><b>월 66,900원</b></span></button><button type="button" class="pc"><img src="img/p-chair-mh21bby.webp" alt="LG 힐링미 오브제컬렉션 안마의자 아르테UP" loading="lazy">
+        <span class="pb">LG</span><span class="pn">힐링미 오브제컬렉션 안마의자 아르테UP</span><span class="pcn">5년 약정 · 36개월마다 방문</span>
+        <span class="pp">월 60,900원~</span><span class="pk">제휴카드 <b>월 42,900원~</b></span></button><button type="button" class="pc"><img src="img/p-chair-hr768.webp" alt="교원웰스 웰스 안마의자 고급형" loading="lazy">
+        <span class="pb">교원웰스</span><span class="pn">웰스 안마의자 고급형</span><span class="pcn">5년 약정</span>
+        <span class="pp">월 63,900원~</span><span class="pk">제휴카드 <b>월 48,900원~</b></span></button><button type="button" class="pc"><img src="img/p-chair-mh65cc.webp" alt="LG 힐링미 안마의자 MX6 (파타야)" loading="lazy">
+        <span class="pb">LG</span><span class="pn">힐링미 안마의자 MX6 (파타야)</span><span class="pcn">5년 약정 · 1년마다 방문</span>
+        <span class="pp">월 68,900원~</span><span class="pk">제휴카드 <b>월 50,900원~</b></span></button>
+  </div>
+  <!--/품목칸-->
+  <div class="pother" hidden>
+    <b id="poName">비데</b>도 브랜드별 최신 모델로<br>제휴카드 할인까지 넣어 비교해 드려요
+    <button type="button" class="pbtn">내 조건으로 월 요금 받기 ›</button>
+  </div>
+  <button type="button" class="pmore"><span>전 브랜드 <b>200여 종</b> 중</span>내 집에 맞는 모델을 골라 드려요 ›</button>
+  <p class="pnote" id="pnote">※ 5년 약정 · 셀프관리 기준 · 제휴카드 전월 실적 30만원 · 신규 발급 카드 기준</p>
+</section>
+
+<section class="sec">
+  <h3>발품은 저희가 팝니다<br><span class="hl">매일 아침 시장조사</span> 진행</h3>
+  <p class="lead">전국 업체들의 그날 혜택을 먼저 확인하고<br>가장 높게 맞춰서 안내해 드려요</p>
+  <div class="mr" id="mr">
+    <div class="mr-top"><span class="mr-clock">오전 9:00</span><span>오늘의 혜택 조사 중</span><span class="mr-dot"></span></div>
+    <div class="mr-bars">
+      <div class="mr-row"><span>A업체</span><i style="--w:52%"></i></div>
+      <div class="mr-row"><span>B업체</span><i style="--w:66%"></i></div>
+      <div class="mr-row"><span>C업체</span><i style="--w:78%"></i></div>
+      <div class="mr-row me"><span>당현함</span><i style="--w:100%"><b>최대치에 맞춤</b></i></div>
+    </div>
+    <div class="mr-steps">
+      <div><em>1</em>오전<br>혜택 조사</div><div class="ar">›</div>
+      <div><em>2</em>가장 높은<br>조건 확인</div><div class="ar">›</div>
+      <div><em>3</em>내 혜택에<br>바로 반영</div>
+    </div>
+  </div>
+</section>
+
+<!-- ③ 해결 -->
+
+
+<section class="sec gray">
+  <h3>상담 신청 시<br><span class="hl">전 브랜드 조건</span>을<br>한 번에 비교해 드립니다</h3>
+  <p class="lead">코웨이 · SK매직 · LG · 쿠쿠 · 청호 · 웰스 · 루헨스 · 현대큐밍</p>
+  <div class="art"><img src="img/agent.webp" alt="전화 상담하는 상담사" loading="lazy"></div>
+  <div class="vs">
+    <div class="c a"><div class="h">아무 데서나 가입</div><ul><li>혜택 2~3일 뒤</li><li>한 브랜드만 안내</li><li>적게 받아도 그만</li><li>비싼 모델 위주 안내</li></ul></div>
+    <div class="c d"><div class="h">당현함에서 가입</div><ul><li>설치한 날 저녁 6시</li><li>전 브랜드 통합비교</li><li>적으면 차액 120%</li><li>타사보상·요금 반값/면제 적용</li></ul></div>
+  </div>
+  <div class="honest"><b>요금&amp;사은품 혜택을 분석해</b><br>제일 유리한 조건으로 안내드려요</div>
+</section>
+
+<!-- ④ 보상 약속 -->
+<section class="sec blue">
+  <h3>다른 곳보다 적게 받았다면<br><span class="hl">차액의 120%</span>를 드립니다</h3>
+  <div class="art" style="max-width:240px;margin-top:18px"><img src="img/badge.webp" alt="차액 120% 보상" loading="lazy"></div>
+  <p class="lead">말로만 하지 않습니다. 대표가 서명한 서약서로 약속합니다.</p>
+  <div class="proofimg"><img src="img/pledge-rental.webp" alt="렌탈 안심보장 서약서" loading="lazy"></div>
+</section>
+
+<!-- ⑤ 절차 -->
+<section class="sec gray">
+  <h3>신청은 이름과 번호만,<br>나머지는 상담사가<br><span class="hl">개인별 맞춤 상담</span>을 해드립니다</h3>
+  <div class="steps">
+    <div class="step"><div class="pic"><img src="img/agent-sq.webp" alt="" loading="lazy" style="width:100%;height:100%;object-fit:cover"></div>
+      <div><div class="tt">무료 상담 신청</div><div class="ds">담당 상담사가 연락드려 내 조건에 맞는 최대 금액을 안내해요</div></div></div>
+    <div class="step"><div class="pic"><img src="img/install-rental.webp" alt="" loading="lazy" style="width:100%;height:100%;object-fit:cover"></div>
+      <div><div class="tt">원하는 날 설치</div><div class="ds">브랜드 정식 기사님이 방문해 설치해요</div></div></div>
+    <div class="step"><div class="pic"><img src="img/done.webp" alt="" loading="lazy" style="width:100%;height:100%;object-fit:cover"></div>
+      <div><div class="tt">그날 저녁 6시 혜택 지급</div><div class="ds">오후 5시 30분 전 설치 완료 기준, 약속한 금액을 한 번에 보내드려요</div></div></div>
+  </div>
+</section>
+
+<!-- ⑥ 진짜 증거: 실제 지급 명단 -->
+<!-- 다른 곳의 문제 → 바로 아래 지급 명단이 답 -->
+<section class="sec warn">
+  <h3>많이 준다던 사은품<br><span class="hl">정말 들어오나요?</span></h3>
+  <p class="lead">설치 뒤 연락이 끊기거나<br>지급을 미루는 곳도 있습니다</p>
+  <div class="proofimg" style="box-shadow:none;border:1px solid var(--line)"><img src="img/kakao-review.webp" alt="다른 업체에서 연락이 끊긴 카톡 예시" loading="lazy"></div>
+</section>
+
+<section class="sec">
+  <h3>당현함은 설치한 날 저녁<br><span class="hl">오늘도 혜택이 지급됐습니다</span></h3>
+  <div class="paid"><div class="top">사은품 지급 명단 <span id="paidDate"></span></div><div class="vw"><div class="tr" id="paidTrack"></div></div></div>
+  <div class="stats"><div><b>14년</b><span>당일 지급</span></div><div><b>10만+</b><span>누적 가입</span></div><div><b>2만+</b><span>고객 후기</span></div></div>
+</section>
+
+<!-- ⑦ 후기(실제 사진·카톡) -->
+<section class="sec gray">
+  <h3>설치하신 분들이<br><span class="hl">직접 보내주셨어요</span></h3>
+  <div class="reviews">
+    <button type="button" class="rv" data-k="story-03"><img src="img/rv-03.webp" alt="박*찬님 LG 정수기 렌탈 설치 사진" loading="lazy"></button>
+    <button type="button" class="rv" data-k="story-04"><img src="img/rv-04.webp" alt="최*호님 쿠쿠 정수기 렌탈 설치 사진" loading="lazy"></button>
+    <button type="button" class="rv" data-k="story-01"><img src="img/rv-01.webp" alt="김*영님 SK매직 정수기 렌탈 설치 사진" loading="lazy"></button>
+    <button type="button" class="rv" data-k="story-12"><img src="img/rv-12.webp" alt="박*은님 쿠쿠 비데 렌탈 설치 사진" loading="lazy"></button>
+    <button type="button" class="rv" data-k="story-13"><img src="img/rv-13.webp" alt="이*수님 LG 공기청정기 렌탈 설치 사진" loading="lazy"></button>
+    <button type="button" class="rv" data-k="story-11"><img src="img/rv-11.webp" alt="이*진님 LG 정수기 렌탈 설치 사진" loading="lazy"></button>
+    <div class="k"><img src="img/paidboard.webp" alt="당현함 카페 사은품 지급 명단·인터넷 설치 후기 게시판" loading="lazy"></div>
+  </div>
+</section>
+
+<!-- ⑧ 믿을 수 있는 곳 + 자주 묻는 질문 + 마지막 신청 -->
+<section class="sec">
+  <h3>정식 등록된<br><span class="hl">사업자가 직접 운영</span>합니다</h3>
+  <div class="proofimg" style="box-shadow:none;border:1px solid var(--line)"><img src="img/cert.webp" alt="사전승낙서·사업자등록증" loading="lazy"></div>
+  <div class="faq">
+    <details><summary>정말 설치한 날 혜택을 주나요?</summary><p>네. 오후 5시 30분 전에 설치가 끝나면 그날 저녁 6시에 약속한 금액을 보내드립니다.</p></details>
+    <details><summary>혜택을 받으면 렌탈료가 더 비싸지나요?</summary><p>아닙니다. 월 렌탈료는 본사가 정하는 값이라 어디서 신청하셔도 같습니다. 달라지는 건 사은품뿐입니다.</p></details>
+    <details><summary>정수기 무타공 설치가 가능한가요?</summary><p>현장 상황에 따라 다르므로 기사님이 방문해 봐야 알 수 있습니다. 방문 비용은 무료입니다.</p></details>
+    <details><summary>약정 기간은 얼마나 되나요?</summary><p>렌탈은 3년 또는 5년을 많이 합니다. 다음에도 같은 브랜드를 쓰실 거라면 5년 약정이 유리합니다.</p></details>
+    <details><summary>상담만 받아도 되나요?</summary><p>네. 금액만 확인하고 결정하지 않으셔도 괜찮습니다.</p></details>
+  </div>
+  <div class="noti end" aria-hidden="true">
+      <div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="#fff"><path d="M20 7h-2.2A3 3 0 0 0 12 4.4 3 3 0 0 0 6.2 7H4a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h1v8a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-8h1a1 1 0 0 0 1-1V8a1 1 0 0 0-1-1zM9 5.5c.8 0 1.5.7 1.5 1.5H9a1.5 1.5 0 0 1 0-3zm6 0a1.5 1.5 0 0 1 0 3h-1.5c0-.8.7-1.5 1.5-1.5zM11 19H7v-7h4zm0-9H5V9h6zm6 9h-4v-7h4zm2-9h-6V9h6z"/></svg></div>
+      <div class="nb" style="flex:1;min-width:0" data-start="5"><div class="t1"><span>지급 알림</span><span>오후 6:00</span></div><div class="t2"><span class="nn"></span> <span class="np"></span><br>혜택 <em class="na"></em> 지급되었습니다</div></div>
+    </div>
+  <div class="formcard end" id="form2">
+    <h2>내 최대 혜택은 <span class="q">? 원</span></h2>
+    <form class="apply" novalidate>
+      <div class="row"><input class="nm" name="name" placeholder="이름" autocomplete="name"><input name="phone" inputmode="numeric" placeholder="휴대폰 번호" autocomplete="tel"></div>
+      <label class="agree"><input type="checkbox" checked> 개인정보 수집·이용 동의 <a href="#" class="pvopen">보기</a></label>
+      <div class="err"></div>
+      <button class="cta" type="submit">내 최대 혜택 확인하기</button>
+    </form>
+    <div class="mini"><span>상담 무료</span><span>본사 프로모션 동일 제공</span><span>차액 120% 보상</span></div>
+    <p class="note">※ 렌탈료 연체 또는 신용불량 시 가입 제한</p>
+  </div>
+</section>
+
+<footer class="foot"><a class="certbtn" href="https://www.ictmarket.or.kr:8443/precon/pop_CertIcon.do?PRECON_REQ_ID=PRE0000152938" target="_blank" rel="noopener" aria-label="사전승낙서 보기"><img src="img/kait-mark.webp" alt="사전승낙 판매점 유진텔레콤"></a><div class="ftxt"><div><span>유진텔레콤</span><span>대표 조성현</span><span>사업자등록번호 291-40-00301</span></div><div class="addr"><i>경상남도 함안군 산인면</i> <i>송산로 122, 2층 201호</i></div><div><span>1600-4670</span><span><a class="certlink" href="https://www.ictmarket.or.kr:8443/precon/pop_CertIcon.do?PRECON_REQ_ID=PRE0000152938" target="_blank" rel="noopener">사전승낙서</a></span></div></div></footer>
+</div>
+
+<!-- 아래 고정 띠: 전화·카톡·신청 세 길을 늘 보이게 -->
+<nav class="bar">
+  <a class="t" href="tel:1600-4670">📞 전화<small>바로 연결</small></a>
+  <a class="k" href="https://pf.kakao.com/_yxgTAs" target="_blank" rel="noopener">💬 카톡<small>편하게 문의</small></a>
+  <button class="g" type="button" id="goForm">내 혜택 확인 ›</button>
+</nav>
+
+<!-- 개인정보 수집·이용 동의 내용 (홈페이지 개인정보처리방침과 같은 내용, 이 페이지는 이름·번호만 받음) -->
+<div class="rvm" id="pvm" role="dialog" aria-modal="true"><div class="box pv"><div class="in">
+  <p class="tt2">개인정보 수집·이용 동의</p>
+  <table class="pvt">
+    <tr><th>수집 항목</th><td>이름, 휴대폰 번호</td></tr>
+    <tr><th>이용 목적</th><td>인터넷 가입 및 가전렌탈 상담 연락, 서비스 안내 및 신청 처리</td></tr>
+    <tr><th>보유 기간</th><td>상담 목적 달성 후 1년간 보유 후 파기 (관계 법령에 따라 보존이 필요한 경우 해당 기간 보관)</td></tr>
+    <tr><th>제3자 제공</th><td>통신사(KT·SKT·LG U+) 및 렌탈업체 가입 처리를 위해 최소한의 정보가 제공될 수 있으며, 이 경우 사전에 안내드립니다.</td></tr>
+  </table>
+  <p class="bd" style="font-size:13px">동의를 거부할 수 있으나, 거부 시 상담 신청이 제한됩니다.<br>개인정보 보호책임자: 조성현(유진텔레콤) · <span style="white-space:nowrap">1600-4670</span></p>
+  <button type="button" class="x" id="pvClose">닫기</button></div></div></div>
+
+<!-- 후기 내용 보기 -->
+<div class="rvm" id="rvm" role="dialog" aria-modal="true"><div class="box"><img id="rvImg" alt=""><div class="in">
+  <div class="hd2"><b id="rvName"></b><span id="rvProd"></span></div><div class="st">★★★★★</div>
+  <p class="tt2" id="rvTitle"></p><p class="bd" id="rvBody"></p><button type="button" class="x" id="rvClose">닫기</button></div></div></div>
+
+<!-- 신청 완료 -->
+<div class="done" id="done"><div class="sheet">
+  <div style="max-width:170px;margin:0 auto"><img src="img/done.webp" alt="" style="border-radius:20px"></div>
+  <h4><span id="doneName"></span>신청이 접수됐어요</h4>
+  <p>담당 상담사가 순서대로 연락드려요.<br>내 조건에 맞는 최대 금액을 안내해 드릴게요.</p>
+  <div class="hours">상담 시간 평일 9~18시 · 토요일 9~14시<br>시간 외 신청은 다음 상담 시간에 연락드려요</div>
+  <p style="margin-top:14px;font-weight:800;color:var(--ink)">지금 바로 이야기하고 싶다면</p>
+  <div class="two"><a href="tel:1600-4670" style="border:1.5px solid var(--b6);color:var(--b6)">📞 전화하기</a><a href="https://pf.kakao.com/_yxgTAs" target="_blank" rel="noopener" style="background:var(--kakao);color:#3C1E1E">💬 카톡 상담</a></div>
+  <button class="close" type="button" id="closeDone">닫기</button>
+</div></div>
+
+<script>
+// 실제 지급 명단 — 홈페이지 지급 명단(gift-data) 중 글씨 명단이 있는 가장 최근 날짜
+(function(){
+  var t=document.getElementById('paidTrack'), box=t.closest('.paid');
+  function 그리기(d){ if(!d||!d.rows||!d.rows.length) throw 0;
+    document.getElementById('paidDate').textContent=d.date.slice(5).replace('-','월 ')+'일 지급';
+    var h=''; d.rows.forEach(function(r){h+='<div class="r"><span class="nm">'+r[0]+'</span><span class="pd">'+r[2]+'</span><span class="tc">'+(r[1]||'')+'</span><span class="st">지급완료</span></div>';});
+    t.innerHTML=h+h; }
+  fetch('../../gift-data/index.json',{cache:'no-store'}).then(function(r){return r.json()})
+    .then(function(j){var it=(j.items||[]).filter(function(x){return x.type==='data'})[0]; if(!it) throw 0;
+      return fetch('../../gift-data/'+it.date+'.json',{cache:'no-store'}).then(function(r){return r.json()})})
+    .then(그리기).catch(function(){ if(box) box.style.display='none'; });
+})();
+// 지급 알림 굴리기 — 실제 지급 기록의 고객(이름 가운데 가림, 통신사 대신 상품 구성, 상품 칸이 빈 줄은 인터넷+TV로 표기)
+(function(){
+  var L=[['유*원님','SK매직 정수기+공기청정기','820,000원'],['김*수님','쿠쿠 얼음정수기','600,000원'],['서*희님','LG 얼음정수기','580,000원'],
+         ['이*현님','SK매직 정수기+공기청정기','800,000원'],['박*영님','SK매직 얼음정수기','600,000원'],['김*진님','청호 얼음정수기','540,000원'],['정*훈님','코웨이 얼음정수기','560,000원'],
+         ['권*하님','LG 정수기','570,000원'],['박*옥님','쿠쿠 얼음정수기','550,000원'],['이*진님','SK매직 정수기+공기청정기','800,000원'],
+         ['김*정님','SK매직 얼음정수기','550,000원']];
+  document.querySelectorAll('.nb').forEach(function(b){var i=+b.dataset.start;
+    function show(r){b.querySelector('.nn').textContent=r[0];b.querySelector('.np').textContent=r[1];b.querySelector('.na').textContent=r[2]}
+    show(L[i%L.length]);
+    setInterval(function(){b.classList.add('out');setTimeout(function(){show(L[++i%L.length]);b.classList.remove('out')},260)},2600);});
+})();
+// 시장조사 막대: 화면에 들어오면 자람
+(function(){var m=document.getElementById('mr');if(!m)return;
+  if(!('IntersectionObserver' in window)){m.classList.add('on');return}
+  new IntersectionObserver(function(es,o){es.forEach(function(e){if(e.isIntersecting){m.classList.add('on');o.disconnect()}})},{threshold:.35}).observe(m);})();
+// 후기 사진 누르면 홈페이지 후기 내용을 창으로
+(function(){var D={"story-03": {"이름": "박*찬", "상품": "LG 정수기 렌탈", "제목": "사은품 혜택에 반해서 선택했는데, 설치기사님까지 너무 친절해요!", "본문": "이사 후 정수기 알아보다가 사은품 혜택이 좋아서 당현함 선택했어요. 카톡 상담도 빠르고 친절하게 진행됐고, 설치기사님도 꼼꼼하게 설명해주셔서 만족스러웠습니다. 정수기가 생각보다 더 예쁘고 기능도 좋아서 예쁘게 잘 쓸게요!", "사진": "img/rv-03.webp"}, "story-04": {"이름": "최*호", "상품": "쿠쿠 정수기 렌탈", "제목": "투명한 혜택 안내에 당일 지급까지, 믿고 선택할 수 있었어요!", "본문": "여러 비교사이트 살펴봤는데 당현함이 혜택·설치비·사은품 조건을 가장 명확하게 정리해줘서 빠르게 결정할 수 있었어요. 카카오톡으로 간편하게 신청하고 일정 조율 후 깔끔하게 설치 완료. 안내받은 혜택 그대로 지급됐고, 설치 완료 메시지 보내고 당일에 지급돼서 신뢰도가 더 높았습니다. 정수기 렌탈 고민 중이라면 강력 추천해요!", "사진": "img/rv-04.webp"}, "story-01": {"이름": "김*영", "상품": "SK매직 정수기 렌탈", "제목": "상담부터 설치까지 약속한 내용 그대로 진행됐어요!", "본문": "여러 업체를 비교해봤는데 당현함이 조건이 가장 좋아서 선택했어요. 상담부터 설치까지 약속한 내용 그대로 진행되어 믿음이 갔고, 사은품 혜택도 생각보다 훨씬 푸짐해서 만족도가 높았습니다. SK매직 정수기 설치 후에도 불편함 없이 잘 쓰고 있어요. 주변에도 적극 추천 중입니다! 😊", "사진": "img/rv-01.webp"}, "story-12": {"이름": "박*은", "상품": "쿠쿠 비데 렌탈", "제목": "원하는 날짜에 맞춰 늦은 시간에도 설치해주셨어요!", "본문": "회사에서만 비데를 쓰다가 불편하고 찝찝해서 집에서도 사용하려고 렌탈업체를 열심히 찾다가 진행하게 되었어요~ 집에서도 비데를 사용할 수 있어서 너무너무 좋습니다! 설치기사님도 제가 원하는 날짜에 설치해주시려고 늦은 시간에도 불구하고 오셔서 신속하고 친절하게 설치까지 해주시고 설명도 꼼꼼히 다 해주셨네요. 감사합니다!", "사진": "img/rv-12.webp"}, "story-13": {"이름": "이*수", "상품": "LG 공기청정기 렌탈", "제목": "상담원도 기사님도 친절 그 자체, 시간 약속까지 잘 지켜주셨어요!", "본문": "이사하면서 거실에 공기청정기 하나 쓰려고 렌탈 신청했어요. 합리적인 가격인 곳을 찾다가 지인 추천을 받고 바로 진행했습니다. 설치 전날 연락이 왔고 약속 시간을 잘 지켜서 방문해주셨어요. 문 앞에서 제품 개봉하시고 빠르게 설치해주시고 간단한 사용 설명도 해주셨습니다. 상담원분도 설치기사님도 너무 친절하셨고, 사은품도 만족합니다!", "사진": "img/rv-13.webp"}, "story-11": {"이름": "이*진", "상품": "LG 정수기 렌탈", "제목": "디자인부터 기능까지, 선택에 완전 만족해요!", "본문": "제품 먼저 고른 후 혜택 비교하면서 당현함에서 바로 진행했어요. 설치도 빠르게 잘 됐고, 주기적으로 관리도 받을 수 있어 안심이 돼요. 디자인이 깔끔해서 주방이 훨씬 정돈된 느낌이고, 냉수·온수·얼음에 10ml 단위 용량 설정까지 기능적으로도 정말 만족스럽습니다!", "사진": "img/rv-11.webp"}},m=document.getElementById('rvm');
+  document.querySelectorAll('.reviews .rv').forEach(function(b){b.onclick=function(){var r=D[b.dataset.k];
+    document.getElementById('rvImg').src=r['사진'];document.getElementById('rvName').textContent=r['이름'];document.getElementById('rvProd').textContent=r['상품'];
+    document.getElementById('rvTitle').textContent=r['제목'];document.getElementById('rvBody').textContent=r['본문'];m.classList.add('on')}});
+  document.getElementById('rvClose').onclick=function(){m.classList.remove('on')};
+  m.onclick=function(e){if(e.target===m)m.classList.remove('on')};})();
+// 요금 안내 상자: 화면에 들어오면 떠오르며 두 번 맥박
+(function(){var h=document.querySelector('.honest');if(!h)return;
+  if(!('IntersectionObserver' in window)){h.classList.add('on');return}
+  new IntersectionObserver(function(es,o){es.forEach(function(e){if(e.isIntersecting){h.classList.add('on');o.disconnect()}})},{threshold:.6}).observe(h);})();
+// 개인정보 동의 「보기」 → 페이지 안 창
+(function(){var m=document.getElementById('pvm');
+  document.querySelectorAll('.pvopen').forEach(function(a){a.onclick=function(e){e.preventDefault();m.classList.add('on')}});
+  document.getElementById('pvClose').onclick=function(){m.classList.remove('on')};
+  m.onclick=function(e){if(e.target===m)m.classList.remove('on')};})();
+// 인기 렌탈 제품: 품목 고르기 · 제품이나 단추를 누르면 신청 칸으로
+(function(){var s=document.getElementById('prod');if(!s)return;var o=s.querySelector('.pother');
+  var 이름={water:'정수기',bidet:'비데',air:'공기청정기',chair:'안마의자'};
+  s.querySelectorAll('.chips button').forEach(function(b){b.onclick=function(){s.querySelectorAll('.chips button').forEach(function(x){x.classList.toggle('on',x===b)});
+    var c=b.dataset.c, 있음=false; s.querySelectorAll('.pgrid').forEach(function(x){var 이것=x.dataset.c===c; x.hidden=!이것; if(이것){있음=true; var n=document.getElementById('pnote'); if(n&&x.dataset.note)n.textContent=x.dataset.note;}});
+    o.hidden=있음; document.getElementById('poName').textContent=이름[c];}});
+  s.querySelectorAll('.pc,.pbtn,.pmore').forEach(function(b){b.onclick=function(){document.getElementById('goForm').click()}});})();
+// 신청 — 입력 검사 → 전환 집계 → 렌탈 화면과 같은 dhSend(중간 접수처 → 시트)
+document.querySelectorAll('form.apply').forEach(function(f){
+  var p=f.querySelector('[name=phone]');
+  p.addEventListener('input',function(){var d=p.value.replace(/\D/g,'').slice(0,11);p.value=d.length>7?d.slice(0,3)+'-'+d.slice(3,7)+'-'+d.slice(7):d.length>3?d.slice(0,3)+'-'+d.slice(3):d;});
+  f.addEventListener('submit',function(e){e.preventDefault();var n=f.querySelector('[name=name]').value.trim(),d=p.value.replace(/\D/g,''),er=f.querySelector('.err'),ag=f.querySelector('.agree input').checked;
+    er.style.display='block';
+    if(!n){er.textContent='이름을 적어 주세요.';return}
+    if(!/^01[016789]\d{7,8}$/.test(d)){er.textContent='휴대폰 번호를 정확히 적어 주세요.';return}
+    if(!ag){er.textContent='개인정보 수집·이용에 동의해 주세요.';return}
+    er.style.display='none';
+    var btn=f.querySelector('.cta'),글=btn.textContent; btn.disabled=true; btn.textContent='신청 중...';
+    if(typeof dhTrack==='function') dhTrack('lead_submit',{once:false});
+    var 전화=d.slice(0,3)+'-'+d.slice(3,d.length-4)+'-'+d.slice(-4);
+    var 탭=document.querySelector('#prod .chips button.on'), 품목=탭?탭.textContent.trim():'정수기';
+    dhSend(Object.assign({name:(window.dh이름거르기?window.dh이름거르기(n):n),phone:전화,usim:'N',service:(품목==='정수기'?'정수기':'가전렌탈'),memo:'[인스타 랜딩 렌탈01-C] 보던 품목: '+품목},dhInflow()),function(문구){btn.textContent=문구})
+      .then(function(){btn.disabled=false;btn.textContent=글;f.reset();f.querySelector('.agree input').checked=true;
+        document.getElementById('doneName').textContent=n+'님, ';document.getElementById('done').classList.add('on');
+        if(typeof dhNaver==='function') dhNaver('lead');})
+      .catch(function(){btn.disabled=false;btn.textContent=글;er.style.display='block';er.textContent='접수가 잠시 안 됩니다. 1600-4670으로 전화 주시거나 카톡으로 남겨 주세요.';});
+  });
+});
+document.getElementById('goForm').onclick=function(){window.scrollTo(0,0)};  /* 2026-10-26 사장님: 입력칸으로 가는 단추는 모두 첫 화면 맨 위로(이름 칸에 커서를 넣으면 휴대폰 키보드가 화면을 밀어 애매한 자리에 멈춰서 뺌) */
+document.getElementById('closeDone').onclick=function(){document.getElementById('done').classList.remove('on')};
+</script>
+</body>
+</html>
