@@ -545,7 +545,7 @@ a{color:inherit;text-decoration:none}
   var t=document.getElementById('paidTrack'), box=t.closest('.paid');
   function 그리기(d){ if(!d||!d.rows||!d.rows.length) throw 0;
     document.getElementById('paidDate').textContent=d.date.slice(5).replace('-','월 ')+'일 지급';
-    var h=''; d.rows.forEach(function(r){h+='<div class="r"><span class="nm">'+r[0]+'</span><span class="pd">'+r[2]+'</span><span class="tc"></span><span class="st">지급완료</span></div>';});
+    var h=''; d.rows.forEach(function(r){h+='<div class="r"><span class="nm">'+r[0]+'</span><span class="pd">'+r[2]+'</span><span class="tc">'+(r[1]||'')+'</span><span class="st">지급완료</span></div>';});
     t.innerHTML=h+h; }
   fetch('../../gift-data/index.json',{cache:'no-store'}).then(function(r){return r.json()})
     .then(function(j){var it=(j.items||[]).filter(function(x){return x.type==='data'})[0]; if(!it) throw 0;
