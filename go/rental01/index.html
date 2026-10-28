@@ -280,7 +280,7 @@ a{color:inherit;text-decoration:none}
     <div class="amt">렌탈 현금 최대 <b>50만원</b><span class="plus">+@ 추가지급</span></div>
     <div class="noti" aria-hidden="true">
       <div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="#fff"><path d="M3 10l9-6 9 6v2H3zm2 3h2v6H5zm4 0h2v6H9zm4 0h2v6h-2zm4 0h2v6h-2zM3 20h18v2H3z"/></svg></div>
-      <div class="nb" style="flex:1;min-width:0" data-start="0"><div class="t1"><span>입금 알림</span><span>오후 6:00</span></div><div class="t2"><span class="nn">유*원님</span> <span class="np">SK매직 정수기+공기청정기</span><br>현금 <em class="na">820,000원</em> 입금되었습니다</div></div>
+      <div class="nb" style="flex:1;min-width:0" data-start="0"><div class="t1"><span>입금 알림</span><span>오후 6:00</span></div><div class="t2"><span class="nn">유*원님</span> <span class="np">정수기+공기청정기</span><br>현금 <em class="na">820,000원</em> 입금되었습니다</div></div>
     </div>
   </div>
 </section>
@@ -538,10 +538,10 @@ a{color:inherit;text-decoration:none}
 })();
 // 입금 알림 굴리기 — 실제 지급 기록의 고객(이름 가운데 가림, 통신사 대신 상품 구성, 상품 칸이 빈 줄은 인터넷+TV로 표기)
 (function(){
-  var L=[['유*원님','SK매직 정수기+공기청정기','820,000원'],['김*수님','쿠쿠 얼음정수기','600,000원'],['서*희님','LG 얼음정수기','580,000원'],
-         ['이*현님','SK매직 정수기+공기청정기','800,000원'],['박*영님','SK매직 얼음정수기','600,000원'],['김*진님','청호 얼음정수기','540,000원'],
-         ['권*하님','LG 정수기','570,000원'],['박*옥님','쿠쿠 얼음정수기','550,000원'],['이*진님','SK매직 정수기+공기청정기','800,000원'],
-         ['김*정님','SK매직 얼음정수기','550,000원']];
+  var L=[['유*원님','정수기+공기청정기','820,000원'],['김*수님','얼음정수기','600,000원'],['서*희님','얼음정수기','580,000원'],
+         ['이*현님','정수기+공기청정기','800,000원'],['박*영님','얼음정수기','600,000원'],['김*진님','얼음정수기','540,000원'],
+         ['권*하님','정수기','570,000원'],['박*옥님','얼음정수기','550,000원'],['이*진님','정수기+공기청정기','800,000원'],
+         ['김*정님','얼음정수기','550,000원']];
   document.querySelectorAll('.nb').forEach(function(b){var i=+b.dataset.start;
     function show(r){b.querySelector('.nn').textContent=r[0];b.querySelector('.np').textContent=r[1];b.querySelector('.na').textContent=r[2]}
     show(L[i%L.length]);
