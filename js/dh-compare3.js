@@ -70,6 +70,7 @@
 
   /* 담긴 제품 가운데 이 화면에 자료가 없는 브랜드만 더 읽어 옵니다.
      담을 수 있는 것이 넷뿐이라 거의 언제나 한두 개, 대개는 하나도 없습니다. */
+  var 카드불러봄 = {};
   function 모자란자료채우기(끝나면) {
     var 있음 = 실린브랜드();
     var 필요 = [];
@@ -77,13 +78,28 @@
       if (x.코드 && 있음.indexOf(x.코드) < 0 &&
           !불러본[x.코드] && 필요.indexOf(x.코드) < 0) 필요.push(x.코드);
     });
-    if (!필요.length) { 끝나면(false); return; }
-    var 남 = 필요.length;
+    /* 2026-10-30 — 제휴카드 자료도 브랜드마다 따로 실립니다(상세 화면은 그 브랜드 하나만).
+       다른 브랜드 제품을 담은 채 비교 창을 열면 그 브랜드 카드 자료가 없어 「—」로 나왔습니다. */
+    var 카드필요 = [];
+    if (window.제휴카드넣기 && !window.카드가림) 담긴.forEach(function (x) {
+      if (x.코드 && !(window.제휴카드자료 || {})[x.코드] && !카드불러봄[x.코드] &&
+          카드필요.indexOf(x.코드) < 0) 카드필요.push(x.코드);
+    });
+    if (!필요.length && !카드필요.length) { 끝나면(false); return; }
+    var 남 = 필요.length + 카드필요.length;
+    function 하나끝() { if (--남 === 0) 끝나면(true); }
     필요.forEach(function (코드) {
       불러본[코드] = true;
       var s = document.createElement('script');
       s.src = 밑동() + 'js/data2-' + 코드 + '.js' + (판 ? '?v=' + 판 : '');
-      s.onload = s.onerror = function () { if (--남 === 0) 끝나면(true); };
+      s.onload = s.onerror = 하나끝;
+      document.head.appendChild(s);
+    });
+    카드필요.forEach(function (코드) {
+      카드불러봄[코드] = true;
+      var s = document.createElement('script');
+      s.src = 밑동() + 'js/card/' + 코드 + '.js?h=' + Math.floor(Date.now() / 3600000);
+      s.onload = s.onerror = 하나끝;
       document.head.appendChild(s);
     });
   }
@@ -290,7 +306,14 @@
          줄 이름과 칸을 이어 읽으면 「제휴카드 사용시 할인」이 됩니다. */
       칸(function (r) {
         if (window.카드가림) return '사용시 할인';
-        return r.값.카드 != null ? (돈(r.값.카드) + '원') : '—';
+        /* 2026-10-30 — 다른 화면에서 담을 때 그 브랜드 카드 자료가 아직 없어 「—」로 남던 것.
+           표를 그릴 때 카드 자료가 있으면 그 자리에서 다시 셈합니다(상세 화면 값과 같게). */
+        var 카드값 = r.값.카드;
+        if (카드값 == null && r.값.프모 != null) {
+          var 카자 = (window.제휴카드자료 || {})[r.코드];
+          if (카자) 카드값 = Math.max(0, r.값.프모 - 카자.깎을돈);
+        }
+        return 카드값 != null ? (돈(카드값) + '원') : '—';
       }, window.카드가림 ? '제휴카드' : '제휴카드가') +
       칸(function (r) {
         return (r.p.기능 || []).filter(function (k) { return k !== '탱크형'; }).join(' · ') || '—';
@@ -320,6 +343,8 @@
     몸.scrollTop = 0;
     창.classList.add('open');
     document.body.classList.add('pop-open');
+    /* 2026-10-30 — 뒤로가기로 비교 창만 닫히게 기록 한 칸(예전엔 이전 제품 화면으로 넘어감) */
+    if (!비교기록) { history.pushState({ dh비교: 1 }, '', location.href); 비교기록 = true; }
     var 닫 = document.getElementById('비교닫기3');
     if (닫) 닫.focus();
     /* 아직 못 읽은 브랜드가 있으면 읽어 온 뒤 표를 다시 그립니다.
@@ -328,11 +353,25 @@
       if (창.classList.contains('open')) { 몸.innerHTML = 표만들기(); 다시그리기(); }
     });
   }
-  function 창닫기() {
+  var 비교기록 = false, 비교뒤로중 = false;
+  /* 뒤로안함: 신청창으로 넘어갈 때처럼 바로 다른 창이 뜰 때 — 되돌리기가 새 창을 닫지 않게 기록만 지웁니다 */
+  function 창닫기(뒤로안함) {
     var 창 = document.getElementById('비교창3');
     if (창) 창.classList.remove('open');
     document.body.classList.remove('pop-open');
+    if (비교기록) {
+      비교기록 = false;
+      var 내기록 = history.state && history.state.dh비교;
+      if (내기록 && !비교뒤로중) {
+        if (뒤로안함) history.replaceState(null, '', location.href); else history.back();
+      }
+    }
   }
+  window.addEventListener('popstate', function () {
+    var 창 = document.getElementById('비교창3');
+    if (!비교기록 || !창 || !창.classList.contains('open')) return;
+    비교뒤로중 = true; 창닫기(); 비교뒤로중 = false;
+  });
 
   /* ── 눌림 받기 ─────────────────────────────────────── */
   function 달기() {
@@ -350,7 +389,7 @@
       if (e.target.closest('#비교닫기3')) { 창닫기(); return; }
       if (e.target.closest('#비교비우기')) { 비우기(); 창닫기(); return; }
       if (e.target.closest('#비교신청')) {
-        창닫기();
+        창닫기(true);
         /* 비교함에 담은 제품을 신청창의 「선택한 상품」 칸에 그대로 넘깁니다.
            2026-09-10 전에는 여기서 아무것도 넘기지 않아, 비교하고 신청하면
            **어떤 제품을 보고 있었는지 시트에 한 줄도 남지 않았습니다.** */

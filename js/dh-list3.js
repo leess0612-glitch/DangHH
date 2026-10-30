@@ -376,6 +376,13 @@
     띄움.style.top = Math.round(r.bottom + 6) + 'px';
     var 폭 = 띄움.offsetWidth || 150;
     띄움.style.left = Math.round(Math.min(Math.max(8, r.left), window.innerWidth - 폭 - 8)) + 'px';
+    /* 2026-10-30 — 메뉴 끝(브랜드 「현대큐밍」)이 화면 아래 고정 띠에 가려 바로 못 누르던 것.
+       띠 위까지만 펼치고 넘치면 메뉴 안에서 굴립니다. */
+    var 띠 = document.getElementById('아래띠');
+    var 띠높이 = (띠 && getComputedStyle(띠).display !== 'none') ? 띠.getBoundingClientRect().height : 0;
+    var 남은 = window.innerHeight - 띠높이 - (r.bottom + 6) - 8;
+    띄움.style.maxHeight = Math.max(160, Math.round(남은)) + 'px';
+    띄움.style.overflowY = 'auto';
   }
   function 열린메뉴따라가기() {
     var 띄움 = document.getElementById('알약띄움');
