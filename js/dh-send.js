@@ -137,8 +137,9 @@ async function submitForm() {
   let memo = document.getElementById('inputMemo').value.trim();
   if (selectedServices.size === 0) { alert('서비스를 하나 이상 선택해주세요.'); return; }
   if (!phone || phone.replace(/\D/g,'').length !== 11) { alert('휴대폰 번호 11자리를 정확히 입력해주세요.\n(예: 010-1234-5678)'); return; }
-  if (!document.getElementById('c1').checked) {
-    alert('개인정보 수집 및 이용에 동의해주세요.'); return;
+  var 동의2 = document.getElementById('c2');   /* 제3자 제공 동의 칸 (2026-10-30) — 없는 화면은 건너뜀 */
+  if (!document.getElementById('c1').checked || (동의2 && !동의2.checked)) {
+    alert('개인정보 수집·이용 및 제3자 제공에 동의해주세요.'); return;
   }
   const btn = document.getElementById('submitBtn');
   const 본래글자 = btn.textContent;                 /* 화면마다 다른 글자를 그대로 되돌리려고 기억 */
