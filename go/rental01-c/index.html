@@ -12,7 +12,7 @@ if(navigator.webdriver===true){window.DH_BOT=true;window['ga-disable-G-NBGKQ2Y30
 <script>var DH_PAGE = 'danghh-rental01-c';</script>
 <script src="../../js/dh-track.js?v=2"></script>
 <script src="../../js/dh-inflow.js?v=69"></script>
-<script src="../../js/dh-send.js?v=4"></script>
+<script src="../../js/dh-send.js?v=5"></script>
 <script>
 if (typeof dhInflow !== 'function') { window.dhInflow = function () { return {}; }; }
 /* 신청 보내기 설정 — 렌탈 화면(rental.html · rental-c.html)과 같은 구글 웹앱·접수처·갈래 */
@@ -289,7 +289,7 @@ a{color:inherit;text-decoration:none}
   <h2>내 최대 혜택은 <span class="q">? 원</span></h2>
   <form class="apply" novalidate>
     <div class="row"><input class="nm" name="name" placeholder="이름" autocomplete="name"><input name="phone" inputmode="numeric" placeholder="휴대폰 번호" autocomplete="tel"></div>
-    <label class="agree"><input type="checkbox" checked> (필수) 개인정보 수집·이용 동의 <a href="#" class="pvopen">보기</a></label>
+    <label class="agree"><input type="checkbox" checked> (필수) 개인정보 수집·이용 동의(당현함) <a href="#" class="pvopen">보기</a></label>
     <label class="agree"><input type="checkbox" checked> (필수) 개인정보 제3자 제공 동의 <a href="#" class="pvopen">보기</a></label>
     <div class="err"></div>
     <button class="cta" type="submit">내 최대 혜택 확인하기</button>
@@ -493,7 +493,7 @@ a{color:inherit;text-decoration:none}
     <h2>내 최대 혜택은 <span class="q">? 원</span></h2>
     <form class="apply" novalidate>
       <div class="row"><input class="nm" name="name" placeholder="이름" autocomplete="name"><input name="phone" inputmode="numeric" placeholder="휴대폰 번호" autocomplete="tel"></div>
-      <label class="agree"><input type="checkbox" checked> (필수) 개인정보 수집·이용 동의 <a href="#" class="pvopen">보기</a></label>
+      <label class="agree"><input type="checkbox" checked> (필수) 개인정보 수집·이용 동의(당현함) <a href="#" class="pvopen">보기</a></label>
     <label class="agree"><input type="checkbox" checked> (필수) 개인정보 제3자 제공 동의 <a href="#" class="pvopen">보기</a></label>
       <div class="err"></div>
       <button class="cta" type="submit">내 최대 혜택 확인하기</button>
@@ -618,5 +618,11 @@ document.querySelectorAll('form.apply').forEach(function(f){
 document.getElementById('goForm').onclick=function(){window.scrollTo(0,0)};  /* 2026-10-26 사장님: 입력칸으로 가는 단추는 모두 첫 화면 맨 위로(이름 칸에 커서를 넣으면 휴대폰 키보드가 화면을 밀어 애매한 자리에 멈춰서 뺌) */
 document.getElementById('closeDone').onclick=function(){document.getElementById('done').classList.remove('on')};
 </script>
+<script>/* 2026-10-30 : 창(개인정보·후기 등)을 연 채 뒤로가기를 누르면 랜딩을 떠나던 것 — 창만 닫히게. ESC 로도 닫힘 */
+(function(){var ms=[].slice.call(document.querySelectorAll('.rvm')),뒤로중=false;
+  ms.forEach(function(m){var 열림=m.classList.contains('on');new MutationObserver(function(){var 지금=m.classList.contains('on');if(지금===열림)return;열림=지금;
+    if(지금){history.pushState({dh창:1},'',location.href)}else if(!뒤로중&&history.state&&history.state.dh창){history.back()}}).observe(m,{attributes:true,attributeFilter:['class']})});
+  window.addEventListener('popstate',function(){var 열린=ms.filter(function(m){return m.classList.contains('on')});if(!열린.length)return;뒤로중=true;열린.forEach(function(m){m.classList.remove('on')});setTimeout(function(){뒤로중=false},0)});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')ms.forEach(function(m){m.classList.remove('on')})});})();</script>
 </body>
 </html>

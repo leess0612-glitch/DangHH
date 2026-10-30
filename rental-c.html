@@ -24,7 +24,7 @@ if(navigator.webdriver===true){window.DH_BOT=true;window['ga-disable-G-NBGKQ2Y30
 var DH_PAGE = 'danghh-rental-coway';</script>
 <script src="js/dh-track.js?v=2"></script>
 <script src="js/dh-inflow.js?v=69"></script>
-<script src="js/dh-send.js?v=4"></script>
+<script src="js/dh-send.js?v=5"></script>
 <script src="js/dh-topnav.js?v=7"></script>
 <script src="js/dh-find.js?v=14"></script>
 <script src="js/dh-footer.js?v=5"></script>
@@ -893,6 +893,10 @@ html { scroll-behavior: auto; }
   color:rgba(255,255,255,0.72); font-size:12px;
 }
 .mini-consent.desk a{ color:rgba(255,255,255,0.85); }
+/* 2026-10-30 : 아래 띠도 동의 칸 2개(미리 체크)로 — 신청 칸과 같게 */
+.mini-consent.desk .dc{ cursor:pointer; white-space:nowrap; }
+.mini-consent.desk .dc input{ width:12px; height:12px; margin:0 3px 0 0; vertical-align:-1px; accent-color:#fff; cursor:pointer; }
+.mini-consent.desk .dc-gap{ display:inline-block; width:14px; }
 
 /* 아래 고정 띠에 안내 한 줄이 더 붙어 띠가 높아졌다(116 -> 약 137).
    푸터 마지막 글줄이 띠에 가리지 않도록 그만큼 빈 자리를 더 준다. */
@@ -2116,7 +2120,7 @@ function promiseZoom(src){ document.getElementById('promiseViewerImg').src=src; 
     <div class="desk-cta-success" id="deskSuccess">✅ 신청 완료! 곧 연락드리겠습니다.</div>
   </div>
   <!-- 2026-08-27 : 여기서도 번호를 받는데 동의 표시가 없었다 -->
-  <p class="mini-consent desk" id="deskConsent">무료 확인을 누르시면 <a href="javascript:void(0)" onclick="openPrivacy()">개인정보 수집·이용 및 제3자 제공</a>에 동의하신 것으로 봅니다</p>
+  <p class="mini-consent desk" id="deskConsent"><label class="dc"><input type="checkbox" id="dc1" checked> (필수) 개인정보 수집·이용 동의 (유진텔레콤·당현함)</label> <a href="javascript:void(0)" onclick="openPrivacy()">보기</a><span class="dc-gap"></span><label class="dc"><input type="checkbox" id="dc2" checked> (필수) 개인정보 제3자 제공 동의</label> <a href="javascript:void(0)" onclick="openPrivacy()">보기</a></p>
 </div>
 
 <!-- FLOATING BUTTONS -->

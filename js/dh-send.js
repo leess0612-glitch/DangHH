@@ -173,6 +173,9 @@ async function submitDeskForm() {
   const 희망제품 = (document.getElementById('deskService') || { value: '' }).value.trim();
   if (!희망제품) { alert('희망 제품을 적어주세요.\n(예: 정수기, 비데, 매트리스)'); return; }
   if (!phone || phone.replace(/\D/g,'').length !== 11) { alert('휴대폰 번호 11자리를 정확히 입력해주세요.\n(예: 010-1234-5678)'); return; }
+  /* 아래 띠 동의 칸 2개 (2026-10-30) — 칸이 없는 옛 화면은 건너뜀 */
+  const 띠동의 = ['dc1','dc2'].map(i => document.getElementById(i)).filter(Boolean);
+  if (띠동의.some(x => !x.checked)) { alert('개인정보 수집·이용 및 제3자 제공에 동의해주세요.'); return; }
   dhTrack('lead_submit', { once: false });   /* 입력 검사 통과 시점에 전환 집계 */
   /* 보내는 동안 버튼을 잠근다. 안 잠그면 느릴 때(최대 27초) 손님이 여러 번 누른다 */
   const btn = document.querySelector('.desk-cta-bar-btn');

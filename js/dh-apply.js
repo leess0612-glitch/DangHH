@@ -295,11 +295,11 @@
               '</div>' +
               '<div style="display:flex;align-items:flex-start;gap:8px;margin-bottom:6px;">' +
                 '<input type="checkbox" id="c1" checked style="width:12px;height:12px;accent-color:#9ca3af;flex-shrink:0;margin-top:3px;cursor:pointer;opacity:0.7;">' +
-                '<label for="c1" style="font-size:13px;color:var(--gray,#64748b);cursor:pointer;line-height:1.5;">(필수) 개인정보 수집·이용 동의 (유진텔레콤·당현함) <a href="javascript:void(0)" onclick="openPrivacy()" style="color:var(--gray,#64748b);font-weight:600;font-size:12px;text-decoration:none;">›</a></label>' +
+                '<label for="c1" style="font-size:13px;color:var(--gray,#64748b);cursor:pointer;line-height:1.5;">(필수) 개인정보 수집·이용 동의 (유진텔레콤·당현함) <a href="javascript:void(0)" onclick="openPrivacy()" aria-label="개인정보 내용 보기" style="color:var(--gray,#64748b);font-weight:600;font-size:12px;text-decoration:none;display:inline-block;padding:6px 10px;margin:-6px -6px;">›</a></label>' +
               '</div>' +
               '<div style="display:flex;align-items:flex-start;gap:8px;margin-bottom:18px;">' +
                 '<input type="checkbox" id="c2" checked style="width:12px;height:12px;accent-color:#9ca3af;flex-shrink:0;margin-top:3px;cursor:pointer;opacity:0.7;">' +
-                '<label for="c2" style="font-size:13px;color:var(--gray,#64748b);cursor:pointer;line-height:1.5;">(필수) 개인정보 제3자 제공 동의 <a href="javascript:void(0)" onclick="openPrivacy()" style="color:var(--gray,#64748b);font-weight:600;font-size:12px;text-decoration:none;">›</a></label>' +
+                '<label for="c2" style="font-size:13px;color:var(--gray,#64748b);cursor:pointer;line-height:1.5;">(필수) 개인정보 제3자 제공 동의 <a href="javascript:void(0)" onclick="openPrivacy()" aria-label="개인정보 내용 보기" style="color:var(--gray,#64748b);font-weight:600;font-size:12px;text-decoration:none;display:inline-block;padding:6px 10px;margin:-6px -6px;">›</a></label>' +
               '</div>' +
               '<p class="form-urgency">⏰ 오후 5:30 이전 설치 시 당일 현금 입금</p>' +
               '<button type="button" class="form-submit" id="submitBtn">놓친 지원금 무료 확인</button>' +
