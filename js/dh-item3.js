@@ -72,6 +72,16 @@
 
     var 카 = (window.제휴카드자료 || {})[p.코드];
     var 첫 = 셈부품.첫조합(p);
+    /* 2026-11-03 — 목록에서 「약정」을 골라 들어오면 주소 끝에 #pick=약정|관리 가 붙습니다.
+       목록 카드에 보인 그 조합으로 계산기를 엽니다(안 그러면 카드 값과 상세 값이 달라 보입니다).
+       자료에 없는 조합이면 무시하고 원래대로 엽니다. */
+    try {
+      var 찍 = /[#&]pick=([^&]*)/.exec(location.hash);
+      if (찍) {
+        var 쌍 = decodeURIComponent(찍[1]);
+        if ((p.요금 || {})[쌍]) { 첫 = { 약정: 쌍.split('|')[0], 관리: 쌍.split('|')[1] }; }
+      }
+    } catch (e) {}
     var 타사있나 = Object.keys(p.요금 || {}).some(function (k) { return p.요금[k].타사 != null; });
 
     몸.innerHTML =

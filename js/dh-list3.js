@@ -167,7 +167,9 @@
 
     /* 담기 단추는 링크(<a>) 안에 넣을 수 없어 카드를 한 겹 감쌉니다 */
     return '<div class="li-item"' + (숨김 ? ' hidden' : '') + '>' +
-      '<a class="li-card" href="' + 막(상세주소(p)) + '">' +
+      /* 약정을 골랐으면 카드에 보인 조합(약정·관리)으로 상세 계산기가 열리게 주소 끝에 적어 넘깁니다 */
+      '<a class="li-card" href="' + 막(상세주소(p) +
+        (고른거름.약정 !== '전체' ? '#pick=' + encodeURIComponent(값.약정 + '|' + 값.관리) : '')) + '">' +
       '<div class="li-photo"><img src="' + 밑동() + 'img/' + 막(p.사진) + '.jpg" alt="' + 막(p.이름) +
         '" loading="lazy" width="112" height="112"></div>' +
       '<div class="li-info">' +
