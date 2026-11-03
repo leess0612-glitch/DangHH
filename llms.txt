@@ -32,6 +32,6 @@
 
 ## 그 밖에
 
-- [설치 후기 모음](https://danghh.com/reviews.html): 고객이 네이버 카페에 올린 인터넷·TV·정수기·가전 설치 후기 40개(지역·상품·설치한 달·사진)
+- [설치 후기 게시판](https://danghh.com/reviews/): 고객이 네이버 카페에 올린 인터넷·TV·정수기·가전 설치 후기 93개(지역·상품·모델·설치한 달·사진, 후기마다 개별 페이지 /reviews/<번호>/)
 - [사은품 지급명단](https://danghh.com/gift.html)
 - [사이트맵](https://danghh.com/sitemap.xml)
