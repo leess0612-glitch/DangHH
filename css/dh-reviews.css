@@ -75,8 +75,14 @@
 .rv-origin a{ color:#1257C9; font-weight:700; }
 .rv-cta{ margin:32px 0; padding:22px; border-radius:12px; background:#EAF1FC; text-align:center; }
 .rv-cta p{ font-size:16px; font-weight:600; color:#0F172A; margin-bottom:12px; }
-.rv-cta a{ display:inline-flex; align-items:center; justify-content:center; min-height:48px; padding:0 28px; border-radius:8px;
-  background:#1257C9; color:#fff; font-size:16px; font-weight:700; text-decoration:none; }
+.rv-cta-main{ display:inline-flex; align-items:center; justify-content:center; min-height:52px; min-width:240px; padding:0 28px; border:0; border-radius:8px;
+  background:#1257C9; color:#fff; font:inherit; font-size:17px; font-weight:700; cursor:pointer; }
+/* 신청서가 부담스러운 손님용 — 카톡·전화 (11/3 에이전트 10명 검토: 글 끝 신청 단추 아래 보조 줄) */
+.rv-cta-sub{ display:flex; justify-content:center; gap:8px; margin-top:10px; flex-wrap:wrap; }
+.rv-cta-sub a{ display:inline-flex; align-items:center; justify-content:center; min-height:48px; min-width:116px; padding:0 18px; border-radius:8px;
+  font-size:16px; font-weight:700; text-decoration:none; }
+.rv-kakao{ background:#FEE500; color:#191919; }
+.rv-tel{ background:#fff; color:#0F172A; border:1px solid var(--border); }
 .rv-pn{ display:grid; grid-template-columns:1fr 1fr; gap:12px; }
 .rv-pn a{ display:block; padding:14px 16px; border:1px solid var(--border); border-radius:8px; background:#fff;
   text-decoration:none; color:#0F172A; font-size:14px; font-weight:600; line-height:1.5; }

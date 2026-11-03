@@ -63,6 +63,10 @@
        (브랜드 목록은 알약으로 코웨이를 고를 수 있어 세기 2, 제품은 세기 1). */
     else if (/\/water-c\//.test(길) || 코웨이문) 세기 = /^(sk|cuckoo|lg|chungho|wells|ruhens|qming)$/i.test(폴더) ? 2 : 1;
     else 세기 = 0;
+  } else if (/\/reviews(?:\/|\.html|$)/.test(길)) {
+    /* ★ 2026-11-03 — 설치 후기 게시판(/reviews/)은 코웨이 후기가 함께 실리므로 늘 전부 바꿉니다.
+       화면 글은 처음부터 현금 낱말 0 이고, 여기서는 신청창(dh-apply.js)이 만드는 글자를 바꿉니다. */
+    세기 = 2;
   } else if (코웨이문) {
     세기 = 2;
   }
