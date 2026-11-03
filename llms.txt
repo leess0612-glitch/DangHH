@@ -20,6 +20,14 @@
 - [렌탈 안내](https://danghh.com/rental.html): 정수기·비데·공기청정기·안마의자 렌탈 조건과 사은품
 - [코웨이 렌탈 안내](https://danghh.com/rental-c.html)
 - [정수기 렌탈 요금 비교](https://danghh.com/water/): 코웨이·SK매직·LG·쿠쿠·청호·웰스·루헨스·현대큐밍 198개 제품, 브랜드·약정·관리 방식별 월 요금(제품마다 /water/<제품>/ 개별 페이지)
+- [코웨이 정수기 렌탈 요금 비교](https://danghh.com/water/coway/): 코웨이 정수기만 모아 약정·관리 방식별 월 요금을 비교
+- [SK매직 정수기 렌탈 요금 비교](https://danghh.com/water/sk/): SK매직 정수기만 모아 약정·관리 방식별 월 요금을 비교
+- [쿠쿠 정수기 렌탈 요금 비교](https://danghh.com/water/cuckoo/): 쿠쿠 정수기만 모아 약정·관리 방식별 월 요금을 비교
+- [LG(엘지) 정수기 렌탈 요금 비교](https://danghh.com/water/lg/): LG(엘지) 정수기만 모아 약정·관리 방식별 월 요금을 비교
+- [청호나이스 정수기 렌탈 요금 비교](https://danghh.com/water/chungho/): 청호나이스 정수기만 모아 약정·관리 방식별 월 요금을 비교
+- [교원웰스 정수기 렌탈 요금 비교](https://danghh.com/water/wells/): 교원웰스 정수기만 모아 약정·관리 방식별 월 요금을 비교
+- [루헨스 정수기 렌탈 요금 비교](https://danghh.com/water/ruhens/): 루헨스 정수기만 모아 약정·관리 방식별 월 요금을 비교
+- [현대큐밍 정수기 렌탈 요금 비교](https://danghh.com/water/qming/): 현대큐밍 정수기만 모아 약정·관리 방식별 월 요금을 비교
 - [가전 렌탈](https://danghh.com/appliance/): 공기청정기·비데·안마의자·에어컨·TV·냉장고
 
 ## 그 밖에

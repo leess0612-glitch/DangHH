@@ -27,7 +27,7 @@
   }
   function 돈(n) { return Number(n).toLocaleString('ko-KR'); }
   /* 목록은 /water/ 에, 제품은 /water/{주소}/ 에 있습니다 (2026-09-10 자리 옮김) */
-  function 밑동() { return (window.이제품 ? '../../' : '../'); }
+  function 밑동() { return ((window.이제품 || window.브랜드목록) ? '../../' : '../'); }   /* 브랜드 목록(/water/coway/)도 두 칸 */
 
   /* 2026-09-16 — 지금 화면이 코웨이 전용 칸이면 코웨이 칸으로 보낸다.
      전에는 늘 'water/' 로 못 박혀 있어서, 코웨이 전용 화면의 비교함 사진을 누르면

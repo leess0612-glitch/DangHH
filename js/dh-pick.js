@@ -30,7 +30,7 @@
   function 돈(n) { return Number(n).toLocaleString('ko-KR'); }
 
   /* 목록은 /water/ 에, 제품은 /water/{주소}/ 에 있습니다 */
-  function 밑동() { return window.이제품 ? '../../' : '../'; }
+  function 밑동() { return (window.이제품 || window.브랜드목록) ? '../../' : '../'; }   /* 브랜드 목록(/water/coway/)도 두 칸 */
 
   /* ── 한 줄 그리기 ─────────────────────────────────── */
   function 줄(x) {
