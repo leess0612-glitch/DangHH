@@ -196,8 +196,16 @@
     if (p.처음색) {
       for (var j = 0; j < 목.length; j++) if (목[j][0] === p.처음색) return j;
     }
+    /* 2026-11-03 — 처음색이 따로 없으면 **웃돈이 없는 색**부터 고릅니다.
+       목록은 색 없이 기본 요금으로 셈하므로, 웃돈 붙은 색(청호 세니타 RO 「티탄」 +1,000원)으로 열면
+       목록 값과 상세 값이 달라 보였습니다. 웃돈 없는 색이 없으면 예전 규칙 그대로입니다. */
+    var 웃돈 = function (이름) { return !!(p.색요금 && p.색요금[이름]); };
+    var i;
+    for (i = 0; i < 목.length; i++) {
+      if (!웃돈(목[i][0]) && (!p.색사진 || p.색사진[목[i][0]])) return i;
+    }
     if (!p.색사진) return 0;
-    for (var i = 0; i < 목.length; i++) if (p.색사진[목[i][0]]) return i;
+    for (i = 0; i < 목.length; i++) if (p.색사진[목[i][0]]) return i;
     return 0;
   }
 
