@@ -348,6 +348,14 @@
     var 더 = document.getElementById('더보기');
     if (!칸) return;
     var 줄들 = 칸.querySelectorAll('.li-item');
+    /* 2026-11-03 — 정수기 목록은 목록 부품에 맡깁니다. 여기서 「다 펼치기」를 따로 달면
+       지운 뒤 첫 「더 보기」가 남은 184개를 한꺼번에 펼쳤습니다(검사에서 찾음). */
+    if (typeof window.정수기목록처음 === 'function') {
+      for (var k = 0; k < 줄들.length; k++) 줄들[k].style.display = '';
+      if (더) 더.onclick = null;
+      window.정수기목록처음();
+      return;
+    }
     if (줄들.length <= 24) return;
     for (var i = 24; i < 줄들.length; i++) 줄들[i].style.display = 'none';
     if (더) {
