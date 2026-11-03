@@ -1,0 +1,60 @@
+/* ===== 설치 후기 모음 화면 (reviews.html, 2026-11-03) =====
+   카페 후기 원문을 옮긴 화면 한 장만 쓴다. 값은 디자인보드 표(크기·굵기·모서리·그림자) 안에서만 골랐다. */
+.rv-wrap{ max-width:1080px; margin:0 auto; padding:120px 20px 64px; }
+.rv-head{ text-align:center; margin-bottom:28px; }
+.rv-head h1{ font-size:34px; font-weight:800; color:#0F172A; letter-spacing:-0.5px; line-height:1.3; }
+.rv-head p{ font-size:16px; color:var(--gray); margin-top:12px; line-height:1.7; }
+
+.rv-filter{ display:flex; justify-content:center; gap:8px; flex-wrap:wrap; margin-bottom:28px; }
+.rv-filter button{
+  min-height:44px; padding:0 20px; border-radius:999px; border:1px solid var(--border);
+  background:#fff; color:#0F172A; font:inherit; font-size:15px; font-weight:600; cursor:pointer;
+}
+.rv-filter button.on{ background:#1257C9; border-color:#1257C9; color:#fff; }
+
+.rv-list{ display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:20px; align-items:start; }
+.rv-card{
+  background:#fff; border:1px solid var(--border); border-radius:12px; overflow:hidden;
+  box-shadow:0 2px 16px rgba(15,42,90,.08);
+}
+.rv-card[hidden]{ display:none; }
+.rv-photos{ display:grid; gap:2px; background:var(--light-gray); aspect-ratio:16/10; }
+.rv-photos.n2{ grid-template-columns:2fr 1fr; }
+.rv-photos.n3{ grid-template-columns:2fr 1fr; grid-template-rows:1fr 1fr; }
+.rv-photos.n3 img:first-child{ grid-row:1 / 3; }
+.rv-photos img{ width:100%; height:100%; object-fit:cover; display:block; min-height:0; }
+.rv-body{ padding:20px 22px 18px; }
+.rv-meta{ display:flex; flex-wrap:wrap; gap:6px 10px; align-items:center; font-size:13px; color:var(--gray); }
+.rv-meta span + span::before{ content:"·"; margin-right:10px; color:#c4c9d2; }
+.rv-meta .rv-tag + span::before{ content:none; }
+.rv-tag{ padding:3px 10px; border-radius:4px; background:#EAF1FC; color:#1257C9; font-weight:700; }
+.rv-title{ font-size:20px; font-weight:800; color:#0F172A; line-height:1.4; margin:12px 0 10px; letter-spacing:-0.3px; }
+.rv-text p{ font-size:15px; line-height:1.75; color:#3a4150; }
+/* 긴 후기는 처음에 10줄만 — 글은 화면 원문에 다 들어 있어 검색에는 전부 읽힌다 */
+.rv-text.접힘{ max-height:calc(15px * 1.75 * 10); overflow:hidden; position:relative; }
+.rv-text.접힘::after{ content:""; position:absolute; left:0; right:0; bottom:0; height:48px;
+  background:linear-gradient(rgba(255,255,255,0), #fff); }
+.rv-open{ margin-top:8px; padding:0; min-height:44px; background:none; border:0; color:var(--gray);
+  font:inherit; font-size:13px; font-weight:700; text-decoration:underline; text-underline-offset:2px; cursor:pointer; }
+.rv-foot{ display:flex; justify-content:space-between; align-items:center; gap:12px; margin-top:16px;
+  padding-top:14px; border-top:1px solid var(--border); font-size:13px; color:var(--gray); }
+.rv-src{ color:#1257C9; font-weight:700; text-decoration:none; min-height:44px; display:inline-flex; align-items:center; }
+.rv-src:hover{ text-decoration:underline; }
+
+.rv-more{ text-align:center; margin-top:48px; }
+.rv-more p{ font-size:15px; color:var(--gray); margin-bottom:12px; }
+.rv-more a{
+  display:inline-flex; align-items:center; min-height:44px; padding:0 22px; margin:4px;
+  border:2px solid #1257C9; border-radius:8px; color:#1257C9; font-size:15px; font-weight:700;
+  text-decoration:none; background:#fff;
+}
+.rv-wrap .doc-back{ display:block; width:max-content; margin:40px auto 0; color:var(--gray); font-size:14px; }
+
+@media (max-width:768px){
+  .rv-wrap{ padding:88px 16px 120px; }
+  .rv-head h1{ font-size:28px; }
+  .rv-head p{ font-size:15px; }
+  .rv-list{ grid-template-columns:1fr; gap:16px; }
+  .rv-body{ padding:16px 16px 14px; }
+  .rv-title{ font-size:16px; }
+}
