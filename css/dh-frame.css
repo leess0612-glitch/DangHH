@@ -139,6 +139,7 @@ footer{background:var(--dh-gray-950);color:rgba(255,255,255,.6);padding:40px var
    2026-09-29: 자바가 style= 로 직접 붙이던 값을 여기로 옮겼습니다. */
 .footer-info{font-size:var(--t-sub)}
 .footer-info strong{color:rgba(255,255,255,.8)}
+.footer-info a{color:inherit;text-decoration:none} /* 2026-11-03 바닥글 이메일 — 기본 파란 링크색이 남색 바탕에서 안 보여서 */
 
 /* ── 폰 가로 메뉴 띠 (js/dh-topnav.js 가 만듭니다 · 768 이하에서만) ──
    2026-09-29: 자바 안에 글자로 박혀 있던 모양을 여기로 옮겼습니다.
