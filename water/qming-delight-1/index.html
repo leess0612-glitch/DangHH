@@ -139,4 +139,9 @@ function 렌탈신청창열기() {
   var 인 = document.getElementById('tab-internet');
   var 렌 = document.getElementById('tab-rental');
   if (!인 || !렌 || typeof toggleService !== 'function') return;
-  if (!렌.classList
+  if (!렌.classList.contains('active')) toggleService('rental');
+  if (인.classList.contains('active')) toggleService('internet');
+}
+</script>
+</body>
+</html>
