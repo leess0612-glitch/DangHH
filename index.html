@@ -1640,15 +1640,6 @@ body.apply-open{ overflow:hidden; }
   display:-webkit-box; -webkit-line-clamp:4; -webkit-box-orient:vertical; overflow:hidden;
 }
 /* 본문을 펼치는 단추 — 주인공은 후기 내용이므로 강조색을 쓰지 않고 본문과 같은 회색 계통으로 둔다 */
-.더읽기{
-  align-self:flex-start; margin-top:10px; padding:0;
-  background:none; border:0; color:var(--gray);
-  font-size:13px; font-weight:700; cursor:pointer;
-  text-decoration:underline; text-underline-offset:2px; opacity:0.85;
-  transition:opacity 0.2s, color 0.2s;
-}
-.더읽기:hover{ color:var(--dark); opacity:1; }
-.더읽기.숨김{ display:none; }
 .후기링크들{ display:flex; justify-content:center; gap:12px; flex-wrap:wrap; margin-top:32px; }
 .후기링크{
   display:inline-flex; align-items:center; gap:7px; padding:13px 24px;
@@ -1697,15 +1688,6 @@ body.apply-open{ overflow:hidden; }
   display:-webkit-box; -webkit-line-clamp:4; -webkit-box-orient:vertical; overflow:hidden;
 }
 /* 본문을 펼치는 단추 — 주인공은 후기 내용이므로 강조색을 쓰지 않고 본문과 같은 회색 계통으로 둔다 */
-.더읽기{
-  align-self:flex-start; margin-top:10px; padding:0;
-  background:none; border:0; color:var(--gray);
-  font-size:13px; font-weight:700; cursor:pointer;
-  text-decoration:underline; text-underline-offset:2px; opacity:0.85;
-  transition:opacity 0.2s, color 0.2s;
-}
-.더읽기:hover{ color:var(--dark); opacity:1; }
-.더읽기.숨김{ display:none; }
 .후기링크들{ display:flex; justify-content:center; gap:12px; flex-wrap:wrap; margin-top:32px; }
 .후기링크{
   display:inline-flex; align-items:center; gap:7px; padding:13px 24px;
@@ -1723,13 +1705,13 @@ body.apply-open{ overflow:hidden; }
   .후기별{ font-size:13px; margin-top:5px; }
   .후기제목{ font-size:15px; line-height:1.4; margin:8px 0 5px; }
   .후기본문{ font-size:14px; line-height:1.65; -webkit-line-clamp:3; }
-  .더읽기{ font-size:12px; margin-top:8px; }
+  
   /* 폰에서는 본문을 감추고 굵은 한 줄 요약만 — '더 읽기'를 누르면 본문이 나온다 */
   .후기목록.제목만 .후기카드:not(.펼침) .후기본문{ display:none; }
 }
 </style>
 
-<section id="reviews" class="reviews 후기칸">
+<section id="reviews" class="reviews 후기칸"><style id="후기카드잇기">.후기카드{position:relative;cursor:pointer}.후기전체{display:inline-block;margin-top:10px;font-size:14px;font-weight:700;color:var(--primary);text-decoration:none}.후기전체::after{content:"";position:absolute;inset:0;z-index:1}.후기카드:hover .후기제목{text-decoration:underline}</style>
   <div class="section-inner">
     <!-- 사진 띠 : images/reviews-band/ 의 45장 (band-01 ~ 45).
          TV 설치 13 · 셋톱박스 10 · 정수기 22 를 줄마다 섞어 깔았다.
@@ -1855,7 +1837,7 @@ body.apply-open{ overflow:hidden; }
           <div class="후기별" aria-label="별점 5점 만점에 5점">⭐⭐⭐⭐⭐</div>
           <p class="후기제목">사은품에 친절한 상담까지, 이사 후 인터넷 설치 당현함으로 딱이었어요!</p>
           <p class="후기본문">이사 후 인터넷 설치 알아보다가 사은품과 친절한 설명에 당현함 선택했어요. 설치 전 상담원이 미리 연락주고 날짜 조율해주셨고, 기사님도 오시기 전에 연락 주시며 친절하게 설치해주셨습니다. 2~3일 내로 깔끔하게 완료됐고 인터넷 속도도 만족스러워요. 사은품도 약속대로 잘 챙겨주셔서 전체적으로 대만족입니다!</p>
-          <button type="button" class="더읽기">더 읽기</button>
+          <a class="후기전체" href="reviews/story-08/">후기 전체 보기 →</a>
         </div>
       </article>
       <article class="후기카드 늦게떠오름">
@@ -1871,7 +1853,7 @@ body.apply-open{ overflow:hidden; }
           <div class="후기별" aria-label="별점 5점 만점에 5점">⭐⭐⭐⭐⭐</div>
           <p class="후기제목">화질, 속도, 디자인까지 전부 만족! 다음 가입도 당현함이에요!</p>
           <p class="후기본문">기존 TV 대비 화질과 속도 모두 완전 만족입니다. 셋탑박스도 작고 디자인 예쁘고, 리모컨 반응속도도 빠르고 편리해요. 설치기사님도 친절하게 설명해주시고 마무리까지 깔끔하게 해주셨습니다. 몇 년 동안 잘 쓸 것 같고, 다음 가입도 당현함으로 할 예정이에요!</p>
-          <button type="button" class="더읽기">더 읽기</button>
+          <a class="후기전체" href="reviews/story-06/">후기 전체 보기 →</a>
         </div>
       </article>
       <article class="후기카드 늦게떠오름">
@@ -1887,7 +1869,7 @@ body.apply-open{ overflow:hidden; }
           <div class="후기별" aria-label="별점 5점 만점에 5점">⭐⭐⭐⭐⭐</div>
           <p class="후기제목">사은품 혜택에 반해서 선택했는데, 설치기사님까지 너무 친절해요!</p>
           <p class="후기본문">이사 후 정수기 알아보다가 사은품 혜택이 좋아서 당현함 선택했어요. 카톡 상담도 빠르고 친절하게 진행됐고, 설치기사님도 꼼꼼하게 설명해주셔서 만족스러웠습니다. 정수기가 생각보다 더 예쁘고 기능도 좋아서 예쁘게 잘 쓸게요!</p>
-          <button type="button" class="더읽기">더 읽기</button>
+          <a class="후기전체" href="reviews/story-03/">후기 전체 보기 →</a>
         </div>
       </article>
       <article class="후기카드 늦게떠오름">
@@ -1903,7 +1885,7 @@ body.apply-open{ overflow:hidden; }
           <div class="후기별" aria-label="별점 5점 만점에 5점">⭐⭐⭐⭐⭐</div>
           <p class="후기제목">SK 15년 쓰다가 갈아탔는데, 이동하길 정말 잘했어요!</p>
           <p class="후기본문">약정 만료로 통신사 이동을 고민했는데 당현함 상담 받고 나서 바로 결정했어요. 15년 넘게 SK만 써서 걱정도 됐지만 큰 사은품에 빠른 상담·설치까지, 이동하길 정말 잘했다는 생각이 들었습니다. 당현함 최고예요!</p>
-          <button type="button" class="더읽기">더 읽기</button>
+          <a class="후기전체" href="reviews/story-09/">후기 전체 보기 →</a>
         </div>
       </article>
       <article class="후기카드 늦게떠오름">
@@ -1919,7 +1901,7 @@ body.apply-open{ overflow:hidden; }
           <div class="후기별" aria-label="별점 5점 만점에 5점">⭐⭐⭐⭐⭐</div>
           <p class="후기제목">한 달 고민 끝에 선택했는데, 모든 게 만족스러워요!</p>
           <p class="후기본문">믿을 만한 업체 찾는 데만 한 달, 고민 끝에 상담했는데 변경사항·질문 많아도 끝까지 친절하게 응대해주셔서 마음에 드는 상품으로 가입할 수 있었어요. LG 7년 쓰다가 KT로 갈아탔는데 리모컨·디자인 모두 확실히 업그레이드된 느낌이에요. 지니가 OTT도 다 틀어주고 인터넷 속도도 방 구석구석 짱짱해서 전체적으로 대만족입니다!</p>
-          <button type="button" class="더읽기">더 읽기</button>
+          <a class="후기전체" href="reviews/story-10/">후기 전체 보기 →</a>
         </div>
       </article>
       <article class="후기카드 늦게떠오름">
@@ -1935,12 +1917,12 @@ body.apply-open{ overflow:hidden; }
           <div class="후기별" aria-label="별점 5점 만점에 5점">⭐⭐⭐⭐⭐</div>
           <p class="후기제목">투명한 혜택 안내에 당일 지급까지, 믿고 선택할 수 있었어요!</p>
           <p class="후기본문">여러 비교사이트 살펴봤는데 당현함이 혜택·설치비·사은품 조건을 가장 명확하게 정리해줘서 빠르게 결정할 수 있었어요. 카카오톡으로 간편하게 신청하고 일정 조율 후 깔끔하게 설치 완료. 안내받은 혜택 그대로 지급됐고, 설치 완료 메시지 보내고 당일에 지급돼서 신뢰도가 더 높았습니다. 정수기 렌탈 고민 중이라면 강력 추천해요!</p>
-          <button type="button" class="더읽기">더 읽기</button>
+          <a class="후기전체" href="reviews/story-04/">후기 전체 보기 →</a>
         </div>
       </article>
     </div>
     <div class="후기링크들">
-      <a class="후기링크" href="reviews/">📝 설치 후기 게시판 (93개)</a>
+      <a class="후기링크" href="reviews/">📝 설치 후기 게시판 (107개)</a>
       <a class="후기링크" href="javascript:void(0)" onclick="openCafe('https://cafe.naver.com/f-e/cafes/24827819/menus/324?viewType=I','https://m.cafe.naver.com/ca-fe/web/cafes/24827819/menus/324')">📡 인터넷 가입 후기 더보기</a>
       <a class="후기링크" href="javascript:void(0)" onclick="openCafe('https://cafe.naver.com/f-e/cafes/24827819/menus/398?viewType=I','https://m.cafe.naver.com/ca-fe/web/cafes/24827819/menus/398')">🏠 렌탈 후기 더보기</a>
     </div>
@@ -1949,34 +1931,7 @@ body.apply-open{ overflow:hidden; }
 
 <script>
 (function(){
-  // --- 본문 '더 읽기' ---
-  // 접힌 글이 아예 없는 짧은 후기에는 단추를 감춘다(눌러도 아무 일이 없으면 손님이 헷갈린다).
-  // ⚠ 접힌 글의 '진짜 길이'는 scrollHeight 로 알 수 없다 — 네 줄로 접는 방식에서는
-  //   브라우저가 접힌 높이를 그대로 돌려주는 경우가 있다. 그래서 아주 잠깐 펼쳐서 재고 되돌린다.
-  function 단추정리(){
-    document.querySelectorAll('.후기카드').forEach(function(카드){
-      var 본문 = 카드.querySelector('.후기본문');
-      var 단추 = 카드.querySelector('.더읽기');
-      if (!본문 || !단추 || 카드.classList.contains('펼침')) return;
-      var 접힌높이 = 본문.clientHeight;
-      카드.classList.add('펼침');
-      var 전체높이 = 본문.clientHeight;
-      카드.classList.remove('펼침');
-      단추.classList.toggle('숨김', 전체높이 <= 접힌높이 + 1);
-    });
-  }
-  document.querySelectorAll('.더읽기').forEach(function(단추){
-    단추.addEventListener('click', function(){
-      var 카드 = 단추.closest('.후기카드');
-      var 펼침 = 카드.classList.toggle('펼침');
-      단추.textContent = 펼침 ? '접기' : '더 읽기';
-    });
-  });
-  // 글꼴이 늦게 도착하면 줄 수가 달라진다 — 글꼴을 기다렸다가 한 번 더 센다.
-  단추정리();
-  if (document.fonts && document.fonts.ready) document.fonts.ready.then(단추정리);
-  window.addEventListener('load', 단추정리);
-  window.addEventListener('resize', 단추정리);
+  // --- 「더 읽기」(접힌 글 펼치기)는 2026-11-03 에 없앴다 — 카드를 누르면 후기 게시판의 그 글로 간다(당현함후기/옛카드잇기.py) ---
 
   // --- 떠오르기: 이 칸 전용 관찰기 ---
   // 페이지 끝의 '늦은관찰기'도 이 카드들을 보지만 그 하나만 믿지 않는다.

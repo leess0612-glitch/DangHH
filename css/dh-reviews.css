@@ -62,9 +62,9 @@
 .rv-crumb{ display:flex; flex-wrap:wrap; gap:6px; font-size:13px; color:var(--gray); margin-bottom:12px; }
 .rv-crumb a{ color:var(--gray); text-decoration:none; }
 .rv-crumb a:hover{ text-decoration:underline; }
-.rv-h1{ font-size:28px; font-weight:800; color:#0F172A; line-height:1.35; letter-spacing:-0.5px; }
+.rv-h1{ word-break:keep-all; font-size:28px; font-weight:800; color:#0F172A; line-height:1.35; letter-spacing:-0.5px; }
 .rv-byline{ padding-bottom:18px; border-bottom:1px solid var(--border); }
-.rv-facts{ display:grid; grid-template-columns:repeat(3, minmax(0, 1fr)); gap:8px; margin:20px 0; padding:16px 18px;
+.rv-facts{ display:grid; grid-template-columns:repeat(auto-fit, minmax(0, 1fr)); gap:8px; margin:20px 0; padding:16px 18px;
   background:var(--light-gray); border-radius:12px; }
 .rv-facts dt{ font-size:13px; color:var(--gray); }
 .rv-facts dd{ margin:2px 0 0; font-size:15px; font-weight:700; color:#0F172A; line-height:1.45; }
@@ -75,16 +75,16 @@
 .rv-origin a{ color:#1257C9; font-weight:700; }
 .rv-cta{ margin:32px 0; padding:22px; border-radius:12px; background:#EAF1FC; text-align:center; }
 .rv-cta p{ font-size:16px; font-weight:600; color:#0F172A; margin-bottom:12px; }
-.rv-cta-main{ display:inline-flex; align-items:center; justify-content:center; min-height:52px; min-width:240px; padding:0 28px; border:0; border-radius:8px;
-  background:#1257C9; color:#fff; font:inherit; font-size:17px; font-weight:700; cursor:pointer; }
-/* 신청서가 부담스러운 손님용 — 카톡·전화 (11/3 에이전트 10명 검토: 글 끝 신청 단추 아래 보조 줄) */
-.rv-cta-sub{ display:flex; justify-content:center; gap:8px; margin-top:10px; flex-wrap:wrap; }
-.rv-cta-sub a{ display:inline-flex; align-items:center; justify-content:center; min-height:48px; min-width:116px; padding:0 18px; border-radius:8px;
-  font-size:16px; font-weight:700; text-decoration:none; }
+/* 신청 · 카톡 · 전화를 한 줄에 (11/3 사장님 「한 줄에 보이도록」 · 에이전트 10명 검토: 신청서가 부담인 손님용 카톡·전화) */
+.rv-cta-row{ display:flex; justify-content:center; gap:8px; }
+.rv-cta-row > *{ display:inline-flex; align-items:center; justify-content:center; min-height:52px; padding:0 22px; border-radius:8px;
+  font:inherit; font-size:16px; font-weight:700; text-decoration:none; white-space:nowrap; cursor:pointer; box-sizing:border-box; }
+.rv-cta-main{ border:0; background:#1257C9; color:#fff; }
 .rv-kakao{ background:#FEE500; color:#191919; }
 .rv-tel{ background:#fff; color:#0F172A; border:1px solid var(--border); }
+.rv-short{ display:none; }
 .rv-pn{ display:grid; grid-template-columns:1fr 1fr; gap:12px; }
-.rv-pn a{ display:block; padding:14px 16px; border:1px solid var(--border); border-radius:8px; background:#fff;
+.rv-pn a{ display:block; white-space:normal; padding:14px 16px; border:1px solid var(--border); border-radius:8px; background:#fff;
   text-decoration:none; color:#0F172A; font-size:14px; font-weight:600; line-height:1.5; }
 .rv-pn small{ display:block; font-size:12px; color:var(--gray); font-weight:600; margin-bottom:2px; }
 .rv-pn .rv-next{ text-align:right; grid-column:2; }
@@ -107,8 +107,14 @@
   .rv-h1{ font-size:22px; }
   .rv-facts{ grid-template-columns:1fr; gap:10px; }
   .rv-text p{ font-size:15px; }
-  .rv-pn{ grid-template-columns:1fr; }
-  .rv-pn .rv-next{ grid-column:auto; }
+  .rv-cta{ padding:18px 12px; }
+  .rv-cta-row{ display:grid; grid-template-columns:1.35fr 1fr 1fr; gap:6px; }
+  .rv-cta-row > *{ padding:0 4px; font-size:15px; min-height:50px; }
+  .rv-long{ display:none; }
+  .rv-short{ display:inline; }
+  .rv-pn{ grid-template-columns:minmax(0, 1fr); }
+  .rv-pn a{ min-width:0; white-space:normal; overflow-wrap:anywhere; }
+  .rv-pn .rv-next{ grid-column:auto; text-align:left; }
   .rv-minis{ grid-template-columns:repeat(3, minmax(0, 1fr)); gap:8px; }
   .rv-mini{ font-size:13px; }
 }
