@@ -58,8 +58,8 @@ window.인기순서 = {
   ruhens:  ['WHP-3300', 'WHP-2500', 'WHP-4200S', 'WHP-3200',
             /* 9/22 사장님 선택 */ 'WHP-4200'],
   /* 2026-09-21 — 현대큐밍 모델 칸을 이름에서 실제 모델명으로 바꿔 여기도 맞춤
-     (딜라이트 아이스 = HQPI73CG0E, 딜라이트 1 = HQPS11C) */
-  qming:   ['HQPI73CG0E', 'HQPS11C', 'P-B30CB', 'P-M15CB',
+     (딜라이트 아이스 = HQPI73CG0E, 딜라이트 1 = HQPR11C(26년형, 11/4 바꿈)) */
+  qming:   ['HQPI73CG0E', 'HQPR11C', 'P-B30CB', 'P-M15CB',
             /* 9/22 사장님 선택 */ 'HQPM11CE0C', 'HQPG30SW0E', 'P-B30SB', 'HQPA70SW0G']
 };
 
