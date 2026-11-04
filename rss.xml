@@ -6,7 +6,14 @@
 <atom:link href="https://danghh.com/rss.xml" rel="self" type="application/rss+xml"/>
 <description>인터넷·TV 가입 현금 사은품과 정수기·가전 렌탈 요금 비교, 당현함</description>
 <language>ko</language>
-<lastBuildDate>Tue, 03 Nov 2026 00:00:00 +0900</lastBuildDate>
+<lastBuildDate>Wed, 04 Nov 2026 00:00:00 +0900</lastBuildDate>
+<item>
+<title>설치 후기 게시판 | 인터넷·정수기 고객 후기 | 당현함</title>
+<link>https://danghh.com/reviews/</link>
+<guid isPermaLink="true">https://danghh.com/reviews/</guid>
+<pubDate>Wed, 04 Nov 2026 00:00:00 +0900</pubDate>
+<description>당현함 고객이 네이버 카페와 홈페이지에 남긴 인터넷·TV, 정수기, 가전 렌탈 설치 후기 107개. 지역·상품·설치한 달과 설치 사진을 함께 볼 수 있습니다.</description>
+</item>
 <item>
 <title>당현함 | 인터넷 가입 사은품 많이 주는 곳 비교사이트, 현금지원금 당일입금 | 인터넷·티비 설치 신청 변경 SKT SK KT LG U플러스 | 정수기렌탈</title>
 <link>https://danghh.com/</link>
@@ -1772,11 +1779,39 @@
 <description>LG헬로비전 프리미엄 기가 와이파이의 특징과 월 임대료, 제품 상세 사양을 한자리에서 확인하세요. 가입·요금 상담은 당현함에서 안내드립니다.</description>
 </item>
 <item>
-<title>설치 후기 게시판 | 인터넷·정수기 고객 후기 | 당현함</title>
-<link>https://danghh.com/reviews/</link>
-<guid isPermaLink="true">https://danghh.com/reviews/</guid>
+<title>인터넷 가입·결합할인·위약금 가이드 | 당현함</title>
+<link>https://danghh.com/guide/</link>
+<guid isPermaLink="true">https://danghh.com/guide/</guid>
 <pubDate>Tue, 03 Nov 2026 00:00:00 +0900</pubDate>
-<description>당현함 고객이 네이버 카페와 홈페이지에 남긴 인터넷·TV, 정수기, 가전 렌탈 설치 후기 107개. 지역·상품·설치한 달과 설치 사진을 함께 볼 수 있습니다.</description>
+<description>인터넷 가입 순서, KT 결합할인, 약정 위약금 계산, 가입 사은품 받는 법을 KT·SK브로드밴드·LG U+ 공식 자료 기준으로 정리한 당현함 가이드입니다.</description>
+</item>
+<item>
+<title>KT 결합할인 종류와 가족결합 할인액, 신청 서류까지</title>
+<link>https://danghh.com/guide/kt-bundle-discount/</link>
+<guid isPermaLink="true">https://danghh.com/guide/kt-bundle-discount/</guid>
+<pubDate>Tue, 03 Nov 2026 00:00:00 +0900</pubDate>
+<description>KT 결합할인 종류별 할인액 표, 2명·4인 가족 계산 예시, 자녀가 독립할 때 쓰는 따로 살아도 가족결합, 가족결합 서류와 해지 때 주의할 점을 KT 공식 홈페이지 기준으로 담았습니다.</description>
+</item>
+<item>
+<title>인터넷 가입 방법, 신청부터 설치·개통까지 순서대로 | 당현함</title>
+<link>https://danghh.com/guide/internet-signup-steps/</link>
+<guid isPermaLink="true">https://danghh.com/guide/internet-signup-steps/</guid>
+<pubDate>Tue, 03 Nov 2026 00:00:00 +0900</pubDate>
+<description>인터넷 가입 방법을 신청부터 설치·개통까지 6단계로 설명합니다. 가입 전에 정할 것, 필요한 서류, 통신사별 인터넷 설치비와 설치 시간, 첫 청구서 확인까지 담았습니다.</description>
+</item>
+<item>
+<title>인터넷 가입 사은품 받는 법과 계약 전에 확인할 것 | 당현함</title>
+<link>https://danghh.com/guide/internet-gift-guide/</link>
+<guid isPermaLink="true">https://danghh.com/guide/internet-gift-guide/</guid>
+<pubDate>Tue, 03 Nov 2026 00:00:00 +0900</pubDate>
+<description>인터넷 가입 사은품을 주는 이유, 금액이 달라지는 조건, 현금 사은품 지급일, 해지 때 반환, 미지급 때 대처와 정부 경품 기준을 공식 자료로 설명합니다.</description>
+</item>
+<item>
+<title>인터넷 위약금 계산법, 쓴 기간별 금액과 조회 방법 | 당현함</title>
+<link>https://danghh.com/guide/internet-contract-penalty/</link>
+<guid isPermaLink="true">https://danghh.com/guide/internet-contract-penalty/</guid>
+<pubDate>Tue, 03 Nov 2026 00:00:00 +0900</pubDate>
+<description>인터넷 위약금(할인반환금)은 약정으로 받은 할인을 돌려내는 돈입니다. KT·SK브로드밴드·LG U+ 공식 산식, 쓴 기간별 금액, 통신사를 바꿀 때 실제로 드는 돈과 조회 번호를 담았습니다.</description>
 </item>
 <item>
 <title>경기 하남시 SK브로드밴드 인터넷 500메가 + TV 설치 후기 | 당현함</title>

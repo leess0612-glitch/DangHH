@@ -1,0 +1,81 @@
+/* 당현함 가이드(/guide/) 글 화면 — 원본은 안티그라비티\당현함가이드\static\guide.css (DangHH 쪽은 build.py 가 복사한 것)
+   머리띠·메뉴·발바닥은 dh-frame·dh-shell 이 맡고, 여기는 글 본문만. 색·글자 크기는 dh-frame 의 보드 값 이름표를 쓴다. */
+.gd-wrap { max-width: 760px; margin: calc(var(--h-header, 56px) + 20px) auto 0; padding: 0 var(--pad-screen, 16px) 64px; color: var(--c-body); }
+.gd-crumb { font-size: 13px; color: var(--c-sub); display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin-bottom: 20px; }
+.gd-crumb a { color: var(--c-sub); text-decoration: none; }
+.gd-crumb a:hover { color: var(--c-strong); text-decoration: underline; }
+.gd-crumb i { font-style: normal; color: var(--c-dim); }
+
+.gd-head h1 { font-size: 30px; line-height: 1.35; font-weight: 800; letter-spacing: var(--ls-title, -0.5px); color: var(--c-title); text-wrap: balance; margin: 0 0 12px; }
+.gd-meta { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; font-size: 14px; color: var(--c-sub); margin: 0 0 24px; }
+.gd-meta a { color: var(--c-strong); font-weight: 700; text-decoration: none; }
+.gd-lead { font-size: 17px; line-height: 1.75; color: var(--c-sub); margin: 0 0 8px; }
+
+.gd-summary { background: var(--c-strong-bg); border-radius: 12px; padding: 18px 20px; font-size: 16px; line-height: 1.75; margin: 0 0 24px; }
+
+.gd-toc { border: 1px solid var(--c-line); border-radius: 12px; padding: 16px 20px; margin: 0 0 36px; }
+.gd-toc p { font-size: 14px; font-weight: 800; margin: 0 0 8px; color: var(--c-title); }
+.gd-toc ol { margin: 0; padding-left: 20px; }
+.gd-toc li { font-size: 15px; line-height: 1.9; }
+.gd-toc a { color: var(--c-body); text-decoration: none; }
+.gd-toc a:hover { color: var(--c-strong); text-decoration: underline; }
+
+.gd-body { font-size: 17px; line-height: 1.85; }
+.gd-body h2 { font-size: 23px; line-height: 1.4; font-weight: 800; color: var(--c-title); margin: 52px 0 16px; padding-top: 8px; scroll-margin-top: 120px; letter-spacing: -0.3px; }
+.gd-body h3 { font-size: 19px; line-height: 1.45; font-weight: 700; color: var(--c-title); margin: 32px 0 10px; }
+.gd-body p { margin: 0 0 16px; }
+.gd-body strong { font-weight: 700; color: var(--c-title); }
+.gd-body ul, .gd-body ol { margin: 0 0 18px; padding-left: 22px; }
+.gd-body li { margin: 0 0 6px; }
+.gd-body a { overflow-wrap: anywhere; color: var(--c-strong); text-decoration: underline; text-underline-offset: 3px; }
+.gd-body blockquote { margin: 0 0 18px; padding: 12px 16px; border-left: 3px solid var(--c-line); color: var(--c-sub); }
+.gd-body img { max-width: 100%; height: auto; display: block; margin: 8px auto 20px; }
+.gd-body hr { border: 0; border-top: 1px solid var(--c-line); margin: 36px 0; }
+
+.gd-table { overflow-x: auto; margin: 0 0 20px; border: 1px solid var(--c-line); border-radius: 10px; -webkit-overflow-scrolling: touch; }
+.gd-table table { border-collapse: collapse; width: 100%; min-width: 480px; font-size: 15px; line-height: 1.6; }
+.gd-table th, .gd-table td { padding: 10px 12px; border-bottom: 1px solid var(--c-line); text-align: left; vertical-align: top; white-space: normal; }
+.gd-table th { background: var(--dh-gray-100); font-weight: 700; color: var(--c-title); }
+.gd-table tr:last-child td { border-bottom: 0; }
+.gd-table td[align="right"], .gd-table th[align="right"] { text-align: right; font-variant-numeric: tabular-nums; }
+
+.gd-faq details { border-bottom: 1px solid var(--c-line); }
+.gd-faq summary { cursor: pointer; padding: 16px 28px 16px 0; font-weight: 700; color: var(--c-title); list-style: none; position: relative; }
+.gd-faq summary::-webkit-details-marker { display: none; }
+.gd-faq summary::after { content: "+"; position: absolute; right: 4px; top: 14px; font-size: 20px; color: var(--c-sub); }
+.gd-faq details[open] summary::after { content: "−"; }
+.gd-faq details p { margin: 0 0 16px; color: var(--c-body); }
+
+.gd-cta { margin: 48px 0 0; padding: 24px; border-radius: 14px; background: var(--dh-gray-100); }
+.gd-cta-t { font-size: 19px; font-weight: 800; color: var(--c-title); margin: 0 0 6px; }
+.gd-cta-d { font-size: 15px; color: var(--c-sub); line-height: 1.7; margin: 0 0 16px; }
+.gd-cta-b { display: flex; flex-wrap: wrap; gap: 8px; }
+.gd-btn { display: inline-flex; align-items: center; justify-content: center; min-height: 46px; padding: 0 18px; border-radius: 10px; border: 1px solid var(--c-line); background: var(--c-card); color: var(--c-title); font: inherit; font-size: 15px; font-weight: 700; text-decoration: none; cursor: pointer; }
+.gd-btn:hover { border-color: var(--c-strong); color: var(--c-strong); }
+.gd-btn-main { background: var(--c-strong); border-color: var(--c-strong); color: #fff; }
+.gd-btn-main:hover { background: var(--c-strong-press); color: #fff; }
+
+.gd-related { margin: 48px 0 0; }
+.gd-related h2, .gd-cat h2 { font-size: 20px; font-weight: 800; color: var(--c-title); margin: 0 0 12px; }
+.gd-related ul { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--c-line); }
+.gd-related li { border-bottom: 1px solid var(--c-line); }
+.gd-related a { display: block; padding: 14px 0; color: var(--c-body); text-decoration: none; font-weight: 600; }
+.gd-related a:hover { color: var(--c-strong); }
+
+.gd-hub-head { margin-bottom: 12px; }
+.gd-cat { margin: 36px 0 0; }
+.gd-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.gd-list a { display: block; padding: 18px 20px; border: 1px solid var(--c-line); border-radius: 12px; text-decoration: none; color: var(--c-body); }
+.gd-list a:hover { border-color: var(--c-strong); }
+.gd-list strong { display: block; font-size: 18px; color: var(--c-title); margin-bottom: 4px; }
+.gd-list span { font-size: 15px; color: var(--c-sub); line-height: 1.65; }
+
+@media (max-width: 768px) {
+  .gd-wrap { margin-top: calc(var(--h-header, 56px) + 44px + 16px); padding-bottom: 96px; }
+  .gd-head h1 { font-size: 24px; }
+  .gd-body { font-size: 16px; line-height: 1.8; }
+  .gd-body h2 { font-size: 20px; margin-top: 40px; }
+  .gd-body h3 { font-size: 17px; }
+  .gd-cta { padding: 20px 16px; }
+  .gd-cta-b .gd-btn { flex: 1 1 100%; }
+}
