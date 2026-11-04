@@ -41,6 +41,6 @@
 <!-- 가이드 끝 -->
 ## 그 밖에
 
-- [설치 후기 게시판](https://danghh.com/reviews/): 고객이 남긴 인터넷·TV·정수기·가전 설치 후기 107개(상품·모델·사진, 카페 후기는 지역·설치한 달 포함, 후기마다 개별 페이지 /reviews/<글번호 또는 story-번호>/)
+- [설치 후기 게시판](https://danghh.com/reviews/): 당현함 고객이 남긴 인터넷·TV 가입, 정수기·가전 렌탈 설치 후기 924건(후기마다 개별 페이지 /reviews/<글번호>/ — 지역·상품·설치한 달·설치 정리·자주 묻는 질문·사진, 지역별 모음 /reviews/area/<시도>-<시군구>/, 브랜드별 모음 /reviews/brand/<브랜드>/)
 - [사은품 지급명단](https://danghh.com/gift.html)
 - [사이트맵](https://danghh.com/sitemap.xml)

@@ -118,3 +118,27 @@
   .rv-minis{ grid-template-columns:repeat(3, minmax(0, 1fr)); gap:8px; }
   .rv-mini{ font-size:13px; }
 }
+
+/* ----- 2판(11/4): 설치 정리 · 고객 후기 소제목 · 자주 묻는 질문 · 지역·브랜드 알약 ----- */
+.rv-sum{ margin:0 0 20px; padding:18px 20px; border-left:4px solid #1257C9; background:#F5F8FD; border-radius:0 12px 12px 0; }
+.rv-sum h2{ font-size:16px; font-weight:800; color:#1257C9; margin:0 0 6px; }
+.rv-sum p{ font-size:16px; line-height:1.8; color:#0F172A; margin:0; }
+.rv-text-h{ font-size:18px; font-weight:800; color:#0F172A; margin:8px 0 10px; }
+.rv-faq{ margin-top:28px; padding-top:20px; border-top:1px solid var(--border); }
+.rv-faq h2{ font-size:18px; font-weight:800; color:#0F172A; margin:0 0 12px; }
+.rv-qa{ padding:14px 0; border-bottom:1px solid var(--border); }
+.rv-qa h3{ font-size:16px; font-weight:700; color:#0F172A; margin:0 0 6px; line-height:1.5; }
+.rv-qa p{ font-size:15px; line-height:1.75; color:#3a4150; margin:0; }
+.rv-facts dd a{ color:#1257C9; text-decoration:none; }
+.rv-crumb a + span + a, .rv-crumb > a:last-child{ color:var(--gray); }
+.rv-chip{ display:inline-flex; align-items:center; min-height:40px; padding:0 14px; border-radius:999px; border:1px solid var(--border);
+  background:#fff; font-size:14px; font-weight:600; color:#0F172A; text-decoration:none; }
+.rv-chip:hover{ border-color:#1257C9; color:#1257C9; }
+.rv-hubs{ margin-top:40px; }
+.rv-hub .rv-head p{ max-width:680px; margin-left:auto; margin-right:auto; }
+.rv-hub .rv-facts{ grid-template-columns:repeat(auto-fit, minmax(120px, 1fr)); }
+@media (max-width:768px){
+  .rv-sum{ padding:14px 16px; }
+  .rv-sum p{ font-size:15px; }
+  .rv-chip{ min-height:38px; padding:0 12px; font-size:13px; }
+}
