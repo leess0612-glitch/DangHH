@@ -449,7 +449,7 @@
   </url>
   <url>
     <loc>https://danghh.com/reviews/area/%EA%B2%BD%EA%B8%B0-%EC%88%98%EC%9B%90%EC%8B%9C/</loc>
-    <lastmod>2026-08-20</lastmod>
+    <lastmod>2026-11-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -1139,7 +1139,7 @@
   </url>
   <url>
     <loc>https://danghh.com/reviews/area/%EA%B2%BD%EA%B8%B0/</loc>
-    <lastmod>2026-10-31</lastmod>
+    <lastmod>2026-11-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -1295,7 +1295,7 @@
   </url>
   <url>
     <loc>https://danghh.com/reviews/brand/%EC%B2%AD%ED%98%B8%EB%82%98%EC%9D%B4%EC%8A%A4/</loc>
-    <lastmod>2026-10-12</lastmod>
+    <lastmod>2026-11-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -1304,6 +1304,12 @@
     <lastmod>2026-09-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://danghh.com/reviews/156363/</loc>
+    <lastmod>2026-11-04</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
   </url>
   <url>
     <loc>https://danghh.com/reviews/156361/</loc>
