@@ -63,12 +63,18 @@
 .gd-related a:hover { color: var(--c-strong); }
 
 .gd-hub-head { margin-bottom: 12px; }
-.gd-cat { margin: 36px 0 0; }
-.gd-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
-.gd-list a { display: block; padding: 18px 20px; border: 1px solid var(--c-line); border-radius: 12px; text-decoration: none; color: var(--c-body); }
-.gd-list a:hover { border-color: var(--c-strong); }
-.gd-list strong { display: block; font-size: 18px; color: var(--c-title); margin-bottom: 4px; }
-.gd-list span { font-size: 15px; color: var(--c-sub); line-height: 1.65; }
+.gd-tabs { display: flex; gap: 6px; margin: 28px 0 0; border-bottom: 1px solid var(--c-line); overflow-x: auto; scrollbar-width: none; }
+.gd-tabs::-webkit-scrollbar { display: none; }
+.gd-tabs button { flex: none; background: none; border: 0; border-bottom: 3px solid transparent; padding: 12px 14px 10px; font: inherit; font-size: 16px; font-weight: 700; color: var(--c-sub); cursor: pointer; margin-bottom: -1px; }
+.gd-tabs button[aria-selected="true"] { color: var(--c-title); border-bottom-color: var(--c-strong); }
+.gd-board { list-style: none; margin: 0; padding: 0; }
+.gd-board li { border-bottom: 1px solid var(--c-line); }
+.gd-board a { display: flex; align-items: center; gap: 12px; padding: 15px 4px; text-decoration: none; color: var(--c-body); }
+.gd-board a:hover strong { color: var(--c-strong); }
+.gd-board em { flex: none; font-style: normal; font-size: 13px; font-weight: 700; color: var(--c-strong); min-width: 64px; }
+.gd-board strong { flex: 1; min-width: 0; font-size: 16px; font-weight: 600; color: var(--c-title); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.gd-board time { flex: none; font-size: 13px; color: var(--c-sub); font-variant-numeric: tabular-nums; }
+.gd-empty { padding: 32px 4px; color: var(--c-sub); font-size: 15px; margin: 0; }
 
 @media (max-width: 768px) {
   .gd-wrap { margin-top: calc(var(--h-header, 56px) + 44px + 16px); padding-bottom: 96px; }
@@ -78,4 +84,6 @@
   .gd-body h3 { font-size: 17px; }
   .gd-cta { padding: 20px 16px; }
   .gd-cta-b .gd-btn { flex: 1 1 100%; }
+  .gd-board em { display: none; }
+  .gd-board strong { font-size: 15px; white-space: normal; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; line-height: 1.5; }
 }
