@@ -38,6 +38,10 @@
      - 구글 쪽 당현함_신청폼.gs : "같은 번호가 2분 안에 또 오면 무시" 규칙과 한 쌍이다.
        아래 '다시 보내기 3번'과 짝이므로 한쪽만 되돌리면 시트에 중복 줄이 생긴다.
    =========================================================== */
+/* 시험 신청 (2026-11-05 사장님 지시) — 이름에 「테스트·시험·test」가 있으면 광고 통계(구글·메타·네이버·SNS 통계)에
+   신청으로 세지 않는다. 접수(시트·알림톡)는 그대로 된다. 마케팅 보드도 같은 이름을 뺀다.
+   dh-send.js·dh-apply.js 둘 다 갖고 있다(한 화면이 하나만 부를 수 있어서) — 먼저 읽힌 쪽을 쓴다. */
+window.dh시험신청 = window.dh시험신청 || function (이름) { return /테스트|시험|test/i.test(String(이름 || '')); };
 (function () {
   'use strict';
 
@@ -579,7 +583,8 @@
 
     var btn = document.getElementById('submitBtn');
     btn.disabled = true; btn.textContent = '신청 중...';
-    if (typeof dhTrack === 'function') dhTrack('lead_submit', { once: false });   /* 입력 검사 통과 시점에 전환 집계 */
+    var 시험 = window.dh시험신청(name);           /* 시험 신청은 광고 통계에 안 센다 (2026-11-05) */
+    if (!시험 && typeof dhTrack === 'function') dhTrack('lead_submit', { once: false });   /* 입력 검사 통과 시점에 전환 집계 */
 
     var 이름표 = [];
     if (고른서비스.internet) 이름표.push('인터넷');
@@ -600,7 +605,7 @@
       document.getElementById('formContent').style.display = 'none';
       document.getElementById('formSuccess').style.display = 'block';
       if (window.dh통화완료) window.dh통화완료();   /* 완료창에 전화 드릴 때를 적는다 */
-      if (typeof dhNaver === 'function') dhNaver('lead');   /* 네이버 전환: 진짜 접수된 뒤에만 */
+      if (!시험 && typeof dhNaver === 'function') dhNaver('lead');   /* 네이버 전환: 진짜 접수된 뒤에만 */
     }, function () {
       alert('오류가 발생했습니다. 잠시 후 다시 시도하거나\n1600-4670으로 직접 문의해주세요.');
       btn.disabled = false; btn.textContent = '놓친 지원금 무료 확인';

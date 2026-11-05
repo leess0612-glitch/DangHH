@@ -9,6 +9,10 @@
      (dhTrack('lead_submit') · dhNaver('lead') · dhInflow()).
    ★ 이 파일을 고치면 세 장의 ?v= 번호도 함께 올리세요.
    ══════════════════════════════════════════════════════════════════ */
+/* 시험 신청 (2026-11-05 사장님 지시) — 이름에 「테스트·시험·test」가 있으면 광고 통계(구글·메타·네이버·SNS 통계)에
+   신청으로 세지 않는다. 접수(시트·알림톡)는 그대로 된다. 마케팅 보드도 같은 이름을 뺀다.
+   dh-send.js·dh-apply.js 둘 다 갖고 있다(한 화면이 하나만 부를 수 있어서) — 먼저 읽힌 쪽을 쓴다. */
+window.dh시험신청 = window.dh시험신청 || function (이름) { return /테스트|시험|test/i.test(String(이름 || '')); };
 /* ===== 신청 보내기 (실패하면 다시 시도) =====
    구글이 잠깐 흔들리면 신청이 그대로 사라지던 문제를 막는다.
    8초 안에 대답이 없거나 연결이 안 되면 잠깐 쉬었다 다시 보낸다(최대 3번).
@@ -144,7 +148,8 @@ async function submitForm() {
   const btn = document.getElementById('submitBtn');
   const 본래글자 = btn.textContent;                 /* 화면마다 다른 글자를 그대로 되돌리려고 기억 */
   btn.disabled = true; btn.textContent = '신청 중...';
-  dhTrack('lead_submit', { once: false });   /* 입력 검사 통과 시점에 전환 집계 */
+  const 시험 = window.dh시험신청(name);         /* 시험 신청은 광고 통계에 안 센다 (2026-11-05) */
+  if (!시험) dhTrack('lead_submit', { once: false });   /* 입력 검사 통과 시점에 전환 집계 */
 
   const serviceMap = (typeof DH_서비스이름 !== 'undefined') ? DH_서비스이름 : {};
   const serviceText = [...selectedServices].map(s => serviceMap[s]).join('+');
@@ -158,7 +163,7 @@ async function submitForm() {
     document.getElementById('formContent').style.display = 'none';
     document.getElementById('formSuccess').style.display = 'block';
     if (window.dh통화완료) window.dh통화완료();   /* 완료창에 전화 드릴 때를 적는다 */
-    dhNaver('lead');   /* 네이버 전환: 진짜 접수된 뒤에만 (2026-08-28) */
+    if (!시험) dhNaver('lead');   /* 네이버 전환: 진짜 접수된 뒤에만 (2026-08-28) */
   } catch(e) {
     alert('오류가 발생했습니다. 잠시 후 다시 시도하거나\n1600-4670으로 직접 문의해주세요.');
     btn.disabled = false; btn.textContent = 본래글자;
@@ -176,7 +181,8 @@ async function submitDeskForm() {
   /* 아래 띠 동의 칸 2개 (2026-10-30) — 칸이 없는 옛 화면은 건너뜀 */
   const 띠동의 = ['dc1','dc2'].map(i => document.getElementById(i)).filter(Boolean);
   if (띠동의.some(x => !x.checked)) { alert('개인정보 수집·이용 및 제3자 제공에 동의해주세요.'); return; }
-  dhTrack('lead_submit', { once: false });   /* 입력 검사 통과 시점에 전환 집계 */
+  const 시험 = window.dh시험신청(name);         /* 시험 신청은 광고 통계에 안 센다 (2026-11-05) */
+  if (!시험) dhTrack('lead_submit', { once: false });   /* 입력 검사 통과 시점에 전환 집계 */
   /* 보내는 동안 버튼을 잠근다. 안 잠그면 느릴 때(최대 27초) 손님이 여러 번 누른다 */
   const btn = document.querySelector('.desk-cta-bar-btn');
   const 본래글자 = btn ? btn.textContent : '';
@@ -196,7 +202,7 @@ async function submitDeskForm() {
     const deskOk = document.getElementById('deskSuccess');
     if (deskOk) deskOk.style.display = 'block';
     if (window.dh통화띠완료) window.dh통화띠완료();   /* 완료 문구에 전화 드릴 때를 적는다 (2026-09-22) */
-      dhNaver('lead');   /* 네이버 전환: 진짜 접수된 뒤에만 (2026-08-28) */
+      if (!시험) dhNaver('lead');   /* 네이버 전환: 진짜 접수된 뒤에만 (2026-08-28) */
     const deskC = document.getElementById('deskConsent');
     if (deskC) deskC.style.display = 'none';
   } catch(e) {

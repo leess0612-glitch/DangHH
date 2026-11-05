@@ -12,7 +12,7 @@ if(navigator.webdriver===true){window.DH_BOT=true;window['ga-disable-G-NBGKQ2Y30
 <script>var DH_PAGE = 'danghh-internet01';</script>
 <script src="../../js/dh-track.js?v=2"></script>
 <script src="../../js/dh-inflow.js?v=70"></script>
-<script src="../../js/dh-send.js?v=5"></script>
+<script src="../../js/dh-send.js?v=6"></script>
 <script>
 if (typeof dhInflow !== 'function') { window.dhInflow = function () { return {}; }; }
 /* 신청 보내기 설정 — 홈페이지 첫 화면(index.html)과 같은 구글 웹앱·접수처 */
@@ -469,12 +469,13 @@ document.querySelectorAll('form.apply').forEach(function(f){
     if(!ag){er.textContent='개인정보 수집·이용 및 제3자 제공에 동의해 주세요.';return}
     er.style.display='none';
     var btn=f.querySelector('.cta'),글=btn.textContent; btn.disabled=true; btn.textContent='신청 중...';
-    if(typeof dhTrack==='function') dhTrack('lead_submit',{once:false});
+    var 시험=/테스트|시험|test/i.test(n);   // 이름에 테스트·시험이 있으면 광고 통계에 안 셈(접수는 그대로, 2026-11-05)
+    if(!시험&&typeof dhTrack==='function') dhTrack('lead_submit',{once:false});
     var 전화=d.slice(0,3)+'-'+d.slice(3,d.length-4)+'-'+d.slice(-4);
     dhSend(Object.assign({name:n,phone:전화,usim:'N',service:'인터넷',memo:'[인스타 랜딩 인터넷01]'},dhInflow()),function(문구){btn.textContent=문구})
       .then(function(){btn.disabled=false;btn.textContent=글;f.reset();f.querySelectorAll('.agree input').forEach(function(x){x.checked=true});
         document.getElementById('doneName').textContent=n+'님, ';document.getElementById('done').classList.add('on');
-        if(typeof dhNaver==='function') dhNaver('lead');})
+        if(!시험&&typeof dhNaver==='function') dhNaver('lead');})
       .catch(function(){btn.disabled=false;btn.textContent=글;er.style.display='block';er.textContent='접수가 잠시 안 됩니다. 1600-4670으로 전화 주시거나 카톡으로 남겨 주세요.';});
   });
 });
