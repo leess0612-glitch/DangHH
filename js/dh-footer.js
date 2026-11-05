@@ -73,6 +73,8 @@
           '<use href="#dh-logo" fill="currentColor"/></svg><span>당현함</span>' +
         '</div>' +
         '<div class="footer-links">' +
+          /* 2026-11-05 사장님 — 정보 글 모음(guide/)으로 가는 길 */
+          '<a href="' + 밑동() + 'guide/">정보글</a>' +
           약관링크('개인정보처리방침', 'openPrivacy') +
           약관링크('서비스이용약관', 'openTerms') +
           '<a href="tel:' + 막(회사.전화) + '">' + 막(회사.전화) + '</a>' +
