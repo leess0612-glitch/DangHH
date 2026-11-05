@@ -633,9 +633,11 @@ global.dhInflowReset = dhInflowReset;
 
     var 속 = 펼침.pathname, 자리 = 펼침.hash || '', 찾기 = 펼침.search || '';
 
-    /* ① 정수기 — 코웨이 문이면 water-c/, 아니면 water/ */
+    /* ① 정수기 — 코웨이 문이면 water-c/, 아니면 water/
+       2026-11-05 — 브랜드 목록 8장(/water/coway/ 등)은 water/ 에만 있습니다(water-c 판 없음). 코웨이 문이어도 water/ 그대로. */
     if (/^\/water(-c)?\//.test(속)) {
-      var 바랄 = (집 === 'coway') ? '/water-c/' : '/water/';
+      var 브랜드목록길 = /^\/water(-c)?\/(coway|sk|cuckoo|lg|chungho|wells|ruhens|qming)\/(index\.html)?$/.test(속);
+      var 바랄 = (집 === 'coway' && !브랜드목록길) ? '/water-c/' : '/water/';
       var 새속 = 속.replace(/^\/water(-c)?\//, 바랄);
       return (새속 === 속) ? null : 새속 + 찾기 + 자리;
     }

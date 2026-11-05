@@ -202,6 +202,14 @@
 
   /* 상세 화면 주소 — 규칙은 공용 부품(js/dh-calc3.js)에 있습니다 */
   /* 목록은 /water/ 안에 있습니다 — 그림·자료는 한 칸 위에 있습니다 (2026-09-11) */
+  /* 브랜드 목록 화면 주소 — 지금 화면 자리에 맞춘 상대 주소(정수기 목록 /water/, 브랜드 목록 /water/coway/, 코웨이 전용 /water-c/) */
+  function 브랜드주소(이름) {
+    var 뿌리 = 브랜드칸 ? '../' : (코웨이칸 ? '../water/' : '');
+    if (이름 === '전체') return 뿌리 || './';
+    var 코드 = '';
+    (window.브랜드모음 || []).forEach(function (자료) { if (자료.이름 === 이름) 코드 = 자료.코드; });
+    return 뿌리 + 코드 + '/';
+  }
   function 밑동() { return 브랜드칸 ? '../../' : '../'; }
 
   function 상세주소(p) {
@@ -311,6 +319,11 @@
           'stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>' +
           '</button><div class="pill-menu" hidden>' +
           a[1].map(function (v) {
+            /* 2026-11-05 — 브랜드 항목은 진짜 링크(구글이 브랜드 목록 화면을 따라가게). 손님이 누르면 화면을 옮기지 않고 거르기만 합니다(달기의 preventDefault) */
+            if (키 === '브랜드' && !코웨이칸) {   /* 코웨이 전용(/water-c/)은 광고 도착 화면이라 다른 브랜드로 가는 링크를 두지 않고 단추 그대로 */
+              return '<a class="pill-item' + (v === 값 ? ' on' : '') + '" href="' + 브랜드주소(v) +
+                '" data-알약="' + 막(키) + '" data-값="' + 막(v) + '">' + 막(보일말(v)) + '</a>';
+            }
             return '<button type="button" class="pill-item' + (v === 값 ? ' on' : '') +
               '" data-알약="' + 막(키) + '" data-값="' + 막(v) + '">' + 막(보일말(v)) + '</button>';
           }).join('') + '</div></div>';
@@ -525,6 +538,8 @@
 
       var 항 = e.target.closest('.pill-item');
       if (항) {
+        if (항.tagName === 'A' && !(e.ctrlKey || e.metaKey || e.shiftKey)) e.preventDefault();
+        else if (항.tagName === 'A') { 알약닫기(null); return; }   /* 새 탭으로 열기는 그대로 두고 메뉴만 닫습니다 */
         var 키 = 항.getAttribute('data-알약');
         var 값 = 항.getAttribute('data-값');
         if (키 === '정렬') 고른정렬 = 값; else if (키 === '갈래') 고른갈래 = 값; else 고른거름[키] = 값;
@@ -538,6 +553,10 @@
     });
     document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape') 알약닫기(null);
+      /* 브랜드 항목은 링크라 스페이스로 눌리지 않습니다 — 단추처럼 스페이스도 받습니다 */
+      if ((e.key === ' ' || e.key === 'Spacebar') && e.target.closest && e.target.closest('a.pill-item')) {
+        e.preventDefault(); e.target.closest('a.pill-item').click();
+      }
     });
   }
 
