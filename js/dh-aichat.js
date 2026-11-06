@@ -153,7 +153,7 @@
           document.body.appendChild(표상자);
           표번호 = window.turnstile.render(표상자, { sitekey: 사이트키, size: 'invisible', execution: 'execute',
             callback: function (t) { if (표대기) 표대기(t); },
-            'error-callback': function () { if (표대기) { clearTimeout(시계); 표대기 = null; 막(new Error('표 오류')); } } });
+            'error-callback': function (코드) { if (표대기) { clearTimeout(시계); 표대기 = null; var e = new Error('표 오류'); e.코드 = 코드; 막(e); } return true; } });
         } else {
           window.turnstile.reset(표번호);
         }
@@ -372,7 +372,8 @@
     if (시험설정 && 시험설정.시험키) 머리['X-DH-Test'] = 시험설정.시험키;
     var 멈춤 = typeof AbortController === 'function' ? new AbortController() : null;
     var 시계;
-    표받기().then(function (표) {
+    /* 확인 장치가 이 기기에서 안 돌면(앱 속 브라우저 등) 「없음」 표로 보내 작은 몫으로라도 상담되게 합니다(11/6) */
+    표받기().catch(function (e) { return '없음:' + String((e && e.코드) || (e && e.message) || 'x').slice(0, 40); }).then(function (표) {
       시계 = setTimeout(function () { if (멈춤) 멈춤.abort(); }, 60000);
       return fetch(다리, { method: 'POST', headers: 머리, signal: 멈춤 ? 멈춤.signal : undefined,
         body: JSON.stringify({ 대화: 상태.대화, 대화번호: 상태.번호, 표: 표 }) });
