@@ -123,7 +123,7 @@
         ? '<div class="it-detail"><h2>제품 상세</h2>' +
           p.상세.map(function (c, i) {
             var 번호 = (c[0] < 10 ? '0' : '') + c[0];
-            return '<img src="' + 밑동 + 'img/detail/' + 막(p.사진) + '-' + 번호 + '.jpg"' +
+            return '<img src="' + 밑동 + 'img/detail/' + 막(p.사진) + '-' + 번호 + '.webp"' +
                    ' width="' + c[1] + '" height="' + c[2] + '"' +
                    ' loading="' + (i < 1 ? 'eager' : 'lazy') + '"' +
                    ' alt="' + 막(p.이름 + ' 상세 안내 ' + (i + 1)) + '">';
@@ -352,7 +352,7 @@
         : (카.그림 && 카.그림.length)
         ? 카.그림.map(function (c, i) {
             var 번호 = (c[0] < 10 ? '0' : '') + c[0];
-            return '<img src="' + 밑동 + 'img/card/card-' + 막(p.코드) + '-' + 번호 + '.jpg"' +
+            return '<img src="' + 밑동 + 'img/card/card-' + 막(p.코드) + '-' + 번호 + '.webp"' +
                    ' width="' + c[1] + '" height="' + c[2] + '"' +
                    ' loading="' + (i < 1 ? 'eager' : 'lazy') + '"' +
                    ' alt="' + 막(p.브랜드 + ' 제휴카드 안내 ' + (i + 1)) + '">';
