@@ -56,7 +56,7 @@ window.dh시험신청 = window.dh시험신청 || function (이름) { return /테
     if (!나) return;
     var s = document.createElement('script');
     s.id = 'dhCallhopeJs';
-    s.src = 나.replace(/[^/]*$/, 'dh-callhope.js?v=6');
+    s.src = 나.replace(/[^/]*$/, 'dh-callhope.js?v=7');
     s.onload = function () { if (document.getElementById('applyOverlay') && window.dh통화칸넣기) window.dh통화칸넣기(); };
     document.head.appendChild(s);
   })();
