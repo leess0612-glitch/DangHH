@@ -20,7 +20,7 @@ window.카드가림 = false;   /* true 로 바꾸면 9/11 처럼 「제휴카드
 window.제휴카드자료 = {};
 
 (function () {
-  var 브랜드들 = ['coway', 'sk', 'cuckoo', 'lg', 'chungho', 'qming', 'wells', 'ruhens'];
+  var 브랜드들 = ['coway', 'sk', 'cuckoo', 'lg', 'chungho', 'qming', 'wells'];  /* 루헨스 2026-11-06 렌탈 종료로 뺌 */
 
   function 돈(n) { return Number(n).toLocaleString('ko-KR'); }
   function 막(s) {
