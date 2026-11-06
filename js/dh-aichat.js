@@ -2,7 +2,7 @@
    당현함 AI 상담 창 · js/dh-aichat.js  (2026-11-06 처음 만듦)
 
    정수기 화면에 「AI 상담」 단추를 띄우고, 누르면 대화창이 열립니다.
-   부르는 법: <script src="../js/dh-aichat.js?v=3" defer></script>  (다른 공용 파일처럼 한 줄)
+   부르는 법: <script src="../js/dh-aichat.js?v=4" defer></script>  (다른 공용 파일처럼 한 줄)
    ★ AI 열쇠는 여기 없습니다 — 중간 다리(danghh-ai.danghh.workers.dev)가 갖고 있습니다.
    ★ 요금 숫자는 AI 가 아니라 사이트 계산기(dh-calc3.js) 셈으로 미리 만든 자료에서 옵니다.
    ★ 크레딧 부족·하루 상한·장애 때는 다리가 {쉼, 말} 을 보내고, 여기서는 오류 글자 없이
@@ -45,6 +45,12 @@
     '.dhai-ai p{margin:0 0 7px}.dhai-ai p:last-child{margin-bottom:0}.dhai-ai ul{margin:4px 0 7px;padding-left:18px}.dhai-ai li{margin:2px 0}',
     '.dhai-ai a{color:var(--c-strong,#1257C9)}',
     '.dhai-ai table{border-collapse:collapse;margin:7px 0;font-size:13px;display:block;overflow-x:auto;max-width:100%}',
+    '.dhai-cmps{display:flex;flex-direction:column;gap:8px;margin:10px 0}',
+    '.dhai-cmp{border:1px solid var(--c-line,#EEEFF3);border-radius:12px;overflow:hidden;background:#fff}',
+    '.dhai-cmp-h{background:var(--c-strong-bg,#EAF2FE);color:var(--c-strong,#1257C9);font-weight:700;font-size:14px;padding:9px 12px;line-height:1.4}',
+    '.dhai-cmp dl{display:grid;grid-template-columns:minmax(72px,30%) 1fr;gap:7px 12px;margin:0;padding:10px 12px}',
+    '.dhai-cmp dt{color:var(--c-sub,#4E5968);font-size:13px;line-height:1.5}',
+    '.dhai-cmp dd{margin:0;font-size:14px;line-height:1.5;color:var(--c-body,#191F28)}',
     '.dhai-ai th,.dhai-ai td{border:1px solid var(--c-line,#EEEFF3);padding:5px 7px;text-align:left;vertical-align:top;background:#fff}',
     '.dhai-ai th{background:var(--c-strong-bg,#EAF2FE);white-space:nowrap}',
     '.dhai-q{font-weight:700;margin:2px 0}.dhai-hint{font-size:13px;color:var(--c-sub,#4E5968);margin:2px 0 4px}.dhai-picked{font-size:13px;color:var(--c-sub,#4E5968);margin-bottom:6px}',
@@ -94,8 +100,22 @@
     s = s.replace(/\*\*([^*]+)\*\*/g, '<b>$1</b>');
     return s;
   }
-  /* AI 답(마크다운 일부: 표·목록·굵게·제목)을 화면 글로 */
-  function 꾸미기(글) {
+  function 표카드(행) {
+    if (!행.length) return '';
+    var 머리줄 = 행[0], 몸줄 = 행.slice(1), 칸수 = 머리줄.length, 밖 = '';
+    function 목록(쌍) {
+      return '<dl>' + 쌍.filter(function (x) { return x[1] && x[1] !== '-'; }).map(function (x) { return '<dt>' + x[0] + '</dt><dd>' + x[1] + '</dd>'; }).join('') + '</dl>';
+    }
+    if (칸수 >= 3 && 몸줄.length) {
+      for (var k = 1; k < 칸수; k++) {
+        밖 += '<div class="dhai-cmp"><div class="dhai-cmp-h">' + (머리줄[k] || '') + '</div>' +
+          목록(몸줄.map(function (r) { return [r[0] || '', r[k] || '']; })) + '</div>';
+      }
+      return '<div class="dhai-cmps">' + 밖 + '</div>';
+    }
+    return '<div class="dhai-cmps"><div class="dhai-cmp">' + 목록((칸수 === 2 ? 몸줄 : 행).map(function (r) { return [r[0] || '', r.slice(1).join(' · ')]; })) + '</div></div>';
+  }
+  /* AI 답(마크다운 일부: 표·목록·굵게·제목)을 화면 글로 */  function 꾸미기(글) {
     var 줄들 = String(글 || '').split('\n'), 밖 = [], i, 표, 목, 행;
     for (i = 0; i < 줄들.length; i++) {
       var 줄 = 줄들[i];
@@ -106,7 +126,9 @@
         행 = 표.filter(function (r) { return !/^\s*\|?\s*:?-{2,}/.test(r); }).map(function (r) {
           return r.trim().replace(/^\||\|$/g, '').split('|').map(function (c) { return 줄꾸밈(c.trim()); });
         });
-        밖.push('<table>' + 행.map(function (r, n) { return '<tr>' + r.map(function (c) { return n ? '<td>' + c + '</td>' : '<th>' + c + '</th>'; }).join('') + '</tr>'; }).join('') + '</table>');
+        /* 표는 좁은 대화창에서 글자가 세로로 쌓여 보기 흉해서(11/6 사장님), 「항목: 값」 카드로 바꿔 보여 줍니다.
+           3칸 이상(항목 × 제품 여럿) → 제품마다 카드 한 장 / 2칸 → 항목: 값 목록 한 장 */
+        밖.push(표카드(행));
       } else if (/^\s*[-*]\s+/.test(줄)) {
         목 = [];
         while (i < 줄들.length && /^\s*[-*]\s+/.test(줄들[i])) 목.push(줄들[i++].replace(/^\s*[-*]\s+/, ''));
