@@ -2,7 +2,7 @@
    당현함 AI 상담 창 · js/dh-aichat.js  (2026-11-06 처음 만듦)
 
    정수기 화면에 「AI 상담」 단추를 띄우고, 누르면 대화창이 열립니다.
-   부르는 법: <script src="../js/dh-aichat.js?v=5" defer></script>  (다른 공용 파일처럼 한 줄)
+   부르는 법: <script src="../js/dh-aichat.js?v=6" defer></script>  (다른 공용 파일처럼 한 줄)
    ★ AI 열쇠는 여기 없습니다 — 중간 다리(danghh-ai.danghh.workers.dev)가 갖고 있습니다.
    ★ 요금 숫자는 AI 가 아니라 사이트 계산기(dh-calc3.js) 셈으로 미리 만든 자료에서 옵니다.
    ★ 크레딧 부족·하루 상한·장애 때는 다리가 {쉼, 말} 을 보내고, 여기서는 오류 글자 없이
@@ -35,7 +35,7 @@
     '@media (max-width:640px){.dhai-panel{right:0;left:0;bottom:0;top:0;width:auto;max-width:none;height:auto;border-radius:0;border:0}}',
     '.dhai-head{display:flex;align-items:center;gap:10px;padding:12px 10px 12px 16px;border-bottom:1px solid var(--c-line,#EEEFF3);flex:none}',
     '.dhai-logo{width:28px;height:28px;flex:none;display:block}',
-    '.dhai-title{flex:1;min-width:0}.dhai-title b{display:block;font-size:16px;font-weight:700;line-height:1.3;color:var(--c-title,#0F172A)}.dhai-title span{display:block;font-size:13px;line-height:1.4;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--c-sub,#465368)}',
+    '.dhai-title{flex:1;min-width:0}.dhai-title b{display:block;font-size:16px;font-weight:700;line-height:1.3;color:var(--c-title,#0F172A);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.dhai-title span{display:block;font-size:13px;line-height:1.4;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--c-sub,#465368)}',
     '.dhai-agent{flex:none;height:32px;padding:0 10px;border:1px solid var(--c-line,#EEEFF3);border-radius:8px;background:#fff;color:var(--c-body,#0F172A);font-family:inherit;font-size:13px;font-weight:600;cursor:pointer}',
     '.dhai-icon{flex:none;width:36px;height:36px;border:0;border-radius:8px;background:none;color:var(--c-sub,#465368);display:flex;align-items:center;justify-content:center;cursor:pointer;padding:0}',
     '.dhai-icon:hover,.dhai-agent:hover{background:var(--dh-gray-100,#F5F6F8)}',
@@ -105,8 +105,11 @@
   function 표카드(행) {
     if (!행.length) return '';
     var 머리줄 = 행[0], 몸줄 = 행.slice(1), 칸수 = 머리줄.length, 밖 = '';
+    /* 1칸짜리 표는 카드로 만들 것이 없어 줄글로 보여 줍니다 */
+    if (칸수 < 2) return '<p>' + 행.map(function (r) { return r.join(' '); }).filter(function (x) { return x.trim(); }).join('<br>') + '</p>';
     function 목록(쌍) {
-      return '<dl>' + 쌍.filter(function (x) { return x[1] && x[1] !== '-'; }).map(function (x) { return '<dt>' + x[0] + '</dt><dd>' + x[1] + '</dd>'; }).join('') + '</dl>';
+      var 줄 = 쌍.filter(function (x) { return x[1] && x[1] !== '-'; });
+      return 줄.length ? '<dl>' + 줄.map(function (x) { return '<dt>' + x[0] + '</dt><dd>' + x[1] + '</dd>'; }).join('') + '</dl>' : '';
     }
     /* 표 방향 알아보기 — 모델 번호(CP-AE502HW 같은 꼴)가 왼쪽 칸에 더 많으면 「줄 = 제품」 표라서 줄마다 카드 한 장 */
     var 모델꼴 = function (x) { return /[A-Z]{1,5}-?[A-Z0-9]*\d[A-Z0-9-]{2,}/.test(String(x).replace(/<[^>]+>/g, '')) ? 1 : 0; };
@@ -114,19 +117,20 @@
     var 왼점수 = 몸줄.reduce(function (n, r) { return n + 모델꼴(r[0] || ''); }, 0);
     if (칸수 >= 3 && 몸줄.length && 왼점수 > 위점수) {
       몸줄.forEach(function (r) {
-        밖 += '<div class="dhai-cmp"><div class="dhai-cmp-h">' + (r[0] || '') + '</div>' +
-          목록(머리줄.slice(1).map(function (h, i) { return [h || '', r[i + 1] || '']; })) + '</div>';
+        var 목1 = 목록(머리줄.slice(1).map(function (h, i) { return [h || '', r[i + 1] || '']; }));
+        if (목1) 밖 += '<div class="dhai-cmp"><div class="dhai-cmp-h">' + (r[0] || '') + '</div>' + 목1 + '</div>';
       });
-      return '<div class="dhai-cmps">' + 밖 + '</div>';
+      return 밖 ? '<div class="dhai-cmps">' + 밖 + '</div>' : '';
     }
     if (칸수 >= 3 && 몸줄.length) {
       for (var k = 1; k < 칸수; k++) {
-        밖 += '<div class="dhai-cmp"><div class="dhai-cmp-h">' + (머리줄[k] || '') + '</div>' +
-          목록(몸줄.map(function (r) { return [r[0] || '', r[k] || '']; })) + '</div>';
+        var 목2 = 목록(몸줄.map(function (r) { return [r[0] || '', r[k] || '']; }));
+        if (목2) 밖 += '<div class="dhai-cmp"><div class="dhai-cmp-h">' + (머리줄[k] || '') + '</div>' + 목2 + '</div>';
       }
-      return '<div class="dhai-cmps">' + 밖 + '</div>';
+      return 밖 ? '<div class="dhai-cmps">' + 밖 + '</div>' : '';
     }
-    return '<div class="dhai-cmps"><div class="dhai-cmp">' + 목록((칸수 === 2 ? 몸줄 : 행).map(function (r) { return [r[0] || '', r.slice(1).join(' · ')]; })) + '</div></div>';
+    var 남은 = 목록(((칸수 === 2 && 몸줄.length) ? 몸줄 : 행).map(function (r) { return [r[0] || '', r.slice(1).join(' · ')]; }));
+    return 남은 ? '<div class="dhai-cmps"><div class="dhai-cmp">' + 남은 + '</div></div>' : '';
   }
   /* AI 답(마크다운 일부: 표·목록·굵게·제목)을 화면 글로 */  function 꾸미기(글) {
     var 줄들 = String(글 || '').split('\n'), 밖 = [], i, 표, 목, 행;
@@ -392,7 +396,10 @@
       닫기();
       (document.getElementById('formContent') || 칸자리).scrollIntoView({ behavior: 'smooth', block: 'start' });   /* 신청 칸(이름 칸)부터 보이게 */
       try {
-        if (typeof window.요청사항펴기 === 'function') window.요청사항펴기(); else { var 접힘 = document.getElementById('memoFold'); if (접힘) 접힘.classList.add('open'); }
+        /* 사이트의 요청사항 펴기 기능은 요청사항 칸에 커서를 넣어 화면이 그쪽으로 튀므로(11/6 라이브 검수) 직접 펼치기만 합니다 */
+        var 접힘 = document.getElementById('memoFold'), 펴기단추 = document.getElementById('memoToggle');
+        if (접힘) 접힘.classList.add('open');
+        if (펴기단추) 펴기단추.style.display = 'none';
         var 메모 = document.getElementById('inputMemo');
         if (메모) { 메모.value = ('AI 상담 문의: ' + 품목글).slice(0, 200); 메모.dispatchEvent(new Event('input', { bubbles: true })); }
       } catch (e) { /* 메모 칸이 없어도 신청은 됨 */ }
