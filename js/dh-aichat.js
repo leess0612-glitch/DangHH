@@ -2,7 +2,7 @@
    당현함 AI 상담 창 · js/dh-aichat.js  (2026-11-06 처음 만듦)
 
    정수기 화면에 「AI 상담」 단추를 띄우고, 누르면 대화창이 열립니다.
-   부르는 법: <script src="../js/dh-aichat.js?v=1" defer></script>  (다른 공용 파일처럼 한 줄)
+   부르는 법: <script src="../js/dh-aichat.js?v=2" defer></script>  (다른 공용 파일처럼 한 줄)
    ★ AI 열쇠는 여기 없습니다 — 중간 다리(danghh-ai.danghh.workers.dev)가 갖고 있습니다.
    ★ 요금 숫자는 AI 가 아니라 사이트 계산기(dh-calc3.js) 셈으로 미리 만든 자료에서 옵니다.
    ★ 크레딧 부족·하루 상한·장애 때는 다리가 {쉼, 말} 을 보내고, 여기서는 오류 글자 없이
