@@ -2,7 +2,7 @@
    당현함 AI 상담 창 · js/dh-aichat.js  (2026-11-06 처음 만듦)
 
    정수기 화면에 「AI 상담」 단추를 띄우고, 누르면 대화창이 열립니다.
-   부르는 법: <script src="../js/dh-aichat.js?v=6" defer></script>  (다른 공용 파일처럼 한 줄)
+   부르는 법: <script src="../js/dh-aichat.js?v=7" defer></script>  (다른 공용 파일처럼 한 줄)
    ★ AI 열쇠는 여기 없습니다 — 중간 다리(danghh-ai.danghh.workers.dev)가 갖고 있습니다.
    ★ 요금 숫자는 AI 가 아니라 사이트 계산기(dh-calc3.js) 셈으로 미리 만든 자료에서 옵니다.
    ★ 크레딧 부족·하루 상한·장애 때는 다리가 {쉼, 말} 을 보내고, 여기서는 오류 글자 없이
@@ -106,7 +106,7 @@
     if (!행.length) return '';
     var 머리줄 = 행[0], 몸줄 = 행.slice(1), 칸수 = 머리줄.length, 밖 = '';
     /* 1칸짜리 표는 카드로 만들 것이 없어 줄글로 보여 줍니다 */
-    if (칸수 < 2) return '<p>' + 행.map(function (r) { return r.join(' '); }).filter(function (x) { return x.trim(); }).join('<br>') + '</p>';
+    if (칸수 < 2) { var 줄글 = 행.map(function (r) { return r.join(' '); }).filter(function (x) { return x.trim(); }).join('<br>'); return 줄글 ? '<p>' + 줄글 + '</p>' : ''; }
     function 목록(쌍) {
       var 줄 = 쌍.filter(function (x) { return x[1] && x[1] !== '-'; });
       return 줄.length ? '<dl>' + 줄.map(function (x) { return '<dt>' + x[0] + '</dt><dd>' + x[1] + '</dd>'; }).join('') + '</dl>' : '';
@@ -395,26 +395,28 @@
       if (!칸자리) { location.href = 'tel:' + 전화; return; }
       닫기();
       (document.getElementById('formContent') || 칸자리).scrollIntoView({ behavior: 'smooth', block: 'start' });   /* 신청 칸(이름 칸)부터 보이게 */
-      try {
-        /* 사이트의 요청사항 펴기 기능은 요청사항 칸에 커서를 넣어 화면이 그쪽으로 튀므로(11/6 라이브 검수) 직접 펼치기만 합니다 */
-        var 접힘 = document.getElementById('memoFold'), 펴기단추 = document.getElementById('memoToggle');
-        if (접힘) 접힘.classList.add('open');
-        if (펴기단추) 펴기단추.style.display = 'none';
-        var 메모 = document.getElementById('inputMemo');
-        if (메모) { 메모.value = ('AI 상담 문의: ' + 품목글).slice(0, 200); 메모.dispatchEvent(new Event('input', { bubbles: true })); }
-      } catch (e) { /* 메모 칸이 없어도 신청은 됨 */ }
+      요청사항채우기(품목글);
       return;
     }
     닫기();
     window.신청창열기();
-    try { if (window.toggleService) window.toggleService('rental'); } catch (e) { /* 무시 */ }
+    /* 렌탈 칸은 누를 때마다 켜졌다 꺼지므로(11/6 재검수) 꺼져 있을 때만 켭니다. 정수기 화면은 인터넷 칸이 켜져 있으면 끕니다(메인은 그대로) */
     try {
-      if (window.요청사항펴기) window.요청사항펴기();
-      var 칸 = document.getElementById('inputMemo');
-      if (칸) { 칸.value = ('AI 상담 문의: ' + 품목글).slice(0, 200); 칸.dispatchEvent(new Event('input', { bubbles: true })); }
+      var 렌 = document.getElementById('tab-rental'), 인 = document.getElementById('tab-internet');
+      if (window.toggleService && 렌 && !렌.classList.contains('active')) window.toggleService('rental');
+      if (window.toggleService && 인 && 인.classList.contains('active') && /\/water\//.test(location.pathname)) window.toggleService('internet');
+    } catch (e) { /* 무시 */ }
+    요청사항채우기(품목글);
+  }
+  /* 요청사항 칸을 펼치고 내용만 채웁니다 — 커서는 넣지 않습니다(휴대폰 자판이 갑자기 올라와 화면이 튀지 않게) */
+  function 요청사항채우기(품목글) {
+    try {
+      var 접힘 = document.getElementById('memoFold'), 펴기단추 = document.getElementById('memoToggle'), 메모 = document.getElementById('inputMemo');
+      if (접힘) 접힘.classList.add('open');
+      if (펴기단추) 펴기단추.style.display = 'none';
+      if (메모) { 메모.value = ('AI 상담 문의: ' + 품목글).slice(0, 200); 메모.dispatchEvent(new Event('input', { bubbles: true })); }
     } catch (e) { /* 메모 칸이 없어도 신청은 됨 */ }
   }
-
   function 묻기(글) {
     글 = String(글 || '').trim();
     if (!글 || 바쁨) return;
