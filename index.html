@@ -28,7 +28,7 @@ var DH_PAGE = 'danghh-internet';</script>
 <script src="js/dh-topnav.js?v=9"></script>
 <script src="js/dh-find.js?v=15"></script>
 <script src="js/dh-footer.js?v=8"></script>
-<script src="js/dh-terms.js?v=64"></script>
+<script src="js/dh-terms.js?v=65"></script>
 <script src="js/dh-callhope.js?v=7" defer></script>
 <script>
 /* 부품 파일을 못 받아 왔더라도 신청 접수는 막히지 않게 한다 (유입 칸만 비게 된다) */
@@ -2369,14 +2369,17 @@ function promiseZoom(src){ document.getElementById('promiseViewerImg').src=src; 
         <tr><td>이름, 휴대폰 번호</td><td>홈페이지 신청폼</td></tr>
         <tr><td>서비스 종류, 유심 동시 변경 여부, 요청사항 메모, 통화 희망 시간</td><td>홈페이지 신청폼</td></tr>
         <tr><td>들어온 경로(광고·검색 등), 접속 기록, 쿠키</td><td>홈페이지 이용 시 자동 수집</td></tr>
+        <tr><td>AI 상담 창에 적은 질문과 AI 답변</td><td>정수기 화면 AI 상담 창(이름·전화번호는 받지 않습니다)</td></tr>
       </table>
 
       <h4>2. 개인정보 수집 및 이용 목적</h4>
       <p>인터넷 가입 및 가전렌탈 상담 연락, 서비스 안내 및 신청 처리<br>
-      홈페이지 방문 통계와 광고 효과 분석(자동 수집 정보)</p>
+      홈페이지 방문 통계와 광고 효과 분석(자동 수집 정보)<br>
+      AI 상담 답변 생성과 답변 품질 점검(AI 상담 창 질문)</p>
 
       <h4>3. 개인정보 보유 및 이용 기간</h4>
       <p>상담 목적 달성 후 1년간 보유 후 파기합니다.<br>
+      AI 상담 창에 적은 질문과 답변은 30일 뒤 자동으로 파기합니다.<br>
       단, 관계 법령에 따라 보존이 필요한 경우 해당 기간 동안 보관합니다.</p>
 
       <h4>4. 개인정보의 제3자 제공</h4>
@@ -2394,8 +2397,9 @@ function promiseZoom(src){ document.getElementById('promiseViewerImg').src=src; 
       <table>
         <tr><th>맡기는 곳</th><th>맡기는 업무</th></tr>
         <tr><td>Google LLC</td><td>신청 내용 저장·관리</td></tr>
-        <tr><td>Cloudflare, Inc.</td><td>홈페이지 신청 접수 처리</td></tr>
+        <tr><td>Cloudflare, Inc.</td><td>홈페이지 신청 접수 처리, AI 상담 질문·답변 보관(30일)</td></tr>
         <tr><td>(주)다우기술(뿌리오)</td><td>상담 안내 카카오 알림톡·문자 발송</td></tr>
+        <tr><td>Anthropic, PBC</td><td>AI 상담 답변 생성</td></tr>
       </table>
       <p>맡긴 정보는 위 3번의 보유 기간이 끝나거나 위탁 계약이 끝나면 파기합니다.</p>
 
@@ -2404,9 +2408,10 @@ function promiseZoom(src){ document.getElementById('promiseViewerImg').src=src; 
       <table>
         <tr><th>이전받는 곳(국가)</th><th>이전 항목</th><th>이전 시기·방법</th><th>보유 기간</th></tr>
         <tr><td>Google LLC (미국)</td><td>이름, 휴대폰 번호, 신청 내용</td><td>신청할 때 인터넷으로 전송</td><td>위 3번과 같음</td></tr>
-        <tr><td>Cloudflare, Inc. (미국)</td><td>이름, 휴대폰 번호, 신청 내용</td><td>신청할 때 인터넷으로 전송</td><td>접수 처리 후 위 3번과 같음</td></tr>
+        <tr><td>Cloudflare, Inc. (미국)</td><td>이름, 휴대폰 번호, 신청 내용, AI 상담 창 질문·답변</td><td>신청·질문할 때 인터넷으로 전송</td><td>신청 내용은 접수 처리 후 위 3번과 같음, AI 상담은 30일</td></tr>
+        <tr><td>Anthropic, PBC (미국)</td><td>AI 상담 창에 적은 질문</td><td>질문할 때 인터넷으로 전송</td><td>답변을 만든 뒤 Anthropic 정책에 따라 처리</td></tr>
       </table>
-      <p>국외 이전을 원하지 않으시면 홈페이지 신청 대신 전화(1600-4670)로 상담을 신청하실 수 있습니다.</p>
+      <p>국외 이전을 원하지 않으시면 홈페이지 신청 대신 전화(1600-4670)로 상담을 신청하실 수 있습니다. AI 상담 창은 쓰지 않으셔도 됩니다.</p>
 
       <h4>7. 개인정보의 파기</h4>
       <p>보유 기간 경과 또는 처리 목적 달성 시 해당 정보를 지체 없이 파기합니다. 전자적 파일 형태의 정보는 복구가 불가능한 방법으로 삭제합니다.</p>
@@ -2433,8 +2438,8 @@ function promiseZoom(src){ document.getElementById('promiseViewerImg').src=src; 
       </table>
 
       <h4>12. 개인정보처리방침 변경</h4>
-      <p>이 방침은 2026년 11월 3일부터 시행되며, 내용 변경 시 홈페이지를 통해 공지합니다.<br>
-      (이전 방침: 2026년 10월 30일 시행)</p>
+      <p>이 방침은 2026년 11월 6일부터 시행되며, 내용 변경 시 홈페이지를 통해 공지합니다.<br>
+      (이전 방침: 2026년 11월 3일 시행)</p>
     </div>
   </div>
 </div>
