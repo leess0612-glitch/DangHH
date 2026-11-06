@@ -6,7 +6,15 @@
 <atom:link href="https://danghh.com/guide/rss.xml" rel="self" type="application/rss+xml"/>
 <description>인터넷 가입 순서, KT 결합할인, 약정 위약금 계산, 가입 사은품 받는 법을 KT·SK브로드밴드·LG U+ 공식 자료 기준으로 정리한 당현함 가이드입니다.</description>
 <language>ko</language>
-<lastBuildDate>Tue, 03 Nov 2026 09:00:00 +0900</lastBuildDate>
+<lastBuildDate>Fri, 06 Nov 2026 09:00:00 +0900</lastBuildDate>
+<item>
+<title>인터넷 통신사 변경, 끊김 없이 옮기는 순서와 해지 방법</title>
+<link>https://danghh.com/guide/switch-internet-carrier/</link>
+<guid isPermaLink="true">https://danghh.com/guide/switch-internet-carrier/</guid>
+<category>약정·해지</category>
+<pubDate>Fri, 06 Nov 2026 09:00:00 +0900</pubDate>
+<description>인터넷 통신사 변경은 위약금 조회, 휴대폰 결합 확인, 새 통신사 신청과 설치, 개통 확인, 기존 통신사 해지, 장비 반납, 마지막 청구서 확인 순서로 하면 인터넷이 끊기는 날이 없습니다. 새 통신사에 기존 인터넷 해지까지 함께 맡기는 원스톱전환도 있습니다. 2026년 11월 기준 바꾸면서 돈이 더 나가는 곳은 약정 중 해지 위약금, 휴대폰 결합이 풀려 오르는 휴대폰 요금, 반납하지 못한 장비의 변상금입니다.</description>
+</item>
 <item>
 <title>KT 결합할인 종류와 가족결합 할인액, 신청 서류까지</title>
 <link>https://danghh.com/guide/kt-bundle-discount/</link>
