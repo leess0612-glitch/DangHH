@@ -2,7 +2,7 @@
    당현함 AI 상담 창 · js/dh-aichat.js  (2026-11-06 처음 만듦)
 
    정수기 화면에 「AI 상담」 단추를 띄우고, 누르면 대화창이 열립니다.
-   부르는 법: <script src="../js/dh-aichat.js?v=4" defer></script>  (다른 공용 파일처럼 한 줄)
+   부르는 법: <script src="../js/dh-aichat.js?v=5" defer></script>  (다른 공용 파일처럼 한 줄)
    ★ AI 열쇠는 여기 없습니다 — 중간 다리(danghh-ai.danghh.workers.dev)가 갖고 있습니다.
    ★ 요금 숫자는 AI 가 아니라 사이트 계산기(dh-calc3.js) 셈으로 미리 만든 자료에서 옵니다.
    ★ 크레딧 부족·하루 상한·장애 때는 다리가 {쉼, 말} 을 보내고, 여기서는 오류 글자 없이
@@ -21,74 +21,76 @@
   var 저장열쇠 = 'dh-aichat-v2';   /* v2: 화면 HTML 대신 글 자료로 저장(11/6) */
 
   /* ── 모양 ── 디자인보드 값 이름표(--c-*)를 쓰고, 없으면 같은 색으로 */
+  /* ── 모양 ── 11/6 디자인 손질: 상자 겹침 없애기, 글자 12·13·14·15·16 / 모서리 4·8·12·알약 / 색은 사이트 이름표(--c-*, --dh-*)만 */
   var 모양 = [
-    '.dhai-fab{position:fixed;right:16px;bottom:calc(16px + var(--dhai-bar,0px) + env(safe-area-inset-bottom,0px));z-index:960;display:flex;align-items:center;gap:7px;',
-    'height:48px;padding:0 18px 0 14px;border:0;border-radius:999px;background:var(--c-strong,#1257C9);color:#fff;font:700 15px/1 inherit;font-family:inherit;',
-    'box-shadow:0 8px 24px -6px rgba(18,87,201,.55);cursor:pointer;-webkit-tap-highlight-color:transparent}',
-    '.dhai-fab:active{transform:scale(.97)}',
-    '.dhai-fab svg{width:22px;height:22px;flex:none}',
+    '.dhai-fab{position:fixed;right:16px;bottom:calc(16px + var(--dhai-bar,0px) + env(safe-area-inset-bottom,0px));z-index:960;display:flex;align-items:center;gap:6px;',
+    'height:44px;padding:0 16px 0 13px;border:1px solid var(--c-strong-bg,#EFF6FF);border-radius:999px;background:#fff;color:var(--c-strong,#1257C9);font-family:inherit;font-size:14px;font-weight:700;line-height:1;',
+    'box-shadow:0 8px 32px rgba(11,46,92,.16);cursor:pointer;-webkit-tap-highlight-color:transparent}',
+    '.dhai-fab svg{width:20px;height:20px;flex:none}',
     '.dhai-fab[hidden]{display:none}',
-    '.dhai-panel{position:fixed;right:16px;bottom:calc(16px + var(--dhai-bar,0px));z-index:1000;width:400px;max-width:calc(100vw - 32px);height:min(640px,calc(100vh - 100px));',
-    'margin:0;padding:0;box-sizing:border-box;background:#fff;border-radius:16px;box-shadow:0 18px 48px -12px rgba(15,23,42,.35);display:flex;flex-direction:column;overflow:hidden;color:var(--c-body,#191F28);font-family:inherit}',
+    '.dhai-panel{position:fixed;right:16px;bottom:calc(16px + var(--dhai-bar-wide,0px));z-index:1000;width:400px;max-width:calc(100vw - 32px);height:min(660px,calc(100vh - 96px - var(--dhai-bar-wide,0px)));',
+    'margin:0;padding:0;box-sizing:border-box;background:#fff;border-radius:12px;box-shadow:0 8px 32px rgba(11,46,92,.16);border:1px solid var(--c-line,#EEEFF3);display:flex;flex-direction:column;overflow:hidden;color:var(--c-body,#0F172A);font-family:inherit}',
     '.dhai-panel[hidden]{display:none}',
     '.dhai-panel *,.dhai-panel *::before,.dhai-panel *::after{box-sizing:border-box}',
-    '@media (max-width:640px){.dhai-panel{right:0;left:0;bottom:0;top:0;width:auto;max-width:none;height:auto;border-radius:0}}',
-    '.dhai-head{display:flex;align-items:center;gap:10px;padding:12px 12px 12px 16px;border-bottom:1px solid var(--c-line,#EEEFF3);flex:none}',
-    '.dhai-face{width:32px;height:32px;border-radius:50%;background:var(--c-strong,#1257C9);color:#fff;font-weight:800;font-size:14px;display:flex;align-items:center;justify-content:center;flex:none}',
-    '.dhai-title{flex:1;min-width:0}.dhai-title b{display:block;font-size:16px;color:var(--c-title,#191F28)}.dhai-title span{font-size:12px;color:var(--c-sub,#4E5968)}',
-    '.dhai-hbtn{border:0;background:none;color:var(--c-sub,#4E5968);font:inherit;font-size:13px;padding:8px;border-radius:8px;cursor:pointer}',
-    '.dhai-hbtn:hover{background:#F2F4F6}',
-    '.dhai-x{font-size:22px;line-height:1;padding:4px 10px}',
-    '.dhai-body{flex:1;overflow-y:auto;padding:16px 14px;display:flex;flex-direction:column;gap:12px;background:#F7F8FA;overscroll-behavior:contain}',
-    '.dhai-me{align-self:flex-end;max-width:85%;background:var(--c-strong,#1257C9);color:#fff;padding:10px 13px;border-radius:14px 14px 4px 14px;white-space:pre-wrap;word-break:keep-all;overflow-wrap:anywhere;font-size:15px;line-height:1.55}',
-    '.dhai-ai{align-self:flex-start;max-width:100%;width:100%;background:#fff;border:1px solid var(--c-line,#EEEFF3);padding:12px 13px;border-radius:4px 14px 14px 14px;font-size:15px;line-height:1.65;word-break:keep-all;overflow-wrap:anywhere}',
-    '.dhai-ai p{margin:0 0 7px}.dhai-ai p:last-child{margin-bottom:0}.dhai-ai ul{margin:4px 0 7px;padding-left:18px}.dhai-ai li{margin:2px 0}',
+    '@media (max-width:640px){.dhai-panel{right:0;left:0;bottom:0;top:0;width:auto;max-width:none;height:auto;border-radius:0;border:0}}',
+    '.dhai-head{display:flex;align-items:center;gap:10px;padding:12px 10px 12px 16px;border-bottom:1px solid var(--c-line,#EEEFF3);flex:none}',
+    '.dhai-logo{width:28px;height:28px;flex:none;display:block}',
+    '.dhai-title{flex:1;min-width:0}.dhai-title b{display:block;font-size:16px;font-weight:700;line-height:1.3;color:var(--c-title,#0F172A)}.dhai-title span{display:block;font-size:13px;line-height:1.4;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--c-sub,#465368)}',
+    '.dhai-agent{flex:none;height:32px;padding:0 10px;border:1px solid var(--c-line,#EEEFF3);border-radius:8px;background:#fff;color:var(--c-body,#0F172A);font-family:inherit;font-size:13px;font-weight:600;cursor:pointer}',
+    '.dhai-icon{flex:none;width:36px;height:36px;border:0;border-radius:8px;background:none;color:var(--c-sub,#465368);display:flex;align-items:center;justify-content:center;cursor:pointer;padding:0}',
+    '.dhai-icon:hover,.dhai-agent:hover{background:var(--dh-gray-100,#F5F6F8)}',
+    '.dhai-icon svg{width:20px;height:20px}',
+    '.dhai-body{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:16px;background:#fff;overscroll-behavior:contain}',
+    '.dhai-me{align-self:flex-end;max-width:85%;background:var(--c-strong,#1257C9);color:#fff;padding:10px 14px;border-radius:12px 12px 4px 12px;white-space:pre-wrap;word-break:keep-all;overflow-wrap:anywhere;font-size:15px;line-height:1.6}',
+    '.dhai-ai{align-self:stretch;font-size:16px;line-height:1.75;word-break:keep-all;overflow-wrap:anywhere;color:var(--c-body,#0F172A)}',
+    '.dhai-ai p{margin:0 0 14px}.dhai-ai p:last-child{margin-bottom:0}.dhai-ai ul{margin:0 0 14px;padding-left:20px}.dhai-ai li{margin:4px 0}',
     '.dhai-ai a{color:var(--c-strong,#1257C9)}',
-    '.dhai-ai table{border-collapse:collapse;margin:7px 0;font-size:13px;display:block;overflow-x:auto;max-width:100%}',
-    '.dhai-cmps{display:flex;flex-direction:column;gap:8px;margin:10px 0}',
-    '.dhai-cmp{border:1px solid var(--c-line,#EEEFF3);border-radius:12px;overflow:hidden;background:#fff}',
-    '.dhai-cmp-h{background:var(--c-strong-bg,#EAF2FE);color:var(--c-strong,#1257C9);font-weight:700;font-size:14px;padding:9px 12px;line-height:1.4}',
-    '.dhai-cmp dl{display:grid;grid-template-columns:minmax(72px,30%) 1fr;gap:7px 12px;margin:0;padding:10px 12px}',
-    '.dhai-cmp dt{color:var(--c-sub,#4E5968);font-size:13px;line-height:1.5}',
-    '.dhai-cmp dd{margin:0;font-size:14px;line-height:1.5;color:var(--c-body,#191F28)}',
-    '.dhai-ai th,.dhai-ai td{border:1px solid var(--c-line,#EEEFF3);padding:5px 7px;text-align:left;vertical-align:top;background:#fff}',
-    '.dhai-ai th{background:var(--c-strong-bg,#EAF2FE);white-space:nowrap}',
-    '.dhai-q{font-weight:700;margin:2px 0}.dhai-hint{font-size:13px;color:var(--c-sub,#4E5968);margin:2px 0 4px}.dhai-picked{font-size:13px;color:var(--c-sub,#4E5968);margin-bottom:6px}',
-    '.dhai-chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:8px}',
-    '.dhai-chips button{border:1px solid #D1D6DB;background:#fff;color:var(--c-body,#191F28);border-radius:999px;padding:8px 14px;font:inherit;font-size:14px;cursor:pointer}',
-    '.dhai-chips button:hover{border-color:var(--c-strong,#1257C9);color:var(--c-strong,#1257C9)}',
-    '.dhai-links{display:flex;gap:14px;margin-top:10px}.dhai-links button{border:0;background:none;padding:0;font:inherit;font-size:13px;color:var(--c-sub,#4E5968);text-decoration:underline;cursor:pointer}',
-    '.dhai-wait{align-self:flex-start;background:#fff;border:1px solid var(--c-line,#EEEFF3);border-radius:4px 14px 14px 14px;padding:12px 14px;display:flex;align-items:center;gap:10px;font-size:14px;color:var(--c-strong,#1257C9);font-weight:700}',
-    '.dhai-dots{display:inline-flex;gap:4px}.dhai-dots i{width:6px;height:6px;border-radius:50%;background:currentColor;animation:dhai-b 1s infinite ease-in-out}',
-    '.dhai-dots i:nth-child(2){animation-delay:.15s}.dhai-dots i:nth-child(3){animation-delay:.3s}',
-    '@keyframes dhai-b{0%,80%,100%{opacity:.25;transform:translateY(0)}40%{opacity:1;transform:translateY(-3px)}}',
-    '@media (prefers-reduced-motion:reduce){.dhai-dots i{animation:none}}',
-    '.dhai-cards{display:flex;gap:8px;overflow-x:auto;margin:10px -2px 2px;padding:0 2px 4px}',
-    '.dhai-card{flex:none;width:176px;background:#fff;border:1px solid var(--c-line,#EEEFF3);border-radius:12px;overflow:hidden;display:flex;flex-direction:column}',
-    '.dhai-card img{width:100%;height:118px;object-fit:contain;background:#fff;border-bottom:1px solid var(--c-line,#EEEFF3)}',
-    '.dhai-cb{padding:8px 10px;display:flex;flex-direction:column;gap:2px;flex:1;font-size:13px;line-height:1.45}',
-    '.dhai-brand{color:var(--c-sub,#4E5968);font-size:12px}.dhai-name{font-weight:700;word-break:keep-all}.dhai-model{color:var(--c-dim,#8B95A1);font-size:11px}',
-    '.dhai-price{margin-top:4px;font-weight:800;color:var(--c-strong,#1257C9);font-size:15px}.dhai-price small{font-weight:400;color:var(--c-sub,#4E5968);font-size:11px}',
-    '.dhai-opt{display:flex;flex-wrap:wrap;gap:3px;margin-top:4px}',
-    '.dhai-opt button{border:1px solid var(--c-line,#EEEFF3);background:#fff;color:var(--c-sub,#4E5968);border-radius:5px;padding:2px 6px;font:inherit;font-size:11px;cursor:pointer}',
-    '.dhai-opt button.on{border-color:var(--c-strong,#1257C9);background:var(--c-strong-bg,#EAF2FE);color:var(--c-strong,#1257C9);font-weight:700}',
-    '.dhai-rounds{margin:5px 0 2px;border:1px solid var(--c-line,#EEEFF3);border-radius:6px;overflow:hidden;font-size:11.5px}',
-    '.dhai-rounds div{display:flex;justify-content:space-between;gap:6px;padding:3px 7px}.dhai-rounds div+div{border-top:1px solid var(--c-line,#EEEFF3)}',
-    '.dhai-rounds div:first-child{background:var(--c-strong-bg,#EAF2FE)}.dhai-rounds span{color:var(--c-sub,#4E5968);white-space:nowrap}.dhai-rounds b{white-space:nowrap}',
-    '.dhai-note{color:var(--c-sub,#4E5968);font-size:11px}',
-    '.dhai-cbtn{display:flex;flex-direction:column;gap:5px;padding:0 10px 10px}',
-    '.dhai-cbtn a,.dhai-cbtn button{font:inherit;font-size:13px;border-radius:8px;padding:8px 0;text-align:center;cursor:pointer;text-decoration:none}',
-    '.dhai-cbtn a{border:1px solid var(--c-line,#EEEFF3);color:var(--c-body,#191F28);background:#fff}',
-    '.dhai-cbtn button{border:0;background:var(--c-strong,#1257C9);color:#fff;font-weight:700}',
-    '.dhai-act{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}',
-    '.dhai-act button,.dhai-act a{font:inherit;font-size:13.5px;font-weight:700;border-radius:8px;padding:9px 13px;text-decoration:none;cursor:pointer;border:0}',
-    '.dhai-act .ap{background:var(--c-strong,#1257C9);color:#fff}.dhai-act .kk{background:var(--c-kakao,#FEE500);color:#191919}.dhai-act .tel{background:#fff;color:var(--c-body,#191F28);border:1px solid var(--c-line,#EEEFF3)}',
-    '.dhai-warn{margin-top:8px;font-size:11.5px;line-height:1.5;color:var(--c-dim,#8B95A1)}',
+    '.dhai-q{font-size:16px;font-weight:700;margin:4px 0 2px}.dhai-hint{font-size:13px;line-height:1.6;color:var(--c-sub,#465368);margin:0 0 4px}.dhai-picked{font-size:13px;color:var(--c-sub,#465368);margin-bottom:8px}',
+    '.dhai-note-pv{font-size:12px;line-height:1.6;color:var(--c-dim,#8A9099);margin-top:12px}',
+    '.dhai-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}',
+    '.dhai-chips button{height:40px;border:0;background:var(--c-strong-bg,#EFF6FF);color:var(--c-strong,#1257C9);border-radius:999px;padding:0 16px;font-family:inherit;font-size:15px;font-weight:600;cursor:pointer}',
+    '.dhai-chips button.dhai-chip-sub{background:var(--dh-gray-100,#F5F6F8);color:var(--c-sub,#465368);font-weight:500}',
+    '.dhai-chips button:active{transform:scale(.98)}',
+    '.dhai-cmps{display:flex;flex-direction:column;gap:12px;margin:4px 0 16px}',
+    '.dhai-cmp{border:1px solid var(--c-line,#EEEFF3);border-radius:12px;background:#fff}',
+    '.dhai-cmp-h{font-size:15px;font-weight:700;line-height:1.4;color:var(--c-title,#0F172A);padding:12px 14px 0}',
+    '.dhai-cmp dl{display:grid;grid-template-columns:88px 1fr;gap:8px 12px;margin:0;padding:10px 14px 14px}',
+    '.dhai-cmp dt{color:var(--c-sub,#465368);font-size:14px;line-height:1.5}',
+    '.dhai-cmp dd{margin:0;font-size:14px;line-height:1.5;font-weight:600;color:var(--c-body,#0F172A)}',
+    '.dhai-wait{align-self:flex-start;display:flex;align-items:center;gap:10px;font-size:14px;color:var(--c-sub,#465368)}',
+    '.dhai-dots{display:inline-flex;gap:4px;color:var(--c-strong,#1257C9)}.dhai-dots i{width:6px;height:6px;border-radius:50%;background:currentColor;animation:dhai-b 1.2s infinite ease-in-out}',
+    '.dhai-dots i:nth-child(2){animation-delay:.2s}.dhai-dots i:nth-child(3){animation-delay:.4s}',
+    '@keyframes dhai-b{0%,80%,100%{opacity:.2}40%{opacity:1}}',
+    '@media (prefers-reduced-motion:reduce){.dhai-dots i{animation:none;opacity:.6}}',
+    '.dhai-cards{display:flex;gap:10px;overflow-x:auto;margin:4px -16px 0;padding:0 16px 4px;scroll-padding:0 16px;scrollbar-width:none;scroll-snap-type:x mandatory}',
+    '.dhai-cards::-webkit-scrollbar{display:none}',
+    '.dhai-card{flex:none;width:200px;scroll-snap-align:start;background:#fff;border:1px solid var(--c-line,#EEEFF3);border-radius:12px;overflow:hidden;display:flex;flex-direction:column}',
+    '.dhai-card>a{display:block;color:inherit;text-decoration:none}',
+    '.dhai-cb a{color:inherit;text-decoration:none}',
+    '.dhai-card img{width:100%;height:132px;object-fit:contain;background:#fff;display:block;padding:10px}',
+    '.dhai-cb{padding:4px 14px 12px;display:flex;flex-direction:column;gap:2px;flex:1}',
+    '.dhai-brand{color:var(--c-sub,#465368);font-size:13px;line-height:1.4}.dhai-name{font-size:15px;font-weight:700;line-height:1.4;word-break:keep-all;color:var(--c-title,#0F172A)}',
+    '.dhai-model{color:var(--c-dim,#8A9099);font-size:12px;line-height:1.5}',
+    '.dhai-price{display:block;margin-top:8px;font-weight:800;color:var(--c-strong,#1257C9);font-size:18px;line-height:1.3}',
+    '.dhai-cond{display:block;font-size:13px;color:var(--c-sub,#465368);line-height:1.5}',
+    '.dhai-opt{display:flex;flex-wrap:wrap;gap:4px;margin-top:8px}',
+    '.dhai-opt button{border:1px solid var(--c-line,#EEEFF3);background:#fff;color:var(--c-sub,#465368);border-radius:4px;padding:5px 10px;font-family:inherit;font-size:13px;line-height:1.3;cursor:pointer;max-width:100%;text-align:left;word-break:keep-all}',
+    '.dhai-opt button.on{border-color:var(--c-strong,#1257C9);background:var(--c-strong-bg,#EFF6FF);color:var(--c-strong,#1257C9);font-weight:700}',
+    '.dhai-rounds{margin:8px 0 4px;background:var(--dh-gray-100,#F5F6F8);border-radius:8px;padding:4px 10px;font-size:13px}',
+    '.dhai-rounds div{display:flex;justify-content:space-between;align-items:center;gap:6px;min-height:28px}',
+    '.dhai-rounds span{color:var(--c-sub,#465368);white-space:nowrap}.dhai-rounds b{white-space:nowrap;font-weight:700;color:var(--c-body,#0F172A)}',
+    '.dhai-note{display:block;color:var(--c-sub,#465368);font-size:12px;line-height:1.5}',
+    '.dhai-cbtn{padding:0 14px 14px}',
+    '.dhai-cbtn button{width:100%;height:40px;border:1px solid var(--c-strong,#1257C9);background:#fff;color:var(--c-strong,#1257C9);border-radius:8px;font-family:inherit;font-size:14px;font-weight:700;cursor:pointer}',
+    '.dhai-act{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:16px}',
+    '.dhai-act button,.dhai-act a{height:44px;display:flex;align-items:center;justify-content:center;font-family:inherit;font-size:14px;font-weight:700;border-radius:8px;text-decoration:none;cursor:pointer;border:0;padding:0 6px;white-space:nowrap}',
+    '.dhai-act .ap{background:var(--c-strong,#1257C9);color:#fff}.dhai-act .kk{background:var(--c-kakao,#FEE500);color:rgba(0,0,0,.85)}.dhai-act .tel{background:#fff;color:var(--c-body,#0F172A);border:1px solid var(--c-line,#EEEFF3)}',
+    '.dhai-warn{margin-top:10px;font-size:12px;line-height:1.6;color:var(--c-dim,#8A9099)}',
     '.dhai-foot{flex:none;border-top:1px solid var(--c-line,#EEEFF3);padding:10px 12px calc(10px + env(safe-area-inset-bottom,0px));display:flex;gap:8px;background:#fff}',
-    '.dhai-foot textarea{flex:1;resize:none;height:44px;max-height:110px;border:1px solid #D1D6DB;border-radius:10px;padding:11px 12px;font:inherit;font-size:16px;line-height:1.3;background:#fff;color:var(--c-body,#191F28)}',
-    '.dhai-foot textarea:focus{outline:2px solid var(--c-strong,#1257C9);outline-offset:-1px;border-color:transparent}',
-    '.dhai-send{flex:none;border:0;border-radius:10px;padding:0 16px;background:var(--c-strong,#1257C9);color:#fff;font:inherit;font-weight:700;font-size:15px;cursor:pointer}',
-    '.dhai-send:disabled{background:#B0B8C1;cursor:default}'
+    '.dhai-foot textarea{flex:1;resize:none;overflow:hidden;height:44px;max-height:110px;border:1px solid transparent;border-radius:8px;padding:11px 12px;font-family:inherit;font-size:16px;line-height:1.3;background:var(--dh-gray-100,#F5F6F8);color:var(--c-body,#0F172A)}',
+    '.dhai-foot textarea:focus{outline:none;border-color:var(--c-strong,#1257C9);background:#fff}',
+    '.dhai-send{flex:none;height:44px;border:0;border-radius:8px;padding:0 16px;background:var(--c-strong,#1257C9);color:#fff;font-family:inherit;font-weight:700;font-size:15px;cursor:pointer}',
+    '.dhai-send:disabled{background:var(--c-dim,#8A9099);cursor:default}'
   ].join('');
 
   function 이스케이프(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
@@ -105,6 +107,17 @@
     var 머리줄 = 행[0], 몸줄 = 행.slice(1), 칸수 = 머리줄.length, 밖 = '';
     function 목록(쌍) {
       return '<dl>' + 쌍.filter(function (x) { return x[1] && x[1] !== '-'; }).map(function (x) { return '<dt>' + x[0] + '</dt><dd>' + x[1] + '</dd>'; }).join('') + '</dl>';
+    }
+    /* 표 방향 알아보기 — 모델 번호(CP-AE502HW 같은 꼴)가 왼쪽 칸에 더 많으면 「줄 = 제품」 표라서 줄마다 카드 한 장 */
+    var 모델꼴 = function (x) { return /[A-Z]{1,5}-?[A-Z0-9]*\d[A-Z0-9-]{2,}/.test(String(x).replace(/<[^>]+>/g, '')) ? 1 : 0; };
+    var 위점수 = 머리줄.slice(1).reduce(function (n, x) { return n + 모델꼴(x); }, 0);
+    var 왼점수 = 몸줄.reduce(function (n, r) { return n + 모델꼴(r[0] || ''); }, 0);
+    if (칸수 >= 3 && 몸줄.length && 왼점수 > 위점수) {
+      몸줄.forEach(function (r) {
+        밖 += '<div class="dhai-cmp"><div class="dhai-cmp-h">' + (r[0] || '') + '</div>' +
+          목록(머리줄.slice(1).map(function (h, i) { return [h || '', r[i + 1] || '']; })) + '</div>';
+      });
+      return '<div class="dhai-cmps">' + 밖 + '</div>';
     }
     if (칸수 >= 3 && 몸줄.length) {
       for (var k = 1; k < 칸수; k++) {
@@ -221,11 +234,12 @@
     var q = 물음[다음], 고른 = Object.keys(답).map(function (k) { return 답[k]; });
     return '<div class="dhai-ai">' +
       (고른.length ? '<div class="dhai-picked">고른 것: ' + 고른.map(이스케이프).join(' · ') + '</div>'
-                   : '<p>안녕하세요, 당현함 AI 상담이에요. 몇 가지만 고르시면 맞는 상품을 찾아 드려요. 궁금한 걸 바로 적으셔도 돼요.</p>' +
-                     '<p class="dhai-hint">이름·전화번호 같은 개인정보는 적지 말아 주세요. 질문은 답을 만드는 데만 쓰고 30일 뒤 지웁니다. <a href="https://danghh.com/privacy.html" target="_blank" rel="noopener">개인정보처리방침</a></p>') +
+                   : '<p>안녕하세요, 당현함 AI 상담입니다. 몇 가지를 고르시면 맞는 제품을 찾아 드립니다. 궁금한 점을 바로 적으셔도 됩니다.</p>') +
       '<div class="dhai-q">' + 이스케이프(q.물음) + '</div>' + (q.풀이 ? '<div class="dhai-hint">' + 이스케이프(q.풀이) + '</div>' : '') +
-      '<div class="dhai-chips">' + q.고름.map(function (x) { return '<button type="button" data-dhai-key="' + 다음 + '" data-dhai-val="' + 이스케이프(x) + '">' + 이스케이프(x) + '</button>'; }).join('') + '</div>' +
-      '<div class="dhai-links">' + (고른.length ? '<button type="button" data-dhai-back>이전으로</button><button type="button" data-dhai-reset>처음부터</button>' : '') + '<button type="button" data-dhai-skip>직접 물어볼게요</button></div></div>';
+      '<div class="dhai-chips">' + q.고름.map(function (x) { return '<button type="button" data-dhai-key="' + 다음 + '" data-dhai-val="' + 이스케이프(x) + '">' + 이스케이프(x) + '</button>'; }).join('') +
+      (고른.length ? '<button type="button" class="dhai-chip-sub" data-dhai-back>이전으로</button><button type="button" class="dhai-chip-sub" data-dhai-reset>처음부터</button>' : '') +
+      '<button type="button" class="dhai-chip-sub" data-dhai-skip>직접 물어볼게요</button></div>' +
+      (고른.length ? '' : '<p class="dhai-note-pv">이름·전화번호 같은 개인정보는 적지 말아 주세요. 질문은 답을 만드는 데만 쓰고 30일 뒤 지웁니다. <a href="https://danghh.com/privacy.html" target="_blank" rel="noopener">개인정보처리방침</a></p>') + '</div>';
   }
 
   /* ── 제품 카드 ── 약정·관리 단추로 회차별 월 요금 줄을 바꿔 봅니다. 고른 것은 기록 항목(고름)에 남아 다른 화면에서도 그대로 */
@@ -260,13 +274,13 @@
     if (!고 || !c.조합 || !c.조합[고.약정] || !c.조합[고.약정][고.관리]) return c.가장싼 && c.가장싼.월 != null ? '<span class="dhai-price">월 ' + 돈(c.가장싼.월) + '원~</span>' : '';
     var 조 = c.조합, 관리들 = Object.keys(조[고.약정]), 칸 = 조[고.약정][고.관리][고.가입];
     function 단추(종류, 값, 글, 켬) { return '<button type="button" data-dhai-card="' + id + '" data-dhai-' + 종류 + '="' + 이스케이프(값) + '"' + (켬 ? ' class="on"' : '') + '>' + 이스케이프(글) + '</button>'; }
-    return '<span class="dhai-price">월 ' + 돈(Math.min.apply(null, 칸.줄.map(function (r) { return r[2]; }))) + '원~ <small>' +
-      이스케이프(짧은약정(고.약정)) + '·' + 이스케이프(고.관리) + (고.가입 === '타사보상' ? '·타사보상' : '') + '</small></span>' +
-      '<div class="dhai-opt">' + Object.keys(조).map(function (약) { return 단추('y', 약, 짧은약정(약), 약 === 고.약정); }).join('') + '</div>' +
+    return '<span class="dhai-price">월 ' + 돈(Math.min.apply(null, 칸.줄.map(function (r) { return r[2]; }))) + '원~</span>' +
+      '<span class="dhai-cond">' + 이스케이프(짧은약정(고.약정)) + ' 약정 · ' + 이스케이프(고.관리) + (고.가입 === '타사보상' ? ' · 타사보상' : '') + '</span>' +
+      '<div class="dhai-opt">' + Object.keys(조).sort(function (a, b) { return parseInt(a, 10) - parseInt(b, 10); }).map(function (약) { return 단추('y', 약, 짧은약정(약), 약 === 고.약정); }).join('') + '</div>' +
       (관리들.length > 1 ? '<div class="dhai-opt">' + 관리들.map(function (관) { return 단추('m', 관, 관, 관 === 고.관리); }).join('') + '</div>' : '') +
       '<div class="dhai-rounds" title="' + 이스케이프(짧은약정(고.약정)) + ' 의무약정 기간 동안 회차별 월 요금">' +
       칸.줄.map(function (r) { return '<div><span>' + (r[0] === r[1] ? r[0] : r[0] + '~' + r[1]) + '회차</span><b>' + 돈(r[2]) + '원</b></div>'; }).join('') + '</div>' +
-      (칸.카드 != null ? '<span class="dhai-note">' + (칸.카드뒤 ? '이후 ' : '') + '제휴카드 쓰면 월 ' + 돈(칸.카드) + '원</span>' : '');
+      (칸.카드 != null ? '<span class="dhai-note">' + (칸.카드뒤 ? '이후 ' : '') + '제휴카드(전월 실적 충족 시) 월 ' + 돈(칸.카드) + '원</span>' : '');
   }
   function 카드들(항목, k) {
     var 목록 = 항목.카드;
@@ -277,17 +291,17 @@
       카드보관[id] = { c: c, 항목: 항목, 번: i };
       if (항목.고름[i] === undefined) 항목.고름[i] = 첫조합(c, 항목.답);
       var 품목 = c.브랜드 + ' ' + c.이름 + ' (' + c.모델 + ')';
-      return '<div class="dhai-card"><img src="' + 이스케이프(c.사진) + '" alt="' + 이스케이프(c.이름) + '" loading="lazy" onerror="this.style.visibility=\'hidden\'">' +
-        '<div class="dhai-cb"><span class="dhai-brand">' + 이스케이프(c.브랜드) + '</span><span class="dhai-name">' + 이스케이프(c.이름) + '</span>' +
+      return '<div class="dhai-card"><a href="' + 이스케이프(c.화면) + '"><img src="' + 이스케이프(c.사진) + '" alt="' + 이스케이프(c.이름) + '" loading="lazy" onerror="this.style.visibility=\'hidden\'"></a>' +
+        '<div class="dhai-cb"><a href="' + 이스케이프(c.화면) + '"><span class="dhai-brand">' + 이스케이프(c.브랜드) + '</span><br><span class="dhai-name">' + 이스케이프(c.이름) + '</span></a>' +
         '<span class="dhai-model">' + 이스케이프(c.모델) + (c.크기mm ? ' · ' + 이스케이프(c.크기mm) + 'mm' : '') + '</span>' +
         '<div id="' + id + '">' + 카드요금(id) + '</div></div>' +
-        '<div class="dhai-cbtn"><a href="' + 이스케이프(c.화면) + '">자세히 보기</a><button type="button" data-dhai-apply="' + 이스케이프(품목) + '" data-dhai-cardref="' + id + '">이 제품으로 상담 신청</button></div></div>';
+        '<div class="dhai-cbtn"><button type="button" data-dhai-apply="' + 이스케이프(품목) + '" data-dhai-cardref="' + id + '">상담 신청</button></div></div>';
     }).join('') + '</div>';
   }
   function 연결단추(질문) {
     return '<div class="dhai-act"><button type="button" class="ap" data-dhai-apply="' + 이스케이프(String(질문 || '').slice(0, 80)) + '">상담 신청</button>' +
       '<a class="kk" href="' + 카톡 + '" target="_blank" rel="noopener" data-dhai-ev="kakao">카톡 상담</a>' +
-      '<a class="tel" href="tel:' + 전화 + '" data-dhai-ev="tel">전화 ' + 전화 + '</a></div>';
+      '<a class="tel" href="tel:' + 전화 + '" data-dhai-ev="tel">전화 상담</a></div>';
   }
   function 항목글(항목, k) {
     if (항목.종류 === 'me') return '<div class="dhai-me">' + 이스케이프(항목.글) + '</div>';
@@ -305,27 +319,47 @@
     단추.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/><path d="M8.5 11.5h.01M12 11.5h.01M15.5 11.5h.01"/></svg>AI 상담';
     판 = document.createElement('div');   /* section 은 사이트 모양(위아래 32px 여백)을 물려받아 div 로 */
     판.className = 'dhai-panel'; 판.hidden = true; 판.setAttribute('role', 'dialog'); 판.setAttribute('aria-label', '당현함 AI 상담');
-    판.innerHTML = '<div class="dhai-head"><div class="dhai-face" aria-hidden="true">당</div><div class="dhai-title"><b>당현함 AI 상담</b><span>정수기·인터넷 요금 비교</span></div>' +
-      '<button type="button" class="dhai-hbtn" data-dhai-new>새 대화</button><button type="button" class="dhai-hbtn dhai-x" data-dhai-close aria-label="닫기">×</button></div>' +
+    판.innerHTML = '<div class="dhai-head"><img class="dhai-logo" src="https://danghh.com/favicon.svg" alt="" aria-hidden="true">' +
+      '<div class="dhai-title"><b>당현함 상담</b><span>AI 답변 · 상담원 연결</span></div>' +
+      '<button type="button" class="dhai-agent" data-dhai-apply="AI 상담 창에서 상담원 연결 요청">상담원 연결</button>' +
+      '<button type="button" class="dhai-icon" data-dhai-new aria-label="새 대화" title="새 대화"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg></button>' +
+      '<button type="button" class="dhai-icon" data-dhai-close aria-label="닫기"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>' +
       '<div class="dhai-body" aria-live="polite"></div>' +
       '<div class="dhai-foot"><textarea rows="1" maxlength="500" placeholder="궁금한 걸 적어 주세요" aria-label="질문"></textarea><button type="button" class="dhai-send">보내기</button></div>';
     document.body.appendChild(단추); document.body.appendChild(판);
     몸 = 판.querySelector('.dhai-body'); 입력 = 판.querySelector('textarea'); 보내기 = 판.querySelector('.dhai-send');
     아래띠맞추기();
-    window.addEventListener('resize', 아래띠맞추기);
-    window.addEventListener('load', 아래띠맞추기);
-    /* 아래 띠는 화면이 다 그려진 뒤 높이가 바뀌므로 크기 변화를 지켜봅니다 */
-    var 띠 = document.querySelector('.bar3');
-    if (띠 && window.ResizeObserver) new ResizeObserver(아래띠맞추기).observe(띠);
+    window.addEventListener('resize', 띠살피기);
+    window.addEventListener('load', 띠살피기);
+    window.addEventListener('scroll', 띠살피기, { passive: true });
+    var 지켜봄 = null;
+    if (window.ResizeObserver) { 지켜봄 = new ResizeObserver(띠살피기); Array.prototype.forEach.call(document.querySelectorAll(비킬것), function (el) { 지켜봄.observe(el); }); }
+    document.addEventListener('transitionend', 띠살피기, true);   /* 띠가 미끄러져 다 올라온 뒤 한 번 더 */
+    /* 아래 띠는 다른 부품(dh-bar3.js)이 나중에 만들기도 해서 처음 몇 초 동안 몇 번 더 봅니다 */
+    [300, 1000, 2500, 5000].forEach(function (ms) { setTimeout(function () { 아래띠맞추기(); if (window.ResizeObserver && 지켜봄) Array.prototype.forEach.call(document.querySelectorAll(비킬것), function (el) { 지켜봄.observe(el); }); }, ms); });
   }
-  /* 정수기 화면의 아래 고정 띠(.bar3) 위로 단추를 올립니다 */
+  /* 화면 아래·오른쪽에 고정된 것(정수기 화면 아래 띠 .bar3, 렌탈 첫 화면 아래 띠·떠 있는 전화/카톡) 위로 단추·창을 올립니다.
+     띠는 스크롤하면 나타나거나 높이가 바뀌므로 크기 변화와 스크롤을 지켜봅니다(11/6 렌탈 첫 화면 붙이기) */
+  var 비킬것 = '.bar3, .mobile-cta-bar, .desk-cta-bar, .floating-btns';
   function 아래띠맞추기() {
-    var 띠 = document.querySelector('.bar3');
-    var 높이 = 띠 && getComputedStyle(띠).display !== 'none' ? 띠.getBoundingClientRect().height : 0;
+    var 높이 = 0, 띠만 = 0, 폭 = window.innerWidth, 키 = window.innerHeight;   /* 높이: 단추가 피할 것 전부 · 띠만: 대화창이 피할 가로 띠만 */
+    Array.prototype.forEach.call(document.querySelectorAll(비킬것), function (el) {
+      var cs = getComputedStyle(el);
+      if (cs.display === 'none' || cs.visibility === 'hidden') return;
+      /* 렌탈 첫 화면 아래 띠는 스크롤하면 미끄러져 올라옴(.visible) — 움직이는 중에도 「다 올라온 높이」로 셉니다 */
+      if (el.classList.contains('mobile-cta-bar')) { if (el.classList.contains('visible')) { 높이 = Math.max(높이, el.offsetHeight + (parseFloat(cs.bottom) || 0)); 띠만 = Math.max(띠만, el.offsetHeight + (parseFloat(cs.bottom) || 0)); } return; }
+      var r = el.getBoundingClientRect();
+      if (r.height <= 0 || r.top >= 키) return;
+      /* 아래 띠는 컴퓨터 화면에서 가운데 좁게 놓이기도 해서(정수기 .bar3) 이름으로도 띠로 셉니다 */
+      var 가로띠 = r.width > 폭 * 0.6 || el.classList.contains('bar3') || el.classList.contains('desk-cta-bar') || r.bottom >= 키 - 2, 오른쪽 = r.right > 폭 - 140;
+      if (가로띠 || 오른쪽) 높이 = Math.max(높이, 키 - r.top);
+      if (가로띠) 띠만 = Math.max(띠만, 키 - r.top);
+    });
     document.documentElement.style.setProperty('--dhai-bar', Math.round(높이) + 'px');
+    document.documentElement.style.setProperty('--dhai-bar-wide', Math.round(띠만) + 'px');
   }
-  /* 답이 오면 맨 아래로 내리지 않고 방금 보낸 질문이 맨 위에 오게 — 답을 첫 줄부터 읽게(11/6 사장님) */
-  function 그리기(답부터) {
+  var 띠예약 = false;
+  function 띠살피기() { if (띠예약) return; 띠예약 = true; setTimeout(function () { 띠예약 = false; 아래띠맞추기(); }, 60); }  function 그리기(답부터) {
     카드보관 = {};
     몸.innerHTML = 상태.기록.map(항목글).join('') + 도우미글();
     var 내말 = 답부터 ? 몸.querySelectorAll('.dhai-me') : null;
@@ -351,7 +385,19 @@
   /* 상담 신청 — 사이트의 기존 신청창을 열고 요청사항 칸을 미리 채웁니다 */
   function 신청(품목글) {
     통계('ai_chat_apply');
-    if (typeof window.신청창열기 !== 'function') { location.href = 'tel:' + 전화; return; }
+    if (typeof window.신청창열기 !== 'function') {
+      /* 신청창 대신 화면 안에 신청 칸(#apply)이 있는 화면(렌탈 첫 화면 등) — 그리로 내려가 요청사항을 채웁니다 */
+      var 칸자리 = document.getElementById('apply');
+      if (!칸자리) { location.href = 'tel:' + 전화; return; }
+      닫기();
+      (document.getElementById('formContent') || 칸자리).scrollIntoView({ behavior: 'smooth', block: 'start' });   /* 신청 칸(이름 칸)부터 보이게 */
+      try {
+        if (typeof window.요청사항펴기 === 'function') window.요청사항펴기(); else { var 접힘 = document.getElementById('memoFold'); if (접힘) 접힘.classList.add('open'); }
+        var 메모 = document.getElementById('inputMemo');
+        if (메모) { 메모.value = ('AI 상담 문의: ' + 품목글).slice(0, 200); 메모.dispatchEvent(new Event('input', { bubbles: true })); }
+      } catch (e) { /* 메모 칸이 없어도 신청은 됨 */ }
+      return;
+    }
     닫기();
     window.신청창열기();
     try { if (window.toggleService) window.toggleService('rental'); } catch (e) { /* 무시 */ }
