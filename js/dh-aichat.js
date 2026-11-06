@@ -2,7 +2,7 @@
    당현함 AI 상담 창 · js/dh-aichat.js  (2026-11-06 처음 만듦)
 
    정수기 화면에 「AI 상담」 단추를 띄우고, 누르면 대화창이 열립니다.
-   부르는 법: <script src="../js/dh-aichat.js?v=2" defer></script>  (다른 공용 파일처럼 한 줄)
+   부르는 법: <script src="../js/dh-aichat.js?v=3" defer></script>  (다른 공용 파일처럼 한 줄)
    ★ AI 열쇠는 여기 없습니다 — 중간 다리(danghh-ai.danghh.workers.dev)가 갖고 있습니다.
    ★ 요금 숫자는 AI 가 아니라 사이트 계산기(dh-calc3.js) 셈으로 미리 만든 자료에서 옵니다.
    ★ 크레딧 부족·하루 상한·장애 때는 다리가 {쉼, 말} 을 보내고, 여기서는 오류 글자 없이
@@ -203,7 +203,7 @@
                      '<p class="dhai-hint">이름·전화번호 같은 개인정보는 적지 말아 주세요. 질문은 답을 만드는 데만 쓰고 30일 뒤 지웁니다. <a href="https://danghh.com/privacy.html" target="_blank" rel="noopener">개인정보처리방침</a></p>') +
       '<div class="dhai-q">' + 이스케이프(q.물음) + '</div>' + (q.풀이 ? '<div class="dhai-hint">' + 이스케이프(q.풀이) + '</div>' : '') +
       '<div class="dhai-chips">' + q.고름.map(function (x) { return '<button type="button" data-dhai-key="' + 다음 + '" data-dhai-val="' + 이스케이프(x) + '">' + 이스케이프(x) + '</button>'; }).join('') + '</div>' +
-      '<div class="dhai-links">' + (고른.length ? '<button type="button" data-dhai-reset>처음부터</button>' : '') + '<button type="button" data-dhai-skip>직접 물어볼게요</button></div></div>';
+      '<div class="dhai-links">' + (고른.length ? '<button type="button" data-dhai-back>이전으로</button><button type="button" data-dhai-reset>처음부터</button>' : '') + '<button type="button" data-dhai-skip>직접 물어볼게요</button></div></div>';
   }
 
   /* ── 제품 카드 ── 약정·관리 단추로 회차별 월 요금 줄을 바꿔 봅니다. 고른 것은 기록 항목(고름)에 남아 다른 화면에서도 그대로 */
@@ -302,10 +302,13 @@
     var 높이 = 띠 && getComputedStyle(띠).display !== 'none' ? 띠.getBoundingClientRect().height : 0;
     document.documentElement.style.setProperty('--dhai-bar', Math.round(높이) + 'px');
   }
-  function 그리기() {
+  /* 답이 오면 맨 아래로 내리지 않고 방금 보낸 질문이 맨 위에 오게 — 답을 첫 줄부터 읽게(11/6 사장님) */
+  function 그리기(답부터) {
     카드보관 = {};
     몸.innerHTML = 상태.기록.map(항목글).join('') + 도우미글();
-    몸.scrollTop = 몸.scrollHeight;
+    var 내말 = 답부터 ? 몸.querySelectorAll('.dhai-me') : null;
+    if (내말 && 내말.length) 몸.scrollTop = Math.max(0, 내말[내말.length - 1].offsetTop - 몸.offsetTop - 8);
+    else 몸.scrollTop = 몸.scrollHeight;
   }
   function 열기() {
     판.hidden = false; 단추.hidden = true;
@@ -363,7 +366,7 @@
       if (상태.대화.length > 12) 상태.대화 = 상태.대화.slice(-12);
       while (상태.대화.length && 상태.대화[0].role !== 'user') 상태.대화.shift();
       바쁨 = false; 보내기.disabled = false;
-      기억(); 그리기();
+      기억(); 그리기(true);
     };
     var 쉼 = function (말) {
       끝({ 종류: '쉼', 말: 말 || '지금은 AI 상담이 잠시 쉬고 있어요. 상담원이 직접 안내해 드릴게요.', 질문: 글 }, null);
@@ -399,6 +402,12 @@
       상태 = 새상태(); 기억(); return 그리기();
     }
     if (t.hasAttribute('data-dhai-reset')) { 상태.도우미.답 = {}; return 그리기(); }
+    /* 한 단계 앞 물음으로 — 마지막에 고른 답 하나만 지웁니다(11/6 사장님) */
+    if (t.hasAttribute('data-dhai-back')) {
+      var 고른것 = 순서(상태.도우미.답).filter(function (k) { return k in 상태.도우미.답; });
+      if (고른것.length) delete 상태.도우미.답[고른것[고른것.length - 1]];
+      return 그리기();
+    }
     if (t.hasAttribute('data-dhai-skip')) { 상태.도우미.끝 = true; 기억(); 그리기(); return 입력.focus(); }
     if (t.hasAttribute('data-dhai-key')) {
       if (바쁨) return;
