@@ -123,7 +123,7 @@
         ? '<div class="it-detail"><h2>제품 상세</h2>' +
           p.상세.map(function (c, i) {
             var 번호 = (c[0] < 10 ? '0' : '') + c[0];
-            return '<img src="' + 밑동 + 'img/detail/' + 막(p.사진) + '-' + 번호 + '.webp"' +
+            return '<img src="' + 'https://danghh-detail.pages.dev/detail/' + 막(p.사진) + '-' + 번호 + '.webp"' +
                    ' width="' + c[1] + '" height="' + c[2] + '"' +
                    ' loading="' + (i < 1 ? 'eager' : 'lazy') + '"' +
                    ' alt="' + 막(p.이름 + ' 상세 안내 ' + (i + 1)) + '">';
