@@ -6,7 +6,21 @@
 <atom:link href="https://danghh.com/rss.xml" rel="self" type="application/rss+xml"/>
 <description>인터넷·TV 가입 현금 사은품과 정수기·가전 렌탈 요금 비교, 당현함</description>
 <language>ko</language>
-<lastBuildDate>Fri, 06 Nov 2026 00:00:00 +0900</lastBuildDate>
+<lastBuildDate>Sat, 07 Nov 2026 00:00:00 +0900</lastBuildDate>
+<item>
+<title>인터넷 가입·정수기·가전렌탈 가이드 | 당현함</title>
+<link>https://danghh.com/guide/</link>
+<guid isPermaLink="true">https://danghh.com/guide/</guid>
+<pubDate>Sat, 07 Nov 2026 00:00:00 +0900</pubDate>
+<description>인터넷 가입 순서, 결합할인, 약정 위약금, 정수기·가전렌탈 고르는 법을 통신사와 렌탈 브랜드 공식 자료 기준으로 정리한 당현함 가이드입니다.</description>
+</item>
+<item>
+<title>정수기 고르는 법, 직수형·저수조형과 냉온 기능부터 정하기</title>
+<link>https://danghh.com/guide/water-purifier-choice/</link>
+<guid isPermaLink="true">https://danghh.com/guide/water-purifier-choice/</guid>
+<pubDate>Sat, 07 Nov 2026 00:00:00 +0900</pubDate>
+<description>정수기 고르는 법을 직수 정수기와 저수조 정수기 차이, 나오는 물, 설치 자리, 방문·자가 관리, 약정 기간 순서로 설명하고, 정수기 렌탈 비교는 월 렌탈료 계산 예시로 보여 줍니다.</description>
+</item>
 <item>
 <title>당현함 | 인터넷 가입 사은품 많이 주는 곳 비교사이트, 현금지원금 당일입금 | 인터넷·티비 설치 신청 변경 SKT SK KT LG U플러스 | 정수기렌탈</title>
 <link>https://danghh.com/</link>
@@ -251,13 +265,6 @@
 <guid isPermaLink="true">https://danghh.com/wifi/hello-wifi/</guid>
 <pubDate>Fri, 06 Nov 2026 00:00:00 +0900</pubDate>
 <description>LG헬로비전 프리미엄 기가 와이파이의 특징과 월 임대료, 제품 상세 사양을 한자리에서 확인하세요. 가입·요금 상담은 당현함에서 안내드립니다.</description>
-</item>
-<item>
-<title>인터넷 가입·결합할인·위약금 가이드 | 당현함</title>
-<link>https://danghh.com/guide/</link>
-<guid isPermaLink="true">https://danghh.com/guide/</guid>
-<pubDate>Fri, 06 Nov 2026 00:00:00 +0900</pubDate>
-<description>인터넷 가입 순서, KT 결합할인, 약정 위약금 계산, 가입 사은품 받는 법을 KT·SK브로드밴드·LG U+ 공식 자료 기준으로 정리한 당현함 가이드입니다.</description>
 </item>
 <item>
 <title>인터넷 통신사 변경, 끊김 없이 옮기는 순서와 해지 방법</title>
