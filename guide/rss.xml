@@ -6,7 +6,15 @@
 <atom:link href="https://danghh.com/guide/rss.xml" rel="self" type="application/rss+xml"/>
 <description>인터넷 가입 순서, 결합할인, 약정 위약금, 정수기·가전렌탈 고르는 법을 통신사와 렌탈 브랜드 공식 자료 기준으로 정리한 당현함 가이드입니다.</description>
 <language>ko</language>
-<lastBuildDate>Sat, 07 Nov 2026 09:00:00 +0900</lastBuildDate>
+<lastBuildDate>Sun, 08 Nov 2026 09:00:00 +0900</lastBuildDate>
+<item>
+<title>인터넷 속도 고르는 법, 100메가·500메가·1기가 차이</title>
+<link>https://danghh.com/guide/internet-speed-choice/</link>
+<guid isPermaLink="true">https://danghh.com/guide/internet-speed-choice/</guid>
+<category>인터넷 가입</category>
+<pubDate>Sun, 08 Nov 2026 09:00:00 +0900</pubDate>
+<description>인터넷 속도는 혼자 영상 위주로 쓰면 100메가, 여럿이 4K 영상과 화상회의를 겹쳐 쓰면 500메가로 충분하고, 동시에 쓰는 양이 500메가의 최저보장속도 250Mbps를 넘는 집은 1기가를 고릅니다. 2026년 11월 기준 대표 상품(KT 슬림·베이직·에센스, SK브로드밴드 광랜·기가라이트·기가, LG U+ 와이파이기본 요금제)의 3년 약정 인터넷 단독 월 요금은 100M 22,000원, 500M 33,000원, 1G 38,500원(부가세 포함)으로 세 통신사가 같습니다. 500M에서 1G로 올리면 3년 동안 198,000원을 더 냅니다.</description>
+</item>
 <item>
 <title>정수기 고르는 법, 직수형·저수조형과 냉온 기능부터 정하기</title>
 <link>https://danghh.com/guide/water-purifier-choice/</link>
