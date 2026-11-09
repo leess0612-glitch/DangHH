@@ -527,6 +527,7 @@ function dhInflow() {
 /* -- 테스트용 : 기억을 지우고 새 손님처럼 만든다 ------------------
    개발자도구 콘솔에 dhInflowReset() 을 치면 된다. 시크릿 창과 같은 효과. */
 function dhInflowReset() {
+  이번기록 = null;
   try { localStorage.removeItem(저장이름); } catch (e) {}
   지금판단();
   return dhInflow();
