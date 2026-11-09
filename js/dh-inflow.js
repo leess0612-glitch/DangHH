@@ -512,7 +512,7 @@ function 창기록대체() {
 /* -- 신청서를 보낼 때 같이 실어 보낼 내용 ------------------------- */
 function dhInflow() {
   try {
-    var 값 = 불러오기() || 이번기록 || 창기록대체() || {};
+    var 값 = 불러오기() || (이번기록 && 이번기록.source !== '(direct)' ? 이번기록 : null) || 창기록대체() || 이번기록 || {};
     return {
       in_summary : 값.summary  || '직접방문',
       in_source  : 값.source   || '(direct)',
