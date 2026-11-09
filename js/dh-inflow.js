@@ -43,6 +43,8 @@ var 보관일수 = 7;   /* 2026-09-04 : 30 -> 7. 인터넷·렌탈은 이사·�
                        마음먹으면 며칠 안에 끝난다. 30일은 옛 기록이 오래 남아 이번 방문과 어긋났다.
                        (코웨이 전용 페이지가 생기면서 "어느 페이지에서 왔나"가 중요해진 것이 계기) */
 var 저장이름 = 'dh_in';
+var 이번기록 = null; /* 2026-11-09 : 인스타 앱 브라우저에서 오래 남는 저장소(localStorage)가 조용히 비어
+                       렌탈01·인터넷01 신청이 '직접방문'으로 적힌 일(11/7·11/8 3건, 10/27 1건) — 화면 기억으로 한 번 더 받친다 */
 
 /* -- 이름표 1 : 매체 (어느 회사에서 왔나) ------------------------ */
 var 매체이름 = {
@@ -384,6 +386,7 @@ function 거쳐온글() {
 
 /* -- 기억해 두기 / 꺼내 보기 ------------------------------------- */
 function 저장하기(값) {
+  이번기록 = 값;
   try {
     값.until = Date.now() + 보관일수 * 86400000;
     localStorage.setItem(저장이름, JSON.stringify(값));
@@ -491,10 +494,25 @@ function 지금판단() {
   });
 }
 
+/* 마지막 받침 : 클릭 기록 장치(dh-track.js)가 창 저장소(sessionStorage)에 둔 SNS 꼬리표(dh_sns).
+   요약 끝 '(보조)' = 이 길로 되살린 신청이라는 표시(얼마나 자주 생기는지 세려고) */
+function 창기록대체() {
+  try {
+    var 표 = JSON.parse(sessionStorage.getItem('dh_sns') || 'null');
+    if (!표 || !표.s) return null;
+    var 소재 = 안채워진빈칸(표.ct) ? '' : (표.ct || '');
+    var 묶음 = 안채워진빈칸(표.c) ? '' : (표.c || '');
+    return {
+      summary : [이름만들기(표.s, 표.md, 소재), 묶음].filter(Boolean).join(' / ') + ' (보조)',
+      source  : 표.s, campaign: 묶음, detail: 소재, page: location.pathname || '/'
+    };
+  } catch (e) { return null; }
+}
+
 /* -- 신청서를 보낼 때 같이 실어 보낼 내용 ------------------------- */
 function dhInflow() {
   try {
-    var 값 = 불러오기() || {};
+    var 값 = 불러오기() || 이번기록 || 창기록대체() || {};
     return {
       in_summary : 값.summary  || '직접방문',
       in_source  : 값.source   || '(direct)',
