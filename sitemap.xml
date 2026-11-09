@@ -398,9 +398,15 @@
   <!-- 가이드 글 시작 (당현함가이드/build.py 가 고침, 손으로 고치지 말 것) -->
   <url>
     <loc>https://danghh.com/guide/</loc>
-    <lastmod>2026-11-08</lastmod>
+    <lastmod>2026-11-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://danghh.com/guide/water-rental-vs-buy/</loc>
+    <lastmod>2026-11-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://danghh.com/guide/internet-speed-choice/</loc>
@@ -410,7 +416,7 @@
   </url>
   <url>
     <loc>https://danghh.com/guide/water-purifier-choice/</loc>
-    <lastmod>2026-11-07</lastmod>
+    <lastmod>2026-11-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
