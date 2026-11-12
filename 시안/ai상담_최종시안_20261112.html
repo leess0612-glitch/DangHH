@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AI 상담 최종 시안</title>
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.css">
+<style>
+/* 최종 시안 — 틀은 대안 A 「정리 노트」, 기다리는 화면은 최초 시안, 색은 맑은 파랑 한 벌
+   ?v=top | bottom | wait 로 열면 휴대폰 한 화면(그림 찍기용). 그냥 열면 두 화면을 나란히 */
+:root{color-scheme:light}
+html,body{margin:0}
+body{background:#E9EDF3;font-family:'Pretendard Variable',Pretendard,sans-serif;color:#0F172A}
+.wrap{display:flex;flex-wrap:wrap;gap:32px;justify-content:center;padding:32px 16px 48px}
+.col{display:flex;flex-direction:column;gap:10px;align-items:center}
+.cap{font-size:14px;color:#465368}
+body.shot{background:#fff}body.shot .wrap{padding:0;justify-content:flex-start}
+body.shot .col{display:none}body.shot .col.on{display:flex}body.shot .cap{display:none}
+body.shot .pn{width:390px;height:100vh;border:0;border-radius:0;box-shadow:none}
+
+/* ━━━ 색 한 벌(맑은 파랑) ━━━ */
+.pn{
+  --pri:#2D6CC4;        /* 주 파랑 — 단추·내 말풍선·요금 글자 (흰 글자 대비 5.0) */
+  --pri-press:#1F559F;  /* 누를 때 */
+  --pri-bg:#EDF4FD;     /* 연한 바탕 — 함께 상담 상자·진행 줄 바탕 */
+  --pri-ink:#173E73;    /* 진한 파랑 글자 — 이름표·이유 글 */
+  --pri-line:#C6D8F1;   /* 파랑 테두리 */
+  --ink:#0F172A;--sub:#465368;--dim:#8A9099;--line:#E6E9EF;--soft:#F5F6F8;
+  position:relative;width:390px;max-width:100%;height:760px;background:#fff;border:1px solid var(--line);border-radius:12px;
+  box-shadow:0 8px 32px rgba(23,62,115,.14);display:flex;flex-direction:column;overflow:hidden;color:var(--ink)}
+.pn *{box-sizing:border-box}
+
+/* 머리 */
+.hd{display:flex;align-items:center;gap:10px;padding:12px 10px 12px 16px;border-bottom:1px solid var(--line);flex:none}
+.lg{width:30px;height:30px;border-radius:8px;background:var(--pri);display:flex;align-items:center;justify-content:center;flex:none}
+.lg svg{width:20px;height:20px}
+.tt{flex:1;min-width:0}.tt b{display:block;font-size:16px;line-height:1.3}.tt span{display:block;font-size:13px;color:var(--sub)}
+.ag{flex:none;display:flex;align-items:center;height:34px;padding:0 12px;border:1px solid var(--pri-line);border-radius:8px;background:#fff;color:var(--pri-ink);font-weight:700;font-size:13px}
+.x{width:36px;height:36px;display:flex;align-items:center;justify-content:center;color:var(--sub)}.x svg{width:20px;height:20px}
+
+/* 몸통 */
+.bd{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:16px;scrollbar-width:none}
+.bd::-webkit-scrollbar{display:none}
+.bd>*{flex-shrink:0}
+.me{align-self:flex-end;max-width:85%;background:var(--pri);color:#fff;padding:10px 14px;border-radius:12px 12px 4px 12px;font-size:15px;line-height:1.6}
+.ans{font-size:16px;line-height:1.75;word-break:keep-all}
+.ans p{margin:0}
+.who{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:700;color:var(--pri-ink);margin-bottom:8px}
+.who i{position:relative;width:24px;height:24px;border-radius:7px;background:var(--pri);display:flex;align-items:center;justify-content:center;flex:none}
+.who i svg{width:16px;height:16px}
+.sum{border-left:3px solid var(--pri);padding:2px 0 2px 12px;font-weight:700;margin-bottom:12px}
+.ic{width:18px;height:18px;flex:none}
+
+/* 추천 목록 */
+.lh{font-size:17px;font-weight:800;letter-spacing:-.02em;margin:4px 0 -6px}
+.rows{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.row{display:grid;grid-template-columns:76px 1fr;gap:12px;padding:14px;position:relative;color:inherit;text-decoration:none}
+.row+.row{border-top:1px solid var(--line)}
+.row img{width:76px;height:76px;object-fit:contain;background:#fff;border-radius:8px;border:1px solid var(--line)}
+.row .why{display:inline-block;font-size:13px;font-weight:700;color:var(--pri-ink);background:var(--pri-bg);border-radius:4px;padding:1px 6px;margin-bottom:3px}
+.row .nm{font-size:15px;font-weight:700;line-height:1.4;padding-right:22px}
+.row .pr{font-size:18px;font-weight:800;color:var(--pri);margin-top:4px}.row .pr small{font-size:13px;font-weight:500;color:var(--sub);margin-left:4px}
+.row .nx{font-size:13px;color:var(--sub);line-height:1.5}
+.row .go{position:absolute;right:12px;top:50%;margin-top:-9px;color:#9AA6B8}
+
+/* 함께 상담 체크 */
+.with{display:flex;align-items:center;gap:12px;padding:14px;border-radius:12px;background:var(--pri-bg);border:1px solid var(--pri-line);font-size:15px;font-weight:700;line-height:1.4;cursor:pointer}
+.with .bx{width:24px;height:24px;border-radius:6px;border:2px solid var(--pri);flex:none;background:#fff}
+.with small{display:block;font-size:13px;font-weight:400;color:var(--sub);margin-top:2px}
+.warn{font-size:12px;line-height:1.6;color:var(--dim)}
+
+/* 맨 아래 단추 — 큰 단추는 A 모양, 카톡·전화는 C 모양(동그란 단추) */
+.end{display:flex;gap:8px;align-items:center}
+.end .ap{flex:1;height:52px;border-radius:10px;background:var(--pri);color:#fff;font-size:17px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:6px;text-decoration:none;box-shadow:0 4px 12px rgba(45,108,196,.25)}
+.end .rd{width:52px;height:52px;border-radius:999px;display:flex;align-items:center;justify-content:center;flex:none;text-decoration:none}
+.end .rd .ic{width:22px;height:22px}
+.end .kk{background:#FEE500;color:#3C3300}
+.end .tl{background:#fff;border:1px solid var(--pri-line);color:var(--pri)}
+
+/* 입력칸 */
+.ft{flex:none;border-top:1px solid var(--line);padding:10px 12px;display:flex;gap:8px;background:#fff}
+.ft .in{flex:1;height:44px;border-radius:8px;background:var(--soft);display:flex;align-items:center;padding:0 12px;font-size:16px;color:var(--dim)}
+.ft .sd{height:44px;padding:0 16px;border-radius:8px;background:var(--pri);color:#fff;font-weight:700;font-size:15px;display:flex;align-items:center}
+.ft .sd.off{background:#A9B3C2}
+
+/* ━━━ 기다리는 화면 — 최초 시안 그대로: 숨쉬는 로고 테두리 · 출렁이는 막대 · 빛 훑는 글자 · 한 줄씩 쌓이는 진행 ━━━ */
+.who i.is-wait::after{content:'';position:absolute;inset:-4px;border-radius:10px;border:2px solid var(--pri);opacity:.35;animation:breath 1.8s ease-in-out infinite}
+@keyframes breath{0%,100%{transform:scale(.92);opacity:.15}50%{transform:scale(1.1);opacity:.55}}
+.wt{display:flex;flex-direction:column;gap:12px}
+.wt-top{display:flex;align-items:center;gap:10px;min-height:28px}
+.bars{display:inline-flex;align-items:center;gap:3px;height:22px;flex:none}
+.bars i{width:4px;height:22px;border-radius:2px;background:var(--pri);transform-origin:center;animation:wave 1s ease-in-out infinite}
+.bars i:nth-child(2){animation-delay:.12s}.bars i:nth-child(3){animation-delay:.24s}.bars i:nth-child(4){animation-delay:.36s}.bars i:nth-child(5){animation-delay:.48s}
+@keyframes wave{0%,100%{transform:scaleY(.35);opacity:.45}50%{transform:scaleY(1);opacity:1}}
+.shine{margin:0;font-size:17px;font-weight:800;letter-spacing:-.02em;line-height:1.4;color:var(--ink);
+  background:linear-gradient(90deg,var(--ink) 0%,var(--ink) 38%,#8DB4EA 50%,var(--ink) 62%,var(--ink) 100%);
+  background-size:250% 100%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:shine 1.6s linear infinite}
+@keyframes shine{0%{background-position:100% 0}100%{background-position:0 0}}
+.steps{list-style:none;margin:0;padding:12px 14px;display:flex;flex-direction:column;gap:8px;background:var(--pri-bg);border-radius:12px}
+.steps li{display:flex;align-items:center;gap:10px;font-size:15px;line-height:1.5;color:var(--sub);animation:in .35s ease-out both}
+.steps li::before{content:'';width:8px;height:8px;border-radius:50%;background:#B8C6DA;flex:none}
+.steps li.now{color:var(--ink);font-weight:700}
+.steps li.now::before{background:var(--pri);animation:ping 1.4s ease-out infinite}
+@keyframes ping{0%{box-shadow:0 0 0 0 rgba(45,108,196,.45)}100%{box-shadow:0 0 0 7px rgba(45,108,196,0)}}
+@keyframes in{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+.wt-sub{margin:0;font-size:14px;line-height:1.6;color:var(--sub)}
+@media (prefers-reduced-motion:reduce){
+  .who i.is-wait::after,.bars i,.steps li,.steps li.now::before{animation:none}
+  .bars i{transform:scaleY(.6);opacity:.8}
+  .shine{animation:none;background:none;-webkit-text-fill-color:currentColor;color:var(--ink)}
+}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="mk" viewBox="25.6 68 246.4 162.4"><g fill="#fff"><path d="M42 68H268.4v29.4H65.4v103.2H272v29.8H25.6V84.4A16.4 16.4 0 0 1 42 68Z"/><g id="hh"><rect x="124.17" y="118.6" width="18.47" height="8.4"/><rect x="96" y="127" width="74.84" height="12"/><path fill-rule="evenodd" d="M168.88 157.4C168.88 169.33 160.31 173.1 133.18 173.1C106.05 173.1 97.48 169.33 97.48 157.4C97.48 145.47 106.05 141.7 133.18 141.7C160.31 141.7 168.88 145.47 168.88 157.4ZM150.63 157.41C150.63 159.98 145.83 160.96 133.18 160.96C120.53 160.96 115.73 159.98 115.73 157.41C115.73 154.84 120.53 153.86 133.18 153.86C145.83 153.86 150.63 154.84 150.63 157.41Z"/></g><use href="#hh" transform="translate(93 0)"/></g></symbol>
+  <symbol id="tel" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></symbol>
+  <symbol id="talk" viewBox="0 0 24 24"><path fill="currentColor" d="M12 3C6.5 3 2 6.5 2 10.8c0 2.8 1.9 5.2 4.7 6.6l-1 3.6c-.1.3.3.6.6.4l4.2-2.8c.5.1 1 .1 1.5.1 5.5 0 10-3.5 10-7.9S17.5 3 12 3z"/></symbol>
+  <symbol id="pen" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M9 11l3 3L22 4M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></symbol>
+  <symbol id="go" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M9 6l6 6-6 6"/></symbol>
+  <symbol id="cls" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M6 6l12 12M18 6L6 18"/></symbol>
+</svg>
+
+<div class="wrap">
+<!-- ═════════ 답이 온 뒤 ═════════ -->
+<div class="col" id="c-ans"><div class="pn" role="dialog" aria-label="당현함 AI 상담">
+  <div class="hd"><span class="lg"><svg><use href="#mk"/></svg></span><div class="tt"><b>당현함 상담</b><span>AI가 먼저 답해 드려요</span></div><span class="ag">상담원 연결</span><span class="x" aria-label="닫기"><svg><use href="#cls"/></svg></span></div>
+  <div class="bd" id="bd-ans">
+    <div class="me">정수기 렌탈하고 싶어</div>
+    <div class="ans">
+      <div class="who"><i><svg><use href="#mk"/></svg></i>당현함 AI</div>
+      <div class="sum">많이 찾으시는 냉온정수기 세 가지를 방문 관리 기준으로 골라 봤어요.</div>
+      <p>세 제품 모두 처음 6개월은 할인된 값이고, 7회차부터 원래 요금이에요. 제품을 누르면 약정별 요금을 볼 수 있어요.</p>
+    </div>
+    <div class="lh">조건에 맞는 세 가지</div>
+    <div class="rows">
+      <a class="row" href="#"><img src="../img/coway-1.jpg" alt=""><div><span class="why">자리가 좁다면</span><div class="nm">코웨이 아이콘 정수기 3</div><div class="pr">월 10,000원<small>처음 6개월</small></div><div class="nx">7회차부터 35,900원 · 5년 · 방문 4개월</div></div><svg class="ic go"><use href="#go"/></svg></a>
+      <a class="row" href="#"><img src="../img/chungho-1086.jpg" alt=""><div><span class="why">얼음이 필요하다면</span><div class="nm">청호 뉴 아이스트리 얼음정수기</div><div class="pr">월 24,950원<small>처음 6개월</small></div><div class="nx">7회차부터 49,900원 · 5년 · 방문 6개월</div></div><svg class="ic go"><use href="#go"/></svg></a>
+      <a class="row" href="#"><img src="../img/cuckoo-1921.jpg" alt=""><div><span class="why">온수 살균을 원한다면</span><div class="nm">쿠쿠 스팀100 정수기</div><div class="pr">월 16,450원<small>처음 6개월</small></div><div class="nx">7회차부터 32,900원 · 5년 · 방문 4개월</div></div><svg class="ic go"><use href="#go"/></svg></a>
+    </div>
+    <label class="with"><span class="bx"></span><div>인터넷·TV도 같이 상담 받을게요<small>체크하시면 상담원이 한 번에 함께 안내해 드려요</small></div></label>
+    <div class="warn">AI가 생성한 응답은 부정확할 수 있습니다. 정확한 요금과 혜택은 상담원이 확인해서 확정해 드려요.</div>
+    <div class="end">
+      <a class="ap" href="#"><svg class="ic"><use href="#pen"/></svg>상담 신청하기</a>
+      <a class="rd kk" href="#" aria-label="카톡 상담"><svg class="ic"><use href="#talk"/></svg></a>
+      <a class="rd tl" href="#" aria-label="전화 상담"><svg class="ic"><use href="#tel"/></svg></a>
+    </div>
+  </div>
+  <div class="ft"><span class="in">궁금한 걸 적어 주세요</span><span class="sd">보내기</span></div>
+</div><div class="cap">답이 온 뒤 (안쪽을 아래로 내려 보세요)</div></div>
+
+<!-- ═════════ 기다리는 동안 ═════════ -->
+<div class="col" id="c-wait"><div class="pn" role="dialog" aria-label="당현함 AI 상담">
+  <div class="hd"><span class="lg"><svg><use href="#mk"/></svg></span><div class="tt"><b>당현함 상담</b><span>AI가 먼저 답해 드려요</span></div><span class="ag">상담원 연결</span><span class="x" aria-label="닫기"><svg><use href="#cls"/></svg></span></div>
+  <div class="bd">
+    <div class="me">정수기 렌탈하고 싶어</div>
+    <div class="ans" role="status">
+      <div class="who"><i class="is-wait"><svg><use href="#mk"/></svg></i>당현함 AI</div>
+      <div class="wt">
+        <div class="wt-top"><span class="bars" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span><p class="shine" id="shine">고객님께 맞는 정수기를 찾고 있어요</p></div>
+        <ol class="steps" id="steps"><li>질문 내용 살펴보기</li><li class="now">맞는 제품 찾는 중</li></ol>
+        <p class="wt-sub">보통 10초 안팎 걸려요.</p>
+      </div>
+    </div>
+  </div>
+  <div class="ft"><span class="in">궁금한 걸 적어 주세요</span><span class="sd off">보내기</span></div>
+</div><div class="cap">기다리는 동안 (진행 줄이 시간에 따라 한 줄씩 늘어남)</div></div>
+</div>
+
+<script>
+(function () {
+  var v = new URLSearchParams(location.search).get('v');
+  if (v) {
+    document.body.classList.add('shot');
+    document.getElementById(v === 'wait' ? 'c-wait' : 'c-ans').classList.add('on');
+    if (v === 'bottom') { var b = document.getElementById('bd-ans'); requestAnimationFrame(function () { b.scrollTop = b.scrollHeight; }); }
+    return;
+  }
+  /* 그냥 열면 진행 줄이 실제처럼 바뀜 — 지난 줄은 회색(완료 표시 없음), 지금 줄만 파랑 */
+  var 단계 = [['질문 내용 살펴보는 중', '질문 내용 살펴보기'], ['맞는 제품 찾는 중', '맞는 제품 찾기'], ['약정·관리별 요금 확인 중', '약정·관리별 요금 확인'], ['답 정리하는 중', '답 정리']];
+  var 줄 = document.getElementById('steps'), 글 = document.getElementById('shine'), n = 1;
+  setInterval(function () {
+    n = n + 1; if (n >= 단계.length) n = 0;
+    줄.innerHTML = 단계.slice(0, n + 1).map(function (s, i) { return i === n ? '<li class="now">' + s[0] + '</li>' : '<li>' + s[1] + '</li>'; }).join('');
+    글.textContent = n >= 3 ? '추천을 거의 다 정리했어요' : '고객님께 맞는 정수기를 찾고 있어요';
+  }, 3500);
+})();
+</script>
+</body>
+</html>
