@@ -1,0 +1,297 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AI 상담 창 시안</title>
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.css">
+<link rel="stylesheet" href="../css/dh-frame.css?v=4">
+<style>
+/* ───────── 시안 페이지 바탕(라이브에는 안 들어감) ───────── */
+:root{color-scheme:light}
+html,body{margin:0}
+body{background:#E9EDF3;font-family:'Pretendard Variable',Pretendard,sans-serif;color:#0F172A}
+.sian-wrap{display:flex;flex-wrap:wrap;gap:32px;justify-content:center;padding:32px 16px 48px}
+.sian-col{display:flex;flex-direction:column;gap:12px;align-items:center}
+.sian-cap{font-size:14px;color:#465368}
+.sian-h{text-align:center;font-size:20px;font-weight:800;letter-spacing:-.02em;margin:32px 16px 0}
+/* 시안에서는 창을 고정 위치 대신 제자리에 놓습니다 */
+.dhai-panel.sian{position:relative;right:auto;bottom:auto;width:390px;max-width:100%;height:760px}
+/* ?v=top|bottom|wait 로 열면 휴대폰 한 화면(그림 찍기용) */
+body.shot{background:#fff}
+body.shot .sian-h,body.shot .sian-cap{display:none}
+body.shot .sian-wrap{padding:0;gap:0}
+body.shot .sian-col{display:none}
+body.shot .sian-col.on{display:flex}
+body.shot .dhai-panel.sian{width:390px;height:100vh;border:0;border-radius:0;box-shadow:none}
+
+/* ───────── 아래부터 dh-aichat.js 의 「모양」 그대로 + 새로 더한 것(★) ───────── */
+.dhai-panel{margin:0;padding:0;box-sizing:border-box;background:#fff;border-radius:12px;box-shadow:0 8px 32px rgba(11,46,92,.16);border:1px solid var(--c-line,#EEEFF3);display:flex;flex-direction:column;overflow:hidden;color:var(--c-body,#0F172A);font-family:inherit}
+.dhai-panel *,.dhai-panel *::before,.dhai-panel *::after{box-sizing:border-box}
+.dhai-head{display:flex;align-items:center;gap:10px;padding:12px 10px 12px 16px;border-bottom:1px solid var(--c-line,#EEEFF3);flex:none}
+.dhai-logo{width:28px;height:28px;flex:none;display:block}
+.dhai-title{flex:1;min-width:0}.dhai-title b{display:block;font-size:16px;font-weight:700;line-height:1.3;color:var(--c-title,#0F172A);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.dhai-title span{display:block;font-size:13px;line-height:1.4;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--c-sub,#465368)}
+.dhai-agent{flex:none;height:32px;padding:0 10px;border:1px solid var(--c-line,#EEEFF3);border-radius:8px;background:#fff;color:var(--c-body,#0F172A);font-family:inherit;font-size:13px;font-weight:600;cursor:pointer}
+.dhai-icon{flex:none;width:36px;height:36px;border:0;border-radius:8px;background:none;color:var(--c-sub,#465368);display:flex;align-items:center;justify-content:center;cursor:pointer;padding:0}
+.dhai-icon svg{width:20px;height:20px}
+.dhai-body{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:16px;background:#fff;overscroll-behavior:contain}
+.dhai-body>*{flex-shrink:0}
+.dhai-me{align-self:flex-end;max-width:85%;background:var(--c-strong,#1257C9);color:#fff;padding:10px 14px;border-radius:12px 12px 4px 12px;white-space:pre-wrap;word-break:keep-all;overflow-wrap:anywhere;font-size:15px;line-height:1.6}
+.dhai-ai{align-self:stretch;font-size:16px;line-height:1.75;word-break:keep-all;overflow-wrap:anywhere;color:var(--c-body,#0F172A)}
+.dhai-ai p{margin:0 0 14px}.dhai-ai p:last-child{margin-bottom:0}.dhai-ai ul{margin:0 0 14px;padding-left:20px}.dhai-ai li{margin:4px 0}
+.dhai-cards{display:flex;gap:10px;overflow-x:auto;margin:4px -16px 0;padding:0 16px 4px;scroll-padding:0 16px;scrollbar-width:none;scroll-snap-type:x mandatory}
+.dhai-cards::-webkit-scrollbar{display:none}
+.dhai-card{flex:none;width:200px;scroll-snap-align:start;background:#fff;border:1px solid var(--c-line,#EEEFF3);border-radius:12px;overflow:hidden;display:flex;flex-direction:column}
+.dhai-card>a{display:block;color:inherit;text-decoration:none}
+.dhai-cb a{color:inherit;text-decoration:none}
+.dhai-card img{width:100%;height:132px;object-fit:contain;background:#fff;display:block;padding:10px}
+.dhai-cb{padding:4px 14px 12px;display:flex;flex-direction:column;gap:2px;flex:1}
+.dhai-brand{color:var(--c-sub,#465368);font-size:13px;line-height:1.4}.dhai-name{font-size:15px;font-weight:700;line-height:1.4;word-break:keep-all;color:var(--c-title,#0F172A)}
+.dhai-model{color:var(--c-dim,#8A9099);font-size:12px;line-height:1.5}
+.dhai-price{display:block;margin-top:8px;font-weight:800;color:var(--c-strong,#1257C9);font-size:18px;line-height:1.3}
+.dhai-cond{display:block;font-size:13px;color:var(--c-sub,#465368);line-height:1.5}
+.dhai-opt{display:flex;flex-wrap:wrap;gap:4px;margin-top:8px}
+.dhai-opt button{border:1px solid var(--c-line,#EEEFF3);background:#fff;color:var(--c-sub,#465368);border-radius:4px;padding:5px 10px;font-family:inherit;font-size:13px;line-height:1.3;cursor:pointer}
+.dhai-opt button.on{border-color:var(--c-strong,#1257C9);background:var(--c-strong-bg,#EFF6FF);color:var(--c-strong,#1257C9);font-weight:700}
+.dhai-rounds{margin:8px 0 4px;background:var(--dh-gray-100,#F5F6F8);border-radius:8px;padding:4px 10px;font-size:13px}
+.dhai-rounds div{display:flex;justify-content:space-between;align-items:center;gap:6px;min-height:28px}
+.dhai-rounds span{color:var(--c-sub,#465368);white-space:nowrap}.dhai-rounds b{white-space:nowrap;font-weight:700;color:var(--c-body,#0F172A)}
+.dhai-note{display:block;color:var(--c-sub,#465368);font-size:12px;line-height:1.5}
+.dhai-cbtn{padding:0 14px 14px}
+.dhai-cbtn button{width:100%;height:40px;border:1px solid var(--c-strong,#1257C9);background:#fff;color:var(--c-strong,#1257C9);border-radius:8px;font-family:inherit;font-size:14px;font-weight:700;cursor:pointer}
+.dhai-warn{font-size:12px;line-height:1.6;color:var(--c-dim,#8A9099)}
+.dhai-foot{flex:none;border-top:1px solid var(--c-line,#EEEFF3);padding:10px 12px calc(10px + env(safe-area-inset-bottom,0px));display:flex;gap:8px;background:#fff}
+.dhai-foot textarea{flex:1;resize:none;overflow:hidden;height:44px;border:1px solid transparent;border-radius:8px;padding:11px 12px;font-family:inherit;font-size:16px;line-height:1.3;background:var(--dh-gray-100,#F5F6F8);color:var(--c-body,#0F172A)}
+.dhai-send{flex:none;height:44px;border:0;border-radius:8px;padding:0 16px;background:var(--c-strong,#1257C9);color:#fff;font-family:inherit;font-weight:700;font-size:15px;cursor:pointer}
+
+/* ★4. AI 얼굴 — 동그라미 안 당현함 로고, 답 왼쪽 */
+.dhai-row{display:grid;grid-template-columns:32px minmax(0,1fr);gap:10px;align-items:start}
+.dhai-face{width:32px;height:32px;border-radius:50%;background:var(--c-strong,#1257C9);display:flex;align-items:center;justify-content:center;flex:none;position:relative}
+.dhai-face svg{width:21px;height:21px;display:block}
+.dhai-row .dhai-ai{padding-top:3px}
+
+/* ★1. 답 첫 문장 아래 작은 단추 줄 */
+.dhai-quick{display:flex;flex-wrap:wrap;gap:6px;margin:-4px 0 16px}
+.dhai-quick a,.dhai-quick button{height:32px;display:inline-flex;align-items:center;gap:4px;padding:0 12px;border-radius:999px;font-family:inherit;font-size:13px;font-weight:600;line-height:1;text-decoration:none;cursor:pointer;border:1px solid var(--c-line,#EEEFF3);background:#fff;color:var(--c-body,#0F172A);white-space:nowrap}
+.dhai-quick .ap{border-color:var(--c-strong,#1257C9);background:var(--c-strong,#1257C9);color:#fff}
+.dhai-quick svg{width:14px;height:14px;flex:none}
+
+/* ★6. 추천 제목 + 카드 순번 */
+.dhai-pick-h{display:flex;align-items:baseline;justify-content:space-between;gap:8px;margin:4px 0 -6px}
+.dhai-pick-h b{font-size:16px;font-weight:800;letter-spacing:-.02em;color:var(--c-title,#0F172A)}
+.dhai-pick-h span{font-size:12px;color:var(--c-dim,#8A9099)}
+.dhai-card{position:relative}
+.dhai-no{position:absolute;top:10px;left:10px;z-index:1;min-width:24px;height:24px;padding:0 7px;border-radius:999px;background:var(--c-band,#0B2E5C);color:#fff;font-size:12px;font-weight:800;line-height:24px;text-align:center}
+.dhai-card.is-first{border-color:var(--c-strong,#1257C9)}
+.dhai-card.is-first .dhai-no{background:var(--c-strong,#1257C9)}
+
+/* ★3. 함께 상담 안내 상자 */
+.dhai-with{display:flex;gap:12px;align-items:flex-start;background:var(--c-strong-bg,#EFF6FF);border-radius:12px;padding:14px}
+.dhai-with-ic{flex:none;width:36px;height:36px;border-radius:8px;background:#fff;color:var(--c-strong,#1257C9);display:flex;align-items:center;justify-content:center}
+.dhai-with-ic svg{width:20px;height:20px}
+.dhai-with b{display:block;font-size:15px;font-weight:700;line-height:1.4;color:var(--c-title,#0F172A)}
+.dhai-with p{margin:2px 0 8px;font-size:14px;line-height:1.6;color:var(--c-sub,#465368)}
+.dhai-with button{border:0;background:none;padding:0;font-family:inherit;font-size:14px;font-weight:700;color:var(--c-strong,#1257C9);cursor:pointer;display:inline-flex;align-items:center;gap:2px}
+.dhai-with button svg{width:16px;height:16px}
+
+/* ★2. 맨 아래 큰 단추 — 안내 글은 위로, 상담 신청이 가장 크게 */
+.dhai-end{display:flex;flex-direction:column;gap:10px;border-top:1px solid var(--c-line,#EEEFF3);padding-top:14px}
+.dhai-act{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.dhai-act button,.dhai-act a{height:46px;display:flex;align-items:center;justify-content:center;gap:6px;font-family:inherit;font-size:15px;font-weight:700;border-radius:8px;text-decoration:none;cursor:pointer;border:0;padding:0 6px;white-space:nowrap}
+.dhai-act .ap{grid-column:1/-1;height:54px;font-size:16px;background:var(--c-strong,#1257C9);color:#fff;box-shadow:0 4px 12px rgba(18,87,201,.24)}
+.dhai-act .ap small{font-size:13px;font-weight:500;opacity:.85}
+.dhai-act .kk{background:var(--c-kakao,#FEE500);color:rgba(0,0,0,.85)}
+.dhai-act .tel{background:#fff;color:var(--c-body,#0F172A);border:1px solid var(--c-line,#EEEFF3)}
+.dhai-act svg{width:18px;height:18px;flex:none}
+
+/* ★5. 기다릴 때 — 숨쉬는 얼굴 · 출렁이는 막대 · 빛 훑는 글자 · 한 줄씩 쌓이는 진행 */
+.dhai-face.is-wait::after{content:'';position:absolute;inset:-4px;border-radius:50%;border:2px solid var(--c-strong,#1257C9);opacity:.35;animation:dhai-breath 1.8s ease-in-out infinite}
+@keyframes dhai-breath{0%,100%{transform:scale(.92);opacity:.15}50%{transform:scale(1.08);opacity:.5}}
+.dhai-wait{display:flex;flex-direction:column;gap:10px;padding-top:2px}
+.dhai-wait-top{display:flex;align-items:center;gap:10px;min-height:28px}
+.dhai-bars{display:inline-flex;align-items:center;gap:3px;height:22px;flex:none}
+.dhai-bars i{width:4px;height:22px;border-radius:2px;background:var(--c-strong,#1257C9);transform-origin:center;animation:dhai-wave 1s ease-in-out infinite}
+.dhai-bars i:nth-child(2){animation-delay:.12s}.dhai-bars i:nth-child(3){animation-delay:.24s}.dhai-bars i:nth-child(4){animation-delay:.36s}.dhai-bars i:nth-child(5){animation-delay:.48s}
+@keyframes dhai-wave{0%,100%{transform:scaleY(.35);opacity:.45}50%{transform:scaleY(1);opacity:1}}
+.dhai-shine{margin:0;font-size:16px;font-weight:800;letter-spacing:-.02em;line-height:1.4;color:var(--c-title,#0F172A);
+  background:linear-gradient(90deg,var(--c-title,#0F172A) 0%,var(--c-title,#0F172A) 38%,#5B8DEF 50%,var(--c-title,#0F172A) 62%,var(--c-title,#0F172A) 100%);
+  background-size:250% 100%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:dhai-shine 1.6s linear infinite}
+@keyframes dhai-shine{0%{background-position:100% 0}100%{background-position:0 0}}
+.dhai-steps{list-style:none;margin:0;padding:12px 14px;display:flex;flex-direction:column;gap:8px;background:var(--dh-gray-100,#F5F6F8);border-radius:12px}
+.dhai-steps li{display:flex;align-items:center;gap:10px;font-size:14px;line-height:1.5;color:var(--c-dim,#8A9099);animation:dhai-in .35s ease-out both}
+.dhai-steps li::before{content:'';width:8px;height:8px;border-radius:50%;background:#C9CED6;flex:none}
+.dhai-steps li.now{color:var(--c-title,#0F172A);font-weight:700}
+.dhai-steps li.now::before{background:var(--c-strong,#1257C9);box-shadow:0 0 0 0 rgba(18,87,201,.45);animation:dhai-ping 1.4s ease-out infinite}
+@keyframes dhai-ping{0%{box-shadow:0 0 0 0 rgba(18,87,201,.45)}100%{box-shadow:0 0 0 7px rgba(18,87,201,0)}}
+@keyframes dhai-in{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+.dhai-wait-sub{margin:0;font-size:13px;line-height:1.6;color:var(--c-sub,#465368)}
+/* 움직임 줄이기 설정이면 모두 멈춘 모양으로 */
+@media (prefers-reduced-motion:reduce){
+  .dhai-face.is-wait::after,.dhai-bars i,.dhai-steps li,.dhai-steps li.now::before{animation:none}
+  .dhai-bars i{transform:scaleY(.6);opacity:.8}
+  .dhai-shine{animation:none;background:none;-webkit-text-fill-color:currentColor;color:var(--c-title,#0F172A)}
+}
+</style>
+</head>
+<body>
+<!-- 당현함 로고 모양(흰색) — 얼굴 동그라미 안에 씀 -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="dh-mark" viewBox="25.6 68 246.4 162.4">
+    <g fill="#fff"><path d="M42 68H268.4v29.4H65.4v103.2H272v29.8H25.6V84.4A16.4 16.4 0 0 1 42 68Z"/><g id="dh-h"><rect x="124.17" y="118.6" width="18.47" height="8.4"/><rect x="96" y="127" width="74.84" height="12"/><path fill-rule="evenodd" d="M168.88 157.4C168.88 169.330 160.31 173.1 133.18 173.1C106.05 173.1 97.48 169.33 97.48 157.4C97.48 145.47 106.05 141.7 133.18 141.7C160.31 141.7 168.88 145.47 168.88 157.4ZM150.63 157.41C150.63 159.98 145.83 160.96 133.18 160.96C120.53 160.96 115.73 159.98 115.73 157.41C115.73 154.84 120.53 153.86 133.18 153.86C145.83 153.86 150.63 154.84 150.63 157.41Z"/></g><use href="#dh-h" transform="translate(93 0)"/></g>
+  </symbol>
+  <symbol id="ic-tel" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></symbol>
+  <symbol id="ic-talk" viewBox="0 0 24 24"><path fill="currentColor" d="M12 3C6.5 3 2 6.5 2 10.8c0 2.8 1.9 5.2 4.7 6.6l-1 3.6c-.1.3.3.6.6.4l4.2-2.8c.5.1 1 .1 1.5.1 5.5 0 10-3.5 10-7.9S17.5 3 12 3z"/></symbol>
+  <symbol id="ic-pen" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M9 11l3 3L22 4M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></symbol>
+  <symbol id="ic-wifi" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M5 12.6a10 10 0 0 1 14 0M8.5 16.1a5 5 0 0 1 7 0M2 8.8a15 15 0 0 1 20 0M12 20h.01"/></symbol>
+  <symbol id="ic-go" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M9 6l6 6-6 6"/></symbol>
+</svg>
+
+<h1 class="sian-h">당현함 AI 상담 창 시안</h1>
+<div class="sian-wrap">
+
+  <!-- ───── 화면 1: 답이 온 뒤 ───── -->
+  <div class="sian-col" id="col-answer">
+    <div class="dhai-panel sian" role="dialog" aria-label="당현함 AI 상담">
+      <div class="dhai-head"><img class="dhai-logo" src="../favicon.svg" alt="" aria-hidden="true">
+        <div class="dhai-title"><b>당현함 상담</b><span>AI 답변 · 상담원 연결</span></div>
+        <button type="button" class="dhai-agent">상담원 연결</button>
+        <button type="button" class="dhai-icon" aria-label="새 대화"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg></button>
+        <button type="button" class="dhai-icon" aria-label="닫기"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+      </div>
+      <div class="dhai-body" id="body-answer">
+        <div class="dhai-me">정수기 렌탈하고 싶어</div>
+
+        <div class="dhai-row">
+          <span class="dhai-face" aria-hidden="true"><svg><use href="#dh-mark"/></svg></span>
+          <div class="dhai-ai">
+            <p><b>많이 찾으시는 냉온정수기 세 가지를 방문 관리 기준으로 골라 봤어요.</b></p>
+            <div class="dhai-quick">
+              <button type="button" class="ap">상담 신청</button>
+              <a href="#" class="kk"><svg><use href="#ic-talk"/></svg>카톡 상담</a>
+              <a href="#" class="tel"><svg><use href="#ic-tel"/></svg>전화 상담</a>
+            </div>
+            <ul>
+              <li>자리가 좁으면 <b>코웨이 아이콘 정수기 3</b> — 폭 16cm로 가장 작아요.</li>
+              <li>얼음까지 필요하면 <b>청호 뉴 아이스트리</b>가 맞아요.</li>
+              <li>뜨거운 물 살균을 원하시면 <b>쿠쿠 스팀100</b>을 보세요.</li>
+            </ul>
+            <p>세 제품 모두 처음 6개월은 할인된 값이고, 7회차부터 원래 요금이에요. 카드 아래 약정 단추를 누르면 기간별 요금이 바로 바뀝니다.</p>
+          </div>
+        </div>
+
+        <div class="dhai-pick-h"><b>추천 정수기</b><span>옆으로 넘겨 보세요</span></div>
+        <div class="dhai-cards">
+          <div class="dhai-card is-first"><span class="dhai-no">1</span>
+            <a href="#"><img src="../img/coway-1.jpg" alt="아이콘 정수기 3"></a>
+            <div class="dhai-cb"><a href="#"><span class="dhai-brand">코웨이</span><br><span class="dhai-name">아이콘 정수기 3 (냉온정)</span></a>
+              <span class="dhai-model">CHP-7220N · 160×368×385mm</span>
+              <span class="dhai-price">월 10,000원~</span><span class="dhai-cond">5년 약정 · 방문 4개월</span>
+              <div class="dhai-opt"><button>3년</button><button class="on">5년</button><button>6년</button><button>7년</button></div>
+              <div class="dhai-rounds"><div><span>1~6회차</span><b>10,000원</b></div><div><span>7~60회차</span><b>35,900원</b></div></div>
+              <span class="dhai-note">이후 제휴카드(전월 실적 충족 시) 월 15,900원</span>
+            </div>
+            <div class="dhai-cbtn"><button type="button">이 제품 상담 신청</button></div>
+          </div>
+          <div class="dhai-card"><span class="dhai-no">2</span>
+            <a href="#"><img src="../img/chungho-1086.jpg" alt="뉴 아이스트리 얼음정수기"></a>
+            <div class="dhai-cb"><a href="#"><span class="dhai-brand">청호나이스</span><br><span class="dhai-name">뉴 아이스트리 얼음정수기</span></a>
+              <span class="dhai-model">WI-36C90620N · 254×498×490mm</span>
+              <span class="dhai-price">월 24,950원~</span><span class="dhai-cond">5년 약정 · 방문 6개월</span>
+              <div class="dhai-opt"><button>3년</button><button class="on">5년</button><button>6년</button></div>
+              <div class="dhai-rounds"><div><span>1~6회차</span><b>24,950원</b></div><div><span>7~60회차</span><b>49,900원</b></div></div>
+              <span class="dhai-note">이후 제휴카드(전월 실적 충족 시) 월 29,900원</span>
+            </div>
+            <div class="dhai-cbtn"><button type="button">이 제품 상담 신청</button></div>
+          </div>
+          <div class="dhai-card"><span class="dhai-no">3</span>
+            <a href="#"><img src="../img/cuckoo-1921.jpg" alt="스팀100 정수기"></a>
+            <div class="dhai-cb"><a href="#"><span class="dhai-brand">쿠쿠</span><br><span class="dhai-name">스팀100 정수기 (냉온정)</span></a>
+              <span class="dhai-model">CP-ABS100 · 166×490×400mm</span>
+              <span class="dhai-price">월 16,450원~</span><span class="dhai-cond">5년 약정 · 방문 4개월</span>
+              <div class="dhai-opt"><button>3년</button><button class="on">5년</button><button>6년</button><button>7년</button></div>
+              <div class="dhai-rounds"><div><span>1~6회차</span><b>16,450원</b></div><div><span>7~60회차</span><b>32,900원</b></div></div>
+              <span class="dhai-note">이후 제휴카드(전월 실적 충족 시) 월 12,900원</span>
+            </div>
+            <div class="dhai-cbtn"><button type="button">이 제품 상담 신청</button></div>
+          </div>
+        </div>
+
+        <div class="dhai-with">
+          <span class="dhai-with-ic" aria-hidden="true"><svg><use href="#ic-wifi"/></svg></span>
+          <div>
+            <b>인터넷·TV도 함께 알아보세요</b>
+            <p>정수기와 인터넷·TV를 한 번에 상담해 드려요. 지금 쓰시는 통신사만 알려 주시면 같이 비교해 드립니다.</p>
+            <button type="button">함께 상담 받기<svg><use href="#ic-go"/></svg></button>
+          </div>
+        </div>
+
+        <div class="dhai-end">
+          <div class="dhai-warn">AI가 생성한 응답은 부정확할 수 있습니다. 정확한 요금과 혜택은 상담원이 확인해서 확정해 드려요.</div>
+          <div class="dhai-act">
+            <button type="button" class="ap"><svg><use href="#ic-pen"/></svg>상담 신청하기</button>
+            <a class="kk" href="#"><svg><use href="#ic-talk"/></svg>카톡 상담</a>
+            <a class="tel" href="#"><svg><use href="#ic-tel"/></svg>전화 상담</a>
+          </div>
+        </div>
+      </div>
+      <div class="dhai-foot"><textarea rows="1" placeholder="궁금한 걸 적어 주세요" aria-label="질문"></textarea><button type="button" class="dhai-send">보내기</button></div>
+    </div>
+    <div class="sian-cap">답이 온 뒤 (안쪽을 아래로 내려 보세요)</div>
+  </div>
+
+  <!-- ───── 화면 2: 기다리는 동안 ───── -->
+  <div class="sian-col" id="col-wait">
+    <div class="dhai-panel sian" role="dialog" aria-label="당현함 AI 상담">
+      <div class="dhai-head"><img class="dhai-logo" src="../favicon.svg" alt="" aria-hidden="true">
+        <div class="dhai-title"><b>당현함 상담</b><span>AI 답변 · 상담원 연결</span></div>
+        <button type="button" class="dhai-agent">상담원 연결</button>
+        <button type="button" class="dhai-icon" aria-label="새 대화"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg></button>
+        <button type="button" class="dhai-icon" aria-label="닫기"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+      </div>
+      <div class="dhai-body">
+        <div class="dhai-me">정수기 렌탈하고 싶어</div>
+        <div class="dhai-row" role="status">
+          <span class="dhai-face is-wait" aria-hidden="true"><svg><use href="#dh-mark"/></svg></span>
+          <div class="dhai-wait">
+            <div class="dhai-wait-top">
+              <span class="dhai-bars" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
+              <p class="dhai-shine" id="shine">고객님께 맞는 정수기를 찾고 있어요</p>
+            </div>
+            <ol class="dhai-steps" id="steps">
+              <li>질문 내용 살펴보기</li>
+              <li class="now">맞는 제품 찾는 중</li>
+            </ol>
+            <p class="dhai-wait-sub">보통 10초 안팎 걸려요.</p>
+          </div>
+        </div>
+      </div>
+      <div class="dhai-foot"><textarea rows="1" placeholder="궁금한 걸 적어 주세요" aria-label="질문"></textarea><button type="button" class="dhai-send" disabled style="background:#8A9099">보내기</button></div>
+    </div>
+    <div class="sian-cap">기다리는 동안 (진행 줄이 시간에 따라 한 줄씩 늘어남)</div>
+  </div>
+</div>
+
+<script>
+/* 시안 보기 도우미: ?v=top | bottom | wait 로 열면 휴대폰 한 화면만 */
+(function () {
+  var v = new URLSearchParams(location.search).get('v');
+  if (v) {
+    document.body.classList.add('shot');
+    document.getElementById(v === 'wait' ? 'col-wait' : 'col-answer').classList.add('on');
+    if (v === 'bottom') { var b = document.getElementById('body-answer'); requestAnimationFrame(function () { b.scrollTop = b.scrollHeight; }); }
+    return;   /* 그림 찍을 때는 진행 줄을 멈춘 채로 */
+  }
+  /* 그냥 열면 진행 줄이 실제처럼 바뀜 — 지난 줄은 회색(완료 표시 없음), 지금 줄만 파랑 */
+  /* [지금 하는 중일 때 글, 지나간 뒤 글] */
+  var 단계 = [['질문 내용 살펴보는 중', '질문 내용 살펴보기'], ['맞는 제품 찾는 중', '맞는 제품 찾기'], ['약정·관리별 요금 확인 중', '약정·관리별 요금 확인'], ['답 정리하는 중', '답 정리']];
+  var 줄 = document.getElementById('steps'), 글 = document.getElementById('shine'), n = 1;
+  setInterval(function () {
+    n = n + 1; if (n >= 단계.length) n = 0;
+    줄.innerHTML = 단계.slice(0, n + 1).map(function (s, i) { return i === n ? '<li class="now">' + s[0] + '</li>' : '<li>' + s[1] + '</li>'; }).join('');
+    글.textContent = n >= 3 ? '추천을 거의 다 정리했어요' : '고객님께 맞는 정수기를 찾고 있어요';
+  }, 3500);
+})();
+</script>
+</body>
+</html>
