@@ -122,10 +122,10 @@ body.shot .pn{width:390px;height:100vh;border:0;border-radius:0;box-shadow:none}
   <symbol id="cls" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M6 6l12 12M18 6L6 18"/></symbol>
 </svg>
 
-<div class="wrap">
+<style>.cpick button{border:1px solid #C6D8F1;background:#fff;border-radius:999px;padding:9px 14px;font:inherit;cursor:pointer;color:#173E73}.cpick button.on{color:#fff;border-color:transparent}body.shot .cpick{display:none}</style><div class="wrap"><div class="cpick" style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:0 0 18px;font:600 14px/1 sans-serif"><span style="align-self:center;color:#465368">파랑 고르기</span><button data-c="#1F61C6" data-p="#174EA3">나 #1F61C6</button><button data-c="#185CC8" data-p="#124AA6">다 #185CC8</button><button data-c="#1257C9" data-p="#0E45A0">대표색 #1257C9</button></div>
 <!-- ═════════ 답이 온 뒤 ═════════ -->
 <div class="col" id="c-ans"><div class="pn" role="dialog" aria-label="당현함 AI 상담">
-  <div class="hd"><span class="lg"><svg><use href="#mk"/></svg></span><div class="tt"><b>당현함 상담</b><span>AI가 먼저 답해 드려요</span></div><span class="ag">상담원 연결</span><span class="x" aria-label="닫기"><svg><use href="#cls"/></svg></span></div>
+  <div class="hd"><span class="lg"><svg><use href="#mk"/></svg></span><div class="tt"><b>당현함 상담</b><span>AI가 먼저 답해 드려요</span></div><span class="ag">상담 신청</span><span class="x" aria-label="닫기"><svg><use href="#cls"/></svg></span></div>
   <div class="bd" id="bd-ans">
     <div class="me">정수기 렌탈하고 싶어</div>
     <div class="ans">
@@ -152,7 +152,7 @@ body.shot .pn{width:390px;height:100vh;border:0;border-radius:0;box-shadow:none}
 
 <!-- ═════════ 기다리는 동안 ═════════ -->
 <div class="col" id="c-wait"><div class="pn" role="dialog" aria-label="당현함 AI 상담">
-  <div class="hd"><span class="lg"><svg><use href="#mk"/></svg></span><div class="tt"><b>당현함 상담</b><span>AI가 먼저 답해 드려요</span></div><span class="ag">상담원 연결</span><span class="x" aria-label="닫기"><svg><use href="#cls"/></svg></span></div>
+  <div class="hd"><span class="lg"><svg><use href="#mk"/></svg></span><div class="tt"><b>당현함 상담</b><span>AI가 먼저 답해 드려요</span></div><span class="ag">상담 신청</span><span class="x" aria-label="닫기"><svg><use href="#cls"/></svg></span></div>
   <div class="bd">
     <div class="me">정수기 렌탈하고 싶어</div>
     <div class="ans" role="status">
@@ -187,5 +187,5 @@ body.shot .pn{width:390px;height:100vh;border:0;border-radius:0;box-shadow:none}
   }, 3500);
 })();
 </script>
-</body>
+<script>(function(){var bs=document.querySelectorAll(".cpick button");function 고(b){document.querySelectorAll(".pn").forEach(function(p){p.style.setProperty("--pri",b.dataset.c);p.style.setProperty("--pri-press",b.dataset.p)});bs.forEach(function(x){x.classList.remove("on");x.style.background="#fff"});b.classList.add("on");b.style.background=b.dataset.c;try{localStorage.setItem("cpick",b.dataset.c)}catch(e){}}var q=new URLSearchParams(location.search).get("c"),저=null;try{저=localStorage.getItem("cpick")}catch(e){}var 첫=bs[0];bs.forEach(function(b){b.addEventListener("click",function(){고(b)});if(b.dataset.c===(q?"#"+q:저))첫=b});고(첫)})();</script></body>
 </html>
