@@ -49,16 +49,16 @@ body.shot .dhai-panel.sian{width:390px;height:100vh;border:0;border-radius:0;box
 .dhai-card img{width:100%;height:132px;object-fit:contain;background:#fff;display:block;padding:10px}
 .dhai-cb{padding:4px 14px 12px;display:flex;flex-direction:column;gap:2px;flex:1}
 .dhai-brand{color:var(--c-sub,#465368);font-size:13px;line-height:1.4}.dhai-name{font-size:15px;font-weight:700;line-height:1.4;word-break:keep-all;color:var(--c-title,#0F172A)}
-.dhai-model{color:var(--c-dim,#8A9099);font-size:12px;line-height:1.5}
-.dhai-price{display:block;margin-top:8px;font-weight:800;color:var(--c-strong,#1257C9);font-size:18px;line-height:1.3}
+.dhai-model{color:var(--c-sub,#465368);font-size:13px;line-height:1.5}
+.dhai-price{display:flex;flex-direction:column;align-items:flex-start;gap:4px;white-space:nowrap;margin-top:8px;font-weight:800;color:var(--c-strong,#1257C9);font-size:18px;line-height:1.3}.dhai-price small{order:-1;font-size:12px;font-weight:700;color:var(--c-strong,#1257C9);background:var(--c-strong-bg,#EFF6FF);border-radius:4px;padding:2px 6px}
 .dhai-cond{display:block;font-size:13px;color:var(--c-sub,#465368);line-height:1.5}
-.dhai-opt{display:flex;flex-wrap:wrap;gap:4px;margin-top:8px}
-.dhai-opt button{border:1px solid var(--c-line,#EEEFF3);background:#fff;color:var(--c-sub,#465368);border-radius:4px;padding:5px 10px;font-family:inherit;font-size:13px;line-height:1.3;cursor:pointer}
+.dhai-opt{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);gap:4px;margin-top:8px}
+.dhai-opt button{border:1px solid var(--c-line,#EEEFF3);background:#fff;color:var(--c-sub,#465368);border-radius:4px;padding:6px 0;font-family:inherit;font-size:13px;line-height:1.3;cursor:pointer;text-align:center}
 .dhai-opt button.on{border-color:var(--c-strong,#1257C9);background:var(--c-strong-bg,#EFF6FF);color:var(--c-strong,#1257C9);font-weight:700}
 .dhai-rounds{margin:8px 0 4px;background:var(--dh-gray-100,#F5F6F8);border-radius:8px;padding:4px 10px;font-size:13px}
 .dhai-rounds div{display:flex;justify-content:space-between;align-items:center;gap:6px;min-height:28px}
 .dhai-rounds span{color:var(--c-sub,#465368);white-space:nowrap}.dhai-rounds b{white-space:nowrap;font-weight:700;color:var(--c-body,#0F172A)}
-.dhai-note{display:block;color:var(--c-sub,#465368);font-size:12px;line-height:1.5}
+.dhai-note{display:block;color:var(--c-sub,#465368);font-size:13px;line-height:1.5}
 .dhai-cbtn{padding:0 14px 14px}
 .dhai-cbtn button{width:100%;height:40px;border:1px solid var(--c-strong,#1257C9);background:#fff;color:var(--c-strong,#1257C9);border-radius:8px;font-family:inherit;font-size:14px;font-weight:700;cursor:pointer}
 .dhai-warn{font-size:12px;line-height:1.6;color:var(--c-dim,#8A9099)}
@@ -81,7 +81,8 @@ body.shot .dhai-panel.sian{width:390px;height:100vh;border:0;border-radius:0;box
 /* ★6. 추천 제목 + 카드 순번 */
 .dhai-pick-h{display:flex;align-items:baseline;justify-content:space-between;gap:8px;margin:4px 0 -6px}
 .dhai-pick-h b{font-size:16px;font-weight:800;letter-spacing:-.02em;color:var(--c-title,#0F172A)}
-.dhai-pick-h span{font-size:12px;color:var(--c-dim,#8A9099)}
+.dhai-pick-h span{font-size:13px;font-weight:600;color:var(--c-sub,#465368)}
+.dhai-dots2{display:flex;justify-content:center;gap:6px;margin-top:-6px}.dhai-dots2 i{width:6px;height:6px;border-radius:999px;background:#C9CED6}.dhai-dots2 i.on{width:18px;background:var(--c-strong,#1257C9)}
 .dhai-card{position:relative}
 .dhai-no{position:absolute;top:10px;left:10px;z-index:1;min-width:24px;height:24px;padding:0 7px;border-radius:999px;background:var(--c-band,#0B2E5C);color:#fff;font-size:12px;font-weight:800;line-height:24px;text-align:center}
 .dhai-card.is-first{border-color:var(--c-strong,#1257C9)}
@@ -92,8 +93,8 @@ body.shot .dhai-panel.sian{width:390px;height:100vh;border:0;border-radius:0;box
 .dhai-with-ic{flex:none;width:36px;height:36px;border-radius:8px;background:#fff;color:var(--c-strong,#1257C9);display:flex;align-items:center;justify-content:center}
 .dhai-with-ic svg{width:20px;height:20px}
 .dhai-with b{display:block;font-size:15px;font-weight:700;line-height:1.4;color:var(--c-title,#0F172A)}
-.dhai-with p{margin:2px 0 8px;font-size:14px;line-height:1.6;color:var(--c-sub,#465368)}
-.dhai-with button{border:0;background:none;padding:0;font-family:inherit;font-size:14px;font-weight:700;color:var(--c-strong,#1257C9);cursor:pointer;display:inline-flex;align-items:center;gap:2px}
+.dhai-with p{margin:2px 0 10px;font-size:14px;line-height:1.6;color:var(--c-sub,#465368)}
+.dhai-with button{height:36px;border:1px solid var(--c-strong,#1257C9);background:#fff;border-radius:999px;padding:0 10px 0 14px;font-family:inherit;font-size:14px;font-weight:700;color:var(--c-strong,#1257C9);cursor:pointer;display:inline-flex;align-items:center;gap:2px}
 .dhai-with button svg{width:16px;height:16px}
 
 /* ★2. 맨 아래 큰 단추 — 안내 글은 위로, 상담 신청이 가장 크게 */
@@ -120,13 +121,13 @@ body.shot .dhai-panel.sian{width:390px;height:100vh;border:0;border-radius:0;box
   background-size:250% 100%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:dhai-shine 1.6s linear infinite}
 @keyframes dhai-shine{0%{background-position:100% 0}100%{background-position:0 0}}
 .dhai-steps{list-style:none;margin:0;padding:12px 14px;display:flex;flex-direction:column;gap:8px;background:var(--dh-gray-100,#F5F6F8);border-radius:12px}
-.dhai-steps li{display:flex;align-items:center;gap:10px;font-size:14px;line-height:1.5;color:var(--c-dim,#8A9099);animation:dhai-in .35s ease-out both}
+.dhai-steps li{display:flex;align-items:center;gap:10px;font-size:15px;line-height:1.5;color:var(--c-sub,#465368);animation:dhai-in .35s ease-out both}
 .dhai-steps li::before{content:'';width:8px;height:8px;border-radius:50%;background:#C9CED6;flex:none}
 .dhai-steps li.now{color:var(--c-title,#0F172A);font-weight:700}
 .dhai-steps li.now::before{background:var(--c-strong,#1257C9);box-shadow:0 0 0 0 rgba(18,87,201,.45);animation:dhai-ping 1.4s ease-out infinite}
 @keyframes dhai-ping{0%{box-shadow:0 0 0 0 rgba(18,87,201,.45)}100%{box-shadow:0 0 0 7px rgba(18,87,201,0)}}
 @keyframes dhai-in{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
-.dhai-wait-sub{margin:0;font-size:13px;line-height:1.6;color:var(--c-sub,#465368)}
+.dhai-wait-sub{margin:0;font-size:14px;line-height:1.6;color:var(--c-sub,#465368)}
 /* 움직임 줄이기 설정이면 모두 멈춘 모양으로 */
 @media (prefers-reduced-motion:reduce){
   .dhai-face.is-wait::after,.dhai-bars i,.dhai-steps li,.dhai-steps li.now::before{animation:none}
@@ -181,16 +182,16 @@ body.shot .dhai-panel.sian{width:390px;height:100vh;border:0;border-radius:0;box
           </div>
         </div>
 
-        <div class="dhai-pick-h"><b>추천 정수기</b><span>옆으로 넘겨 보세요</span></div>
+        <div class="dhai-pick-h"><b>추천 정수기 3</b><span>옆으로 넘겨 보세요 ›</span></div>
         <div class="dhai-cards">
           <div class="dhai-card is-first"><span class="dhai-no">1</span>
             <a href="#"><img src="../img/coway-1.jpg" alt="아이콘 정수기 3"></a>
             <div class="dhai-cb"><a href="#"><span class="dhai-brand">코웨이</span><br><span class="dhai-name">아이콘 정수기 3 (냉온정)</span></a>
               <span class="dhai-model">CHP-7220N · 160×368×385mm</span>
-              <span class="dhai-price">월 10,000원~</span><span class="dhai-cond">5년 약정 · 방문 4개월</span>
+              <span class="dhai-price">월 10,000원<small>처음 6개월</small></span><span class="dhai-cond">5년 약정 · 방문 4개월</span>
               <div class="dhai-opt"><button>3년</button><button class="on">5년</button><button>6년</button><button>7년</button></div>
               <div class="dhai-rounds"><div><span>1~6회차</span><b>10,000원</b></div><div><span>7~60회차</span><b>35,900원</b></div></div>
-              <span class="dhai-note">이후 제휴카드(전월 실적 충족 시) 월 15,900원</span>
+              <span class="dhai-note">이후 제휴카드(전월 실적 충족 시) <span style="white-space:nowrap">월 15,900원</span></span>
             </div>
             <div class="dhai-cbtn"><button type="button">이 제품 상담 신청</button></div>
           </div>
@@ -198,10 +199,10 @@ body.shot .dhai-panel.sian{width:390px;height:100vh;border:0;border-radius:0;box
             <a href="#"><img src="../img/chungho-1086.jpg" alt="뉴 아이스트리 얼음정수기"></a>
             <div class="dhai-cb"><a href="#"><span class="dhai-brand">청호나이스</span><br><span class="dhai-name">뉴 아이스트리 얼음정수기</span></a>
               <span class="dhai-model">WI-36C90620N · 254×498×490mm</span>
-              <span class="dhai-price">월 24,950원~</span><span class="dhai-cond">5년 약정 · 방문 6개월</span>
+              <span class="dhai-price">월 24,950원<small>처음 6개월</small></span><span class="dhai-cond">5년 약정 · 방문 6개월</span>
               <div class="dhai-opt"><button>3년</button><button class="on">5년</button><button>6년</button></div>
               <div class="dhai-rounds"><div><span>1~6회차</span><b>24,950원</b></div><div><span>7~60회차</span><b>49,900원</b></div></div>
-              <span class="dhai-note">이후 제휴카드(전월 실적 충족 시) 월 29,900원</span>
+              <span class="dhai-note">이후 제휴카드(전월 실적 충족 시) <span style="white-space:nowrap">월 29,900원</span></span>
             </div>
             <div class="dhai-cbtn"><button type="button">이 제품 상담 신청</button></div>
           </div>
@@ -209,14 +210,16 @@ body.shot .dhai-panel.sian{width:390px;height:100vh;border:0;border-radius:0;box
             <a href="#"><img src="../img/cuckoo-1921.jpg" alt="스팀100 정수기"></a>
             <div class="dhai-cb"><a href="#"><span class="dhai-brand">쿠쿠</span><br><span class="dhai-name">스팀100 정수기 (냉온정)</span></a>
               <span class="dhai-model">CP-ABS100 · 166×490×400mm</span>
-              <span class="dhai-price">월 16,450원~</span><span class="dhai-cond">5년 약정 · 방문 4개월</span>
+              <span class="dhai-price">월 16,450원<small>처음 6개월</small></span><span class="dhai-cond">5년 약정 · 방문 4개월</span>
               <div class="dhai-opt"><button>3년</button><button class="on">5년</button><button>6년</button><button>7년</button></div>
               <div class="dhai-rounds"><div><span>1~6회차</span><b>16,450원</b></div><div><span>7~60회차</span><b>32,900원</b></div></div>
-              <span class="dhai-note">이후 제휴카드(전월 실적 충족 시) 월 12,900원</span>
+              <span class="dhai-note">이후 제휴카드(전월 실적 충족 시) <span style="white-space:nowrap">월 12,900원</span></span>
             </div>
             <div class="dhai-cbtn"><button type="button">이 제품 상담 신청</button></div>
           </div>
         </div>
+
+        <div class="dhai-dots2" aria-hidden="true"><i class="on"></i><i></i><i></i></div>
 
         <div class="dhai-with">
           <span class="dhai-with-ic" aria-hidden="true"><svg><use href="#ic-wifi"/></svg></span>
