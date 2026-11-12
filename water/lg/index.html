@@ -141,3 +141,30 @@ if (typeof dhInflow !== 'function') { window.dhInflow = function () { return {};
 <script src="../../js/dh-card-benefit.js?v=62"></script>
 <script src="../../js/data2-coway.js?v=92"></script>
 <script src="../../js/data2-sk.js?v=92"></script>
+<script src="../../js/data2-cuckoo.js?v=91"></script>
+<script src="../../js/data2-lg.js?v=92"></script>
+<script src="../../js/data2-chungho.js?v=95"></script>
+<script src="../../js/data2-wells.js?v=88"></script>
+<script src="../../js/data2-ruhens.js?v=87"></script>
+<script src="../../js/data2-qming.js?v=91"></script>
+<script src="../../js/dh-popular.js?v=69"></script>
+<script src="../../js/dh-calc3.js?v=76"></script>
+<script src="../../js/dh-bar3.js?v=61"></script>
+<script src="../../js/dh-compare3.js?v=65"></script>
+<script src="../../js/dh-list3.js?v=83"></script>
+<script>
+/* 이 화면은 정수기 렌탈이라 신청창을 '렌탈'로 열어 둡니다.
+   공용 부품(js/dh-apply.js)은 손대지 않고, 연 뒤에 갈래만 바꿔 줍니다. */
+function 렌탈신청창열기() {
+  if (typeof 신청창열기 !== 'function') return;
+  신청창열기();
+  var 인 = document.getElementById('tab-internet');
+  var 렌 = document.getElementById('tab-rental');
+  if (!인 || !렌 || typeof toggleService !== 'function') return;
+  if (!렌.classList.contains('active')) toggleService('rental');
+  if (인.classList.contains('active')) toggleService('internet');
+}
+</script>
+<script src="../../js/dh-aichat.js?v=7" defer></script>
+</body>
+</html>
