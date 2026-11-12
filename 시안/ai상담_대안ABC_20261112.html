@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AI 상담 대안 세 가지</title>
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.css">
+<style>
+/* ?alt=A|B|C & v=top|bottom|wait 로 한 화면씩. 그냥 열면 여섯 화면을 나란히 */
+html,body{margin:0}
+body{background:#E9EDF3;font-family:'Pretendard Variable',Pretendard,sans-serif;color:#0F172A}
+.wrap{display:flex;flex-wrap:wrap;gap:24px;justify-content:center;padding:24px 16px}
+.col{display:flex;flex-direction:column;gap:8px;align-items:center}
+.cap{font-size:14px;color:#465368}
+body.shot{background:#fff}body.shot .wrap{padding:0;justify-content:flex-start}body.shot .col{display:none}body.shot .col.on{display:flex}body.shot .cap{display:none}
+body.shot .pn{width:390px;height:100vh;border:0;border-radius:0;box-shadow:none}
+
+/* 공통 틀 */
+.pn{--ink:#0F172A;--sub:#465368;--line:#E6E9EF;--soft:#F5F6F8;
+  position:relative;width:390px;height:760px;background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:0 8px 32px rgba(11,46,92,.12);display:flex;flex-direction:column;overflow:hidden;color:var(--ink)}
+.pn *{box-sizing:border-box}
+.hd{display:flex;align-items:center;gap:10px;padding:12px 10px 12px 16px;border-bottom:1px solid var(--line);flex:none}
+.hd .lg{width:28px;height:28px;border-radius:8px;background:var(--pri);display:flex;align-items:center;justify-content:center}
+.hd .lg svg{width:19px;height:19px}
+.hd .tt{flex:1}.hd .tt b{display:block;font-size:16px}.hd .tt span{display:block;font-size:13px;color:var(--sub)}
+.hd .ag{height:32px;padding:0 10px;border:1px solid var(--line);border-radius:8px;background:#fff;font:600 13px inherit;font-family:inherit}
+.hd .x{width:36px;height:36px;display:flex;align-items:center;justify-content:center;color:var(--sub)}.hd .x svg{width:20px;height:20px}
+.bd{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:16px}
+.bd>*{flex-shrink:0}
+.me{align-self:flex-end;max-width:85%;background:var(--pri);color:#fff;padding:10px 14px;border-radius:12px 12px 4px 12px;font-size:15px;line-height:1.6}
+.ans{font-size:16px;line-height:1.75;word-break:keep-all}
+.ans p{margin:0 0 12px}.ans ul{margin:0 0 12px;padding-left:20px}.ans li{margin:4px 0}
+.warn{font-size:12px;line-height:1.6;color:#8A9099}
+.ft{flex:none;border-top:1px solid var(--line);padding:10px 12px;display:flex;gap:8px;background:#fff}
+.ft .in{flex:1;height:44px;border-radius:8px;background:var(--soft);display:flex;align-items:center;padding:0 12px;font-size:16px;color:#8A9099}
+.ft .sd{height:44px;padding:0 16px;border-radius:8px;background:var(--pri);color:#fff;font-weight:700;font-size:15px;display:flex;align-items:center}
+.ft .sd.off{background:#A3AAB5}
+.ic{width:18px;height:18px;flex:none}
+@media (prefers-reduced-motion:reduce){.pn *{animation:none!important;transition:none!important}}
+
+/* ━━━━━━━━━━ 대안 A 「정리 노트」 — 먹남색 + 모래빛, 얼굴 동그라미 없음 ━━━━━━━━━━ */
+.A{--pri:#2B4A72;--pri-bg:#EEF2F7;--acc:#B9844A}
+.A .who{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:700;color:var(--pri);margin-bottom:6px}
+.A .who i{width:22px;height:22px;border-radius:6px;background:var(--pri);display:flex;align-items:center;justify-content:center}.A .who i svg{width:15px;height:15px}
+.A .sum{border-left:3px solid var(--acc);padding:2px 0 2px 12px;font-weight:700;margin-bottom:12px}
+.A .seg{display:grid;grid-template-columns:1.3fr 1fr 1fr;border:1px solid #CBD5E1;border-radius:8px;overflow:hidden;margin-bottom:14px}
+.A .seg a{height:42px;display:flex;align-items:center;justify-content:center;gap:5px;font-size:14px;font-weight:700;color:var(--pri);text-decoration:none;background:#fff}
+.A .seg a+a{border-left:1px solid #CBD5E1}
+.A .seg a:first-child{background:var(--pri);color:#fff}
+.A .lh{font-size:16px;font-weight:800;margin:0 0 -6px}
+.A .rows{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.A .row{display:grid;grid-template-columns:76px 1fr;gap:12px;padding:14px;position:relative}
+.A .row+.row{border-top:1px solid var(--line)}
+.A .row img{width:76px;height:76px;object-fit:contain;background:#fff;border-radius:8px;border:1px solid var(--line)}
+.A .row .nm{font-size:15px;font-weight:700;line-height:1.4;padding-right:26px}
+.A .row .why{font-size:13px;color:var(--acc);font-weight:700}
+.A .row .pr{font-size:17px;font-weight:800;color:var(--pri);margin-top:4px}.A .row .pr small{font-size:13px;font-weight:500;color:var(--sub);margin-left:4px}
+.A .row .nx{font-size:13px;color:var(--sub)}
+.A .row .go{position:absolute;right:12px;top:14px;color:#A3AAB5}
+.A .with{display:flex;align-items:center;gap:10px;padding:14px;border-radius:12px;background:var(--pri-bg);font-size:15px;font-weight:600}
+.A .with .bx{width:22px;height:22px;border-radius:6px;border:2px solid var(--pri);flex:none;background:#fff}
+.A .with small{display:block;font-size:13px;font-weight:400;color:var(--sub)}
+.A .end{display:flex;gap:8px}
+.A .end .ap{flex:1;height:52px;border-radius:10px;background:var(--pri);color:#fff;font-size:16px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:6px}
+.A .end .sq{width:52px;height:52px;border-radius:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:11px;font-weight:700;gap:1px}
+.A .end .kk{background:#FEE500;color:#3C3300}.A .end .tl{border:1px solid #CBD5E1;color:var(--pri)}
+/* A 대기: 바닥에 미끄러지는 가는 줄 + 지금 하는 일 한 줄(빛 훑기·막대 없음) */
+.A .wt{display:flex;flex-direction:column;gap:10px}
+.A .track{height:4px;border-radius:2px;background:#E3E8EF;overflow:hidden;position:relative}
+.A .track i{position:absolute;top:0;bottom:0;width:35%;border-radius:2px;background:var(--acc);animation:slideA 1.4s ease-in-out infinite}
+@keyframes slideA{0%{left:-35%}100%{left:100%}}
+.A .now{font-size:16px;font-weight:700}.A .now small{display:block;font-size:14px;font-weight:400;color:var(--sub);margin-top:2px}
+
+/* ━━━━━━━━━━ 대안 B 「상담원 메모」 — 깊은 청록, 이유별 탭 ━━━━━━━━━━ */
+.B{--pri:#23707A;--pri-bg:#ECF5F5}
+.B .rw{display:grid;grid-template-columns:30px 1fr;gap:10px}
+.B .fc{width:30px;height:30px;border-radius:8px;background:var(--pri);display:flex;align-items:center;justify-content:center}.B .fc svg{width:20px;height:20px}
+.B .lnk{display:flex;flex-wrap:wrap;align-items:center;gap:4px 14px;font-size:14px;margin:-4px 0 14px;color:var(--sub)}
+.B .lnk a{display:inline-flex;align-items:center;gap:4px;color:var(--pri);font-weight:700;text-decoration:underline;text-underline-offset:3px}
+.B .tabs{display:flex;gap:6px;overflow:hidden}
+.B .tabs span{height:36px;padding:0 14px;border-radius:8px;border:1px solid var(--line);display:flex;align-items:center;font-size:14px;font-weight:600;color:var(--sub);white-space:nowrap}
+.B .tabs span.on{background:var(--pri);border-color:var(--pri);color:#fff}
+.B .th{font-size:16px;font-weight:800;margin:0 0 -6px}
+.B .big{border:1px solid var(--line);border-radius:12px;padding:14px;display:grid;grid-template-columns:110px 1fr;gap:14px}
+.B .big img{width:110px;height:130px;object-fit:contain}
+.B .big .br{font-size:13px;color:var(--sub)}.B .big .nm{font-size:16px;font-weight:700;line-height:1.4}
+.B .big .pr{font-size:18px;font-weight:800;color:var(--pri);margin-top:8px}.B .big .pr small{display:block;font-size:13px;font-weight:500;color:var(--sub)}
+.B .big .bt{grid-column:1/-1;height:42px;border-radius:8px;border:1px solid var(--pri);color:var(--pri);font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center}
+.B .memo{border:1px dashed #9CC5C8;border-radius:12px;padding:12px 14px;display:flex;gap:10px;align-items:center;font-size:14px;line-height:1.6;color:var(--sub)}
+.B .memo b{color:var(--ink)}.B .memo span.bt{flex:none;height:34px;padding:0 12px;border-radius:8px;background:var(--pri-bg);color:var(--pri);font-weight:700;display:flex;align-items:center}
+.B .end{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.B .end a{height:50px;border-radius:10px;display:flex;align-items:center;justify-content:center;gap:6px;font-size:16px;font-weight:700;text-decoration:none}
+.B .end .ap{background:var(--pri);color:#fff}.B .end .kk{background:#FEE500;color:#3C3300}
+.B .tel{text-align:center;font-size:14px;color:var(--sub)}.B .tel b{color:var(--ink)}
+/* B 대기: 답 자리에 회색 뼈대가 천천히 깜빡 + 작은 고리 한 줄 */
+.B .sk{display:flex;flex-direction:column;gap:10px}
+.B .sk i{display:block;height:14px;border-radius:4px;background:#E8ECEF;animation:pulseB 1.6s ease-in-out infinite}
+.B .sk i.c{height:120px;border-radius:12px}
+@keyframes pulseB{0%,100%{opacity:1}50%{opacity:.45}}
+.B .st{display:flex;align-items:center;gap:8px;font-size:15px;font-weight:600;color:var(--pri)}
+.B .ring{width:16px;height:16px;border-radius:50%;border:2px solid #CFE3E4;border-top-color:var(--pri);animation:spinB .9s linear infinite}
+@keyframes spinB{to{transform:rotate(360deg)}}
+
+/* ━━━━━━━━━━ 대안 C 「대화 말풍선」 — 남색 + 주황 한 점, 단추는 입력칸 위 한 줄 ━━━━━━━━━━ */
+.C{--pri:#0B2E5C;--acc:#E0701F;--acc-bg:#FDF1E7}
+.C .bub{background:#F4F6F9;border-radius:4px 16px 16px 16px;padding:14px 16px;max-width:100%}
+.C .crds{display:flex;gap:10px;overflow:hidden;margin:0 -16px;padding:0 16px}
+.C .cd{flex:none;width:210px;border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.C .cd .tg{display:block;padding:8px 12px;background:var(--acc-bg);color:#A34D0F;font-size:13px;font-weight:700}
+.C .cd img{width:100%;height:110px;object-fit:contain;padding:8px}
+.C .cd .ci{padding:0 12px 12px}.C .cd .nm{font-size:15px;font-weight:700;line-height:1.4}
+.C .cd .pr{font-size:17px;font-weight:800;color:var(--pri);margin-top:6px}.C .cd .pr small{font-size:12px;font-weight:600;color:var(--sub);margin-left:4px}
+.C .chips{display:flex;flex-wrap:wrap;gap:8px}
+.C .chips span{height:38px;padding:0 14px;border-radius:999px;border:1px solid #CBD5E1;display:flex;align-items:center;font-size:14px;font-weight:600;color:var(--pri);background:#fff}
+.C .chips span.hl{border-color:#F3C29C;background:var(--acc-bg);color:#A34D0F}
+.C .act{flex:none;display:flex;gap:8px;padding:10px 12px 0;background:#fff;border-top:1px solid var(--line)}
+.C .act a{height:44px;border-radius:999px;display:flex;align-items:center;justify-content:center;gap:6px;font-size:15px;font-weight:700;text-decoration:none}
+.C .act .ap{flex:1;background:var(--pri);color:#fff}
+.C .act .kk{width:44px;background:#FEE500;color:#3C3300}.C .act .tl{width:44px;border:1px solid #CBD5E1;color:var(--pri)}
+.C .ft{border-top:0}
+/* C 대기: 말풍선 안에서 로고 둘레를 고리가 돌고, 글은 바뀔 때 부드럽게 */
+.C .wb{display:flex;align-items:center;gap:12px}
+.C .lr{position:relative;width:36px;height:36px;flex:none}
+.C .lr .m{position:absolute;inset:5px;border-radius:50%;background:var(--pri);display:flex;align-items:center;justify-content:center}.C .lr .m svg{width:17px;height:17px}
+.C .lr::after{content:'';position:absolute;inset:0;border-radius:50%;border:2px solid transparent;border-top-color:var(--acc);border-right-color:var(--acc);animation:spinB 1.1s linear infinite}
+.C .wtx{font-size:16px;font-weight:700}.C .wtx small{display:block;font-size:14px;font-weight:400;color:var(--sub)}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="mk" viewBox="25.6 68 246.4 162.4"><g fill="#fff"><path d="M42 68H268.4v29.4H65.4v103.2H272v29.8H25.6V84.4A16.4 16.4 0 0 1 42 68Z"/><g id="hh"><rect x="124.17" y="118.6" width="18.47" height="8.4"/><rect x="96" y="127" width="74.84" height="12"/><path fill-rule="evenodd" d="M168.88 157.4C168.88 169.33 160.31 173.1 133.18 173.1C106.05 173.1 97.48 169.33 97.48 157.4C97.48 145.47 106.05 141.7 133.18 141.7C160.31 141.7 168.88 145.47 168.88 157.4ZM150.63 157.41C150.63 159.98 145.83 160.96 133.18 160.96C120.53 160.96 115.73 159.98 115.73 157.41C115.73 154.84 120.53 153.86 133.18 153.86C145.83 153.86 150.63 154.84 150.63 157.41Z"/></g><use href="#hh" transform="translate(93 0)"/></g></symbol>
+  <symbol id="tel" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></symbol>
+  <symbol id="talk" viewBox="0 0 24 24"><path fill="currentColor" d="M12 3C6.5 3 2 6.5 2 10.8c0 2.8 1.9 5.2 4.7 6.6l-1 3.6c-.1.3.3.6.6.4l4.2-2.8c.5.1 1 .1 1.5.1 5.5 0 10-3.5 10-7.9S17.5 3 12 3z"/></symbol>
+  <symbol id="pen" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M9 11l3 3L22 4M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></symbol>
+  <symbol id="go" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M9 6l6 6-6 6"/></symbol>
+  <symbol id="cls" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M6 6l12 12M18 6L6 18"/></symbol>
+</svg>
+
+<div class="wrap">
+<!-- ═════════ A 답 ═════════ -->
+<div class="col" id="A-ans"><div class="pn A">
+  <div class="hd"><span class="lg"><svg><use href="#mk"/></svg></span><div class="tt"><b>당현함 상담</b><span>AI가 먼저 답해 드려요</span></div><span class="ag">상담원 연결</span><span class="x"><svg><use href="#cls"/></svg></span></div>
+  <div class="bd" id="A-bd">
+    <div class="me">정수기 렌탈하고 싶어</div>
+    <div class="ans">
+      <div class="who"><i><svg><use href="#mk"/></svg></i>당현함 AI</div>
+      <div class="sum">많이 찾으시는 냉온정수기 세 가지를 방문 관리 기준으로 골라 봤어요.</div>
+      <div class="seg"><a href="#"><svg class="ic"><use href="#pen"/></svg>상담 신청</a><a href="#"><svg class="ic"><use href="#talk"/></svg>카톡</a><a href="#"><svg class="ic"><use href="#tel"/></svg>전화</a></div>
+      <p>세 제품 모두 처음 6개월은 할인된 값이고, 7회차부터 원래 요금이에요. 제품을 누르면 약정별 요금을 볼 수 있어요.</p>
+    </div>
+    <div class="lh">조건에 맞는 세 가지</div>
+    <div class="rows">
+      <div class="row"><img src="../img/coway-1.jpg" alt=""><div><div class="why">자리가 좁다면</div><div class="nm">코웨이 아이콘 정수기 3</div><div class="pr">월 10,000원<small>처음 6개월</small></div><div class="nx">7회차부터 35,900원 · 5년 · 방문 4개월</div></div><svg class="ic go"><use href="#go"/></svg></div>
+      <div class="row"><img src="../img/chungho-1086.jpg" alt=""><div><div class="why">얼음이 필요하다면</div><div class="nm">청호 뉴 아이스트리 얼음정수기</div><div class="pr">월 24,950원<small>처음 6개월</small></div><div class="nx">7회차부터 49,900원 · 5년 · 방문 6개월</div></div><svg class="ic go"><use href="#go"/></svg></div>
+      <div class="row"><img src="../img/cuckoo-1921.jpg" alt=""><div><div class="why">온수 살균을 원한다면</div><div class="nm">쿠쿠 스팀100 정수기</div><div class="pr">월 16,450원<small>처음 6개월</small></div><div class="nx">7회차부터 32,900원 · 5년 · 방문 4개월</div></div><svg class="ic go"><use href="#go"/></svg></div>
+    </div>
+    <div class="with"><span class="bx"></span><div>인터넷·TV도 같이 상담 받을게요<small>체크하시면 상담원이 한 번에 함께 안내해 드려요</small></div></div>
+    <div class="warn">AI가 생성한 응답은 부정확할 수 있습니다. 정확한 요금과 혜택은 상담원이 확인해서 확정해 드려요.</div>
+    <div class="end"><span class="ap"><svg class="ic"><use href="#pen"/></svg>상담 신청하기</span><span class="sq kk"><svg class="ic"><use href="#talk"/></svg>카톡</span><span class="sq tl"><svg class="ic"><use href="#tel"/></svg>전화</span></div>
+  </div>
+  <div class="ft"><span class="in">궁금한 걸 적어 주세요</span><span class="sd">보내기</span></div>
+</div><div class="cap">대안 A 답</div></div>
+
+<!-- ═════════ A 대기 ═════════ -->
+<div class="col" id="A-wait"><div class="pn A">
+  <div class="hd"><span class="lg"><svg><use href="#mk"/></svg></span><div class="tt"><b>당현함 상담</b><span>AI가 먼저 답해 드려요</span></div><span class="ag">상담원 연결</span><span class="x"><svg><use href="#cls"/></svg></span></div>
+  <div class="bd">
+    <div class="me">정수기 렌탈하고 싶어</div>
+    <div class="ans wt" role="status">
+      <div class="who"><i><svg><use href="#mk"/></svg></i>당현함 AI</div>
+      <div class="now">맞는 정수기를 고르고 있어요<small>약정·관리별 요금까지 맞춰 볼게요. 보통 10초 안팎 걸려요.</small></div>
+      <div class="track"><i></i></div>
+    </div>
+  </div>
+  <div class="ft"><span class="in">궁금한 걸 적어 주세요</span><span class="sd off">보내기</span></div>
+</div><div class="cap">대안 A 대기</div></div>
+
+<!-- ═════════ B 답 ═════════ -->
+<div class="col" id="B-ans"><div class="pn B">
+  <div class="hd"><span class="lg"><svg><use href="#mk"/></svg></span><div class="tt"><b>당현함 상담</b><span>AI가 먼저 답해 드려요</span></div><span class="ag">상담원 연결</span><span class="x"><svg><use href="#cls"/></svg></span></div>
+  <div class="bd" id="B-bd">
+    <div class="me">정수기 렌탈하고 싶어</div>
+    <div class="rw"><span class="fc"><svg><use href="#mk"/></svg></span><div class="ans">
+      <p><b>많이 찾으시는 냉온정수기를 쓰임새별로 하나씩 골라 봤어요.</b></p>
+      <div class="lnk">바로 물어보기 <a href="#">상담 신청</a><a href="#">카톡</a><a href="#">전화</a></div>
+      <p>세 제품 모두 처음 6개월은 할인된 값이고, 7회차부터 원래 요금이에요.</p>
+    </div></div>
+    <div class="th">쓰임새별로 보기</div>
+    <div class="tabs"><span class="on">작은 크기</span><span>얼음</span><span>온수 살균</span></div>
+    <div class="big"><img src="../img/coway-1.jpg" alt=""><div><div class="br">코웨이 · CHP-7220N</div><div class="nm">아이콘 정수기 3 (냉온정)</div><div class="pr">월 10,000원<small>처음 6개월, 7회차부터 35,900원</small><small>5년 약정 · 방문 4개월</small></div></div><span class="bt">이 제품으로 상담 신청</span></div>
+    <div class="memo"><div><b>인터넷·TV도 바꿀 때가 됐다면</b><br>같은 상담원이 함께 봐 드려요.</div><span class="bt">같이 상담</span></div>
+    <div class="warn">AI가 생성한 응답은 부정확할 수 있습니다. 정확한 요금과 혜택은 상담원이 확인해서 확정해 드려요.</div>
+    <div class="end"><a class="ap" href="#"><svg class="ic"><use href="#pen"/></svg>상담 신청</a><a class="kk" href="#"><svg class="ic"><use href="#talk"/></svg>카톡 상담</a></div>
+    <div class="tel">전화 상담 <b>1600-4670</b></div>
+  </div>
+  <div class="ft"><span class="in">궁금한 걸 적어 주세요</span><span class="sd">보내기</span></div>
+</div><div class="cap">대안 B 답</div></div>
+
+<!-- ═════════ B 대기 ═════════ -->
+<div class="col" id="B-wait"><div class="pn B">
+  <div class="hd"><span class="lg"><svg><use href="#mk"/></svg></span><div class="tt"><b>당현함 상담</b><span>AI가 먼저 답해 드려요</span></div><span class="ag">상담원 연결</span><span class="x"><svg><use href="#cls"/></svg></span></div>
+  <div class="bd">
+    <div class="me">정수기 렌탈하고 싶어</div>
+    <div class="rw" role="status"><span class="fc"><svg><use href="#mk"/></svg></span><div class="sk">
+      <div class="st"><span class="ring"></span>맞는 제품을 찾고 있어요</div>
+      <i style="width:92%"></i><i style="width:78%"></i><i style="width:85%"></i><i class="c"></i>
+    </div></div>
+  </div>
+  <div class="ft"><span class="in">궁금한 걸 적어 주세요</span><span class="sd off">보내기</span></div>
+</div><div class="cap">대안 B 대기</div></div>
+
+<!-- ═════════ C 답 ═════════ -->
+<div class="col" id="C-ans"><div class="pn C">
+  <div class="hd"><span class="lg"><svg><use href="#mk"/></svg></span><div class="tt"><b>당현함 상담</b><span>AI가 먼저 답해 드려요</span></div><span class="ag">상담원 연결</span><span class="x"><svg><use href="#cls"/></svg></span></div>
+  <div class="bd" id="C-bd">
+    <div class="me">정수기 렌탈하고 싶어</div>
+    <div class="bub ans">
+      <p><b>많이 찾으시는 냉온정수기 세 가지를 방문 관리 기준으로 골라 봤어요.</b></p>
+      <p style="margin:0">세 제품 모두 처음 6개월은 할인된 값이고, 7회차부터 원래 요금이에요.</p>
+    </div>
+    <div class="crds">
+      <div class="cd"><span class="tg">자리가 좁다면</span><img src="../img/coway-1.jpg" alt=""><div class="ci"><div class="nm">코웨이 아이콘 정수기 3</div><div class="pr">월 10,000원<small>처음 6개월</small></div></div></div>
+      <div class="cd"><span class="tg">얼음이 필요하다면</span><img src="../img/chungho-1086.jpg" alt=""><div class="ci"><div class="nm">청호 뉴 아이스트리</div><div class="pr">월 24,950원<small>처음 6개월</small></div></div></div>
+    </div>
+    <div class="chips"><span class="hl">인터넷·TV도 같이 볼래요</span><span>얼음 정수기만 더 보기</span><span>약정 기간별 차이 알려 줘</span></div>
+    <div class="warn">AI가 생성한 응답은 부정확할 수 있습니다. 정확한 요금과 혜택은 상담원이 확인해서 확정해 드려요.</div>
+  </div>
+  <div class="act"><a class="ap" href="#"><svg class="ic"><use href="#pen"/></svg>이 내용으로 상담 신청</a><a class="kk" href="#" aria-label="카톡 상담"><svg class="ic"><use href="#talk"/></svg></a><a class="tl" href="#" aria-label="전화 상담"><svg class="ic"><use href="#tel"/></svg></a></div>
+  <div class="ft"><span class="in">궁금한 걸 적어 주세요</span><span class="sd">보내기</span></div>
+</div><div class="cap">대안 C 답</div></div>
+
+<!-- ═════════ C 대기 ═════════ -->
+<div class="col" id="C-wait"><div class="pn C">
+  <div class="hd"><span class="lg"><svg><use href="#mk"/></svg></span><div class="tt"><b>당현함 상담</b><span>AI가 먼저 답해 드려요</span></div><span class="ag">상담원 연결</span><span class="x"><svg><use href="#cls"/></svg></span></div>
+  <div class="bd">
+    <div class="me">정수기 렌탈하고 싶어</div>
+    <div class="bub wb" role="status"><span class="lr"><span class="m"><svg><use href="#mk"/></svg></span></span><div class="wtx">요금표를 맞춰 보고 있어요<small>조금만 기다려 주세요</small></div></div>
+  </div>
+  <div class="act"><a class="ap" href="#"><svg class="ic"><use href="#pen"/></svg>기다리지 않고 상담 신청</a><a class="kk" href="#"><svg class="ic"><use href="#talk"/></svg></a><a class="tl" href="#"><svg class="ic"><use href="#tel"/></svg></a></div>
+  <div class="ft"><span class="in">궁금한 걸 적어 주세요</span><span class="sd off">보내기</span></div>
+</div><div class="cap">대안 C 대기</div></div>
+</div>
+
+<script>
+(function () {
+  var q = new URLSearchParams(location.search), a = q.get('alt'), v = q.get('v');
+  if (!a) return;
+  document.body.classList.add('shot');
+  document.getElementById(a + (v === 'wait' ? '-wait' : '-ans')).classList.add('on');
+  if (v === 'bottom') { var b = document.getElementById(a + '-bd'); requestAnimationFrame(function () { b.scrollTop = b.scrollHeight; }); }
+})();
+</script>
+</body>
+</html>
