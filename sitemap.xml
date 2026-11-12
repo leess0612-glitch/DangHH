@@ -537,14 +537,14 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://danghh.com/reviews/area/%EA%B2%BD%EA%B8%B0-%EC%9D%98%EC%A0%95%EB%B6%80%EC%8B%9C/</loc>
-    <lastmod>2026-09-04</lastmod>
+    <loc>https://danghh.com/reviews/area/%EA%B2%BD%EA%B8%B0-%EC%95%88%EC%82%B0%EC%8B%9C/</loc>
+    <lastmod>2026-11-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://danghh.com/reviews/area/%EA%B2%BD%EA%B8%B0-%EC%95%88%EC%82%B0%EC%8B%9C/</loc>
-    <lastmod>2026-08-21</lastmod>
+    <loc>https://danghh.com/reviews/area/%EA%B2%BD%EA%B8%B0-%EC%9D%98%EC%A0%95%EB%B6%80%EC%8B%9C/</loc>
+    <lastmod>2026-09-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -1198,7 +1198,7 @@
   </url>
   <url>
     <loc>https://danghh.com/reviews/area/%EA%B2%BD%EA%B8%B0/</loc>
-    <lastmod>2026-11-04</lastmod>
+    <lastmod>2026-11-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -1300,7 +1300,7 @@
   </url>
   <url>
     <loc>https://danghh.com/reviews/brand/KT/</loc>
-    <lastmod>2026-10-17</lastmod>
+    <lastmod>2026-11-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -1363,6 +1363,12 @@
     <lastmod>2026-09-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://danghh.com/reviews/156373/</loc>
+    <lastmod>2026-11-12</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
   </url>
   <url>
     <loc>https://danghh.com/reviews/156363/</loc>
