@@ -66,16 +66,20 @@ body.shot .dhai-panel.sian{width:390px;height:100vh;border:0;border-radius:0;box
 .dhai-foot textarea{flex:1;resize:none;overflow:hidden;height:44px;border:1px solid transparent;border-radius:8px;padding:11px 12px;font-family:inherit;font-size:16px;line-height:1.3;background:var(--dh-gray-100,#F5F6F8);color:var(--c-body,#0F172A)}
 .dhai-send{flex:none;height:44px;border:0;border-radius:8px;padding:0 16px;background:var(--c-strong,#1257C9);color:#fff;font-family:inherit;font-weight:700;font-size:15px;cursor:pointer}
 
+/* ★사장님 11/12 「쨍한 파랑 말고」 — 눈 편한 차분한 파랑으로 이름표만 덮어씀 */
+.dhai-panel{--c-strong:#3A64A8;--c-strong-press:#2F528C;--c-strong-bg:#EEF3FA;--c-face:#294A7A}
 /* ★4. AI 얼굴 — 동그라미 안 당현함 로고, 답 왼쪽 */
 .dhai-row{display:grid;grid-template-columns:32px minmax(0,1fr);gap:10px;align-items:start}
-.dhai-face{width:32px;height:32px;border-radius:50%;background:var(--c-strong,#1257C9);display:flex;align-items:center;justify-content:center;flex:none;position:relative}
+.dhai-face{width:32px;height:32px;border-radius:50%;background:var(--c-face,#294A7A);display:flex;align-items:center;justify-content:center;flex:none;position:relative}
 .dhai-face svg{width:21px;height:21px;display:block}
 .dhai-row .dhai-ai{padding-top:3px}
 
 /* ★1. 답 첫 문장 아래 작은 단추 줄 */
 .dhai-quick{display:flex;flex-wrap:wrap;gap:6px;margin:-4px 0 16px}
 .dhai-quick a,.dhai-quick button{height:32px;display:inline-flex;align-items:center;gap:4px;padding:0 12px;border-radius:999px;font-family:inherit;font-size:13px;font-weight:600;line-height:1;text-decoration:none;cursor:pointer;border:1px solid var(--c-line,#EEEFF3);background:#fff;color:var(--c-body,#0F172A);white-space:nowrap}
-.dhai-quick .ap{border-color:var(--c-strong,#1257C9);background:var(--c-strong,#1257C9);color:#fff}
+.dhai-quick .ap{border-color:#C9D7EC;background:#EEF3FA;color:#2F528C}
+.dhai-quick .kk{border-color:#F1DE75;background:#FFF7C7;color:#4A3F00}
+.dhai-quick .tel{border-color:#CDE3D6;background:#EEF7F2;color:#2E6A4E}
 .dhai-quick svg{width:14px;height:14px;flex:none}
 
 /* ★6. 추천 제목 + 카드 순번 */
@@ -101,7 +105,7 @@ body.shot .dhai-panel.sian{width:390px;height:100vh;border:0;border-radius:0;box
 .dhai-end{display:flex;flex-direction:column;gap:10px;border-top:1px solid var(--c-line,#EEEFF3);padding-top:14px}
 .dhai-act{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 .dhai-act button,.dhai-act a{height:46px;display:flex;align-items:center;justify-content:center;gap:6px;font-family:inherit;font-size:15px;font-weight:700;border-radius:8px;text-decoration:none;cursor:pointer;border:0;padding:0 6px;white-space:nowrap}
-.dhai-act .ap{grid-column:1/-1;height:54px;font-size:16px;background:var(--c-strong,#1257C9);color:#fff;box-shadow:0 4px 12px rgba(18,87,201,.24)}
+.dhai-act .ap{grid-column:1/-1;height:54px;font-size:16px;background:var(--c-strong,#1257C9);color:#fff;box-shadow:0 4px 12px rgba(58,100,168,.22)}
 .dhai-act .ap small{font-size:13px;font-weight:500;opacity:.85}
 .dhai-act .kk{background:var(--c-kakao,#FEE500);color:rgba(0,0,0,.85)}
 .dhai-act .tel{background:#fff;color:var(--c-body,#0F172A);border:1px solid var(--c-line,#EEEFF3)}
@@ -117,15 +121,15 @@ body.shot .dhai-panel.sian{width:390px;height:100vh;border:0;border-radius:0;box
 .dhai-bars i:nth-child(2){animation-delay:.12s}.dhai-bars i:nth-child(3){animation-delay:.24s}.dhai-bars i:nth-child(4){animation-delay:.36s}.dhai-bars i:nth-child(5){animation-delay:.48s}
 @keyframes dhai-wave{0%,100%{transform:scaleY(.35);opacity:.45}50%{transform:scaleY(1);opacity:1}}
 .dhai-shine{margin:0;font-size:16px;font-weight:800;letter-spacing:-.02em;line-height:1.4;color:var(--c-title,#0F172A);
-  background:linear-gradient(90deg,var(--c-title,#0F172A) 0%,var(--c-title,#0F172A) 38%,#5B8DEF 50%,var(--c-title,#0F172A) 62%,var(--c-title,#0F172A) 100%);
+  background:linear-gradient(90deg,var(--c-title,#0F172A) 0%,var(--c-title,#0F172A) 38%,#8FB0E0 50%,var(--c-title,#0F172A) 62%,var(--c-title,#0F172A) 100%);
   background-size:250% 100%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:dhai-shine 1.6s linear infinite}
 @keyframes dhai-shine{0%{background-position:100% 0}100%{background-position:0 0}}
 .dhai-steps{list-style:none;margin:0;padding:12px 14px;display:flex;flex-direction:column;gap:8px;background:var(--dh-gray-100,#F5F6F8);border-radius:12px}
 .dhai-steps li{display:flex;align-items:center;gap:10px;font-size:15px;line-height:1.5;color:var(--c-sub,#465368);animation:dhai-in .35s ease-out both}
 .dhai-steps li::before{content:'';width:8px;height:8px;border-radius:50%;background:#C9CED6;flex:none}
 .dhai-steps li.now{color:var(--c-title,#0F172A);font-weight:700}
-.dhai-steps li.now::before{background:var(--c-strong,#1257C9);box-shadow:0 0 0 0 rgba(18,87,201,.45);animation:dhai-ping 1.4s ease-out infinite}
-@keyframes dhai-ping{0%{box-shadow:0 0 0 0 rgba(18,87,201,.45)}100%{box-shadow:0 0 0 7px rgba(18,87,201,0)}}
+.dhai-steps li.now::before{background:var(--c-strong,#1257C9);box-shadow:0 0 0 0 rgba(58,100,168,.45);animation:dhai-ping 1.4s ease-out infinite}
+@keyframes dhai-ping{0%{box-shadow:0 0 0 0 rgba(58,100,168,.45)}100%{box-shadow:0 0 0 7px rgba(58,100,168,0)}}
 @keyframes dhai-in{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
 .dhai-wait-sub{margin:0;font-size:14px;line-height:1.6;color:var(--c-sub,#465368)}
 /* 움직임 줄이기 설정이면 모두 멈춘 모양으로 */
@@ -155,7 +159,7 @@ body.shot .dhai-panel.sian{width:390px;height:100vh;border:0;border-radius:0;box
   <!-- ───── 화면 1: 답이 온 뒤 ───── -->
   <div class="sian-col" id="col-answer">
     <div class="dhai-panel sian" role="dialog" aria-label="당현함 AI 상담">
-      <div class="dhai-head"><img class="dhai-logo" src="../favicon.svg" alt="" aria-hidden="true">
+      <div class="dhai-head"><span class="dhai-face" aria-hidden="true" style="border-radius:8px"><svg><use href="#dh-mark"/></svg></span>
         <div class="dhai-title"><b>당현함 상담</b><span>AI 답변 · 상담원 연결</span></div>
         <button type="button" class="dhai-agent">상담원 연결</button>
         <button type="button" class="dhai-icon" aria-label="새 대화"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg></button>
@@ -169,7 +173,7 @@ body.shot .dhai-panel.sian{width:390px;height:100vh;border:0;border-radius:0;box
           <div class="dhai-ai">
             <p><b>많이 찾으시는 냉온정수기 세 가지를 방문 관리 기준으로 골라 봤어요.</b></p>
             <div class="dhai-quick">
-              <button type="button" class="ap">상담 신청</button>
+              <button type="button" class="ap"><svg><use href="#ic-pen"/></svg>상담 신청</button>
               <a href="#" class="kk"><svg><use href="#ic-talk"/></svg>카톡 상담</a>
               <a href="#" class="tel"><svg><use href="#ic-tel"/></svg>전화 상담</a>
             </div>
@@ -247,7 +251,7 @@ body.shot .dhai-panel.sian{width:390px;height:100vh;border:0;border-radius:0;box
   <!-- ───── 화면 2: 기다리는 동안 ───── -->
   <div class="sian-col" id="col-wait">
     <div class="dhai-panel sian" role="dialog" aria-label="당현함 AI 상담">
-      <div class="dhai-head"><img class="dhai-logo" src="../favicon.svg" alt="" aria-hidden="true">
+      <div class="dhai-head"><span class="dhai-face" aria-hidden="true" style="border-radius:8px"><svg><use href="#dh-mark"/></svg></span>
         <div class="dhai-title"><b>당현함 상담</b><span>AI 답변 · 상담원 연결</span></div>
         <button type="button" class="dhai-agent">상담원 연결</button>
         <button type="button" class="dhai-icon" aria-label="새 대화"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg></button>
