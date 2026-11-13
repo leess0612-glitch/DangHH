@@ -46,7 +46,9 @@
      코웨이 브랜드지킴이 메일(「현금·지원금 낱말 + 금액」 위반, rental.html 지목) → 이 화면은 현금 안내를 그대로 두고
      코웨이 쪽을 뺍니다. 후기 사진 띠의 코웨이 정수기 사진(rband-39·44·45)도 같은 날 뺐습니다. */
   function 보일고지() {
-    if (!/^\/rental(\.html)?$/.test(location.pathname || '')) return 고지;
+    var 렌탈문정수기 = false;   /* 렌탈 화면에서 넘어온 손님의 정수기 화면(js/dh-nocash.js 맨 위와 같은 규칙) */
+    try { 렌탈문정수기 = sessionStorage.getItem('dh_door') === 'rental' && /\/water\//.test(location.pathname || ''); } catch (e) {}
+    if (!렌탈문정수기 && !/^\/rental(\.html)?$/.test(location.pathname || '')) return 고지;
     return 고지.filter(function (s) { return s.indexOf('코웨이') < 0; });
   }
 

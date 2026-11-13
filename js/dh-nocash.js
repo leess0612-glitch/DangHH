@@ -23,8 +23,41 @@
    ★ 2026-09-11 — 「사은품」도 **「혜택」으로 통일**하라는 지시가 있었습니다.
      금지어라서가 아니라 정수기 화면의 말투를 하나로 맞추기 위해서입니다.
    ══════════════════════════════════════════════════════════════════════ */
+/* ⛔ 2026-11-13 사장님 — 렌탈 화면(rental.html)으로 들어와 「정수기렌탈」로 넘어온 손님에게는 코웨이를 숨깁니다.
+     까닭 : 코웨이 브랜드지킴이가 rental.html(현금 안내가 있는 화면)을 지목 → 그 화면에서 코웨이를 뺐고(같은 날),
+            거기서 이어지는 정수기 화면에서도 코웨이가 안 보이게 합니다. 검색·광고로 /water/ 에 바로 온 손님은 그대로입니다.
+     문 기억 = js/dh-inflow.js 의 sessionStorage 'dh_door' === 'rental' (창을 닫으면 잊음).
+     · 정수기 목록 — data2-coway.js 가 브랜드 모음에 코웨이를 넣지 않습니다(목록·알약·인기 모두 빠짐)
+     · 다른 브랜드 상세의 「비슷한 제품」 — dh-like.js 가 코웨이를 거릅니다
+     · 코웨이 상세·코웨이 목록 주소로 오면 정수기 목록으로 돌려보냅니다
+     · 목록 아래 「코웨이는 사은품 등…」 줄과 탭 제목의 「코웨이·」를 뺍니다 */
+(function () {
+  var 문 = null;
+  try { 문 = sessionStorage.getItem('dh_door'); } catch (e) {}
+  var 길 = location.pathname || '';
+  if (문 !== 'rental' || !/\/water\//.test(길)) return;
+  /* 코웨이 화면은 그리던 대로 두고(부품 오류 방지) 가린 채 목록으로 넘깁니다 */
+  if (/\/water\/coway(-[^/]*)?(\/|$)/.test(길)) {
+    document.documentElement.style.visibility = 'hidden';
+    window.dh코웨이넘김 = true;   /* 아래 본래 부품은 이 화면에서 쉽니다(넘어가는 중이라 본문이 없을 수 있음) */
+    location.replace(길.replace(/\/water\/.*$/, '/water/'));
+    return;
+  }
+  window.dh코웨이숨김 = true;
+  function 지우기() {
+    document.title = document.title.replace(/코웨이·/g, '');
+    var 줄들 = document.querySelectorAll('.fee-note');
+    for (var i = 0; i < 줄들.length; i++) if (/코웨이/.test(줄들[i].textContent)) 줄들[i].remove();
+    /* 상세 화면 아래 설치 후기 — 코웨이가 적힌 후기는 뺍니다 */
+    var 후기 = document.querySelectorAll('.it-rv-body');
+    for (var j = 0; j < 후기.length; j++) if (/코웨이/.test(후기[j].textContent)) { var 칸 = 후기[j].closest('li') || 후기[j].parentNode; 칸.remove(); }
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', 지우기); else 지우기();
+})();
+
 (function () {
   'use strict';
+  if (window.dh코웨이넘김) return;
 
   /* ★ 2026-09-21 — 어디서 켜지나 (사장님 지시)
      ① 정수기 화면(/water/ · /water-c/) — 늘 켭니다 (전과 같음)

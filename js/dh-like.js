@@ -83,6 +83,8 @@
     if (목록 && location.pathname.indexOf('/water-c/') >= 0) {
       목록 = 목록.slice().sort(function (a, b) { return (b[6] || 0) - (a[6] || 0); });
     }
+    /* ⛔ 2026-11-13 렌탈 화면에서 온 손님에게는 코웨이를 빼고 보여 줍니다(js/dh-nocash.js 맨 위) */
+    if (목록 && window.dh코웨이숨김) 목록 = 목록.filter(function (x) { return !/^coway-/.test(x[0]); });
     var 몸통 = document.getElementById('제품몸통');
     if (!목록 || !목록.length || !몸통) return;
 
