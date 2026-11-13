@@ -42,6 +42,14 @@
     '© 2026 당현함. All rights reserved.'
   ];
 
+  /* ⛔ 2026-11-13 사장님 — 렌탈 첫 화면(rental.html)에는 코웨이가 안 보이게.
+     코웨이 브랜드지킴이 메일(「현금·지원금 낱말 + 금액」 위반, rental.html 지목) → 이 화면은 현금 안내를 그대로 두고
+     코웨이 쪽을 뺍니다. 후기 사진 띠의 코웨이 정수기 사진(rband-39·44·45)도 같은 날 뺐습니다. */
+  function 보일고지() {
+    if (!/^\/rental(\.html)?$/.test(location.pathname || '')) return 고지;
+    return 고지.filter(function (s) { return s.indexOf('코웨이') < 0; });
+  }
+
   function 막(s) {
     return String(s).replace(/[&<>"]/g, function (c) {
       return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c];
@@ -86,7 +94,7 @@
         '주소: ' + 막(회사.주소) + ' | 대표번호: ' + 막(회사.전화) +
         ' | 이메일: <a href="mailto:' + 막(회사.전자우편) + '">' + 막(회사.전자우편) + '</a>' +
       '</div>' +
-      '<div class="footer-disclaimer">' + 고지.map(막).join('<br>') + '</div>' +
+      '<div class="footer-disclaimer">' + 보일고지().map(막).join('<br>') + '</div>' +
     '</div>';
   }
 
