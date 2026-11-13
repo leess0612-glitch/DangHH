@@ -41,7 +41,11 @@
     try {
       var t = localStorage.getItem(곳간이름);
       var v = t ? JSON.parse(t) : [];
-      return Array.isArray(v) ? v.slice(0, 최대) : [];
+      if (!Array.isArray(v)) return [];
+      /* ⛔ 2026-11-13 렌탈 화면에서 온 손님에게는 예전에 담아 둔 코웨이도 빼고 보여 줍니다(js/dh-nocash.js 맨 위).
+         곳간에서 지우지는 않습니다 — 화면에서 다른 제품을 담거나 빼면 그때 코웨이 없는 목록으로 저장됩니다. */
+      if (window.dh코웨이숨김) v = v.filter(function (x) { return x && x.코드 !== 'coway' && !/^coway-/.test(x.사진 || ''); });
+      return v.slice(0, 최대);
     } catch (e) { return []; }
   }
   function 쓰기() {
