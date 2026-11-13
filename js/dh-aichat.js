@@ -338,13 +338,15 @@
     window.addEventListener('scroll', 띠살피기, { passive: true });
     var 지켜봄 = null;
     if (window.ResizeObserver) { 지켜봄 = new ResizeObserver(띠살피기); Array.prototype.forEach.call(document.querySelectorAll(비킬것), function (el) { 지켜봄.observe(el); }); }
-    document.addEventListener('transitionend', 띠살피기, true);   /* 띠가 미끄러져 다 올라온 뒤 한 번 더 */
+    document.addEventListener('transitionend', 띠살피기, true);
+    document.addEventListener('click', 띠살피기, true);   /* 「비교」를 눌러 비교 띠가 새로 생기거나 사라질 때 */   /* 띠가 미끄러져 다 올라온 뒤 한 번 더 */
     /* 아래 띠는 다른 부품(dh-bar3.js)이 나중에 만들기도 해서 처음 몇 초 동안 몇 번 더 봅니다 */
     [300, 1000, 2500, 5000].forEach(function (ms) { setTimeout(function () { 아래띠맞추기(); if (window.ResizeObserver && 지켜봄) Array.prototype.forEach.call(document.querySelectorAll(비킬것), function (el) { 지켜봄.observe(el); }); }, ms); });
   }
   /* 화면 아래·오른쪽에 고정된 것(정수기 화면 아래 띠 .bar3, 렌탈 첫 화면 아래 띠·떠 있는 전화/카톡) 위로 단추·창을 올립니다.
      띠는 스크롤하면 나타나거나 높이가 바뀌므로 크기 변화와 스크롤을 지켜봅니다(11/6 렌탈 첫 화면 붙이기) */
-  var 비킬것 = '.bar3, .mobile-cta-bar, .desk-cta-bar, .floating-btns';
+  /* 2026-11-13 — 정수기 비교 띠(.cmp3-bar, js/dh-compare3.js)도 비킵니다. 휴대폰에서 단추가 「비교 N」을 덮어 비교 창이 안 열렸음(검수에서 발견) */
+  var 비킬것 = '.bar3, .mobile-cta-bar, .desk-cta-bar, .floating-btns, .cmp3-bar';
   function 아래띠맞추기() {
     var 높이 = 0, 띠만 = 0, 폭 = window.innerWidth, 키 = window.innerHeight;   /* 높이: 단추가 피할 것 전부 · 띠만: 대화창이 피할 가로 띠만 */
     Array.prototype.forEach.call(document.querySelectorAll(비킬것), function (el) {
