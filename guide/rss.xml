@@ -6,7 +6,15 @@
 <atom:link href="https://danghh.com/guide/rss.xml" rel="self" type="application/rss+xml"/>
 <description>인터넷 가입 순서, 결합할인, 약정 위약금, 정수기·가전렌탈 고르는 법을 통신사와 렌탈 브랜드 공식 자료 기준으로 정리한 당현함 가이드입니다.</description>
 <language>ko</language>
-<lastBuildDate>Fri, 13 Nov 2026 09:00:00 +0900</lastBuildDate>
+<lastBuildDate>Sat, 14 Nov 2026 09:00:00 +0900</lastBuildDate>
+<item>
+<title>LG 인터넷 요금제 비교, 속도별 요금과 고르는 기준</title>
+<link>https://danghh.com/guide/lg-internet-plans-compare/</link>
+<guid isPermaLink="true">https://danghh.com/guide/lg-internet-plans-compare/</guid>
+<category>인터넷 가입</category>
+<pubDate>Sat, 14 Nov 2026 09:00:00 +0900</pubDate>
+<description>LG 인터넷 요금제는 2026년 11월 기준 LG U+ 공식 홈페이지의 와이파이기본 요금제 3년 약정 월 요금(부가세 포함)이 100M 22,000원, 200M 25,300원, 500M 33,000원, 1G 38,500원입니다. 와이파이기본 요금제는 공유기가 기본으로 들어 있고, 동시에 쓰는 영상·화상회의의 권장 속도 합계가 50Mbps 이하면 100M, 100Mbps 이하면 200M, 250Mbps 이하면 500M, 500Mbps 이하면 1G가 맞습니다. LG U+ TV 서비스인 U+tv를 함께 가입하면 인터넷 요금이 500M 27,500원, 1G 33,000원으로 내려갑니다.</description>
+</item>
 <item>
 <title>정수기 브랜드별 특징, 관리 방식과 약정으로 비교</title>
 <link>https://danghh.com/guide/water-brand-features/</link>
