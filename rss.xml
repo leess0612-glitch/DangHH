@@ -6,13 +6,20 @@
 <atom:link href="https://danghh.com/rss.xml" rel="self" type="application/rss+xml"/>
 <description>인터넷·TV 가입 현금 사은품과 정수기·가전 렌탈 요금 비교, 당현함</description>
 <language>ko</language>
-<lastBuildDate>Sat, 14 Nov 2026 00:00:00 +0900</lastBuildDate>
+<lastBuildDate>Sun, 15 Nov 2026 00:00:00 +0900</lastBuildDate>
 <item>
 <title>인터넷 가입·정수기·가전렌탈 가이드 | 당현함</title>
 <link>https://danghh.com/guide/</link>
 <guid isPermaLink="true">https://danghh.com/guide/</guid>
-<pubDate>Sat, 14 Nov 2026 00:00:00 +0900</pubDate>
+<pubDate>Sun, 15 Nov 2026 00:00:00 +0900</pubDate>
 <description>인터넷 가입 순서, 결합할인, 약정 위약금, 정수기·가전렌탈 고르는 법을 통신사와 렌탈 브랜드 공식 자료 기준으로 정리한 당현함 가이드입니다.</description>
+</item>
+<item>
+<title>코웨이 정수기 렌탈 추천, 최신·인기·가성비 모델 | 당현함</title>
+<link>https://danghh.com/guide/coway-water-recommend/</link>
+<guid isPermaLink="true">https://danghh.com/guide/coway-water-recommend/</guid>
+<pubDate>Sun, 15 Nov 2026 00:00:00 +0900</pubDate>
+<description>코웨이 정수기 렌탈 추천 모델을 출시일(최신), 공식몰 판매순(인기), 같은 조건 월 렌탈료와 기능 비교(가성비)로 골랐습니다. 코웨이 정수기 가격 차이를 계산 예시로 봅니다.</description>
 </item>
 <item>
 <title>LG 인터넷 요금제 비교, 속도별 요금과 고르는 기준</title>
