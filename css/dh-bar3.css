@@ -31,8 +31,8 @@
      색이 묶어 주고, 굵기·크기가 차례를 알려 주는 짜임입니다. */
 .bar-key{display:flex;align-items:center;gap:6px;flex:1 1 auto;min-width:0;
   color:var(--c-sub);font-weight:500}
-.bar-row.bar-now .bar-key{color:var(--c-title);font-weight:700}    /* 실제로 낼 값 */
-.bar-row.bar-pay .bar-key{color:var(--c-strong);font-weight:600}   /* 제휴카드가 */
+.bar-row.bar-now .bar-key{color:var(--c-strong);font-weight:700}   /* 실제로 낼 값 — 2026-11-16 사장님 「제휴카드가와 색 바꿔」 → 파랑 */
+.bar-row.bar-pay .bar-key{color:var(--c-title);font-weight:600}    /* 제휴카드가 — 같은 날 검정으로 */
 /* ⚠ 줄 갈래 이름에 was·now·card 같은 흔한 낱말을 쓰지 말 것.
    card 로 지었더니 dh-brand.css 의 .card(상자 모양)가 덧씌워져 줄이 깨졌습니다. */
 /* 정상가 줄은 취소선이 그어진 값이라 이름도 그대로 흐리게 둡니다 */
@@ -41,13 +41,13 @@
 /* 프로모션가 — 손님이 실제로 낼 값이라 요금 전용 눈금을 씁니다 */
 .bar-val{flex:0 0 auto;white-space:nowrap;font-variant-numeric:tabular-nums;
   font-size:var(--t-money);line-height:var(--lh-money);font-weight:var(--w-money);
-  color:var(--c-title);letter-spacing:var(--ls-title)}
+  color:var(--c-strong);letter-spacing:var(--ls-title)}
 /* 정상가는 목록 카드(.li-was)와 같이 취소선을 긋습니다.
    취소선이 그어진 값이라 일부러 조용히 둡니다 — 프로모션가와 겨루면 안 됩니다. */
 .bar-val.plain{font-size:var(--t-h3);line-height:var(--lh-h3);font-weight:500;
   color:var(--c-sub);letter-spacing:var(--ls-sub);text-decoration:line-through}
 .bar-val.pay{font-size:var(--t-h2);line-height:var(--lh-h2);font-weight:var(--w-h2);
-  color:var(--c-strong)}
+  color:var(--c-title)}
 /* 2026-09-11: 제휴카드 줄에 값 대신 말이 들어갑니다.
    요금 눈금(h2)으로 두면 낼 값보다 커 보여 차례가 뒤집힙니다 — 한 단 낮춥니다. */
 .bar-val.pay.말{font-size:var(--t-sub);line-height:var(--lh-sub);

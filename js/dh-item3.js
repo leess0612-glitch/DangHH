@@ -158,7 +158,7 @@
 
   function 고르개(이름, 목, 고름, 두칸) {
     if (!목.length) return '';
-    return '<div class="it-row"><span class="it-label">' + 막(이름) + '</span>' +
+    return '<div class="it-row"><span class="it-label">' + 막(이름) + (이름 === '약정' ? ' <em class="it-term"></em>' : '') + '</span>' +
       '<div class="it-opts' + (두칸 ? ' two' : '') + '" data-고르개="' + 막(이름) + '">' +
       목.map(function (v) {
         return '<button type="button" class="it-opt" aria-pressed="' + (v === 고름) +
@@ -303,6 +303,10 @@
       return;
     }
     if (설) 설.innerHTML = 결.말 + (결.더말 ? '<br>' + 결.더말 : '');
+    var 소유칸 = document.querySelector('.it-term');
+    /* 사장님 11/16 「개월수 말고 년으로」 — 12로 나눠떨어지면 「5년」, 아니면 개월 그대로 */
+    var 소유개월 = 결.소유권 ? parseInt(결.소유권, 10) : 0;
+    if (소유칸) 소유칸.textContent = 소유개월 ? '· 소유권 이전 ' + (소유개월 % 12 === 0 ? 소유개월 / 12 + '년' : 소유개월 + '개월') : '';
     if (window.아래띠) {
       /* ★ 2026-09-28 — 정상가는 「취소선 그을 값」을 씁니다.
          타사보상에 「몇 개월 얼마 더」가 붙는 칸에서는 이것이 **타사보상가**입니다.
