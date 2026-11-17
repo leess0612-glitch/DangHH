@@ -6,7 +6,15 @@
 <atom:link href="https://danghh.com/guide/rss.xml" rel="self" type="application/rss+xml"/>
 <description>인터넷 가입 순서, 결합할인, 약정 위약금, 정수기·가전렌탈 고르는 법을 통신사와 렌탈 브랜드 공식 자료 기준으로 정리한 당현함 가이드입니다.</description>
 <language>ko</language>
-<lastBuildDate>Mon, 16 Nov 2026 09:00:00 +0900</lastBuildDate>
+<lastBuildDate>Tue, 17 Nov 2026 09:00:00 +0900</lastBuildDate>
+<item>
+<title>인터넷 없이 TV만 가입, IPTV 단독 가입 요금과 설치비</title>
+<link>https://danghh.com/guide/iptv-only-signup/</link>
+<guid isPermaLink="true">https://danghh.com/guide/iptv-only-signup/</guid>
+<category>인터넷 가입</category>
+<pubDate>Tue, 17 Nov 2026 09:00:00 +0900</pubDate>
+<description>인터넷 없이 TV만 가입하는 것(IPTV 단독 가입)은 KT·SK브로드밴드·LG U+ 세 통신사 모두 됩니다. 3사 요금제 8개 기준으로 3년 약정 TV 요금은 인터넷과 함께 가입(결합)할 때보다 월 2,200~3,740원 비쌉니다(부가세 포함). 셋톱박스 임대료는 따로 내고, TV만 설치할 때 설치비는 셋톱박스 1대 34,100원(SK브로드밴드·LG U+는 평일 주간)입니다.</description>
+</item>
 <item>
 <title>IPTV 비교, 지니 TV·B tv·U+tv 요금과 채널</title>
 <link>https://danghh.com/guide/iptv-compare-kt-sk-lg/</link>
