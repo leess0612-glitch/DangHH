@@ -6,7 +6,35 @@
 <atom:link href="https://danghh.com/rss.xml" rel="self" type="application/rss+xml"/>
 <description>인터넷·TV 가입 현금 사은품과 정수기·가전 렌탈 요금 비교, 당현함</description>
 <language>ko</language>
-<lastBuildDate>Tue, 17 Nov 2026 00:00:00 +0900</lastBuildDate>
+<lastBuildDate>Wed, 18 Nov 2026 00:00:00 +0900</lastBuildDate>
+<item>
+<title>인터넷 가입·정수기·가전렌탈 가이드 | 당현함</title>
+<link>https://danghh.com/guide/</link>
+<guid isPermaLink="true">https://danghh.com/guide/</guid>
+<pubDate>Wed, 18 Nov 2026 00:00:00 +0900</pubDate>
+<description>인터넷 가입 순서, 결합할인, 약정 위약금, 정수기·가전렌탈 고르는 법을 통신사와 렌탈 브랜드 공식 자료 기준으로 정리한 당현함 가이드입니다.</description>
+</item>
+<item>
+<title>인터넷 설치비, 통신사별 금액과 면제되는 경우 | 당현함</title>
+<link>https://danghh.com/guide/internet-install-cost/</link>
+<guid isPermaLink="true">https://danghh.com/guide/internet-install-cost/</guid>
+<pubDate>Wed, 18 Nov 2026 00:00:00 +0900</pubDate>
+<description>인터넷 설치비는 2026년 11월 기준 평일 KT 36,000원, SK브로드밴드·LG U+ 36,300원입니다. 야간·주말 할증, 셋톱박스 설치비, 이전설치비, 면제·할인 경우를 담았습니다.</description>
+</item>
+<item>
+<title>정수기 고르는 법, 직수형·저수조형과 냉온 기능부터 정하기</title>
+<link>https://danghh.com/guide/water-purifier-choice/</link>
+<guid isPermaLink="true">https://danghh.com/guide/water-purifier-choice/</guid>
+<pubDate>Wed, 18 Nov 2026 00:00:00 +0900</pubDate>
+<description>정수기 고르는 법을 직수 정수기와 저수조 정수기 차이, 나오는 물, 설치 자리, 방문·자가 관리, 약정 기간 순서로 설명하고, 정수기 렌탈 비교는 월 렌탈료 계산 예시로 보여 줍니다.</description>
+</item>
+<item>
+<title>인터넷 위약금 계산법, 쓴 기간별 금액과 조회 방법 | 당현함</title>
+<link>https://danghh.com/guide/internet-contract-penalty/</link>
+<guid isPermaLink="true">https://danghh.com/guide/internet-contract-penalty/</guid>
+<pubDate>Wed, 18 Nov 2026 00:00:00 +0900</pubDate>
+<description>인터넷 위약금(할인반환금)은 약정으로 받은 할인을 돌려내는 돈입니다. KT·SK브로드밴드·LG U+ 공식 산식, 쓴 기간별 금액, 통신사를 바꿀 때 실제로 드는 돈과 조회 번호를 담았습니다.</description>
+</item>
 <item>
 <title>당현함 인터넷 요금표 비교 총정리 | KT SK LG 스카이라이프 헬로비전 인터넷TV 요금제 한눈에 보기</title>
 <link>https://danghh.com/plans.html</link>
@@ -50,11 +78,11 @@
 <description>LG헬로비전 인터넷TV 요금표를 한자리에서 보세요. hellovision 헬로비전 인터넷 요금제와 속도별 월 요금, UHD·HD 셋톱박스(셋탑박스) 차이와 와이파이 공유기, 케이블 결합할인과 약정할인 금액까지 확인하실 수 있습니다. 현금 사은품은 개통 당일 지급합니다.</description>
 </item>
 <item>
-<title>인터넷 가입·정수기·가전렌탈 가이드 | 당현함</title>
-<link>https://danghh.com/guide/</link>
-<guid isPermaLink="true">https://danghh.com/guide/</guid>
+<title>사은품 지급명단 | 당현함</title>
+<link>https://danghh.com/gift.html</link>
+<guid isPermaLink="true">https://danghh.com/gift.html</guid>
 <pubDate>Tue, 17 Nov 2026 00:00:00 +0900</pubDate>
-<description>인터넷 가입 순서, 결합할인, 약정 위약금, 정수기·가전렌탈 고르는 법을 통신사와 렌탈 브랜드 공식 자료 기준으로 정리한 당현함 가이드입니다.</description>
+<description>당현함 사은품 지급명단입니다. 인터넷 가입·정수기·가전렌탈 고객님께 당일 현금으로 지급해 드린 내역을 매일 공개합니다.</description>
 </item>
 <item>
 <title>인터넷 없이 TV만 가입, IPTV 단독 가입 요금과 설치비</title>
@@ -104,13 +132,6 @@
 <guid isPermaLink="true">https://danghh.com/guide/kt-bundle-discount/</guid>
 <pubDate>Tue, 17 Nov 2026 00:00:00 +0900</pubDate>
 <description>KT 결합할인 종류별 할인액 표, 2명·4인 가족 계산 예시, 자녀가 독립할 때 쓰는 따로 살아도 가족결합, 가족결합 서류와 해지 때 주의할 점을 KT 공식 홈페이지 기준으로 담았습니다.</description>
-</item>
-<item>
-<title>사은품 지급명단 | 당현함</title>
-<link>https://danghh.com/gift.html</link>
-<guid isPermaLink="true">https://danghh.com/gift.html</guid>
-<pubDate>Mon, 16 Nov 2026 00:00:00 +0900</pubDate>
-<description>당현함 사은품 지급명단입니다. 인터넷 가입·정수기·가전렌탈 고객님께 당일 현금으로 지급해 드린 내역을 매일 공개합니다.</description>
 </item>
 <item>
 <title>KT 지니 TV 셋톱박스 3 상세 사양 | 당현함</title>
@@ -400,13 +421,6 @@
 <description>안산에서 인터넷 만기를 앞두고 연장 대신 KT 인터넷과 TV를 신청한 고객은 신청 다음 날 바로 설치됐다고 했습니다.</description>
 </item>
 <item>
-<title>정수기 고르는 법, 직수형·저수조형과 냉온 기능부터 정하기</title>
-<link>https://danghh.com/guide/water-purifier-choice/</link>
-<guid isPermaLink="true">https://danghh.com/guide/water-purifier-choice/</guid>
-<pubDate>Wed, 11 Nov 2026 00:00:00 +0900</pubDate>
-<description>정수기 고르는 법을 직수 정수기와 저수조 정수기 차이, 나오는 물, 설치 자리, 방문·자가 관리, 약정 기간 순서로 설명하고, 정수기 렌탈 비교는 월 렌탈료 계산 예시로 보여 줍니다.</description>
-</item>
-<item>
 <title>청호나이스 미니 정수기 (정수) (WP-42C60600N) 렌탈 | 월 8,450원 | 당현함</title>
 <link>https://danghh.com/water/chungho-wp-42c60600n/</link>
 <guid isPermaLink="true">https://danghh.com/water/chungho-wp-42c60600n/</guid>
@@ -419,13 +433,6 @@
 <guid isPermaLink="true">https://danghh.com/guide/switch-internet-carrier/</guid>
 <pubDate>Mon, 09 Nov 2026 00:00:00 +0900</pubDate>
 <description>인터넷 통신사 변경을 끊김 없이 하는 순서와 KT·SK브로드밴드·LG U+ 해지 방법, 고객센터 번호, 장비 반납과 변상금, 결합이 풀릴 때 오르는 휴대폰 요금을 계산 예시로 설명합니다.</description>
-</item>
-<item>
-<title>인터넷 위약금 계산법, 쓴 기간별 금액과 조회 방법 | 당현함</title>
-<link>https://danghh.com/guide/internet-contract-penalty/</link>
-<guid isPermaLink="true">https://danghh.com/guide/internet-contract-penalty/</guid>
-<pubDate>Mon, 09 Nov 2026 00:00:00 +0900</pubDate>
-<description>인터넷 위약금(할인반환금)은 약정으로 받은 할인을 돌려내는 돈입니다. KT·SK브로드밴드·LG U+ 공식 산식, 쓴 기간별 금액, 통신사를 바꿀 때 실제로 드는 돈과 조회 번호를 담았습니다.</description>
 </item>
 <item>
 <title>인터넷 속도 고르는 법, 100메가·500메가·1기가 차이</title>
