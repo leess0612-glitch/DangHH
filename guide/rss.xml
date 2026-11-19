@@ -6,7 +6,15 @@
 <atom:link href="https://danghh.com/guide/rss.xml" rel="self" type="application/rss+xml"/>
 <description>인터넷 가입 순서, 결합할인, 약정 위약금, 정수기·가전렌탈 고르는 법을 통신사와 렌탈 브랜드 공식 자료 기준으로 정리한 당현함 가이드입니다.</description>
 <language>ko</language>
-<lastBuildDate>Wed, 18 Nov 2026 09:00:00 +0900</lastBuildDate>
+<lastBuildDate>Thu, 19 Nov 2026 09:00:00 +0900</lastBuildDate>
+<item>
+<title>정수기 해지 위약금, 의무사용기간과 약정으로 계산하기</title>
+<link>https://danghh.com/guide/rental-contract-penalty/</link>
+<guid isPermaLink="true">https://danghh.com/guide/rental-contract-penalty/</guid>
+<category>정수기·렌탈</category>
+<pubDate>Thu, 19 Nov 2026 09:00:00 +0900</pubDate>
+<description>정수기 해지 위약금은 의무 사용 기간 안에 해지할 때 생기므로, 이사 계획보다 의무 사용 기간이 먼저 끝나는 약정을 고르면 렌탈은 위약금 없이 쓸 수 있습니다. 2026년 11월 기준 코웨이·청호나이스·쿠쿠는 남은 의무 사용 기간 렌탈료의 10%, LG전자는 해지 시점에 따라 30·20·10%이고, 브랜드에 따라 약정 할인금액·회수비가 따로 더해집니다.</description>
+</item>
 <item>
 <title>인터넷 설치비, 통신사별 금액과 면제되는 경우</title>
 <link>https://danghh.com/guide/internet-install-cost/</link>
