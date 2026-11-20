@@ -1035,6 +1035,12 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://danghh.com/reviews/area/%EC%A0%9C%EC%A3%BC-%EC%84%9C%EA%B7%80%ED%8F%AC%EC%8B%9C/</loc>
+    <lastmod>2026-11-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://danghh.com/reviews/area/%EC%A0%9C%EC%A3%BC-%EC%A0%9C%EC%A3%BC%EC%8B%9C/</loc>
     <lastmod>2026-08-13</lastmod>
     <changefreq>weekly</changefreq>
@@ -1073,12 +1079,6 @@
   <url>
     <loc>https://danghh.com/reviews/area/%EB%8C%80%EA%B5%AC-%EB%8B%AC%EC%84%9C%EA%B5%AC/</loc>
     <lastmod>2026-08-26</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://danghh.com/reviews/area/%EC%A0%9C%EC%A3%BC-%EC%84%9C%EA%B7%80%ED%8F%AC%EC%8B%9C/</loc>
-    <lastmod>2026-08-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -1336,7 +1336,7 @@
   </url>
   <url>
     <loc>https://danghh.com/reviews/area/%EC%A0%9C%EC%A3%BC/</loc>
-    <lastmod>2026-08-13</lastmod>
+    <lastmod>2026-11-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -1411,6 +1411,12 @@
     <lastmod>2026-09-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://danghh.com/reviews/156384/</loc>
+    <lastmod>2026-11-20</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
   </url>
   <url>
     <loc>https://danghh.com/reviews/156377/</loc>
