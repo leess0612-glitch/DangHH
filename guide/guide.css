@@ -32,6 +32,22 @@
 .gd-body img { max-width: 100%; height: auto; display: block; margin: 8px auto 20px; }
 .gd-body hr { border: 0; border-top: 1px solid var(--c-line); margin: 36px 0; }
 
+/* 그림(11/20) — svg 는 글 칸에 바로 그려 사이트 글꼴·색 이름표를 따른다 */
+.gd-fig { margin: 8px 0 28px; }
+.gd-fig img { display: block; width: 100%; height: auto; border-radius: 12px; margin: 0; background: var(--dh-gray-100); }
+.gd-fig figcaption { font-size: 14px; line-height: 1.6; color: var(--c-sub); text-align: center; margin-top: 10px; }
+.gd-cover { margin: 0 0 20px; }
+.gd-fig-svg { border: 1px solid var(--c-line); border-radius: 12px; padding: 20px 16px 14px; background: var(--c-card); }
+.gd-fig-svg svg { display: block; width: 100%; max-width: 460px; height: auto; margin: 0 auto; font-family: inherit; }
+.gd-fig-svg .t { fill: var(--c-title); font-weight: 700; }
+.gd-fig-svg .s { fill: var(--c-sub); }
+.gd-fig-svg .k { fill: var(--c-strong); font-weight: 800; }
+.gd-fig-svg .box { fill: var(--c-card); stroke: var(--c-line); stroke-width: 1.5; }
+.gd-fig-svg .boxk { fill: var(--c-strong-bg); stroke: var(--c-strong); stroke-width: 1.5; }
+.gd-fig-svg .bar { fill: var(--c-strong); }
+.gd-fig-svg .bar2 { fill: var(--dh-gray-400); }
+.gd-fig-svg .ln { stroke: var(--c-dim); stroke-width: 1.5; fill: none; }
+
 .gd-table { overflow-x: auto; margin: 0 0 20px; border: 1px solid var(--c-line); border-radius: 10px; -webkit-overflow-scrolling: touch; }
 .gd-table table { border-collapse: collapse; width: 100%; min-width: 480px; font-size: 15px; line-height: 1.6; }
 .gd-table th, .gd-table td { padding: 10px 12px; border-bottom: 1px solid var(--c-line); text-align: left; vertical-align: top; white-space: normal; }
