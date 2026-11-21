@@ -400,9 +400,15 @@
   <!-- 가이드 글 시작 (당현함가이드/build.py 가 고침, 손으로 고치지 말 것) -->
   <url>
     <loc>https://danghh.com/guide/</loc>
-    <lastmod>2026-11-20</lastmod>
+    <lastmod>2026-11-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://danghh.com/guide/family-bundle-compare-3carriers/</loc>
+    <lastmod>2026-11-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://danghh.com/guide/coway-hot-cold-water-compare/</loc>
@@ -442,7 +448,7 @@
   </url>
   <url>
     <loc>https://danghh.com/guide/lg-internet-plans-compare/</loc>
-    <lastmod>2026-11-17</lastmod>
+    <lastmod>2026-11-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -454,7 +460,7 @@
   </url>
   <url>
     <loc>https://danghh.com/guide/sk-internet-plans-compare/</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -466,7 +472,7 @@
   </url>
   <url>
     <loc>https://danghh.com/guide/kt-internet-plans-compare/</loc>
-    <lastmod>2026-11-17</lastmod>
+    <lastmod>2026-11-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -478,7 +484,7 @@
   </url>
   <url>
     <loc>https://danghh.com/guide/internet-speed-choice/</loc>
-    <lastmod>2026-11-08</lastmod>
+    <lastmod>2026-11-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -502,13 +508,13 @@
   </url>
   <url>
     <loc>https://danghh.com/guide/internet-signup-steps/</loc>
-    <lastmod>2026-11-06</lastmod>
+    <lastmod>2026-11-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://danghh.com/guide/internet-gift-guide/</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
