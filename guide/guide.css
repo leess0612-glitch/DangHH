@@ -29,6 +29,20 @@
 .gd-body li { margin: 0 0 6px; }
 .gd-body a { overflow-wrap: anywhere; color: var(--c-strong); text-decoration: underline; text-underline-offset: 3px; }
 .gd-body blockquote { margin: 0 0 18px; padding: 12px 16px; border-left: 3px solid var(--c-line); color: var(--c-sub); }
+/* 11/23 질문 상자·알림 상자 */
+.gd-body .gd-ask { border: 0; margin: 4px 0 22px; padding: 18px 20px; background: var(--c-strong-bg); border-radius: 14px; color: var(--c-title); font-size: 18px; font-weight: 700; line-height: 1.6; text-align: center; }
+.gd-body .gd-ask p { margin: 0; }
+.gd-body .gd-box { margin: 6px 0 24px; padding: 16px 18px; border-radius: 12px; border: 1px solid var(--c-line); background: var(--dh-gray-100, #f5f6f8); }
+.gd-body .gd-box p { margin: 0 0 8px; }
+.gd-body .gd-box p:last-child, .gd-body .gd-box ul:last-child { margin-bottom: 0; }
+.gd-body .gd-box ul { margin: 0; padding-left: 20px; }
+.gd-body .gd-box li { margin: 4px 0; }
+.gd-body .gd-box .gd-box-h { font-weight: 800; color: var(--c-title); margin-bottom: 8px; }
+.gd-body .gd-box-ok { background: var(--c-strong-bg); border-color: transparent; }
+.gd-body .gd-box-warn { background: #fff7ed; border-color: #fed7aa; }
+.gd-body .gd-box-tip { background: #f8fafc; }
+/* 표 줄무늬 */
+.gd-table tbody tr:nth-child(even) td { background: var(--dh-gray-050, #fafbfc); }
 .gd-body img { max-width: 100%; height: auto; display: block; margin: 8px auto 20px; }
 .gd-body hr { border: 0; border-top: 1px solid var(--c-line); margin: 36px 0; }
 
