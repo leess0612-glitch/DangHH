@@ -134,3 +134,29 @@
 .gd-v2 .gd-box { margin: 8px 0 30px; }
 .gd-v2 .gd-fig { margin: 12px 0 32px; }
 .gd-v2 ol li, .gd-v2 ul li { margin: 6px 0; }
+
+
+/* ===== 11/23 세 블로그 섞기 — 블로그별 덩어리(머리말 mix: 인잘알,황,요거알지). 한 블로그를 빼려면 그 덩어리와 mix 이름만 지우면 됨 ===== */
+
+/* [황] 번호 붙은 질문형 소제목 + 위 구분선 + 큰 위 여백, 본문 문단 간격 넓게, 표 머리 줄 한 가지 연한 색·가는 속선 */
+.mx-hw { counter-reset: hwh2; }
+.mx-hw h2:not(#faq):not([id="참고한-자료"]) { counter-increment: hwh2; margin-top: 64px; padding-top: 26px; border-top: 1px solid #E5E5E5; }
+.mx-hw h2:not(#faq):not([id="참고한-자료"])::before { content: counter(hwh2); display: inline-flex; align-items: center; justify-content: center;
+  width: 28px; height: 28px; margin-right: 8px; border-radius: 50%; background: var(--c-strong); color: #fff;
+  font-size: 15px; font-weight: 800; vertical-align: 3px; }
+.mx-hw > p { margin-bottom: 26px; }
+.mx-hw .gd-table { border-color: #D2D2D2; }
+.mx-hw .gd-table th { background: var(--c-strong-bg); }
+.mx-hw .gd-table th, .mx-hw .gd-table td { border-bottom-color: #E2E2E2; padding-top: 9px; padding-bottom: 9px; }
+
+/* [요거알지] 강조는 글자색 대신 연한 형광 배경 + 굵게, 표 첫 칸 연회색, 그림 설명 줄 작게 */
+.mx-yg .gd-em { color: var(--c-title); font-weight: 800; padding: 0 2px;
+  background: linear-gradient(transparent 40%, #FFE0CC 40%, #FFE0CC 92%, transparent 92%); }
+.mx-yg .gd-table td:first-child { background: #F7F7F7; font-weight: 700; }
+.mx-yg .gd-fig figcaption { font-size: 13px; color: #666; }
+.mx-yg hr { margin: 40px 0; }
+
+/* 11/23 휴대폰 표: 첫 칸(모델 이름) 넓게, 요약 상자는 v2 에서 두 줄만 보이고 나머지는 흐리게 접힘(글자는 페이지에 그대로) */
+.gd-v2 .gd-table td:first-child, .gd-v2 .gd-table th:first-child { min-width: 9.5em; }
+.gd-v2 .gd-table table { min-width: 560px; }
+.gd-wrap:has(.gd-v2) .gd-summary { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
