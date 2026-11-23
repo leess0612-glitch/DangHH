@@ -166,3 +166,4 @@
 
 /* 11/23 재검수: 첫 칸 낱말이 한 글자씩 쪼개지지 않게 */
 .gd-v2 .gd-table td:first-child, .gd-v2 .gd-table th:first-child { word-break: keep-all; min-width: 5.5em; }
+.gd-v2 .gd-table td:not(:first-child) { overflow-wrap: anywhere; }   /* 11/23 3차 검수: 띄어쓰기 없는 긴 토막이 칸을 밀어내지 않게 */
