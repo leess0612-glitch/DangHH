@@ -42,7 +42,7 @@
 .gd-body .gd-box-warn { background: #fff7ed; border-color: #fed7aa; }
 .gd-body .gd-box-tip { background: #f8fafc; }
 /* 표 줄무늬 */
-.gd-table tbody tr:nth-child(even) td { background: var(--dh-gray-050, #fafbfc); }
+.gd-v2 .gd-table tbody tr:nth-child(even) td { background: var(--dh-gray-050, #fafbfc); }
 .gd-body img { max-width: 100%; height: auto; display: block; margin: 8px auto 20px; }
 .gd-body hr { border: 0; border-top: 1px solid var(--c-line); margin: 36px 0; }
 
@@ -117,3 +117,20 @@
   .gd-board em { display: none; }
   .gd-board strong { font-size: 15px; white-space: normal; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; line-height: 1.5; }
 }
+
+/* ===== 11/23 절충안 꾸밈(인잘알 실측 → 당현함 색) — 머리말 style: v2 인 글에만 ===== */
+.gd-v2 p { margin: 0 0 22px; }
+.gd-v2 h2 { font-size: 21px; font-weight: 800; margin: 44px 0 18px; padding-top: 0; }
+.gd-v2 h2 .gd-hl { padding: 0 3px; box-decoration-break: clone; -webkit-box-decoration-break: clone;
+  background: linear-gradient(transparent 55%, #FFF1A8 55%, #FFF1A8 92%, transparent 92%); }
+.gd-v2 h3 { font-size: 18px; margin: 28px 0 10px; }
+.gd-v2 .gd-em { font-style: normal; font-weight: 800; color: var(--c-highlight-text, #B84900); }
+.gd-v2 strong { font-weight: 800; color: var(--c-title); }
+.gd-v2 hr { border: 0; height: 24px; margin: 36px 0; text-align: center; }
+.gd-v2 hr::before { content: "· · ·"; color: var(--dh-gray-400, #9aa3af); font-size: 20px; letter-spacing: 8px; line-height: 24px; }
+.gd-v2 .gd-ask { background: none; padding: 8px 6px 4px; font-size: 19px; font-style: italic; font-weight: 800; line-height: 1.65; }
+.gd-v2 .gd-center { text-align: center; margin: 8px 0 26px; }
+.gd-v2 .gd-center p { margin: 0 0 6px; font-size: 18px; line-height: 1.75; }
+.gd-v2 .gd-box { margin: 8px 0 30px; }
+.gd-v2 .gd-fig { margin: 12px 0 32px; }
+.gd-v2 ol li, .gd-v2 ul li { margin: 6px 0; }
