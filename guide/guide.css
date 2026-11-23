@@ -157,6 +157,9 @@
 .mx-yg hr { margin: 40px 0; }
 
 /* 11/23 휴대폰 표: 첫 칸(모델 이름) 넓게, 요약 상자는 v2 에서 두 줄만 보이고 나머지는 흐리게 접힘(글자는 페이지에 그대로) */
-.gd-v2 .gd-table td:first-child, .gd-v2 .gd-table th:first-child { min-width: 9.5em; }
-.gd-v2 .gd-table table { min-width: 560px; }
-.gd-wrap:has(.gd-v2) .gd-summary { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.gd-v2 .gd-table:has(th:nth-child(5)) td:first-child, .gd-v2 .gd-table:has(th:nth-child(5)) th:first-child { min-width: 9.5em; }
+.gd-v2 .gd-table table { min-width: 0; }   /* 11/23 검수: 칸 4개 이하 표는 화면 폭에 맞춤 */
+.gd-v2 .gd-table:has(th:nth-child(5)) table { min-width: 560px; }
+.gd-wrap:has(.gd-v2) .gd-summary { display: -webkit-box !important; -webkit-line-clamp: 3; line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; height: auto !important; max-height: none !important; padding-bottom: 0 !important; border-bottom: 18px solid var(--c-strong-bg); }
+
+@media (max-width: 600px) { .gd-v2 .gd-table:has(th:nth-child(5))::before { content: "← 옆으로 밀어 보세요 →"; display: block; position: sticky; left: 0; padding: 6px 10px 2px; font-size: 12px; color: #8a8f98; } }
