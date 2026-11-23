@@ -6,26 +6,33 @@
 <atom:link href="https://danghh.com/rss.xml" rel="self" type="application/rss+xml"/>
 <description>인터넷·TV 가입 현금 사은품과 정수기·가전 렌탈 요금 비교, 당현함</description>
 <language>ko</language>
-<lastBuildDate>Sun, 22 Nov 2026 00:00:00 +0900</lastBuildDate>
+<lastBuildDate>Mon, 23 Nov 2026 00:00:00 +0900</lastBuildDate>
 <item>
 <title>인터넷 가입·정수기·가전렌탈 가이드 | 당현함</title>
 <link>https://danghh.com/guide/</link>
 <guid isPermaLink="true">https://danghh.com/guide/</guid>
-<pubDate>Sun, 22 Nov 2026 00:00:00 +0900</pubDate>
+<pubDate>Mon, 23 Nov 2026 00:00:00 +0900</pubDate>
 <description>인터넷 가입 순서, 결합할인, 약정 위약금, 정수기·가전렌탈 고르는 법을 통신사와 렌탈 브랜드 공식 자료 기준으로 정리한 당현함 가이드입니다.</description>
+</item>
+<item>
+<title>코웨이 빌트인 정수기 비교, 탱크형까지 6개 모델 크기와 렌탈료</title>
+<link>https://danghh.com/guide/coway-hot-cold-water-compare-3/</link>
+<guid isPermaLink="true">https://danghh.com/guide/coway-hot-cold-water-compare-3/</guid>
+<pubDate>Mon, 23 Nov 2026 00:00:00 +0900</pubDate>
+<description>코웨이 빌트인 정수기(엘리트 빌트인·고경도 지역형·노블 빌트인)와 탱크형 데스크형(엘리트·노블 RO·프라임 1.0) 6개 모델의 크기, 설치 조건, 관리 주기, 3년 약정 월 렌탈료를 비교합니다.</description>
 </item>
 <item>
 <title>코웨이 스탠드 정수기 비교, 8개 모델 탱크 용량과 렌탈료</title>
 <link>https://danghh.com/guide/coway-hot-cold-water-compare-2/</link>
 <guid isPermaLink="true">https://danghh.com/guide/coway-hot-cold-water-compare-2/</guid>
-<pubDate>Sun, 22 Nov 2026 00:00:00 +0900</pubDate>
+<pubDate>Mon, 23 Nov 2026 00:00:00 +0900</pubDate>
 <description>코웨이 스탠드 정수기 8개(워터스탠드 정수기2·플러스와 펌프형·나노트랩, 프라임 스탠드, RO 직수 스탠드, 워터 스탠드 33)의 크기, 탱크 용량, 방문 주기, 3년 약정 월 렌탈료를 비교합니다.</description>
 </item>
 <item>
 <title>코웨이 냉온정수기 비교, 아이콘·노블 다섯 모델 크기와 렌탈료</title>
 <link>https://danghh.com/guide/coway-hot-cold-water-compare/</link>
 <guid isPermaLink="true">https://danghh.com/guide/coway-hot-cold-water-compare/</guid>
-<pubDate>Sun, 22 Nov 2026 00:00:00 +0900</pubDate>
+<pubDate>Mon, 23 Nov 2026 00:00:00 +0900</pubDate>
 <description>코웨이 냉온정수기 직수형 데스크형 5개(아이콘 정수기 3·2·프로, 노블 가로·세로)의 크기, 관리 주기, 3년·5년 약정 월 렌탈료와 공식 사양 기능 차이를 한 표에서 비교합니다.</description>
 </item>
 <item>
