@@ -162,4 +162,7 @@
 .gd-v2 .gd-table:has(th:nth-child(5)) table { min-width: 560px; }
 .gd-wrap:has(.gd-v2) .gd-summary { display: -webkit-box !important; -webkit-line-clamp: 3; line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; height: auto !important; max-height: none !important; padding-bottom: 0 !important; border-bottom: 18px solid var(--c-strong-bg); }
 
-@media (max-width: 600px) { .gd-v2 .gd-table:has(th:nth-child(5))::before { content: "← 옆으로 밀어 보세요 →"; display: block; position: sticky; left: 0; padding: 6px 10px 2px; font-size: 12px; color: #8a8f98; } }
+@media (max-width: 600px) { .gd-v2 .gd-table.is-wide::before { content: "← 옆으로 밀어 보세요 →"; display: block; position: sticky; left: 0; padding: 6px 10px 2px; font-size: 12px; color: #8a8f98; } }
+
+/* 11/23 재검수: 첫 칸 낱말이 한 글자씩 쪼개지지 않게 */
+.gd-v2 .gd-table td:first-child, .gd-v2 .gd-table th:first-child { word-break: keep-all; min-width: 5.5em; }
