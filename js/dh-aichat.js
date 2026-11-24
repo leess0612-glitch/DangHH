@@ -311,7 +311,7 @@
     if (항목.종류 === 'me') return '<div class="dhai-me">' + 이스케이프(항목.글) + '</div>';
     if (항목.종류 === '쉼') return '<div class="dhai-ai"><p>' + 이스케이프(항목.말) + '</p>' + 연결단추(항목.질문) + '</div>';
     return '<div class="dhai-ai">' + 꾸미기(항목.답) + 카드들(항목, k) + 연결단추(항목.질문) +
-      '<div class="dhai-warn">AI가 생성한 응답은 부정확할 수 있습니다. 정확한 요금과 혜택은 상담원이 확인해서 확정해 드려요.</div></div>';
+      '<div class="dhai-warn">AI 답변은 정확하지 않을 수 있어요. 실제 조건은 상담에서 확인해 주세요.</div></div>';
   }
 
   /* ── 화면 만들기 ── */
