@@ -6,20 +6,41 @@
 <atom:link href="https://danghh.com/rss.xml" rel="self" type="application/rss+xml"/>
 <description>인터넷·TV 가입 현금 사은품과 정수기·가전 렌탈 요금 비교, 당현함</description>
 <language>ko</language>
-<lastBuildDate>Mon, 23 Nov 2026 00:00:00 +0900</lastBuildDate>
+<lastBuildDate>Tue, 24 Nov 2026 00:00:00 +0900</lastBuildDate>
+<item>
+<title>인터넷 가입·정수기·가전렌탈 가이드 | 당현함</title>
+<link>https://danghh.com/guide/</link>
+<guid isPermaLink="true">https://danghh.com/guide/</guid>
+<pubDate>Tue, 24 Nov 2026 00:00:00 +0900</pubDate>
+<description>인터넷 가입 순서, 결합할인, 약정 위약금, 정수기·가전렌탈 고르는 법을 통신사와 렌탈 브랜드 공식 자료 기준으로 정리한 당현함 가이드입니다.</description>
+</item>
+<item>
+<title>정수기 렌탈 가격 비교, 같은 조건으로 본 브랜드별 월 렌탈료</title>
+<link>https://danghh.com/guide/water-rental-price-compare/</link>
+<guid isPermaLink="true">https://danghh.com/guide/water-rental-price-compare/</guid>
+<pubDate>Tue, 24 Nov 2026 00:00:00 +0900</pubDate>
+<description>정수기 렌탈 가격 비교를 냉온정수기 직수형 데스크형, 5년 약정, 방문관리로 맞춰 코웨이·SK매직·쿠쿠·LG전자·청호나이스 대표 모델의 월 렌탈료와 5년 차이를 계산했습니다.</description>
+</item>
+<item>
+<title>정수기 브랜드별 특징, 관리 방식과 약정으로 비교 | 당현함</title>
+<link>https://danghh.com/guide/water-brand-features/</link>
+<guid isPermaLink="true">https://danghh.com/guide/water-brand-features/</guid>
+<pubDate>Tue, 24 Nov 2026 00:00:00 +0900</pubDate>
+<description>정수기 브랜드 다섯 곳(코웨이·SK매직·쿠쿠·LG전자·청호나이스)의 관리 방식, 방문 주기, 약정, 기술 이름을 표로 견주고 월 렌탈료 견주는 법을 정리한 정수기 비교 글입니다.</description>
+</item>
+<item>
+<title>정수기 고르는 법, 직수형·저수조형과 냉온 기능부터 정하기</title>
+<link>https://danghh.com/guide/water-purifier-choice/</link>
+<guid isPermaLink="true">https://danghh.com/guide/water-purifier-choice/</guid>
+<pubDate>Tue, 24 Nov 2026 00:00:00 +0900</pubDate>
+<description>정수기 고르는 법을 직수 정수기와 저수조 정수기 차이, 나오는 물, 설치 자리, 방문·자가 관리, 약정 기간 순서로 설명하고, 정수기 렌탈 비교는 월 렌탈료 계산 예시로 보여 줍니다.</description>
+</item>
 <item>
 <title>사은품 지급명단 | 당현함</title>
 <link>https://danghh.com/gift.html</link>
 <guid isPermaLink="true">https://danghh.com/gift.html</guid>
 <pubDate>Mon, 23 Nov 2026 00:00:00 +0900</pubDate>
 <description>당현함 사은품 지급명단입니다. 인터넷 가입·정수기·가전렌탈 고객님께 당일 현금으로 지급해 드린 내역을 매일 공개합니다.</description>
-</item>
-<item>
-<title>인터넷 가입·정수기·가전렌탈 가이드 | 당현함</title>
-<link>https://danghh.com/guide/</link>
-<guid isPermaLink="true">https://danghh.com/guide/</guid>
-<pubDate>Mon, 23 Nov 2026 00:00:00 +0900</pubDate>
-<description>인터넷 가입 순서, 결합할인, 약정 위약금, 정수기·가전렌탈 고르는 법을 통신사와 렌탈 브랜드 공식 자료 기준으로 정리한 당현함 가이드입니다.</description>
 </item>
 <item>
 <title>코웨이 빌트인 정수기 비교, 탱크형까지 6개 모델 크기와 렌탈료</title>
@@ -48,13 +69,6 @@
 <guid isPermaLink="true">https://danghh.com/guide/water-rental-vs-buy/</guid>
 <pubDate>Sun, 22 Nov 2026 00:00:00 +0900</pubDate>
 <description>정수기 렌탈 구매 비교, 렌탈이 나은 이유를 같은 모델 계산으로 보여 줍니다. 사은품 혜택 최대 50만 원을 넣은 차이, 정수기 일시불 구매 뒤 드는 관리·수리비를 공식 자료로 정리했습니다.</description>
-</item>
-<item>
-<title>정수기 고르는 법, 직수형·저수조형과 냉온 기능부터 정하기</title>
-<link>https://danghh.com/guide/water-purifier-choice/</link>
-<guid isPermaLink="true">https://danghh.com/guide/water-purifier-choice/</guid>
-<pubDate>Sun, 22 Nov 2026 00:00:00 +0900</pubDate>
-<description>정수기 고르는 법을 직수 정수기와 저수조 정수기 차이, 나오는 물, 설치 자리, 방문·자가 관리, 약정 기간 순서로 설명하고, 정수기 렌탈 비교는 월 렌탈료 계산 예시로 보여 줍니다.</description>
 </item>
 <item>
 <title>설치 후기 게시판 | 인터넷·정수기 고객 후기 | 당현함</title>
@@ -153,13 +167,6 @@
 <guid isPermaLink="true">https://danghh.com/guide/coway-water-recommend/</guid>
 <pubDate>Fri, 20 Nov 2026 00:00:00 +0900</pubDate>
 <description>코웨이 정수기 렌탈 추천 모델을 출시일(최신), 공식몰 판매순(인기), 같은 조건 월 렌탈료와 기능 비교(가성비)로 골랐습니다. 코웨이 정수기 가격 차이를 계산 예시로 봅니다.</description>
-</item>
-<item>
-<title>정수기 브랜드별 특징, 관리 방식과 약정으로 비교 | 당현함</title>
-<link>https://danghh.com/guide/water-brand-features/</link>
-<guid isPermaLink="true">https://danghh.com/guide/water-brand-features/</guid>
-<pubDate>Fri, 20 Nov 2026 00:00:00 +0900</pubDate>
-<description>정수기 브랜드 다섯 곳(코웨이·SK매직·쿠쿠·LG전자·청호나이스)의 관리 방식, 방문 주기, 약정, 기술 이름, 월 렌탈료 범위를 표로 견준 정수기 비교 글입니다.</description>
 </item>
 <item>
 <title>제주 서귀포 인터넷 설치·가입, 정수기 렌탈 후기 5건 | 당현함</title>
