@@ -22,6 +22,17 @@
   var c = '';
   try { c = new URLSearchParams(location.search).get('c') || ''; } catch (e) {}
   c = c.replace(/[^0-9A-Za-z가-힣_\-]/g, '').slice(0, 40) || '채널';
+  /* 당현함 SNS 통계 창고(관리자 화면 「당현함」 탭)에도 「유튜브 → 카톡 누름」 한 줄 — 사이트 안 카톡 단추(dh-track.js)와 같은 모양.
+     로봇·?test 는 보내지 않고, 실패해도 이동은 막지 않는다. */
+  try {
+    if (navigator.webdriver !== true && !/[?&]test/.test(location.search) && !sessionStorage.getItem('dh_sns_test')) {
+      var 새표 = function(){ return (window.crypto && crypto.randomUUID) ? crypto.randomUUID() : (Date.now().toString(36) + Math.random().toString(36).slice(2, 12)); };
+      var u = localStorage.getItem('dh_uid'); if (!u) { u = 새표(); localStorage.setItem('dh_uid', u); }
+      var 몸 = JSON.stringify({ k: 'click', m: 'kakao', s: 'youtube', md: '', c: '유튜브', ct: c, u: u, v: 새표(), p: 'yt-kakao' });
+      if (!(navigator.sendBeacon && navigator.sendBeacon('https://danghh-sns-stats.danghh.workers.dev/e', 몸)))
+        fetch('https://danghh-sns-stats.danghh.workers.dev/e', { method: 'POST', body: 몸, keepalive: true, mode: 'no-cors' });
+    }
+  } catch (e) {}
   location.replace('https://danghh.com/%EC%B9%B4%ED%86%A1.html?%EC%B6%9C%EC%B2%98=' + encodeURIComponent('유튜브-' + c));
 })();
 </script>
