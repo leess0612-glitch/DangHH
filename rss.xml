@@ -6,7 +6,28 @@
 <atom:link href="https://danghh.com/rss.xml" rel="self" type="application/rss+xml"/>
 <description>인터넷·TV 가입 현금 사은품과 정수기·가전 렌탈 요금 비교, 당현함</description>
 <language>ko</language>
-<lastBuildDate>Wed, 25 Nov 2026 00:00:00 +0900</lastBuildDate>
+<lastBuildDate>Thu, 26 Nov 2026 00:00:00 +0900</lastBuildDate>
+<item>
+<title>인터넷 가입·정수기·가전렌탈 가이드 | 당현함</title>
+<link>https://danghh.com/guide/</link>
+<guid isPermaLink="true">https://danghh.com/guide/</guid>
+<pubDate>Thu, 26 Nov 2026 00:00:00 +0900</pubDate>
+<description>인터넷 가입 순서, 결합할인, 약정 위약금, 정수기·가전렌탈 고르는 법을 통신사와 렌탈 브랜드 공식 자료 기준으로 정리한 당현함 가이드입니다.</description>
+</item>
+<item>
+<title>가습기 렌탈 고르는 법, 가습기 종류별 차이와 하이드로타워</title>
+<link>https://danghh.com/guide/humidifier-rental-choice/</link>
+<guid isPermaLink="true">https://danghh.com/guide/humidifier-rental-choice/</guid>
+<pubDate>Thu, 26 Nov 2026 00:00:00 +0900</pubDate>
+<description>가습기 렌탈 전에 가열식·초음파식·자연기화식·복합식 차이를 한국소비자원 시험으로 보고, LG 하이드로타워·하이드로에센셜·자연기화 가습기와 코웨이·청호 가습공기청정기 공식 사양을 견줍니다.</description>
+</item>
+<item>
+<title>설치 후기 게시판 | 인터넷·정수기 고객 후기 | 당현함</title>
+<link>https://danghh.com/reviews/</link>
+<guid isPermaLink="true">https://danghh.com/reviews/</guid>
+<pubDate>Thu, 26 Nov 2026 00:00:00 +0900</pubDate>
+<description>당현함 고객이 남긴 인터넷·TV 가입, 정수기·가전 렌탈 설치 후기 모음입니다. 지역별·브랜드별로 실제 설치 사진과 후기를 볼 수 있습니다.</description>
+</item>
 <item>
 <title>당현함 | 인터넷 가입 사은품 많이 주는 곳 비교사이트, 현금지원금 당일입금 | 인터넷·티비 설치 신청 변경 SKT SK KT LG U플러스 | 정수기렌탈</title>
 <link>https://danghh.com/</link>
@@ -15,11 +36,11 @@
 <description>약정 끝난 인터넷·TV·정수기 그대로 두면 최대 132만원을 버리는 겁니다. 전체 통신사 비교로 내 지원금을 무료로 확인하세요. ☎ 1600-4670</description>
 </item>
 <item>
-<title>인터넷 가입·정수기·가전렌탈 가이드 | 당현함</title>
-<link>https://danghh.com/guide/</link>
-<guid isPermaLink="true">https://danghh.com/guide/</guid>
+<title>사은품 지급명단 | 당현함</title>
+<link>https://danghh.com/gift.html</link>
+<guid isPermaLink="true">https://danghh.com/gift.html</guid>
 <pubDate>Wed, 25 Nov 2026 00:00:00 +0900</pubDate>
-<description>인터넷 가입 순서, 결합할인, 약정 위약금, 정수기·가전렌탈 고르는 법을 통신사와 렌탈 브랜드 공식 자료 기준으로 정리한 당현함 가이드입니다.</description>
+<description>당현함 사은품 지급명단입니다. 인터넷 가입·정수기·가전렌탈 고객님께 당일 현금으로 지급해 드린 내역을 매일 공개합니다.</description>
 </item>
 <item>
 <title>인터넷 연결 안됨·끊김, 집에서 확인하는 순서 | 당현함</title>
@@ -27,13 +48,6 @@
 <guid isPermaLink="true">https://danghh.com/guide/internet-disconnect-fix/</guid>
 <pubDate>Wed, 25 Nov 2026 00:00:00 +0900</pubDate>
 <description>인터넷 연결 안됨·끊김이 생겼을 때 모뎀·공유기 다시 켜기, 와이파이와 유선 가르기, KT·SK브로드밴드·LG U+ 원격 진단과 고장 신고, 약관 장애 보상 계산을 순서대로 정리했습니다.</description>
-</item>
-<item>
-<title>설치 후기 게시판 | 인터넷·정수기 고객 후기 | 당현함</title>
-<link>https://danghh.com/reviews/</link>
-<guid isPermaLink="true">https://danghh.com/reviews/</guid>
-<pubDate>Wed, 25 Nov 2026 00:00:00 +0900</pubDate>
-<description>당현함 고객이 남긴 인터넷·TV 가입, 정수기·가전 렌탈 설치 후기 모음입니다. 지역별·브랜드별로 실제 설치 사진과 후기를 볼 수 있습니다.</description>
 </item>
 <item>
 <title>인천 인터넷 설치·가입, 정수기 렌탈, 가전 렌탈 후기 170건 | 당현함</title>
@@ -69,13 +83,6 @@
 <guid isPermaLink="true">https://danghh.com/rental-c.html</guid>
 <pubDate>Tue, 24 Nov 2026 00:00:00 +0900</pubDate>
 <description>정수기·비데·공기청정기·안마의자 렌탈, 브랜드별 조건과 사은품 혜택을 비교해 안내드립니다. 타 업체가 더 주면 차액 120% 보상. 무료 비교 상담 ☎ 1600-4670</description>
-</item>
-<item>
-<title>사은품 지급명단 | 당현함</title>
-<link>https://danghh.com/gift.html</link>
-<guid isPermaLink="true">https://danghh.com/gift.html</guid>
-<pubDate>Tue, 24 Nov 2026 00:00:00 +0900</pubDate>
-<description>당현함 사은품 지급명단입니다. 인터넷 가입·정수기·가전렌탈 고객님께 당일 현금으로 지급해 드린 내역을 매일 공개합니다.</description>
 </item>
 <item>
 <title>정수기 렌탈 가격 비교, 같은 조건으로 본 브랜드별 월 렌탈료</title>
