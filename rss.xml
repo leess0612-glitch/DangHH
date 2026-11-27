@@ -6,13 +6,27 @@
 <atom:link href="https://danghh.com/rss.xml" rel="self" type="application/rss+xml"/>
 <description>인터넷·TV 가입 현금 사은품과 정수기·가전 렌탈 요금 비교, 당현함</description>
 <language>ko</language>
-<lastBuildDate>Thu, 26 Nov 2026 00:00:00 +0900</lastBuildDate>
+<lastBuildDate>Fri, 27 Nov 2026 00:00:00 +0900</lastBuildDate>
 <item>
 <title>인터넷 가입·정수기·가전렌탈 가이드 | 당현함</title>
 <link>https://danghh.com/guide/</link>
 <guid isPermaLink="true">https://danghh.com/guide/</guid>
-<pubDate>Thu, 26 Nov 2026 00:00:00 +0900</pubDate>
+<pubDate>Fri, 27 Nov 2026 00:00:00 +0900</pubDate>
 <description>인터넷 가입 순서, 결합할인, 약정 위약금, 정수기·가전렌탈 고르는 법을 통신사와 렌탈 브랜드 공식 자료 기준으로 정리한 당현함 가이드입니다.</description>
+</item>
+<item>
+<title>냉장고 렌탈과 구매 비교, 고장 걱정부터 따져요 | 당현함</title>
+<link>https://danghh.com/guide/refrigerator-rental-choice/</link>
+<guid isPermaLink="true">https://danghh.com/guide/refrigerator-rental-choice/</guid>
+<pubDate>Fri, 27 Nov 2026 00:00:00 +0900</pubDate>
+<description>냉장고 렌탈과 구매를 무상 A/S 기간, 약정과 소유권, 방문 케어, 중도 해지 위약금, 이사 이전설치로 비교합니다. LG전자·삼성전자 구독 공식 안내 기준입니다.</description>
+</item>
+<item>
+<title>사은품 지급명단 | 당현함</title>
+<link>https://danghh.com/gift.html</link>
+<guid isPermaLink="true">https://danghh.com/gift.html</guid>
+<pubDate>Thu, 26 Nov 2026 00:00:00 +0900</pubDate>
+<description>당현함 사은품 지급명단입니다. 인터넷 가입·정수기·가전렌탈 고객님께 당일 현금으로 지급해 드린 내역을 매일 공개합니다.</description>
 </item>
 <item>
 <title>가습기 렌탈 고르는 법, 가습기 종류별 차이와 하이드로타워</title>
@@ -34,13 +48,6 @@
 <guid isPermaLink="true">https://danghh.com/</guid>
 <pubDate>Wed, 25 Nov 2026 00:00:00 +0900</pubDate>
 <description>약정 끝난 인터넷·TV·정수기 그대로 두면 최대 132만원을 버리는 겁니다. 전체 통신사 비교로 내 지원금을 무료로 확인하세요. ☎ 1600-4670</description>
-</item>
-<item>
-<title>사은품 지급명단 | 당현함</title>
-<link>https://danghh.com/gift.html</link>
-<guid isPermaLink="true">https://danghh.com/gift.html</guid>
-<pubDate>Wed, 25 Nov 2026 00:00:00 +0900</pubDate>
-<description>당현함 사은품 지급명단입니다. 인터넷 가입·정수기·가전렌탈 고객님께 당일 현금으로 지급해 드린 내역을 매일 공개합니다.</description>
 </item>
 <item>
 <title>인터넷 연결 안됨·끊김, 집에서 확인하는 순서 | 당현함</title>
