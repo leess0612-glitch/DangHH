@@ -867,6 +867,12 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://danghh.com/reviews/area/%EB%8C%80%EC%A0%84-%EC%9C%A0%EC%84%B1%EA%B5%AC/</loc>
+    <lastmod>2026-11-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://danghh.com/reviews/area/%EC%A0%84%EB%82%A8-%EB%AA%A9%ED%8F%AC%EC%8B%9C/</loc>
     <lastmod>2025-07-10</lastmod>
     <changefreq>weekly</changefreq>
@@ -917,12 +923,6 @@
   <url>
     <loc>https://danghh.com/reviews/area/%EA%B2%BD%EA%B8%B0-%EA%B5%AC%EB%A6%AC%EC%8B%9C/</loc>
     <lastmod>2025-09-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://danghh.com/reviews/area/%EB%8C%80%EC%A0%84-%EC%9C%A0%EC%84%B1%EA%B5%AC/</loc>
-    <lastmod>2025-09-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -1330,7 +1330,7 @@
   </url>
   <url>
     <loc>https://danghh.com/reviews/area/%EB%8C%80%EC%A0%84/</loc>
-    <lastmod>2026-08-13</lastmod>
+    <lastmod>2026-11-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -1408,7 +1408,7 @@
   </url>
   <url>
     <loc>https://danghh.com/reviews/brand/%EC%BD%94%EC%9B%A8%EC%9D%B4/</loc>
-    <lastmod>2026-11-13</lastmod>
+    <lastmod>2026-11-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -1569,6 +1569,12 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://danghh.com/reviews/product/coway-icon-ice/</loc>
+    <lastmod>2026-11-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://danghh.com/reviews/product/coway-icon/</loc>
     <lastmod>2026-07-24</lastmod>
     <changefreq>weekly</changefreq>
@@ -1577,12 +1583,6 @@
   <url>
     <loc>https://danghh.com/reviews/product/coway-ice/</loc>
     <lastmod>2026-11-13</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://danghh.com/reviews/product/coway-icon-ice/</loc>
-    <lastmod>2026-09-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -1611,14 +1611,14 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://danghh.com/reviews/product/lg-ice/</loc>
-    <lastmod>2026-09-15</lastmod>
+    <loc>https://danghh.com/reviews/product/coway-bidet/</loc>
+    <lastmod>2026-11-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://danghh.com/reviews/product/coway-bidet/</loc>
-    <lastmod>2026-09-22</lastmod>
+    <loc>https://danghh.com/reviews/product/lg-ice/</loc>
+    <lastmod>2026-09-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -1627,6 +1627,18 @@
     <lastmod>2026-08-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://danghh.com/reviews/156403/</loc>
+    <lastmod>2026-11-27</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://danghh.com/reviews/156402/</loc>
+    <lastmod>2026-11-27</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
   </url>
   <url>
     <loc>https://danghh.com/reviews/156396/</loc>
